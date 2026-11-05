@@ -7,6 +7,14 @@
     "F0.3": {
       "feito": "2026-11-05",
       "evidencia": "Autor confirmou em 05/11/2026: sem vínculo com fornecedor de modelo, sem patrocínio ou crédito, sem necessidade de autorização do empregador; dados do trabalho só anonimizados. Ver studies/haiku-sdd-producao/declaracoes.md"
+    },
+    "F0.2": {
+      "feito": "2026-11-05",
+      "evidencia": "Autor aprovou em 05/11/2026 as seções Escopo e fora de escopo, Público do artigo e Critérios de sucesso em studies/haiku-sdd-producao/premissa.md"
+    },
+    "F1.6": {
+      "feito": "2026-11-05",
+      "evidencia": "05/11/2026: índice reconstruído (39 notas, 299 trechos); 5 buscas (self-consistency, Agentless, FrugalGPT cascata, lost in the middle, Reflexion) devolveram a nota da própria fonte em 1º lugar"
     }
   },
   "auto_feito": {

@@ -1,13 +1,13 @@
 # Progresso: SDD só com Haiku: o que sobra de qualidade quando o custo cai
 
-Atualizado em 2026-11-05 08:08 · congelamento dos dados: 2026-11-13
+Atualizado em 2026-11-05 08:10 · congelamento dos dados: 2026-11-13
 
-**9/46 passos (20%)**
+**11/46 passos (24%)**
 
 | Fase | Passos | Situação |
 | --- | --- | --- |
-| F0 Premissa e escopo | 2/3 | ███████░░░ |
-| F1 Revisão de evidências | 5/6 | ████████░░ |
+| F0 Premissa e escopo | 3/3 | ██████████ |
+| F1 Revisão de evidências | 6/6 | ██████████ |
 | F2 Hipóteses | 2/3 | ███████░░░ |
 | F3 Pré-registro | 0/3 | ░░░░░░░░░░ |
 | F4 Plano de testes | 0/6 | ░░░░░░░░░░ |
@@ -23,7 +23,7 @@ Atualizado em 2026-11-05 08:08 · congelamento dos dados: 2026-11-13
 
 ### F0 · Premissa e escopo
 - [x] **F0.1** Escrever a premissa, a pergunta de pesquisa e a decisão que o resultado informa
-- [ ] **F0.2** Definir escopo, fora de escopo, público do artigo e critérios de sucesso do estudo — falta: manual: falta evidência
+- [x] **F0.2** Definir escopo, fora de escopo, público do artigo e critérios de sucesso do estudo
 - [x] **F0.3** Declarar conflitos de interesse, uso de material do trabalho e restrições de confidencialidade
 
 ### F1 · Revisão de evidências
@@ -32,7 +32,7 @@ Atualizado em 2026-11-05 08:08 · congelamento dos dados: 2026-11-13
 - [x] **F1.3** Verificar que cada fonte existe (URL ou DOI abre) e que ela diz o que o resumo afirma
 - [x] **F1.4** Classificar o nível de evidência (A a D) e o viés ou conflito de cada fonte
 - [x] **F1.5** Escrever a síntese: o que se sabe, onde as fontes discordam e o que falta testar
-- [ ] **F1.6** Indexar as fontes no RAG e checar se a busca as encontra — falta: manual: falta evidência
+- [x] **F1.6** Indexar as fontes no RAG e checar se a busca as encontra
 
 ### F2 · Hipóteses
 - [x] **F2.1** Formular hipóteses falsificáveis, cada uma com métrica, limiar e critério de refutação
@@ -82,7 +82,7 @@ Atualizado em 2026-11-05 08:08 · congelamento dos dados: 2026-11-13
 - [ ] **F9.5** Revisar confidencialidade e anonimização; marcar as notas-fonte como publicáveis — falta: manual: falta evidência
 
 ### F10 · Revisão e aprovação
-- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F0.2, F1.6, F2.3, F3.1, F3.2, F3.3, F4.1, F4.2…
+- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F2.3, F3.1, F3.2, F3.3, F4.1, F4.2, F4.3, F4.4…
 - [ ] **F10.2** Fact-check final: cada número do texto conferido contra os dados — falta: manual: falta evidência
 - [ ] **F10.3** Aprovação do autor, dita de forma explícita para cada idioma — falta: manual: falta evidência
 
