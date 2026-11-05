@@ -13,3 +13,7 @@ __pycache__/
 # notas derivadas de material de trabalho (produto da empresa): ficam só na máquina, entram no RAG local
 knowledge/notes/estudo-paralelismo-sdd.md
 knowledge/notes/balanco-ciclo-prototipo-final.md
+
+# gabarito em texto claro nunca volta ao repositório (só a versão cifrada)
+studies/haiku-sdd-producao/gabarito/*.test.ts
+studies/haiku-sdd-producao/gabarito/referencia/

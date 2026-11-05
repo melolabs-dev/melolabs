@@ -65,7 +65,7 @@ def prep(rid, var):
     if d.exists():
         sys.exit(f"{d} já existe")
     RUNS.mkdir(parents=True, exist_ok=True)
-    run(["git", "-C", str(BASE_REPO), "worktree", "add", "--detach", str(d), BASE_COMMIT])
+    run(["git", "-c", "core.autocrlf=false", "-C", str(BASE_REPO), "worktree", "add", "--detach", str(d), BASE_COMMIT])
     run(["git", "-C", str(d), "config", "core.autocrlf", "false"])
     run([PNPM, "install", "--frozen-lockfile"], cwd=d)
     (d / "sdd").mkdir()
