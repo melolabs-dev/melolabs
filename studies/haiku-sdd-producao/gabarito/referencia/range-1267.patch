@@ -1,5 +1,5 @@
 diff --git a/src/utils/static.ts b/src/utils/static.ts
-index f0bfa03..9c27e1e 100644
+index f0bfa03..cbd4ac7 100644
 --- a/src/utils/static.ts
 +++ b/src/utils/static.ts
 @@ -224,6 +224,9 @@ export async function serveStatic(
@@ -90,7 +90,7 @@ index f0bfa03..9c27e1e 100644
 +  }
 +  const start = Number(first);
 +  const end = last ? Number(last) : size - 1;
-+  if (end < start) {
++  if (last && end < start) {
 +    // Invalid `byte-range-spec`: ignore the header.
 +    return;
 +  }

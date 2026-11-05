@@ -54,7 +54,13 @@
           "problem-1384-a.test.ts": "647f0b886d7f93da2b83d9d9ce5db9906ee68bbb1b1e30af6277b5bbc4714215",
           "problem-1384-b.test.ts": "271b456418b0266357bf35161e2ad2e70d0bd41eddd741803663447db9eafb84",
           "problem-1384-c.test.ts": "4c1f07b3f32800341e0086aa6bd695a0ae50f2c29355ee3cb33cc0b8c90f9302"
-        }
+        },
+        "extras_sha256": {
+          "range-1267.extras.test.ts": "dcda3945f1bdddf2666768cf042420e774916bc0fbe141254e3c2013eeca7e3a",
+          "session-1050-a.extras.test.ts": "32c908d9a195f3148b51b79422722fc54fd0e4020a770b528ee49294cd6c22a0",
+          "session-1050-b.extras.test.ts": "daf557f2cfeb10a81938cfebc3d87fb3b8ef8144dcc3edb5a01374d8e1001163"
+        },
+        "extras_nota": "Escritos em 05/11/2026 a partir das resolucoes aprovadas de maximizar dados. E5 (Range aberto com inicio >= tamanho deve dar 416) foi acrescentado pelo agente e achou um desvio da referencia do #1267 (corrigido: resolveRange validava 'end<start' antes de 'start>=size'); patch da referencia regenerado. O R6 aprovado nao pegava esse caso."
       },
       "execucao": "Execucoes pela assinatura do autor via subagentes do Claude Code (haiku, sonnet, opus), sem chave de API; sem teto de gasto. H8 (cache) nao mensuravel por este caminho."
     }
