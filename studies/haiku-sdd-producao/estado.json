@@ -46,11 +46,14 @@
       "referencias_dos_testes": "Implementações de referência dos testes ocultos escritas com Opus (decisão do autor em 05/11/2026), para ter a referência mais confiável.",
       "testes_ocultos_aprovados": {
         "data": "2026-11-05",
-        "autor": "Caio Melo aprovou os testes revisados (#1267 e #1050-a/b), com as resolucoes de maximizar dados (observacoes R9, S3, S5, S7; testes extras de If-Range, size zero e accept-ranges em 304/416). Ainda pendentes: #1384-A/B/C e a escrita dos testes extras.",
+        "autor": "Caio Melo aprovou os testes revisados (#1267 e #1050-a/b), com as resolucoes de maximizar dados (observacoes R9, S3, S5, S7; testes extras de If-Range, size zero e accept-ranges em 304/416). Em 05/11/2026 o autor aprovou tambem a #1384-A/B/C com as 4 resolucoes (bundle, suite de B em duas versoes, snapshot de C, unhandled em B como observacoes). Pendente: escrita dos testes extras.",
         "sha256": {
           "range-1267.test.ts": "719df3d87dbba1122b23f4ad45d26aa75d7eb06153e83ad2a6779094116ab81b",
           "session-1050-a.test.ts": "b88078252f29f3bd3b7acc3aa2d98e2d34b2c34d3cf5616785a83440bb75bf14",
-          "session-1050-b.test.ts": "b9b114206e8e27c79c4cdc5b59da59b52ea25836e7f685eeeae278f5c28de6a5"
+          "session-1050-b.test.ts": "b9b114206e8e27c79c4cdc5b59da59b52ea25836e7f685eeeae278f5c28de6a5",
+          "problem-1384-a.test.ts": "647f0b886d7f93da2b83d9d9ce5db9906ee68bbb1b1e30af6277b5bbc4714215",
+          "problem-1384-b.test.ts": "271b456418b0266357bf35161e2ad2e70d0bd41eddd741803663447db9eafb84",
+          "problem-1384-c.test.ts": "4c1f07b3f32800341e0086aa6bd695a0ae50f2c29355ee3cb33cc0b8c90f9302"
         }
       },
       "execucao": "Execucoes pela assinatura do autor via subagentes do Claude Code (haiku, sonnet, opus), sem chave de API; sem teto de gasto. H8 (cache) nao mensuravel por este caminho."
