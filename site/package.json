@@ -1,0 +1,16 @@
+{
+  "name": "melo-labs-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-posts.mjs",
+    "dev": "node scripts/sync-posts.mjs && astro dev",
+    "build": "node scripts/sync-posts.mjs && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.0",
+    "@astrojs/sitemap": "^3.2.0",
+    "astro": "^5.0.0"
+  }
+}

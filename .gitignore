@@ -1,0 +1,12 @@
+.env
+*.pem
+*.key
+node_modules/
+.DS_Store
+Thumbs.db
+# material bruto de trabalho pode ter dados sensíveis: não versionar por padrão
+inbox/*
+!inbox/.gitkeep
+# índice do RAG é derivado das notas: reconstruir com `python tools/rag/rag.py build`
+knowledge/index/
+__pycache__/

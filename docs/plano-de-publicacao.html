@@ -1,0 +1,220 @@
+<title>Plano do Laboratório</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;600;800&display=swap">
+<style>
+/* Layout: coluna única de leitura, caderno de laboratório. Cabeçalho com estado do RAG, depois fases com checklist, calendário em tabela, rotas e métricas. */
+:root{
+  --bg:#f2f5f6; --panel:#ffffff; --ink:#13232b; --muted:#566872; --line:#d3dde1;
+  --accent:#0d7a6b; --accent-soft:#d9efeb; --warn:#a8650c; --warn-soft:#f6e8d2; --bad:#a63b32;
+  --font-body:"Public Sans",system-ui,"Segoe UI",sans-serif; --font-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1a1f; --panel:#16252c; --ink:#e4edf0; --muted:#93a8b1; --line:#2a3d46;
+  --accent:#4cc9b4; --accent-soft:#17403a; --warn:#e5a54b; --warn-soft:#3b2d14; --bad:#ef8a80; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1a1f; --panel:#16252c; --ink:#e4edf0; --muted:#93a8b1; --line:#2a3d46;
+  --accent:#4cc9b4; --accent-soft:#17403a; --warn:#e5a54b; --warn-soft:#3b2d14; --bad:#ef8a80; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:860px;margin:0 auto;padding-block:36px 72px}
+h1{font-size:clamp(28px,6vw,40px);line-height:1.1;margin:6px 0 10px;font-weight:800;text-wrap:balance}
+h2{font-size:21px;margin:44px 0 6px;font-weight:800;text-wrap:balance}
+h3{font-size:16px;margin:0 0 4px}
+p{margin:0 0 12px;max-width:68ch}
+.eyebrow{font:600 12px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lead{font-size:18px;color:var(--muted);max-width:60ch}
+.sub{color:var(--muted);font-size:14px;margin-bottom:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:22px 0 6px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0}
+.stat b{display:block;font:600 26px/1.1 var(--font-mono);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+.stat.warn b{color:var(--warn)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+.flow div{flex:1 1 130px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:10px 12px;font-size:14px;min-width:0}
+.flow b{display:block;font:600 11px/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0 18px}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.phase{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:12px}
+.phase header{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px}
+.tag{font:600 11px/1 var(--font-mono);letter-spacing:.05em;text-transform:uppercase;padding:4px 7px;border-radius:3px;background:var(--accent-soft);color:var(--accent)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.task{display:flex;gap:10px;align-items:flex-start;padding:6px 0;cursor:pointer}
+.task input{width:19px;height:19px;margin-top:3px;accent-color:var(--accent);flex:none}
+.task span{min-width:0;overflow-wrap:anywhere}
+.task input:checked+span{color:var(--muted);text-decoration:line-through}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px;background:var(--panel)}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 11px/1.3 var(--font-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+td.w{font-family:var(--font-mono);white-space:nowrap}
+.need{color:var(--warn);font-weight:600}
+.rules{columns:2 280px;column-gap:24px;padding-left:20px;margin:8px 0}
+.rules li{margin-bottom:6px;break-inside:avoid}
+.callout{border-left:3px solid var(--warn);background:var(--warn-soft);padding:12px 16px;border-radius:0 6px 6px 0;margin:16px 0}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 16px;margin-bottom:8px}
+code{font:13px var(--font-mono);background:var(--accent-soft);color:var(--ink);padding:1px 5px;border-radius:3px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<main>
+  <div class="eyebrow">Melo Labs · plano de 90 dias · 4 de novembro de 2026</div>
+  <h1>Plano do Laboratório</h1>
+  <p class="lead">Um blog técnico em que cada post nasce de um experimento medido: hipótese, dados, conclusão, inclusive quando a resposta é "não vale a pena". A base de conhecimento (RAG) guarda o que você testou, e a IA escreve em cima dela. Você reproduz, revisa e aprova.</p>
+
+  <div class="stats" aria-label="Estado atual da base de conhecimento">
+    <div class="stat"><b>6</b><span>notas no RAG</span></div>
+    <div class="stat"><b>92</b><span>trechos indexados</span></div>
+    <div class="stat"><b>3</b><span>validadas por você</span></div>
+    <div class="stat warn"><b>0</b><span>publicáveis (anonimizadas)</span></div>
+  </div>
+  <p class="sub">Medido em 4/11/2026 com <code>python tools/rag/rag.py stats</code>. As 6 notas vêm dos artefatos de hoje: 3 experimentos seus (validados), 2 revisões de literatura e 1 registro de hipóteses (ainda não validados).</p>
+
+  <h2>Como o conteúdo anda</h2>
+  <div class="flow">
+    <div><b>1 · Inbox</b>Artefato bruto, nota ou ideia, do PC ou do celular.</div>
+    <div><b>2 · RAG</b>Nota Markdown + índice SQLite. Seus experimentos entram validados; o resto, não.</div>
+    <div><b>3 · Experimento</b>Você roda e mede. Dados vão para <code>studies/</code>.</div>
+    <div><b>4 · Draft</b>A IA escreve só a partir de notas e dados; cita a fonte.</div>
+    <div><b>5 · Sua revisão</b>Você reproduz, anonimiza e marca <code>validated: true</code>.</div>
+    <div><b>6 · Publicar</b>Site próprio primeiro, depois cópias com canonical.</div>
+  </div>
+
+  <h2>Fases e checklist</h2>
+  <p class="sub">Marque conforme avança. As marcações ficam só neste navegador.</p>
+  <div class="q" id="nowbox" style="margin-bottom:14px"><b>Estamos aqui:</b> <span id="now">–</span> <span class="sub" id="upd" style="display:block;margin:2px 0 0"></span></div>
+  <div class="bar" role="progressbar" aria-label="Progresso geral" aria-valuemin="0" aria-valuemax="100"><i id="fill"></i></div>
+  <p id="pct" class="eyebrow" style="margin-top:-10px"></p>
+
+  <section class="phase">
+    <header><h3>Fase 0 · Fundação</h3><span class="tag">feita hoje</span></header>
+    <label class="task"><input type="checkbox" data-k="f0a" checked disabled><span>Pasta <code>blog-tech</code> com CLAUDE.md, templates de estudo, experimento e artigo</span></label>
+    <label class="task"><input type="checkbox" data-k="f0b" checked disabled><span>Remote Control ligado para dirigir a sessão pelo celular</span></label>
+    <label class="task"><input type="checkbox" data-k="f0c" checked disabled><span>RAG local: notas Markdown + índice SQLite FTS5, busca por linha de comando</span></label>
+    <label class="task"><input type="checkbox" data-k="f0d" checked disabled><span>6 artefatos de hoje importados com origem e grau de validação registrados</span></label>
+  </section>
+
+  <section class="phase">
+    <header><h3>Fase 1 · Validar e abrir a casa</h3><span class="tag warn">semanas 1 e 2</span></header>
+    <label class="task"><input type="checkbox" data-k="f1-email"><span>Criar o e-mail do Melo Labs</span></label>
+    <label class="task"><input type="checkbox" data-k="f1-gh-conta"><span>Criar a conta no GitHub</span></label>
+    <label class="task"><input type="checkbox" data-k="f1-dev-perfil"><span>Perfil do DEV: nome, bio em inglês e foto de perfil</span></label>
+    <label class="task"><input type="checkbox" data-k="f1-site-astro"><span>Site em Astro bilíngue (PT/EN), com página "Como eu escrevo", que compila e abre localmente</span></label>
+    <label class="task"><input type="checkbox" data-k="f1-publicador"><span>Publicador automático: portão de qualidade, DEV, Hashnode e git push</span></label>
+    <label class="task"><input type="checkbox" data-k="f1-dev-key"><span>Gerar a chave de API do DEV e colocar no <code>.env</code></span></label>
+    <label class="task"><input type="checkbox" data-k="f1-gh-cli"><span>Instalar o GitHub CLI e rodar <code>gh auth login</code></span></label>
+    <label class="task"><input type="checkbox" data-k="f1-repo"><span>Criar o repositório privado e fazer o primeiro push</span></label>
+    <label class="task"><input type="checkbox" data-k="f1-hashnode"><span>Perfil do Hashnode (nome, bio, foto) e token + ID da publicação no <code>.env</code></span></label>
+    <label class="task"><input type="checkbox" data-k="f1-linkedin"><span>Atualizar o LinkedIn com a mesma identidade (nome, bio, foto)</span></label>
+    <label class="task"><input type="checkbox" data-k="f1-deploy"><span>Conectar o repositório ao Cloudflare Pages (raiz <code>site</code>, build <code>npm run build</code>, saída <code>dist</code>) e apontar <code>melolabs.net</code> para o site</span></label>
+    <label class="task"><input type="checkbox" data-k="f1-dominio"><span>Registrar o domínio <code>melolabs.net</code></span></label>
+    <label class="task"><input type="checkbox" data-k="f1-validar"><span>Validar as 3 notas de literatura e hipóteses (os 3 experimentos já entram validados) e repetir com outra feature o que for virar post</span></label>
+    <label class="task"><input type="checkbox" data-k="f1-importar"><span>Importar os artefatos anteriores que forem do blog (provas e treino pessoal ficam de fora)</span></label>
+  </section>
+
+  <section class="phase">
+    <header><h3>Fase 2 · Ritmo semanal</h3><span class="tag warn">semanas 3 a 8</span></header>
+    <label class="task"><input type="checkbox" data-k="f2a"><span>Publicar 1 artigo por semana, seguindo o calendário abaixo</span></label>
+    <label class="task"><input type="checkbox" data-k="f2b"><span>Cada post com repositório de reprodução e dados brutos em CSV</span></label>
+    <label class="task"><input type="checkbox" data-k="f2c"><span>Medir o próprio RAG (recall nas perguntas que você faz) e publicar o resultado</span></label>
+    <label class="task"><input type="checkbox" data-k="f2d"><span>Escrever 2 decisões técnicas como ADR a partir das notas validadas</span></label>
+  </section>
+
+  <section class="phase">
+    <header><h3>Fase 3 · Escala</h3><span class="tag warn">semanas 9 a 12</span></header>
+    <label class="task"><input type="checkbox" data-k="f3a"><span>Abrir a newsletter e colocar o formulário em todos os posts</span></label>
+    <label class="task"><input type="checkbox" data-k="f3b"><span>Transformar o melhor post em palestra de meetup</span></label>
+    <label class="task"><input type="checkbox" data-k="f3c"><span>Revisar o que gerou leitura e resposta; cortar o que não funcionou</span></label>
+    <label class="task"><input type="checkbox" data-k="f3d"><span>Conferir se os posts em inglês geram mais leitura que os em português e ajustar a ordem de publicação</span></label>
+  </section>
+
+  <h2>Calendário editorial</h2>
+  <p class="sub">Os 4 primeiros temas já têm dados de hoje. "Falta" é o que precisa acontecer antes de publicar.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Sem.</th><th>Post (título de trabalho)</th><th>Base no RAG</th><th>Falta</th></tr></thead>
+    <tbody>
+      <tr><td class="w">1</td><td>Haiku enxuto custa 6% do Sonnet, mas a TechSpec perde qualidade</td><td>haiku-enxuto-vs-sonnet</td><td class="need">Reproduzir 1 rodada; anonimizar o repositório usado</td></tr>
+      <tr><td class="w">2</td><td>Voto com opções fechadas: consenso em 23 de 23 decisões, contra 8 de 23</td><td>haiku-contra-sonnet-sdd</td><td class="need">Repetir com outra feature (hoje é 1 só)</td></tr>
+      <tr><td class="w">3</td><td>Revisão enxuta cortou o tempo de revisão em 90%? O que o teste não prova</td><td>orquestracao-agentes-laboratorio</td><td class="need">Grupo de controle; remover nomes internos e segurança corporativa</td></tr>
+      <tr><td class="w">4</td><td>O gargalo não era a máquina: 3 h 17 de pausa de orquestração</td><td>orquestracao-agentes-laboratorio</td><td class="need">Medição contínua de CPU e memória</td></tr>
+      <tr><td class="w">5</td><td>Híbrido: Haiku no PRD, Sonnet na TechSpec e nas tarefas</td><td>registro-suposicoes (H10, H12)</td><td class="need">Rodar 5 execuções por braço</td></tr>
+      <tr><td class="w">6</td><td>Como medi o meu RAG: BM25 contra embeddings</td><td>a criar em <code>studies/</code></td><td class="need">Montar 20 perguntas de teste e medir recall</td></tr>
+      <tr><td class="w">7</td><td>WSL e Docker comeram 68 GB do meu SSD: o que medi antes e depois</td><td>sessão de hoje</td><td class="need">Registrar os dados num estudo</td></tr>
+      <tr><td class="w">8</td><td>Por que escolhi Markdown + SQLite para a base de conhecimento (ADR)</td><td>tools/rag</td><td class="need">Comparar com uma alternativa de verdade</td></tr>
+      <tr><td class="w">9+</td><td>A definir pelos resultados dos experimentos anteriores</td><td>hipóteses H1 a H9</td><td>Escolher as de maior efeito esperado</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Portão de publicação</h2>
+  <p>Um post só sai quando todos os itens valem. Isso protege seu nome e atende às regras de IA das plataformas.</p>
+  <ul class="rules">
+    <li>Você reproduziu o experimento principal e a nota está <code>validated_by_author: true</code></li>
+    <li>Todo número do texto aponta para um dado em <code>studies/</code>; o que não tem fica "TODO: medir"</li>
+    <li>Material do trabalho anonimizado: repositórios, ferramentas, nomes e métricas de negócio</li>
+    <li>Aviso de IA no fim do post: experimentos e conclusões seus, redação assistida e revisada por você</li>
+    <li>Limitações e ameaças à validade escritas, com o que o teste não prova</li>
+    <li>Resultado negativo ou inconclusivo tem o mesmo destaque do positivo</li>
+    <li>Repositório de reprodução público e sem segredos</li>
+    <li>Você escreveu à mão o TL;DR e a conclusão</li>
+  </ul>
+
+  <h2>Distribuição de cada post</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Quando</th><th>Onde</th><th>Regra</th></tr></thead>
+    <tbody>
+      <tr><td class="w">Dia 0</td><td>Site próprio</td><td>Versão canônica, com RSS e formulário da newsletter</td></tr>
+      <tr><td class="w">Dia 1</td><td>DEV e Hashnode</td><td>Mesmo texto com <code>canonical_url</code> do site; divulgar o uso de IA</td></tr>
+      <tr><td class="w">Dia 1</td><td>LinkedIn</td><td>Resumo com o gráfico principal e o link; não colar o artigo</td></tr>
+      <tr><td class="w">Dia 3</td><td>Hacker News ou Reddit</td><td>Só quando o resultado for surpreendente; responda os comentários você mesmo, sem IA</td></tr>
+      <tr><td class="w">Depois</td><td>Medium</td><td>Cópia aberta, fora do paywall; texto de IA não pode entrar no Partner Program</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Como saberemos se funciona</h2>
+  <p class="sub">Metas sugeridas para ajustar com você. Não são projeções.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Em 90 dias</th><th>Meta sugerida</th><th>Mede</th></tr></thead>
+    <tbody>
+      <tr><td>Posts publicados</td><td class="w">8 a 12</td><td>Constância</td></tr>
+      <tr><td>Estudos com repositório reproduzível</td><td class="w">≥ 6</td><td>Credibilidade</td></tr>
+      <tr><td>Notas do RAG validadas por você</td><td class="w">≥ 15</td><td>Qualidade da base</td></tr>
+      <tr><td>Assinantes da newsletter</td><td class="w">100</td><td>Audiência própria</td></tr>
+      <tr><td>Post com ≥ 1.000 leituras</td><td class="w">1</td><td>Alcance de um tema</td></tr>
+      <tr><td>Convite ou palestra</td><td class="w">1</td><td>Influência fora do blog</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <strong>Atenção ao material do trabalho.</strong> O estudo de orquestração menciona ferramentas de segurança corporativa, repositórios e ciclos de entrega da empresa. Antes de publicar, confirme com a política da sua empresa o que pode ser divulgado. Todas as notas estão com <code>publishable: false</code> até você anonimizar.
+  </div>
+
+  <h2>Decisões em aberto</h2>
+  <div class="q"><b>Nome decidido: Melo Labs.</b> Falta registrar o domínio e reservar o mesmo @ no GitHub, LinkedIn, DEV e Hashnode. O nome é curto e pode já estar em uso; se o domínio ou o @ estiverem ocupados, a alternativa é <i>Caio Melo Labs</i>.</div>
+  <div class="q"><b>Idioma: decidido, bilíngue.</b> Cada post sai em português e em inglês. O português vai primeiro e o inglês em até 3 dias. Números e dados são idênticos nas duas versões.</div>
+  <div class="q"><b>Newsletter.</b> Substack é rápido de abrir. Uma ferramenta própria dá mais controle e exige mais trabalho.</div>
+  <div class="q"><b>Embeddings no RAG.</b> Hoje a busca é por palavras (BM25). Embeddings entram quando você tiver cerca de 30 notas e perguntas reais para medir se melhoram a busca.</div>
+
+  <h2>O que ficou de fora do RAG hoje</h2>
+  <p>O artefato <b>Jornada</b> é um painel pessoal (treino, finanças, hábitos). Tem dados seus e nada a ver com o blog, então não entrou. Os 14 artefatos anteriores (provas, guias da faculdade, logo, treino) também esperam sua escolha.</p>
+</main>
+<script>
+(function(){
+  var STATE=/*STATE-START*/{"updated": "2026-11-04 22:37", "now": "Login no GitHub CLI (confirmar o código no navegador)", "done": {"f1-email": "2026-11-04", "f1-gh-conta": "2026-11-04", "f1-site-astro": "2026-11-04", "f1-publicador": "2026-11-04", "f1-dev-perfil": "2026-11-04", "f1-dominio": "2026-11-04", "f1-dev-key": "2026-11-04"}}/*STATE-END*/;
+  var KEY="lab-plano-v2",boxes=[].slice.call(document.querySelectorAll('input[data-k]'));
+  var saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+  boxes.forEach(function(b){
+    var d=STATE.done&&STATE.done[b.dataset.k];
+    if(d){b.checked=true;b.disabled=true;
+      var s=document.createElement("span");s.className="sub";s.style.cssText="display:block;margin:0";
+      s.textContent="feito em "+d.split("-").reverse().join("/");b.nextElementSibling.appendChild(s)}
+    else if(!b.disabled&&saved[b.dataset.k])b.checked=true;
+    b.addEventListener("change",function(){if(b.disabled)return;saved[b.dataset.k]=b.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}update()})});
+  function update(){var done=boxes.filter(function(b){return b.checked}).length,p=Math.round(done/boxes.length*100);
+    document.getElementById("fill").style.width=p+"%";document.querySelector(".bar").setAttribute("aria-valuenow",p);
+    document.getElementById("pct").textContent=done+" de "+boxes.length+" etapas · "+p+"%"}
+  document.getElementById("now").textContent=STATE.now||"sem passo em andamento";
+  document.getElementById("upd").textContent=STATE.updated?"Estado salvo em "+STATE.updated.slice(8,10)+"/"+STATE.updated.slice(5,7)+"/"+STATE.updated.slice(0,4)+" às "+STATE.updated.slice(11):"";
+  update();
+})();
+</script>

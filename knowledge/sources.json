@@ -1,0 +1,105 @@
+[
+  {
+    "slug": "haiku-enxuto-vs-sonnet",
+    "title": "Haiku enxuto contra Sonnet padrão no fluxo SDD (rodada 3)",
+    "url": "https://claude.ai/artifact/T95jcsW3W8vvHRogEDef9Q",
+    "kind": "experiment",
+    "evidence": "experimento-proprio",
+    "date": "2026-11-04",
+    "tags": [
+      "sdd",
+      "haiku",
+      "sonnet",
+      "benchmark",
+      "custo",
+      "avaliacao-cega"
+    ],
+    "raw": "inbox/_raw/haiku-enxuto-vs-sonnet/index.html",
+    "validated": true
+  },
+  {
+    "slug": "haiku-contra-sonnet-sdd",
+    "title": "Haiku contra Sonnet no SDD (rodadas 1 e 2)",
+    "url": "https://claude.ai/artifact/2DPBs4qBTeG8CQNcEEi66F",
+    "kind": "experiment",
+    "evidence": "experimento-proprio",
+    "date": "2026-11-04",
+    "tags": [
+      "sdd",
+      "haiku",
+      "sonnet",
+      "prd",
+      "techspec",
+      "voto",
+      "gate"
+    ],
+    "raw": "inbox/_raw/haiku-contra-sonnet-sdd/index.html",
+    "validated": true
+  },
+  {
+    "slug": "orquestracao-agentes-laboratorio",
+    "title": "Orquestração de agentes de IA no desenvolvimento de software: um laboratório",
+    "url": "https://claude.ai/artifact/4NrBysawYvXXMR8Gy8aiA6",
+    "kind": "experiment",
+    "evidence": "experimento-proprio",
+    "date": "2026-11-04",
+    "tags": [
+      "orquestracao",
+      "agentes",
+      "paralelismo",
+      "gates",
+      "revisao-enxuta"
+    ],
+    "raw": "inbox/_raw/orquestracao-agentes/index.html",
+    "validated": true
+  },
+  {
+    "slug": "registro-suposicoes-haiku-sonnet-sdd",
+    "title": "Registro de suposições: Haiku vs Sonnet no SDD",
+    "url": "https://claude.ai/artifact/T9o4SWtv27aDjSCiKj1EDF",
+    "kind": "hypothesis-register",
+    "evidence": "hipoteses-nao-testadas",
+    "date": "2026-11-04",
+    "tags": [
+      "sdd",
+      "haiku",
+      "hipoteses",
+      "premissas"
+    ],
+    "validated": false
+  },
+  {
+    "slug": "sdd-com-haiku-assertividade",
+    "title": "SDD com Haiku: como aumentar a assertividade de um modelo pequeno",
+    "url": "https://claude.ai/artifact/3yeX2D8bSNMkECuRi6kFKb",
+    "kind": "literature-review",
+    "evidence": "revisao-de-literatura",
+    "date": "2026-11-04",
+    "tags": [
+      "sdd",
+      "haiku",
+      "prd",
+      "techspec",
+      "tasks",
+      "papers"
+    ],
+    "validated": false
+  },
+  {
+    "slug": "turbinando-claude-haiku",
+    "title": "Turbinando o Claude Haiku: pesquisa e soluções para modelos menores",
+    "url": "https://claude.ai/artifact/4MoTDcGvAvtTwjdfwZpx2c",
+    "kind": "literature-review",
+    "evidence": "revisao-de-literatura",
+    "date": "2026-11-04",
+    "tags": [
+      "haiku",
+      "test-time-compute",
+      "contexto",
+      "rag",
+      "multiagente",
+      "papers"
+    ],
+    "validated": false
+  }
+]

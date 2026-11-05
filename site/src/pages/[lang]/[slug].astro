@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { T, type Lang } from '../../i18n';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const ids = new Set(posts.map((p) => p.id));
+  return posts.map((entry) => {
+    const [lang, slug] = entry.id.split('/');
+    const other = lang === 'pt' ? 'en' : 'pt';
+    const hasOther = ids.has(`${other}/${slug}`);
+    return { params: { lang, slug }, props: { entry, altHref: hasOther ? `/${other}/${slug}/` : undefined } };
+  });
+}
+const { entry, altHref } = Astro.props;
+const lang = entry.data.lang as Lang;
+const t = T[lang];
+const { Content } = await render(entry);
+---
+<Base title={entry.data.title} lang={lang} description={entry.data.summary} altHref={altHref}>
+  <p class="meta"><a href={`/${lang}/`}>← {t.back}</a></p>
+  <article>
+    <h1>{entry.data.title}</h1>
+    <p class="meta">
+      {entry.data.date && entry.data.date.toISOString().slice(0, 10)}
+    </p>
+    <p>{entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}</p>
+    <Content />
+  </article>
+  <p class="meta">{t.aiNote}</p>
+</Base>

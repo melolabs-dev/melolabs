@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { LANGS, T, type Lang } from '../../i18n';
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const t = T[lang];
+const posts = (await getCollection('posts', (p) => p.data.lang === lang)).sort(
+  (a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0),
+);
+---
+<Base title="Melo Labs" lang={lang}>
+  <h1>Melo Labs</h1>
+  <p class="lead">{t.tagline}</p>
+  {posts.length === 0 ? (
+    <p>{t.empty}</p>
+  ) : (
+    <ul class="post-list">
+      {posts.map((p) => (
+        <li>
+          <a href={`/${lang}/${p.id.split('/')[1]}/`}>{p.data.title}</a>
+          <div class="meta">
+            {p.data.date && p.data.date.toISOString().slice(0, 10)}
+            {p.data.tags.slice(0, 3).map((tag) => <span> · {tag}</span>)}
+          </div>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>

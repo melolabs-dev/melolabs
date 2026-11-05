@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import { LANGS, T, type Lang } from '../../i18n';
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const t = T[lang];
+const other: Lang = lang === 'pt' ? 'en' : 'pt';
+---
+<Base title={t.about} lang={lang} altHref={`/${other}/about/`}>
+  <h1>{t.about}</h1>
+  {t.aboutBody.map((para) => <p>{para}</p>)}
+</Base>
