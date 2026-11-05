@@ -20,7 +20,8 @@
       "prazo": "congelar dados em 2026-11-13",
       "features": "h3 #1267 (HTTP Range no serveStatic), #1384 (RFC 9457 problem JSON), #1050 (várias senhas de unseal em sessões)",
       "contexto_do_repo": "CLAUDE.md e AGENTS.md do h3 entram nas duas condições (Haiku e Sonnet)",
-      "bracos_do_autor": "Os 4 braços novos entram: S8 repo map, S9 N candidatos em worktrees, S10 limite de chamadas, S11 checagem de rodapé. Ordem de corte se faltar orçamento: S11, S8, S9."
+      "bracos_do_autor": "Os 4 braços novos entram: S8 repo map, S9 N candidatos em worktrees, S10 limite de chamadas, S11 checagem de rodapé. Ordem de corte se faltar orçamento: S11, S8, S9.",
+      "dados_de_trabalho": "Podem aparecer no artigo, mas sem nenhum dado da empresa onde o autor trabalha (nome, produto, projetos, repositórios, decisões internas, telas, domínio de negócio). Só números agregados e lições gerais, anonimizados."
     }
   },
   "aprovacoes": {

@@ -71,3 +71,5 @@ Público: devs júnior/pleno que o autor mentora + comunidade em geral. Publica�
 - Nunca commitar segredos. Usar `.env` (ignorado pelo git).
 - Tom: direto, didático, honesto sobre incertezas; escrever em pt-BR; termos técnicos em inglês quando padrão.
 - Frontmatter obrigatório nos posts: `title`, `date`, `tags`, `status` (draft|review|published), `study` (slug do estudo).
+
+- **Dados do trabalho do autor (decisão de 2026-11-05):** podem aparecer em artigos apenas anonimizados e agregados, sem nome da empresa, produto, projetos, repositórios, pessoas, telas, domínio de negócio ou identificadores internos. Regras completas em `studies/<slug>/declaracoes.md`. Notas derivadas de material de trabalho ficam no `.gitignore`.
