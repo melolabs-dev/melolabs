@@ -1,0 +1,151 @@
+{
+  "versao": "1.0",
+  "titulo": "Protocolo de Pesquisa do Melo Labs",
+  "principios": [
+    "Nenhum número, citação ou afirmação entra no artigo sem origem rastreável: um dado em studies/<slug>/dados ou uma fonte verificada em studies/<slug>/fontes.",
+    "O que uma máquina consegue conferir, a máquina confere. Só passos que dependem de julgamento ficam como manuais, e exigem evidência escrita.",
+    "Hipóteses, métricas, margens e regras de parada são definidas e congeladas antes de rodar qualquer teste.",
+    "Resultado negativo, equivalente ou surpreendente tem o mesmo destaque do positivo.",
+    "O estudo precisa ser repetível por outra pessoa com um único comando, a partir de um clone limpo.",
+    "A IA ajuda a pesquisar, escrever e criticar. Quem mede, valida e aprova é o autor."
+  ],
+  "status_hipotese": {
+    "pendente": "ainda não testada",
+    "confirmada": "a previsão se cumpriu com o critério pré-registrado, em todas as execuções planejadas",
+    "refutada": "o critério de refutação pré-registrado foi atingido",
+    "equivalente": "a diferença ficou dentro da margem de equivalência pré-registrada: não há efeito prático",
+    "subpotente": "o desenho não tinha amostra suficiente para decidir. É falha do desenho: estender a amostra pela regra de parada antes de qualquer afirmação"
+  },
+  "fases": [
+    {
+      "id": "F0",
+      "nome": "Premissa e escopo",
+      "objetivo": "Dizer com precisão o que será descoberto e que decisão o resultado vai informar.",
+      "passos": [
+        {"id": "F0.1", "titulo": "Escrever a premissa, a pergunta de pesquisa e a decisão que o resultado informa", "criterio": "premissa.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "premissa.md", "min": 400}},
+        {"id": "F0.2", "titulo": "Definir escopo, fora de escopo, público do artigo e critérios de sucesso do estudo", "criterio": "Seção de escopo da premissa revisada pelo autor", "verifica": {"tipo": "manual"}},
+        {"id": "F0.3", "titulo": "Declarar conflitos de interesse, uso de material do trabalho e restrições de confidencialidade", "criterio": "Decisão registrada: o que pode e o que não pode ser publicado", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F1",
+      "nome": "Revisão de evidências",
+      "objetivo": "Saber o que já se sabe antes de testar, com fontes acadêmicas, de empresas e independentes, todas verificadas.",
+      "passos": [
+        {"id": "F1.1", "titulo": "Definir a estratégia de busca: termos, bases, critérios de inclusão e exclusão, data da busca", "criterio": "busca.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "busca.md", "min": 300}},
+        {"id": "F1.2", "titulo": "Coletar fontes em Markdown: no mínimo 10, sendo 3 acadêmicas, 3 de empresa ou documentação oficial e 2 independentes", "criterio": "Notas em fontes/ com frontmatter completo", "verifica": {"tipo": "fontes", "total": 10, "por_tipo": {"academico": 3, "empresa": 3, "independente": 2}}},
+        {"id": "F1.3", "titulo": "Verificar que cada fonte existe (URL ou DOI abre) e que ela diz o que o resumo afirma", "criterio": "Todas as fontes com verificada: true; comando links sem erro", "verifica": {"tipo": "fontes_verificadas"}},
+        {"id": "F1.4", "titulo": "Classificar o nível de evidência (A a D) e o viés ou conflito de cada fonte", "criterio": "nivel_evidencia e vies preenchidos em todas", "verifica": {"tipo": "fontes_classificadas"}},
+        {"id": "F1.5", "titulo": "Escrever a síntese: o que se sabe, onde as fontes discordam e o que falta testar", "criterio": "sintese.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "sintese.md", "min": 500}},
+        {"id": "F1.6", "titulo": "Indexar as fontes no RAG e checar se a busca as encontra", "criterio": "python tools/rag/rag.py build rodado; busca devolve as fontes", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F2",
+      "nome": "Hipóteses",
+      "objetivo": "Transformar a premissa em previsões que podem ser refutadas por dados.",
+      "passos": [
+        {"id": "F2.1", "titulo": "Formular hipóteses falsificáveis, cada uma com métrica, limiar e critério de refutação", "criterio": "hipoteses.json sem TODO e com todos os campos", "verifica": {"tipo": "hipoteses_completas"}},
+        {"id": "F2.2", "titulo": "Fixar para cada hipótese a margem de equivalência e o menor efeito que importa na prática", "criterio": "margem_equivalencia e efeito_minimo preenchidos", "verifica": {"tipo": "hipoteses_margens"}},
+        {"id": "F2.3", "titulo": "Declarar a hipótese nula, ao menos um controle negativo e as explicações alternativas", "criterio": "Registrados na premissa ou em hipoteses.json", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F3",
+      "nome": "Pré-registro",
+      "objetivo": "Congelar o que será medido e como será analisado antes de ver qualquer resultado.",
+      "passos": [
+        {"id": "F3.1", "titulo": "Escrever o plano de análise: estatísticas, intervalos de confiança, correção de múltiplas comparações, regra de outliers", "criterio": "analise-plano.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "analise-plano.md", "min": 400}},
+        {"id": "F3.2", "titulo": "Dimensionar a amostra com um piloto: estimar a variância e definir n e a regra de parada", "criterio": "Piloto registrado e n justificado no plano de testes", "verifica": {"tipo": "manual"}},
+        {"id": "F3.3", "titulo": "Congelar o pré-registro com uma tag git prereg-<slug>", "criterio": "Hash do commit e da tag registrados como evidência", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F4",
+      "nome": "Plano de testes",
+      "objetivo": "Documentar o experimento de forma que outra pessoa o repita sem perguntar nada.",
+      "passos": [
+        {"id": "F4.1", "titulo": "Especificar o ambiente: hardware, sistema, versões fixadas, lockfile ou container", "criterio": "ambiente.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "ambiente.md", "min": 300}},
+        {"id": "F4.2", "titulo": "Definir variáveis, condições, ordem aleatória, sementes, aquecimento e número de repetições", "criterio": "plano-de-testes.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "plano-de-testes.md", "min": 500}},
+        {"id": "F4.3", "titulo": "Escrever o dicionário de dados e o esquema de coleta", "criterio": "dicionario.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "dicionario.md", "min": 250}},
+        {"id": "F4.4", "titulo": "Automatizar a execução em um único comando (experimentos/run), sem passo manual", "criterio": "Comando documentado em experimentos/README.md", "verifica": {"tipo": "arquivo", "caminho": "experimentos/README.md", "min": 150}},
+        {"id": "F4.5", "titulo": "Fazer o ensaio geral com amostra pequena e validar a coleta", "criterio": "Execução piloto registrada no diário", "verifica": {"tipo": "manual"}},
+        {"id": "F4.6", "titulo": "Revisar o plano com um segundo leitor (humano ou IA adversária) antes de executar", "criterio": "Lista de objeções e como cada uma foi tratada", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F5",
+      "nome": "Execução",
+      "objetivo": "Coletar os dados brutos exatamente como planejado, sem retoques.",
+      "passos": [
+        {"id": "F5.1", "titulo": "Executar todas as condições nas repetições planejadas; dados brutos só se acrescentam", "criterio": "Arquivos em dados/bruto/", "verifica": {"tipo": "arquivos_min", "padrao": "dados/bruto/*", "n": 1}},
+        {"id": "F5.2", "titulo": "Registrar ambiente e data de cada execução e todos os desvios do plano no diário", "criterio": "diario.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "diario.md", "min": 200}},
+        {"id": "F5.3", "titulo": "Auditar os dados: nenhuma linha editada à mão, checksums batendo, nenhuma execução descartada sem registro", "criterio": "Auditoria registrada com o resultado", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F6",
+      "nome": "Análise",
+      "objetivo": "Decidir cada hipótese como pré-registrado: confirmada, refutada ou equivalente.",
+      "passos": [
+        {"id": "F6.1", "titulo": "Rodar a análise exatamente como pré-registrada, com script versionado", "criterio": "Script em analise/ e resultados em dados/processado/", "verifica": {"tipo": "arquivos_min", "padrao": "analise/*", "n": 1}},
+        {"id": "F6.2", "titulo": "Atualizar o status de cada hipótese: confirmada, refutada ou equivalente", "criterio": "Nenhuma hipótese pendente ou subpotente", "verifica": {"tipo": "hipoteses_resolvidas"}},
+        {"id": "F6.3", "titulo": "Se alguma ficou subpotente, estender a amostra pela regra de parada; nunca publicar como conclusão", "criterio": "Registrado no diário o que foi estendido e por quê", "verifica": {"tipo": "manual"}},
+        {"id": "F6.4", "titulo": "Fazer as análises de sensibilidade e as exploratórias, rotuladas como tal", "criterio": "Seção exploratória separada das confirmatórias", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F7",
+      "nome": "Validação independente",
+      "objetivo": "Provar que o resultado não depende da máquina, da pessoa ou do acaso.",
+      "passos": [
+        {"id": "F7.1", "titulo": "Reproduzir do zero em um clone limpo ou container, com um comando", "criterio": "Saída idêntica ou dentro da tolerância declarada", "verifica": {"tipo": "manual"}},
+        {"id": "F7.2", "titulo": "Reproduzir em um segundo ambiente ou por uma segunda pessoa", "criterio": "Resultado da réplica registrado", "verifica": {"tipo": "manual"}},
+        {"id": "F7.3", "titulo": "Escrever as ameaças à validade: interna, externa, de construto e de conclusão", "criterio": "validade.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "validade.md", "min": 500}},
+        {"id": "F7.4", "titulo": "Revisão adversária: tentar refutar as conclusões e registrar o que sobrou", "criterio": "Objeções e respostas registradas", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F8",
+      "nome": "Congelamento dos dados",
+      "objetivo": "Fixar os dados e o código que sustentam as conclusões, de forma citável.",
+      "passos": [
+        {"id": "F8.1", "titulo": "Congelar dados e análise com tag git e manifesto de checksums", "criterio": "Tag e manifesto registrados", "verifica": {"tipo": "manual"}},
+        {"id": "F8.2", "titulo": "Montar o pacote de dados aberto: CSV, dicionário, licença e README", "criterio": "Arquivos em dados/pacote/", "verifica": {"tipo": "arquivos_min", "padrao": "dados/pacote/*", "n": 3}},
+        {"id": "F8.3", "titulo": "Arquivar com DOI (release no GitHub integrada ao Zenodo)", "criterio": "DOI registrado", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F9",
+      "nome": "Artefatos e escrita",
+      "objetivo": "Escrever o artigo a partir dos dados, e não o contrário.",
+      "passos": [
+        {"id": "F9.1", "titulo": "Montar a matriz afirmação ↔ evidência: toda afirmação do texto aponta para um dado ou uma fonte", "criterio": "claims.json sem TODO e com evidência em todas", "verifica": {"tipo": "claims"}},
+        {"id": "F9.2", "titulo": "Gerar figuras e tabelas por script a partir dos dados; números do texto vêm dos resultados", "criterio": "Scripts de figuras em analise/ e saídas em dados/processado/", "verifica": {"tipo": "manual"}},
+        {"id": "F9.3", "titulo": "Redigir o artigo em português e em inglês (resumo, introdução, métodos, resultados, discussão, limitações, conclusão, reprodutibilidade, referências)", "criterio": "posts/drafts/<slug>/pt.md e en.md sem TODO", "verifica": {"tipo": "rascunhos"}},
+        {"id": "F9.4", "titulo": "Validar os formatos: links, tabelas, imagens, acessibilidade e build do site", "criterio": "npm run build passa e o artigo abre no preview", "verifica": {"tipo": "manual"}},
+        {"id": "F9.5", "titulo": "Revisar confidencialidade e anonimização; marcar as notas-fonte como publicáveis", "criterio": "publishable: true nas notas usadas", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F10",
+      "nome": "Revisão e aprovação",
+      "objetivo": "Passar todos os portões e obter a aprovação explícita do autor.",
+      "passos": [
+        {"id": "F10.1", "titulo": "Conferir que todos os passos das fases F0 a F9 estão concluídos", "criterio": "Nenhum passo pendente antes desta fase", "verifica": {"tipo": "fases_anteriores", "ate": "F9"}},
+        {"id": "F10.2", "titulo": "Fact-check final: cada número do texto conferido contra os dados", "criterio": "Conferência registrada, com data", "verifica": {"tipo": "manual"}},
+        {"id": "F10.3", "titulo": "Aprovação do autor, dita de forma explícita para cada idioma", "criterio": "Frase de aprovação registrada com a data", "verifica": {"tipo": "manual"}}
+      ]
+    },
+    {
+      "id": "F11",
+      "nome": "Publicação e pós-publicação",
+      "objetivo": "Publicar, aceitar correção e aprender com o processo.",
+      "passos": [
+        {"id": "F11.1", "titulo": "Publicar com o publicador: site, DEV e, depois, as demais plataformas", "criterio": "Endereços publicados registrados", "verifica": {"tipo": "manual"}},
+        {"id": "F11.2", "titulo": "Abrir o canal de correção e registrar a política de errata e o histórico de versões", "criterio": "Errata e changelog criados no repositório do estudo", "verifica": {"tipo": "manual"}},
+        {"id": "F11.3", "titulo": "Retrospectiva: o que melhorou no método, o que faltou e quanto tempo cada fase levou", "criterio": "retro.md preenchido, sem TODO", "verifica": {"tipo": "arquivo", "caminho": "retro.md", "min": 300}}
+      ]
+    }
+  ]
+}

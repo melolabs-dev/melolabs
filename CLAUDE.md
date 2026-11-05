@@ -39,6 +39,15 @@ Público: devs júnior/pleno que o autor mentora + comunidade em geral. Publica�
 - O script publica no DEV e no Hashnode via API (com `canonical_url` do site), faz commit e push do repositório (o site publica a partir daí) e grava `linkedin-<lang>.txt` para o autor postar.
 - Credenciais só em `.env` (ver `.env.example`). Eu não leio, peço nem digito senhas, tokens ou cookies; não uso o navegador para fazer login. Se um token faltar, o script pula aquela plataforma e avisa.
 
+## Pesquisa (protocolo)
+
+- Todo artigo nasce de um estudo, criado com `python tools/research/pesquisa.py new <slug> "Título"`. O protocolo (12 fases, 46 passos) está em `research/protocolo.json` e em `docs/protocolo-de-pesquisa.md`.
+- Conferir o progresso com `python tools/research/pesquisa.py status <slug>`. Passos conferidos por máquina não podem ser marcados à mão; passos manuais só com `done <slug> <passo> "evidência"`.
+- Ordem obrigatória: premissa, evidências (fontes verificadas em `studies/<slug>/fontes/`), hipóteses e margens, pré-registro congelado, plano de testes, execução, análise, réplica, congelamento dos dados, escrita, aprovação do autor, publicação.
+- Nunca inventar fonte, DOI, URL ou número. Cada fonte precisa de `verificada: true` (confirmada por abertura da URL ou DOI) e cada número do artigo precisa de uma linha em `claims.json` apontando para dado ou fonte.
+- Hipótese não termina como "inconclusiva": ou é confirmada, refutada ou equivalente, ou fica `subpotente` e a amostra é estendida pela regra de parada. Artigo com hipótese pendente ou subpotente não é publicado.
+- Dados brutos só se acrescentam; nada é editado à mão. Mudanças no plano depois do pré-registro entram como emenda datada no diário.
+
 ## Idiomas
 
 - O blog é **bilíngue: português (pt-BR) e inglês**. Decisão do autor em 2026-11-04.

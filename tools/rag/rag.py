@@ -253,13 +253,13 @@ def cmd_build(_args):
         """
     )
     n_docs = n_chunks = 0
-    for path in sorted(NOTES.glob("*.md")):
+    for path in sorted(list(NOTES.glob("*.md")) + [f for f in ROOT.glob("studies/*/fontes/*.md") if not f.name.startswith("_")]):
         meta, body = parse_note(path)
         doc_id = meta.get("id", path.stem)
         con.execute(
             "INSERT INTO docs VALUES (?,?,?,?,?,?,?,?,?,?,?)",
             (doc_id, meta.get("title", path.stem), meta.get("source_url", ""), meta.get("kind", ""),
-             meta.get("evidence", ""), int(bool(meta.get("validated_by_author"))),
+             meta.get("evidence", ""), int(bool(meta.get("validated_by_author") or meta.get("verificada"))),
              int(bool(meta.get("publishable"))), meta.get("fidelity", ""), str(meta.get("date", "")),
              ",".join(meta.get("tags", [])), str(path.relative_to(ROOT))),
         )
