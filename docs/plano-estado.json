@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-04 22:37",
-  "now": "Login no GitHub CLI (confirmar o código no navegador)",
+  "updated": "2026-11-04 22:41",
+  "now": "Conectar o repositório ao Cloudflare Pages e preparar o Hashnode",
   "done": {
     "f1-email": "2026-11-04",
     "f1-gh-conta": "2026-11-04",
@@ -8,6 +8,8 @@
     "f1-publicador": "2026-11-04",
     "f1-dev-perfil": "2026-11-04",
     "f1-dominio": "2026-11-04",
-    "f1-dev-key": "2026-11-04"
+    "f1-dev-key": "2026-11-04",
+    "f1-gh-cli": "2026-11-04",
+    "f1-repo": "2026-11-04"
   }
 }
