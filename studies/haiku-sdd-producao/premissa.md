@@ -42,7 +42,7 @@ Se vale adotar o Haiku como modelo padrão de SDD no trabalho e na mentoria, e q
   - Qualquer dado da empresa onde o autor trabalha (regras em `declaracoes.md`).
 - **Projeto-alvo:** h3 (github.com/h3js/h3), TypeScript, licença MIT, testes em vitest. O CLAUDE.md e o AGENTS.md do h3 entram nas duas condições. O commit fica fixado no pré-registro, antes de qualquer issue ser resolvida.
 - **Features:** três issues abertas do h3: #1267 (HTTP Range no `serveStatic`), #1384 (erro no formato RFC 9457) e #1050 (várias senhas de unseal em sessões).
-- **Juízes e orçamento:** Opus como avaliador cego, até US$ 50. Detalhes na fase de plano de testes (F4).
+- **Juízes e orçamento:** Opus como avaliador cego, **sem teto de gasto** (decisão do autor em 05/11/2026: o foco é a assertividade do processo e o tempo; o gasto continua medido e reportado). Detalhes na fase de plano de testes (F4).
 - **Prazo:** dados congelados na sexta, 13/11/2026.
 
 ## Público do artigo

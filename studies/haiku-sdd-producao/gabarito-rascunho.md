@@ -13,7 +13,7 @@ Critério dado pelo autor: em cada pergunta aberta, escolher a opção que gera 
 | #1050, S3 (re-selar) | **Entra** | S3 vale como teste pontuado, relatado em separado dos demais. |
 | #1267, R10 e R11 | **Entram**, e `If-Range` entra | R14 e R15 acrescentados. |
 
-Efeito: 3 features, **6 variantes de tarefa** (#1267, #1384-A/B/C, #1050-a/b). Para a estatística (ver adendo no plano de análise), os blocos continuam sendo as 3 features e as variantes ficam aninhadas dentro delas. O custo das execuções cresce e vai para a conta de orçamento (F4); se não couber, a ordem de corte das variantes é a do orçamento, decidida com o autor.
+Efeito: 3 features, **6 variantes de tarefa** (#1267, #1384-A/B/C, #1050-a/b). Para a estatística (ver adendo no plano de análise), os blocos continuam sendo as 3 features e as variantes ficam aninhadas dentro delas. O custo das execuções cresce, mas **não há teto de gasto**: o custo é medido e reportado, e o limite passa a ser o tempo até 13/11. A estimativa de duração entra no plano de testes (F4).
 
 ## Base técnica
 - Repositório clonado em `C:\dev\h3-estudo` (fora do OneDrive), commit `f0e17808ac2439b6434bb10609a961067f4d555b` (v2.0.8, 22/10/2026).

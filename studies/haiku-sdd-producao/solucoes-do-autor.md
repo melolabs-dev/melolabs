@@ -32,7 +32,7 @@
 - **Entrada e saída de tokens separadas**, com preço da data: mantida para H6, H8 e H10.
 
 ## O que muda no custo do estudo
-Os braços novos (S8, S9, S10 e S11) somam condições por feature. Com 3 features, 3 repetições e os braços das 11 hipóteses (a H11 soma 3 variantes de prompt: persona, contexto e os dois, mais um controle de mesmo tamanho), o número de execuções cresce. A conta de orçamento (inclusive dos juízes Opus, teto de US$ 50) fica para o plano de testes, F4. Se não couber, a ordem de corte proposta é: S11, depois S8, e por último S9.
+Os braços novos (S8, S9, S10 e S11) somam condições por feature. Com 3 features, 3 repetições e os braços das 11 hipóteses (a H11 soma 3 variantes de prompt: persona, contexto e os dois, mais um controle de mesmo tamanho), o número de execuções cresce. **Não há teto de gasto** (decisão do autor em 05/11/2026). O gasto é medido e reportado, e o fator limitante passa a ser o tempo até o congelamento de dados (13/11). A estimativa de custo e de duração fica para o plano de testes, F4. Se o tempo não bastar, a ordem de corte proposta continua: S11, depois S8, e por último S9.
 
 ## O que o autor precisa decidir
 1. ~~Os 4 braços novos entram?~~ Decidido: entram.
