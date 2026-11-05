@@ -15,6 +15,10 @@
     "F1.6": {
       "feito": "2026-11-05",
       "evidencia": "05/11/2026: índice reconstruído (39 notas, 299 trechos); 5 buscas (self-consistency, Agentless, FrugalGPT cascata, lost in the middle, Reflexion) devolveram a nota da própria fonte em 1º lugar"
+    },
+    "F2.3": {
+      "feito": "2026-11-05",
+      "evidencia": "Autor aprovou em 05/11/2026 a secao de hipotese nula, controles negativos (autorrevisao sem feedback na H3; texto de mesmo tamanho na H11) e explicacoes alternativas (vies de juiz, saturacao, versoes, variacao, formato do prompt, AGENTS.md do h3), em studies/haiku-sdd-producao/premissa.md"
     }
   },
   "auto_feito": {
