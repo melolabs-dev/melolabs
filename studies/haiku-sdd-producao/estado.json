@@ -40,7 +40,8 @@
       "bracos_do_autor": "Os 4 braços novos entram: S8 repo map, S9 N candidatos em worktrees, S10 limite de chamadas, S11 checagem de rodapé. Ordem de corte se faltar orçamento: S11, S8, S9.",
       "dados_de_trabalho": "Podem aparecer no artigo, mas sem nenhum dado da empresa onde o autor trabalha (nome, produto, projetos, repositórios, decisões internas, telas, domínio de negócio). Só números agregados e lições gerais, anonimizados.",
       "sequencia_F3": "Orçamento antes do piloto (F3.2) e do pré-registro (F3.3); decidido pelo autor em 05/11/2026",
-      "gabarito_testes_ocultos": "Claude rascunha os testes de aceite ocultos a partir de RFC 7233, RFC 9457 e das issues; o autor aprova cada teste. Contrato da #1050 (array em password ou campo novo) decidido pelo autor, ainda a informar."
+      "gabarito_testes_ocultos": "Claude rascunha os testes ocultos a partir de RFC 7233, RFC 9457 e das issues; o autor aprova cada teste.",
+      "criterio_maximizar_dados": "Em toda pergunta aberta, escolher a opção que gera mais dados, mesmo que algumas fiquem menos conclusivas (autor, 05/11/2026). Aplicado: #1384 nas variantes A, B e C; #1050 nas variantes a e b; P10 como observação; S3, R10, R11 e If-Range entram. Total: 6 variantes de tarefa em 3 features."
     }
   },
   "aprovacoes": {

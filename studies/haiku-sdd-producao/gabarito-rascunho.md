@@ -2,6 +2,19 @@
 
 > **Rascunho de 05/11/2026. Nenhum teste vale até o autor aprovar um a um.** Os testes são escritos antes de qualquer execução e **nunca entram no enunciado nem no repositório dado aos modelos**. Depois de aprovados, são travados com hash (SHA-256) no pré-registro (F3.3).
 
+## Decisões do autor (05/11/2026): maximizar dados
+Critério dado pelo autor: em cada pergunta aberta, escolher a opção que gera mais dados, mesmo que algumas fiquem menos conclusivas. Aplicado assim:
+
+| Pergunta | Decisão | Consequência |
+|---|---|---|
+| #1384, contrato (A, B ou C) | **As três** | A feature vira 3 variantes de tarefa: #1384-A (opt-in por configuração), #1384-B (padrão para todos os erros) e #1384-C (utilitário explícito). Cada uma tem enunciado e testes próprios. |
+| #1384, P10 (stack em modo debug) | **Medir os dois** | P10 passa a ser **observação registrada**, não aprovação: grava se o `stack` aparece e onde. Entra como dado, não como critério de aceite. |
+| #1050, contrato (a ou b) | **As duas** | Duas variantes: #1050-a (`password` aceita lista) e #1050-b (`extraUnsealPasswords`). |
+| #1050, S3 (re-selar) | **Entra** | S3 vale como teste pontuado, relatado em separado dos demais. |
+| #1267, R10 e R11 | **Entram**, e `If-Range` entra | R14 e R15 acrescentados. |
+
+Efeito: 3 features, **6 variantes de tarefa** (#1267, #1384-A/B/C, #1050-a/b). Para a estatística (ver adendo no plano de análise), os blocos continuam sendo as 3 features e as variantes ficam aninhadas dentro delas. O custo das execuções cresce e vai para a conta de orçamento (F4); se não couber, a ordem de corte das variantes é a do orçamento, decidida com o autor.
+
 ## Base técnica
 - Repositório clonado em `C:\dev\h3-estudo` (fora do OneDrive), commit `f0e17808ac2439b6434bb10609a961067f4d555b` (v2.0.8, 22/10/2026).
 - Conferido nesse commit: nenhuma das três features existe. A busca por `content-range`, `accept-ranges`, `problem+json`, `9457` e `extraUnseal` em `src/` e `docs/` não achou nada, e as 3 issues continuam abertas.
@@ -28,6 +41,8 @@ Dados do mock existente: `/test.png` → conteúdo `asset:/test.png` (15 bytes);
 | R11 | Mantém `etag`, `last-modified`, `cache-control` e `vary` na 206 | iguais aos da 200 |
 | R12 | Asset inexistente com Range | 404 como antes; método POST continua 405 |
 | R13 | Nenhuma exportação pública nova em `src/index.ts` | lista de exports igual à do commit base |
+| R14 | `If-Range` com etag igual ao do asset e `Range: bytes=0-4` | 206 com o intervalo |
+| R15 | `If-Range` com etag diferente e `Range: bytes=0-4` | 200 com o corpo inteiro (a norma manda ignorar o Range) |
 
 Perguntas para o autor: (a) R10 e R11 refletem o que você quer (a norma manda o intervalo valer para a representação escolhida), ou prefere ficar só com R1 a R9? (b) `If-Range` fica fora de escopo?
 
@@ -50,7 +65,9 @@ Opções de contrato:
 | P7 | Cabeçalhos de erro (`errHeaders`, `set-cookie`) | preservados como hoje |
 | P8 | HEAD | sem corpo e sem `content-length`, como hoje |
 | P9 | Com o contrato desativado | formato atual intacto (`application/json;charset=UTF-8`) |
-| P10 | `debug: true` | não vaza `stack` no corpo problem+json em produção |
+| P10 | `debug: true` | **observação, não aprovação**: registrar se o `stack` aparece no corpo e em qual membro |
+| P11 | Variante B: erros que o app já lança com o formato atual | todos saem como problem+json sem mudar o código do handler |
+| P12 | Variante C: utilitário explícito chamado pelo handler | só as respostas que o chamam saem como problem+json; os demais erros ficam como hoje |
 
 Perguntas para o autor: (a) A, B ou C? (b) P10: o stack em modo debug deve aparecer ou ficar fora do formato problem+json?
 

@@ -8,6 +8,9 @@
 - **Repetições:** 3 por condição e por feature. A **unidade de análise é a execução** (feature × repetição × condição), pareada por feature.
 - **Limite honesto:** só 3 features. Os resultados valem para essas 3 features e para este repositório; o artigo não generaliza além disso. As 3 features são blocos, não uma amostra de "projetos TypeScript".
 
+## Adendo de 05/11/2026 (antes do pré-registro): variantes de tarefa
+Por decisão do autor de maximizar dados, as 3 features viram 6 variantes de tarefa: #1267, #1384-A, #1384-B, #1384-C, #1050-a e #1050-b (ver `gabarito-rascunho.md`). **Os blocos continuam sendo as 3 features**; as variantes ficam aninhadas dentro delas, então o bootstrap reamostra variantes e repetições dentro de cada feature e não trata variantes da mesma feature como independentes. Resultados por variante são exploratórios e rotulados assim; a família confirmatória (H4, H5, H6) usa o conjunto agregado por feature. Este adendo vale por ter sido feito antes do congelamento (F3.3).
+
 ## Métricas primárias e secundárias
 | Hipótese | Métrica primária | Secundárias |
 |---|---|---|
