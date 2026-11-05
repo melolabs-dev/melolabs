@@ -12,7 +12,7 @@
 - **Lockfile ou container:** `pnpm-lock.yaml` do h3, instalado com `pnpm install --frozen-lockfile`. Cada execução usa uma cópia limpa do commit base (git worktree em `C:\dev\h3-run-<id>`), sem os testes ocultos. Não há container; a tolerância está abaixo.
 - **Rede, região e custo:**
   - Execuções feitas por subagentes do Claude Code sob a assinatura do autor, sem teto de gasto (decisão de 05/11/2026).
-  - O harness informa tokens totais, número de chamadas de ferramenta e duração por agente. **Não informa entrada, saída e cache separados.** O custo em dólar é uma estimativa por proporção declarada (a mesma de 80% de entrada e 20% de saída usada nos estudos anteriores) com a tabela de preços de 04/11/2026, e isso limita as hipóteses H6, H8 e H10 (ver `plano-de-testes.md`).
+  - O harness informa tokens totais, número de chamadas de ferramenta e duração por agente. **Não informa entrada, saída e cache separados.** A métrica principal é tokens; o dólar é só estimativa (tokens × tabela de 04/11/2026, em três proporções de entrada e saída), como o autor decidiu em 05/11/2026. Isso limita a H8 (ver `plano-de-testes.md`).
   - Os limites de uso da assinatura e a carga do serviço variam durante o dia e não são controláveis.
 - **O que pode variar entre máquinas e a tolerância aceita:**
   - Tempo de relógio: varia com a carga da máquina e do serviço; por isso o tempo é reportado como mediana e dispersão, e não como valor único.

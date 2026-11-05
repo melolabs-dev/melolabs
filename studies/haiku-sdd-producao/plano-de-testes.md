@@ -51,10 +51,17 @@ Controles negativos: C2n (H3) e C13 (H11).
 - Cada artefato recebe um código aleatório; o nome do modelo, da condição e da variante é removido do texto antes dos juízes (cabeçalhos, estilo de assinatura e menção a modelo são limpos e a limpeza é registrada).
 - Três juízes Opus, cada um em agente novo e sem contexto da conversa, avaliam em ordem embaralhada por juiz. Os juízes não veem os testes ocultos.
 - Concordância medida com alfa de Krippendorff, com o corte de 0,67 do plano de análise.
-- Os testes ocultos nunca entram no diretório da execução. Para detectar vazamento, a transcrição de cada agente é varrida por caminhos e nomes do gabarito, e a ocorrência vira exclusão registrada.
+## Isolamento e vazamento dos testes ocultos (decisão do autor em 05/11/2026)
+- **Contexto limpo por execução:** cada execução é um agente novo, sem a conversa, recebendo só o necessário: o enunciado da feature (contrato), os artefatos da etapa anterior da própria execução e o repositório h3 em uma pasta dedicada (`C:\dev\h3-run-<id>`).
+- **Agente restrito à pasta:** o agente recebe a instrução de trabalhar só dentro dessa pasta e nenhum caminho de fora dela é mencionado no prompt. **Limite honesto:** o Claude Code não oferece isolamento de sistema de arquivos para subagentes; a restrição é por instrução, por ausência de referências e por auditoria, não por barreira técnica.
+- **Gabarito fora de alcance durante a coleta:** antes da primeira execução, os testes ocultos e as referências são cifrados (AES-256, chave guardada fora do repositório e fora de qualquer pasta do projeto) e a cópia em texto claro sai do disco; os worktrees de referência em `C:\dev\h3-ref-*` são removidos. Os testes só são decifrados por mim, numa pasta temporária, para pontuar uma execução já terminada, e apagados em seguida. O histórico do git do repositório de estudo tem o gabarito em texto claro (commits de 05/11); por isso o repositório de estudo fica fora do alcance de qualquer prompt e a auditoria abaixo cobre também leitura dele.
+- **Auditoria:** a transcrição de cada agente é varrida por caminhos e nomes do gabarito (`gabarito`, `range-1267`, `session-1050`, `problem-1384`, `blog-tech`, `h3-ref`); qualquer ocorrência vira exclusão registrada, com o motivo.
 
 ## Custo e tempo
 - Por agente: tokens totais, chamadas de ferramenta e duração, copiados da notificação do harness para `dados/bruto/execucoes.jsonl`.
-- **Limite declarado:** como a divisão entre entrada, saída e cache não é informada, o custo em dólar usa a proporção de 80% e 20% e a tabela datada. Isso mede bem a razão entre condições de mesmo modelo e mal a razão entre modelos de preços diferentes. A H8 (cache) depende de preço de cache hit e **não é mensurável** por este caminho; fica `subpotente` a menos que o autor libere uma chave de API para um subconjunto.
+- **Métrica principal de custo: tokens** (decisão do autor em 05/11/2026). O dólar é só uma **estimativa**, porque o preço muda e depende do sistema; não se busca o custo real da fatura.
+- **Estimativa em dólar:** tokens totais × preço da tabela datada de 04/11/2026, com a divisão entre entrada e saída suposta. Como o harness não informa essa divisão, a estimativa é calculada com **três proporções (60/40, 80/20 e 95/5 de entrada e saída)** e reportada como faixa, para mostrar se a conclusão sobre H5, H6 e H10 muda com a suposição. Se a conclusão mudar, isso é dito no artigo.
+- A H8 (cache) depende do preço de cache hit e **não é mensurável** por este caminho; fica `subpotente` a menos que o autor libere uma chave de API para um subconjunto.
+- **Versões:** usa-se a versão mais recente de cada modelo (Haiku 5.5, Sonnet 5.5, Opus 5.5), sem versões anteriores. A versão efetiva é registrada a cada execução.
 - Tempo: relógio por execução em segundos, mais a duração acumulada por condição.
 - Sem teto de gasto. Os limites de uso da assinatura são registrados quando ocorrerem, com a hora e a condição afetada.

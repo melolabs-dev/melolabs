@@ -1,0 +1,268 @@
+diff --git a/src/index.ts b/src/index.ts
+index cb26f39..69c76b9 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -70,6 +70,7 @@ export { toResponse, HTTPResponse } from "./response.ts";
+ // Error
+ 
+ export { type ErrorDetails, type ErrorBody, type ErrorInput, HTTPError } from "./error.ts";
++export { type ProblemInput, problem } from "./utils/problem.ts";
+ 
+ // Adapters
+ 
+diff --git a/src/response.ts b/src/response.ts
+index c5bca8a..3066575 100644
+--- a/src/response.ts
++++ b/src/response.ts
+@@ -9,6 +9,8 @@ import { kEventRes, kEventResHeaders, kEventResErrHeaders, type H3Event } from "
+ 
+ export const kNotFound: symbol = /* @__PURE__ */ Symbol.for("h3.notFound");
+ export const kHandled: symbol = /* @__PURE__ */ Symbol.for("h3.handled");
++/** Custom error renderer attached by `problem()` (RFC 9457 problem details). */
++export const kProblemRender: symbol = /* @__PURE__ */ Symbol.for("h3.problemRender");
+ 
+ export function toResponse(
+   val: unknown,
+@@ -170,7 +172,12 @@ function prepareResponse(
+     // `errHeaders` a second time — harmless for single-valued headers (`set`), but
+     // `set-cookie` is appended and would be duplicated.
+     (event as any)[kEventRes] = undefined;
+-    val = errorResponse(error, config.debug, errHeaders);
++    const render = (error as any)[kProblemRender] as
++      | ((debug?: boolean, errHeaders?: Headers) => Response)
++      | undefined;
++    val = render
++      ? render(config.debug, errHeaders)
++      : errorResponse(error, config.debug, errHeaders);
+   }
+ 
+   // Only set if event.res.headers is accessed
+diff --git a/src/utils/internal/problem.ts b/src/utils/internal/problem.ts
+new file mode 100644
+index 0000000..3dff7a0
+--- /dev/null
++++ b/src/utils/internal/problem.ts
+@@ -0,0 +1,129 @@
++import { FastResponse } from "srvx";
++import type { HTTPError } from "../../error.ts";
++
++/**
++ * Members defined by RFC 9457 (section 3.1). Extension members never override them.
++ */
++const standardMembers = new Set(["type", "title", "status", "detail", "instance"]);
++
++/**
++ * Optional RFC 9457 members carried by an error.
++ */
++export interface ProblemMembers {
++  type?: string;
++  instance?: string;
++}
++
++/**
++ * Render an error as an RFC 9457 `application/problem+json` response.
++ */
++export function problemResponse(
++  error: HTTPError,
++  members: ProblemMembers,
++  debug?: boolean,
++  errHeaders?: Headers,
++): Response {
++  const headers = new Headers({ "content-type": "application/problem+json" });
++  if (error.headers) {
++    mergeErrorHeaders(headers, error.headers);
++  }
++  if (errHeaders) {
++    mergeErrorHeaders(headers, errHeaders);
++  }
++  return new FastResponse(
++    JSON.stringify(problemBody(error, members, debug), undefined, debug ? 2 : undefined),
++    {
++      status: error.status,
++      statusText: error.statusText,
++      headers,
++    },
++  );
++}
++
++function problemBody(
++  error: HTTPError,
++  members: ProblemMembers,
++  debug?: boolean,
++): Record<string, unknown> {
++  const unhandled = error.unhandled;
++  const title = error.statusText || statusPhrases[error.status] || "Unknown Error";
++  const genericMessage = ["HTTPError", error.status, error.statusText].filter(Boolean).join(" ");
++  const detail =
++    unhandled || error.message === title || error.message === genericMessage
++      ? undefined
++      : error.message;
++
++  const extensions: Record<string, unknown> = {};
++  if (!unhandled) {
++    const data = error.data as unknown;
++    if (data && typeof data === "object" && !Array.isArray(data)) {
++      Object.assign(extensions, data);
++    } else if (data !== undefined) {
++      extensions.data = data;
++    }
++    if (error.body) {
++      Object.assign(extensions, error.body);
++    }
++  }
++  for (const name of standardMembers) {
++    delete extensions[name];
++  }
++  if (debug && error.stack) {
++    extensions.stack = error.stack.split("\n").map((l) => l.trim());
++  }
++
++  return {
++    type: members.type || "about:blank",
++    title,
++    status: error.status,
++    detail,
++    instance: members.instance,
++    ...extensions,
++  };
++}
++
++function mergeErrorHeaders(target: Headers, overrides: Headers): void {
++  for (const [name, value] of overrides) {
++    if (name === "set-cookie") {
++      target.append(name, value);
++    } else {
++      target.set(name, value);
++    }
++  }
++}
++
++// https://www.rfc-editor.org/rfc/rfc9110#section-15
++const statusPhrases: Record<number, string> = {
++  400: "Bad Request",
++  401: "Unauthorized",
++  402: "Payment Required",
++  403: "Forbidden",
++  404: "Not Found",
++  405: "Method Not Allowed",
++  406: "Not Acceptable",
++  407: "Proxy Authentication Required",
++  408: "Request Timeout",
++  409: "Conflict",
++  410: "Gone",
++  411: "Length Required",
++  412: "Precondition Failed",
++  413: "Content Too Large",
++  414: "URI Too Long",
++  415: "Unsupported Media Type",
++  416: "Range Not Satisfiable",
++  417: "Expectation Failed",
++  418: "I'm a teapot",
++  421: "Misdirected Request",
++  422: "Unprocessable Content",
++  426: "Upgrade Required",
++  428: "Precondition Required",
++  429: "Too Many Requests",
++  431: "Request Header Fields Too Large",
++  451: "Unavailable For Legal Reasons",
++  500: "Internal Server Error",
++  501: "Not Implemented",
++  502: "Bad Gateway",
++  503: "Service Unavailable",
++  504: "Gateway Timeout",
++  505: "HTTP Version Not Supported",
++};
+diff --git a/src/utils/problem.ts b/src/utils/problem.ts
+new file mode 100644
+index 0000000..d3dab4e
+--- /dev/null
++++ b/src/utils/problem.ts
+@@ -0,0 +1,50 @@
++import { HTTPError, type ErrorInput } from "../error.ts";
++import { kProblemRender } from "../response.ts";
++import { problemResponse } from "./internal/problem.ts";
++
++/**
++ * Input of {@link problem}: the same fields as `HTTPError`, plus the RFC 9457 `type` and `instance` members.
++ */
++export interface ProblemInput extends ErrorInput {
++  /**
++   * Problem type URI. Defaults to `"about:blank"` when omitted.
++   */
++  type?: string;
++
++  /**
++   * URI reference that identifies this specific occurrence of the problem.
++   */
++  instance?: string;
++}
++
++/**
++ * Create an error that is rendered as an RFC 9457 problem details response
++ * (`application/problem+json`) when thrown or returned from a handler.
++ *
++ * Other errors keep the default JSON error format.
++ *
++ * @example
++ *
++ * app.get("/orders/:id", () => {
++ *   throw problem({
++ *     status: 409,
++ *     statusText: "Order locked",
++ *     message: "The order is being processed and cannot be changed.",
++ *     type: "https://example.com/probs/order-locked",
++ *     instance: "/orders/123",
++ *   });
++ * });
++ */
++export function problem(input: ProblemInput = {}): HTTPError {
++  const error = new HTTPError(input);
++  const members = {
++    type: typeof input.type === "string" ? input.type : undefined,
++    instance: typeof input.instance === "string" ? input.instance : undefined,
++  };
++  Object.defineProperty(error, kProblemRender, {
++    enumerable: false,
++    value: (debug: boolean | undefined, errHeaders: Headers | undefined) =>
++      problemResponse(error, members, debug, errHeaders),
++  });
++  return error;
++}
+diff --git a/test/bench/bundle.test.ts b/test/bench/bundle.test.ts
+index 7756dd4..29254fd 100644
+--- a/test/bench/bundle.test.ts
++++ b/test/bench/bundle.test.ts
+@@ -34,8 +34,8 @@ describe("benchmark", () => {
+     if (process.env.DEBUG) {
+       console.log(`Bundle size (H3Core): ${bundle.bytes} (gzip: ${bundle.gzipSize})`);
+     }
+-    expect(bundle.bytes).toBeLessThanOrEqual(7900); // <7.9kb
+-    expect(bundle.gzipSize).toBeLessThanOrEqual(3160); // <3.16kb
++    expect(bundle.bytes).toBeLessThanOrEqual(8000); // <8kb
++    expect(bundle.gzipSize).toBeLessThanOrEqual(3200); // <3.2kb
+   });
+ 
+   it("bundle size (defineHandler)", async () => {
+@@ -50,8 +50,8 @@ describe("benchmark", () => {
+     if (process.env.DEBUG) {
+       console.log(`Bundle size (defineHandler): ${bundle.bytes} (gzip: ${bundle.gzipSize})`);
+     }
+-    expect(bundle.bytes).toBeLessThanOrEqual(7040); // <7.04kb
+-    expect(bundle.gzipSize).toBeLessThanOrEqual(2870); // <2.87kb
++    expect(bundle.bytes).toBeLessThanOrEqual(7100); // <7.1kb
++    expect(bundle.gzipSize).toBeLessThanOrEqual(2900); // <2.9kb
+   });
+ });
+ 
+diff --git a/test/unit/package.test.ts b/test/unit/package.test.ts
+index 71bbd62..58acf95 100644
+--- a/test/unit/package.test.ts
++++ b/test/unit/package.test.ts
+@@ -102,6 +102,7 @@ describe("h3 package", () => {
+         "onRequest",
+         "onResponse",
+         "parseCookies",
++        "problem",
+         "proxy",
+         "proxyRequest",
+         "raw",
