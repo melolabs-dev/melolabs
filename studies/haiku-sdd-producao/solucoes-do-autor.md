@@ -1,6 +1,6 @@
 # Soluções e testes do autor, rodando em paralelo
 
-> Rascunho do Claude, aguardando a sua revisão. Pedido em 05/11/2026: usar os seus estudos e testes anteriores como soluções candidatas e como testes em paralelo neste estudo. Tudo vem de notas que já estão na base de conhecimento.
+> **Decidido pelo autor em 05/11/2026: os 4 braços novos (S8, S9, S10, S11) entram.** Resta decidir se os dados de trabalho podem aparecer no artigo (F0.3). Pedido em 05/11/2026: usar os seus estudos e testes anteriores como soluções candidatas e como testes em paralelo neste estudo. Tudo vem de notas que já estão na base de conhecimento.
 
 ## Como entram no estudo
 - Cada solução abaixo vira um **braço** (condição) que roda nas mesmas 3 features do h3, com o mesmo avaliador cego e a mesma tabela de preços datada.
@@ -35,5 +35,5 @@
 Os braços novos (S8, S9, S10 e S11) somam condições por feature. Com 3 features, 3 repetições e os braços das 10 hipóteses, o número de execuções cresce. A conta de orçamento (inclusive dos juízes Opus, teto de US$ 50) fica para o plano de testes, F4. Se não couber, a ordem de corte proposta é: S11, depois S8, e por último S9.
 
 ## O que o autor precisa decidir
-1. Os 4 braços novos (S8, S9, S10, S11) entram, ou ficam no backlog?
+1. ~~Os 4 braços novos entram?~~ Decidido: entram.
 2. Os dados do balanço do ciclo e do estudo de paralelismo podem aparecer no artigo? Eles descrevem um produto da empresa (a nota é marcada como confidencial e não vai ao GitHub). O artigo só pode citá-los depois da sua decisão em F0.3.
