@@ -1,6 +1,6 @@
 # Progresso: SDD só com Haiku: o que sobra de qualidade quando o custo cai
 
-Atualizado em 2026-11-05 08:07 · congelamento dos dados: 2026-11-13
+Atualizado em 2026-11-05 08:08 · congelamento dos dados: 2026-11-13
 
 **9/46 passos (20%)**
 

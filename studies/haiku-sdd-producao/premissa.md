@@ -27,15 +27,37 @@ Um pipeline de SDD (PRD, TechSpec, Tasks e código) executado só com o Haiku 5.
 Se vale adotar o Haiku como modelo padrão de SDD no trabalho e na mentoria, e quais mitigações pagam seu custo. Quem decide: o autor.
 
 ## Escopo e fora de escopo
-- **Dentro:** as quatro etapas (PRD, TechSpec, Tasks, código); Haiku 5.5 contra Sonnet 5.5 como referência; qualidade, custo em dólar e tempo; as seis hipóteses do registro (hipoteses.json).
-- **Fora:** outros modelos e fornecedores; fine-tuning; agentes autônomos de livre exploração; generalização para qualquer projeto. Hipóteses extras ficam em `candidatas.md` para o estudo seguinte.
-- **Projeto-alvo:** decisão pendente do autor. Recomendação: um projeto TypeScript aberto, com três features de tamanho médio escolhidas antes do piloto. Isso evita depender de código do trabalho e deixa o estudo reproduzível por qualquer pessoa.
+> Seção revisada com as decisões do autor de 05/11/2026. Aguardando a aprovação final do autor (F0.2).
+
+- **Dentro:**
+  - As quatro etapas: PRD, TechSpec, Tasks e código.
+  - Haiku 5.5 contra Sonnet 5.5 como referência, medindo qualidade, custo em dólar e tempo.
+  - As 10 hipóteses do registro (`hipoteses.json`, H1 a H10).
+  - Os 4 braços do autor, que rodam em paralelo (`solucoes-do-autor.md`): repo map do TypeScript, N candidatos em worktrees, limite de chamadas por worker e checagem de rodapé.
+- **Fora:**
+  - Outros modelos e fornecedores.
+  - Fine-tuning e agentes autônomos de livre exploração.
+  - Generalização para qualquer projeto, linguagem ou tamanho de repositório.
+  - As 12 hipóteses candidatas (`candidatas.md`), que ficam para estudos seguintes.
+  - Qualquer dado da empresa onde o autor trabalha (regras em `declaracoes.md`).
+- **Projeto-alvo:** h3 (github.com/h3js/h3), TypeScript, licença MIT, testes em vitest. O CLAUDE.md e o AGENTS.md do h3 entram nas duas condições. O commit fica fixado no pré-registro, antes de qualquer issue ser resolvida.
+- **Features:** três issues abertas do h3: #1267 (HTTP Range no `serveStatic`), #1384 (erro no formato RFC 9457) e #1050 (várias senhas de unseal em sessões).
+- **Juízes e orçamento:** Opus como avaliador cego, até US$ 50. Detalhes na fase de plano de testes (F4).
+- **Prazo:** dados congelados na sexta, 13/11/2026.
+
+## Público do artigo
+- **Quem lê:** engenheiros e engenheiras de software que já usam agentes de IA em SDD e decidem qual modelo usar por etapa, e mentores e líderes técnicos que precisam justificar custo.
+- **O que levam:** se o Haiku serve como modelo padrão de SDD, quais mitigações valem o custo e quais não valem, com os dados e o código para refazer.
+- **O que não se promete:** que o resultado vale para outros projetos, linguagens ou versões de modelo.
+- **Idiomas:** português e inglês, com o mesmo conteúdo.
 
 ## Critérios de sucesso do estudo
-- Todas as hipóteses terminam como confirmada, refutada ou equivalente; nenhuma pendente ou subpotente.
+- Todas as hipóteses terminam como confirmada, refutada ou equivalente. Nenhuma fica pendente ou subpotente.
+- **Qualidade equivalente** significa razão de qualidade (Haiku com mitigações sobre Sonnet padrão) de pelo menos 0,90. **Custo menor** significa razão de custo de no máximo 0,50.
 - Réplica em clone limpo com um comando, com resultado dentro da tolerância declarada.
 - Dados brutos, scripts e pacote de dados abertos e arquivados.
 - Aprovação explícita do autor, em português e em inglês.
+- **Sucesso não exige resultado positivo.** Se o Haiku não chegar a 0,90 ou o custo anular o ganho, o artigo sai do mesmo jeito, com o resultado negativo.
 
 ## Hipótese nula, controle negativo e explicações alternativas
 - **Nula:** as mitigações não alteram a qualidade do Haiku além da margem de equivalência, ou o custo adicional delas anula o ganho.
@@ -43,6 +65,9 @@ Se vale adotar o Haiku como modelo padrão de SDD no trabalho e na mentoria, e q
 - **Explicações alternativas:** o juiz LLM favorece certo estilo (vieses de posição, verbosidade e autopreferência descritos por Zheng et al.); as features escolhidas são fáceis demais (saturação, como nas decisões da rodada anterior); diferenças entre versões do modelo; variação entre execuções.
 
 ## Conflitos de interesse e confidencialidade
+> Declarações confirmadas pelo autor em 05/11/2026; detalhes em `declaracoes.md`.
+
+- Sem vínculo com fornecedor de modelo, sem patrocínio, crédito ou acesso gratuito, e sem necessidade de autorização do empregador.
 - O autor mentora pessoas e quer promover o método: risco de viés de confirmação. Mitigação: hipóteses, margens e análise pré-registradas, avaliação cega e resultados negativos publicados.
-- Os experimentos anteriores usaram repositórios do trabalho. Este estudo não deve usá-los: usar projeto aberto.
+- Dados do trabalho só aparecem anonimizados e agregados. O projeto-alvo é aberto.
 - Três das fontes são de fornecedor de modelo ou de empresa com produto (Anthropic e Chroma); os vieses estão registrados nas notas.
