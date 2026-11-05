@@ -1,6 +1,6 @@
 # Plano de análise (pré-registrado)
 
-> **Rascunho de 05/11/2026, aguardando a aprovação do autor.** Tudo aqui é definido antes de qualquer dado de teste existir. Depois do pré-registro (F3.3), qualquer mudança vira um adendo datado, nunca uma troca silenciosa.
+> **Aprovado pelo autor em 05/11/2026, com as 5 decisões abaixo aceitas.** Tudo aqui é definido antes de qualquer dado de teste existir. Depois do pré-registro (F3.3), qualquer mudança vira um adendo datado, nunca uma troca silenciosa.
 
 ## Unidades e delineamento
 - **Insumos:** 3 features do h3 (#1267, #1384, #1050), commit do h3 fixado no pré-registro.
@@ -59,9 +59,9 @@
 - **Resultados negativos e equivalentes** entram no artigo com o mesmo destaque dos positivos.
 - **Reprodutibilidade:** scripts em `analise/`, semente fixa, dados brutos em `dados/bruto/`, e uma tabela que liga cada número do artigo ao arquivo que o gerou.
 
-## Decisões que precisam do autor
-1. Famílias de Holm: principal com H4, H5 e H6, e as demais como secundárias. Confirma ou muda?
-2. Rotular S8 a S11 como exploratórios (menos poder, mas sem inflar a correção)?
-3. Concordância mínima dos juízes (alfa de Krippendorff 0,67): aceita ou prefere outro corte?
-4. Falha causada pelo modelo conta como reprovada, com o custo incluído (intenção de tratar): aceita?
-5. Os juízes Opus entram no custo do estudo, mas não no custo por artefato aceito das condições: aceita?
+## Decisões do autor (aceitas em 05/11/2026)
+1. Famílias de Holm: principal com H4, H5 e H6; as demais, secundárias.
+2. S8 a S11 são exploratórios.
+3. Concordância mínima dos juízes: alfa de Krippendorff 0,67.
+4. Falha causada pelo modelo conta como reprovada, com o custo incluído (intenção de tratar).
+5. Os juízes Opus entram no custo do estudo, mas não no custo por artefato aceito das condições.

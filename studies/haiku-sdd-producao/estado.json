@@ -57,6 +57,10 @@
     "F2.2": {
       "feito": "2026-11-05",
       "decisao": "Autor decidiu em 05/11/2026: qualidade >= 0,90 e custo <= 0,50; juízes Opus até US$ 50"
+    },
+    "F3.1": {
+      "feito": "2026-11-05",
+      "decisao": "Autor aprovou em 05/11/2026 o plano de analise e as 5 decisoes: familias de Holm (H4,H5,H6 principal), S8-S11 exploratorios, alfa de Krippendorff 0,67, falha do modelo conta como reprovada com custo, juizes Opus fora do custo por artefato aceito"
     }
   }
 }
