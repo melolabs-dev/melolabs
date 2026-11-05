@@ -1,0 +1,80 @@
+[
+  {
+    "id": "H1",
+    "enunciado": "Com o mesmo prompt e o mesmo agente, o Haiku 5.5 simples (uma chamada por artefato) fica abaixo do Sonnet 5.5 padrão em TechSpec e em Tasks por pelo menos 3 pontos da rubrica.",
+    "direcao": "menor",
+    "metrica": "Mediana da soma da rubrica por condição: TechSpec C1 a C7 (de 35) e Tasks T1 a T5 (de 25), com avaliação cega e embaralhada por 3 juízes",
+    "limiar": "mediana(Sonnet padrão) menos mediana(Haiku simples) maior ou igual a 3 pontos em TechSpec e em Tasks, com IC95% por bootstrap excluindo zero",
+    "efeito_minimo": "3 pontos da rubrica",
+    "margem_equivalencia": "2 pontos da rubrica",
+    "refutada_se": "A diferença for menor que 3 pontos com IC95% dentro da margem de 2 pontos (equivalente), ou o Haiku simples ficar acima do Sonnet",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Hipótese de lacuna: confirma que existe algo a mitigar. Base: notas validadas do autor (TechSpec 18,0 contra 31,3; Tasks 16,7 contra 23,3, em versões anteriores e uma feature). Proposta aguardando revisão do autor."
+  },
+  {
+    "id": "H2",
+    "enunciado": "Nas decisões de arquitetura da TechSpec, o voto do Haiku sobre opções fechadas (3 amostras independentes, voto por letra) fecha maioria em pelo menos 90% das decisões críticas sem árbitro e acerta o gabarito dentro de 10 pontos percentuais do Sonnet padrão.",
+    "direcao": "maior",
+    "metrica": "(a) Percentual de decisões críticas com maioria clara; (b) percentual de decisões em que a escolha majoritária coincide com o gabarito, comparado ao Sonnet padrão nas mesmas decisões",
+    "limiar": "(a) maior ou igual a 90%; (b) acerto do Haiku maior ou igual ao do Sonnet menos 10 pontos percentuais",
+    "efeito_minimo": "10 pontos percentuais",
+    "margem_equivalencia": "10 pontos percentuais",
+    "refutada_se": "(a) menor que 80%, ou (b) acerto do Haiku abaixo do do Sonnet por mais de 10 pontos percentuais",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Base: notas validadas (maioria em 23 de 23 decisões com letras, contra 8 de 23 com texto livre) e self-consistency. Cuidado: as opções anteriores vazavam a resposta no enunciado e saturaram em 6 de 6; neste estudo o gabarito é escrito antes e as opções não indicam a correta. Proposta aguardando revisão do autor."
+  },
+  {
+    "id": "H3",
+    "enunciado": "Gates determinísticos com loop de correção alimentado por erro real elevam a nota do Haiku em TechSpec e em Tasks em pelo menos 4 pontos sobre o Haiku sem loop, com os mesmos insumos.",
+    "direcao": "maior",
+    "metrica": "Diferença das medianas da soma da rubrica (TechSpec de 35; Tasks de 25) entre Haiku com gate e loop e Haiku simples, por 3 juízes cegos",
+    "limiar": "ganho maior ou igual a 4 pontos, com IC95% por bootstrap acima de zero",
+    "efeito_minimo": "4 pontos da rubrica",
+    "margem_equivalencia": "2 pontos da rubrica",
+    "refutada_se": "O ganho for menor que 2 pontos com IC95% dentro da margem, ou o loop piorar a nota",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Base: Huang et al. (autocorreção só funciona com feedback externo), AlphaCodium, Reflexion. Controle negativo: Haiku com autorrevisão sem feedback externo, que deve ficar dentro da margem de zero. Proposta aguardando revisão do autor."
+  },
+  {
+    "id": "H4",
+    "enunciado": "Com testes de aceite escritos antes, a partir da especificação, e loop de correção com a saída real do runner, o código do Haiku passa nos testes ocultos em taxa dentro de 10 pontos percentuais da do Sonnet padrão.",
+    "direcao": "sem diferença",
+    "metrica": "Percentual de tarefas com 100% dos testes de aceite ocultos passando e com tsc e lint limpos",
+    "limiar": "taxa(Haiku com TDD e loop) maior ou igual a taxa(Sonnet padrão) menos 10 pontos percentuais",
+    "efeito_minimo": "10 pontos percentuais",
+    "margem_equivalencia": "10 pontos percentuais",
+    "refutada_se": "A taxa do Haiku ficar abaixo da do Sonnet por mais de 10 pontos percentuais, com IC95% inteiro abaixo da margem",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Base: Mathews e Nagappan, TiCoder, CodeT, Reflexion. É a hipótese que mede o 'pronto para produção' de forma objetiva, sem juiz LLM. Os testes ocultos são escritos pelo autor antes de qualquer execução. Proposta aguardando revisão do autor."
+  },
+  {
+    "id": "H5",
+    "enunciado": "A cascata (Haiku com mitigações, escalando para o Sonnet só quando o gate reprova duas vezes) atinge pelo menos 95% da nota de rubrica do Sonnet padrão em PRD, TechSpec e Tasks, com custo total por artefato aceito de no máximo 50% do Sonnet padrão.",
+    "direcao": "sem diferença",
+    "metrica": "Razão de qualidade (mediana da rubrica da cascata dividida pela do Sonnet padrão) e razão de custo (USD por artefato aceito, incluindo votos, retentativas, gates e escalonamentos, com a tabela de preços datada)",
+    "limiar": "razão de qualidade maior ou igual a 0,95 e razão de custo menor ou igual a 0,50",
+    "efeito_minimo": "razão de custo 0,10 menor do que o limiar",
+    "margem_equivalencia": "razão de qualidade entre 0,95 e 1,05",
+    "refutada_se": "O limite superior do IC95% da razão de qualidade ficar abaixo de 0,95, ou o limite inferior do IC95% da razão de custo ficar acima de 0,50",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Base: FrugalGPT, RouteLLM, Snell et al. É a hipótese central do artigo. O custo usa os preços da documentação da Anthropic consultados em 04/11/2026 e precisa registrar a data de cada medição. Proposta aguardando revisão do autor."
+  },
+  {
+    "id": "H6",
+    "enunciado": "O pipeline só com Haiku (sem escalonar para o Sonnet) custa no máximo 50% do Sonnet padrão por artefato aceito, contando votos, retentativas e gates.",
+    "direcao": "menor",
+    "metrica": "USD por artefato aceito = (tokens de entrada, saída e cache de todas as chamadas multiplicados pelo preço da tabela datada) dividido pelo número de artefatos aceitos; razão entre Haiku com mitigações e Sonnet padrão",
+    "limiar": "razão menor ou igual a 0,50",
+    "efeito_minimo": "razão 0,10 menor do que o limiar",
+    "margem_equivalencia": "razão entre 0,45 e 0,55 conta como no limite e exige mais amostra",
+    "refutada_se": "O limite inferior do IC95% da razão ficar acima de 0,50",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Base: preço do Haiku 5.5 de 1/20 do Sonnet 5.5 em prompts até 100 mil tokens, que sobe para 1/4 acima disso; versões anteriores do pipeline gastaram de 25% a 20 vezes mais tokens que o Sonnet. O estudo mede se as mitigações comem o ganho de preço. Registrar o maior prompt de cada chamada para detectar o tier acima de 100 mil tokens. Proposta aguardando revisão do autor."
+  }
+]

@@ -4,6 +4,7 @@
   python tools/research/pesquisa.py new <slug> "Título" [--congelar AAAA-MM-DD]
   python tools/research/pesquisa.py status [<slug>]        # progresso, o que falta, prazo
   python tools/research/pesquisa.py done <slug> <passo> "evidência"   # só passos manuais
+  python tools/research/pesquisa.py aprovar <slug> <passo> "decisão do autor"   # passos marcados como decisão do autor
   python tools/research/pesquisa.py links <slug>           # confere se as URLs das fontes respondem
   python tools/research/pesquisa.py report [<slug>]        # grava PROGRESSO.md (e studies/INDEX.md)
   python tools/research/pesquisa.py render                 # gera docs/protocolo-de-pesquisa.(md|html)
@@ -334,7 +335,10 @@ def step_ok(slug, step, st):
     if step.get("verifica", {}).get("tipo") == "manual":
         e = st["etapas"].get(step["id"])
         return (bool(e), (e["evidencia"][:60] if e else "manual: falta evidência"))
-    return check(slug, step, st)
+    ok, why = check(slug, step, st)
+    if ok and step.get("autor") and not st.get("aprovacoes", {}).get(step["id"]):
+        return False, "pronto como rascunho; aguardando a aprovação do autor"
+    return ok, why
 
 
 # ---------- comandos ----------
@@ -424,6 +428,21 @@ def cmd_done(slug, step_id, evidencia):
     print(f"{step_id} concluído: {step['titulo']}")
 
 
+def cmd_aprovar(slug, step_id, decisao):
+    st = load_state(slug)
+    step = next((s for ph in PROTO["fases"] for s in ph["passos"] if s["id"] == step_id), None)
+    if not step or not step.get("autor"):
+        sys.exit(f"{step_id} não é um passo de aprovação do autor")
+    ok, why = check(slug, step, st)
+    if not ok:
+        sys.exit(f"{step_id} ainda não está pronto como rascunho: {why}")
+    if len(decisao.strip()) < 10:
+        sys.exit("registre a decisão do autor (pelo menos 10 caracteres): o que foi aprovado, ajustado ou recusado")
+    st.setdefault("aprovacoes", {})[step_id] = {"feito": date.today().isoformat(), "decisao": decisao.strip()}
+    save_state(slug, st)
+    print(f"{step_id} aprovado pelo autor: {step['titulo']}")
+
+
 def cmd_links(slug):
     for p, m, _, _ in fontes(slug):
         url = str(m.get("url", ""))
@@ -482,7 +501,7 @@ def cmd_render():
         n_auto = sum(1 for s in ph["passos"] if s["verifica"]["tipo"] != "manual")
         rows = "".join(
             f"<tr><td class=\"w\">{s['id']}</td><td>{esc(s['titulo'])}</td><td>{esc(s['criterio'])}</td>"
-            f"<td><span class=\"tag{' auto' if s['verifica']['tipo'] != 'manual' else ''}\">{'automática' if s['verifica']['tipo'] != 'manual' else 'manual'}</span></td></tr>"
+            f"<td><span class=\"tag{' auto' if s['verifica']['tipo'] != 'manual' else ''}\">{'automática' if s['verifica']['tipo'] != 'manual' else 'manual'}</span>{' <span class=\"tag\">autor decide</span>' if s.get('autor') else ''}</td></tr>"
             for s in ph["passos"])
         secs.append(f"<section class=\"phase\"><header><h3>{ph['id']} · {esc(ph['nome'])}</h3><span class=\"sub\">{len(ph['passos'])} passos · {n_auto} automáticos</span></header>"
                     f"<p>{esc(ph['objetivo'])}</p><div class=\"tbl\"><table><thead><tr><th>Passo</th><th>O que fazer</th><th>Pronto quando</th><th>Conferência</th></tr></thead><tbody>{rows}</tbody></table></div></section>")
@@ -580,6 +599,8 @@ def main():
         cmd_status(a[1] if len(a) > 1 else None)
     elif c == "done" and len(a) >= 4:
         cmd_done(a[1], a[2], a[3])
+    elif c == "aprovar" and len(a) >= 4:
+        cmd_aprovar(a[1], a[2], a[3])
     elif c == "links" and len(a) >= 2:
         cmd_links(a[1])
     elif c == "report":

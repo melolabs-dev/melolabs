@@ -10,6 +10,8 @@ Versão 1.0. Gerado de research/protocolo.json. Não editar à mão.
 - Resultado negativo, equivalente ou surpreendente tem o mesmo destaque do positivo.
 - O estudo precisa ser repetível por outra pessoa com um único comando, a partir de um clone limpo.
 - A IA ajuda a pesquisar, escrever e criticar. Quem mede, valida e aprova é o autor.
+- Quem decide é o autor. O que a IA escreve (premissa, hipóteses, margens, síntese, plano, texto) é rascunho até o autor aprovar passo a passo.
+- O objetivo do estudo é aprender: cada fase vira um artefato visual que explica o que foi feito, o que foi validado e o que o autor pode aplicar nos próprios processos.
 
 ## Status de uma hipótese
 

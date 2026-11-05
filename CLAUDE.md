@@ -48,6 +48,13 @@ Público: devs júnior/pleno que o autor mentora + comunidade em geral. Publica�
 - Hipótese não termina como "inconclusiva": ou é confirmada, refutada ou equivalente, ou fica `subpotente` e a amostra é estendida pela regra de parada. Artigo com hipótese pendente ou subpotente não é publicado.
 - Dados brutos só se acrescentam; nada é editado à mão. Mudanças no plano depois do pré-registro entram como emenda datada no diário.
 
+## Jornada, artefatos e decisões do autor
+
+- **O autor decide cada passo**, salvo ordem em contrário. Premissa, hipóteses, margens, plano e texto escritos pela IA são rascunho até ele aprovar (`pesquisa.py aprovar`). Nunca marcar passo de decisão como concluído por conta própria.
+- **Cada fase vira um artefato visual** com dados reais, que explica o que foi feito, o que foi validado e o que o autor pode aplicar nos próprios processos. O blog não é IA falando para IA: o objetivo é o autor aprender e evoluir como pesquisador. Gerar com `python tools/research/render_fase.py <slug>` e republicar o mesmo arquivo.
+- **Jornada em sincronia (https://claude.ai/artifact/Dzsx1JbGvgXBDJRWNkyW3X):** antes e depois de qualquer progresso, atualizar o módulo Blog do Jornada: ler o doc `jornada/core` com ArtifactData (`get`, com `out_dir`), rodar `python tools/jornada/sync.py <slug> <core.json> <saida.json> --agora "o que está sendo feito"` e aplicar com `update` do campo `blog`, fixado em `if_version`. O script só marca como feito o que não depende de decisão do autor e preserva as notas dele (só mexe entre `[[sync]]` e `[[/sync]]`). Nunca alterar XP, sequência, hábitos ou o resto do estado dele.
+- Salvar o estado ao fim de cada etapa: `plano.py` (plano de lançamento), `pesquisa.py status` e commit no repositório.
+
 ## Idiomas
 
 - O blog é **bilíngue: português (pt-BR) e inglês**. Decisão do autor em 2026-11-04.
