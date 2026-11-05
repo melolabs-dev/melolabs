@@ -53,16 +53,16 @@
   },
   {
     "id": "H5",
-    "enunciado": "A cascata (Haiku com mitigações, escalando para o Sonnet só quando o gate reprova duas vezes) atinge pelo menos 95% da nota de rubrica do Sonnet padrão em PRD, TechSpec e Tasks, com custo total por artefato aceito de no máximo 50% do Sonnet padrão.",
+    "enunciado": "A cascata (Haiku com mitigações, escalando para o Sonnet só quando o gate reprova duas vezes) atinge pelo menos 90% da nota de rubrica do Sonnet padrão em PRD, TechSpec e Tasks, com custo total por artefato aceito de no máximo 50% do Sonnet padrão.",
     "direcao": "sem diferença",
     "metrica": "Razão de qualidade (mediana da rubrica da cascata dividida pela do Sonnet padrão) e razão de custo (USD por artefato aceito, incluindo votos, retentativas, gates e escalonamentos, com a tabela de preços datada)",
-    "limiar": "razão de qualidade maior ou igual a 0,95 e razão de custo menor ou igual a 0,50",
+    "limiar": "razão de qualidade maior ou igual a 0,90 e razão de custo menor ou igual a 0,50",
     "efeito_minimo": "razão de custo 0,10 menor do que o limiar",
-    "margem_equivalencia": "razão de qualidade entre 0,95 e 1,05",
-    "refutada_se": "O limite superior do IC95% da razão de qualidade ficar abaixo de 0,95, ou o limite inferior do IC95% da razão de custo ficar acima de 0,50",
+    "margem_equivalencia": "razão de qualidade entre 0,90 e 1,10",
+    "refutada_se": "O limite superior do IC95% da razão de qualidade ficar abaixo de 0,90, ou o limite inferior do IC95% da razão de custo ficar acima de 0,50",
     "status": "pendente",
     "evidencia": "",
-    "nota": "Base: FrugalGPT, RouteLLM, Snell et al. É a hipótese central do artigo. O custo usa os preços da documentação da Anthropic consultados em 04/11/2026 e precisa registrar a data de cada medição. Proposta aguardando revisão do autor."
+    "nota": "Base: FrugalGPT, RouteLLM, Snell et al. É a hipótese central do artigo. O custo usa os preços da documentação da Anthropic consultados em 04/11/2026 e precisa registrar a data de cada medição. Proposta aguardando revisão do autor. Limiar de qualidade 0,90 decidido pelo autor em 05/11/2026."
   },
   {
     "id": "H6",
@@ -76,5 +76,57 @@
     "status": "pendente",
     "evidencia": "",
     "nota": "Base: preço do Haiku 5.5 de 1/20 do Sonnet 5.5 em prompts até 100 mil tokens, que sobe para 1/4 acima disso; versões anteriores do pipeline gastaram de 25% a 20 vezes mais tokens que o Sonnet. O estudo mede se as mitigações comem o ganho de preço. Registrar o maior prompt de cada chamada para detectar o tier acima de 100 mil tokens. Proposta aguardando revisão do autor."
+  },
+  {
+    "id": "H7",
+    "enunciado": "Pedir ao Haiku que cite o ID de requisito em cada tarefa e checar as citações por regra detecta pelo menos 80% das alucinações plantadas, sem falso positivo.",
+    "direcao": "maior",
+    "metrica": "Recall e falsos positivos com 20 erros plantados em Tasks, verificação determinística dos IDs",
+    "limiar": "recall maior ou igual a 80% e zero falsos positivos",
+    "efeito_minimo": "10 pontos percentuais",
+    "margem_equivalencia": "10 pontos percentuais",
+    "refutada_se": "Recall menor que 70% ou mais de um falso positivo",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Base: citation-discipline-sdd. Vem da candidata C3. Proposta aguardando revisão do autor."
+  },
+  {
+    "id": "H8",
+    "enunciado": "Um prefixo estático com cache reduz em pelo menos 50% o custo de entrada por feature do pipeline Haiku, sem mudar a nota da rubrica.",
+    "direcao": "menor",
+    "metrica": "USD de entrada por feature com e sem cache (preço de cache hit de US$ 0,01 por MTok contra US$ 0,10)",
+    "limiar": "redução maior ou igual a 50% do custo de entrada e nota dentro de 2 pontos",
+    "efeito_minimo": "10 pontos percentuais de custo",
+    "margem_equivalencia": "2 pontos da rubrica",
+    "refutada_se": "Redução menor que 40% ou nota fora da margem",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Base: anthropic-pricing. Vem da candidata C4. Proposta aguardando revisão do autor."
+  },
+  {
+    "id": "H9",
+    "enunciado": "Gerar a TechSpec em texto livre e converter para JSON em uma segunda chamada mantém a nota do Haiku dentro de 2 pontos de gerar JSON direto, com menos erros de formato.",
+    "direcao": "sem diferença",
+    "metrica": "Nota da rubrica da TechSpec e taxa de JSON inválido com os dois métodos",
+    "limiar": "diferença de nota dentro de 2 pontos e taxa de JSON inválido menor com duas chamadas",
+    "efeito_minimo": "2 pontos da rubrica",
+    "margem_equivalencia": "2 pontos da rubrica",
+    "refutada_se": "Duas chamadas perderem mais de 2 pontos da rubrica",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Base: format-restrictions. Vem da candidata C8. Proposta aguardando revisão do autor."
+  },
+  {
+    "id": "H10",
+    "enunciado": "O híbrido (Haiku em PRD e Tasks, Sonnet só na TechSpec) custa menos que a cascata completa e mantém a razão de qualidade em pelo menos 0,90 do Sonnet padrão.",
+    "direcao": "menor",
+    "metrica": "Razão de custo (USD por artefato aceito) e razão de qualidade contra o Sonnet padrão",
+    "limiar": "razão de qualidade maior ou igual a 0,90 e custo menor que o da cascata",
+    "efeito_minimo": "razão de custo 0,10 menor",
+    "margem_equivalencia": "razão de qualidade entre 0,90 e 1,10",
+    "refutada_se": "Custo maior ou igual ao da cascata, ou qualidade abaixo de 0,90",
+    "status": "pendente",
+    "evidencia": "",
+    "nota": "Base: snell-test-time, frugalgpt. Vem da candidata C9. Proposta aguardando revisão do autor."
   }
 ]

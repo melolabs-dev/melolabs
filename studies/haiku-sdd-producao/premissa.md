@@ -3,7 +3,7 @@
 > Rascunho do protocolo, escrito a partir das suas notas validadas e das fontes verificadas. Os valores propostos aguardam a sua revisão (passos F0.2 e F0.3).
 
 ## Título de trabalho
-**SDD só com Haiku: quanto da qualidade de um modelo grande a engenharia consegue devolver?**
+**SDD só com Haiku: o que sobra de qualidade quando o custo cai**
 
 Alternativas, se preferir:
 - *Haiku de ponta a ponta: o que um modelo pequeno entrega em SDD, e quanto custa fazê-lo acertar*

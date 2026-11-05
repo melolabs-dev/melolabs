@@ -114,7 +114,8 @@ def main():
         "Feito hoje: estudo criado; busca definida; 30 fontes abertas, conferidas e classificadas; premissa, síntese, 6 hipóteses e 12 candidatas escritas como rascunho.",
         "Descobertas: o Agentless tem números diferentes entre versões (32,00% e US$ 0,70 contra 27,33% e US$ 0,34); a razão de preço do Haiku 5.5 é 1/20 só até 100 mil tokens (acima, 1/4); o estudo de Rosa et al. (2026) é um Registered Report sem resultados.",
         f"Esperando a sua aprovação: {', '.join(pend) or 'nada'}.",
-        "Decisões: projeto-alvo aberto e 3 features; limiares e margens; as 6 hipóteses; título; orçamento dos juízes; prazo de sexta.",
+        "Decidido pelo autor em 05/11: projeto TypeScript/Node de porte médio; qualidade >= 0,90 e custo <= 0,50; pelo menos 10 hipóteses; título 'SDD só com Haiku: o que sobra de qualidade quando o custo cai'; juízes Opus até US$ 50; dados congelados em 13/11.",
+        "Ainda falta decidir: qual projeto TypeScript e quais 3 features; revisar as hipóteses H7 a H10 (novas, propostas por mim) e as margens.",
         "Artefato do estudo: https://claude.ai/artifact/Rh9dceNqp8djrseMUdiX99",
         "[[/sync]]",
     ]

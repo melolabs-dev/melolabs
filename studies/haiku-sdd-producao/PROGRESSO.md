@@ -1,6 +1,6 @@
-# Progresso: SDD só com Haiku: quanto da qualidade de um modelo grande a engenharia consegue devolver?
+# Progresso: SDD só com Haiku: o que sobra de qualidade quando o custo cai
 
-Atualizado em 2026-11-04 23:12 · congelamento dos dados: 2026-11-06
+Atualizado em 2026-11-05 07:50 · congelamento dos dados: 2026-11-13
 
 **4/46 passos (9%)**
 
@@ -59,7 +59,7 @@ Atualizado em 2026-11-04 23:12 · congelamento dos dados: 2026-11-06
 
 ### F6 · Análise
 - [ ] **F6.1** Rodar a análise exatamente como pré-registrada, com script versionado — falta: 0/1 arquivo(s) em analise/*
-- [ ] **F6.2** Atualizar o status de cada hipótese: confirmada, refutada ou equivalente — falta: sem decisão ou sem evidência: H1=pendente, H2=pendente, H3=pendente, H4=pendente, H5=pendente, H6=pendente
+- [ ] **F6.2** Atualizar o status de cada hipótese: confirmada, refutada ou equivalente — falta: sem decisão ou sem evidência: H1=pendente, H2=pendente, H3=pendente, H4=pendente, H5=pendente, H6=pendente, H7=pendente, H8=pendente, H9=pendente, H10=pendente
 - [ ] **F6.3** Se alguma ficou subpotente, estender a amostra pela regra de parada; nunca publicar como conclusão — falta: manual: falta evidência
 - [ ] **F6.4** Fazer as análises de sensibilidade e as exploratórias, rotuladas como tal — falta: manual: falta evidência
 

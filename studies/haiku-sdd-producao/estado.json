@@ -1,13 +1,23 @@
 {
   "slug": "haiku-sdd-producao",
-  "titulo": "SDD só com Haiku: quanto da qualidade de um modelo grande a engenharia consegue devolver?",
+  "titulo": "SDD só com Haiku: o que sobra de qualidade quando o custo cai",
   "criado": "2026-11-04",
-  "congelar_dados": "2026-11-06",
+  "congelar_dados": "2026-11-13",
   "etapas": {},
   "auto_feito": {
     "F1.1": "2026-11-04",
     "F1.2": "2026-11-04",
     "F1.3": "2026-11-04",
     "F1.4": "2026-11-04"
+  },
+  "decisoes": {
+    "2026-11-05": {
+      "projeto_alvo": "TypeScript/Node de porte médio (projeto a escolher)",
+      "limiares": "qualidade >= 0,90; custo <= 0,50",
+      "hipoteses": "pelo menos 10 (H1-H10 propostas)",
+      "titulo": "SDD só com Haiku: o que sobra de qualidade quando o custo cai",
+      "juizes": "até US$ 50 (Opus)",
+      "prazo": "congelar dados em 2026-11-13"
+    }
   }
 }
