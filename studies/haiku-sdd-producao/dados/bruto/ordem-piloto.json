@@ -1,0 +1,94 @@
+[
+ {
+  "id": "aquecimento-C1-range-1267",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 0,
+  "descartar": true
+ },
+ {
+  "id": "piloto-C1-session-1050-b-r2",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 2
+ },
+ {
+  "id": "piloto-C0-range-1267-r1",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "range-1267",
+  "repeticao": 1
+ },
+ {
+  "id": "piloto-C0-session-1050-b-r2",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "session-1050-b",
+  "repeticao": 2
+ },
+ {
+  "id": "piloto-C1-range-1267-r2",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 2
+ },
+ {
+  "id": "piloto-C1-session-1050-b-r1",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 1
+ },
+ {
+  "id": "piloto-C4-range-1267-r2",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 2
+ },
+ {
+  "id": "piloto-C4-range-1267-r1",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 1
+ },
+ {
+  "id": "piloto-C0-session-1050-b-r1",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "session-1050-b",
+  "repeticao": 1
+ },
+ {
+  "id": "piloto-C0-range-1267-r2",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "range-1267",
+  "repeticao": 2
+ },
+ {
+  "id": "piloto-C4-session-1050-b-r2",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 2
+ },
+ {
+  "id": "piloto-C4-session-1050-b-r1",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 1
+ },
+ {
+  "id": "piloto-C1-range-1267-r1",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 1
+ }
+]

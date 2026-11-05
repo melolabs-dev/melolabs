@@ -1,0 +1,217 @@
+#!/usr/bin/env python3
+"""Harness das execuções do estudo haiku-sdd-producao.
+
+  python tools/harness/harness.py prep <id> <variante>        cria a pasta limpa C:/dev/runs/<id> no commit base
+  python tools/harness/harness.py score <id> <variante>       decifra os testes ocultos, roda, grava o resultado e apaga os testes
+  python tools/harness/harness.py finish <id>                 copia diff e artefatos para dados/bruto/<id> e remove a pasta
+  python tools/harness/harness.py audit <id> <arquivo...>     varre transcrições por nomes do gabarito
+  python tools/harness/harness.py registro <id> <json>        acrescenta uma linha em dados/bruto/execucoes.jsonl
+  python tools/harness/harness.py ordem <semente> <saida>     sorteia a ordem a partir de dados/bruto/plano-execucoes.json
+  python tools/harness/harness.py cifrar                      cifra os testes ocultos e os patches (AES-256, chave fora do projeto)
+
+Execuções em fila: este script nunca roda duas execuções ao mesmo tempo.
+"""
+import json
+import os
+import random
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
+from datetime import datetime
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+STUDY = ROOT / "studies" / "haiku-sdd-producao"
+GAB = STUDY / "gabarito"
+CIF = STUDY / "gabarito-cifrado"
+BRUTO = STUDY / "dados" / "bruto"
+BASE_REPO = Path("C:/dev/h3-estudo")
+RUNS = Path("C:/dev/runs")
+BASE_COMMIT = "f0e17808ac2439b6434bb10609a961067f4d555b"
+KEY = Path(os.path.expanduser("~")) / ".melolabs-gabarito.key"
+PNPM = shutil.which("pnpm") or "pnpm"
+OPENSSL = shutil.which("openssl") or "openssl"
+
+# variante -> (issue, contrato, arquivos de teste ocultos)
+VARIANTES = {
+    "range-1267": ("1267", "range-1267.contrato.md", ["range-1267.test.ts", "range-1267.extras.test.ts"]),
+    "problem-1384-a": ("1384", "problem-1384-a.contrato.md", ["problem-1384-a.test.ts"]),
+    "problem-1384-b": ("1384", "problem-1384-b.contrato.md", ["problem-1384-b.test.ts"]),
+    "problem-1384-c": ("1384", "problem-1384-c.contrato.md", ["problem-1384-c.test.ts"]),
+    "session-1050-a": ("1050", "session-1050-a.contrato.md", ["session-1050-a.test.ts", "session-1050-a.extras.test.ts"]),
+    "session-1050-b": ("1050", "session-1050-b.contrato.md", ["session-1050-b.test.ts", "session-1050-b.extras.test.ts"]),
+}
+FORBIDDEN = re.compile(r"gabarito|range-1267|session-1050|problem-1384|blog-tech|h3-ref|melolabs-gabarito|\.enc\b|extras\.test", re.I)
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
+
+def run(cmd, cwd=None, env=None, timeout=900, check=True):
+    p = subprocess.run(cmd, cwd=cwd, env=env, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
+    if check and p.returncode != 0:
+        sys.exit(f"falhou ({p.returncode}): {' '.join(map(str, cmd))}\n{p.stdout[-800:]}\n{p.stderr[-800:]}")
+    return p
+
+
+def prep(rid, var):
+    issue, contrato, _ = VARIANTES[var]
+    d = RUNS / rid
+    if d.exists():
+        sys.exit(f"{d} já existe")
+    RUNS.mkdir(parents=True, exist_ok=True)
+    run(["git", "-C", str(BASE_REPO), "worktree", "add", "--detach", str(d), BASE_COMMIT])
+    run(["git", "-C", str(d), "config", "core.autocrlf", "false"])
+    run([PNPM, "install", "--frozen-lockfile"], cwd=d)
+    (d / "sdd").mkdir()
+    enun = (Path(__file__).parent / "enunciados" / f"issue-{issue}.md").read_text(encoding="utf-8")
+    cont = (GAB / contrato).read_text(encoding="utf-8")
+    (d / "sdd" / "pedido.md").write_text(enun + "\n\n---\n\n" + cont, encoding="utf-8")
+    livre = shutil.disk_usage("C:/").free // 2**30
+    print(f"pronto: {d} | disco livre {livre} GB")
+
+
+def decrypt(name, out):
+    src = CIF / (name + ".enc")
+    if not src.exists():
+        src = GAB / name  # antes da cifragem
+        if not src.exists():
+            return False
+        shutil.copy(src, out)
+        return True
+    run([OPENSSL, "enc", "-d", "-aes-256-cbc", "-pbkdf2", "-in", str(src), "-out", str(out), "-pass", f"file:{KEY}"])
+    return True
+
+
+def score(rid, var):
+    d = RUNS / rid
+    _, _, tests = VARIANTES[var]
+    out = BRUTO / rid
+    out.mkdir(parents=True, exist_ok=True)
+    obs = out / "observacoes.jsonl"
+    env = dict(os.environ, H3_GABARITO_OBS_FILE=str(obs))
+    res = {"id": rid, "variante": var, "quando": datetime.now().isoformat(timespec="seconds"), "testes": {}}
+    copiados = []
+    try:
+        for t in tests:
+            dst = d / "test" / t
+            if decrypt(t, dst):
+                copiados.append(dst)
+        for dst in copiados:
+            jf = Path(tempfile.gettempdir()) / f"vitest-{rid}-{dst.stem}.json"
+            p = run([PNPM, "vitest", "run", f"test/{dst.name}", "--reporter=json", f"--outputFile={jf}"], cwd=d, env=env, check=False, timeout=900)
+            try:
+                j = json.loads(jf.read_text(encoding="utf-8"))
+                for f in j.get("testResults", []):
+                    for a in f.get("assertionResults", []):
+                        res["testes"][f"{dst.name}::{a['fullName']}"] = a["status"]
+                jf.unlink()
+            except Exception as e:
+                res["testes"][f"{dst.name}::ERRO"] = f"sem relatório: {e}; saída: {(p.stdout + p.stderr)[-300:]}"
+        tc = run([PNPM, "typecheck"], cwd=d, check=False, timeout=900)
+        res["typecheck_ok"] = tc.returncode == 0
+        res["typecheck_tail"] = (tc.stdout + tc.stderr)[-600:] if tc.returncode else ""
+        sv = run([PNPM, "vitest", "run", "--reporter=dot"], cwd=d, env=env, check=False, timeout=1800)
+        # suíte completa inclui os testes ocultos copiados; o resumo é o que interessa
+        m = re.findall(r"Tests\s+(.*)", sv.stdout + sv.stderr)
+        res["suite_completa"] = m[-1].strip() if m else "sem resumo"
+    finally:
+        for dst in copiados:
+            dst.unlink(missing_ok=True)
+    st = list(res["testes"].values())
+    res["passaram"] = st.count("passed")
+    res["falharam"] = st.count("failed")
+    res["total"] = len(st)
+    (out / "score.json").write_text(json.dumps(res, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"{rid}: {res['passaram']}/{res['total']} passaram | typecheck_ok={res['typecheck_ok']} | suíte: {res['suite_completa']}")
+
+
+def finish(rid):
+    d = RUNS / rid
+    out = BRUTO / rid
+    out.mkdir(parents=True, exist_ok=True)
+    run(["git", "-C", str(d), "add", "-A"], check=False)
+    diff = run(["git", "-C", str(d), "diff", "--cached", "--", ".", ":(exclude)sdd"], check=False).stdout
+    (out / "codigo.diff").write_text(diff, encoding="utf-8")
+    if (d / "sdd").exists():
+        shutil.copytree(d / "sdd", out / "sdd", dirs_exist_ok=True)
+    run(["git", "-C", str(BASE_REPO), "worktree", "remove", "--force", str(d)], check=False)
+    print(f"{rid}: diff {len(diff)} bytes, artefatos copiados, pasta removida")
+
+
+def audit(rid, files):
+    bad = []
+    for f in files:
+        txt = Path(f).read_text(encoding="utf-8", errors="replace")
+        for m in FORBIDDEN.finditer(txt):
+            a = max(0, m.start() - 60)
+            bad.append(f"{Path(f).name}: ...{txt[a:m.end() + 60]!r}")
+            if len(bad) > 8:
+                break
+    out = BRUTO / rid
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "auditoria.json").write_text(json.dumps({"limpo": not bad, "ocorrencias": bad}, ensure_ascii=False, indent=2), encoding="utf-8")
+    print("LIMPO" if not bad else f"VAZAMENTO? {len(bad)} ocorrência(s):\n" + "\n".join(bad))
+
+
+def registro(rid, js):
+    BRUTO.mkdir(parents=True, exist_ok=True)
+    row = {"id": rid, "registrado_em": datetime.now().isoformat(timespec="seconds")}
+    row.update(json.loads(js))
+    with open(BRUTO / "execucoes.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps(row, ensure_ascii=False) + "\n")
+    print("ok")
+
+
+def ordem(seed, saida):
+    plano = json.loads((BRUTO / "plano-execucoes.json").read_text(encoding="utf-8"))
+    rnd = random.Random(int(seed))
+    itens = list(plano)
+    rnd.shuffle(itens)
+    Path(saida).write_text(json.dumps(itens, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"{len(itens)} execuções, semente {seed}")
+
+
+def cifrar():
+    if not KEY.exists():
+        KEY.write_text(run([OPENSSL, "rand", "-hex", "32"]).stdout.strip(), encoding="utf-8")
+        print(f"chave criada em {KEY} (fora do projeto; guarde uma cópia)")
+    CIF.mkdir(exist_ok=True)
+    arquivos = [p for p in GAB.glob("*.test.ts")] + [p for p in (GAB / "referencia").glob("*.patch")]
+    for p in arquivos:
+        run([OPENSSL, "enc", "-aes-256-cbc", "-pbkdf2", "-salt", "-in", str(p), "-out", str(CIF / (p.name + ".enc")), "-pass", f"file:{KEY}"])
+    # confere a decifragem antes de qualquer remoção
+    for p in arquivos:
+        tmp = Path(tempfile.gettempdir()) / ("chk-" + p.name)
+        run([OPENSSL, "enc", "-d", "-aes-256-cbc", "-pbkdf2", "-in", str(CIF / (p.name + ".enc")), "-out", str(tmp), "-pass", f"file:{KEY}"])
+        assert tmp.read_bytes() == p.read_bytes(), p.name
+        tmp.unlink()
+    print(f"{len(arquivos)} arquivos cifrados e conferidos em {CIF}")
+
+
+if __name__ == "__main__":
+    a = sys.argv[1:]
+    if not a:
+        sys.exit(__doc__)
+    c = a[0]
+    if c == "prep":
+        prep(a[1], a[2])
+    elif c == "score":
+        score(a[1], a[2])
+    elif c == "finish":
+        finish(a[1])
+    elif c == "audit":
+        audit(a[1], a[2:])
+    elif c == "registro":
+        registro(a[1], a[2])
+    elif c == "ordem":
+        ordem(a[1], a[2])
+    elif c == "cifrar":
+        cifrar()
+    else:
+        sys.exit(__doc__)
