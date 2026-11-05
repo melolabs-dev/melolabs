@@ -12,7 +12,7 @@
   },
   "decisoes": {
     "2026-11-05": {
-      "projeto_alvo": "TypeScript/Node de porte médio (projeto a escolher)",
+      "projeto_alvo": "h3 (github.com/h3js/h3, MIT, TypeScript, vitest). Commit a fixar no pré-registro. Features ainda a escolher.",
       "limiares": "qualidade >= 0,90; custo <= 0,50",
       "hipoteses": "pelo menos 10 (H1-H10 propostas)",
       "titulo": "SDD só com Haiku: o que sobra de qualidade quando o custo cai",
