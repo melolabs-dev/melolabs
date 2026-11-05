@@ -30,6 +30,13 @@
 
 Controles negativos: C2n (H3) e C13 (H11).
 
+## Concorrência e uso de recursos (decisão do autor em 05/11/2026)
+- **Uma execução por vez.** Termina uma condição numa variante, passa à próxima; termina uma variante, passa à seguinte. Não há execuções de estudo em paralelo.
+- **Paralelismo só dentro da condição**, e só onde a própria condição o define: as 3 amostras do voto (C3), os N candidatos em worktrees do S9, e os 3 juízes (que rodam um a um se a memória apertar).
+- **Poupar a máquina é um objetivo do estudo:** a memória (15,6 GB) não pode virar causa de falha de execução. Uma só instalação de dependências compartilhada pelo `pnpm`, worktrees removidas após cada execução, e registro da memória livre antes de cada execução.
+- Como o tempo até 13/11 é folgado, a prioridade é a execução completa e limpa, não a velocidade.
+- **Efeito no prazo:** em fila, 300 a 350 execuções de 5 a 10 minutos somam entre 25 e 60 horas de relógio, mais os juízes. Cabe em 8 dias só se a coleta rodar em sessões longas por dia; o piloto mede a duração real e o plano é refeito com ela. Se não couber, a ordem de corte é a já combinada (S11, S8, S9) e depois repetições adicionais, nunca as hipóteses confirmatórias H4, H5 e H6.
+
 ## Aleatorização, sementes e aquecimento
 - A ordem das execuções é sorteada com semente fixa `20261105` e registrada em `dados/bruto/ordem.json`, intercalando modelos e condições para que a hora do dia e a carga do serviço não coincidam com uma condição.
 - Uma execução de aquecimento por variante (Haiku simples) valida o harness (worktree, medição, coleta) e é descartada, sem entrar nos dados.
