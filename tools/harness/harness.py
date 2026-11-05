@@ -68,6 +68,9 @@ def prep(rid, var):
     run(["git", "-c", "core.autocrlf=false", "-C", str(BASE_REPO), "worktree", "add", "--detach", str(d), BASE_COMMIT])
     run(["git", "-C", str(d), "config", "core.autocrlf", "false"])
     run([PNPM, "install", "--frozen-lockfile"], cwd=d)
+    # O teste test/unit/cli.test.ts do h3 abre abas reais do navegador no Windows (rundll32), uma rodada de abas por suíte completa.
+    # Foi o que consumiu a memória do Chrome em 05/11/2026. É removido da pasta da execução, igual para todas as condições.
+    (d / "test" / "unit" / "cli.test.ts").unlink(missing_ok=True)
     (d / "sdd").mkdir()
     enun = (Path(__file__).parent / "enunciados" / f"issue-{issue}.md").read_text(encoding="utf-8")
     cont = (GAB / contrato).read_text(encoding="utf-8")
@@ -136,7 +139,7 @@ def finish(rid):
     out = BRUTO / rid
     out.mkdir(parents=True, exist_ok=True)
     run(["git", "-C", str(d), "add", "-A"], check=False)
-    diff = run(["git", "-C", str(d), "diff", "--cached", "--", ".", ":(exclude)sdd"], check=False).stdout
+    diff = run(["git", "-C", str(d), "diff", "--cached", "--", ".", ":(exclude)sdd", ":(exclude)test/unit/cli.test.ts"], check=False).stdout
     (out / "codigo.diff").write_text(diff, encoding="utf-8")
     if (d / "sdd").exists():
         shutil.copytree(d / "sdd", out / "sdd", dirs_exist_ok=True)

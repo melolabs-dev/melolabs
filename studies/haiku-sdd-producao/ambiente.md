@@ -18,3 +18,4 @@
   - Tempo de relógio: varia com a carga da máquina e do serviço; por isso o tempo é reportado como mediana e dispersão, e não como valor único.
   - Fins de linha: o clone usa `core.autocrlf=true` e o `oxfmt --check` global falha por CRLF mesmo no commit base; o critério de lint das execuções usa só os arquivos tocados e `tsc`, não o `oxfmt` global.
   - A saída dos modelos não é determinística; a variação entre repetições é medida, não eliminada.
+- **Desvio declarado: `test/unit/cli.test.ts` removido das pastas de execução.** Esse teste do h3 chama `h3 docs <página>`, que no Windows abre abas reais do navegador mesmo com o `PATH` esvaziado. Cada suíte completa abriu cerca de 9 abas; 21 suítes completas (do gabarito e do aquecimento) deixaram 189 abas de h3.dev abertas e levaram o Chrome de 169 processos de página a cerca de 8 GB de memória exclusiva. A remoção vale igual para todas as condições, não toca em código da feature e fica fora de `codigo.diff`.
