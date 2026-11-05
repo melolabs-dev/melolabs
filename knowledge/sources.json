@@ -101,5 +101,63 @@
       "papers"
     ],
     "validated": false
+  },
+  {
+    "slug": "estudo-paralelismo-sdd",
+    "title": "Estudo de paralelismo no fluxo SDD multi-projeto (ciclo front-igual-prototipo)",
+    "url": "https://claude.ai/artifact/Hvbso1NXJtYS5dTzdu1zTk",
+    "kind": "analysis",
+    "evidence": "experimento-proprio",
+    "date": "2026-11-03",
+    "tags": [
+      "sdd",
+      "paralelismo",
+      "gates",
+      "worktree",
+      "haiku",
+      "medicao",
+      "confidencial"
+    ],
+    "raw": "inbox/_raw/estudo-paralelismo-sdd/index.html",
+    "validated": true,
+    "confidencial": true
+  },
+  {
+    "slug": "agentes-paralelo-cocoder-caid",
+    "title": "Agentes de código em paralelo: Co-Coder e CAID explicados",
+    "url": "https://claude.ai/artifact/LymzwurWEPM8sxhAQEn3Xp",
+    "kind": "explainer",
+    "evidence": "fonte-secundaria",
+    "date": "2026-11-03",
+    "tags": [
+      "multi-agente",
+      "paralelismo",
+      "co-coder",
+      "caid",
+      "particionamento",
+      "worktree"
+    ],
+    "raw": "inbox/_raw/agentes-paralelo-cocoder-caid/index.html",
+    "validated": false
+  },
+  {
+    "slug": "balanco-ciclo-prototipo-final",
+    "title": "Balanço do ciclo prototipo-final (back e front com subagentes Haiku)",
+    "url": "https://claude.ai/artifact/A2Cz2ezBeLY9ChaTjx3vny",
+    "kind": "experiment",
+    "evidence": "experimento-proprio",
+    "date": "2026-11-05",
+    "tags": [
+      "sdd",
+      "haiku",
+      "custo",
+      "tokens",
+      "retrabalho",
+      "gates",
+      "confidencial"
+    ],
+    "raw": "inbox/_raw/balanco-ciclo-prototipo-final/index.html",
+    "validated": true,
+    "confidencial": true
   }
 ]
