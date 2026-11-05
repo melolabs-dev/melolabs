@@ -1,6 +1,6 @@
 # Declarações do estudo (rascunho para F0.3)
 
-> Rascunho do Claude. O passo F0.3 só fecha quando o autor confirmar os itens marcados como pendentes.
+> Confirmado pelo autor em 05/11/2026 (passo F0.3).
 
 ## Uso de material do trabalho (decidido pelo autor em 05/11/2026)
 Dados de estudos feitos no trabalho podem aparecer no artigo, **sem nenhum dado da empresa onde o autor trabalha**.
@@ -13,9 +13,9 @@ Regras de anonimização para qualquer texto publicado:
 - Antes da publicação, o autor revisa o trecho que usar esses números (passo F10).
 
 ## Conflitos de interesse
-- Pendente de confirmação do autor: existe vínculo financeiro ou de emprego com a Anthropic ou com outro fornecedor de modelo citado?
-- Pendente de confirmação do autor: o estudo recebe patrocínio, crédito ou acesso gratuito de algum fornecedor?
-- Pendente de confirmação do autor: o empregador sabe ou precisa autorizar a publicação de números agregados do trabalho?
+- Vínculo financeiro ou de emprego com a Anthropic ou com outro fornecedor de modelo citado: **não** (autor, 05/11/2026).
+- Patrocínio, crédito ou acesso gratuito de algum fornecedor: **não** (autor, 05/11/2026).
+- O empregador precisa saber ou autorizar a publicação de números agregados do trabalho: **não** (autor, 05/11/2026), desde que nenhum dado da empresa apareça.
 
 ## Restrições de confidencialidade
 - O projeto-alvo (h3) é open source, licença MIT. Nada nele é confidencial.

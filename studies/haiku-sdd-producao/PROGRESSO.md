@@ -1,12 +1,12 @@
 # Progresso: SDD só com Haiku: o que sobra de qualidade quando o custo cai
 
-Atualizado em 2026-11-05 08:06 · congelamento dos dados: 2026-11-13
+Atualizado em 2026-11-05 08:07 · congelamento dos dados: 2026-11-13
 
-**8/46 passos (17%)**
+**9/46 passos (20%)**
 
 | Fase | Passos | Situação |
 | --- | --- | --- |
-| F0 Premissa e escopo | 1/3 | ███░░░░░░░ |
+| F0 Premissa e escopo | 2/3 | ███████░░░ |
 | F1 Revisão de evidências | 5/6 | ████████░░ |
 | F2 Hipóteses | 2/3 | ███████░░░ |
 | F3 Pré-registro | 0/3 | ░░░░░░░░░░ |
@@ -24,7 +24,7 @@ Atualizado em 2026-11-05 08:06 · congelamento dos dados: 2026-11-13
 ### F0 · Premissa e escopo
 - [x] **F0.1** Escrever a premissa, a pergunta de pesquisa e a decisão que o resultado informa
 - [ ] **F0.2** Definir escopo, fora de escopo, público do artigo e critérios de sucesso do estudo — falta: manual: falta evidência
-- [ ] **F0.3** Declarar conflitos de interesse, uso de material do trabalho e restrições de confidencialidade — falta: manual: falta evidência
+- [x] **F0.3** Declarar conflitos de interesse, uso de material do trabalho e restrições de confidencialidade
 
 ### F1 · Revisão de evidências
 - [x] **F1.1** Definir a estratégia de busca: termos, bases, critérios de inclusão e exclusão, data da busca
@@ -82,7 +82,7 @@ Atualizado em 2026-11-05 08:06 · congelamento dos dados: 2026-11-13
 - [ ] **F9.5** Revisar confidencialidade e anonimização; marcar as notas-fonte como publicáveis — falta: manual: falta evidência
 
 ### F10 · Revisão e aprovação
-- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F0.2, F0.3, F1.6, F2.3, F3.1, F3.2, F3.3, F4.1…
+- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F0.2, F1.6, F2.3, F3.1, F3.2, F3.3, F4.1, F4.2…
 - [ ] **F10.2** Fact-check final: cada número do texto conferido contra os dados — falta: manual: falta evidência
 - [ ] **F10.3** Aprovação do autor, dita de forma explícita para cada idioma — falta: manual: falta evidência
 
