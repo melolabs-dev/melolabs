@@ -32,7 +32,7 @@ Se vale adotar o Haiku como modelo padrão de SDD no trabalho e na mentoria, e q
 - **Dentro:**
   - As quatro etapas: PRD, TechSpec, Tasks e código.
   - Haiku 5.5 contra Sonnet 5.5 como referência, medindo qualidade, custo em dólar e tempo.
-  - As 10 hipóteses do registro (`hipoteses.json`, H1 a H10).
+  - As 11 hipóteses do registro (`hipoteses.json`, H1 a H11; a H11, personas e contexto detalhado no Haiku, foi pedida pelo autor em 05/11/2026).
   - Os 4 braços do autor, que rodam em paralelo (`solucoes-do-autor.md`): repo map do TypeScript, N candidatos em worktrees, limite de chamadas por worker e checagem de rodapé.
 - **Fora:**
   - Outros modelos e fornecedores.

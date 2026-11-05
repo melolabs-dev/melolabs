@@ -27,7 +27,7 @@
     "2026-11-05": {
       "projeto_alvo": "h3 (github.com/h3js/h3, MIT, TypeScript, vitest). Commit a fixar no pré-registro. Features ainda a escolher.",
       "limiares": "qualidade >= 0,90; custo <= 0,50",
-      "hipoteses": "pelo menos 10 (H1-H10 propostas)",
+      "hipoteses": "pelo menos 10 (H1-H11 propostas; H11 personas e contexto detalhado pedida pelo autor em 05/11)",
       "titulo": "SDD só com Haiku: o que sobra de qualidade quando o custo cai",
       "juizes": "até US$ 50 (Opus)",
       "prazo": "congelar dados em 2026-11-13",

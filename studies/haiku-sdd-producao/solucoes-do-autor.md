@@ -4,7 +4,7 @@
 
 ## Como entram no estudo
 - Cada solução abaixo vira um **braço** (condição) que roda nas mesmas 3 features do h3, com o mesmo avaliador cego e a mesma tabela de preços datada.
-- Os braços do autor entram **em paralelo** com os braços das hipóteses H1 a H10, sem substituí-los. O que já existe no estudo fica como está.
+- Os braços do autor entram **em paralelo** com os braços das hipóteses H1 a H11, sem substituí-los. O que já existe no estudo fica como está.
 - Resultados anteriores seus (rodadas 1 a 3, balanço do ciclo) entram como **evidência de base e de planejamento**. Eles não contam como dados deste estudo, porque outro projeto, outros insumos e outras versões de modelo foram usados.
 
 ## Soluções do autor e a hipótese que cada uma alimenta
@@ -32,7 +32,7 @@
 - **Entrada e saída de tokens separadas**, com preço da data: mantida para H6, H8 e H10.
 
 ## O que muda no custo do estudo
-Os braços novos (S8, S9, S10 e S11) somam condições por feature. Com 3 features, 3 repetições e os braços das 10 hipóteses, o número de execuções cresce. A conta de orçamento (inclusive dos juízes Opus, teto de US$ 50) fica para o plano de testes, F4. Se não couber, a ordem de corte proposta é: S11, depois S8, e por último S9.
+Os braços novos (S8, S9, S10 e S11) somam condições por feature. Com 3 features, 3 repetições e os braços das 11 hipóteses (a H11 soma 3 variantes de prompt: persona, contexto e os dois, mais um controle de mesmo tamanho), o número de execuções cresce. A conta de orçamento (inclusive dos juízes Opus, teto de US$ 50) fica para o plano de testes, F4. Se não couber, a ordem de corte proposta é: S11, depois S8, e por último S9.
 
 ## O que o autor precisa decidir
 1. ~~Os 4 braços novos entram?~~ Decidido: entram.
