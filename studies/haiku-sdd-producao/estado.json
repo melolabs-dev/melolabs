@@ -17,7 +17,9 @@
       "hipoteses": "pelo menos 10 (H1-H10 propostas)",
       "titulo": "SDD só com Haiku: o que sobra de qualidade quando o custo cai",
       "juizes": "até US$ 50 (Opus)",
-      "prazo": "congelar dados em 2026-11-13"
+      "prazo": "congelar dados em 2026-11-13",
+      "features": "h3 #1267 (HTTP Range no serveStatic), #1384 (RFC 9457 problem JSON), #1050 (várias senhas de unseal em sessões)",
+      "contexto_do_repo": "CLAUDE.md e AGENTS.md do h3 entram nas duas condições (Haiku e Sonnet)"
     }
   },
   "aprovacoes": {
