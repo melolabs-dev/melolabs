@@ -19,5 +19,23 @@
       "juizes": "até US$ 50 (Opus)",
       "prazo": "congelar dados em 2026-11-13"
     }
+  },
+  "aprovacoes": {
+    "F0.1": {
+      "feito": "2026-11-05",
+      "decisao": "Autor aprovou em 05/11/2026 (pediu para aprovar o que já estava pronto): premissa com o título 'SDD só com Haiku: o que sobra de qualidade quando o custo cai'"
+    },
+    "F1.5": {
+      "feito": "2026-11-05",
+      "decisao": "Autor aprovou em 05/11/2026 a síntese"
+    },
+    "F2.1": {
+      "feito": "2026-11-05",
+      "decisao": "Autor aprovou em 05/11/2026: pelo menos 10 hipóteses (H1 a H10; H7 a H10 propostas pelo Claude e aceitas na aprovação geral)"
+    },
+    "F2.2": {
+      "feito": "2026-11-05",
+      "decisao": "Autor decidiu em 05/11/2026: qualidade >= 0,90 e custo <= 0,50; juízes Opus até US$ 50"
+    }
   }
 }

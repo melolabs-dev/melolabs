@@ -1,14 +1,14 @@
 # Progresso: SDD só com Haiku: o que sobra de qualidade quando o custo cai
 
-Atualizado em 2026-11-05 07:50 · congelamento dos dados: 2026-11-13
+Atualizado em 2026-11-05 07:53 · congelamento dos dados: 2026-11-13
 
-**4/46 passos (9%)**
+**8/46 passos (17%)**
 
 | Fase | Passos | Situação |
 | --- | --- | --- |
-| F0 Premissa e escopo | 0/3 | ░░░░░░░░░░ |
-| F1 Revisão de evidências | 4/6 | ███████░░░ |
-| F2 Hipóteses | 0/3 | ░░░░░░░░░░ |
+| F0 Premissa e escopo | 1/3 | ███░░░░░░░ |
+| F1 Revisão de evidências | 5/6 | ████████░░ |
+| F2 Hipóteses | 2/3 | ███████░░░ |
 | F3 Pré-registro | 0/3 | ░░░░░░░░░░ |
 | F4 Plano de testes | 0/6 | ░░░░░░░░░░ |
 | F5 Execução | 0/3 | ░░░░░░░░░░ |
@@ -22,7 +22,7 @@ Atualizado em 2026-11-05 07:50 · congelamento dos dados: 2026-11-13
 ## Passos
 
 ### F0 · Premissa e escopo
-- [ ] **F0.1** Escrever a premissa, a pergunta de pesquisa e a decisão que o resultado informa — falta: pronto como rascunho; aguardando a aprovação do autor
+- [x] **F0.1** Escrever a premissa, a pergunta de pesquisa e a decisão que o resultado informa
 - [ ] **F0.2** Definir escopo, fora de escopo, público do artigo e critérios de sucesso do estudo — falta: manual: falta evidência
 - [ ] **F0.3** Declarar conflitos de interesse, uso de material do trabalho e restrições de confidencialidade — falta: manual: falta evidência
 
@@ -31,12 +31,12 @@ Atualizado em 2026-11-05 07:50 · congelamento dos dados: 2026-11-13
 - [x] **F1.2** Coletar fontes em Markdown: no mínimo 10, sendo 3 acadêmicas, 3 de empresa ou documentação oficial e 2 independentes
 - [x] **F1.3** Verificar que cada fonte existe (URL ou DOI abre) e que ela diz o que o resumo afirma
 - [x] **F1.4** Classificar o nível de evidência (A a D) e o viés ou conflito de cada fonte
-- [ ] **F1.5** Escrever a síntese: o que se sabe, onde as fontes discordam e o que falta testar — falta: pronto como rascunho; aguardando a aprovação do autor
+- [x] **F1.5** Escrever a síntese: o que se sabe, onde as fontes discordam e o que falta testar
 - [ ] **F1.6** Indexar as fontes no RAG e checar se a busca as encontra — falta: manual: falta evidência
 
 ### F2 · Hipóteses
-- [ ] **F2.1** Formular hipóteses falsificáveis, cada uma com métrica, limiar e critério de refutação — falta: pronto como rascunho; aguardando a aprovação do autor
-- [ ] **F2.2** Fixar para cada hipótese a margem de equivalência e o menor efeito que importa na prática — falta: pronto como rascunho; aguardando a aprovação do autor
+- [x] **F2.1** Formular hipóteses falsificáveis, cada uma com métrica, limiar e critério de refutação
+- [x] **F2.2** Fixar para cada hipótese a margem de equivalência e o menor efeito que importa na prática
 - [ ] **F2.3** Declarar a hipótese nula, ao menos um controle negativo e as explicações alternativas — falta: manual: falta evidência
 
 ### F3 · Pré-registro
@@ -82,7 +82,7 @@ Atualizado em 2026-11-05 07:50 · congelamento dos dados: 2026-11-13
 - [ ] **F9.5** Revisar confidencialidade e anonimização; marcar as notas-fonte como publicáveis — falta: manual: falta evidência
 
 ### F10 · Revisão e aprovação
-- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F0.1, F0.2, F0.3, F1.5, F1.6, F2.1, F2.2, F2.3…
+- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F0.2, F0.3, F1.6, F2.3, F3.1, F3.2, F3.3, F4.1…
 - [ ] **F10.2** Fact-check final: cada número do texto conferido contra os dados — falta: manual: falta evidência
 - [ ] **F10.3** Aprovação do autor, dita de forma explícita para cada idioma — falta: manual: falta evidência
 
