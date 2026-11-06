@@ -26,3 +26,35 @@ O gate determinístico reprovou `sdd/<arquivo>` com estes erros reais:
 {ERROS}
 
 Corrija somente esses pontos em `sdd/<arquivo>`, mantendo o resto. Não altere o código do projeto.
+
+---
+
+# Variações da H11 (personas e contexto detalhado) e das demais condições da fase B
+
+O prompt de cada etapa é o mesmo das seções acima; muda só o bloco inserido logo depois da "Regra comum". `{ETAPA}` é prd, techspec, tasks ou codigo.
+
+## C10, só persona (um parágrafo curto por etapa)
+- prd: "Você é uma gerente de produto sênior, com anos de experiência em frameworks HTTP e bibliotecas de código aberto, e escreve requisitos que um engenheiro consegue testar sem perguntar nada."
+- techspec: "Você é um arquiteto de software sênior de TypeScript e de plataformas web, e escreve especificações técnicas que um engenheiro pleno implementa sem ambiguidade."
+- tasks: "Você é uma tech lead que quebra especificações em tarefas pequenas, independentes e verificáveis."
+- codigo: "Você é um engenheiro sênior de TypeScript especialista em HTTP, sessões e segurança, e entrega código pequeno, testado e compatível com o que já existe."
+
+## C11, só contexto detalhado (bloco igual em todas as etapas)
+"Contexto do projeto: o h3 é um framework HTTP mínimo e de alto desempenho, baseado nos primitivos padrão da web (Request, Response, URL, Headers), que roda em Node.js, Bun, Deno e Cloudflare Workers. O código fica em src/, os testes em test/ (vitest, rodando nos alvos web e node por meio de describeMatrix), e as convenções estão no AGENTS.md e no CLAUDE.md. Mudanças devem ser compatíveis com o que já existe, sem novas dependências e sem novas exportações públicas além do pedido. Um bom requisito tem identificador, comportamento observável e critério Dado/Quando/Então; uma boa especificação cita arquivo e linha reais, justifica cada decisão com alternativas e lista riscos; uma boa tarefa declara os arquivos que toca e como verificá-la; um bom código é pequeno, segue o estilo do arquivo vizinho e passa em typecheck, lint e na suíte existente. Antes de decidir qualquer ponto em aberto, procure no código existente como o projeto já resolveu caso parecido e siga esse padrão."
+
+## C12, persona e contexto (persona da C10 seguida do bloco da C11)
+
+## C13, controle de mesmo tamanho (sem informação útil)
+"Observações gerais sobre organização de trabalho: documentos costumam ser lidos de cima para baixo, por isso vale começar pelo mais importante. Frases curtas ajudam a leitura, e listas ajudam quando há itens paralelos. Revisar o texto antes de entregar costuma melhorar a clareza. Vale usar nomes consistentes para as mesmas coisas ao longo do documento, manter a formatação uniforme e evitar repetições desnecessárias. Ao trabalhar em equipe, é útil registrar decisões e combinar quem confere cada parte. Em geral, trabalhos longos se beneficiam de pausas regulares, e um ambiente organizado reduz erros de distração. Quando houver dúvidas sobre prioridades, vale conversar cedo, porque ajustes tardios costumam custar mais do que ajustes cedo. Também ajuda manter anotações do que já foi feito, para não repetir esforço, e reservar tempo no fim para uma leitura final com calma."
+
+## C2, Haiku com gate e loop só nos documentos (código sem TDD)
+Prompts das etapas iguais à C1; depois de cada documento roda `gates.py`; se reprovar, roda o prompt "Correção de documento reprovado no gate" com os erros reais, no máximo 2 rodadas. Código com o prompt da C1.
+
+## C2n, controle negativo de autorrevisão
+Prompts das etapas iguais à C1; depois de cada documento, um segundo agente do mesmo modelo recebe: "Releia o documento sdd/<arquivo> e melhore o que achar que está fraco, sem consultar nenhum comando ou ferramenta de verificação." (sem passar os erros do gate). Código com o prompt da C1.
+
+## C5, cascata
+Igual à C4; se um documento ainda reprova o gate depois de 2 rodadas de correção, a etapa é refeita com o Sonnet. Se o código não passa em typecheck e nos testes que o próprio agente escreveu depois de 3 rodadas, o código é refeito pelo Sonnet com a saída do erro.
+
+## C6, híbrido
+PRD e Tasks pelo Haiku (prompts da C1); TechSpec pelo Sonnet; código pelo Haiku com o prompt da C1.
