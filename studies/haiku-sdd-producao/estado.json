@@ -1,111 +1,114 @@
 {
-  "slug": "haiku-sdd-producao",
-  "titulo": "SDD só com Haiku: o que sobra de qualidade quando o custo cai",
-  "criado": "2026-11-04",
-  "congelar_dados": "2026-11-13",
-  "etapas": {
-    "F0.3": {
-      "feito": "2026-11-05",
-      "evidencia": "Autor confirmou em 05/11/2026: sem vínculo com fornecedor de modelo, sem patrocínio ou crédito, sem necessidade de autorização do empregador; dados do trabalho só anonimizados. Ver studies/haiku-sdd-producao/declaracoes.md"
-    },
-    "F0.2": {
-      "feito": "2026-11-05",
-      "evidencia": "Autor aprovou em 05/11/2026 as seções Escopo e fora de escopo, Público do artigo e Critérios de sucesso em studies/haiku-sdd-producao/premissa.md"
-    },
-    "F1.6": {
-      "feito": "2026-11-05",
-      "evidencia": "05/11/2026: índice reconstruído (39 notas, 299 trechos); 5 buscas (self-consistency, Agentless, FrugalGPT cascata, lost in the middle, Reflexion) devolveram a nota da própria fonte em 1º lugar"
-    },
-    "F2.3": {
-      "feito": "2026-11-05",
-      "evidencia": "Autor aprovou em 05/11/2026 a secao de hipotese nula, controles negativos (autorrevisao sem feedback na H3; texto de mesmo tamanho na H11) e explicacoes alternativas (vies de juiz, saturacao, versoes, variacao, formato do prompt, AGENTS.md do h3), em studies/haiku-sdd-producao/premissa.md"
-    },
-    "F3.2": {
-      "feito": "2026-11-05",
-      "evidencia": "Piloto de 12 execucoes em 05/11/2026 (studies/haiku-sdd-producao/piloto.md e dados/processado/piloto.json): CV de tokens 2,3% e de tempo 6,1%; testes aprovados saturam em 100%; H4 exige 36 execucoes por condicao para limite inferior de Wilson 0,90. Autor aprovou 6 repeticoes por variante para H4 e 3 para as demais, e contrato enxuto."
-    },
-    "F3.3": {
-      "feito": "2026-11-05",
-      "evidencia": "Tag git anotada prereg-haiku-sdd-producao no commit 59a3501cf5cd9459c7a994981a0e5d9aae0e869c (publicada no GitHub), com manifesto de hashes em studies/haiku-sdd-producao/prereg/manifesto.json (12 testes ocultos, 21 documentos, plano de 138 execucoes, commit do h3 f0e17808). Autor aprovou o pre-registro em 05/11/2026."
-    },
-    "F4.5": {
-      "feito": "2026-11-05",
-      "evidencia": "Ensaio geral feito pelo piloto de 12 execucoes completas mais 1 de aquecimento (studies/haiku-sdd-producao/piloto.md): coleta, pontuacao, auditoria e dicionario de dados validados; smoke tests do harness com os contratos enxutos e os testes novos em 05/11/2026."
-    }
+ "slug": "haiku-sdd-producao",
+ "titulo": "SDD só com Haiku: o que sobra de qualidade quando o custo cai",
+ "criado": "2026-11-04",
+ "congelar_dados": "2026-11-13",
+ "etapas": {
+  "F0.3": {
+   "feito": "2026-11-05",
+   "evidencia": "Autor confirmou em 05/11/2026: sem vínculo com fornecedor de modelo, sem patrocínio ou crédito, sem necessidade de autorização do empregador; dados do trabalho só anonimizados. Ver studies/haiku-sdd-producao/declaracoes.md"
   },
-  "auto_feito": {
-    "F1.1": "2026-11-04",
-    "F1.2": "2026-11-04",
-    "F1.3": "2026-11-04",
-    "F1.4": "2026-11-04",
-    "F4.1": "2026-11-05",
-    "F4.3": "2026-11-05",
-    "F5.1": "2026-11-05"
+  "F0.2": {
+   "feito": "2026-11-05",
+   "evidencia": "Autor aprovou em 05/11/2026 as seções Escopo e fora de escopo, Público do artigo e Critérios de sucesso em studies/haiku-sdd-producao/premissa.md"
   },
-  "decisoes": {
-    "2026-11-05": {
-      "projeto_alvo": "h3 (github.com/h3js/h3, MIT, TypeScript, vitest). Commit a fixar no pré-registro. Features ainda a escolher.",
-      "limiares": "qualidade >= 0,90; custo <= 0,50",
-      "hipoteses": "pelo menos 10 (H1-H11 propostas; H11 personas e contexto detalhado pedida pelo autor em 05/11)",
-      "titulo": "SDD só com Haiku: o que sobra de qualidade quando o custo cai",
-      "juizes": "Opus como juiz, sem teto de gasto (revisado pelo autor em 05/11/2026; antes: até US$ 50)",
-      "prazo": "congelar dados em 2026-11-13",
-      "features": "h3 #1267 (HTTP Range no serveStatic), #1384 (RFC 9457 problem JSON), #1050 (várias senhas de unseal em sessões)",
-      "contexto_do_repo": "CLAUDE.md e AGENTS.md do h3 entram nas duas condições (Haiku e Sonnet)",
-      "bracos_do_autor": "Os 4 braços novos entram: S8 repo map, S9 N candidatos em worktrees, S10 limite de chamadas, S11 checagem de rodapé. Ordem de corte se faltar tempo: S11, S8, S9.",
-      "dados_de_trabalho": "Podem aparecer no artigo, mas sem nenhum dado da empresa onde o autor trabalha (nome, produto, projetos, repositórios, decisões internas, telas, domínio de negócio). Só números agregados e lições gerais, anonimizados.",
-      "sequencia_F3": "Orçamento antes do piloto (F3.2) e do pré-registro (F3.3); decidido pelo autor em 05/11/2026",
-      "gabarito_testes_ocultos": "Claude rascunha os testes ocultos a partir de RFC 7233, RFC 9457 e das issues; o autor aprova cada teste.",
-      "criterio_maximizar_dados": "Em toda pergunta aberta, escolher a opção que gera mais dados, mesmo que algumas fiquem menos conclusivas (autor, 05/11/2026). Aplicado: #1384 nas variantes A, B e C; #1050 nas variantes a e b; P10 como observação; S3, R10, R11 e If-Range entram. Total: 6 variantes de tarefa em 3 features.",
-      "teto_de_gasto": "Removido em 05/11/2026. O foco é assertividade e tempo; o gasto é medido e reportado, mas não limitado.",
-      "referencias_dos_testes": "Implementações de referência dos testes ocultos escritas com Opus (decisão do autor em 05/11/2026), para ter a referência mais confiável.",
-      "testes_ocultos_aprovados": {
-        "data": "2026-11-05",
-        "autor": "Caio Melo aprovou os testes revisados (#1267 e #1050-a/b), com as resolucoes de maximizar dados (observacoes R9, S3, S5, S7; testes extras de If-Range, size zero e accept-ranges em 304/416). Em 05/11/2026 o autor aprovou tambem a #1384-A/B/C com as 4 resolucoes (bundle, suite de B em duas versoes, snapshot de C, unhandled em B como observacoes). Pendente: escrita dos testes extras.",
-        "sha256": {
-          "range-1267.test.ts": "719df3d87dbba1122b23f4ad45d26aa75d7eb06153e83ad2a6779094116ab81b",
-          "session-1050-a.test.ts": "b88078252f29f3bd3b7acc3aa2d98e2d34b2c34d3cf5616785a83440bb75bf14",
-          "session-1050-b.test.ts": "b9b114206e8e27c79c4cdc5b59da59b52ea25836e7f685eeeae278f5c28de6a5",
-          "problem-1384-a.test.ts": "647f0b886d7f93da2b83d9d9ce5db9906ee68bbb1b1e30af6277b5bbc4714215",
-          "problem-1384-b.test.ts": "271b456418b0266357bf35161e2ad2e70d0bd41eddd741803663447db9eafb84",
-          "problem-1384-c.test.ts": "4c1f07b3f32800341e0086aa6bd695a0ae50f2c29355ee3cb33cc0b8c90f9302"
-        },
-        "extras_sha256": {
-          "range-1267.extras.test.ts": "dcda3945f1bdddf2666768cf042420e774916bc0fbe141254e3c2013eeca7e3a",
-          "session-1050-a.extras.test.ts": "32c908d9a195f3148b51b79422722fc54fd0e4020a770b528ee49294cd6c22a0",
-          "session-1050-b.extras.test.ts": "daf557f2cfeb10a81938cfebc3d87fb3b8ef8144dcc3edb5a01374d8e1001163"
-        },
-        "extras_nota": "Escritos em 05/11/2026 a partir das resolucoes aprovadas de maximizar dados. E5 (Range aberto com inicio >= tamanho deve dar 416) foi acrescentado pelo agente e achou um desvio da referencia do #1267 (corrigido: resolveRange validava 'end<start' antes de 'start>=size'); patch da referencia regenerado. O R6 aprovado nao pegava esse caso."
-      },
-      "execucao": "Execucoes pela assinatura do autor via subagentes do Claude Code (haiku, sonnet, opus), sem chave de API; sem teto de gasto. H8 (cache) nao mensuravel por este caminho.",
-      "piloto_f3_2": "Piloto concluido em 05/11/2026 (12 execucoes, ver piloto.md). Autor decidiu: contrato enxuto para tirar o efeito de teto e 6 repeticoes por variante e condicao para a H4 (36 por condicao em C0 e C4); 3 repeticoes por condicao para tokens e rubrica.",
-      "contrato_enxuto": "Autor aprovou em 05/11/2026: contratos enxutos (gabarito/enxuto/*.contrato.md), reclassificacao de testes para observacao conforme gabarito/classificacao.json (R9, E2, E3, E4; P2, P5, P9 na B; S3, S5, S7, S10), contrato do Range citando RFC 9110 secoes 13.1.5 e 14, e testes novos (abrangencia do A e detail) a escrever e submeter a aprovacao."
-    }
+  "F1.6": {
+   "feito": "2026-11-05",
+   "evidencia": "05/11/2026: índice reconstruído (39 notas, 299 trechos); 5 buscas (self-consistency, Agentless, FrugalGPT cascata, lost in the middle, Reflexion) devolveram a nota da própria fonte em 1º lugar"
   },
-  "aprovacoes": {
-    "F0.1": {
-      "feito": "2026-11-05",
-      "decisao": "Autor aprovou em 05/11/2026 (pediu para aprovar o que já estava pronto): premissa com o título 'SDD só com Haiku: o que sobra de qualidade quando o custo cai'"
-    },
-    "F1.5": {
-      "feito": "2026-11-05",
-      "decisao": "Autor aprovou em 05/11/2026 a síntese"
-    },
-    "F2.1": {
-      "feito": "2026-11-05",
-      "decisao": "Autor aprovou em 05/11/2026: pelo menos 10 hipóteses (H1 a H10; H7 a H10 propostas pelo Claude e aceitas na aprovação geral)"
-    },
-    "F2.2": {
-      "feito": "2026-11-05",
-      "decisao": "Autor decidiu em 05/11/2026: qualidade >= 0,90 e custo <= 0,50; juízes Opus até US$ 50"
-    },
-    "F3.1": {
-      "feito": "2026-11-05",
-      "decisao": "Autor aprovou em 05/11/2026 o plano de analise e as 5 decisoes: familias de Holm (H4,H5,H6 principal), S8-S11 exploratorios, alfa de Krippendorff 0,67, falha do modelo conta como reprovada com custo, juizes Opus fora do custo por artefato aceito"
-    },
-    "F4.2": {
-      "feito": "2026-11-05",
-      "decisao": "Autor aprovou em 05/11/2026, de forma geral, o plano de testes (condicoes, fases A/B/C, semente 20261105, 6 repeticoes por variante para H4 e 3 para as demais, contrato enxuto, classificacao nucleo e observacao e testes novos do problem+json)"
-    }
+  "F2.3": {
+   "feito": "2026-11-05",
+   "evidencia": "Autor aprovou em 05/11/2026 a secao de hipotese nula, controles negativos (autorrevisao sem feedback na H3; texto de mesmo tamanho na H11) e explicacoes alternativas (vies de juiz, saturacao, versoes, variacao, formato do prompt, AGENTS.md do h3), em studies/haiku-sdd-producao/premissa.md"
+  },
+  "F3.2": {
+   "feito": "2026-11-05",
+   "evidencia": "Piloto de 12 execucoes em 05/11/2026 (studies/haiku-sdd-producao/piloto.md e dados/processado/piloto.json): CV de tokens 2,3% e de tempo 6,1%; testes aprovados saturam em 100%; H4 exige 36 execucoes por condicao para limite inferior de Wilson 0,90. Autor aprovou 6 repeticoes por variante para H4 e 3 para as demais, e contrato enxuto."
+  },
+  "F3.3": {
+   "feito": "2026-11-05",
+   "evidencia": "Tag git anotada prereg-haiku-sdd-producao no commit 59a3501cf5cd9459c7a994981a0e5d9aae0e869c (publicada no GitHub), com manifesto de hashes em studies/haiku-sdd-producao/prereg/manifesto.json (12 testes ocultos, 21 documentos, plano de 138 execucoes, commit do h3 f0e17808). Autor aprovou o pre-registro em 05/11/2026."
+  },
+  "F4.5": {
+   "feito": "2026-11-05",
+   "evidencia": "Ensaio geral feito pelo piloto de 12 execucoes completas mais 1 de aquecimento (studies/haiku-sdd-producao/piloto.md): coleta, pontuacao, auditoria e dicionario de dados validados; smoke tests do harness com os contratos enxutos e os testes novos em 05/11/2026."
   }
+ },
+ "auto_feito": {
+  "F1.1": "2026-11-04",
+  "F1.2": "2026-11-04",
+  "F1.3": "2026-11-04",
+  "F1.4": "2026-11-04",
+  "F4.1": "2026-11-05",
+  "F4.3": "2026-11-05",
+  "F5.1": "2026-11-05"
+ },
+ "decisoes": {
+  "2026-11-05": {
+   "projeto_alvo": "h3 (github.com/h3js/h3, MIT, TypeScript, vitest). Commit a fixar no pré-registro. Features ainda a escolher.",
+   "limiares": "qualidade >= 0,90; custo <= 0,50",
+   "hipoteses": "pelo menos 10 (H1-H11 propostas; H11 personas e contexto detalhado pedida pelo autor em 05/11)",
+   "titulo": "SDD só com Haiku: o que sobra de qualidade quando o custo cai",
+   "juizes": "Opus como juiz, sem teto de gasto (revisado pelo autor em 05/11/2026; antes: até US$ 50)",
+   "prazo": "congelar dados em 2026-11-13",
+   "features": "h3 #1267 (HTTP Range no serveStatic), #1384 (RFC 9457 problem JSON), #1050 (várias senhas de unseal em sessões)",
+   "contexto_do_repo": "CLAUDE.md e AGENTS.md do h3 entram nas duas condições (Haiku e Sonnet)",
+   "bracos_do_autor": "Os 4 braços novos entram: S8 repo map, S9 N candidatos em worktrees, S10 limite de chamadas, S11 checagem de rodapé. Ordem de corte se faltar tempo: S11, S8, S9.",
+   "dados_de_trabalho": "Podem aparecer no artigo, mas sem nenhum dado da empresa onde o autor trabalha (nome, produto, projetos, repositórios, decisões internas, telas, domínio de negócio). Só números agregados e lições gerais, anonimizados.",
+   "sequencia_F3": "Orçamento antes do piloto (F3.2) e do pré-registro (F3.3); decidido pelo autor em 05/11/2026",
+   "gabarito_testes_ocultos": "Claude rascunha os testes ocultos a partir de RFC 7233, RFC 9457 e das issues; o autor aprova cada teste.",
+   "criterio_maximizar_dados": "Em toda pergunta aberta, escolher a opção que gera mais dados, mesmo que algumas fiquem menos conclusivas (autor, 05/11/2026). Aplicado: #1384 nas variantes A, B e C; #1050 nas variantes a e b; P10 como observação; S3, R10, R11 e If-Range entram. Total: 6 variantes de tarefa em 3 features.",
+   "teto_de_gasto": "Removido em 05/11/2026. O foco é assertividade e tempo; o gasto é medido e reportado, mas não limitado.",
+   "referencias_dos_testes": "Implementações de referência dos testes ocultos escritas com Opus (decisão do autor em 05/11/2026), para ter a referência mais confiável.",
+   "testes_ocultos_aprovados": {
+    "data": "2026-11-05",
+    "autor": "Caio Melo aprovou os testes revisados (#1267 e #1050-a/b), com as resolucoes de maximizar dados (observacoes R9, S3, S5, S7; testes extras de If-Range, size zero e accept-ranges em 304/416). Em 05/11/2026 o autor aprovou tambem a #1384-A/B/C com as 4 resolucoes (bundle, suite de B em duas versoes, snapshot de C, unhandled em B como observacoes). Pendente: escrita dos testes extras.",
+    "sha256": {
+     "range-1267.test.ts": "719df3d87dbba1122b23f4ad45d26aa75d7eb06153e83ad2a6779094116ab81b",
+     "session-1050-a.test.ts": "b88078252f29f3bd3b7acc3aa2d98e2d34b2c34d3cf5616785a83440bb75bf14",
+     "session-1050-b.test.ts": "b9b114206e8e27c79c4cdc5b59da59b52ea25836e7f685eeeae278f5c28de6a5",
+     "problem-1384-a.test.ts": "647f0b886d7f93da2b83d9d9ce5db9906ee68bbb1b1e30af6277b5bbc4714215",
+     "problem-1384-b.test.ts": "271b456418b0266357bf35161e2ad2e70d0bd41eddd741803663447db9eafb84",
+     "problem-1384-c.test.ts": "4c1f07b3f32800341e0086aa6bd695a0ae50f2c29355ee3cb33cc0b8c90f9302"
+    },
+    "extras_sha256": {
+     "range-1267.extras.test.ts": "dcda3945f1bdddf2666768cf042420e774916bc0fbe141254e3c2013eeca7e3a",
+     "session-1050-a.extras.test.ts": "32c908d9a195f3148b51b79422722fc54fd0e4020a770b528ee49294cd6c22a0",
+     "session-1050-b.extras.test.ts": "daf557f2cfeb10a81938cfebc3d87fb3b8ef8144dcc3edb5a01374d8e1001163"
+    },
+    "extras_nota": "Escritos em 05/11/2026 a partir das resolucoes aprovadas de maximizar dados. E5 (Range aberto com inicio >= tamanho deve dar 416) foi acrescentado pelo agente e achou um desvio da referencia do #1267 (corrigido: resolveRange validava 'end<start' antes de 'start>=size'); patch da referencia regenerado. O R6 aprovado nao pegava esse caso."
+   },
+   "execucao": "Execucoes pela assinatura do autor via subagentes do Claude Code (haiku, sonnet, opus), sem chave de API; sem teto de gasto. H8 (cache) nao mensuravel por este caminho.",
+   "piloto_f3_2": "Piloto concluido em 05/11/2026 (12 execucoes, ver piloto.md). Autor decidiu: contrato enxuto para tirar o efeito de teto e 6 repeticoes por variante e condicao para a H4 (36 por condicao em C0 e C4); 3 repeticoes por condicao para tokens e rubrica.",
+   "contrato_enxuto": "Autor aprovou em 05/11/2026: contratos enxutos (gabarito/enxuto/*.contrato.md), reclassificacao de testes para observacao conforme gabarito/classificacao.json (R9, E2, E3, E4; P2, P5, P9 na B; S3, S5, S7, S10), contrato do Range citando RFC 9110 secoes 13.1.5 e 14, e testes novos (abrangencia do A e detail) a escrever e submeter a aprovacao."
+  },
+  "2026-11-06": {
+   "escopo_fase_C": "Autor decidiu em 06/11/2026: a fase C (H2, H7, H8, H9 e bracos S8-S11) NAO sera feita neste estudo; fica para um paper futuro. Essas hipoteses saem como \"nao testada\" neste artigo. Foco: terminar coleta, avaliacao cega dos juizes e analise pre-registrada; depois o autor sera consultado sobre a documentacao de execucao e os proximos passos."
+  }
+ },
+ "aprovacoes": {
+  "F0.1": {
+   "feito": "2026-11-05",
+   "decisao": "Autor aprovou em 05/11/2026 (pediu para aprovar o que já estava pronto): premissa com o título 'SDD só com Haiku: o que sobra de qualidade quando o custo cai'"
+  },
+  "F1.5": {
+   "feito": "2026-11-05",
+   "decisao": "Autor aprovou em 05/11/2026 a síntese"
+  },
+  "F2.1": {
+   "feito": "2026-11-05",
+   "decisao": "Autor aprovou em 05/11/2026: pelo menos 10 hipóteses (H1 a H10; H7 a H10 propostas pelo Claude e aceitas na aprovação geral)"
+  },
+  "F2.2": {
+   "feito": "2026-11-05",
+   "decisao": "Autor decidiu em 05/11/2026: qualidade >= 0,90 e custo <= 0,50; juízes Opus até US$ 50"
+  },
+  "F3.1": {
+   "feito": "2026-11-05",
+   "decisao": "Autor aprovou em 05/11/2026 o plano de analise e as 5 decisoes: familias de Holm (H4,H5,H6 principal), S8-S11 exploratorios, alfa de Krippendorff 0,67, falha do modelo conta como reprovada com custo, juizes Opus fora do custo por artefato aceito"
+  },
+  "F4.2": {
+   "feito": "2026-11-05",
+   "decisao": "Autor aprovou em 05/11/2026, de forma geral, o plano de testes (condicoes, fases A/B/C, semente 20261105, 6 repeticoes por variante para H4 e 3 para as demais, contrato enxuto, classificacao nucleo e observacao e testes novos do problem+json)"
+  }
+ }
 }
