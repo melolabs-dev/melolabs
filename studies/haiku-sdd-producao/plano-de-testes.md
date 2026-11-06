@@ -42,7 +42,13 @@ Controles negativos: C2n (H3) e C13 (H11).
 - Uma execução de aquecimento por variante (Haiku simples) valida o harness (worktree, medição, coleta) e é descartada, sem entrar nos dados.
 - O piloto (F3.2) é separado e seus dados não entram na análise final.
 
-## Repetições e regra de parada
+## Repetições e regra de parada (revisado após o piloto, decisão do autor em 05/11/2026)
+- **H4 (testes ocultos):** 6 repetições por variante em C0 e C4 (36 execuções de código por condição). Com todas passando, o limite inferior de Wilson (95%) chega a 0,90, o que permite demonstrar equivalência na margem de 10 pontos.
+- **Demais hipóteses (tokens, tempo, rubrica):** 3 repetições por condição e variante; o piloto mediu CV de 2,3% em tokens e 6,1% em tempo.
+- **Contrato enxuto:** o enunciado dado aos modelos passa a ser a issue, a norma citada e as restrições (sem exportação nova, não quebrar o que existe), sem enumerar os casos de borda que os testes cobrem. Os testes que o contrato enxuto não determina viram observação, com aprovação do autor.
+- Pontos de partida anteriores (3 repetições para tudo) ficam substituídos por esta seção.
+
+## Repetições e regra de parada (versão anterior ao piloto)
 - **Ponto de partida:** 3 repetições por condição e variante (mesmo n dos estudos anteriores do autor).
 - **Piloto:** C0, C1 e C4 em duas variantes (#1267 e #1050-b), 2 repetições cada, para estimar variância da rubrica e dos testes ocultos, duração por execução e a taxa de falha de infraestrutura.
 - **Regra de parada:** se após as 3 repetições o IC95% de uma hipótese confirmatória (H4, H5, H6) ainda cruza a margem de equivalência, estende-se até 5 repetições nas condições dessa hipótese; se continuar indecisa, o status é `subpotente` e isso é reportado, sem mais amostra.

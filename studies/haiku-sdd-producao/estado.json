@@ -19,13 +19,20 @@
     "F2.3": {
       "feito": "2026-11-05",
       "evidencia": "Autor aprovou em 05/11/2026 a secao de hipotese nula, controles negativos (autorrevisao sem feedback na H3; texto de mesmo tamanho na H11) e explicacoes alternativas (vies de juiz, saturacao, versoes, variacao, formato do prompt, AGENTS.md do h3), em studies/haiku-sdd-producao/premissa.md"
+    },
+    "F3.2": {
+      "feito": "2026-11-05",
+      "evidencia": "Piloto de 12 execucoes em 05/11/2026 (studies/haiku-sdd-producao/piloto.md e dados/processado/piloto.json): CV de tokens 2,3% e de tempo 6,1%; testes aprovados saturam em 100%; H4 exige 36 execucoes por condicao para limite inferior de Wilson 0,90. Autor aprovou 6 repeticoes por variante para H4 e 3 para as demais, e contrato enxuto."
     }
   },
   "auto_feito": {
     "F1.1": "2026-11-04",
     "F1.2": "2026-11-04",
     "F1.3": "2026-11-04",
-    "F1.4": "2026-11-04"
+    "F1.4": "2026-11-04",
+    "F4.1": "2026-11-05",
+    "F4.3": "2026-11-05",
+    "F5.1": "2026-11-05"
   },
   "decisoes": {
     "2026-11-05": {
@@ -62,7 +69,8 @@
         },
         "extras_nota": "Escritos em 05/11/2026 a partir das resolucoes aprovadas de maximizar dados. E5 (Range aberto com inicio >= tamanho deve dar 416) foi acrescentado pelo agente e achou um desvio da referencia do #1267 (corrigido: resolveRange validava 'end<start' antes de 'start>=size'); patch da referencia regenerado. O R6 aprovado nao pegava esse caso."
       },
-      "execucao": "Execucoes pela assinatura do autor via subagentes do Claude Code (haiku, sonnet, opus), sem chave de API; sem teto de gasto. H8 (cache) nao mensuravel por este caminho."
+      "execucao": "Execucoes pela assinatura do autor via subagentes do Claude Code (haiku, sonnet, opus), sem chave de API; sem teto de gasto. H8 (cache) nao mensuravel por este caminho.",
+      "piloto_f3_2": "Piloto concluido em 05/11/2026 (12 execucoes, ver piloto.md). Autor decidiu: contrato enxuto para tirar o efeito de teto e 6 repeticoes por variante e condicao para a H4 (36 por condicao em C0 e C4); 3 repeticoes por condicao para tokens e rubrica."
     }
   },
   "aprovacoes": {
