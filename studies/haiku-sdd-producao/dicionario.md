@@ -11,7 +11,7 @@
 | condicao | texto | | Condição do plano de testes | C0 a C13, S8 a S11 |
 | modelo | texto | | Apelido usado na chamada | haiku, sonnet, opus |
 | modelo_efetivo | texto | | Identificador que o agente informou ou a ferramenta mostrou | texto livre, "não informado" |
-| repeticao | inteiro | | Número da repetição | 1 a 5 |
+| repeticao | inteiro | | Número da repetição | 1 a 6 |
 | tokens_totais | inteiro | tokens | Total informado pelo harness para a chamada | maior ou igual a 0 |
 | chamadas_ferramenta | inteiro | chamadas | Número de usos de ferramenta | maior ou igual a 0 |
 | duracao_s | decimal | segundos | Duração da chamada informada pelo harness | maior que 0 |
@@ -56,3 +56,6 @@ Tabelas derivadas por script em `analise/` a partir de `bruto/`: notas por artef
 - Datas em ISO 8601, texto em UTF-8, números com ponto decimal.
 - Falta de dado é `null`, nunca zero.
 - Cada arquivo derivado registra o commit do script e a hora em que foi gerado.
+
+## Campos reais da coleta com o orquestrador (adendo 1, 06/11/2026)
+`execucoes.jsonl` passa a ter uma linha por tentativa de etapa, com: `id`, `etapa`, `tentativa`, `modelo`, `modelo_efetivo`, `inicio`, `duracao_s`, `duracao_api_ms`, `mem_livre_gb`, `chamadas_ferramenta`, `turnos`, `tokens_entrada`, `tokens_saida`, `tokens_cache_criado`, `tokens_cache_lido`, `tokens_totais`, `tokens_novos`, `maior_prompt`, `custo_usd_lista`, `negacoes`, `prompt_sha256`, `transcricao`, `acessos_suspeitos`, `falha_infra`, `returncode`, `resposta_final`. `score.json` ganha `arquivos`, `lint_ok`, `nucleo_passaram`, `nucleo_total`, `nucleo_esperado` e `nucleo_100`. `concluida.json` marca a execução como completa e guarda as decisões de gate e escalonamento.
