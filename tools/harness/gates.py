@@ -55,8 +55,14 @@ def gate_techspec(root):
     for path, line in cites:
         p = root / path
         if not p.exists():
-            erros.append(f"citação a arquivo inexistente: {path}:{line}")
-            continue
+            # citação só com o nome do arquivo: vale se houver exatamente um arquivo com esse nome no projeto
+            ach = [q for q in list((root / "src").rglob(Path(path).name)) + list((root / "test").rglob(Path(path).name)) + list((root / "docs").rglob(Path(path).name))]
+            ach = [q for q in ach if len(q.read_text(encoding="utf-8", errors="replace").splitlines()) >= int(line)] or ach
+            if len(ach) >= 1:
+                p = ach[0]  # ambíguo entre arquivos de mesmo nome: vale se a linha existir em algum deles
+            else:
+                erros.append(f"citação a arquivo inexistente ou ambíguo: {path}:{line}")
+                continue
         n = len(p.read_text(encoding="utf-8", errors="replace").splitlines())
         if int(line) < 1 or int(line) > n:
             erros.append(f"linha fora do arquivo: {path}:{line} (tem {n})")

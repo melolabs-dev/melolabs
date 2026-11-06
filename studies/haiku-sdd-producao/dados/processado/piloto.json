@@ -1,0 +1,206 @@
+{
+ "execucoes": [
+  {
+   "id": "piloto-C1-session-1050-b-r2",
+   "cond": "C1",
+   "var": "session-1050-b",
+   "rep": 2,
+   "tok": 435526,
+   "tools": 69,
+   "dur": 528.2,
+   "ap": 20,
+   "apn": 20,
+   "ex": 6,
+   "exn": 6,
+   "rod": 0
+  },
+  {
+   "id": "piloto-C0-range-1267-r1",
+   "cond": "C0",
+   "var": "range-1267",
+   "rep": 1,
+   "tok": 339301,
+   "tools": 40,
+   "dur": 260.09999999999997,
+   "ap": 29,
+   "apn": 29,
+   "ex": 12,
+   "exn": 12,
+   "rod": 0
+  },
+  {
+   "id": "piloto-C0-session-1050-b-r2",
+   "cond": "C0",
+   "var": "session-1050-b",
+   "rep": 2,
+   "tok": 365334,
+   "tools": 35,
+   "dur": 322.6,
+   "ap": 20,
+   "apn": 20,
+   "ex": 6,
+   "exn": 6,
+   "rod": 0
+  },
+  {
+   "id": "piloto-C1-range-1267-r2",
+   "cond": "C1",
+   "var": "range-1267",
+   "rep": 2,
+   "tok": 411062,
+   "tools": 68,
+   "dur": 429.1,
+   "ap": 29,
+   "apn": 29,
+   "ex": 12,
+   "exn": 12,
+   "rod": 0
+  },
+  {
+   "id": "piloto-C1-session-1050-b-r1",
+   "cond": "C1",
+   "var": "session-1050-b",
+   "rep": 1,
+   "tok": 423834,
+   "tools": 79,
+   "dur": 515.5,
+   "ap": 20,
+   "apn": 20,
+   "ex": 6,
+   "exn": 6,
+   "rod": 0
+  },
+  {
+   "id": "piloto-C4-range-1267-r2",
+   "cond": "C4",
+   "var": "range-1267",
+   "rep": 2,
+   "tok": 426092,
+   "tools": 61,
+   "dur": 459.5,
+   "ap": 29,
+   "apn": 29,
+   "ex": 8,
+   "exn": 12,
+   "rod": 2
+  },
+  {
+   "id": "piloto-C4-range-1267-r1",
+   "cond": "C4",
+   "var": "range-1267",
+   "rep": 1,
+   "tok": 401220,
+   "tools": 64,
+   "dur": 383.6,
+   "ap": 29,
+   "apn": 29,
+   "ex": 8,
+   "exn": 12,
+   "rod": 1
+  },
+  {
+   "id": "piloto-C0-session-1050-b-r1",
+   "cond": "C0",
+   "var": "session-1050-b",
+   "rep": 1,
+   "tok": 347174,
+   "tools": 38,
+   "dur": 337.9,
+   "ap": 20,
+   "apn": 20,
+   "ex": 6,
+   "exn": 6,
+   "rod": 0
+  },
+  {
+   "id": "piloto-C0-range-1267-r2",
+   "cond": "C0",
+   "var": "range-1267",
+   "rep": 2,
+   "tok": 345396,
+   "tools": 36,
+   "dur": 289.2,
+   "ap": 29,
+   "apn": 29,
+   "ex": 8,
+   "exn": 12,
+   "rod": 0
+  },
+  {
+   "id": "piloto-C4-session-1050-b-r2",
+   "cond": "C4",
+   "var": "session-1050-b",
+   "rep": 2,
+   "tok": 430675,
+   "tools": 59,
+   "dur": 401.1,
+   "ap": 20,
+   "apn": 20,
+   "ex": 6,
+   "exn": 6,
+   "rod": 0
+  },
+  {
+   "id": "piloto-C4-session-1050-b-r1",
+   "cond": "C4",
+   "var": "session-1050-b",
+   "rep": 1,
+   "tok": 436095,
+   "tools": 65,
+   "dur": 450.70000000000005,
+   "ap": 20,
+   "apn": 20,
+   "ex": 6,
+   "exn": 6,
+   "rod": 1
+  },
+  {
+   "id": "piloto-C1-range-1267-r1",
+   "cond": "C1",
+   "var": "range-1267",
+   "rep": 1,
+   "tok": 420979,
+   "tools": 55,
+   "dur": 411.7,
+   "ap": 29,
+   "apn": 29,
+   "ex": 6,
+   "exn": 12,
+   "rod": 0
+  }
+ ],
+ "celulas": {
+  "range-1267|C0": {
+   "n": 2,
+   "tok_mean": 342348.5,
+   "dur_mean": 274.65
+  },
+  "range-1267|C1": {
+   "n": 2,
+   "tok_mean": 416020.5,
+   "dur_mean": 420.4
+  },
+  "range-1267|C4": {
+   "n": 2,
+   "tok_mean": 413656,
+   "dur_mean": 421.55
+  },
+  "session-1050-b|C0": {
+   "n": 2,
+   "tok_mean": 356254,
+   "dur_mean": 330.25
+  },
+  "session-1050-b|C1": {
+   "n": 2,
+   "tok_mean": 429680,
+   "dur_mean": 521.85
+  },
+  "session-1050-b|C4": {
+   "n": 2,
+   "tok_mean": 433385,
+   "dur_mean": 425.90000000000003
+  }
+ },
+ "cv_tokens_medio": 0.022681691424549656,
+ "cv_tempo_medio": 0.060636327148738976
+}

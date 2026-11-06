@@ -1,0 +1,387 @@
+diff --git a/src/utils/static.ts b/src/utils/static.ts
+index f0bfa03..84279ba 100644
+--- a/src/utils/static.ts
++++ b/src/utils/static.ts
+@@ -224,6 +224,8 @@ export async function serveStatic(
+     }
+   }
+ 
++  event.res.headers.set("accept-ranges", "bytes");
++
+   let mtimeDate: Date | undefined;
+   if (meta.mtime) {
+     mtimeDate = new Date(meta.mtime);
+@@ -265,20 +267,181 @@ export async function serveStatic(
+     event.res.headers.set("content-encoding", meta.encoding);
+   }
+ 
+-  if (meta.size !== undefined && meta.size > 0 && !event.res.headers.get("content-length")) {
+-    event.res.headers.set("content-length", meta.size + "");
++  const size =
++    meta.size !== undefined && Number.isSafeInteger(meta.size) && meta.size > 0
++      ? meta.size
++      : undefined;
++  const rangeHeader = size ? event.req.headers.get("range") : null;
++  let range: ByteRange | undefined;
++  if (
++    size &&
++    rangeHeader &&
++    isRangeConditionMet(event.req.headers.get("if-range"), {
++      etag: meta.etag,
++      lastModified: mtimeDate,
++    })
++  ) {
++    const parsed = parseRange(rangeHeader, size);
++    if (parsed === "unsatisfiable") {
++      event.res.headers.set("content-range", `bytes */${size}`);
++      event.res.headers.set("content-length", "0");
++      return new HTTPResponse(null, { status: 416, statusText: "Range Not Satisfiable" });
++    }
++    range = parsed;
+   }
+ 
++  if (range) {
++    event.res.headers.set("content-range", `bytes ${range.start}-${range.end}/${size}`);
++    event.res.headers.set("content-length", range.end - range.start + 1 + "");
++  } else if (size && !event.res.headers.get("content-length")) {
++    event.res.headers.set("content-length", size + "");
++  }
++
++  const status = range ? 206 : 200;
++  const statusText = range ? "Partial Content" : undefined;
++
+   if (event.req.method === "HEAD") {
+-    return new HTTPResponse(null, { status: 200 });
++    return new HTTPResponse(null, { status, statusText });
+   }
+ 
+   const contents = await options.getContents(id);
+-  return new HTTPResponse(contents || null, { status: 200 });
++  if (!contents) {
++    // Nothing to slice: answer as a plain 200 with the full-representation headers.
++    event.res.headers.delete("content-range");
++    if (range) {
++      event.res.headers.set("content-length", size + "");
++    }
++    return new HTTPResponse(null, { status: 200 });
++  }
++  return new HTTPResponse(range ? await sliceBody(contents, range.start, range.end) : contents, {
++    status,
++    statusText,
++  });
+ }
+ 
+ // --- Internal Utils ---
+ 
++type ByteRange = { start: number; end: number };
++
++const RANGE_RE = /^bytes=(\d*)-(\d*)$/i;
++
++/** Parse a single-range `Range` header. `undefined` = ignore, `"unsatisfiable"` = 416. */
++function parseRange(header: string, size: number): ByteRange | "unsatisfiable" | undefined {
++  const match = RANGE_RE.exec(header.trim());
++  if (!match) {
++    return undefined;
++  }
++  const [, first = "", last = ""] = match;
++  if (!first && !last) {
++    return undefined;
++  }
++  // Numbers beyond the safe range are "past the end of the file".
++  const toNum = (s: string) => {
++    const n = Number(s);
++    return Number.isSafeInteger(n) ? n : Number.POSITIVE_INFINITY;
++  };
++  if (!first) {
++    const suffix = toNum(last);
++    if (suffix === 0) {
++      return "unsatisfiable";
++    }
++    return { start: Math.max(0, size - suffix), end: size - 1 };
++  }
++  const start = toNum(first);
++  const end = last ? toNum(last) : Number.POSITIVE_INFINITY;
++  if (last && start > end) {
++    return undefined;
++  }
++  if (start >= size) {
++    return "unsatisfiable";
++  }
++  return { start, end: Math.min(end, size - 1) };
++}
++
++/** `If-Range` precondition: strong ETag comparison or exact `Last-Modified` match. */
++function isRangeConditionMet(
++  ifRange: string | null,
++  validators: { etag?: string; lastModified?: Date },
++): boolean {
++  if (ifRange === null) {
++    return true;
++  }
++  const value = ifRange.trim();
++  if (value.startsWith('"') || value.startsWith("W/")) {
++    const { etag } = validators;
++    return !!etag && !value.startsWith("W/") && !etag.startsWith("W/") && value === etag;
++  }
++  const time = Date.parse(value);
++  return (
++    !Number.isNaN(time) && !!validators.lastModified && time === validators.lastModified.getTime()
++  );
++}
++
++/** Slice a `getContents` body to the inclusive byte range `[start, end]`. */
++async function sliceBody(body: BodyInit, start: number, end: number): Promise<BodyInit> {
++  if (typeof body === "string") {
++    return new TextEncoder().encode(body).subarray(start, end + 1);
++  }
++  if (body instanceof ArrayBuffer) {
++    return new Uint8Array(body, start, Math.max(0, Math.min(end + 1, body.byteLength) - start));
++  }
++  if (ArrayBuffer.isView(body)) {
++    return new Uint8Array(body.buffer, body.byteOffset, body.byteLength).subarray(start, end + 1);
++  }
++  if (typeof Blob !== "undefined" && body instanceof Blob) {
++    return body.slice(start, end + 1);
++  }
++  if (typeof ReadableStream !== "undefined" && body instanceof ReadableStream) {
++    return sliceStream(body as ReadableStream<Uint8Array>, start, end + 1);
++  }
++  // Rare path (`FormData`, `URLSearchParams`): materialize as a blob, then slice.
++  const blob = await new Response(body).blob();
++  return blob.slice(start, end + 1);
++}
++
++function sliceStream(
++  stream: ReadableStream<Uint8Array>,
++  start: number,
++  endExclusive: number,
++): ReadableStream<Uint8Array> {
++  const reader = stream.getReader();
++  let pos = 0;
++  return new ReadableStream<Uint8Array>({
++    async pull(controller) {
++      while (true) {
++        if (pos >= endExclusive) {
++          controller.close();
++          await reader.cancel().catch(() => {});
++          return;
++        }
++        const { done, value } = await reader.read();
++        if (done) {
++          controller.close();
++          return;
++        }
++        const chunkStart = pos;
++        pos += value.byteLength;
++        if (pos <= start) {
++          continue;
++        }
++        const chunk = value.subarray(
++          Math.max(0, start - chunkStart),
++          Math.min(value.byteLength, endExclusive - chunkStart),
++        );
++        controller.enqueue(chunk);
++        if (pos >= endExclusive) {
++          controller.close();
++          await reader.cancel().catch(() => {});
++        }
++        return;
++      }
++    },
++    cancel(reason) {
++      return reader.cancel(reason);
++    },
++  });
++}
++
+ // `qvalue` grammar (RFC 9110 section 12.4.2).
+ const WEIGHT_RE = /^(?:0(?:\.\d{0,3})?|1(?:\.0{0,3})?)$/;
+ 
+diff --git a/test/static.test.ts b/test/static.test.ts
+index f171202..8d55ff0 100644
+--- a/test/static.test.ts
++++ b/test/static.test.ts
+@@ -676,3 +676,183 @@ describe("serve static (malformed url)", () => {
+     expect(servedId).not.toMatch(/(^|[\\/])\.\.([\\/]|$)/); // no bare `..` segment
+   });
+ });
++
++describeMatrix("serve static range", (t, { it, expect }) => {
++  const text = "0123456789".repeat(10);
++  const etag = '"strong-1"';
++  const mtime = 1_700_000_000_000;
++  const lastModified = new Date(mtime).toUTCString();
++
++  beforeEach(() => {
++    const options: ServeStaticOptions = {
++      getContents: vi.fn((id) => {
++        if (id.includes("404")) return undefined;
++        if (id.endsWith(".sz")) return "G".repeat(40);
++        if (id.startsWith("/u8")) return new TextEncoder().encode(text);
++        if (id.startsWith("/blob")) return new Blob([text]);
++        if (id.startsWith("/stream")) {
++          const bytes = new TextEncoder().encode(text);
++          return new ReadableStream<Uint8Array>({
++            start(c) {
++              for (let i = 0; i < bytes.length; i += 7) c.enqueue(bytes.subarray(i, i + 7));
++              c.close();
++            },
++          });
++        }
++        if (id.startsWith("/utf8")) return "éé0123456789";
++        return text;
++      }),
++      getMeta: vi.fn((id) => {
++        if (id.includes("404")) return undefined;
++        if (id.startsWith("/nosize")) return { etag, mtime };
++        if (id.startsWith("/zero")) return { etag, mtime, size: 0 };
++        if (id.startsWith("/utf8")) return { etag, mtime, size: 14 };
++        return {
++          type: "text/plain",
++          etag,
++          mtime,
++          size: id.endsWith(".sz") ? 40 : 100,
++          encoding: id.endsWith(".sz") ? "snappy" : undefined,
++        };
++      }),
++      encodings: { snappy: ".sz" },
++      headers: { "cache-control": "public, max-age=60" },
++    };
++    t.app.all("/**", (event) => serveStatic(event, options));
++  });
++
++  const get = (path: string, range?: string, extra: Record<string, string> = {}, method = "GET") =>
++    t.fetch(path, { method, headers: { ...(range ? { range } : {}), ...extra } });
++
++  it("sends accept-ranges on found assets only", async () => {
++    expect((await get("/a.txt")).headers.get("accept-ranges")).toBe("bytes");
++    expect((await get("/a.txt", undefined, {}, "HEAD")).headers.get("accept-ranges")).toBe("bytes");
++    expect((await get("/a.txt", "bytes=0-1")).headers.get("accept-ranges")).toBe("bytes");
++    const r304 = await get("/a.txt", undefined, { "if-none-match": etag });
++    expect(r304.status).toBe(304);
++    expect(r304.headers.get("accept-ranges")).toBe("bytes");
++    expect((await get("/404.txt")).headers.get("accept-ranges")).toBeNull();
++    expect((await get("/a.txt", undefined, {}, "POST")).headers.get("accept-ranges")).toBeNull();
++  });
++
++  it("serves satisfiable ranges as 206", async () => {
++    for (const [range, cr, body] of [
++      ["bytes=10-19", "bytes 10-19/100", text.slice(10, 20)],
++      ["bytes=90-", "bytes 90-99/100", text.slice(90)],
++      ["bytes=-10", "bytes 90-99/100", text.slice(90)],
++      ["bytes=50-999", "bytes 50-99/100", text.slice(50)],
++      ["bytes=-500", "bytes 0-99/100", text],
++      ["BYTES=0-4", "bytes 0-4/100", text.slice(0, 5)],
++    ]) {
++      const res = await get("/a.txt", range);
++      expect(res.status, range).toBe(206);
++      expect(res.headers.get("content-range"), range).toBe(cr);
++      expect(res.headers.get("content-length"), range).toBe(String(body!.length));
++      expect(await res.text(), range).toBe(body);
++    }
++  });
++
++  it("answers 416 for unsatisfiable ranges", async () => {
++    for (const range of ["bytes=100-", "bytes=150-200", "bytes=-0"]) {
++      const res = await get("/a.txt", range);
++      expect(res.status, range).toBe(416);
++      expect(res.headers.get("content-range")).toBe("bytes */100");
++      expect(res.headers.get("content-length")).toBe("0");
++      expect(await res.text()).toBe("");
++      expect(res.headers.get("etag")).toBe(etag);
++    }
++  });
++
++  it("ignores malformed, multi and foreign-unit ranges", async () => {
++    for (const range of [
++      "bytes=0-4,10-14",
++      "items=0-4",
++      "bytes=abc",
++      "bytes=20-10",
++      "bytes=",
++      "bytes=-",
++    ]) {
++      const res = await get("/a.txt", range);
++      expect(res.status, range).toBe(200);
++      expect(res.headers.get("content-range")).toBeNull();
++      expect(res.headers.get("content-length")).toBe("100");
++      expect(await res.text()).toBe(text);
++    }
++  });
++
++  it("handles HEAD like GET without a body", async () => {
++    const ok = await get("/a.txt", "bytes=0-9", {}, "HEAD");
++    expect(ok.status).toBe(206);
++    expect(ok.headers.get("content-range")).toBe("bytes 0-9/100");
++    expect(ok.headers.get("content-length")).toBe("10");
++    expect(await ok.text()).toBe("");
++    const bad = await get("/a.txt", "bytes=100-", {}, "HEAD");
++    expect(bad.status).toBe(416);
++    expect(bad.headers.get("content-range")).toBe("bytes */100");
++    expect(bad.headers.get("content-length")).toBe("0");
++  });
++
++  it("slices pre-compressed variants", async () => {
++    const res = await get("/a.txt", "bytes=5-9", { "accept-encoding": "snappy" });
++    expect(res.status).toBe(206);
++    expect(res.headers.get("content-range")).toBe("bytes 5-9/40");
++    expect(res.headers.get("content-encoding")).toBe("snappy");
++    expect(res.headers.get("vary")).toBe("accept-encoding");
++    expect(await res.text()).toBe("GGGGG");
++  });
++
++  it("evaluates If-Range", async () => {
++    const cases: [string, number][] = [
++      [etag, 206],
++      ['"other"', 200],
++      ['W/"strong-1"', 200],
++      [lastModified, 206],
++      [new Date(mtime + 1000).toUTCString(), 200],
++      ["garbage", 200],
++    ];
++    for (const [value, status] of cases) {
++      const res = await get("/a.txt", "bytes=0-9", { "if-range": value });
++      expect(res.status, value).toBe(status);
++    }
++    const noRange = await get("/a.txt", undefined, { "if-range": etag });
++    expect(noRange.status).toBe(200);
++  });
++
++  it("keeps validators and representation headers on 206", async () => {
++    const full = await get("/a.txt");
++    const part = await get("/a.txt", "bytes=0-9");
++    for (const h of [
++      "etag",
++      "last-modified",
++      "cache-control",
++      "vary",
++      "content-type",
++      "content-encoding",
++    ]) {
++      expect(part.headers.get(h), h).toBe(full.headers.get(h));
++    }
++  });
++
++  it("prefers 304 over Range", async () => {
++    const res = await get("/a.txt", "bytes=0-9", { "if-none-match": etag });
++    expect(res.status).toBe(304);
++  });
++
++  it("slices every body type", async () => {
++    for (const p of ["/a.txt", "/u8.txt", "/blob.txt", "/stream.txt"]) {
++      const res = await get(p, "bytes=12-33");
++      expect(res.status, p).toBe(206);
++      expect(await res.text(), p).toBe(text.slice(12, 34));
++    }
++    const multi = await get("/utf8.txt", "bytes=2-3");
++    expect(await multi.text()).toBe("é"); // bytes 2-3 are the second "é"
++  });
++
++  it("ignores Range without a known size", async () => {
++    for (const p of ["/nosize.txt", "/zero.txt"]) {
++      const res = await get(p, "bytes=0-9");
++      expect(res.status, p).toBe(200);
++      expect(res.headers.get("content-range")).toBeNull();
++    }
++  });
++});

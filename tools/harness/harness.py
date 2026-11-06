@@ -74,6 +74,8 @@ def prep(rid, var):
     (d / "sdd").mkdir()
     enun = (Path(__file__).parent / "enunciados" / f"issue-{issue}.md").read_text(encoding="utf-8")
     cont = (GAB / contrato).read_text(encoding="utf-8")
+    # remove a nota de cabeçalho do contrato (cita "testes ocultos"); o modelo não deve saber que eles existem
+    cont = "\n".join(l for l in cont.splitlines() if not l.startswith("> Texto para o enunciado"))
     (d / "sdd" / "pedido.md").write_text(enun + "\n\n---\n\n" + cont, encoding="utf-8")
     livre = shutil.disk_usage("C:/").free // 2**30
     print(f"pronto: {d} | disco livre {livre} GB")
@@ -171,6 +173,23 @@ def registro(rid, js):
     print("ok")
 
 
+def etapa(rid, et, cond, modelo, var, rep, tokens, tools, dur, agent, gate="null", rodadas="0", obs=""):
+    import glob
+    tmp = os.environ.get("TEMP", tempfile.gettempdir())
+    achados = glob.glob(os.path.join(tmp, "claude", "*", "*", "tasks", agent + ".output"))
+    mem = None
+    try:
+        out = subprocess.run(["powershell", "-NoProfile", "-c", "[math]::Round((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory/1MB,2)"], capture_output=True, text=True).stdout.strip().replace(",", ".")
+        mem = float(out)
+    except Exception:
+        pass
+    row = {"etapa": et, "variante": var, "condicao": cond, "modelo": modelo, "modelo_efetivo": "nao informado",
+           "repeticao": int(rep), "tokens_totais": int(tokens), "chamadas_ferramenta": int(tools), "duracao_s": float(dur),
+           "mem_livre_gb": mem, "falha_infra": False, "rodadas_correcao": int(rodadas), "escalonou": False,
+           "gate_ok": None if gate == "null" else gate == "true", "obs": obs, "transcricao": achados[0].replace("\\", "/") if achados else None}
+    registro(rid, json.dumps(row, ensure_ascii=False))
+
+
 def ordem(seed, saida):
     plano = json.loads((BRUTO / "plano-execucoes.json").read_text(encoding="utf-8"))
     rnd = random.Random(int(seed))
@@ -212,6 +231,8 @@ if __name__ == "__main__":
         audit(a[1], a[2:])
     elif c == "registro":
         registro(a[1], a[2])
+    elif c == "etapa":
+        etapa(*a[1:])
     elif c == "ordem":
         ordem(a[1], a[2])
     elif c == "cifrar":
