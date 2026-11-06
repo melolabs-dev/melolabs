@@ -128,6 +128,18 @@ def score(rid, var):
     finally:
         for dst in copiados:
             dst.unlink(missing_ok=True)
+    # núcleo = testes que contam para aprovação (o resto é observação), segundo gabarito/classificacao.json
+    import re as _re
+    try:
+        obs_ids = set(json.loads((GAB / "classificacao.json").read_text(encoding="utf-8"))["observacao"].get(var, []))
+    except Exception:
+        obs_ids = set()
+    def _id(k):
+        m = _re.search(r"(?<![A-Za-z0-9])([A-Z]\d{1,2})(?![A-Za-z0-9])", k.split("::", 1)[-1])
+        return m.group(1) if m else None
+    nuc = {k: v for k, v in res["testes"].items() if _id(k) not in obs_ids}
+    res["nucleo_passaram"] = list(nuc.values()).count("passed")
+    res["nucleo_total"] = len(nuc)
     st = list(res["testes"].values())
     res["passaram"] = st.count("passed")
     res["falharam"] = st.count("failed")

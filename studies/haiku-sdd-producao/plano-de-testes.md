@@ -46,6 +46,7 @@ Controles negativos: C2n (H3) e C13 (H11).
 - **H4 (testes ocultos):** 6 repetições por variante em C0 e C4 (36 execuções de código por condição). Com todas passando, o limite inferior de Wilson (95%) chega a 0,90, o que permite demonstrar equivalência na margem de 10 pontos.
 - **Demais hipóteses (tokens, tempo, rubrica):** 3 repetições por condição e variante; o piloto mediu CV de 2,3% em tokens e 6,1% em tempo.
 - **Contrato enxuto:** o enunciado dado aos modelos passa a ser a issue, a norma citada e as restrições (sem exportação nova, não quebrar o que existe), sem enumerar os casos de borda que os testes cobrem. Os testes que o contrato enxuto não determina viram observação, com aprovação do autor.
+- **Núcleo e observação:** a taxa de aprovação da H4 usa só o núcleo de cada variante; os testes de `gabarito/classificacao.json` continuam rodando e sendo registrados, mas não contam como erro do modelo. O harness grava `nucleo_passaram` e `nucleo_total` em cada `score.json`.
 - Pontos de partida anteriores (3 repetições para tudo) ficam substituídos por esta seção.
 
 ## Repetições e regra de parada (versão anterior ao piloto)

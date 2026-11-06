@@ -1,0 +1,46 @@
+{
+ "regra": "Testes em 'observacao' continuam rodando e sendo registrados, mas nao contam como erro do modelo na taxa de aprovacao (decisao do autor em 05/11/2026, a partir de gabarito/enxuto/rastreio.md). O nucleo e o que sobra.",
+ "observacao": {
+  "range-1267": [
+   "R9",
+   "E2",
+   "E3",
+   "E4",
+   "O1"
+  ],
+  "problem-1384-a": [
+   "P2",
+   "P5",
+   "P10"
+  ],
+  "problem-1384-b": [
+   "P2",
+   "P5",
+   "P9",
+   "P10"
+  ],
+  "problem-1384-c": [
+   "P2",
+   "P5",
+   "P10"
+  ],
+  "session-1050-a": [
+   "S3",
+   "S5",
+   "S7",
+   "S10",
+   "O2",
+   "O3",
+   "O4"
+  ],
+  "session-1050-b": [
+   "S3",
+   "S5",
+   "S7",
+   "S10",
+   "O2",
+   "O3",
+   "O4"
+  ]
+ }
+}

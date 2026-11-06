@@ -70,7 +70,8 @@
         "extras_nota": "Escritos em 05/11/2026 a partir das resolucoes aprovadas de maximizar dados. E5 (Range aberto com inicio >= tamanho deve dar 416) foi acrescentado pelo agente e achou um desvio da referencia do #1267 (corrigido: resolveRange validava 'end<start' antes de 'start>=size'); patch da referencia regenerado. O R6 aprovado nao pegava esse caso."
       },
       "execucao": "Execucoes pela assinatura do autor via subagentes do Claude Code (haiku, sonnet, opus), sem chave de API; sem teto de gasto. H8 (cache) nao mensuravel por este caminho.",
-      "piloto_f3_2": "Piloto concluido em 05/11/2026 (12 execucoes, ver piloto.md). Autor decidiu: contrato enxuto para tirar o efeito de teto e 6 repeticoes por variante e condicao para a H4 (36 por condicao em C0 e C4); 3 repeticoes por condicao para tokens e rubrica."
+      "piloto_f3_2": "Piloto concluido em 05/11/2026 (12 execucoes, ver piloto.md). Autor decidiu: contrato enxuto para tirar o efeito de teto e 6 repeticoes por variante e condicao para a H4 (36 por condicao em C0 e C4); 3 repeticoes por condicao para tokens e rubrica.",
+      "contrato_enxuto": "Autor aprovou em 05/11/2026: contratos enxutos (gabarito/enxuto/*.contrato.md), reclassificacao de testes para observacao conforme gabarito/classificacao.json (R9, E2, E3, E4; P2, P5, P9 na B; S3, S5, S7, S10), contrato do Range citando RFC 9110 secoes 13.1.5 e 14, e testes novos (abrangencia do A e detail) a escrever e submeter a aprovacao."
     }
   },
   "aprovacoes": {
