@@ -38,9 +38,9 @@ OPENSSL = shutil.which("openssl") or "openssl"
 # variante -> (issue, contrato, arquivos de teste ocultos)
 VARIANTES = {
     "range-1267": ("1267", "range-1267.contrato.md", ["range-1267.test.ts", "range-1267.extras.test.ts"]),
-    "problem-1384-a": ("1384", "problem-1384-a.contrato.md", ["problem-1384-a.test.ts"]),
-    "problem-1384-b": ("1384", "problem-1384-b.contrato.md", ["problem-1384-b.test.ts"]),
-    "problem-1384-c": ("1384", "problem-1384-c.contrato.md", ["problem-1384-c.test.ts"]),
+    "problem-1384-a": ("1384", "problem-1384-a.contrato.md", ["problem-1384-a.test.ts", "problem-1384-a.novos.test.ts"]),
+    "problem-1384-b": ("1384", "problem-1384-b.contrato.md", ["problem-1384-b.test.ts", "problem-1384-b.novos.test.ts"]),
+    "problem-1384-c": ("1384", "problem-1384-c.contrato.md", ["problem-1384-c.test.ts", "problem-1384-c.novos.test.ts"]),
     "session-1050-a": ("1050", "session-1050-a.contrato.md", ["session-1050-a.test.ts", "session-1050-a.extras.test.ts"]),
     "session-1050-b": ("1050", "session-1050-b.contrato.md", ["session-1050-b.test.ts", "session-1050-b.extras.test.ts"]),
 }
@@ -73,7 +73,7 @@ def prep(rid, var):
     (d / "test" / "unit" / "cli.test.ts").unlink(missing_ok=True)
     (d / "sdd").mkdir()
     enun = (Path(__file__).parent / "enunciados" / f"issue-{issue}.md").read_text(encoding="utf-8")
-    cont = (GAB / contrato).read_text(encoding="utf-8")
+    cont = (GAB / "enxuto" / contrato).read_text(encoding="utf-8")
     # remove a nota de cabeçalho do contrato (cita "testes ocultos"); o modelo não deve saber que eles existem
     cont = "\n".join(l for l in cont.splitlines() if not l.startswith("> Texto para o enunciado"))
     (d / "sdd" / "pedido.md").write_text(enun + "\n\n---\n\n" + cont, encoding="utf-8")
@@ -227,7 +227,7 @@ def cifrar():
         KEY.write_text(run([OPENSSL, "rand", "-hex", "32"]).stdout.strip(), encoding="utf-8")
         print(f"chave criada em {KEY} (fora do projeto; guarde uma cópia)")
     CIF.mkdir(exist_ok=True)
-    arquivos = [p for p in GAB.glob("*.test.ts")] + [p for p in (GAB / "referencia").glob("*.patch")]
+    arquivos = [p for p in GAB.glob("*.test.ts")] + [p for p in (GAB / "novos").glob("*.test.ts")] + [p for p in (GAB / "referencia").glob("*.patch")]
     for p in arquivos:
         run([OPENSSL, "enc", "-aes-256-cbc", "-pbkdf2", "-salt", "-in", str(p), "-out", str(CIF / (p.name + ".enc")), "-pass", f"file:{KEY}"])
     # confere a decifragem antes de qualquer remoção

@@ -17,3 +17,4 @@ knowledge/notes/balanco-ciclo-prototipo-final.md
 # gabarito em texto claro nunca volta ao repositório (só a versão cifrada)
 studies/haiku-sdd-producao/gabarito/*.test.ts
 studies/haiku-sdd-producao/gabarito/referencia/
+studies/haiku-sdd-producao/gabarito/novos/
