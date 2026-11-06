@@ -172,7 +172,8 @@ def etapa_claude(rid, run, nome, modelo, prompt, tentativa=1, timeout=2400):
     dur = time.time() - t0
     (out_dir / f"{base}.jsonl").write_text(saida, encoding="utf-8")
     res, tools, acessos = parse_stream(saida)
-    suspeito = [a[:160] for a in acessos if PROIBIDO.search(a)]
+    rs = str(run).replace("\\", "\\\\")
+    suspeito = [a[:160] for a in acessos if PROIBIDO.search(a.replace(rs, "").replace(str(run), ""))]
     row = {"id": rid, "etapa": nome, "tentativa": tentativa, "modelo": modelo, "inicio": inicio, "duracao_s": round(dur, 1),
            "mem_livre_gb": mem, "chamadas_ferramenta": tools, "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:16],
            "transcricao": str((out_dir / f"{base}.jsonl").relative_to(ROOT)).replace("\\", "/"), "acessos_suspeitos": suspeito,
@@ -225,8 +226,13 @@ def export_base(run):
         shutil.copy(run / "MIGRATION.md", mig)
 
 
+def pasta(rid):
+    """Nome opaco: a pasta da execução não revela condição nem variante."""
+    return RUNS / ("r" + hashlib.sha1(rid.encode("utf-8")).hexdigest()[:10])
+
+
 def prep(rid, var):
-    run = RUNS / rid
+    run = pasta(rid)
     if run.exists():
         shutil.rmtree(run, ignore_errors=True)
     export_base(run)
@@ -380,6 +386,7 @@ def unica(rid, cond, var):
     if (out / "concluida.json").exists():
         return json.loads((out / "concluida.json").read_text(encoding="utf-8"))
     out.mkdir(parents=True, exist_ok=True)
+    purga(rid)
     run = prep(rid, var)
     meta = {"id": rid, "condicao": cond, "variante": var, "inicio": datetime.now().isoformat(timespec="seconds")}
     info = {}
@@ -415,6 +422,17 @@ def unica(rid, cond, var):
                  "nucleo_100": sc["nucleo_100"], "auditoria_limpa": aud["limpo"]})
     (out / "concluida.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     return meta
+
+
+def purga(rid):
+    """Descarta o que sobrou de uma execução interrompida (sem marca de concluída), para o reinício ser limpo."""
+    f = BRUTO / "execucoes.jsonl"
+    if f.exists():
+        mantidas = [l for l in open(f, encoding="utf-8") if json.loads(l).get("id") != rid]
+        open(f, "w", encoding="utf-8").write("".join(mantidas))
+    shutil.rmtree(BRUTO / rid / "transcricoes", ignore_errors=True)
+    for nome in ("score.json", "auditoria.json", "codigo.diff", "observacoes.jsonl"):
+        (BRUTO / rid / nome).unlink(missing_ok=True)
 
 
 def linhas_run(rid):
