@@ -202,6 +202,17 @@ def etapa(rid, et, cond, modelo, var, rep, tokens, tools, dur, agent, gate="null
     registro(rid, json.dumps(row, ensure_ascii=False))
 
 
+def proxima():
+    plano = json.loads((BRUTO / "plano-execucoes.json").read_text(encoding="utf-8"))
+    feitas = {p.parent.name for p in BRUTO.glob("*/score.json")}
+    pend = [x for x in plano if x["id"] not in feitas]
+    print(f"{len(plano) - len(pend)} de {len(plano)} feitas")
+    if pend:
+        print(json.dumps(pend[0], ensure_ascii=False))
+    for ph in ("A", "B"):
+        print(f"fase {ph}: {sum(1 for x in pend if x['fase'] == ph)} pendentes")
+
+
 def ordem(seed, saida):
     plano = json.loads((BRUTO / "plano-execucoes.json").read_text(encoding="utf-8"))
     rnd = random.Random(int(seed))
@@ -245,6 +256,8 @@ if __name__ == "__main__":
         registro(a[1], a[2])
     elif c == "etapa":
         etapa(*a[1:])
+    elif c == "proxima":
+        proxima()
     elif c == "ordem":
         ordem(a[1], a[2])
     elif c == "cifrar":

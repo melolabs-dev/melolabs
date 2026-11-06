@@ -30,6 +30,13 @@
 
 Controles negativos: C2n (H3) e C13 (H11).
 
+## Escopo executado, em fases (decidido em 05/11/2026 para caber até 13/11)
+- **Fase A (núcleo confirmatório, H4, H5 e H6):** C0 e C4 com 6 repetições nas 6 variantes (72 execuções) e C1 com 3 repetições nas 6 variantes (18 execuções): 90 execuções.
+- **Fase B (demais hipóteses de qualidade e custo):** C2, C2n, C5, C6, C10, C11, C12 e C13 nas variantes #1267 e #1050-b, com 3 repetições (48 execuções). O comparador de cada uma é a C1 (ou a C4) das repetições 1 a 3 da fase A nas mesmas variantes.
+- **Fase C (só se sobrar tempo, em ordem de prioridade):** H9 (C9), H2 (voto), H7 (erros plantados), S10, S11 e S8. A H8 (cache) não é mensurável pela assinatura. Hipóteses e braços não executados serão reportados como **não testados**, sem preencher com suposição.
+- **Avaliação cega (rubrica):** TechSpec e Tasks das repetições 1 a 3 nas variantes #1267 e #1050-b, com 3 juízes Opus por artefato, em ordem embaralhada.
+- A lista completa e ordenada das execuções está em `dados/bruto/plano-execucoes.json` (semente 20261105), e é fixada no pré-registro.
+
 ## Concorrência e uso de recursos (decisão do autor em 05/11/2026)
 - **Uma execução por vez.** Termina uma condição numa variante, passa à próxima; termina uma variante, passa à seguinte. Não há execuções de estudo em paralelo.
 - **Paralelismo só dentro da condição**, e só onde a própria condição o define: as 3 amostras do voto (C3), os N candidatos em worktrees do S9, e os 3 juízes (que rodam um a um se a memória apertar).
