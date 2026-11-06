@@ -97,7 +97,7 @@ def main():
     ids = {h["id"]: h for h in art["hyp"]}
     for h in hs:
         hid = f"{slug}:{h['id']}"
-        t = f"{h['id']} (rascunho): {h['enunciado']}"
+        t = f"{h['id']} (pré-registrada): {h['enunciado']}" + (" [fase C, adiada para um paper futuro]" if h["id"] in ("H2", "H7", "H8", "H9") else "")
         if hid in ids:
             ids[hid]["st"] = h["status"]
             ids[hid]["t"] = t
@@ -105,18 +105,21 @@ def main():
             art["hyp"].append({"id": hid, "t": t, "st": h["status"]})
 
     # bloco gerenciado nas notas (o resto das notas é do autor)
+    nfeitas = len([x for x in (ROOT / "studies" / slug / "dados" / "bruto").glob("*/concluida.json") if not x.parent.name.startswith("mini-")])
+    coleta = f"{nfeitas} de 138 execuções concluídas"
     pend = [s["id"] for ph, steps, k, n in rows for s, ok, why in steps if s.get("autor") and not ok and "aprovação" in why]
     linhas = [
         "[[sync]]",
         f"Atualizado pelo Claude em {datetime.now().strftime('%d/%m/%Y %H:%M')}.",
         f"Agora: {agora}" if agora else "Agora: aguardando as suas decisões.",
         f"Progresso: {done} de {total} passos do protocolo; {len(feitos)} marcados aqui.",
-        "Feito hoje: estudo criado; busca definida; 30 fontes abertas, conferidas e classificadas; premissa, síntese, 6 hipóteses e 12 candidatas escritas como rascunho.",
-        "Descobertas: o Agentless tem números diferentes entre versões (32,00% e US$ 0,70 contra 27,33% e US$ 0,34); a razão de preço do Haiku 5.5 é 1/20 só até 100 mil tokens (acima, 1/4); o estudo de Rosa et al. (2026) é um Registered Report sem resultados.",
-        "Base de conhecimento: 3 estudos seus antigos importados (paralelismo SDD, Co-Coder e CAID, balanço do ciclo); os dois de trabalho ficam só na máquina. Soluções e testes seus em paralelo: os 4 braços novos (repo map, N candidatos, limite de chamadas, checagem de rodapé) entram, decidido em 05/11 (studies/haiku-sdd-producao/solucoes-do-autor.md). Dados do trabalho podem aparecer no artigo, sem nenhum dado da empresa (regras em declaracoes.md); F0.3 concluído em 05/11 (sem conflitos de interesse). F0.2 (escopo e critérios de sucesso) aprovado em 05/11; fases F0 e F2 completas (F2.3 aprovado); 5 papers de formato (Tam, He, Sclar, AGENTS.md, SkillsBench, smells de SKILL.md) conferidos nas fontes e indexados (35 fontes); h3 clonado em C:\dev\h3-estudo (commit f0e1780) e rascunho do gabarito de testes ocultos em gabarito-rascunho.md, aguardando sua aprovação; plano de análise F3.1 aprovado em 05/11 com as 5 decisões (Holm H4-H6, S8-S11 exploratórios, alfa 0,67, falha do modelo reprova, juízes fora do custo por artefato); F1.6 concluído (RAG encontra as fontes). Piloto F3.2 concluído em 05/11 (12 execuções, 4,8 milhões de tokens): testes aprovados saturam em 100%, Haiku gasta cerca de 21% mais tokens e 29% a 58% mais tempo que o Sonnet; decididos contrato enxuto e 6 repetições por variante para a H4; falta o pré-registro F3.3.",
+        "Feito: premissa, 35 fontes verificadas, 11 hipóteses (H1 a H11), plano de análise, pré-registro com tag git (05/11) e adendo 1 (06/11) após revisão adversarial independente; gabarito de testes cifrado e fixado por hashes; orquestrador isolado (um processo por etapa, sem acesso à web nem ao histórico do projeto), com consumo real de tokens medido pela ferramenta e auditoria com transcrições; mini-piloto de 8 execuções validou o método.",
+        "Coleta principal: " + coleta + " (fases A e B, 138 execuções, em fila, uma por vez). Depois: avaliação cega por 3 juízes Opus e análise pré-registrada (script em analise/analise.py).",
+        "Decidido pelo autor em 06/11: a fase C (H2, H7, H8, H9 e braços S8 a S11) fica para um paper futuro; neste artigo saem como não testadas. Depois da análise, o autor decide sobre a documentação de execução e os próximos passos.",
+        "Correções importantes: a contagem de tokens do piloto 1 não era consumo (retirada); a auditoria do piloto estava vazia (retirada); H6 virou descritiva; H4 usa Newcombe com checagem de saturação. Dados parciais indicam que a H4 pode não saturar (variante #1384-a), o custo de lista do Haiku com mitigações fica perto de 1/7 do Sonnet e o Haiku usa cerca de 1,4 vez os tokens.",
+        "Memória: mantenha o computador ligado; a coleta espera 3 GB livres entre etapas.",
         f"Esperando a sua aprovação: {', '.join(pend) or 'nada'}.",
-        "Decidido pelo autor em 05/11: projeto h3 (TypeScript); qualidade >= 0,90 e custo <= 0,50; pelo menos 10 hipóteses (11 com a H11, personas e contexto detalhado no Haiku, pedida por ele); título 'SDD só com Haiku: o que sobra de qualidade quando o custo cai'; juízes Opus sem teto de gasto (decisão de 05/11: o foco é assertividade e tempo, e o gasto é medido, não limitado); dados congelados em 13/11.",
-        "Aprovados pelo autor em 05/11: F0.1, F1.5, F2.1, F2.2. Projeto h3 e features #1267, #1384, #1050 escolhidos (CLAUDE.md e AGENTS.md do h3 entram nas duas condições). Falta fixar o commit no pré-registro; passos manuais F0.2 e F0.3.",
+        "Decidido em 05/11: projeto h3 (TypeScript), features #1267, #1384 e #1050; qualidade >= 0,90 e custo <= 0,50; título 'SDD só com Haiku: o que sobra de qualidade quando o custo cai'; juízes Opus sem teto de gasto; dados congelados em 13/11.",
         "Artefato do estudo: https://claude.ai/artifact/Rh9dceNqp8djrseMUdiX99",
         "[[/sync]]",
     ]
