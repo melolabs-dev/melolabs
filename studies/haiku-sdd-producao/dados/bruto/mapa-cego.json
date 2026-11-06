@@ -1,0 +1,98 @@
+{
+ "a358f0msh": {
+  "id": "mini-C0-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "a017dh8ak": {
+  "id": "mini-C0-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "a8n0f04ye": {
+  "id": "mini-C1-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "range-1267"
+ },
+ "ac4qtv4at": {
+  "id": "mini-C1-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "range-1267"
+ },
+ "a5jbsvdwe": {
+  "id": "mini-C0-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "am3d2w38c": {
+  "id": "mini-C0-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "aqv6yje1s": {
+  "id": "mini-C1-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "a25qx1d4y": {
+  "id": "mini-C1-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "adk0yhppp": {
+  "id": "mini-C1-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "range-1267"
+ },
+ "aj1swc6gj": {
+  "id": "mini-C1-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "range-1267"
+ },
+ "aypyq1wrq": {
+  "id": "mini-C0-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "range-1267"
+ },
+ "a6qfq42qj": {
+  "id": "mini-C0-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "range-1267"
+ },
+ "axsxywst9": {
+  "id": "mini-C1-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "afdvmtam9": {
+  "id": "mini-C1-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "aq5gee0ma": {
+  "id": "mini-C0-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "range-1267"
+ },
+ "a7315qqxk": {
+  "id": "mini-C0-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "range-1267"
+ }
+}

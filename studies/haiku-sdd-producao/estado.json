@@ -23,6 +23,14 @@
     "F3.2": {
       "feito": "2026-11-05",
       "evidencia": "Piloto de 12 execucoes em 05/11/2026 (studies/haiku-sdd-producao/piloto.md e dados/processado/piloto.json): CV de tokens 2,3% e de tempo 6,1%; testes aprovados saturam em 100%; H4 exige 36 execucoes por condicao para limite inferior de Wilson 0,90. Autor aprovou 6 repeticoes por variante para H4 e 3 para as demais, e contrato enxuto."
+    },
+    "F3.3": {
+      "feito": "2026-11-05",
+      "evidencia": "Tag git anotada prereg-haiku-sdd-producao no commit 59a3501cf5cd9459c7a994981a0e5d9aae0e869c (publicada no GitHub), com manifesto de hashes em studies/haiku-sdd-producao/prereg/manifesto.json (12 testes ocultos, 21 documentos, plano de 138 execucoes, commit do h3 f0e17808). Autor aprovou o pre-registro em 05/11/2026."
+    },
+    "F4.5": {
+      "feito": "2026-11-05",
+      "evidencia": "Ensaio geral feito pelo piloto de 12 execucoes completas mais 1 de aquecimento (studies/haiku-sdd-producao/piloto.md): coleta, pontuacao, auditoria e dicionario de dados validados; smoke tests do harness com os contratos enxutos e os testes novos em 05/11/2026."
     }
   },
   "auto_feito": {

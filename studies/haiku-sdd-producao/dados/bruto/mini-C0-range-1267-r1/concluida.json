@@ -1,0 +1,27 @@
+{
+  "id": "mini-C0-range-1267-r1",
+  "condicao": "C0",
+  "variante": "range-1267",
+  "inicio": "2026-11-06T01:10:06",
+  "fim": "2026-11-06T01:17:19",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "techspec": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "tasks": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    }
+  },
+  "nucleo": "31/31",
+  "nucleo_100": true,
+  "auditoria_limpa": true
+}

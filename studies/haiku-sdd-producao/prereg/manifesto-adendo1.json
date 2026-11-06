@@ -1,0 +1,19 @@
+{
+ "gerado_em": "2026-11-06T01:43:15",
+ "base": "tag prereg-haiku-sdd-producao (59a3501)",
+ "documentos_sha256": {
+  "prereg/adendo-1.md": "4aeb65303596e6624b1757ae8caa4ff4fe439bc374d062924b3e6c2e457918bc",
+  "regras-de-decisao.md": "3d2130f2f3cc8212fabcac6121aca15fe82b8a8e73378802b53ca3f2bc7ad432",
+  "rubrica.md": "3569741af6977daecd7f1aff7805ef3b791bf738a46338fedcd83f59b9844607",
+  "dicionario.md": "599db93c835e3c6660579dc2718336680cf121c78eaefa788ffa56886d2c620b",
+  "plano-de-testes.md": "b26b42551146ae395c9dfab418e0cd9897ff411f017245cf8e6a835380052c38",
+  "dados/bruto/plano-execucoes.json": "bd80bb75fc3bc006971bd5e662df78af6c75190e98f2ab96dcbdc6cb9b5f94c8",
+  "gabarito/classificacao.json": "f27865c24e29c5c152a8cf5e5e281aafb90b566d13e4405453948333bcbdfba4",
+  "gabarito/esperado.json": "7ece332b4f74d120cad9eaf93017af1f1374c877d96faba84944bb95911183af",
+  "../../tools/harness/orquestrador.py": "e48b57498e9ad6000028fbda9314bcf4c74cb92b6a88625ef9b132080d8bdc24",
+  "../../tools/harness/harness.py": "4f09c6ea3de4625f3ba77dcc013912193f2765a6230333cc12e0a7eb253f53b4",
+  "../../tools/harness/gates.py": "eec66d707d30fdf47320b2bdf2c263d1aaac542c8370e51783ec5798dc52dd6f",
+  "../../tools/harness/juizes.py": "81f8ec76b91ce5283e44727a21b626c7dca6e4d4095576b1397189c3b10e1e0b",
+  "../../tools/harness/prompts.md": "da71428c34d98aa2af3132458bb5ea2a9355bf1e86a2de7ae296c49c8d4d6f15"
+ }
+}

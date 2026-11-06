@@ -29,3 +29,10 @@
 
 ## Fica como limite declarado no artigo
 Orquestrador e autor dos testes são a mesma sessão (I1, reduzido pelo script); os três juízes são do mesmo modelo; os estilos do Haiku e do Sonnet são reconhecíveis; as hipóteses H2, H7, H8 e H9 e os braços S8 a S11 podem ficar não testados.
+
+## Resultado do mini-piloto com o contrato enxuto (06/11/2026, 8 execuções com o orquestrador isolado)
+- **Saturação confirmada:** as 8 execuções (Sonnet padrão e Haiku simples, #1267 e #1050-b, 2 repetições) tiveram o núcleo 100%. Pela regra do item 5, a **H4 sai como "não informativa (saturação)"** salvo se a coleta principal revelar falhas. A coleta continua com as 6 repetições planejadas, porque o orquestrador roda sem custo de atenção e cabe no prazo.
+- **Auditoria:** 8 de 8 limpas, com transcrições reais (as pastas de execução têm nome opaco; um primeiro teste acusou falso positivo porque o nome da pasta carregava a variante, e isso foi corrigido antes de seguir).
+- **Consumo real (primeira medida confiável):** o Haiku simples gastou de 2,3 a 3,8 milhões de tokens totais por execução (de 0,30 a 0,29 milhão de tokens novos) e o Sonnet de 1,6 a 2,7 milhões (de 0,17 a 0,21 milhão de novos); custo de lista de US$ 0,09 a 0,22 (Haiku) contra US$ 0,94 a 1,41 (Sonnet), cerca de 1/7 a 1/10 em dólar. O maior prompt chegou a 116 mil tokens no Haiku, acima do limite de 100 mil que muda o preço do Haiku.
+- **Rubrica (16 artefatos, 3 juízes Opus):** TechSpec com média de 32,2 (Sonnet) e 32,0 (Haiku simples) em 35; Tasks com 21,0 e 21,3 em 25. Desvio entre artefatos de 0,9 a 1,4 ponto e desvio entre juízes de 0,5 ponto. Com n = 6 por braço, a diferença mínima detectável é de cerca de 2 pontos, então o limiar de 3 pontos da H1 e a margem de 2 pontos de equivalência são viáveis, sem folga grande.
+- **Gates:** 1 reprovação em 24 documentos no primeiro gate (4%), abaixo dos 10% da regra do item 7; H3 e o escalonamento provavelmente sairão "não testáveis".
