@@ -1,0 +1,542 @@
+[
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "session-1050-a",
+  "repeticao": 7,
+  "id": "C4-session-1050-a-r7",
+  "ordem": 1
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "problem-1384-b",
+  "repeticao": 9,
+  "id": "C0-problem-1384-b-r9",
+  "ordem": 2
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "session-1050-a",
+  "repeticao": 7,
+  "id": "C0-session-1050-a-r7",
+  "ordem": 3
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "problem-1384-c",
+  "repeticao": 7,
+  "id": "C0-problem-1384-c-r7",
+  "ordem": 4
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "problem-1384-b",
+  "repeticao": 7,
+  "id": "C0-problem-1384-b-r7",
+  "ordem": 5
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 8,
+  "id": "C4-session-1050-b-r8",
+  "ordem": 6
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "problem-1384-b",
+  "repeticao": 4,
+  "id": "C1-problem-1384-b-r4",
+  "ordem": 7
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "session-1050-a",
+  "repeticao": 9,
+  "id": "C4-session-1050-a-r9",
+  "ordem": 8
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 4,
+  "id": "C1-range-1267-r4",
+  "ordem": 9
+ },
+ {
+  "fase": "E",
+  "condicao": "C5",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 5,
+  "id": "C5-session-1050-b-r5",
+  "ordem": 10
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "problem-1384-b",
+  "repeticao": 8,
+  "id": "C4-problem-1384-b-r8",
+  "ordem": 11
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "session-1050-a",
+  "repeticao": 9,
+  "id": "C0-session-1050-a-r9",
+  "ordem": 12
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "session-1050-b",
+  "repeticao": 9,
+  "id": "C0-session-1050-b-r9",
+  "ordem": 13
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "problem-1384-b",
+  "repeticao": 9,
+  "id": "C4-problem-1384-b-r9",
+  "ordem": 14
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "problem-1384-c",
+  "repeticao": 9,
+  "id": "C0-problem-1384-c-r9",
+  "ordem": 15
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "problem-1384-b",
+  "repeticao": 6,
+  "id": "C1-problem-1384-b-r6",
+  "ordem": 16
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "problem-1384-a",
+  "repeticao": 8,
+  "id": "C0-problem-1384-a-r8",
+  "ordem": 17
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 7,
+  "id": "C4-session-1050-b-r7",
+  "ordem": 18
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "problem-1384-c",
+  "repeticao": 8,
+  "id": "C0-problem-1384-c-r8",
+  "ordem": 19
+ },
+ {
+  "fase": "E",
+  "condicao": "C5",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 6,
+  "id": "C5-session-1050-b-r6",
+  "ordem": 20
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "session-1050-b",
+  "repeticao": 8,
+  "id": "C0-session-1050-b-r8",
+  "ordem": 21
+ },
+ {
+  "fase": "E",
+  "condicao": "C5",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 6,
+  "id": "C5-range-1267-r6",
+  "ordem": 22
+ },
+ {
+  "fase": "E",
+  "condicao": "C5",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 4,
+  "id": "C5-range-1267-r4",
+  "ordem": 23
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "problem-1384-a",
+  "repeticao": 7,
+  "id": "C0-problem-1384-a-r7",
+  "ordem": 24
+ },
+ {
+  "fase": "E",
+  "condicao": "C5",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 4,
+  "id": "C5-session-1050-b-r4",
+  "ordem": 25
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 6,
+  "id": "C1-range-1267-r6",
+  "ordem": 26
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "session-1050-a",
+  "repeticao": 8,
+  "id": "C4-session-1050-a-r8",
+  "ordem": 27
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "problem-1384-b",
+  "repeticao": 5,
+  "id": "C1-problem-1384-b-r5",
+  "ordem": 28
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 9,
+  "id": "C4-range-1267-r9",
+  "ordem": 29
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "problem-1384-a",
+  "repeticao": 9,
+  "id": "C4-problem-1384-a-r9",
+  "ordem": 30
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "problem-1384-c",
+  "repeticao": 9,
+  "id": "C4-problem-1384-c-r9",
+  "ordem": 31
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 7,
+  "id": "C4-range-1267-r7",
+  "ordem": 32
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "problem-1384-a",
+  "repeticao": 5,
+  "id": "C1-problem-1384-a-r5",
+  "ordem": 33
+ },
+ {
+  "fase": "E",
+  "condicao": "C5",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 5,
+  "id": "C5-range-1267-r5",
+  "ordem": 34
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "session-1050-a",
+  "repeticao": 5,
+  "id": "C1-session-1050-a-r5",
+  "ordem": 35
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "range-1267",
+  "repeticao": 8,
+  "id": "C0-range-1267-r8",
+  "ordem": 36
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "problem-1384-b",
+  "repeticao": 7,
+  "id": "C4-problem-1384-b-r7",
+  "ordem": 37
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "range-1267",
+  "repeticao": 9,
+  "id": "C0-range-1267-r9",
+  "ordem": 38
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "problem-1384-a",
+  "repeticao": 7,
+  "id": "C4-problem-1384-a-r7",
+  "ordem": 39
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "problem-1384-c",
+  "repeticao": 5,
+  "id": "C1-problem-1384-c-r5",
+  "ordem": 40
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "problem-1384-c",
+  "repeticao": 8,
+  "id": "C4-problem-1384-c-r8",
+  "ordem": 41
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "session-1050-a",
+  "repeticao": 4,
+  "id": "C1-session-1050-a-r4",
+  "ordem": 42
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 6,
+  "id": "C1-session-1050-b-r6",
+  "ordem": 43
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 5,
+  "id": "C1-session-1050-b-r5",
+  "ordem": 44
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "session-1050-a",
+  "repeticao": 6,
+  "id": "C1-session-1050-a-r6",
+  "ordem": 45
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 9,
+  "id": "C4-session-1050-b-r9",
+  "ordem": 46
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "problem-1384-b",
+  "repeticao": 8,
+  "id": "C0-problem-1384-b-r8",
+  "ordem": 47
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "problem-1384-c",
+  "repeticao": 6,
+  "id": "C1-problem-1384-c-r6",
+  "ordem": 48
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "session-1050-a",
+  "repeticao": 8,
+  "id": "C0-session-1050-a-r8",
+  "ordem": 49
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "session-1050-b",
+  "repeticao": 7,
+  "id": "C0-session-1050-b-r7",
+  "ordem": 50
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "problem-1384-a",
+  "repeticao": 8,
+  "id": "C4-problem-1384-a-r8",
+  "ordem": 51
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "problem-1384-a",
+  "repeticao": 6,
+  "id": "C1-problem-1384-a-r6",
+  "ordem": 52
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 5,
+  "id": "C1-range-1267-r5",
+  "ordem": 53
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "range-1267",
+  "repeticao": 7,
+  "id": "C0-range-1267-r7",
+  "ordem": 54
+ },
+ {
+  "fase": "E",
+  "condicao": "C0",
+  "modelo": "sonnet",
+  "variante": "problem-1384-a",
+  "repeticao": 9,
+  "id": "C0-problem-1384-a-r9",
+  "ordem": 55
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "session-1050-b",
+  "repeticao": 4,
+  "id": "C1-session-1050-b-r4",
+  "ordem": 56
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "range-1267",
+  "repeticao": 8,
+  "id": "C4-range-1267-r8",
+  "ordem": 57
+ },
+ {
+  "fase": "E",
+  "condicao": "C4",
+  "modelo": "haiku",
+  "variante": "problem-1384-c",
+  "repeticao": 7,
+  "id": "C4-problem-1384-c-r7",
+  "ordem": 58
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "problem-1384-c",
+  "repeticao": 4,
+  "id": "C1-problem-1384-c-r4",
+  "ordem": 59
+ },
+ {
+  "fase": "E",
+  "condicao": "C1",
+  "modelo": "haiku",
+  "variante": "problem-1384-a",
+  "repeticao": 4,
+  "id": "C1-problem-1384-a-r4",
+  "ordem": 60
+ }
+]

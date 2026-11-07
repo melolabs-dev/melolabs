@@ -1,0 +1,14 @@
+{
+ "gerado_em": "2026-11-07T13:48:49",
+ "base": "tag prereg-haiku-sdd-producao-adendo1",
+ "documentos_sha256": {
+  "prereg/adendo-2.md": "f3feb4e0ddf486f55d5fc66a53c8a0714548c4f31faad5bbebd4b8e92160b00a",
+  "regras-de-decisao.md": "3d2130f2f3cc8212fabcac6121aca15fe82b8a8e73378802b53ca3f2bc7ad432",
+  "rubrica.md": "3569741af6977daecd7f1aff7805ef3b791bf738a46338fedcd83f59b9844607",
+  "dados/bruto/plano-extensao.json": "033c896ef06988a3d7a80e4ddfa5b84f4f84c06abc7143d27ffc3a5e2899ff65",
+  "analise/analise.py": "8eaebc54c7307ecbf0d2b8c5209a943d52baa22c022ef9eb48f1f7caab5fb777",
+  "../../tools/harness/orquestrador.py": "2a90eae06647fad9d10ceffde06f70421d9984c559c2f25d2d575477bc1ef9fe",
+  "../../tools/harness/juizes.py": "81f8ec76b91ce5283e44727a21b626c7dca6e4d4095576b1397189c3b10e1e0b",
+  "dados/processado/analise.json": "c30420170482e4b263af7c6a65113e956cda3eb9d09b59074a47ad4d9666a706"
+ }
+}

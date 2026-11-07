@@ -449,8 +449,8 @@ def resumo_run(rid):
     return dict(tokens_totais=tok, tokens_novos=novos, custo_usd=round(custo, 3), duracao_s=round(dur), chamadas=sum(r.get("chamadas_ferramenta", 0) for r in rows), etapas=len(rows))
 
 
-def plano(fase=None, maximo=None):
-    pl = json.loads((BRUTO / "plano-execucoes.json").read_text(encoding="utf-8"))
+def plano(fase=None, maximo=None, arquivo="plano-execucoes.json"):
+    pl = json.loads((BRUTO / arquivo).read_text(encoding="utf-8"))
     n = 0
     for it in pl:
         if fase and it["fase"] != fase:
@@ -530,7 +530,7 @@ if __name__ == "__main__":
     elif a[0] == "plano":
         fase = a[a.index("--fase") + 1] if "--fase" in a else None
         mx = int(a[a.index("--max") + 1]) if "--max" in a else None
-        plano(fase, mx)
+        plano(fase, mx, a[a.index("--plano") + 1] if "--plano" in a else "plano-execucoes.json")
     elif a[0] == "mini":
         mini()
     elif a[0] == "esperado":
