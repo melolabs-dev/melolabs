@@ -28,7 +28,7 @@ BRUTO = STUDY / "dados" / "bruto"
 JUIZES = Path("C:/dev/juizes")
 MAPA = BRUTO / "mapa-cego.json"
 NOTAS = BRUTO / "juizes.jsonl"
-NJ = 5  # adendo 2: 5 amostras de juiz por artefato (eram 3)
+NJ = 3  # adendo 2b: continuam 3 juizes por artefato (a ideia de 5 foi retirada por custo e por nao elevar o alfa)
 RUBRICA = (STUDY / "rubrica.md").read_text(encoding="utf-8")
 CRITERIOS = {"techspec": ["C1", "C2", "C3", "C4", "C5", "C6", "C7"], "tasks": ["T1", "T2", "T3", "T4", "T5"]}
 
@@ -50,6 +50,8 @@ def montar(ids):
             if any(v["id"] == rid and v["tipo"] == tipo for v in mapa.values()):
                 continue
             cod = "a" + "".join(rnd.choice("0123456789abcdefghjkmnpqrstvwxyz") for _ in range(8))
+            while cod in mapa:  # nunca reutiliza um codigo existente (a semente reinicia a cada chamada)
+                cod = "a" + "".join(rnd.choice("0123456789abcdefghjkmnpqrstvwxyz") for _ in range(8))
             m = json.loads((BRUTO / rid / "concluida.json").read_text(encoding="utf-8"))
             mapa[cod] = {"id": rid, "tipo": tipo, "condicao": m["condicao"], "variante": m["variante"]}
             (JUIZES / "pacote").mkdir(parents=True, exist_ok=True)
@@ -103,7 +105,9 @@ def julgar(maximo=None):
             r = json.loads(l)
             if "criterios" in r:
                 feitos.add((r["codigo"], r["juiz"]))
-    fila = [(c, v["tipo"], j) for c, v in mapa.items() for j in range(1, NJ + 1) if (c, j) not in feitos]
+    alvos = BRUTO / "ids-julgar-total.txt"
+    permitidos = set(alvos.read_text(encoding="utf-8").split()) if alvos.exists() else None
+    fila = [(c, v["tipo"], j) for c, v in mapa.items() if permitidos is None or v["id"] in permitidos for j in range(1, NJ + 1) if (c, j) not in feitos]
     random.Random(20261106).shuffle(fila)
     n = 0
     for cod, tipo, j in fila:

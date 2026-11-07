@@ -159,10 +159,10 @@ def carrega_rubrica():
     orig = set((BRUTO / "ids-juizes.txt").read_text(encoding="utf-8").split())
     for cod, js in por.items():
         v = mapa[cod]
-        if not ESTENDIDA:
-            if v["id"] not in orig:
-                continue
-            js = [j for j in js if j["juiz"] <= 3]
+        js = [j for j in js if j["juiz"] <= 3]  # adendo 2b: 3 juizes por artefato
+        alvo = orig if not ESTENDIDA else set((BRUTO / "ids-julgar-total.txt").read_text(encoding="utf-8").split())
+        if v["id"] not in alvo or len(js) < 3:
+            continue
         art[(v["id"], v["tipo"])] = {"cond": v["condicao"], "var": v["variante"], "feat": feature(v["variante"]),
                                       "soma": st.mean(sum(j["criterios"].values()) for j in js), "n_juizes": len(js),
                                       "aluc": st.mean(j.get("alucinacoes", 0) for j in js),
@@ -246,10 +246,6 @@ def main():
         out["rubrica"] = {"artefatos_julgados": {f"{c}/{t}": n for (c, t), n in sorted(sumn.items())}}
         itens = [u for a in art.values() for u in a["itens"]]
         out["rubrica"]["krippendorff_alfa_intervalo"] = krippendorff_interval(itens)
-        if ESTENDIDA:
-            out["rubrica"]["krippendorff_3_juizes_originais"] = krippendorff_interval([[x for x in u[:3]] for u in itens])
-            a5 = out["rubrica"]["krippendorff_alfa_intervalo"]
-            out["rubrica"]["alfa_esperado_da_media_de_5_spearman_brown_exploratorio"] = (5 * a5 / (1 + 4 * a5)) if a5 is not None else None
         out["rubrica"]["alucinacoes_media"] = {c: round(st.mean(a["aluc"] for a in art.values() if a["cond"] == c), 3) for c in sorted({a["cond"] for a in art.values()})}
 
         def contraste(cond_a, cond_b, minimo, nome):

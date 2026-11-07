@@ -1,0 +1,351 @@
+diff --git a/src/index.ts b/src/index.ts
+index cb26f39..ffde7eb 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -70,6 +70,7 @@ export { toResponse, HTTPResponse } from "./response.ts";
+ // Error
+ 
+ export { type ErrorDetails, type ErrorBody, type ErrorInput, HTTPError } from "./error.ts";
++export { problem, type ProblemInput } from "./utils/problem.ts";
+ 
+ // Adapters
+ 
+diff --git a/src/response.ts b/src/response.ts
+index c5bca8a..c9997f5 100644
+--- a/src/response.ts
++++ b/src/response.ts
+@@ -2,6 +2,7 @@ import { FastResponse } from "srvx";
+ import { HTTPError } from "./error.ts";
+ import { isJSONSerializable } from "./utils/internal/object.ts";
+ import { sanitizeStatusCode, sanitizeStatusMessage } from "./utils/sanitize.ts";
++import type { ProblemBody } from "./utils/internal/problem.ts";
+ import { kEventDispose, type DisposeState } from "./utils/internal/dispose.ts";
+ 
+ import type { H3Config } from "./types/h3.ts";
+@@ -365,7 +366,7 @@ function errorResponse(error: HTTPError, debug?: boolean, errHeaders?: Headers):
+   return new FastResponse(
+     JSON.stringify(
+       {
+-        ...error.toJSON(),
++        ...((error as { "~problem"?: ProblemBody })["~problem"]?.() ?? error.toJSON()),
+         stack: debug && error.stack ? error.stack.split("\n").map((l) => l.trim()) : undefined,
+       },
+       undefined,
+diff --git a/src/utils/internal/problem.ts b/src/utils/internal/problem.ts
+new file mode 100644
+index 0000000..fc885d0
+--- /dev/null
++++ b/src/utils/internal/problem.ts
+@@ -0,0 +1,28 @@
++import type { HTTPError } from "../../error.ts";
++
++export const kProblem = "~problem";
++
++/** Builds the problem details body (`stack` is added by `errorResponse` in debug mode). */
++export type ProblemBody = () => Record<string, unknown>;
++
++export interface ProblemMeta {
++  type: string;
++  title?: string;
++  detail?: string;
++  instance?: string;
++}
++
++export function problemBody(error: HTTPError, meta: ProblemMeta): Record<string, unknown> {
++  if (error.unhandled) {
++    return { type: meta.type, title: meta.title, status: error.status };
++  }
++  return {
++    ...(error.data === undefined ? undefined : { data: error.data }),
++    ...error.body,
++    type: meta.type,
++    title: meta.title,
++    status: error.status,
++    detail: meta.detail,
++    instance: meta.instance,
++  };
++}
+diff --git a/src/utils/problem.ts b/src/utils/problem.ts
+new file mode 100644
+index 0000000..c0f9a0f
+--- /dev/null
++++ b/src/utils/problem.ts
+@@ -0,0 +1,62 @@
++import { HTTPError, type ErrorInput } from "../error.ts";
++import { kProblem, problemBody, type ProblemBody, type ProblemMeta } from "./internal/problem.ts";
++
++export interface ProblemInput<DataT = unknown> extends ErrorInput<DataT> {
++  /**
++   * URI reference identifying the problem type. Defaults to `"about:blank"`.
++   */
++  type?: string;
++
++  /**
++   * URI reference identifying this specific occurrence of the problem.
++   */
++  instance?: string;
++}
++
++/**
++ * Create an `HTTPError` that is responded as `application/problem+json` (RFC 9457).
++ *
++ * **NOTE:** `detail` (from `message`) and `instance` are sent to the client, do not put sensitive data in them.
++ * For `unhandled` errors only `type`, `title` and `status` are sent.
++ *
++ * @example
++ *
++ * throw problem({ status: 404, detail: "User not found", instance: "/users/42" })
++ */
++export function problem<DataT = unknown>(input: ProblemInput<DataT>): HTTPError<DataT> {
++  const { type, instance, ...rest } = input;
++
++  const headers = new Headers(rest.headers ?? (rest.cause as ErrorInput | undefined)?.headers);
++  if (!headers.has("content-type")) {
++    headers.set("content-type", "application/problem+json;charset=UTF-8");
++  }
++
++  const error = new HTTPError<DataT>({ ...rest, headers });
++  const meta: ProblemMeta = {
++    type: type || "about:blank",
++    title: error.statusText ?? statusTitles[error.status],
++    detail: rest.message || undefined,
++    instance,
++  };
++  const body: ProblemBody = () => problemBody(error, meta);
++  Object.defineProperty(error, kProblem, { value: body });
++  return error;
++}
++
++// prettier-ignore
++const statusTitles: Record<number, string> = {
++  200: "OK", 201: "Created", 202: "Accepted", 204: "No Content",
++  301: "Moved Permanently", 302: "Found", 303: "See Other", 304: "Not Modified",
++  307: "Temporary Redirect", 308: "Permanent Redirect",
++  400: "Bad Request", 401: "Unauthorized", 402: "Payment Required", 403: "Forbidden",
++  404: "Not Found", 405: "Method Not Allowed", 406: "Not Acceptable",
++  408: "Request Timeout", 409: "Conflict", 410: "Gone", 411: "Length Required",
++  412: "Precondition Failed", 413: "Content Too Large", 414: "URI Too Long",
++  415: "Unsupported Media Type", 416: "Range Not Satisfiable", 417: "Expectation Failed",
++  418: "I'm a teapot", 422: "Unprocessable Content", 423: "Locked", 424: "Failed Dependency",
++  425: "Too Early", 426: "Upgrade Required", 428: "Precondition Required",
++  429: "Too Many Requests", 431: "Request Header Fields Too Large",
++  451: "Unavailable For Legal Reasons",
++  500: "Internal Server Error", 501: "Not Implemented", 502: "Bad Gateway",
++  503: "Service Unavailable", 504: "Gateway Timeout", 505: "HTTP Version Not Supported",
++};
+diff --git a/test/bench/bundle.test.ts b/test/bench/bundle.test.ts
+index 7756dd4..d184aeb 100644
+--- a/test/bench/bundle.test.ts
++++ b/test/bench/bundle.test.ts
+@@ -50,8 +50,8 @@ describe("benchmark", () => {
+     if (process.env.DEBUG) {
+       console.log(`Bundle size (defineHandler): ${bundle.bytes} (gzip: ${bundle.gzipSize})`);
+     }
+-    expect(bundle.bytes).toBeLessThanOrEqual(7040); // <7.04kb
+-    expect(bundle.gzipSize).toBeLessThanOrEqual(2870); // <2.87kb
++    expect(bundle.bytes).toBeLessThanOrEqual(7050); // <7.05kb
++    expect(bundle.gzipSize).toBeLessThanOrEqual(2880); // <2.88kb
+   });
+ });
+ 
+diff --git a/test/problem.test.ts b/test/problem.test.ts
+new file mode 100644
+index 0000000..6a83483
+--- /dev/null
++++ b/test/problem.test.ts
+@@ -0,0 +1,183 @@
++import { HTTPError, problem } from "../src/index.ts";
++import { beforeEach } from "vitest";
++import { describeMatrix } from "./_setup.ts";
++
++const PROBLEM_CT = "application/problem+json;charset=UTF-8";
++
++describeMatrix("problem", (t, { it, expect }) => {
++  beforeEach(() => {
++    t.app.config.debug = false;
++  });
++
++  it("returns an HTTPError (RF-01)", () => {
++    const err = problem({ status: 404 });
++    expect(HTTPError.isError(err)).toBe(true);
++    expect(err.status).toBe(404);
++    expect(Object.keys(err)).toEqual(Object.keys(new HTTPError({ status: 404 })));
++  });
++
++  it("responds with problem+json (RF-02)", async () => {
++    t.app.get("/", () => {
++      throw problem({ status: 400 });
++    });
++    const res = await t.fetch("/");
++    expect(res.status).toBe(400);
++    expect(res.headers.get("content-type")).toBe(PROBLEM_CT);
++  });
++
++  it("emits RFC 9457 members (RF-03)", async () => {
++    t.app.get("/", () => {
++      throw problem({
++        status: 422,
++        statusText: "Unprocessable",
++        message: "Campo email inválido",
++        type: "https://example.com/probs/validation",
++        instance: "/users/42",
++      });
++    });
++    const res = await t.fetch("/");
++    expect(res.status).toBe(422);
++    expect(await res.json()).toEqual({
++      type: "https://example.com/probs/validation",
++      title: "Unprocessable",
++      status: 422,
++      detail: "Campo email inválido",
++      instance: "/users/42",
++    });
++  });
++
++  it("uses defaults when only status is given (RF-04)", async () => {
++    t.app.get("/", () => {
++      throw problem({ status: 404 });
++    });
++    expect(await (await t.fetch("/")).json()).toEqual({
++      type: "about:blank",
++      title: "Not Found",
++      status: 404,
++    });
++  });
++
++  it("omits title for statuses without a default text (R-07)", async () => {
++    t.app.get("/", () => {
++      throw problem({ status: 599 });
++    });
++    const body = await (await t.fetch("/")).json();
++    expect(body).toEqual({ type: "about:blank", status: 599 });
++  });
++
++  it("preserves headers, data and body extensions (RF-05)", async () => {
++    t.app.get("/", () => {
++      throw problem({
++        status: 429,
++        headers: { "retry-after": "30" },
++        body: { balance: 0, type: "ignored" },
++        data: { x: 1 },
++      });
++    });
++    const res = await t.fetch("/");
++    expect(res.status).toBe(429);
++    expect(res.headers.get("retry-after")).toBe("30");
++    expect(res.headers.get("content-type")).toBe(PROBLEM_CT);
++    expect(await res.json()).toEqual({
++      type: "about:blank",
++      title: "Too Many Requests",
++      status: 429,
++      balance: 0,
++      data: { x: 1 },
++    });
++  });
++
++  it("keeps an explicit content-type (RF-05)", async () => {
++    t.app.get("/", () => {
++      throw problem({ status: 400, headers: { "Content-Type": "application/json" } });
++    });
++    const res = await t.fetch("/");
++    expect(res.headers.get("content-type")).toBe("application/json");
++  });
++
++  it("keeps the format with onError and HEAD", async () => {
++    t.app.get("/", () => {
++      throw problem({ status: 409, message: "dup" });
++    });
++    const res = await t.fetch("/");
++    expect(t.hooks.onError).toHaveBeenCalledTimes(1);
++    expect(await res.json()).toMatchObject({ title: "Conflict", detail: "dup" });
++    const head = await t.fetch("/", { method: "HEAD" });
++    expect(head.status).toBe(409);
++    expect(await head.text()).toBe("");
++  });
++
++  it("does not change regular errors (RF-07)", async () => {
++    t.app.get("/a", () => {
++      throw new HTTPError({ status: 400, message: "ruim" });
++    });
++    t.app.get("/b", () => {
++      throw HTTPError.status(403, "Forbidden");
++    });
++    for (const path of ["/a", "/b", "/missing"]) {
++      const res = await t.fetch(path);
++      expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++      const body = await res.json();
++      expect(body).toHaveProperty("message");
++      expect(body).not.toHaveProperty("type");
++      expect(body).not.toHaveProperty("title");
++      expect(body).not.toHaveProperty("detail");
++    }
++    const body = await (await t.fetch("/a")).json();
++    expect(body).toMatchObject({ status: 400, message: "ruim" });
++  });
++});
++
++describeMatrix(
++  "problem (unhandled)",
++  (t, { it, expect }) => {
++    const unhandled = () =>
++      problem({
++        status: 500,
++        unhandled: true,
++        message: "segredo",
++        data: { x: 1 },
++        body: { y: 2 },
++        instance: "/segredo",
++      });
++
++    it("hides sensitive members without debug (RF-06)", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        throw unhandled();
++      });
++      const res = await t.fetch("/");
++      const text = await res.text();
++      expect(text).not.toContain("segredo");
++      expect(JSON.parse(text)).toEqual({
++        type: "about:blank",
++        title: "Internal Server Error",
++        status: 500,
++      });
++    });
++
++    it("keeps the format of generic errors (RF-07)", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        throw new Error("boom");
++      });
++      const res = await t.fetch("/");
++      expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++      const body = await res.json();
++      expect(body).toMatchObject({ status: 500, unhandled: true });
++      expect(body).not.toHaveProperty("title");
++    });
++
++    it("exposes stack in debug", async () => {
++      t.app.config.debug = true;
++      t.app.get("/", () => {
++        throw unhandled();
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body.stack).toBeInstanceOf(Array);
++      expect(body).not.toHaveProperty("data");
++      expect(body).not.toHaveProperty("detail");
++    });
++  },
++  { allowUnhandledErrors: true },
++);
+diff --git a/test/unit/package.test.ts b/test/unit/package.test.ts
+index 71bbd62..58acf95 100644
+--- a/test/unit/package.test.ts
++++ b/test/unit/package.test.ts
+@@ -102,6 +102,7 @@ describe("h3 package", () => {
+         "onRequest",
+         "onResponse",
+         "parseCookies",
++        "problem",
+         "proxy",
+         "proxyRequest",
+         "raw",

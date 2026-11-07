@@ -1,0 +1,385 @@
+diff --git a/src/utils/internal/session.ts b/src/utils/internal/session.ts
+index a5086bf..e9d3ae2 100644
+--- a/src/utils/internal/session.ts
++++ b/src/utils/internal/session.ts
+@@ -8,6 +8,10 @@ export const kLegacySeal: unique symbol = /* @__PURE__ */ Symbol.for(
+   "h3.internal.session.legacy-seal",
+ );
+ 
++export const kRotatedSeal: unique symbol = /* @__PURE__ */ Symbol.for(
++  "h3.internal.session.rotated-seal",
++);
++
+ export const DEFAULT_SESSION_NAME = "h3";
+ 
+ export const DEFAULT_SESSION_COOKIE: SessionConfig["cookie"] = {
+diff --git a/src/utils/session.ts b/src/utils/session.ts
+index 074f3de..c422fcd 100644
+--- a/src/utils/session.ts
++++ b/src/utils/session.ts
+@@ -2,7 +2,7 @@ import { seal, unseal, defaults as sealDefaults } from "./internal/iron-crypto.t
+ import { getChunkedCookie, setChunkedCookie, deleteChunkedCookie } from "./cookie.ts";
+ import { DEFAULT_SESSION_NAME, DEFAULT_SESSION_COOKIE } from "./internal/session.ts";
+ import { EmptyObject } from "./internal/obj.ts";
+-import { kGetSession, kLegacySeal, kSessionNew } from "./internal/session.ts";
++import { kGetSession, kLegacySeal, kRotatedSeal, kSessionNew } from "./internal/session.ts";
+ 
+ import type { H3Event, HTTPEvent } from "../event.ts";
+ import type { CookieSerializeOptions } from "cookie-es";
+@@ -46,6 +46,18 @@ export interface SessionConfig {
+    * unsafe even at 32+ characters.
+    */
+   password: string;
++  /**
++   * Previous passwords that can still open sessions sealed before a rotation.
++   * Tried after `password`, in order; the first one that opens a session is
++   * used. Sessions opened with one of these are resealed with `password` on the
++   * same request (cookie-based sessions only). Never used to seal.
++   *
++   * Each extra password costs one more key derivation for every cookie that
++   * does not open with `password`, so keep the list short and remove entries
++   * once the rotation window has passed. Subject to the same minimum length as
++   * `password`.
++   */
++  extraUnsealPasswords?: string[];
+   /**
+    * Absolute session lifetime in seconds, counted from when the session was
+    * created. Reached regardless of how active the user is.
+@@ -151,6 +163,7 @@ export async function getSession<T extends SessionData = SessionData>(
+   config: SessionConfig,
+ ): Promise<Session<T>> {
+   const sessionName = config.name || DEFAULT_SESSION_NAME;
++  assertExtraUnsealPasswords(config);
+ 
+   const context = getEventContext<H3EventContext>(event);
+ 
+@@ -200,6 +213,10 @@ export async function getSession<T extends SessionData = SessionData>(
+         if (legacySeal) {
+           delete (unsealed as any)[kLegacySeal];
+         }
++        const rotatedSeal = unsealed && (unsealed as any)[kRotatedSeal];
++        if (rotatedSeal) {
++          delete (unsealed as any)[kRotatedSeal];
++        }
+         // `JSON.parse` yields plain objects; keep live data prototype-free so a
+         // `__proto__` key in a later `updateSession` cannot swap its prototype.
+         if (unsealed?.data) {
+@@ -208,10 +225,15 @@ export async function getSession<T extends SessionData = SessionData>(
+         Object.assign(session, unsealed);
+         delete context.sessions![sessionName][kGetSession];
+         // Proactively reseal legacy cookies with the current seal options, and
+-        // reseal under idleTimeout to slide the window (see `shouldSlide`). A
+-        // session that failed to unseal has no id and is replaced below, so
+-        // resealing it here is wasted work.
+-        if (session.id && sessionFromCookie && (legacySeal || shouldSlide(session, config))) {
++        // sessions opened with an extra password (`extraUnsealPasswords`) with
++        // `password`, and reseal under idleTimeout to slide the window (see
++        // `shouldSlide`). A session that failed to unseal has no id and is
++        // replaced below, so resealing it here is wasted work.
++        if (
++          session.id &&
++          sessionFromCookie &&
++          (legacySeal || rotatedSeal || shouldSlide(session, config))
++        ) {
+           await updateSession(event, config);
+         }
+         return session as Session<T>;
+@@ -319,33 +341,32 @@ export async function unsealSession(
+     ttl: (config.maxAge || config.idleTimeout || 0) * 1000,
+     ...config.seal,
+   };
+-  let unsealed: Partial<Session>;
+-  try {
+-    unsealed = (await unseal(sealed, config.password, sealOptions)) as Partial<Session>;
+-  } catch (error) {
+-    // TODO: Remove this fallback (and `legacySealFallback`) in v3. Removing it
+-    // in a v2 release would invalidate existing sessions sealed with 1 iteration.
+-    // Sessions sealed before the default PBKDF2 iterations were raised from 1
+-    // to 8192 fail HMAC verification; retry with the legacy count so existing
+-    // sessions survive the upgrade (getSession reseals them with the current
+-    // options).
+-    if (
+-      config.legacySealFallback === false ||
+-      sealOptions.integrity.iterations === 1 ||
+-      !(error instanceof Error) ||
+-      error.message !== "Bad hmac value"
+-    ) {
+-      throw error;
+-    }
+-    unsealed = (await unseal(sealed, config.password, {
+-      ...sealOptions,
+-      encryption: { ...sealOptions.encryption, iterations: 1 },
+-      integrity: { ...sealOptions.integrity, iterations: 1 },
+-    })) as Partial<Session>;
+-    if (unsealed) {
+-      (unsealed as any)[kLegacySeal] = true;
++  // Try `password` first, then each extra password in order. Only a wrong
++  // password (bad HMAC) moves on to the next one; any other error is final.
++  const passwords = [config.password, ...(config.extraUnsealPasswords || [])];
++  let unsealed: Partial<Session> | undefined;
++  let firstError: unknown;
++  for (const [index, password] of passwords.entries()) {
++    try {
++      unsealed = await unsealWithPassword(sealed, password, config, sealOptions);
++      if (index > 0) {
++        (unsealed as any)[kRotatedSeal] = true;
++      }
++      break;
++    } catch (error) {
++      if (index === 0) {
++        firstError = error;
++      }
++      if (!(error instanceof Error) || error.message !== "Bad hmac value") {
++        throw error;
++      }
+     }
+   }
++  // No password opened it: report the primary password's error, so the message
++  // does not reveal which password was tried
++  if (!unsealed) {
++    throw firstError;
++  }
+   // Absolute lifetime, counted from when the session was created
+   if (config.maxAge) {
+     const age = Date.now() - (unsealed.createdAt || Number.NEGATIVE_INFINITY);
+@@ -462,3 +483,59 @@ function sessionExpires(session: Session<any>, config: SessionConfig): Date | un
+   }
+   return times.length > 0 ? new Date(Math.min(...times)) : undefined;
+ }
++
++/**
++ * Unseal with one password, falling back to the legacy 1-iteration seal when
++ * allowed. Rejects with the original "Bad hmac value" when neither matches.
++ */
++async function unsealWithPassword(
++  sealed: string,
++  password: string,
++  config: SessionConfig,
++  sealOptions: SealOptions,
++): Promise<Partial<Session>> {
++  try {
++    return (await unseal(sealed, password, sealOptions)) as Partial<Session>;
++  } catch (error) {
++    // TODO: Remove this fallback (and `legacySealFallback`) in v3. Removing it
++    // in a v2 release would invalidate existing sessions sealed with 1 iteration.
++    // Sessions sealed before the default PBKDF2 iterations were raised from 1
++    // to 8192 fail HMAC verification; retry with the legacy count so existing
++    // sessions survive the upgrade (getSession reseals them with the current
++    // options).
++    if (
++      config.legacySealFallback === false ||
++      sealOptions.integrity.iterations === 1 ||
++      !(error instanceof Error) ||
++      error.message !== "Bad hmac value"
++    ) {
++      throw error;
++    }
++    const unsealed = (await unseal(sealed, password, {
++      ...sealOptions,
++      encryption: { ...sealOptions.encryption, iterations: 1 },
++      integrity: { ...sealOptions.integrity, iterations: 1 },
++    })) as Partial<Session>;
++    if (unsealed) {
++      (unsealed as any)[kLegacySeal] = true;
++    }
++    return unsealed;
++  }
++}
++
++/**
++ * Reject empty or too-short extra passwords before the session is read. Checked
++ * here rather than in `unsealSession`, whose errors `getSession` swallows, so a
++ * bad extra password fails loudly instead of silently signing users out.
++ */
++function assertExtraUnsealPasswords(config: SessionConfig): void {
++  const minLength = { ...sealDefaults, ...config.seal }.encryption.minPasswordlength;
++  for (const password of config.extraUnsealPasswords || []) {
++    if (!password) {
++      throw new Error("Empty password");
++    }
++    if (password.length < minLength) {
++      throw new Error(`Password string too short (min ${minLength} characters required)`);
++    }
++  }
++}
+diff --git a/test/sdd-extra-unseal-passwords.test.ts b/test/sdd-extra-unseal-passwords.test.ts
+new file mode 100644
+index 0000000..32a467c
+--- /dev/null
++++ b/test/sdd-extra-unseal-passwords.test.ts
+@@ -0,0 +1,175 @@
++import type { SessionConfig } from "../src/utils/session.ts";
++import { getSession } from "../src/index.ts";
++import { seal, unseal, defaults as sealDefaults } from "../src/utils/internal/iron-crypto.ts";
++import { describeMatrix } from "./_setup.ts";
++
++const current = "current-password-" + "a".repeat(20);
++const previous = "previous-password-" + "b".repeat(20);
++const older = "older-password-" + "x".repeat(20);
++const unknown = "unknown-password-" + "c".repeat(20);
++
++const legacyOptions = {
++  ...sealDefaults,
++  encryption: { ...sealDefaults.encryption, iterations: 1 },
++  integrity: { ...sealDefaults.integrity, iterations: 1 },
++};
++
++const payload = (createdAt = Date.now()) => ({
++  id: "s1",
++  createdAt,
++  data: { user: "alice" },
++});
++
++// Value of `name` in a Set-Cookie header, decoded the way the browser sends it back
++const cookieValue = (setCookie: string, name: string) =>
++  decodeURIComponent(setCookie.split(";")[0].slice(name.length + 1));
++
++describeMatrix("session extra unseal passwords", (t, { it, expect }) => {
++  const base: SessionConfig = {
++    name: "h3-rot",
++    password: current,
++    generateId: () => "new",
++  };
++
++  // Read route that reports failures as data instead of letting them reach the app
++  const mountRead = (path: string, config: SessionConfig) => {
++    t.app.all(path, async (event) => {
++      try {
++        const session = await getSession(event, config);
++        return { id: session.id, data: session.data };
++      } catch (error) {
++        return { error: (error as Error).message };
++      }
++    });
++  };
++
++  it("opens a session sealed with an extra password and reseals it with password (RF-03, RF-04)", async () => {
++    mountRead("/rotate", { ...base, extraUnsealPasswords: [previous] });
++    const sealed = await seal(payload(), previous, sealDefaults);
++
++    const res = await t.fetch("/rotate", { headers: { Cookie: `h3-rot=${sealed}` } });
++    expect(await res.json()).toMatchObject({ id: "s1", data: { user: "alice" } });
++
++    const setCookies = res.headers.getSetCookie();
++    expect(setCookies).toHaveLength(1);
++    const resealed = cookieValue(setCookies[0], "h3-rot");
++    await expect(unseal(resealed, current, sealDefaults)).resolves.toMatchObject({ id: "s1" });
++    await expect(unseal(resealed, previous, sealDefaults)).rejects.toThrow();
++  });
++
++  it("does not reseal again once the migrated cookie is read without extra passwords (T2)", async () => {
++    mountRead("/rotate", { ...base, extraUnsealPasswords: [previous] });
++    mountRead("/current", base);
++    const sealed = await seal(payload(), previous, sealDefaults);
++
++    const first = await t.fetch("/rotate", { headers: { Cookie: `h3-rot=${sealed}` } });
++    const migrated = first.headers.getSetCookie()[0].split(";")[0];
++
++    const second = await t.fetch("/current", { headers: { Cookie: migrated } });
++    expect(await second.json()).toMatchObject({ id: "s1", data: { user: "alice" } });
++    expect(second.headers.getSetCookie()).toHaveLength(0);
++  });
++
++  it("tries extra passwords in order and opens with the second one (RF-02, T3)", async () => {
++    mountRead("/rotate", { ...base, extraUnsealPasswords: [older, previous] });
++    const sealed = await seal(payload(), previous, sealDefaults);
++
++    const res = await t.fetch("/rotate", { headers: { Cookie: `h3-rot=${sealed}` } });
++    expect(await res.json()).toMatchObject({ id: "s1", data: { user: "alice" } });
++    expect(res.headers.getSetCookie()).toHaveLength(1);
++  });
++
++  it("opens with password without trying extras or resealing (RF-02, T4)", async () => {
++    mountRead("/rotate", { ...base, extraUnsealPasswords: [previous] });
++    const sealed = await seal(payload(), current, sealDefaults);
++
++    const res = await t.fetch("/rotate", { headers: { Cookie: `h3-rot=${sealed}` } });
++    expect(await res.json()).toMatchObject({ id: "s1", data: { user: "alice" } });
++    expect(res.headers.getSetCookie()).toHaveLength(0);
++  });
++
++  it("opens an extra-sealed session from the session header without resealing it (RF-09, T5)", async () => {
++    mountRead("/rotate", { ...base, extraUnsealPasswords: [previous] });
++    const sealed = await seal(payload(), previous, sealDefaults);
++
++    const res = await t.fetch("/rotate", { headers: { "x-h3-rot-session": sealed } });
++    expect(await res.json()).toMatchObject({ id: "s1", data: { user: "alice" } });
++    expect(res.headers.getSetCookie()).toHaveLength(0);
++  });
++
++  it("opens and migrates a legacy 1-iteration session sealed with an extra password (RF-07, T6)", async () => {
++    mountRead("/rotate", { ...base, extraUnsealPasswords: [previous] });
++    const sealed = await seal(payload(), previous, legacyOptions);
++
++    const res = await t.fetch("/rotate", { headers: { Cookie: `h3-rot=${sealed}` } });
++    expect(await res.json()).toMatchObject({ id: "s1", data: { user: "alice" } });
++
++    const setCookies = res.headers.getSetCookie();
++    expect(setCookies).toHaveLength(1);
++    const resealed = cookieValue(setCookies[0], "h3-rot");
++    await expect(unseal(resealed, current, sealDefaults)).resolves.toMatchObject({
++      id: "s1",
++      data: { user: "alice" },
++    });
++  });
++
++  it("rejects a legacy extra-sealed session with legacySealFallback: false (RF-07, T7)", async () => {
++    mountRead("/strict", { ...base, extraUnsealPasswords: [previous], legacySealFallback: false });
++    const sealed = await seal(payload(), previous, legacyOptions);
++
++    const res = await t.fetch("/strict", { headers: { Cookie: `h3-rot=${sealed}` } });
++    const body = await res.json();
++    expect(body.id).not.toBe("s1");
++    expect(body.data).toEqual({});
++  });
++
++  it("returns an empty session when no password opens the cookie, without naming them (RF-06, T8)", async () => {
++    mountRead("/rotate", { ...base, extraUnsealPasswords: [previous] });
++    const sealed = await seal(payload(), unknown, sealDefaults);
++
++    const res = await t.fetch("/rotate", { headers: { Cookie: `h3-rot=${sealed}` } });
++    const body = await res.json();
++    const text = JSON.stringify(body);
++    expect(body).toMatchObject({ id: "new", data: {} });
++    expect(text).not.toContain(current);
++    expect(text).not.toContain(previous);
++    expect(res.headers.getSetCookie()).toHaveLength(0);
++  });
++
++  it("rejects an empty extra password with the empty password error (RF-08, T9)", async () => {
++    mountRead("/rotate", { ...base, extraUnsealPasswords: [""] });
++
++    const res = await t.fetch("/rotate");
++    expect((await res.json()).error).toContain("Empty password");
++  });
++
++  it("rejects an extra password shorter than the minimum length (D-04, T10)", async () => {
++    mountRead("/rotate", { ...base, extraUnsealPasswords: ["curta"] });
++
++    const res = await t.fetch("/rotate");
++    expect((await res.json()).error).toContain("too short");
++  });
++
++  it("does not open an extra-sealed session past maxAge (D-06, T11)", async () => {
++    const config: SessionConfig = {
++      ...base,
++      maxAge: 60,
++      seal: { ...sealDefaults, ttl: 0 },
++      extraUnsealPasswords: [previous],
++    };
++    mountRead("/rotate", config);
++    const sealed = await seal(payload(Date.now() - 61_000), previous, {
++      ...sealDefaults,
++      ttl: 0,
++    });
++
++    const res = await t.fetch("/rotate", { headers: { Cookie: `h3-rot=${sealed}` } });
++    expect((await res.json()).data).toEqual({});
++    expect(res.headers.getSetCookie()).toHaveLength(0);
++  });
++
++  it("types extraUnsealPasswords as an optional string array (RF-01, T12)", () => {
++    const config: SessionConfig = { password: current, extraUnsealPasswords: [previous] };
++    expect(config.extraUnsealPasswords).toEqual([previous]);
++  });
++});

@@ -790,5 +790,1013 @@
   "tipo": "tasks",
   "condicao": "C6",
   "variante": "session-1050-b"
+ },
+ "aavaab5mm": {
+  "id": "C1-problem-1384-c-r1",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-c"
+ },
+ "af9xvy939": {
+  "id": "C1-problem-1384-c-r1",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-c"
+ },
+ "apqpqc6rd": {
+  "id": "C0-problem-1384-a-r2",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "a6y7vj0m7": {
+  "id": "C0-problem-1384-a-r2",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "as6n8hnge": {
+  "id": "C4-session-1050-a-r5",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "az5d7whs1": {
+  "id": "C4-session-1050-a-r5",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "ae96s1hpa": {
+  "id": "C0-range-1267-r5",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "range-1267"
+ },
+ "a17gwwnz3": {
+  "id": "C0-range-1267-r5",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "range-1267"
+ },
+ "az29dwykf": {
+  "id": "C4-problem-1384-a-r1",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "aq5gwhcws": {
+  "id": "C4-problem-1384-a-r1",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "a9gws1jb5": {
+  "id": "C0-problem-1384-b-r5",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "av3mkzdcc": {
+  "id": "C0-problem-1384-b-r5",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "a6qwf440e": {
+  "id": "C0-session-1050-a-r1",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "avec6bx2z": {
+  "id": "C0-session-1050-a-r1",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "and95f167": {
+  "id": "C0-session-1050-b-r6",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "anh2fenkv": {
+  "id": "C0-session-1050-b-r6",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "ankds08cm": {
+  "id": "C1-problem-1384-a-r1",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-a"
+ },
+ "aby38c6vy": {
+  "id": "C1-problem-1384-a-r1",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-a"
+ },
+ "aqca1rhnm": {
+  "id": "C4-session-1050-b-r5",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "a1wzv2sm0": {
+  "id": "C4-session-1050-b-r5",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "asm0xc1zv": {
+  "id": "C4-session-1050-a-r4",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "ar5shm8sj": {
+  "id": "C4-session-1050-a-r4",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "ah23ybwp4": {
+  "id": "C0-session-1050-a-r5",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "akqh4hfy3": {
+  "id": "C0-session-1050-a-r5",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "a7s43f86r": {
+  "id": "C4-problem-1384-c-r5",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "amqga7f57": {
+  "id": "C4-problem-1384-c-r5",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "a1n03yp9x": {
+  "id": "C4-session-1050-a-r6",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "aj620m521": {
+  "id": "C4-session-1050-a-r6",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "ab3f3ajt3": {
+  "id": "C0-problem-1384-b-r6",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "aa2edsw1h": {
+  "id": "C0-problem-1384-b-r6",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "a1c9t4vdn": {
+  "id": "C0-session-1050-a-r3",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "a6kw2r1e6": {
+  "id": "C0-session-1050-a-r3",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "aap9dszrz": {
+  "id": "C0-session-1050-b-r4",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "avtbb2rtt": {
+  "id": "C0-session-1050-b-r4",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "am63n3j3b": {
+  "id": "C4-session-1050-b-r4",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "agrg28d1w": {
+  "id": "C4-session-1050-b-r4",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "a5xer47x6": {
+  "id": "C0-problem-1384-a-r1",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "am7vegyhr": {
+  "id": "C0-problem-1384-a-r1",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "as92v9j10": {
+  "id": "C4-problem-1384-a-r6",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "apw2wvf51": {
+  "id": "C4-problem-1384-a-r6",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "anqxca7pv": {
+  "id": "C4-problem-1384-a-r3",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "athe380bd": {
+  "id": "C4-problem-1384-a-r3",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "aejbdejdq": {
+  "id": "C1-session-1050-a-r2",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "session-1050-a"
+ },
+ "atk7kg1b3": {
+  "id": "C1-session-1050-a-r2",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "session-1050-a"
+ },
+ "anr82tx6e": {
+  "id": "C4-range-1267-r4",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "afk1fmrf5": {
+  "id": "C4-range-1267-r4",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "actk45ccn": {
+  "id": "C0-problem-1384-c-r4",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "am1m65hz2": {
+  "id": "C0-problem-1384-c-r4",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "asden4ttq": {
+  "id": "C0-problem-1384-a-r3",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "atnp8cvkp": {
+  "id": "C0-problem-1384-a-r3",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "ay5qc2rjx": {
+  "id": "C0-session-1050-a-r4",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "aechk03nd": {
+  "id": "C0-session-1050-a-r4",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "agnyymbjd": {
+  "id": "C4-problem-1384-a-r5",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "aqqrqdnh4": {
+  "id": "C4-problem-1384-a-r5",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "ae0c65yqk": {
+  "id": "C0-problem-1384-a-r5",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "aq0vy0gyt": {
+  "id": "C0-problem-1384-a-r5",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "ax2yyqpcc": {
+  "id": "C0-problem-1384-c-r1",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "adcan07wh": {
+  "id": "C0-problem-1384-c-r1",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "a8wpc8crb": {
+  "id": "C1-problem-1384-b-r2",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-b"
+ },
+ "aj0fzf9a0": {
+  "id": "C1-problem-1384-b-r2",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-b"
+ },
+ "agwkwy1jm": {
+  "id": "C0-problem-1384-c-r6",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "ar3fw3fqm": {
+  "id": "C0-problem-1384-c-r6",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "ajts5x0n1": {
+  "id": "C4-range-1267-r6",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "a5ee2jjg2": {
+  "id": "C4-range-1267-r6",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "af39x3h0m": {
+  "id": "C4-problem-1384-c-r2",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "adksjpwp8": {
+  "id": "C4-problem-1384-c-r2",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "aqy7teqy2": {
+  "id": "C1-problem-1384-b-r3",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-b"
+ },
+ "anjjrj6eh": {
+  "id": "C1-problem-1384-b-r3",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-b"
+ },
+ "awqcvcsvm": {
+  "id": "C4-problem-1384-c-r3",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "a53mhdyxy": {
+  "id": "C4-problem-1384-c-r3",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "atvdyacsm": {
+  "id": "C1-session-1050-a-r3",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "session-1050-a"
+ },
+ "aqt1wnpf2": {
+  "id": "C1-session-1050-a-r3",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "session-1050-a"
+ },
+ "aq6c34t2k": {
+  "id": "C1-problem-1384-a-r2",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-a"
+ },
+ "aehk1066w": {
+  "id": "C1-problem-1384-a-r2",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-a"
+ },
+ "a77f59n8v": {
+  "id": "C0-problem-1384-b-r4",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "a64h187gq": {
+  "id": "C0-problem-1384-b-r4",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "afv6qgt95": {
+  "id": "C4-problem-1384-b-r5",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "amacnjcs6": {
+  "id": "C4-problem-1384-b-r5",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "aggtfdmfe": {
+  "id": "C0-problem-1384-b-r2",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "aanqxbm6e": {
+  "id": "C0-problem-1384-b-r2",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "ac3k5c9ws": {
+  "id": "C4-problem-1384-b-r6",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "are7z91yd": {
+  "id": "C4-problem-1384-b-r6",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "a7aq9xsqt": {
+  "id": "C4-session-1050-a-r1",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "afztz28gs": {
+  "id": "C4-session-1050-a-r1",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "a9txmhxsz": {
+  "id": "C0-problem-1384-c-r2",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "a8kcw8xxe": {
+  "id": "C0-problem-1384-c-r2",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "akb5xwrv5": {
+  "id": "C0-session-1050-a-r6",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "a4kvvmr6q": {
+  "id": "C0-session-1050-a-r6",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "a8y5v7bnv": {
+  "id": "C0-problem-1384-c-r5",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "ahyj2rrrm": {
+  "id": "C0-problem-1384-c-r5",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "a4qr9xdqg": {
+  "id": "C1-problem-1384-c-r3",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-c"
+ },
+ "ajnf9an0v": {
+  "id": "C1-problem-1384-c-r3",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-c"
+ },
+ "apthfwrzf": {
+  "id": "C4-session-1050-a-r2",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "ah939j4j9": {
+  "id": "C4-session-1050-a-r2",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "azqr3pp4n": {
+  "id": "C4-problem-1384-a-r4",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "akd1kcqcf": {
+  "id": "C4-problem-1384-a-r4",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "ak2vsdyyy": {
+  "id": "C4-problem-1384-b-r1",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "ar0fz61rq": {
+  "id": "C4-problem-1384-b-r1",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "a5568sxg3": {
+  "id": "C4-problem-1384-c-r1",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "a8vdmhn6q": {
+  "id": "C4-problem-1384-c-r1",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "a75c2k35z": {
+  "id": "C4-session-1050-b-r6",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "am3whz5ax": {
+  "id": "C4-session-1050-b-r6",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "atm01msaa": {
+  "id": "C0-problem-1384-a-r6",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "a6j5xkqsc": {
+  "id": "C0-problem-1384-a-r6",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "afd880sct": {
+  "id": "C4-problem-1384-a-r2",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "a29jqm0t1": {
+  "id": "C4-problem-1384-a-r2",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-a"
+ },
+ "abk9rmcm7": {
+  "id": "C4-problem-1384-c-r4",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "a98wb0sqq": {
+  "id": "C4-problem-1384-c-r4",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "avpv2bxw8": {
+  "id": "C4-problem-1384-b-r4",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "aspr6q2p6": {
+  "id": "C4-problem-1384-b-r4",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "ahj7s3peb": {
+  "id": "C0-problem-1384-c-r3",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "a8cz41kx3": {
+  "id": "C0-problem-1384-c-r3",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "ayfmfja0e": {
+  "id": "C1-session-1050-a-r1",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "session-1050-a"
+ },
+ "a79x2w71g": {
+  "id": "C1-session-1050-a-r1",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "session-1050-a"
+ },
+ "a25y4y8vq": {
+  "id": "C4-problem-1384-c-r6",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "ahyj6gs8c": {
+  "id": "C4-problem-1384-c-r6",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-c"
+ },
+ "a2k745k77": {
+  "id": "C0-range-1267-r6",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "range-1267"
+ },
+ "abzbqdmj1": {
+  "id": "C0-range-1267-r6",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "range-1267"
+ },
+ "a1tg49yzv": {
+  "id": "C4-problem-1384-b-r2",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "a2198054x": {
+  "id": "C4-problem-1384-b-r2",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "a4jpza5f3": {
+  "id": "C0-problem-1384-b-r3",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "a6z72kt0v": {
+  "id": "C0-problem-1384-b-r3",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "acjr5s4bj": {
+  "id": "C4-problem-1384-b-r3",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "ak3qwg1pm": {
+  "id": "C4-problem-1384-b-r3",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "akq676fgn": {
+  "id": "C0-problem-1384-b-r1",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "abveyvksk": {
+  "id": "C0-problem-1384-b-r1",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "abc2sr2ac": {
+  "id": "C0-session-1050-b-r5",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "a4p94drja": {
+  "id": "C0-session-1050-b-r5",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-b"
+ },
+ "afnt3rdvd": {
+  "id": "C1-problem-1384-b-r1",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-b"
+ },
+ "avskj1e0y": {
+  "id": "C1-problem-1384-b-r1",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-b"
+ },
+ "aqrzvt0a8": {
+  "id": "C0-problem-1384-a-r4",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "av3j31g2n": {
+  "id": "C0-problem-1384-a-r4",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-a"
+ },
+ "am1m8a0nk": {
+  "id": "C0-range-1267-r4",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "range-1267"
+ },
+ "avf19j6cc": {
+  "id": "C0-range-1267-r4",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "range-1267"
+ },
+ "a13eegx5w": {
+  "id": "C4-session-1050-a-r3",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "a92phcbr5": {
+  "id": "C4-session-1050-a-r3",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "an8rgw3az": {
+  "id": "C4-range-1267-r5",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "abz6sc182": {
+  "id": "C4-range-1267-r5",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "a6rrtbef8": {
+  "id": "C1-problem-1384-c-r2",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-c"
+ },
+ "ad2g892yt": {
+  "id": "C1-problem-1384-c-r2",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-c"
+ },
+ "anxabpbq9": {
+  "id": "C0-session-1050-a-r2",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "as2w3qe71": {
+  "id": "C0-session-1050-a-r2",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "a7wv1y5xb": {
+  "id": "C1-problem-1384-a-r3",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-a"
+ },
+ "a1961fvan": {
+  "id": "C1-problem-1384-a-r3",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-a"
+ },
+ "a30me8fpj": {
+  "id": "C4-session-1050-a-r7",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "azfdgy3ww": {
+  "id": "C4-session-1050-a-r7",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "agj97h4nh": {
+  "id": "C0-problem-1384-b-r9",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "aqevkyhwt": {
+  "id": "C0-problem-1384-b-r9",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "abf959vm8": {
+  "id": "C0-session-1050-a-r7",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "a5pg0zyf3": {
+  "id": "C0-session-1050-a-r7",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "a41rkmvr8": {
+  "id": "C0-problem-1384-c-r7",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "az7traep8": {
+  "id": "C0-problem-1384-c-r7",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-c"
+ },
+ "af4twkev8": {
+  "id": "C0-problem-1384-b-r7",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "a9pq3y89b": {
+  "id": "C0-problem-1384-b-r7",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "problem-1384-b"
+ },
+ "acspdqs3r": {
+  "id": "C4-session-1050-b-r8",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "a5s70z88h": {
+  "id": "C4-session-1050-b-r8",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "ac22qmvkk": {
+  "id": "C1-problem-1384-b-r4",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "problem-1384-b"
+ },
+ "abbj9rtqz": {
+  "id": "C1-problem-1384-b-r4",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "problem-1384-b"
+ },
+ "apwmzk22p": {
+  "id": "C4-session-1050-a-r9",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "axn5evz4k": {
+  "id": "C4-session-1050-a-r9",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-a"
+ },
+ "a5rh2e2zy": {
+  "id": "C1-range-1267-r4",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "range-1267"
+ },
+ "an0at8pjf": {
+  "id": "C1-range-1267-r4",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "range-1267"
+ },
+ "ap1p6f4y8": {
+  "id": "C5-session-1050-b-r5",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "a93bzjt8s": {
+  "id": "C5-session-1050-b-r5",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "a0qgabdxw": {
+  "id": "C4-problem-1384-b-r8",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "a52mthjzm": {
+  "id": "C4-problem-1384-b-r8",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "problem-1384-b"
+ },
+ "a6v902y04": {
+  "id": "C0-session-1050-a-r9",
+  "tipo": "techspec",
+  "condicao": "C0",
+  "variante": "session-1050-a"
+ },
+ "avebdwc2t": {
+  "id": "C0-session-1050-a-r9",
+  "tipo": "tasks",
+  "condicao": "C0",
+  "variante": "session-1050-a"
  }
 }
