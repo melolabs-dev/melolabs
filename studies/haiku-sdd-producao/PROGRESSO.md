@@ -1,18 +1,18 @@
 # Progresso: SDD só com Haiku: o que sobra de qualidade quando o custo cai
 
-Atualizado em 2026-11-05 08:10 · congelamento dos dados: 2026-11-13
+Atualizado em 2026-11-07 13:45 · congelamento dos dados: 2026-11-13
 
-**11/46 passos (24%)**
+**27/46 passos (59%)**
 
 | Fase | Passos | Situação |
 | --- | --- | --- |
 | F0 Premissa e escopo | 3/3 | ██████████ |
 | F1 Revisão de evidências | 6/6 | ██████████ |
-| F2 Hipóteses | 2/3 | ███████░░░ |
-| F3 Pré-registro | 0/3 | ░░░░░░░░░░ |
-| F4 Plano de testes | 0/6 | ░░░░░░░░░░ |
-| F5 Execução | 0/3 | ░░░░░░░░░░ |
-| F6 Análise | 0/4 | ░░░░░░░░░░ |
+| F2 Hipóteses | 3/3 | ██████████ |
+| F3 Pré-registro | 3/3 | ██████████ |
+| F4 Plano de testes | 6/6 | ██████████ |
+| F5 Execução | 3/3 | ██████████ |
+| F6 Análise | 3/4 | ████████░░ |
 | F7 Validação independente | 0/4 | ░░░░░░░░░░ |
 | F8 Congelamento dos dados | 0/3 | ░░░░░░░░░░ |
 | F9 Artefatos e escrita | 0/5 | ░░░░░░░░░░ |
@@ -37,31 +37,31 @@ Atualizado em 2026-11-05 08:10 · congelamento dos dados: 2026-11-13
 ### F2 · Hipóteses
 - [x] **F2.1** Formular hipóteses falsificáveis, cada uma com métrica, limiar e critério de refutação
 - [x] **F2.2** Fixar para cada hipótese a margem de equivalência e o menor efeito que importa na prática
-- [ ] **F2.3** Declarar a hipótese nula, ao menos um controle negativo e as explicações alternativas — falta: manual: falta evidência
+- [x] **F2.3** Declarar a hipótese nula, ao menos um controle negativo e as explicações alternativas
 
 ### F3 · Pré-registro
-- [ ] **F3.1** Escrever o plano de análise: estatísticas, intervalos de confiança, correção de múltiplas comparações, regra de outliers — falta: analise-plano.md ainda tem TODO
-- [ ] **F3.2** Dimensionar a amostra com um piloto: estimar a variância e definir n e a regra de parada — falta: manual: falta evidência
-- [ ] **F3.3** Congelar o pré-registro com uma tag git prereg-<slug> — falta: manual: falta evidência
+- [x] **F3.1** Escrever o plano de análise: estatísticas, intervalos de confiança, correção de múltiplas comparações, regra de outliers
+- [x] **F3.2** Dimensionar a amostra com um piloto: estimar a variância e definir n e a regra de parada
+- [x] **F3.3** Congelar o pré-registro com uma tag git prereg-<slug>
 
 ### F4 · Plano de testes
-- [ ] **F4.1** Especificar o ambiente: hardware, sistema, versões fixadas, lockfile ou container — falta: ambiente.md ainda tem TODO
-- [ ] **F4.2** Definir variáveis, condições, ordem aleatória, sementes, aquecimento e número de repetições — falta: plano-de-testes.md ainda tem TODO
-- [ ] **F4.3** Escrever o dicionário de dados e o esquema de coleta — falta: dicionario.md ainda tem TODO
-- [ ] **F4.4** Automatizar a execução em um único comando (experimentos/run), sem passo manual — falta: experimentos/README.md ainda tem TODO
-- [ ] **F4.5** Fazer o ensaio geral com amostra pequena e validar a coleta — falta: manual: falta evidência
-- [ ] **F4.6** Revisar o plano com um segundo leitor (humano ou IA adversária) antes de executar — falta: manual: falta evidência
+- [x] **F4.1** Especificar o ambiente: hardware, sistema, versões fixadas, lockfile ou container
+- [x] **F4.2** Definir variáveis, condições, ordem aleatória, sementes, aquecimento e número de repetições
+- [x] **F4.3** Escrever o dicionário de dados e o esquema de coleta
+- [x] **F4.4** Automatizar a execução em um único comando (experimentos/run), sem passo manual
+- [x] **F4.5** Fazer o ensaio geral com amostra pequena e validar a coleta
+- [x] **F4.6** Revisar o plano com um segundo leitor (humano ou IA adversária) antes de executar
 
 ### F5 · Execução
-- [ ] **F5.1** Executar todas as condições nas repetições planejadas; dados brutos só se acrescentam — falta: 0/1 arquivo(s) em dados/bruto/*
-- [ ] **F5.2** Registrar ambiente e data de cada execução e todos os desvios do plano no diário — falta: diario.md ainda tem TODO
-- [ ] **F5.3** Auditar os dados: nenhuma linha editada à mão, checksums batendo, nenhuma execução descartada sem registro — falta: manual: falta evidência
+- [x] **F5.1** Executar todas as condições nas repetições planejadas; dados brutos só se acrescentam
+- [x] **F5.2** Registrar ambiente e data de cada execução e todos os desvios do plano no diário
+- [x] **F5.3** Auditar os dados: nenhuma linha editada à mão, checksums batendo, nenhuma execução descartada sem registro
 
 ### F6 · Análise
-- [ ] **F6.1** Rodar a análise exatamente como pré-registrada, com script versionado — falta: 0/1 arquivo(s) em analise/*
-- [ ] **F6.2** Atualizar o status de cada hipótese: confirmada, refutada ou equivalente — falta: sem decisão ou sem evidência: H1=pendente, H2=pendente, H3=pendente, H4=pendente, H5=pendente, H6=pendente, H7=pendente, H8=pendente, H9=pendente, H10=pendente
+- [x] **F6.1** Rodar a análise exatamente como pré-registrada, com script versionado
+- [x] **F6.2** Atualizar o status de cada hipótese: confirmada, refutada ou equivalente
 - [ ] **F6.3** Se alguma ficou subpotente, estender a amostra pela regra de parada; nunca publicar como conclusão — falta: manual: falta evidência
-- [ ] **F6.4** Fazer as análises de sensibilidade e as exploratórias, rotuladas como tal — falta: manual: falta evidência
+- [x] **F6.4** Fazer as análises de sensibilidade e as exploratórias, rotuladas como tal
 
 ### F7 · Validação independente
 - [ ] **F7.1** Reproduzir do zero em um clone limpo ou container, com um comando — falta: manual: falta evidência
@@ -82,7 +82,7 @@ Atualizado em 2026-11-05 08:10 · congelamento dos dados: 2026-11-13
 - [ ] **F9.5** Revisar confidencialidade e anonimização; marcar as notas-fonte como publicáveis — falta: manual: falta evidência
 
 ### F10 · Revisão e aprovação
-- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F2.3, F3.1, F3.2, F3.3, F4.1, F4.2, F4.3, F4.4…
+- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F6.3, F7.1, F7.2, F7.3, F7.4, F8.1, F8.2, F8.3…
 - [ ] **F10.2** Fact-check final: cada número do texto conferido contra os dados — falta: manual: falta evidência
 - [ ] **F10.3** Aprovação do autor, dita de forma explícita para cada idioma — falta: manual: falta evidência
 

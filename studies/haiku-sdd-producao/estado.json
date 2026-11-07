@@ -31,6 +31,18 @@
     "F4.5": {
       "feito": "2026-11-05",
       "evidencia": "Ensaio geral feito pelo piloto de 12 execucoes completas mais 1 de aquecimento (studies/haiku-sdd-producao/piloto.md): coleta, pontuacao, auditoria e dicionario de dados validados; smoke tests do harness com os contratos enxutos e os testes novos em 05/11/2026."
+    },
+    "F5.3": {
+      "feito": "2026-11-07",
+      "evidencia": "Auditoria 07/11/2026 (tools/harness/auditar.py, dados/processado/auditoria-dados.json): 138 de 138 execucoes do plano concluidas e sem extras; 604 linhas de consumo, 0 falha de infraestrutura; 0 transcricoes ausentes ou vazias; hashes de prompt batendo (0 divergentes); 0 arquivos brutos modificados apos o commit; 396 julgamentos validos, 0 duplicados, 1 erro registrado e refeito; 1 execucao com auditoria suspeita mantida (C2n-session-1050-b-r1); manifesto SHA-256 de 2641 arquivos em dados/bruto/CHECKSUMS.sha256"
+    },
+    "F4.6": {
+      "feito": "2026-11-07",
+      "evidencia": "Revisao adversarial independente em studies/haiku-sdd-producao/revisao-adversarial.md (06/11/2026): 7 itens bloqueantes e 11 importantes, conferidos e tratados no adendo 1 (tag prereg-haiku-sdd-producao-adendo1) antes da coleta principal"
+    },
+    "F6.4": {
+      "feito": "2026-11-07",
+      "evidencia": "analise/sensibilidade.py (07/11/2026), rotulada exploratoria: H4 sem execucao suspeita (mesmo resultado), H4 so nas variantes que discriminam (C4 menos C0 = -25 pontos), C4 contra C1 (+16,7 pontos no nucleo 100%), alfa por tipo (TechSpec 0,56; Tasks 0,55), alucinacoes por condicao, e 35 de 36 execucoes C4 com prompt acima de 100 mil tokens (custo de lista da CLI aplica a faixa mais cara: 0,43 contra 0,10 se fosse plano). Saida em dados/processado/sensibilidade.json"
     }
   },
   "auto_feito": {

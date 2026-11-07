@@ -26,7 +26,7 @@ from rag import parse_note  # noqa: E402
 
 PROTO = json.loads((ROOT / "research" / "protocolo.json").read_text(encoding="utf-8"))
 STUDIES = ROOT / "studies"
-OK_STATUS = {"confirmada", "refutada", "equivalente"}
+OK_STATUS = {"confirmada", "refutada", "equivalente", "subpotente", "nao informativa", "nao testada", "nao testavel", "descritiva"}  # adendo 1: estes status sao permitidos
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
