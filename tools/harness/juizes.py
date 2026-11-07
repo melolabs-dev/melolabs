@@ -28,6 +28,7 @@ BRUTO = STUDY / "dados" / "bruto"
 JUIZES = Path("C:/dev/juizes")
 MAPA = BRUTO / "mapa-cego.json"
 NOTAS = BRUTO / "juizes.jsonl"
+NJ = 5  # adendo 2: 5 amostras de juiz por artefato (eram 3)
 RUBRICA = (STUDY / "rubrica.md").read_text(encoding="utf-8")
 CRITERIOS = {"techspec": ["C1", "C2", "C3", "C4", "C5", "C6", "C7"], "tasks": ["T1", "T2", "T3", "T4", "T5"]}
 
@@ -102,7 +103,7 @@ def julgar(maximo=None):
             r = json.loads(l)
             if "criterios" in r:
                 feitos.add((r["codigo"], r["juiz"]))
-    fila = [(c, v["tipo"], j) for c, v in mapa.items() for j in (1, 2, 3) if (c, j) not in feitos]
+    fila = [(c, v["tipo"], j) for c, v in mapa.items() for j in range(1, NJ + 1) if (c, j) not in feitos]
     random.Random(20261106).shuffle(fila)
     n = 0
     for cod, tipo, j in fila:

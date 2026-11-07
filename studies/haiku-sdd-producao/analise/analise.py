@@ -20,6 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 BRUTO = ROOT / "dados" / "bruto"
 PROC = ROOT / "dados" / "processado"
 SEED = 20261106
+ESTENDIDA = "--estendida" in sys.argv  # adendo 2: todas as execucoes e todos os julgamentos; sem a flag, so o conjunto primario pre-registrado
+SUF = "-estendida" if ESTENDIDA else ""
 NBOOT = 10000
 NPERM = 10000
 Z = {0.05: 1.6449, 0.025: 1.9600}  # unilateral
@@ -32,9 +34,10 @@ def feature(variante):
 # ---------- carga ----------
 def carrega():
     runs = {}
+    plano_orig = {p["id"] for p in json.loads((BRUTO / "plano-execucoes.json").read_text(encoding="utf-8"))}
     for c in BRUTO.glob("*/concluida.json"):
         rid = c.parent.name
-        if rid.startswith("mini-"):
+        if rid.startswith("mini-") or (not ESTENDIDA and rid not in plano_orig):
             continue
         m = json.loads(c.read_text(encoding="utf-8"))
         s = json.loads((c.parent / "score.json").read_text(encoding="utf-8"))
@@ -153,8 +156,13 @@ def carrega_rubrica():
         if "criterios" in r:
             por[r["codigo"]].append(r)
     art = {}
+    orig = set((BRUTO / "ids-juizes.txt").read_text(encoding="utf-8").split())
     for cod, js in por.items():
         v = mapa[cod]
+        if not ESTENDIDA:
+            if v["id"] not in orig:
+                continue
+            js = [j for j in js if j["juiz"] <= 3]
         art[(v["id"], v["tipo"])] = {"cond": v["condicao"], "var": v["variante"], "feat": feature(v["variante"]),
                                       "soma": st.mean(sum(j["criterios"].values()) for j in js), "n_juizes": len(js),
                                       "aluc": st.mean(j.get("alucinacoes", 0) for j in js),
@@ -238,6 +246,10 @@ def main():
         out["rubrica"] = {"artefatos_julgados": {f"{c}/{t}": n for (c, t), n in sorted(sumn.items())}}
         itens = [u for a in art.values() for u in a["itens"]]
         out["rubrica"]["krippendorff_alfa_intervalo"] = krippendorff_interval(itens)
+        if ESTENDIDA:
+            out["rubrica"]["krippendorff_3_juizes_originais"] = krippendorff_interval([[x for x in u[:3]] for u in itens])
+            a5 = out["rubrica"]["krippendorff_alfa_intervalo"]
+            out["rubrica"]["alfa_esperado_da_media_de_5_spearman_brown_exploratorio"] = (5 * a5 / (1 + 4 * a5)) if a5 is not None else None
         out["rubrica"]["alucinacoes_media"] = {c: round(st.mean(a["aluc"] for a in art.values() if a["cond"] == c), 3) for c in sorted({a["cond"] for a in art.values()})}
 
         def contraste(cond_a, cond_b, minimo, nome):
@@ -300,13 +312,13 @@ def main():
         out["hipoteses"][h] = {"status": "não testada", "motivo": "fase C adiada para um paper futuro (decisão do autor, 06/11/2026)"}
 
     PROC.mkdir(parents=True, exist_ok=True)
-    (PROC / "analise.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    (PROC / f"analise{SUF}.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     md = ["# Resultado da análise pré-registrada", f"Gerado em {out['gerado']} (commit do script: {out['commit_script']}). {out['n_execucoes']} execuções.", "",
           "| Condição | n | núcleo 100% | frac. de testes | tokens totais | tokens novos | custo lista (US$) | suspeitas |", "|---|---|---|---|---|---|---|---|"]
     for c, v in out["por_condicao"].items():
         md.append(f"| {c} | {v['n']} | {v['nucleo_100']} | {v['fracao_testes_media']} | {v['tokens_totais_media']:,} | {v['tokens_novos_media']:,} | {v['custo_lista_medio_usd']} | {v['acessos_suspeitos']} |")
     md += ["", "```json", json.dumps({"gate": out["gate"], "hipoteses": out["hipoteses"], "rubrica": out["rubrica"]}, ensure_ascii=False, indent=1), "```"]
-    (PROC / "analise.md").write_text("\n".join(md), encoding="utf-8")
+    (PROC / f"analise{SUF}.md").write_text("\n".join(md), encoding="utf-8")
     print("\n".join(md[:30]))
 
 

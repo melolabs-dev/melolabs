@@ -1,5 +1,5 @@
 {
- "gerado": "2026-11-07T13:39:05",
+ "gerado": "2026-11-07T13:50:04",
  "n_execucoes": 138,
  "por_condicao": {
   "C0": {
@@ -478,7 +478,7 @@
    "motivo": "fase C adiada para um paper futuro (decisão do autor, 06/11/2026)"
   }
  },
- "commit_script": "8cb076f",
+ "commit_script": "f612b8c",
  "gate": {
   "documentos": 162,
   "reprovados_1o_gate": 2,
