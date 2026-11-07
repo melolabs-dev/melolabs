@@ -1,0 +1,27 @@
+{
+  "id": "C10-session-1050-b-r2",
+  "condicao": "C10",
+  "variante": "session-1050-b",
+  "inicio": "2026-11-06T14:42:50",
+  "fim": "2026-11-06T14:50:40",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "techspec": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "tasks": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    }
+  },
+  "nucleo": "12/12",
+  "nucleo_100": true,
+  "auditoria_limpa": true
+}

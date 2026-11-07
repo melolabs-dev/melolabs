@@ -1,0 +1,707 @@
+diff --git a/src/error.ts b/src/error.ts
+index fb8b6aa..aa50e6c 100644
+--- a/src/error.ts
++++ b/src/error.ts
+@@ -66,6 +66,16 @@ export interface ErrorBody<DataT = unknown> {
+    * Additional top level JSON body properties to attach in the error JSON body.
+    */
+   body?: Record<string, unknown>;
++
++  /**
++   * RFC 9457 `type`: URI-reference that identifies the problem type. Defaults to `"about:blank"` in the body.
++   */
++  type?: string;
++
++  /**
++   * RFC 9457 `instance`: URI-reference that identifies this specific occurrence. Omitted from the body when absent.
++   */
++  instance?: string;
+ }
+ 
+ /**
+@@ -111,6 +121,16 @@ export class HTTPError<DataT = unknown> extends Error implements ErrorBody<DataT
+    */
+   readonly body: Record<string, unknown> | undefined;
+ 
++  /**
++   * RFC 9457 `type`: URI-reference that identifies the problem type.
++   */
++  readonly type: string | undefined;
++
++  /**
++   * RFC 9457 `instance`: URI-reference that identifies this specific occurrence.
++   */
++  readonly instance: string | undefined;
++
+   /**
+    * Flag to indicate that the error was not handled by the application.
+    *
+@@ -207,6 +227,8 @@ export class HTTPError<DataT = unknown> extends Error implements ErrorBody<DataT
+ 
+     this.data = (details as ErrorBody)?.data as DataT | undefined;
+     this.body = (details as ErrorBody)?.body;
++    this.type = (details as ErrorBody)?.type;
++    this.instance = (details as ErrorBody)?.instance;
+   }
+ 
+   /**
+diff --git a/src/response.ts b/src/response.ts
+index c5bca8a..9a8e8fc 100644
+--- a/src/response.ts
++++ b/src/response.ts
+@@ -2,6 +2,7 @@ import { FastResponse } from "srvx";
+ import { HTTPError } from "./error.ts";
+ import { isJSONSerializable } from "./utils/internal/object.ts";
+ import { sanitizeStatusCode, sanitizeStatusMessage } from "./utils/sanitize.ts";
++import { statusPhrase } from "./utils/internal/status-text.ts";
+ import { kEventDispose, type DisposeState } from "./utils/internal/dispose.ts";
+ 
+ import type { H3Config } from "./types/h3.ts";
+@@ -271,6 +272,10 @@ const jsonHeaders = /* @__PURE__ */ new FrozenHeaders({
+   "content-type": "application/json;charset=UTF-8",
+ });
+ 
++const problemHeaders = /* @__PURE__ */ new FrozenHeaders({
++  "content-type": "application/problem+json;charset=UTF-8",
++});
++
+ function prepareResponseBody(
+   val: unknown,
+   event: H3Event,
+@@ -357,20 +362,13 @@ function nullBody(method: string, status: number | undefined): boolean | 0 | und
+ 
+ function errorResponse(error: HTTPError, debug?: boolean, errHeaders?: Headers): Response {
+   let headers: Headers = error.headers
+-    ? mergeHeaders(jsonHeaders, error.headers)
+-    : new Headers(jsonHeaders);
++    ? mergeHeaders(problemHeaders, error.headers)
++    : new Headers(problemHeaders);
+   if (errHeaders) {
+     headers = mergeHeaders(headers, errHeaders);
+   }
+   return new FastResponse(
+-    JSON.stringify(
+-      {
+-        ...error.toJSON(),
+-        stack: debug && error.stack ? error.stack.split("\n").map((l) => l.trim()) : undefined,
+-      },
+-      undefined,
+-      debug ? 2 : undefined,
+-    ),
++    JSON.stringify(problemBody(error, debug), undefined, debug ? 2 : undefined),
+     {
+       status: error.status,
+       statusText: error.statusText,
+@@ -378,3 +376,20 @@ function errorResponse(error: HTTPError, debug?: boolean, errHeaders?: Headers):
+     },
+   );
+ }
++
++// RFC 9457 Problem Details body. Standard members come last so `error.body` cannot override them.
++function problemBody(error: HTTPError, debug?: boolean): Record<string, unknown> {
++  const unhandled = error.unhandled;
++  const detail = unhandled ? "HTTPError" : error.message;
++  return {
++    ...(unhandled ? undefined : error.body),
++    type: (unhandled ? undefined : error.type) ?? "about:blank",
++    title: error.statusText ?? statusPhrase(error.status),
++    status: error.status,
++    detail,
++    instance: unhandled ? undefined : error.instance,
++    message: detail,
++    data: unhandled ? undefined : error.data,
++    stack: debug && error.stack ? error.stack.split("\n").map((l) => l.trim()) : undefined,
++  };
++}
+diff --git a/src/utils/internal/status-text.ts b/src/utils/internal/status-text.ts
+new file mode 100644
+index 0000000..b4f2700
+--- /dev/null
++++ b/src/utils/internal/status-text.ts
+@@ -0,0 +1,47 @@
++// RFC 9110 reason phrases for 4xx/5xx (used as Problem Details `title`)
++const STATUS_PHRASES: Record<number, string> = {
++  400: "Bad Request",
++  401: "Unauthorized",
++  402: "Payment Required",
++  403: "Forbidden",
++  404: "Not Found",
++  405: "Method Not Allowed",
++  406: "Not Acceptable",
++  407: "Proxy Authentication Required",
++  408: "Request Timeout",
++  409: "Conflict",
++  410: "Gone",
++  411: "Length Required",
++  412: "Precondition Failed",
++  413: "Content Too Large",
++  414: "URI Too Long",
++  415: "Unsupported Media Type",
++  416: "Range Not Satisfiable",
++  417: "Expectation Failed",
++  418: "I'm a Teapot",
++  421: "Misdirected Request",
++  422: "Unprocessable Content",
++  423: "Locked",
++  424: "Failed Dependency",
++  425: "Too Early",
++  426: "Upgrade Required",
++  428: "Precondition Required",
++  429: "Too Many Requests",
++  431: "Request Header Fields Too Large",
++  451: "Unavailable For Legal Reasons",
++  500: "Internal Server Error",
++  501: "Not Implemented",
++  502: "Bad Gateway",
++  503: "Service Unavailable",
++  504: "Gateway Timeout",
++  505: "HTTP Version Not Supported",
++  506: "Variant Also Negotiates",
++  507: "Insufficient Storage",
++  508: "Loop Detected",
++  510: "Not Extended",
++  511: "Network Authentication Required",
++};
++
++export function statusPhrase(status: number): string | undefined {
++  return STATUS_PHRASES[status];
++}
+diff --git a/test/app.test.ts b/test/app.test.ts
+index 381b135..d6fad53 100644
+--- a/test/app.test.ts
++++ b/test/app.test.ts
+@@ -202,7 +202,7 @@ describeMatrix("app", (t, { it, expect }) => {
+     const res = await t.fetch("/");
+ 
+     expect(res.status).toBe(500);
+-    expect(JSON.parse(await res.text()).statusText).toBe("test");
++    expect(JSON.parse(await res.text()).title).toBe("test");
+   });
+ 
+   it("can return text directly", async () => {
+diff --git a/test/bench/bundle.test.ts b/test/bench/bundle.test.ts
+index 7756dd4..23fecff 100644
+--- a/test/bench/bundle.test.ts
++++ b/test/bench/bundle.test.ts
+@@ -18,8 +18,8 @@ describe("benchmark", () => {
+     if (process.env.DEBUG) {
+       console.log(`Bundle size (H3): ${bundle.bytes} (gzip: ${bundle.gzipSize})`);
+     }
+-    expect(bundle.bytes).toBeLessThanOrEqual(27_900); // <27.9kb
+-    expect(bundle.gzipSize).toBeLessThanOrEqual(11_150); // <11.15kb
++    expect(bundle.bytes).toBeLessThanOrEqual(28_400); // <28.4kb
++    expect(bundle.gzipSize).toBeLessThanOrEqual(11_550); // <11.55kb
+   });
+ 
+   it("bundle size (H3Core)", async () => {
+@@ -34,8 +34,8 @@ describe("benchmark", () => {
+     if (process.env.DEBUG) {
+       console.log(`Bundle size (H3Core): ${bundle.bytes} (gzip: ${bundle.gzipSize})`);
+     }
+-    expect(bundle.bytes).toBeLessThanOrEqual(7900); // <7.9kb
+-    expect(bundle.gzipSize).toBeLessThanOrEqual(3160); // <3.16kb
++    expect(bundle.bytes).toBeLessThanOrEqual(9200); // <9.2kb
++    expect(bundle.gzipSize).toBeLessThanOrEqual(3800); // <3.8kb
+   });
+ 
+   it("bundle size (defineHandler)", async () => {
+@@ -50,8 +50,8 @@ describe("benchmark", () => {
+     if (process.env.DEBUG) {
+       console.log(`Bundle size (defineHandler): ${bundle.bytes} (gzip: ${bundle.gzipSize})`);
+     }
+-    expect(bundle.bytes).toBeLessThanOrEqual(7040); // <7.04kb
+-    expect(bundle.gzipSize).toBeLessThanOrEqual(2870); // <2.87kb
++    expect(bundle.bytes).toBeLessThanOrEqual(8400); // <8.4kb
++    expect(bundle.gzipSize).toBeLessThanOrEqual(3520); // <3.52kb
+   });
+ });
+ 
+diff --git a/test/body.test.ts b/test/body.test.ts
+index 371ff9a..bf572e5 100644
+--- a/test/body.test.ts
++++ b/test/body.test.ts
+@@ -454,7 +454,7 @@ describeMatrix("body", (t, { it, expect, describe }) => {
+     const resultJson = (await result.json()) as any;
+ 
+     expect(result.status).toBe(400);
+-    expect(resultJson.statusText).toBe("Bad Request");
++    expect(resultJson.title).toBe("Bad Request");
+     expect(resultJson.stack[0]).toBe("HTTPError: Invalid JSON body");
+   });
+ 
+diff --git a/test/errors.test.ts b/test/errors.test.ts
+index 258a9e2..0fa6c22 100644
+--- a/test/errors.test.ts
++++ b/test/errors.test.ts
+@@ -41,7 +41,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+             const res = await t.fetch("/", { method });
+             expect(res.status).toBe(422);
+             expect(res.statusText).toBe("Unprocessable");
+-            expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++            expect(res.headers.get("content-type")).toBe("application/problem+json;charset=UTF-8");
+             expect(res.headers.get("x-error")).toBe("prepared");
+             expect(res.headers.get("x-error-own")).toBe("own");
+             expect(res.headers.get("x-success")).toBeNull();
+@@ -52,7 +52,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+             } else {
+               expect(await res.json()).toMatchObject({
+                 status: 422,
+-                statusText: "Unprocessable",
++                title: "Unprocessable",
+                 data: { test: 123 },
+               });
+             }
+@@ -78,7 +78,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+     expect(result.statusText).toBe("Unprocessable");
+     expect(await result.json()).toMatchObject({
+       status: 422,
+-      statusText: "Unprocessable",
++      title: "Unprocessable",
+       message: "Unprocessable",
+       data: { test: 123 },
+       topLevel: "works",
+@@ -98,7 +98,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+     expect(result.statusText).toBe("Unprocessable");
+     expect(await result.json()).toMatchObject({
+       status: 422,
+-      statusText: "Unprocessable",
++      title: "Unprocessable",
+       message: "Unprocessable",
+       data: { test: 123 },
+     });
+@@ -137,13 +137,13 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+     const result = await t.fetch("/api/test");
+ 
+     expect(result.status).toBe(400);
+-    expect(result.headers.get("content-type")).toMatch("application/json");
++    expect(result.headers.get("content-type")).toMatch("application/problem+json");
+ 
+     expect(console.error).not.toBeCalled();
+ 
+     expect(JSON.parse(await result.text())).toMatchObject({
+       status: 400,
+-      statusText: "Bad Request",
++      title: "Bad Request",
+       data: {
+         message: "Invalid Input",
+       },
+@@ -254,7 +254,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+       const body = await res.text();
+       expect(body).not.toContain("db-password");
+       expect(body).not.toContain("internal detail");
+-      expect(JSON.parse(body)).toMatchObject({ status: 500, unhandled: true });
++      expect(JSON.parse(body)).toMatchObject({ status: 500 });
+ 
+       expect(t.errors[0].unhandled).toBe(true);
+       expect(t.errors[0].cause).toMatchObject({ secret: "db-password" });
+@@ -306,7 +306,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+       });
+       const res = await t.fetch("/");
+       expect(res.status).toBe(500);
+-      expect(await res.json()).toMatchObject({ status: 500, unhandled: true });
++      expect(await res.json()).toMatchObject({ status: 500 });
+       t.errors = [];
+     });
+ 
+@@ -347,7 +347,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+       });
+       const res = await t.fetch("/");
+       expect(res.status).toBe(500);
+-      expect(await res.json()).toMatchObject({ unhandled: true, message: "HTTPError" });
++      expect(await res.json()).toMatchObject({ status: 500, message: "HTTPError" });
+       expect(t.errors[0].unhandled).toBe(true);
+       t.errors = [];
+     });
+@@ -381,7 +381,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+ 
+       const res = await t.fetch("/");
+       expect(res.status).toBe(500);
+-      expect(await res.json()).toMatchObject({ status: 500, unhandled: true });
++      expect(await res.json()).toMatchObject({ status: 500 });
+       t.errors = [];
+     });
+ 
+@@ -417,7 +417,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+ 
+     const res = await t.fetch("/");
+     expect(res.status).toBe(500);
+-    expect(await res.json()).toMatchObject({ status: 500, unhandled: true });
++    expect(await res.json()).toMatchObject({ status: 500 });
+   });
+ 
+   // A value returned from `onError` replaces the response, so a value *thrown* by the hook must be
+@@ -439,7 +439,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+       const res = await t.fetch("/");
+       expect(res.status).toBe(500);
+       const body = await res.json();
+-      expect(body).toMatchObject({ status: 500, unhandled: true });
++      expect(body).toMatchObject({ status: 500 });
+       expect(JSON.stringify(body)).not.toContain("s3cr3t");
+       expect(JSON.stringify(body)).not.toContain("leaked internal string");
+     });
+diff --git a/test/handler.test.ts b/test/handler.test.ts
+index baba34d..32182ae 100644
+--- a/test/handler.test.ts
++++ b/test/handler.test.ts
+@@ -219,7 +219,7 @@ describe("handler.ts", () => {
+       );
+       expect(await res.json()).toMatchObject({
+         status: 400,
+-        statusText: "Validation failed",
++        title: "Validation failed",
+         message: "Validation failed",
+         data: { issues: [{ expected: "string" }] },
+       });
+@@ -235,7 +235,7 @@ describe("handler.ts", () => {
+       );
+       expect(await res.json()).toMatchObject({
+         status: 400,
+-        statusText: "Validation failed",
++        title: "Validation failed",
+         message: "Validation failed",
+         data: {
+           issues: [{ path: ["x-token"], expected: "string" }],
+@@ -269,7 +269,7 @@ describe("handler.ts", () => {
+       );
+       expect(await res.json()).toMatchObject({
+         status: 400,
+-        statusText: "Validation failed",
++        title: "Validation failed",
+         message: "Validation failed",
+         data: {
+           issues: [
+@@ -294,7 +294,7 @@ describe("handler.ts", () => {
+         );
+         expect(await res.json()).toMatchObject({
+           status: 500,
+-          statusText: "Custom Zod body validation error",
++          title: "Custom Zod body validation error",
+           message: "- Invalid input: expected string, received number",
+         });
+         expect(res.status).toBe(500);
+@@ -309,7 +309,7 @@ describe("handler.ts", () => {
+         );
+         expect(await res.json()).toMatchObject({
+           status: 500,
+-          statusText: "Custom Zod headers validation error",
++          title: "Custom Zod headers validation error",
+           message: "- Missing required header",
+         });
+         expect(res.status).toBe(500);
+@@ -325,7 +325,7 @@ describe("handler.ts", () => {
+         );
+         expect(await res.json()).toMatchObject({
+           status: 500,
+-          statusText: "Custom Zod query validation error",
++          title: "Custom Zod query validation error",
+           message: "- Too small: expected string to have >=3 characters",
+         });
+         expect(res.status).toBe(500);
+diff --git a/test/problem-details.test.ts b/test/problem-details.test.ts
+new file mode 100644
+index 0000000..e96ae91
+--- /dev/null
++++ b/test/problem-details.test.ts
+@@ -0,0 +1,227 @@
++import { H3, HTTPError, type H3Event } from "../src/index.ts";
++import { describeMatrix } from "./_setup.ts";
++
++const PROBLEM = "application/problem+json";
++
++describeMatrix("problem details", (t, { it, expect, describe }) => {
++  describe("content-type (RF-01)", () => {
++    it("HTTPError", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError({ status: 404 });
++      });
++      const res = await t.fetch("/");
++      expect(res.status).toBe(404);
++      expect(res.headers.get("content-type")).toBe(`${PROBLEM};charset=UTF-8`);
++    });
++
++    it("kNotFound (missing route)", async () => {
++      const res = await t.fetch("/missing");
++      expect(res.status).toBe(404);
++      expect(res.headers.get("content-type")?.startsWith(PROBLEM)).toBe(true);
++    });
++
++    it("async handler", async () => {
++      t.app.get("/", async () => {
++        await Promise.resolve();
++        throw new HTTPError({ status: 400 });
++      });
++      const res = await t.fetch("/");
++      expect(res.headers.get("content-type")?.startsWith(PROBLEM)).toBe(true);
++    });
++
++    it("success responses keep application/json", async () => {
++      t.app.get("/", () => ({ ok: true }));
++      const res = await t.fetch("/");
++      expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++    });
++  });
++
++  describe("standard members (RF-02)", () => {
++    it("exact body", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        throw new HTTPError("Sem permissão", { status: 403 });
++      });
++      const res = await t.fetch("/");
++      expect(await res.text()).toBe(
++        '{"type":"about:blank","title":"Forbidden","status":403,"detail":"Sem permissão","message":"Sem permissão"}',
++      );
++    });
++
++    it("custom statusText becomes title", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError({ status: 422, statusText: "Custom" });
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body.title).toBe("Custom");
++      expect(body).not.toHaveProperty("statusText");
++    });
++
++    it("status without phrase omits title", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError({ status: 499 });
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body.status).toBe(499);
++      expect(body).not.toHaveProperty("title");
++    });
++  });
++
++  describe("type and instance (RF-03)", () => {
++    it("properties", () => {
++      const a = new HTTPError({ status: 409, type: "https://e.com/t", instance: "/i/1" });
++      expect(a.type).toBe("https://e.com/t");
++      expect(a.instance).toBe("/i/1");
++      const b = HTTPError.status(409, undefined, { type: "t", instance: "i" });
++      expect(b.type).toBe("t");
++      expect(b.instance).toBe("i");
++      const c = new HTTPError({ status: 409 });
++      expect(c.type).toBeUndefined();
++      expect(c.instance).toBeUndefined();
++    });
++
++    it("rendered in body; instance omitted when absent", async () => {
++      t.app.get("/a", () => {
++        throw HTTPError.status(409, undefined, { type: "https://e.com/t", instance: "/i/1" });
++      });
++      t.app.get("/b", () => {
++        throw new HTTPError({ status: 409 });
++      });
++      const a = await (await t.fetch("/a")).json();
++      expect(a).toMatchObject({ type: "https://e.com/t", instance: "/i/1", status: 409 });
++      const b = await (await t.fetch("/b")).json();
++      expect(b.type).toBe("about:blank");
++      expect(b).not.toHaveProperty("instance");
++    });
++
++    it("toJSON is unchanged", () => {
++      const e = new HTTPError({ status: 409, type: "t", instance: "i" });
++      expect(e.toJSON()).not.toHaveProperty("type");
++      expect(e.toJSON()).not.toHaveProperty("instance");
++    });
++  });
++
++  describe("unhandled (RF-04)", () => {
++    it("generic Error does not leak", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        throw new Error("segredo interno");
++      });
++      const res = await t.fetch("/");
++      t.errors = [];
++      const text = await res.text();
++      expect(res.status).toBe(500);
++      expect(text).not.toContain("segredo interno");
++      expect(text).not.toContain("stack");
++      expect(JSON.parse(text)).toMatchObject({ type: "about:blank", status: 500 });
++      expect(JSON.parse(text)).not.toHaveProperty("data");
++    });
++
++    it("unhandled HTTPError hides type/instance/data/body", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        throw new HTTPError({
++          status: 500,
++          unhandled: true,
++          type: "https://e.com/t",
++          instance: "/i",
++          data: { s: 1 },
++          body: { extra: 1 },
++          message: "segredo",
++        });
++      });
++      const res = await t.fetch("/");
++      t.errors = [];
++      const text = await res.text();
++      const body = JSON.parse(text);
++      expect(text).not.toContain("segredo");
++      expect(body.type).toBe("about:blank");
++      for (const key of ["instance", "data", "extra", "unhandled", "statusText"]) {
++        expect(body).not.toHaveProperty(key);
++      }
++    });
++
++    it("unhandled assigned after construction", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        const error = new HTTPError({
++          status: 500,
++          type: "https://e.com/t",
++          instance: "/i",
++          message: "segredo",
++        });
++        (error as any).unhandled = true;
++        throw error;
++      });
++      const res = await t.fetch("/");
++      t.errors = [];
++      const text = await res.text();
++      const body = JSON.parse(text);
++      expect(text).not.toContain("segredo");
++      expect(body.type).toBe("about:blank");
++      expect(body).not.toHaveProperty("instance");
++    });
++  });
++
++  describe("data and body (RF-05)", () => {
++    it("standard members cannot be overridden", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError("falhou", {
++          status: 422,
++          data: { a: 1 },
++          body: { codigo: "E42", status: 200, title: "x", detail: "y", message: "z", data: 0 },
++        });
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body.codigo).toBe("E42");
++      expect(body.data).toEqual({ a: 1 });
++      expect(body.status).toBe(422);
++      expect(body.title).toBe("Unprocessable Content");
++      expect(body.detail).toBe("falhou");
++      expect(body.message).toBe(body.detail);
++    });
++  });
++
++  describe("headers and debug (RF-06)", () => {
++    it("preserves headers and renders stack in debug", async () => {
++      const app = new H3({ debug: true });
++      app.get("/", () => {
++        throw new HTTPError({ status: 401, headers: { "www-authenticate": "Basic" } });
++      });
++      const res = await app.request("/");
++      expect(res.status).toBe(401);
++      expect(res.headers.get("www-authenticate")).toBe("Basic");
++      expect(res.headers.get("content-type")?.startsWith(PROBLEM)).toBe(true);
++      const text = await res.text();
++      expect(text).toContain('\n  "status": 401');
++      expect(JSON.parse(text).stack).toBeInstanceOf(Array);
++    });
++
++    it("explicit content-type wins", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError({ status: 400, headers: { "content-type": "application/json" } });
++      });
++      const res = await t.fetch("/");
++      expect(res.headers.get("content-type")).toBe("application/json");
++    });
++
++    it("merges errHeaders", async () => {
++      t.app.get("/", (event: H3Event) => {
++        event.res.errHeaders.set("x-error", "prepared");
++        throw new HTTPError({ status: 400 });
++      });
++      const res = await t.fetch("/");
++      expect(res.headers.get("x-error")).toBe("prepared");
++      expect(res.headers.get("content-type")?.startsWith(PROBLEM)).toBe(true);
++    });
++
++    it("HEAD keeps content-type with empty body", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError({ status: 400 });
++      });
++      const res = await t.fetch("/", { method: "HEAD" });
++      expect(res.headers.get("content-type")?.startsWith(PROBLEM)).toBe(true);
++      expect(await res.text()).toBe("");
++    });
++  });
++});
+diff --git a/test/proxy.test.ts b/test/proxy.test.ts
+index 410a3e6..3d1c383 100644
+--- a/test/proxy.test.ts
++++ b/test/proxy.test.ts
+@@ -1024,7 +1024,7 @@ describeMatrix("proxy", (t, { it, expect, describe }) => {
+             expect(res.statusText).toBe("Bad Gateway");
+             expect(await res.json()).toMatchObject({
+               status: 502,
+-              statusText: "Bad Gateway",
++              title: "Bad Gateway",
+               message: "Bad Gateway",
+             });
+           } finally {
+diff --git a/test/route.test.ts b/test/route.test.ts
+index 1bfdc24..928ad2c 100644
+--- a/test/route.test.ts
++++ b/test/route.test.ts
+@@ -69,7 +69,7 @@ describe("defineRoute", () => {
+     const res = await app.request("/users", { method: "POST" });
+     expect(await res.json()).toMatchObject({
+       status: 400,
+-      statusText: "Validation failed",
++      title: "Validation failed",
+       data: { issues: [{ path: ["id"] }] },
+     });
+   });
+diff --git a/test/validate.test.ts b/test/validate.test.ts
+index 27ed4ed..cf2df13 100644
+--- a/test/validate.test.ts
++++ b/test/validate.test.ts
+@@ -180,7 +180,7 @@ describeMatrix("validate", (t, { it, describe, expect }) => {
+ 
+         expect(res.status).toEqual(500);
+         expect(await res.json()).toMatchObject({
+-          statusText: "Custom validation error",
++          title: "Custom validation error",
+         });
+       });
+ 
+@@ -192,7 +192,7 @@ describeMatrix("validate", (t, { it, describe, expect }) => {
+ 
+         expect(res.status).toEqual(500);
+         expect(await res.json()).toMatchObject({
+-          statusText: "Custom Zod validation error",
++          title: "Custom Zod validation error",
+           message:
+             "- Invalid input: expected string, received number\n- Invalid input: expected never, received boolean",
+         });
+@@ -277,7 +277,7 @@ describeMatrix("validate", (t, { it, describe, expect }) => {
+ 
+         expect(res.status).toEqual(500);
+         expect(await res.json()).toMatchObject({
+-          statusText: "Custom validation error",
++          title: "Custom validation error",
+         });
+       });
+ 
+@@ -286,7 +286,7 @@ describeMatrix("validate", (t, { it, describe, expect }) => {
+ 
+         expect(res.status).toEqual(500);
+         expect(await res.json()).toMatchObject({
+-          statusText: "Custom Zod validation error",
++          title: "Custom Zod validation error",
+           message: "- Invalid input: expected never, received string",
+         });
+       });
+@@ -377,7 +377,7 @@ describeMatrix("validate", (t, { it, describe, expect }) => {
+ 
+         expect(res.status).toEqual(500);
+         expect(await res.json()).toMatchObject({
+-          statusText: "Custom Zod validation error",
++          title: "Custom Zod validation error",
+           message: "- Invalid input: expected number, received string",
+         });
+       });

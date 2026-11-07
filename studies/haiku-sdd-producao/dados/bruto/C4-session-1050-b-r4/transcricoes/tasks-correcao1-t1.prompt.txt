@@ -1,0 +1,7 @@
+Trabalhe somente dentro da pasta C:\dev\runs\r3ca8c5e9b1 (um clone do projeto h3). Não leia, liste nem procure arquivos fora dela. Leia o CLAUDE.md e o AGENTS.md dessa pasta antes de começar. Responda no final com no máximo 5 linhas: o que foi feito e se algo ficou pendente.
+
+O gate determinístico reprovou `sdd/tasks.md` com estes erros reais:
+
+- T-08 sem o campo 'aceite:'
+
+Corrija somente esses pontos em `sdd/tasks.md`, mantendo o resto. Não altere o código do projeto.

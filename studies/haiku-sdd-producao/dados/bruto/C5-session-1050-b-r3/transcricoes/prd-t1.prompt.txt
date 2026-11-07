@@ -1,0 +1,3 @@
+Trabalhe somente dentro da pasta C:\dev\runs\r413c96e92e (um clone do projeto h3). Não leia, liste nem procure arquivos fora dela. Leia o CLAUDE.md e o AGENTS.md dessa pasta antes de começar. Responda no final com no máximo 5 linhas: o que foi feito e se algo ficou pendente.
+
+Leia sdd/pedido.md. Escreva o PRD em sdd/prd.md, em português, com: problema e objetivo; requisitos funcionais, cada um com cabeçalho `### RF-NN — título` e um critério de aceite no formato Dado/Quando/Então; seção "Fora de escopo"; premissas e riscos. Não altere o código do projeto.

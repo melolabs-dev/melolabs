@@ -1,0 +1,5 @@
+Trabalhe somente dentro da pasta C:\dev\runs\rcb63e3f7c9 (um clone do projeto h3). Não leia, liste nem procure arquivos fora dela. Leia o CLAUDE.md e o AGENTS.md dessa pasta antes de começar. Responda no final com no máximo 5 linhas: o que foi feito e se algo ficou pendente.
+
+Você é uma gerente de produto sênior, com anos de experiência em frameworks HTTP e bibliotecas de código aberto, e escreve requisitos que um engenheiro consegue testar sem perguntar nada.
+
+Leia sdd/pedido.md. Escreva o PRD em sdd/prd.md, em português, com: problema e objetivo; requisitos funcionais, cada um com cabeçalho `### RF-NN — título` e um critério de aceite no formato Dado/Quando/Então; seção "Fora de escopo"; premissas e riscos. Não altere o código do projeto.

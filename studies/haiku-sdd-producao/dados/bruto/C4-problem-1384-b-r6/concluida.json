@@ -1,0 +1,27 @@
+{
+  "id": "C4-problem-1384-b-r6",
+  "condicao": "C4",
+  "variante": "problem-1384-b",
+  "inicio": "2026-11-06T12:21:06",
+  "fim": "2026-11-06T12:27:57",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "techspec": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "tasks": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    }
+  },
+  "nucleo": "14/16",
+  "nucleo_100": false,
+  "auditoria_limpa": true
+}

@@ -1,0 +1,631 @@
+diff --git a/src/utils/static.ts b/src/utils/static.ts
+index f0bfa03..429e874 100644
+--- a/src/utils/static.ts
++++ b/src/utils/static.ts
+@@ -97,6 +97,12 @@ export interface ServeStaticOptions {
+  * allow/deny check case-folded (otherwise `/SECRET.env` slips past a check for
+  * `/secret.env`), and **symlinks** need the resolved path re-asserted against
+  * the asset root after following links (e.g. `realpath(target)`).
++ *
++ * **Range requests:** for GET and HEAD, a single `bytes` range is served as `206`
++ * and an unsatisfiable one as `416`, with `Accept-Ranges: bytes` advertised whenever
++ * `size` is known. `size` must be the exact byte length of the served variant, since
++ * it is used for `Content-Range` and `Content-Length`. Multiple ranges, malformed
++ * ranges and a non-matching `If-Range` are ignored and the full asset is served.
+  */
+ export async function serveStatic(
+   event: H3Event,
+@@ -240,6 +246,14 @@ export async function serveStatic(
+     event.res.headers.set("etag", meta.etag);
+   }
+ 
++  // Set before the 304 check so the header also reaches not-modified responses, as
++  // `etag` and `last-modified` do. Only advertised when `size` is known, because a
++  // range is only served when it is (RF-09).
++  const size = meta.size ?? 0;
++  if (size > 0) {
++    event.res.headers.set("accept-ranges", "bytes");
++  }
++
+   if (isCacheMatch(event.req.headers, { etag: meta.etag, lastModified: mtimeDate })) {
+     return new HTTPResponse(null, {
+       status: 304,
+@@ -265,8 +279,34 @@ export async function serveStatic(
+     event.res.headers.set("content-encoding", meta.encoding);
+   }
+ 
+-  if (meta.size !== undefined && meta.size > 0 && !event.res.headers.get("content-length")) {
+-    event.res.headers.set("content-length", meta.size + "");
++  if (size > 0 && !event.res.headers.get("content-length")) {
++    event.res.headers.set("content-length", size + "");
++  }
++
++  // Range is evaluated after the 304 above (RFC 9110 section 13.2.1). Partial and
++  // 416 responses override `content-length` because it describes the whole asset.
++  const rangeHeader = event.req.headers.get("range");
++  if (
++    rangeHeader &&
++    size > 0 &&
++    matchesIfRange(event.req.headers.get("if-range"), meta, mtimeDate)
++  ) {
++    const request = parseRange(rangeHeader);
++    if (request) {
++      const range = resolveRange(request, size);
++      if (!range) {
++        event.res.headers.set("content-range", `bytes */${size}`);
++        event.res.headers.set("content-length", "0");
++        return new HTTPResponse(null, { status: 416 });
++      }
++      event.res.headers.set("content-range", `bytes ${range.start}-${range.end}/${size}`);
++      event.res.headers.set("content-length", `${range.end - range.start + 1}`);
++      if (event.req.method === "HEAD") {
++        return new HTTPResponse(null, { status: 206 });
++      }
++      const contents = await options.getContents(id);
++      return new HTTPResponse(contents ? sliceBody(contents, range) : null, { status: 206 });
++    }
+   }
+ 
+   if (event.req.method === "HEAD") {
+@@ -349,3 +389,118 @@ function idSearchPaths(id: string, encodings: string[], indexNames: string[]) {
+ 
+   return ids;
+ }
++
++/** A requested range, before the asset size is applied. */
++type RangeRequest = { start: number; end?: number } | { suffix: number };
++
++/** A resolved range. `end` is inclusive and never past `size - 1`. */
++interface ByteRange {
++  start: number;
++  end: number;
++}
++
++/**
++ * Validate the syntax of a single `bytes` range (RFC 9110 section 14.1.1). Malformed
++ * and multiple ranges return `undefined`, and the `Range` header is then ignored.
++ * The unit name is case-insensitive (section 14.1).
++ */
++function parseRange(header: string): RangeRequest | undefined {
++  const match = /^bytes=(?:(\d+)-(\d*)|-(\d+))$/i.exec(header);
++  if (!match) {
++    return undefined;
++  }
++  const [, first, last, suffix] = match;
++  if (suffix !== undefined) {
++    return { suffix: Number(suffix) };
++  }
++  const start = Number(first);
++  if (last === "") {
++    return { start };
++  }
++  return Number(last) < start ? undefined : { start, end: Number(last) };
++}
++
++/**
++ * Apply the asset size to a parsed range. Returns `undefined` when the range cannot be
++ * satisfied, which is a 416 (RFC 9110 section 15.5.17).
++ */
++function resolveRange(request: RangeRequest, size: number): ByteRange | undefined {
++  if ("suffix" in request) {
++    return request.suffix > 0
++      ? { start: Math.max(0, size - request.suffix), end: size - 1 }
++      : undefined;
++  }
++  if (request.start >= size) {
++    return undefined;
++  }
++  return { start: request.start, end: Math.min(request.end ?? size - 1, size - 1) };
++}
++
++/**
++ * Evaluate `If-Range` (RFC 9110 section 13.1.5). An ETag must be strong and equal to the
++ * current one. A date must match the whole-second `Last-Modified` exactly. Without
++ * `If-Range` the range applies.
++ */
++function matchesIfRange(ifRange: string | null, meta: StaticAssetMeta, mtime?: Date): boolean {
++  if (ifRange === null) {
++    return true;
++  }
++  if (ifRange.startsWith("W/")) {
++    return false;
++  }
++  if (ifRange.startsWith('"')) {
++    return !!meta.etag && !meta.etag.startsWith("W/") && ifRange === meta.etag;
++  }
++  return !!mtime && ifRange === mtime.toUTCString();
++}
++
++/**
++ * Slice a body to an inclusive byte range. Direct body types are sliced in place. Other
++ * types are read and their leading bytes dropped, because `getContents` does not receive
++ * the range (sdd/prd.md, risk R1).
++ */
++function sliceBody(contents: BodyInit, { start, end }: ByteRange): BodyInit {
++  if (typeof contents === "string") {
++    return new TextEncoder().encode(contents).subarray(start, end + 1);
++  }
++  if (contents instanceof Blob) {
++    return contents.slice(start, end + 1);
++  }
++  if (contents instanceof ArrayBuffer) {
++    return new Uint8Array(contents, start, end - start + 1);
++  }
++  if (ArrayBuffer.isView(contents)) {
++    return new Uint8Array(contents.buffer, contents.byteOffset + start, end - start + 1);
++  }
++  return sliceStream(new Response(contents).body!, start, end);
++}
++
++function sliceStream(
++  stream: ReadableStream<Uint8Array>,
++  start: number,
++  end: number,
++): ReadableStream<Uint8Array> {
++  const reader = stream.getReader();
++  let position = 0;
++  return new ReadableStream<Uint8Array>({
++    async pull(controller) {
++      const { done, value } = await reader.read();
++      if (done) {
++        controller.close();
++        return;
++      }
++      const chunkStart = position;
++      position += value.byteLength;
++      if (position > start) {
++        controller.enqueue(value.subarray(Math.max(0, start - chunkStart), end + 1 - chunkStart));
++      }
++      if (position > end) {
++        controller.close();
++        await reader.cancel();
++      }
++    },
++    cancel(reason) {
++      return reader.cancel(reason);
++    },
++  });
++}
+diff --git a/test/sdd-static-range.test.ts b/test/sdd-static-range.test.ts
+new file mode 100644
+index 0000000..177819c
+--- /dev/null
++++ b/test/sdd-static-range.test.ts
+@@ -0,0 +1,437 @@
++import { beforeEach, describe, vi } from "vitest";
++import { serveStatic, type ServeStaticOptions, type StaticAssetMeta } from "../src/index.ts";
++import { describeMatrix } from "./_setup.ts";
++
++// Acceptance tests for sdd/prd.md (RF-01 to RF-10) and sdd/techspec.md (D-01 to D-08).
++
++const BODY = "0123456789";
++const META: StaticAssetMeta = {
++  type: "text/plain",
++  etag: '"abc"',
++  // Sub-second part on purpose: `last-modified` and If-Range dates must use whole seconds.
++  mtime: 1_700_000_000_123,
++  size: 10,
++};
++const LAST_MODIFIED = new Date(1_700_000_000_000).toUTCString();
++
++describeMatrix("serve static range", (t, { it, expect }) => {
++  // Mounts serveStatic on every path. Call once per test.
++  function serve(overrides: Partial<ServeStaticOptions> = {}) {
++    const options: ServeStaticOptions = {
++      getContents: () => BODY,
++      getMeta: (id) => (id === "/file.txt" ? META : undefined),
++      encodings: { gzip: ".gz" },
++      ...overrides,
++    };
++    t.app.all("/**", (event) => serveStatic(event, options));
++  }
++
++  // `accept-encoding: identity` keeps the default variant selection stable across runtimes.
++  function get(path: string, headers: Record<string, string> = {}) {
++    return t.fetch(path, {
++      headers: { "accept-encoding": "identity", ...headers },
++    });
++  }
++
++  function head(path: string, headers: Record<string, string> = {}) {
++    return t.fetch(path, {
++      method: "HEAD",
++      headers: { "accept-encoding": "identity", ...headers },
++    });
++  }
++
++  describe("RF-01: accept-ranges", () => {
++    it("advertises accept-ranges on GET without Range", async () => {
++      serve();
++      const res = await get("/file.txt");
++      expect(res.status).toBe(200);
++      expect(res.headers.get("accept-ranges")).toBe("bytes");
++    });
++
++    it("advertises accept-ranges on GET with Range", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=2-5" });
++      expect(res.headers.get("accept-ranges")).toBe("bytes");
++    });
++
++    it("advertises accept-ranges on HEAD", async () => {
++      serve();
++      const res = await head("/file.txt");
++      expect(res.headers.get("accept-ranges")).toBe("bytes");
++    });
++
++    it("omits accept-ranges when size is unknown", async () => {
++      serve({ getMeta: () => ({ type: "text/plain" }) });
++      const res = await get("/file.txt", { range: "bytes=2-5" });
++      expect(res.status).toBe(200);
++      expect(res.headers.get("accept-ranges")).toBeNull();
++    });
++
++    it("omits accept-ranges when size is 0", async () => {
++      serve({ getMeta: () => ({ type: "text/plain", size: 0 }) });
++      const res = await get("/file.txt");
++      expect(res.headers.get("accept-ranges")).toBeNull();
++    });
++  });
++
++  describe("RF-02: 206 for a satisfiable range", () => {
++    it("serves bytes=2-5 as 206 with content-range, content-length and the slice", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=2-5" });
++      expect(res.status).toBe(206);
++      expect(res.headers.get("content-range")).toBe("bytes 2-5/10");
++      expect(res.headers.get("content-length")).toBe("4");
++      expect(await res.text()).toBe("2345");
++    });
++
++    it("serves an open-ended range until the end of the file", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=2-" });
++      expect(res.status).toBe(206);
++      expect(res.headers.get("content-range")).toBe("bytes 2-9/10");
++      expect(await res.text()).toBe("23456789");
++    });
++
++    it("serves a suffix range with the last n bytes", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=-3" });
++      expect(res.status).toBe(206);
++      expect(res.headers.get("content-range")).toBe("bytes 7-9/10");
++      expect(res.headers.get("content-length")).toBe("3");
++      expect(await res.text()).toBe("789");
++    });
++
++    it("serves the whole file when the suffix is larger than the file", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=-99" });
++      expect(res.status).toBe(206);
++      expect(res.headers.get("content-range")).toBe("bytes 0-9/10");
++      expect(res.headers.get("content-length")).toBe("10");
++      expect(await res.text()).toBe(BODY);
++    });
++
++    it("limits the last byte to size - 1", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=5-99" });
++      expect(res.status).toBe(206);
++      expect(res.headers.get("content-range")).toBe("bytes 5-9/10");
++      expect(await res.text()).toBe("56789");
++    });
++
++    it("accepts the unit case-insensitively", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "BYTES=2-5" });
++      expect(res.status).toBe(206);
++      expect(await res.text()).toBe("2345");
++    });
++  });
++
++  describe("RF-03: HEAD with range", () => {
++    it("returns 206 headers without a body and does not call getContents", async () => {
++      const getContents = vi.fn(() => BODY);
++      serve({ getContents });
++      const res = await head("/file.txt", { range: "bytes=2-5" });
++      expect(res.status).toBe(206);
++      expect(res.headers.get("content-range")).toBe("bytes 2-5/10");
++      expect(res.headers.get("content-length")).toBe("4");
++      expect(await res.text()).toBe("");
++      expect(getContents).not.toHaveBeenCalled();
++    });
++  });
++
++  describe("RF-04: 416 for an unsatisfiable range", () => {
++    for (const range of ["bytes=10-20", "bytes=10-", "bytes=-0"]) {
++      it(`answers ${range} with 416 and no body`, async () => {
++        const getContents = vi.fn(() => BODY);
++        serve({ getContents });
++        const res = await get("/file.txt", { range });
++        expect(res.status).toBe(416);
++        expect(res.headers.get("content-range")).toBe("bytes */10");
++        expect(res.headers.get("content-length")).toBe("0");
++        expect(await res.text()).toBe("");
++        expect(getContents).not.toHaveBeenCalled();
++      });
++    }
++
++    it("keeps vary, etag and accept-ranges on 416", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=10-20" });
++      expect(res.headers.get("vary")).toBe("accept-encoding");
++      expect(res.headers.get("etag")).toBe('"abc"');
++      expect(res.headers.get("accept-ranges")).toBe("bytes");
++    });
++
++    it("keeps vary on 206", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=2-5" });
++      expect(res.headers.get("vary")).toBe("accept-encoding");
++    });
++  });
++
++  describe("RF-05: malformed or multiple ranges are ignored", () => {
++    for (const range of ["bytes=abc", "items=0-1", "bytes=5-2", "bytes=0-1,4-5", "bytes=-"]) {
++      it(`ignores ${range} and serves the full file with 200`, async () => {
++        serve();
++        const res = await get("/file.txt", { range });
++        expect(res.status).toBe(200);
++        expect(res.headers.get("content-range")).toBeNull();
++        expect(await res.text()).toBe(BODY);
++      });
++    }
++  });
++
++  describe("RF-06: If-Range", () => {
++    it("applies the range when If-Range is the current strong ETag", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=2-5", "if-range": '"abc"' });
++      expect(res.status).toBe(206);
++      expect(await res.text()).toBe("2345");
++    });
++
++    it("ignores the range when If-Range is a different ETag", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=2-5", "if-range": '"other"' });
++      expect(res.status).toBe(200);
++      expect(res.headers.get("content-range")).toBeNull();
++      expect(await res.text()).toBe(BODY);
++    });
++
++    it("ignores the range when If-Range is a weak ETag", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=2-5", "if-range": 'W/"abc"' });
++      expect(res.status).toBe(200);
++      expect(await res.text()).toBe(BODY);
++    });
++
++    it("applies the range when If-Range is the exact Last-Modified date", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=2-5", "if-range": LAST_MODIFIED });
++      expect(res.status).toBe(206);
++      expect(await res.text()).toBe("2345");
++    });
++
++    it("ignores the range when If-Range is a different date", async () => {
++      serve();
++      const other = new Date(1_700_000_000_000 - 1000).toUTCString();
++      const res = await get("/file.txt", { range: "bytes=2-5", "if-range": other });
++      expect(res.status).toBe(200);
++      expect(await res.text()).toBe(BODY);
++    });
++
++    it("answers 416 when If-Range matches and the range is unsatisfiable", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=10-20", "if-range": '"abc"' });
++      expect(res.status).toBe(416);
++    });
++
++    it("ignores the range when the asset has neither ETag nor mtime", async () => {
++      serve({ getMeta: () => ({ type: "text/plain", size: 10 }) });
++      const res = await get("/file.txt", { range: "bytes=2-5", "if-range": '"abc"' });
++      expect(res.status).toBe(200);
++      expect(await res.text()).toBe(BODY);
++    });
++  });
++
++  describe("RF-07: conditionals run before Range", () => {
++    it("returns 304 for If-None-Match with a Range header", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=2-5", "if-none-match": '"abc"' });
++      expect(res.status).toBe(304);
++      expect(res.headers.get("content-range")).toBeNull();
++      expect(res.headers.get("accept-ranges")).toBe("bytes");
++    });
++
++    it("returns 304 for If-Modified-Since with a Range header", async () => {
++      serve();
++      const res = await get("/file.txt", {
++        range: "bytes=2-5",
++        "if-modified-since": LAST_MODIFIED,
++      });
++      expect(res.status).toBe(304);
++      expect(res.headers.get("content-range")).toBeNull();
++    });
++
++    it("returns 304, not 416, for a matching If-None-Match with an unsatisfiable range", async () => {
++      serve();
++      const res = await get("/file.txt", { range: "bytes=10-20", "if-none-match": '"abc"' });
++      expect(res.status).toBe(304);
++    });
++  });
++
++  describe("RF-08: range applies to the served variant", () => {
++    it("uses the size of the precompressed variant and keeps its encoding headers", async () => {
++      const getMeta = vi.fn((id: string): StaticAssetMeta | undefined => {
++        if (id === "/app.js.gz") {
++          return { type: "text/javascript", encoding: "gzip", size: 20 };
++        }
++        if (id === "/app.js") {
++          return { type: "text/javascript", size: 10 };
++        }
++        return undefined;
++      });
++      const getContents = vi.fn((id: string) => (id === "/app.js.gz" ? "g".repeat(20) : BODY));
++      serve({ getMeta, getContents });
++
++      const res = await t.fetch("/app.js", {
++        headers: { "accept-encoding": "gzip", range: "bytes=0-4" },
++      });
++      expect(res.status).toBe(206);
++      expect(res.headers.get("content-range")).toBe("bytes 0-4/20");
++      expect(res.headers.get("content-length")).toBe("5");
++      expect(res.headers.get("content-encoding")).toBe("gzip");
++      expect(res.headers.get("content-type")).toBe("text/javascript");
++      expect(res.headers.get("vary")).toBe("accept-encoding");
++      expect(getContents).toHaveBeenCalledWith("/app.js.gz");
++      // Node's fetch decodes `content-encoding: gzip` and this fixture is not real gzip, so the
++      // body is only read on the web target.
++      if (t.target === "web") {
++        expect(await res.text()).toBe("ggggg");
++      }
++    });
++  });
++
++  describe("RF-09: unknown size means no range", () => {
++    it("ignores Range when getMeta has no size", async () => {
++      serve({
++        getMeta: (id) => (id === "/file.txt" ? { type: "text/plain", etag: '"abc"' } : undefined),
++      });
++      const res = await get("/file.txt", { range: "bytes=2-5" });
++      expect(res.status).toBe(200);
++      expect(res.headers.get("content-range")).toBeNull();
++      expect(await res.text()).toBe(BODY);
++    });
++
++    it("ignores Range when size is 0 (D-08, P3)", async () => {
++      serve({
++        getMeta: (id) => (id === "/file.txt" ? { type: "text/plain", size: 0 } : undefined),
++        getContents: () => "",
++      });
++      const res = await get("/file.txt", { range: "bytes=0-0" });
++      expect(res.status).toBe(200);
++      expect(res.headers.get("content-range")).toBeNull();
++    });
++  });
++
++  describe("RF-10: existing behavior is preserved", () => {
++    it("serves the same 200 response without Range", async () => {
++      serve();
++      const res = await get("/file.txt");
++      expect(res.status).toBe(200);
++      expect(res.headers.get("content-range")).toBeNull();
++      expect(res.headers.get("content-length")).toBe("10");
++      expect(res.headers.get("etag")).toBe('"abc"');
++      expect(res.headers.get("vary")).toBe("accept-encoding");
++      expect(await res.text()).toBe(BODY);
++    });
++
++    it("returns 404 for a missing asset even with a Range header", async () => {
++      serve();
++      const res = await get("/missing.txt", { range: "bytes=2-5" });
++      expect(res.status).toBe(404);
++    });
++
++    it("returns 405 for POST even with a Range header", async () => {
++      // PRD RF-10 also lists `allow: GET, HEAD`, but `allow` is set on `event.res.headers`
++      // and dropped by the HTTPError path (sdd/techspec.md D-07). Not changed here, since
++      // 405 must stay as it is today. See the pending item in the final report.
++      serve();
++      const res = await t.fetch("/file.txt", {
++        method: "POST",
++        headers: { range: "bytes=2-5" },
++      });
++      expect(res.status).toBe(405);
++    });
++  });
++});
++
++describeMatrix("serve static range with fallthrough", (t, { it, expect }) => {
++  beforeEach(() => {
++    const options: ServeStaticOptions = {
++      getContents: () => BODY,
++      getMeta: (id) => (id === "/file.txt" ? META : undefined),
++      fallthrough: true,
++    };
++    t.app.use((event) => serveStatic(event, options));
++    t.app.use(() => ({ fallthroughTest: "passing" }));
++  });
++
++  it("falls through for a missing asset with Range", async () => {
++    const res = await t.fetch("/missing.txt", { headers: { range: "bytes=2-5" } });
++    expect(await res.json()).toEqual({ fallthroughTest: "passing" });
++  });
++
++  it("falls through for POST with Range", async () => {
++    const res = await t.fetch("/file.txt", {
++      method: "POST",
++      headers: { range: "bytes=2-5" },
++    });
++    expect(await res.json()).toEqual({ fallthroughTest: "passing" });
++  });
++
++  it("still serves a satisfiable range", async () => {
++    const res = await t.fetch("/file.txt", { headers: { range: "bytes=2-5" } });
++    expect(res.status).toBe(206);
++    expect(await res.text()).toBe("2345");
++  });
++});
++
++describeMatrix("serve static range body types", (t, { it, expect }) => {
++  function serveBody(contents: () => BodyInit | null | undefined, size: number) {
++    const options: ServeStaticOptions = {
++      getContents: contents,
++      getMeta: () => ({ type: "text/plain", etag: '"abc"', size }),
++    };
++    t.app.all("/**", (event) => serveStatic(event, options));
++  }
++
++  it("slices a string by UTF-8 bytes, not characters", async () => {
++    // "a" (1 byte) + "é" (2 bytes) + "b" (1 byte) = 4 bytes.
++    serveBody(() => "aéb", 4);
++    const res = await t.fetch("/file.txt", { headers: { range: "bytes=1-2" } });
++    expect(res.status).toBe(206);
++    expect(res.headers.get("content-range")).toBe("bytes 1-2/4");
++    expect(await res.text()).toBe("é");
++  });
++
++  it("slices a Blob", async () => {
++    serveBody(() => new Blob([BODY]), 10);
++    const res = await t.fetch("/file.txt", { headers: { range: "bytes=2-5" } });
++    expect(res.status).toBe(206);
++    expect(await res.text()).toBe("2345");
++  });
++
++  it("slices an ArrayBuffer", async () => {
++    serveBody(() => new TextEncoder().encode(BODY).buffer as ArrayBuffer, 10);
++    const res = await t.fetch("/file.txt", { headers: { range: "bytes=2-5" } });
++    expect(res.status).toBe(206);
++    expect(await res.text()).toBe("2345");
++  });
++
++  it("respects byteOffset of a Uint8Array view", async () => {
++    // The view starts at byte 2 of the underlying buffer, so the body is "0123456789".
++    const buffer = new TextEncoder().encode(`XX${BODY}`);
++    serveBody(() => buffer.subarray(2), 10);
++    const res = await t.fetch("/file.txt", { headers: { range: "bytes=2-5" } });
++    expect(res.status).toBe(206);
++    expect(await res.text()).toBe("2345");
++  });
++
++  it("slices a ReadableStream whose chunk boundary falls inside the range", async () => {
++    // Range starts in the middle of the first chunk and ends in the second.
++    serveBody(
++      () =>
++        new ReadableStream({
++          start(controller) {
++            controller.enqueue(new TextEncoder().encode("0123"));
++            controller.enqueue(new TextEncoder().encode("456789"));
++            controller.close();
++          },
++        }),
++      10,
++    );
++    const res = await t.fetch("/file.txt", { headers: { range: "bytes=2-5" } });
++    expect(res.status).toBe(206);
++    expect(res.headers.get("content-length")).toBe("4");
++    expect(await res.text()).toBe("2345");
++  });
++});

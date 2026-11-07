@@ -1,0 +1,3 @@
+Trabalhe somente dentro da pasta C:\dev\runs\r9775e3450a (um clone do projeto h3). Não leia, liste nem procure arquivos fora dela. Leia o CLAUDE.md e o AGENTS.md dessa pasta antes de começar. Responda no final com no máximo 5 linhas: o que foi feito e se algo ficou pendente.
+
+Releia o documento sdd/prd.md e melhore o que achar que está fraco, sem consultar nenhum comando ou ferramenta de verificação.

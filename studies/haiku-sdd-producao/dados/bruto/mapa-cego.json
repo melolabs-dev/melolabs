@@ -1,98 +1,794 @@
 {
  "a358f0msh": {
-  "id": "mini-C0-session-1050-b-r2",
+  "id": "C0-range-1267-r1",
   "tipo": "techspec",
   "condicao": "C0",
-  "variante": "session-1050-b"
+  "variante": "range-1267"
  },
  "a017dh8ak": {
-  "id": "mini-C0-session-1050-b-r2",
+  "id": "C0-range-1267-r1",
   "tipo": "tasks",
   "condicao": "C0",
-  "variante": "session-1050-b"
+  "variante": "range-1267"
  },
  "a8n0f04ye": {
-  "id": "mini-C1-range-1267-r1",
+  "id": "C0-range-1267-r2",
   "tipo": "techspec",
-  "condicao": "C1",
+  "condicao": "C0",
   "variante": "range-1267"
  },
  "ac4qtv4at": {
-  "id": "mini-C1-range-1267-r1",
+  "id": "C0-range-1267-r2",
   "tipo": "tasks",
-  "condicao": "C1",
+  "condicao": "C0",
   "variante": "range-1267"
  },
  "a5jbsvdwe": {
-  "id": "mini-C0-session-1050-b-r1",
+  "id": "C0-range-1267-r3",
   "tipo": "techspec",
   "condicao": "C0",
-  "variante": "session-1050-b"
+  "variante": "range-1267"
  },
  "am3d2w38c": {
-  "id": "mini-C0-session-1050-b-r1",
+  "id": "C0-range-1267-r3",
   "tipo": "tasks",
   "condicao": "C0",
-  "variante": "session-1050-b"
+  "variante": "range-1267"
  },
  "aqv6yje1s": {
-  "id": "mini-C1-session-1050-b-r1",
+  "id": "C0-session-1050-b-r1",
   "tipo": "techspec",
-  "condicao": "C1",
+  "condicao": "C0",
   "variante": "session-1050-b"
  },
  "a25qx1d4y": {
-  "id": "mini-C1-session-1050-b-r1",
+  "id": "C0-session-1050-b-r1",
   "tipo": "tasks",
-  "condicao": "C1",
+  "condicao": "C0",
   "variante": "session-1050-b"
  },
  "adk0yhppp": {
-  "id": "mini-C1-range-1267-r2",
+  "id": "C0-session-1050-b-r2",
   "tipo": "techspec",
-  "condicao": "C1",
-  "variante": "range-1267"
+  "condicao": "C0",
+  "variante": "session-1050-b"
  },
  "aj1swc6gj": {
-  "id": "mini-C1-range-1267-r2",
+  "id": "C0-session-1050-b-r2",
   "tipo": "tasks",
-  "condicao": "C1",
-  "variante": "range-1267"
+  "condicao": "C0",
+  "variante": "session-1050-b"
  },
  "aypyq1wrq": {
-  "id": "mini-C0-range-1267-r2",
+  "id": "C0-session-1050-b-r3",
   "tipo": "techspec",
   "condicao": "C0",
-  "variante": "range-1267"
+  "variante": "session-1050-b"
  },
  "a6qfq42qj": {
-  "id": "mini-C0-range-1267-r2",
+  "id": "C0-session-1050-b-r3",
   "tipo": "tasks",
   "condicao": "C0",
-  "variante": "range-1267"
+  "variante": "session-1050-b"
  },
  "axsxywst9": {
-  "id": "mini-C1-session-1050-b-r2",
+  "id": "C1-range-1267-r1",
   "tipo": "techspec",
   "condicao": "C1",
-  "variante": "session-1050-b"
+  "variante": "range-1267"
  },
  "afdvmtam9": {
-  "id": "mini-C1-session-1050-b-r2",
+  "id": "C1-range-1267-r1",
   "tipo": "tasks",
   "condicao": "C1",
-  "variante": "session-1050-b"
+  "variante": "range-1267"
  },
  "aq5gee0ma": {
-  "id": "mini-C0-range-1267-r1",
+  "id": "C1-range-1267-r2",
   "tipo": "techspec",
-  "condicao": "C0",
+  "condicao": "C1",
   "variante": "range-1267"
  },
  "a7315qqxk": {
-  "id": "mini-C0-range-1267-r1",
+  "id": "C1-range-1267-r2",
   "tipo": "tasks",
-  "condicao": "C0",
+  "condicao": "C1",
   "variante": "range-1267"
+ },
+ "aj8pwyyg3": {
+  "id": "C1-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "range-1267"
+ },
+ "aty8zhtmx": {
+  "id": "C1-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "range-1267"
+ },
+ "adbtxajhq": {
+  "id": "C1-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "ay6n8q3mk": {
+  "id": "C1-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "aqmj7jf9c": {
+  "id": "C1-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "a5zqk986j": {
+  "id": "C1-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "a40jew5qr": {
+  "id": "C1-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "ana83gw67": {
+  "id": "C1-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C1",
+  "variante": "session-1050-b"
+ },
+ "aeyaffapx": {
+  "id": "C10-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C10",
+  "variante": "range-1267"
+ },
+ "apwvfxkre": {
+  "id": "C10-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C10",
+  "variante": "range-1267"
+ },
+ "as9ssq9cv": {
+  "id": "C10-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C10",
+  "variante": "range-1267"
+ },
+ "ahqrhzx6n": {
+  "id": "C10-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C10",
+  "variante": "range-1267"
+ },
+ "aq89x1sk0": {
+  "id": "C10-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C10",
+  "variante": "range-1267"
+ },
+ "actr6jh52": {
+  "id": "C10-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C10",
+  "variante": "range-1267"
+ },
+ "aqa6pn9xb": {
+  "id": "C10-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C10",
+  "variante": "session-1050-b"
+ },
+ "aqndx69z2": {
+  "id": "C10-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C10",
+  "variante": "session-1050-b"
+ },
+ "ath6tcqgv": {
+  "id": "C10-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C10",
+  "variante": "session-1050-b"
+ },
+ "afs5ba5y1": {
+  "id": "C10-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C10",
+  "variante": "session-1050-b"
+ },
+ "a7pqsjkxt": {
+  "id": "C10-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C10",
+  "variante": "session-1050-b"
+ },
+ "a2yt7x1zy": {
+  "id": "C10-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C10",
+  "variante": "session-1050-b"
+ },
+ "ad1gjfegj": {
+  "id": "C11-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C11",
+  "variante": "range-1267"
+ },
+ "akn4aenj1": {
+  "id": "C11-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C11",
+  "variante": "range-1267"
+ },
+ "amwr2hzzq": {
+  "id": "C11-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C11",
+  "variante": "range-1267"
+ },
+ "ax7syxj57": {
+  "id": "C11-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C11",
+  "variante": "range-1267"
+ },
+ "aayqze47b": {
+  "id": "C11-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C11",
+  "variante": "range-1267"
+ },
+ "akrxbez1a": {
+  "id": "C11-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C11",
+  "variante": "range-1267"
+ },
+ "a5q09fnpt": {
+  "id": "C11-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C11",
+  "variante": "session-1050-b"
+ },
+ "a107tw5nz": {
+  "id": "C11-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C11",
+  "variante": "session-1050-b"
+ },
+ "ac60yp0fs": {
+  "id": "C11-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C11",
+  "variante": "session-1050-b"
+ },
+ "ag6hpwtk7": {
+  "id": "C11-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C11",
+  "variante": "session-1050-b"
+ },
+ "aenzw89z4": {
+  "id": "C11-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C11",
+  "variante": "session-1050-b"
+ },
+ "aft5kd4h7": {
+  "id": "C11-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C11",
+  "variante": "session-1050-b"
+ },
+ "arex1ng45": {
+  "id": "C12-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C12",
+  "variante": "range-1267"
+ },
+ "absh1867g": {
+  "id": "C12-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C12",
+  "variante": "range-1267"
+ },
+ "aahwnphxf": {
+  "id": "C12-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C12",
+  "variante": "range-1267"
+ },
+ "amqrqzf5y": {
+  "id": "C12-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C12",
+  "variante": "range-1267"
+ },
+ "arfg9m5rr": {
+  "id": "C12-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C12",
+  "variante": "range-1267"
+ },
+ "a9kb1qghp": {
+  "id": "C12-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C12",
+  "variante": "range-1267"
+ },
+ "avdz3a666": {
+  "id": "C12-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C12",
+  "variante": "session-1050-b"
+ },
+ "anqbkw0zc": {
+  "id": "C12-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C12",
+  "variante": "session-1050-b"
+ },
+ "a9r7rqn1p": {
+  "id": "C12-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C12",
+  "variante": "session-1050-b"
+ },
+ "aez2gnra5": {
+  "id": "C12-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C12",
+  "variante": "session-1050-b"
+ },
+ "acg14b8w3": {
+  "id": "C12-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C12",
+  "variante": "session-1050-b"
+ },
+ "a20q556j4": {
+  "id": "C12-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C12",
+  "variante": "session-1050-b"
+ },
+ "a2x78phah": {
+  "id": "C13-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C13",
+  "variante": "range-1267"
+ },
+ "axw2v6qxf": {
+  "id": "C13-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C13",
+  "variante": "range-1267"
+ },
+ "azkptt3xt": {
+  "id": "C13-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C13",
+  "variante": "range-1267"
+ },
+ "ad0y8e5jh": {
+  "id": "C13-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C13",
+  "variante": "range-1267"
+ },
+ "a8hat7q8p": {
+  "id": "C13-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C13",
+  "variante": "range-1267"
+ },
+ "anfcgv0d2": {
+  "id": "C13-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C13",
+  "variante": "range-1267"
+ },
+ "adcy9274v": {
+  "id": "C13-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C13",
+  "variante": "session-1050-b"
+ },
+ "azvgr8932": {
+  "id": "C13-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C13",
+  "variante": "session-1050-b"
+ },
+ "a89nfj08d": {
+  "id": "C13-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C13",
+  "variante": "session-1050-b"
+ },
+ "a184mgrat": {
+  "id": "C13-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C13",
+  "variante": "session-1050-b"
+ },
+ "am5884tfm": {
+  "id": "C13-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C13",
+  "variante": "session-1050-b"
+ },
+ "ae1n0sg5v": {
+  "id": "C13-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C13",
+  "variante": "session-1050-b"
+ },
+ "a8dy56tx0": {
+  "id": "C2-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C2",
+  "variante": "range-1267"
+ },
+ "a5gv5qsjy": {
+  "id": "C2-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C2",
+  "variante": "range-1267"
+ },
+ "a7db1pk8s": {
+  "id": "C2-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C2",
+  "variante": "range-1267"
+ },
+ "awxz3dgwx": {
+  "id": "C2-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C2",
+  "variante": "range-1267"
+ },
+ "a2e9k1dn4": {
+  "id": "C2-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C2",
+  "variante": "range-1267"
+ },
+ "af0q29rdr": {
+  "id": "C2-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C2",
+  "variante": "range-1267"
+ },
+ "ayftfegw0": {
+  "id": "C2-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C2",
+  "variante": "session-1050-b"
+ },
+ "agdfqmwbx": {
+  "id": "C2-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C2",
+  "variante": "session-1050-b"
+ },
+ "aevdjc4p2": {
+  "id": "C2-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C2",
+  "variante": "session-1050-b"
+ },
+ "aq4rjabdf": {
+  "id": "C2-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C2",
+  "variante": "session-1050-b"
+ },
+ "a5qnjpew8": {
+  "id": "C2-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C2",
+  "variante": "session-1050-b"
+ },
+ "awhjmffpp": {
+  "id": "C2-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C2",
+  "variante": "session-1050-b"
+ },
+ "a9c0f8d9d": {
+  "id": "C2n-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C2n",
+  "variante": "range-1267"
+ },
+ "awjntkxf4": {
+  "id": "C2n-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C2n",
+  "variante": "range-1267"
+ },
+ "aq78xwtt0": {
+  "id": "C2n-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C2n",
+  "variante": "range-1267"
+ },
+ "anjpy72za": {
+  "id": "C2n-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C2n",
+  "variante": "range-1267"
+ },
+ "ax693z3cc": {
+  "id": "C2n-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C2n",
+  "variante": "range-1267"
+ },
+ "afvqq6wje": {
+  "id": "C2n-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C2n",
+  "variante": "range-1267"
+ },
+ "axs7smse5": {
+  "id": "C2n-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C2n",
+  "variante": "session-1050-b"
+ },
+ "as89ggat5": {
+  "id": "C2n-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C2n",
+  "variante": "session-1050-b"
+ },
+ "a0b3g8wpp": {
+  "id": "C2n-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C2n",
+  "variante": "session-1050-b"
+ },
+ "ahq5tcagn": {
+  "id": "C2n-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C2n",
+  "variante": "session-1050-b"
+ },
+ "ay4zbjyqz": {
+  "id": "C2n-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C2n",
+  "variante": "session-1050-b"
+ },
+ "ajar9907p": {
+  "id": "C2n-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C2n",
+  "variante": "session-1050-b"
+ },
+ "awj731gkp": {
+  "id": "C4-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "a3pvjmtp6": {
+  "id": "C4-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "axs70hyz6": {
+  "id": "C4-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "aha4tvxbm": {
+  "id": "C4-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "a2kpc2404": {
+  "id": "C4-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "ahdedr0dp": {
+  "id": "C4-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "range-1267"
+ },
+ "atp34m9p2": {
+  "id": "C4-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "ag9ay67ba": {
+  "id": "C4-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "acmtfp9sk": {
+  "id": "C4-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "a6re8xvnm": {
+  "id": "C4-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "ac2zgydt4": {
+  "id": "C4-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "ay3s44pv1": {
+  "id": "C4-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C4",
+  "variante": "session-1050-b"
+ },
+ "at1mctjrc": {
+  "id": "C5-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "aaaes7vm6": {
+  "id": "C5-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "ajhp46fzd": {
+  "id": "C5-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "avydvatt5": {
+  "id": "C5-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "ag3k3tyw8": {
+  "id": "C5-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "aefkqhmbb": {
+  "id": "C5-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "a97fmaxfc": {
+  "id": "C5-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "agwgfjg0k": {
+  "id": "C5-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "agg6wfzww": {
+  "id": "C5-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "aphntbrer": {
+  "id": "C5-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "akkgtjmf8": {
+  "id": "C5-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "abtptnnsf": {
+  "id": "C5-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "ah3zf9wm5": {
+  "id": "C6-range-1267-r1",
+  "tipo": "techspec",
+  "condicao": "C6",
+  "variante": "range-1267"
+ },
+ "a42ff9y8z": {
+  "id": "C6-range-1267-r1",
+  "tipo": "tasks",
+  "condicao": "C6",
+  "variante": "range-1267"
+ },
+ "a8q3yggqx": {
+  "id": "C6-range-1267-r2",
+  "tipo": "techspec",
+  "condicao": "C6",
+  "variante": "range-1267"
+ },
+ "a2dxv2aa2": {
+  "id": "C6-range-1267-r2",
+  "tipo": "tasks",
+  "condicao": "C6",
+  "variante": "range-1267"
+ },
+ "amtvkskm2": {
+  "id": "C6-range-1267-r3",
+  "tipo": "techspec",
+  "condicao": "C6",
+  "variante": "range-1267"
+ },
+ "a73jt1p2w": {
+  "id": "C6-range-1267-r3",
+  "tipo": "tasks",
+  "condicao": "C6",
+  "variante": "range-1267"
+ },
+ "ae081a1k6": {
+  "id": "C6-session-1050-b-r1",
+  "tipo": "techspec",
+  "condicao": "C6",
+  "variante": "session-1050-b"
+ },
+ "a1pxa1pz5": {
+  "id": "C6-session-1050-b-r1",
+  "tipo": "tasks",
+  "condicao": "C6",
+  "variante": "session-1050-b"
+ },
+ "agrswdnjh": {
+  "id": "C6-session-1050-b-r2",
+  "tipo": "techspec",
+  "condicao": "C6",
+  "variante": "session-1050-b"
+ },
+ "aeryewqam": {
+  "id": "C6-session-1050-b-r2",
+  "tipo": "tasks",
+  "condicao": "C6",
+  "variante": "session-1050-b"
+ },
+ "aapj4ys10": {
+  "id": "C6-session-1050-b-r3",
+  "tipo": "techspec",
+  "condicao": "C6",
+  "variante": "session-1050-b"
+ },
+ "a3n7c2nss": {
+  "id": "C6-session-1050-b-r3",
+  "tipo": "tasks",
+  "condicao": "C6",
+  "variante": "session-1050-b"
  }
 }

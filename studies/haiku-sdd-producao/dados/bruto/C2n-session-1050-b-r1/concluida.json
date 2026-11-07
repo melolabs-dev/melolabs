@@ -1,0 +1,27 @@
+{
+  "id": "C2n-session-1050-b-r1",
+  "condicao": "C2n",
+  "variante": "session-1050-b",
+  "inicio": "2026-11-06T15:25:45",
+  "fim": "2026-11-06T15:40:22",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": false
+    },
+    "techspec": {
+      "gate_primeira_tentativa": false,
+      "rodadas": 0,
+      "gate_final": false
+    },
+    "tasks": {
+      "gate_primeira_tentativa": false,
+      "rodadas": 0,
+      "gate_final": false
+    }
+  },
+  "nucleo": "12/12",
+  "nucleo_100": true,
+  "auditoria_limpa": false
+}

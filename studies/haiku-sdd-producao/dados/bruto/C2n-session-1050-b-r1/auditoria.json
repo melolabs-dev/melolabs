@@ -1,0 +1,10 @@
+{
+  "limpo": false,
+  "acessos_suspeitos": [
+    "{\"file_path\": \"C:\\\\dev\\\\runs\\\\rcf1f79dec6\\\\test\\\\_capture-ref.test.ts\", \"content\": \"import { it } from \\\"vitest\\\";\\nimport { writeFileSync } from \\\"node:fs\\\";\\n",
+    "{\"replace_all\": false, \"file_path\": \"C:\\\\dev\\\\runs\\\\rcf1f79dec6\\\\test\\\\session.test.ts\", \"old_string\": \"import {\\n  useSession,\\n  getSession,\\n  updateSession,",
+    "{\"replace_all\": false, \"file_path\": \"C:\\\\dev\\\\runs\\\\rcf1f79dec6\\\\test\\\\session.test.ts\", \"old_string\": \"    expect(body.session.id).not.toBe(\\\"legacy\\\");\\n    e"
+  ],
+  "transcricoes_vazias": [],
+  "n_transcricoes": 7
+}

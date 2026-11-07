@@ -1,0 +1,27 @@
+{
+  "id": "C6-session-1050-b-r1",
+  "condicao": "C6",
+  "variante": "session-1050-b",
+  "inicio": "2026-11-06T12:05:47",
+  "fim": "2026-11-06T12:13:17",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "techspec": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "tasks": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    }
+  },
+  "nucleo": "12/12",
+  "nucleo_100": true,
+  "auditoria_limpa": true
+}

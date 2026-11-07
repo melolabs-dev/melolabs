@@ -1,0 +1,195 @@
+diff --git a/src/index.ts b/src/index.ts
+index cb26f39..ffde7eb 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -70,6 +70,7 @@ export { toResponse, HTTPResponse } from "./response.ts";
+ // Error
+ 
+ export { type ErrorDetails, type ErrorBody, type ErrorInput, HTTPError } from "./error.ts";
++export { problem, type ProblemInput } from "./utils/problem.ts";
+ 
+ // Adapters
+ 
+diff --git a/src/utils/problem.ts b/src/utils/problem.ts
+new file mode 100644
+index 0000000..fb2fb56
+--- /dev/null
++++ b/src/utils/problem.ts
+@@ -0,0 +1,26 @@
++import { HTTPError, type ErrorInput } from "../error.ts";
++
++/**
++ * Entrada de `problem()`: os campos de `ErrorInput` mais os dois campos de
++ * problem details (RFC 9457) que o h3 suporta.
++ */
++export interface ProblemInput<DataT = unknown> extends ErrorInput<DataT> {
++  /** URI que identifica o tipo do problema. Omitido do corpo quando ausente. */
++  type?: string;
++  /** URI que identifica a ocorrência do problema. Omitido do corpo quando ausente. */
++  instance?: string;
++}
++
++/**
++ * Cria um `HTTPError` cuja resposta segue RFC 9457: `Content-Type: application/problem+json`
++ * e `type`/`instance` no topo do JSON (quando informados).
++ */
++export function problem<DataT = unknown>(input: ProblemInput<DataT>): HTTPError<DataT> {
++  const { type, instance, headers, body, ...rest } = input;
++  const members: Record<string, unknown> = { ...body };
++  if (type !== undefined) members.type = type;
++  if (instance !== undefined) members.instance = instance;
++  const merged = new Headers(headers);
++  merged.set("content-type", "application/problem+json");
++  return new HTTPError<DataT>({ ...rest, headers: merged, body: members });
++}
+diff --git a/test/problem.test.ts b/test/problem.test.ts
+new file mode 100644
+index 0000000..806c4b3
+--- /dev/null
++++ b/test/problem.test.ts
+@@ -0,0 +1,133 @@
++import { describeMatrix } from "./_setup.ts";
++import { HTTPError, problem, type ProblemInput } from "../src/index.ts";
++
++describeMatrix("problem", (t, { it, expect }) => {
++  it("sends an RFC 9457 response when thrown", async () => {
++    t.app.get("/", () => {
++      throw problem({ status: 404, message: "Usuário não encontrado" });
++    });
++    const res = await t.fetch("/");
++    expect(res.status).toBe(404);
++    expect(res.headers.get("content-type")).toBe("application/problem+json");
++    expect(await res.json()).toMatchObject({ status: 404, message: "Usuário não encontrado" });
++  });
++
++  it("sends an RFC 9457 response when returned", async () => {
++    t.app.get("/", () => problem({ status: 404, message: "Não encontrado" }));
++    const res = await t.fetch("/");
++    expect(res.status).toBe(404);
++    expect(res.headers.get("content-type")).toBe("application/problem+json");
++    expect(HTTPError.isError(problem({ status: 404 }))).toBe(true);
++    expect(problem({ status: 404 })).toBeInstanceOf(HTTPError);
++  });
++
++  it("includes type and instance at the top level of the body", async () => {
++    t.app.get("/", () => {
++      throw problem({
++        status: 403,
++        type: "https://exemplo.com/erros/sem-saldo",
++        instance: "/pagamentos/42",
++      });
++    });
++    const res = await t.fetch("/");
++    const body = await res.json();
++    expect(body.type).toBe("https://exemplo.com/erros/sem-saldo");
++    expect(body.instance).toBe("/pagamentos/42");
++  });
++
++  it("omits type and instance when they are not provided", async () => {
++    t.app.get("/", () => {
++      throw problem({ status: 403 });
++    });
++    const res = await t.fetch("/");
++    const body = await res.json();
++    expect("type" in body).toBe(false);
++    expect("instance" in body).toBe(false);
++  });
++
++  it("hides the message and data of unhandled errors", async () => {
++    // Debug mode adds the error stack, which always carries the original message
++    t.app.config.debug = false;
++    t.app.get("/", () => {
++      throw problem({
++        status: 500,
++        message: "senha do banco vazou",
++        data: { secret: "x" },
++        unhandled: true,
++      });
++    });
++    const res = await t.fetch("/");
++    const text = await res.text();
++    const body = JSON.parse(text);
++    expect(res.headers.get("content-type")).toBe("application/problem+json");
++    expect(body.message).toBe("HTTPError");
++    expect("data" in body).toBe(false);
++    expect(text).not.toContain("senha do banco vazou");
++    t.errors = [];
++  });
++
++  it("hides type and instance of unhandled errors", async () => {
++    t.app.get("/", () => {
++      throw problem({
++        status: 500,
++        unhandled: true,
++        type: "https://exemplo.com/erros/interno",
++        instance: "/interno/1",
++      });
++    });
++    const body = await (await t.fetch("/")).json();
++    expect("type" in body).toBe(false);
++    expect("instance" in body).toBe(false);
++    t.errors = [];
++  });
++
++  it("keeps application/problem+json even if headers set another content-type", async () => {
++    t.app.get("/", () => {
++      throw problem({ status: 400, headers: { "content-type": "text/plain" } });
++    });
++    const res = await t.fetch("/");
++    expect(res.headers.get("content-type")).toBe("application/problem+json");
++  });
++
++  it("keeps other headers passed to problem", async () => {
++    t.app.get("/", () => {
++      throw problem({ status: 400, headers: { "x-extra": "1" } });
++    });
++    const res = await t.fetch("/");
++    expect(res.headers.get("x-extra")).toBe("1");
++    expect(res.headers.get("content-type")).toBe("application/problem+json");
++  });
++
++  it("gives precedence to type from problem over body", async () => {
++    t.app.get("/", () => {
++      throw problem({
++        status: 400,
++        type: "https://exemplo.com/certo",
++        body: { type: "https://exemplo.com/errado", foo: 1 },
++      });
++    });
++    const body = await (await t.fetch("/")).json();
++    expect(body.type).toBe("https://exemplo.com/certo");
++    expect(body.foo).toBe(1);
++  });
++
++  it("keeps the default JSON response for a plain HTTPError", async () => {
++    t.app.get("/", () => {
++      throw new HTTPError({ status: 400, message: "Ruim" });
++    });
++    const res = await t.fetch("/");
++    expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++    const body = await res.json();
++    expect(body).toMatchObject({ status: 400, message: "Ruim" });
++    expect("type" in body).toBe(false);
++    expect("instance" in body).toBe(false);
++  });
++
++  it("rejects a non-string type at compile time", () => {
++    // @ts-expect-error type must be a string
++    const error = problem({ status: 400, type: 123 });
++    expect(error.status).toBe(400);
++    const input: ProblemInput = { status: 400, type: "https://exemplo.com/tipo" };
++    expect(problem(input).body).toMatchObject({ type: "https://exemplo.com/tipo" });
++  });
++});
+diff --git a/test/unit/package.test.ts b/test/unit/package.test.ts
+index 71bbd62..58acf95 100644
+--- a/test/unit/package.test.ts
++++ b/test/unit/package.test.ts
+@@ -102,6 +102,7 @@ describe("h3 package", () => {
+         "onRequest",
+         "onResponse",
+         "parseCookies",
++        "problem",
+         "proxy",
+         "proxyRequest",
+         "raw",
