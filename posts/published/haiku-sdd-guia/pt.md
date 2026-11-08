@@ -85,5 +85,8 @@ A nossa leitura, otimista: **o Haiku faz o trabalho pesado, rápido e barato, e 
 
 Testamos **um projeto** (TypeScript, três funcionalidades). A conclusão sobre o código ainda é aberta, e a rubrica dos documentos tem limitações. Mas o caminho (Haiku nos documentos, testes primeiro e correção no código, e uma pessoa revisando) é barato, mostrou resultado em vários casos e combina com como equipes reais trabalham. O artigo técnico traz os números, os intervalos e tudo que pode estar errado.
 
+
+Dados e código do estudo, arquivados com DOI: [10.5281/zenodo.24048448](https://doi.org/10.5281/zenodo.24048448).
+
 ---
 *Os experimentos, os dados e as conclusões são meus. A redação foi assistida por IA e revisada por mim.*

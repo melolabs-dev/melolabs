@@ -91,6 +91,10 @@
     "F11.2": {
       "feito": "2026-11-08",
       "evidencia": "errata.md e changelog.md criados em studies/haiku-sdd-producao em 08/11/2026"
+    },
+    "F8.3": {
+      "feito": "2026-11-08",
+      "evidencia": "DOI 10.5281/zenodo.24048448 emitido em 08/11/2026 pelo Zenodo (release v1.0.0 do repositório melolabs-dev/melolabs, https://doi.org/10.5281/zenodo.24048448)"
     }
   },
   "auto_feito": {
