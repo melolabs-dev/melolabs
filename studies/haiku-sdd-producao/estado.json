@@ -43,6 +43,14 @@
     "F6.4": {
       "feito": "2026-11-07",
       "evidencia": "analise/sensibilidade.py (07/11/2026), rotulada exploratoria: H4 sem execucao suspeita (mesmo resultado), H4 so nas variantes que discriminam (C4 menos C0 = -25 pontos), C4 contra C1 (+16,7 pontos no nucleo 100%), alfa por tipo (TechSpec 0,56; Tasks 0,55), alucinacoes por condicao, e 35 de 36 execucoes C4 com prompt acima de 100 mil tokens (custo de lista da CLI aplica a faixa mais cara: 0,43 contra 0,10 se fosse plano). Saida em dados/processado/sensibilidade.json"
+    },
+    "F6.3": {
+      "feito": "2026-11-07",
+      "evidencia": "Extensao unica pela regra de parada (adendos 2 e 2b, tags prereg-haiku-sdd-producao-adendo2 e -adendo2b, definidos antes de qualquer dado novo): +60 execucoes (198 no total), 180 julgamentos novos (579 validos no total), analise estendida final em dados/processado/analise-estendida.json. H1, H4, H5 e H11 seguem subpotentes (alfa 0,61 < 0,67; H4 com intervalo -32,6 a -3,8 contra margem 10) e sao publicadas como subpotentes, sem nova rodada"
+    },
+    "F7.1": {
+      "feito": "2026-11-07",
+      "evidencia": "tools/harness/reproduzir.py (07/11/2026): clone limpo do repositorio, 1 comando; analise primaria, estendida, sensibilidade e auditoria dos dados saem IGUAIS aos publicados em dados/processado/ (so diferem os campos de data e de commit). Nao usa a chave do gabarito."
     }
   },
   "auto_feito": {

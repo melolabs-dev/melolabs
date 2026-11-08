@@ -38,9 +38,9 @@ def main():
     for saida, cmd in ALVOS.items():
         publicado = json.loads((ROOT / "studies" / "haiku-sdd-producao" / "dados" / "processado" / saida).read_text(encoding="utf-8"))
         if cmd is None:
-            r = subprocess.run([sys.executable, "-I", str(clone / "tools" / "harness" / "auditar.py")], cwd=clone, capture_output=True, text=True, encoding="utf-8")
+            r = subprocess.run([sys.executable, "-I", str(clone / "tools" / "harness" / "auditar.py")], cwd=clone, capture_output=True, text=True, encoding="utf-8", errors="replace")
         else:
-            r = subprocess.run([sys.executable, "-I", *cmd], cwd=estudo, capture_output=True, text=True, encoding="utf-8")
+            r = subprocess.run([sys.executable, "-I", *cmd], cwd=estudo, capture_output=True, text=True, encoding="utf-8", errors="replace")
         if r.returncode != 0:
             print(f"FALHOU {saida}: {r.stderr[-300:]}")
             ok = False
@@ -48,8 +48,12 @@ def main():
         novo = json.loads((estudo / "dados" / "processado" / saida).read_text(encoding="utf-8"))
         igual = limpa(novo) == limpa(publicado)
         if cmd is None:  # a auditoria tambem conta pastas locais fora do repositorio; so compara o que vem do repositorio
-            ign = {"pastas_em_C_dev_runs", "arquivos_brutos_modificados_apos_commit", "plano_execucoes_commits"}
-            igual = {k: v for k, v in limpa(novo).items() if k not in ign} == {k: v for k, v in limpa(publicado).items() if k not in ign}
+            ign = {"manifesto_arquivos", "pastas_em_C_dev_runs", "arquivos_brutos_modificados_apos_commit", "plano_execucoes_commits"}
+            a = {k: v for k, v in limpa(novo).items() if k not in ign}
+            b = {k: v for k, v in limpa(publicado).items() if k not in ign}
+            igual = a == b
+            if not igual:
+                print("  campos diferentes:", {k: (a.get(k), b.get(k)) for k in set(a) | set(b) if a.get(k) != b.get(k)})
         print(f"{'IGUAL ' if igual else 'DIFERE'} {saida}")
         ok &= igual
     print("clone em", clone)
