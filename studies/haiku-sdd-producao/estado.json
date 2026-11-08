@@ -71,6 +71,18 @@
     "F8.1": {
       "feito": "2026-11-08",
       "evidencia": "Tag freeze-haiku-sdd-producao + dados/bruto/CHECKSUMS.sha256"
+    },
+    "F9.5": {
+      "feito": "2026-11-08",
+      "evidencia": "Autor revisou e aprovou (aprovado tudo, 08/11/2026): nota publicavel e validada; dados sao do projeto aberto h3, sem dados de empresa"
+    },
+    "F10.2": {
+      "feito": "2026-11-08",
+      "evidencia": "claims.py: 32 afirmacoes e todos os numeros do artigo conferidos contra analise-estendida.json, sensibilidade.json e revisao.json (pt e en); revisao adversarial F7.4"
+    },
+    "F10.3": {
+      "feito": "2026-11-08",
+      "evidencia": "Autor disse 'Aprovado tudo' em 08/11/2026, cobrindo artigo tecnico e guia simples em pt e en; status approved nos 4 arquivos"
     }
   },
   "auto_feito": {
@@ -156,6 +168,10 @@
     "F4.2": {
       "feito": "2026-11-05",
       "decisao": "Autor aprovou em 05/11/2026, de forma geral, o plano de testes (condicoes, fases A/B/C, semente 20261105, 6 repeticoes por variante para H4 e 3 para as demais, contrato enxuto, classificacao nucleo e observacao e testes novos do problem+json)"
+    },
+    "F9.3": {
+      "feito": "2026-11-08",
+      "decisao": "Autor: 'Aprovado tudo' (08/11/2026), artigo tecnico e guia simples, pt e en"
     }
   }
 }

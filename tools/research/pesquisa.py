@@ -313,6 +313,8 @@ def check(slug, step, st):
         return (bool(cs) and not bad), ("ok" if cs and not bad else f"afirmações sem evidência: {', '.join(bad) or 'matriz vazia'}")
     if t == "rascunhos":
         base = ROOT / "posts" / "drafts" / slug
+        if not base.exists():
+            base = ROOT / "posts" / "published" / slug
         bad = []
         for lang in ("pt", "en"):
             txt = read(base / f"{lang}.md")
