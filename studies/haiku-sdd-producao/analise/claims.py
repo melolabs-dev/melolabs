@@ -13,8 +13,8 @@ PROC = ESTUDO / "dados" / "processado"
 E = json.loads((PROC / "analise-estendida.json").read_text(encoding="utf-8"))
 S = json.loads((PROC / "sensibilidade.json").read_text(encoding="utf-8"))
 P = json.loads((PROC / "analise.json").read_text(encoding="utf-8"))
-PT = (ROOT / "posts" / "drafts" / "haiku-sdd-producao" / "pt.md").read_text(encoding="utf-8")
-EN = (ROOT / "posts" / "drafts" / "haiku-sdd-producao" / "en.md").read_text(encoding="utf-8")
+PT = (ROOT / "posts" / "published" / "haiku-sdd-producao" / "pt.md").read_text(encoding="utf-8")
+EN = (ROOT / "posts" / "published" / "haiku-sdd-producao" / "en.md").read_text(encoding="utf-8")
 
 
 def f1(x):
