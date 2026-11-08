@@ -8,8 +8,6 @@ status: draft
 study: haiku-sdd-producao
 ---
 
-# SDD with Haiku only: what quality is left when the cost drops
-
 **TL;DR.** I measured Claude Haiku 5.5 against Sonnet 5.5 on spec-driven development (SDD: PRD, technical spec, tasks and code) in the open-source project h3, over 198 isolated runs. For about **1/5 of the list cost** (0.18 of Sonnet), Haiku writes **TechSpec and Tasks documents with almost the same scores** as Sonnet, but it **gets the full code right in 72% of runs against 91%** for Sonnet. The gap in code comes from a few tasks, and the study **does not decide** whether it is a small or a large deficit. The rubric used to score documents fell below the reliability I set myself, so none of this is "confirmed".
 
 ## The question

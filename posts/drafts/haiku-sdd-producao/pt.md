@@ -8,8 +8,6 @@ status: draft
 study: haiku-sdd-producao
 ---
 
-# SDD só com Haiku: o que sobra de qualidade quando o custo cai
-
 **TL;DR.** Medi o Claude Haiku 5.5 contra o Sonnet 5.5 em desenvolvimento guiado por especificação (SDD: PRD, especificação técnica, tarefas e código) no projeto aberto h3, com 198 execuções isoladas. Por cerca de **1/5 do custo de lista** (0,18 do Sonnet), o Haiku escreve **TechSpec e Tasks com notas praticamente iguais** às do Sonnet, mas **acerta o código completo em 72% das execuções contra 91%** do Sonnet. A diferença no código vem de duas tarefas, e o estudo **não decide** se é um déficit pequeno ou grande. O instrumento de notas dos documentos ficou abaixo da confiabilidade que eu mesmo exigi, então nada disso é "confirmado".
 
 ## A dúvida

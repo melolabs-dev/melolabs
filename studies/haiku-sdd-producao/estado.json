@@ -55,6 +55,10 @@
     "F9.2": {
       "feito": "2026-11-07",
       "evidencia": "analise/figuras.py gera 3 figuras (SVG e PNG) e 3 tabelas CSV em dados/processado/ e assets/haiku-sdd-producao/; analise/claims.py confere que os numeros do artigo (pt e en) batem com analise-estendida.json, sensibilidade.json e as tabelas (28 afirmacoes, nenhum numero fora)"
+    },
+    "F9.4": {
+      "feito": "2026-11-07",
+      "evidencia": "07/11/2026: npm run build (INCLUDE_DRAFTS=1) passa, 7 paginas, inclui /pt/haiku-sdd-producao e /en/haiku-sdd-producao; no preview o artigo abre com 1 h1, 3 figuras carregadas (SVG em site/public/assets/haiku-sdd-producao), 2 tabelas e sem rolagem horizontal; links das referencias e figuras conferidos"
     }
   },
   "auto_feito": {
