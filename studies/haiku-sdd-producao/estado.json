@@ -51,6 +51,10 @@
     "F7.1": {
       "feito": "2026-11-07",
       "evidencia": "tools/harness/reproduzir.py (07/11/2026): clone limpo do repositorio, 1 comando; analise primaria, estendida, sensibilidade e auditoria dos dados saem IGUAIS aos publicados em dados/processado/ (so diferem os campos de data e de commit). Nao usa a chave do gabarito."
+    },
+    "F9.2": {
+      "feito": "2026-11-07",
+      "evidencia": "analise/figuras.py gera 3 figuras (SVG e PNG) e 3 tabelas CSV em dados/processado/ e assets/haiku-sdd-producao/; analise/claims.py confere que os numeros do artigo (pt e en) batem com analise-estendida.json, sensibilidade.json e as tabelas (28 afirmacoes, nenhum numero fora)"
     }
   },
   "auto_feito": {

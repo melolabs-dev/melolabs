@@ -1,7 +1,142 @@
 [
-  {
-    "afirmacao": "TODO: afirmação do artigo",
-    "tipo": "dado | fonte",
-    "evidencia": "TODO: caminho do dado ou id da fonte"
-  }
+ {
+  "afirmacao": "198 execuções no total (138 do plano principal e 60 da extensão)",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#n_execucoes=198"
+ },
+ {
+  "afirmacao": "Sonnet passou o núcleo em 49 de 54 execuções (91%)",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#por_condicao.C0"
+ },
+ {
+  "afirmacao": "Haiku C4 passou o núcleo em 39 de 54 (72%)",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#por_condicao.C4"
+ },
+ {
+  "afirmacao": "Haiku simples passou o núcleo em 21 de 36 (58%)",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#por_condicao.C1"
+ },
+ {
+  "afirmacao": "Diferença C4 menos C0 = -18.5 pontos; Newcombe unilateral 97,5% de -32.6 a -3.8",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H4"
+ },
+ {
+  "afirmacao": "Custo de lista C4/C0 = 0.18 (IC 0.16 a 0.20)",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H6.custo_lista"
+ },
+ {
+  "afirmacao": "Tokens totais C4/C0 = 1.51 (IC 1.39 a 1.64)",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H6.tokens_totais"
+ },
+ {
+  "afirmacao": "Tokens novos C4/C0 = 1.55",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H6.tokens_novos"
+ },
+ {
+  "afirmacao": "Custo de lista da cascata em relação ao Sonnet",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H5.custo_lista.razao_C5_sobre_C0=0.15"
+ },
+ {
+  "afirmacao": "52 de 54 execuções do C4 com prompt acima de 100 mil tokens",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/sensibilidade.json#execucoes_com_prompt_acima_de_100k=52"
+ },
+ {
+  "afirmacao": "Custo médio por condição (C0, C1, C4, C5) e tokens totais médios",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/tabela-condicoes.csv"
+ },
+ {
+  "afirmacao": "H1 TechSpec: diferença 0.7, IC -0.2 a 1.6",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H1.techspec"
+ },
+ {
+  "afirmacao": "H1 Tasks: diferença -0.2, IC -0.8 a 0.5",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H1.tasks"
+ },
+ {
+  "afirmacao": "H5 qualidade da cascata sobre o Sonnet: TechSpec 0.99, Tasks 1.01",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H5"
+ },
+ {
+  "afirmacao": "Alfa de Krippendorff estendido = 0.61, abaixo do limite pré-registrado de 0,67",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#rubrica.krippendorff_alfa_intervalo"
+ },
+ {
+  "afirmacao": "H10: custo do híbrido sobre a cascata = 3.1 (IC 2.5 a 4.0)",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H10.custo_lista"
+ },
+ {
+  "afirmacao": "Gate: 3 de 234 documentos reprovados no primeiro gate (1.3%); cascata nunca escalou",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#gate"
+ },
+ {
+  "afirmacao": "H11 C12: TechSpec 1.5 e Tasks 1.1",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H11.C12"
+ },
+ {
+  "afirmacao": "Alucinações por artefato: C4 0.42, C0 0.14",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#rubrica.alucinacoes_media"
+ },
+ {
+  "afirmacao": "Fração de testes passando: C4 0.89, C0 0.91",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#por_condicao"
+ },
+ {
+  "afirmacao": "Núcleo por variante e condição (tabela do artigo)",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/tabela-variantes.csv"
+ },
+ {
+  "afirmacao": "Preços de 04/11/2026: Haiku 5.5 a US$ 0,10 e US$ 0,50 até 100 mil tokens de prompt; Sonnet 5.5 a US$ 2 e US$ 10",
+  "tipo": "fonte",
+  "evidencia": "anthropic-pricing"
+ },
+ {
+  "afirmacao": "Mathews e Nagappan (2024): testes primeiro na geração de código",
+  "tipo": "fonte",
+  "evidencia": "tdd-codegen"
+ },
+ {
+  "afirmacao": "Chen, Zaharia e Zou (2023): cascata de modelos para reduzir custo",
+  "tipo": "fonte",
+  "evidencia": "frugalgpt"
+ },
+ {
+  "afirmacao": "Huang et al. (2023): modelos corrigem mal o próprio raciocínio sem sinal externo",
+  "tipo": "fonte",
+  "evidencia": "llm-self-correct"
+ },
+ {
+  "afirmacao": "Zheng et al. (2023): vieses do modelo como juiz",
+  "tipo": "fonte",
+  "evidencia": "llm-as-judge"
+ },
+ {
+  "afirmacao": "Gloaguen et al. (2026): arquivos de contexto do repositório (AGENTS.md)",
+  "tipo": "fonte",
+  "evidencia": "agentsmd-eval"
+ },
+ {
+  "afirmacao": "Rosa et al. (2026): registro de estudo de geração dirigida por especificação, sem resultados",
+  "tipo": "fonte",
+  "evidencia": "specdriven-registered-report"
+ }
 ]
