@@ -1,0 +1,27 @@
+{
+  "id": "C5-session-1050-b-r4",
+  "condicao": "C5",
+  "variante": "session-1050-b",
+  "inicio": "2026-11-07T16:44:26",
+  "fim": "2026-11-07T16:50:36",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "techspec": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "tasks": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    }
+  },
+  "nucleo": "12/12",
+  "nucleo_100": true,
+  "auditoria_limpa": true
+}

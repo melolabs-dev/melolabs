@@ -1,0 +1,408 @@
+diff --git a/src/index.ts b/src/index.ts
+index cb26f39..ffde7eb 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -70,6 +70,7 @@ export { toResponse, HTTPResponse } from "./response.ts";
+ // Error
+ 
+ export { type ErrorDetails, type ErrorBody, type ErrorInput, HTTPError } from "./error.ts";
++export { problem, type ProblemInput } from "./utils/problem.ts";
+ 
+ // Adapters
+ 
+diff --git a/src/response.ts b/src/response.ts
+index c5bca8a..bf1579a 100644
+--- a/src/response.ts
++++ b/src/response.ts
+@@ -3,6 +3,7 @@ import { HTTPError } from "./error.ts";
+ import { isJSONSerializable } from "./utils/internal/object.ts";
+ import { sanitizeStatusCode, sanitizeStatusMessage } from "./utils/sanitize.ts";
+ import { kEventDispose, type DisposeState } from "./utils/internal/dispose.ts";
++import { getProblemMeta, type ProblemMeta } from "./utils/problem.ts";
+ 
+ import type { H3Config } from "./types/h3.ts";
+ import { kEventRes, kEventResHeaders, kEventResErrHeaders, type H3Event } from "./event.ts";
+@@ -271,6 +272,10 @@ const jsonHeaders = /* @__PURE__ */ new FrozenHeaders({
+   "content-type": "application/json;charset=UTF-8",
+ });
+ 
++const problemHeaders = /* @__PURE__ */ new FrozenHeaders({
++  "content-type": "application/problem+json",
++});
++
+ function prepareResponseBody(
+   val: unknown,
+   event: H3Event,
+@@ -356,16 +361,16 @@ function nullBody(method: string, status: number | undefined): boolean | 0 | und
+ }
+ 
+ function errorResponse(error: HTTPError, debug?: boolean, errHeaders?: Headers): Response {
+-  let headers: Headers = error.headers
+-    ? mergeHeaders(jsonHeaders, error.headers)
+-    : new Headers(jsonHeaders);
++  const problemMeta = getProblemMeta(error);
++  const base = problemMeta ? problemHeaders : jsonHeaders;
++  let headers: Headers = error.headers ? mergeHeaders(base, error.headers) : new Headers(base);
+   if (errHeaders) {
+     headers = mergeHeaders(headers, errHeaders);
+   }
+   return new FastResponse(
+     JSON.stringify(
+       {
+-        ...error.toJSON(),
++        ...(problemMeta ? problemBody(error, problemMeta) : error.toJSON()),
+         stack: debug && error.stack ? error.stack.split("\n").map((l) => l.trim()) : undefined,
+       },
+       undefined,
+@@ -378,3 +383,20 @@ function errorResponse(error: HTTPError, debug?: boolean, errHeaders?: Headers):
+     },
+   );
+ }
++
++/**
++ * RFC 9457 body. `body` members are spread first, so the RFC members set after them win on a
++ * collision. `unhandled` errors are masked as in `HTTPError#toJSON()`.
++ */
++function problemBody(error: HTTPError, meta: ProblemMeta): Record<string, unknown> {
++  const unhandled = error.unhandled;
++  return {
++    ...(unhandled ? undefined : error.body),
++    type: meta.type ?? "about:blank",
++    title: error.statusText,
++    status: error.status,
++    detail: unhandled ? "HTTPError" : error.message,
++    instance: unhandled ? undefined : meta.instance,
++    data: unhandled ? undefined : error.data,
++  };
++}
+diff --git a/src/utils/problem.ts b/src/utils/problem.ts
+new file mode 100644
+index 0000000..0bba772
+--- /dev/null
++++ b/src/utils/problem.ts
+@@ -0,0 +1,48 @@
++import { HTTPError, type ErrorInput } from "../error.ts";
++
++/**
++ * Input for {@link problem}: an {@link ErrorInput} plus the RFC 9457 `type` and `instance` members.
++ */
++export interface ProblemInput<DataT = unknown> extends ErrorInput<DataT> {
++  /**
++   * URI that identifies the problem type. Defaults to `"about:blank"` in the body.
++   */
++  type?: string;
++
++  /**
++   * URI that identifies this occurrence of the problem. Omitted for `unhandled` errors.
++   */
++  instance?: string;
++}
++
++/**
++ * Create an `HTTPError` whose response uses the RFC 9457 problem details format
++ * (`application/problem+json`).
++ *
++ * Only the response of this error changes format. Errors created by other means, including
++ * errors that have this one as `cause`, keep the default JSON format.
++ *
++ * @example
++ *
++ * throw problem({ status: 422, statusText: "Unprocessable Content", message: "Invalid email" })
++ */
++export function problem<DataT = unknown>(input: ProblemInput<DataT>): HTTPError<DataT> {
++  const { type, instance, ...details } = input;
++  const error = new HTTPError<DataT>(details);
++  Object.defineProperty(error, kProblem, { value: { type, instance } satisfies ProblemMeta });
++  return error;
++}
++
++const kProblem: unique symbol = /* @__PURE__ */ Symbol.for("h3.problem");
++
++export interface ProblemMeta {
++  type?: string;
++  instance?: string;
++}
++
++/**
++ * Read the problem marker set by {@link problem}. Not enumerable, so it is not copied by spread.
++ */
++export function getProblemMeta(error: HTTPError): ProblemMeta | undefined {
++  return (error as any)[kProblem];
++}
+diff --git a/test/sdd-problem.test.ts b/test/sdd-problem.test.ts
+new file mode 100644
+index 0000000..fbcf46c
+--- /dev/null
++++ b/test/sdd-problem.test.ts
+@@ -0,0 +1,259 @@
++import { HTTPError, problem } from "../src/index.ts";
++import { describeMatrix } from "./_setup.ts";
++
++describeMatrix("sdd problem details (RFC 9457)", (t, { it, expect, describe }) => {
++  describe("problem()", () => {
++    it("returns an HTTPError with status and message (RF-01)", () => {
++      const error = problem({ status: 404, message: "Usuário não encontrado" });
++      expect(error).toBeInstanceOf(HTTPError);
++      expect(error.status).toBe(404);
++      expect(error.message).toBe("Usuário não encontrado");
++    });
++
++    it("accepts type and instance (RF-02)", () => {
++      const error = problem({
++        status: 403,
++        type: "https://exemplo.com/erros/sem-saldo",
++        instance: "/pagamentos/42",
++      });
++      expect(error.status).toBe(403);
++
++      // @ts-expect-error unknown keys are not part of ProblemInput
++      const invalid = problem({ status: 400, inexistente: true });
++      expect(invalid.status).toBe(400);
++    });
++  });
++
++  describe("response", () => {
++    it("renders the RFC 9457 body with application/problem+json (RF-03)", async () => {
++      t.app.get("/", () => {
++        throw problem({
++          status: 422,
++          statusText: "Unprocessable Content",
++          message: "Campo 'email' inválido",
++          type: "https://exemplo.com/erros/validacao",
++          instance: "/cadastro/7",
++        });
++      });
++
++      const res = await t.fetch("/");
++      expect(res.status).toBe(422);
++      expect(res.headers.get("content-type")).toBe("application/problem+json");
++      const json = await res.json();
++      expect(json).toMatchObject({
++        type: "https://exemplo.com/erros/validacao",
++        title: "Unprocessable Content",
++        status: 422,
++        detail: "Campo 'email' inválido",
++        instance: "/cadastro/7",
++      });
++      expect(json).not.toHaveProperty("message");
++      expect(json).not.toHaveProperty("statusText");
++    });
++
++    it("defaults type to about:blank and spreads body and data (RF-04)", async () => {
++      t.app.get("/", () => {
++        throw problem({
++          status: 400,
++          message: "Requisição inválida",
++          data: { campo: "nome" },
++          body: { codigo: "E_CAMPO" },
++        });
++      });
++
++      const res = await t.fetch("/");
++      const json = await res.json();
++      expect(json).toMatchObject({
++        type: "about:blank",
++        status: 400,
++        detail: "Requisição inválida",
++        data: { campo: "nome" },
++        codigo: "E_CAMPO",
++      });
++      expect(json).not.toHaveProperty("title");
++      expect(json).not.toHaveProperty("instance");
++    });
++
++    it("keeps RFC members over colliding body members (precedence)", async () => {
++      t.app.get("/", () => {
++        throw problem({
++          status: 400,
++          statusText: "Bad Request",
++          message: "Requisição inválida",
++          body: {
++            title: "x",
++            status: 1,
++            detail: "z",
++            type: "y",
++            instance: "w",
++            codigo: "E_CAMPO",
++          },
++        });
++      });
++
++      const res = await t.fetch("/");
++      expect(res.status).toBe(400);
++      const json = await res.json();
++      expect(json).toMatchObject({
++        type: "about:blank",
++        title: "Bad Request",
++        status: 400,
++        detail: "Requisição inválida",
++        codigo: "E_CAMPO",
++      });
++      expect(json).not.toHaveProperty("instance");
++    });
++
++    it("discards body.data when data is not given (precedence)", async () => {
++      t.app.get("/", () => {
++        throw problem({ status: 400, message: "x", body: { data: { escondido: true } } });
++      });
++
++      const json = await (await t.fetch("/")).json();
++      expect(json).not.toHaveProperty("data");
++    });
++
++    it("masks unhandled errors without leaking details (RF-06)", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        throw problem({
++          status: 500,
++          message: "senha do banco vazou",
++          data: { segredo: "x" },
++          instance: "/db",
++          unhandled: true,
++        });
++      });
++
++      const res = await t.fetch("/");
++      const text = await res.text();
++      t.errors = [];
++
++      expect(res.status).toBe(500);
++      expect(res.headers.get("content-type")).toBe("application/problem+json");
++      expect(JSON.parse(text)).toMatchObject({ status: 500, detail: "HTTPError" });
++      expect(JSON.parse(text)).not.toHaveProperty("data");
++      expect(JSON.parse(text)).not.toHaveProperty("instance");
++      expect(text).not.toContain("senha do banco vazou");
++      expect(text).not.toContain("segredo");
++    });
++
++    it("applies headers and keeps application/problem+json (RF-07)", async () => {
++      t.app.get("/", () => {
++        throw problem({
++          status: 429,
++          message: "Muitas requisições",
++          headers: { "Retry-After": "30" },
++        });
++      });
++
++      const res = await t.fetch("/");
++      expect(res.status).toBe(429);
++      expect(res.headers.get("retry-after")).toBe("30");
++      expect(res.headers.get("content-type")).toBe("application/problem+json");
++    });
++
++    it("lets an explicit Content-Type in headers win (RF-07)", async () => {
++      t.app.get("/", () => {
++        throw problem({ status: 400, message: "x", headers: { "content-type": "text/plain" } });
++      });
++
++      const res = await t.fetch("/");
++      expect(res.headers.get("content-type")).toBe("text/plain");
++    });
++
++    it("includes stack in debug mode (D-08)", async () => {
++      t.app.get("/", () => {
++        throw problem({ status: 400, message: "x" });
++      });
++
++      const json = await (await t.fetch("/")).json();
++      expect(Array.isArray(json.stack)).toBe(true);
++    });
++
++    it("sends status and content type without body for HEAD (nullBody)", async () => {
++      t.app.get("/", () => {
++        throw problem({ status: 400, message: "x" });
++      });
++
++      const res = await t.fetch("/", { method: "HEAD" });
++      expect(res.status).toBe(400);
++      expect(res.headers.get("content-type")).toBe("application/problem+json");
++      expect(await res.text()).toBe("");
++    });
++
++    it("rethrown problem keeps problem format and calls onError once (D-01, D-02)", async () => {
++      const error = problem({
++        status: 409,
++        statusText: "Conflict",
++        message: "Já existe",
++        type: "https://exemplo.com/erros/duplicado",
++      });
++      t.app.use(() => {
++        throw error;
++      });
++
++      const res = await t.fetch("/");
++      expect(res.headers.get("content-type")).toBe("application/problem+json");
++      expect(await res.json()).toMatchObject({
++        type: "https://exemplo.com/erros/duplicado",
++        status: 409,
++      });
++      expect(t.hooks.onError).toHaveBeenCalledTimes(1);
++    });
++
++    it("keeps a Response returned by onError intact", async () => {
++      t.app.config.onError = () => new Response("custom", { status: 503 });
++      t.app.get("/", () => {
++        throw problem({ status: 400, message: "x" });
++      });
++
++      const res = await t.fetch("/");
++      expect(res.status).toBe(503);
++      expect(res.headers.get("content-type")).not.toBe("application/problem+json");
++      expect(await res.text()).toBe("custom");
++    });
++
++    it("sends errHeaders set-cookie only once", async () => {
++      t.app.get("/", (event) => {
++        event.res.errHeaders.append("set-cookie", "prepared=1");
++        throw problem({ status: 400, message: "x" });
++      });
++
++      const res = await t.fetch("/");
++      expect(res.headers.getSetCookie()).toEqual(["prepared=1"]);
++    });
++  });
++
++  describe("legacy format (RF-05)", () => {
++    it("keeps the JSON format for HTTPError.status()", async () => {
++      t.app.get("/", () => {
++        throw HTTPError.status(404, "Not Found", { message: "Não encontrado" });
++      });
++
++      const res = await t.fetch("/");
++      expect(res.status).toBe(404);
++      expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++      const json = await res.json();
++      expect(json).toMatchObject({
++        status: 404,
++        statusText: "Not Found",
++        message: "Não encontrado",
++      });
++      expect(json).not.toHaveProperty("type");
++    });
++
++    it("uses the legacy format when problem is only a cause", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError({
++          cause: problem({ status: 404, message: "x", type: "https://exemplo.com/erros/x" }),
++        });
++      });
++
++      const res = await t.fetch("/");
++      expect(res.status).toBe(404);
++      expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++      expect(await res.json()).not.toHaveProperty("type");
++    });
++  });
++});
+diff --git a/test/unit/package.test.ts b/test/unit/package.test.ts
+index 71bbd62..58acf95 100644
+--- a/test/unit/package.test.ts
++++ b/test/unit/package.test.ts
+@@ -102,6 +102,7 @@ describe("h3 package", () => {
+         "onRequest",
+         "onResponse",
+         "parseCookies",
++        "problem",
+         "proxy",
+         "proxyRequest",
+         "raw",

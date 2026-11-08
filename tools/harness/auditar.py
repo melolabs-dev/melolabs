@@ -24,6 +24,9 @@ def sha(p):
 def main():
     res, falhas = {}, []
     plano = json.loads((BRUTO / "plano-execucoes.json").read_text(encoding="utf-8"))
+    ext = BRUTO / "plano-extensao.json"
+    if ext.exists():
+        plano = plano + json.loads(ext.read_text(encoding="utf-8"))
     ids = [p["id"] for p in plano]
     res["planejadas"] = len(ids)
     concl = {p.parent.name for p in BRUTO.glob("*/concluida.json")}
@@ -80,7 +83,7 @@ def main():
     out = subprocess.run(["git", "-C", str(ROOT), "log", "--diff-filter=M", "--name-only", "--pretty=format:", "--",
                           "studies/haiku-sdd-producao/dados/bruto"], capture_output=True, text=True).stdout.split()
     modificados = sorted({o for o in out if "juizes.jsonl" not in o and "execucoes.jsonl" not in o and "plano.log" not in o
-                          and "plano.err" not in o and "mapa-cego" not in o and "ids-juizes" not in o and "plano-execucoes.json" not in o and "juizes.log" not in o and "juizes.err" not in o})
+                          and "plano.err" not in o and "mapa-cego" not in o and "ids-juizes" not in o and "plano-execucoes.json" not in o and "extensao.log" not in o and "extensao.err" not in o and "juizes2" not in o and "juizes.log" not in o and "juizes.err" not in o})
     res["arquivos_brutos_modificados_apos_commit"] = modificados
     inicio = subprocess.run(["git", "-C", str(ROOT), "log", "--pretty=%h %cI %s", "--", "studies/haiku-sdd-producao/dados/bruto/plano-execucoes.json"], capture_output=True, text=True).stdout.strip().splitlines()
     res["plano_execucoes_commits"] = inicio

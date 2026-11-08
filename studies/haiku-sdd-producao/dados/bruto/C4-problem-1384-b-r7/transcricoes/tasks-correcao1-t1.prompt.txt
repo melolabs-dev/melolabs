@@ -1,0 +1,7 @@
+Trabalhe somente dentro da pasta C:\dev\runs\ra9a9d993df (um clone do projeto h3). Não leia, liste nem procure arquivos fora dela. Leia o CLAUDE.md e o AGENTS.md dessa pasta antes de começar. Responda no final com no máximo 5 linhas: o que foi feito e se algo ficou pendente.
+
+O gate determinístico reprovou `sdd/tasks.md` com estes erros reais:
+
+- tarefa cita arquivo que não existe e fora de src/test/docs: package.js
+
+Corrija somente esses pontos em `sdd/tasks.md`, mantendo o resto. Não altere o código do projeto.

@@ -1798,5 +1798,65 @@
   "tipo": "tasks",
   "condicao": "C0",
   "variante": "session-1050-a"
+ },
+ "a3fkg0fdy": {
+  "id": "C5-session-1050-b-r6",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "ahytfm7ps": {
+  "id": "C5-session-1050-b-r6",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "azkrj5ydp": {
+  "id": "C5-range-1267-r6",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "axkd5ehmk": {
+  "id": "C5-range-1267-r6",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "arh0drqah": {
+  "id": "C5-range-1267-r4",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "axaafrxhn": {
+  "id": "C5-range-1267-r4",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "a5g3drcdx": {
+  "id": "C5-session-1050-b-r4",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "ag6vm5629": {
+  "id": "C5-session-1050-b-r4",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "session-1050-b"
+ },
+ "a81nyp3qf": {
+  "id": "C5-range-1267-r5",
+  "tipo": "techspec",
+  "condicao": "C5",
+  "variante": "range-1267"
+ },
+ "axvkh1rg2": {
+  "id": "C5-range-1267-r5",
+  "tipo": "tasks",
+  "condicao": "C5",
+  "variante": "range-1267"
  }
 }

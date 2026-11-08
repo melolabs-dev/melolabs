@@ -1,0 +1,27 @@
+{
+  "id": "C1-session-1050-a-r4",
+  "condicao": "C1",
+  "variante": "session-1050-a",
+  "inicio": "2026-11-07T18:50:24",
+  "fim": "2026-11-07T18:56:56",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "techspec": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "tasks": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    }
+  },
+  "nucleo": "12/12",
+  "nucleo_100": true,
+  "auditoria_limpa": true
+}

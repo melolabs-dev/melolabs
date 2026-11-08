@@ -1,0 +1,27 @@
+{
+  "id": "C1-problem-1384-c-r6",
+  "condicao": "C1",
+  "variante": "problem-1384-c",
+  "inicio": "2026-11-07T19:34:07",
+  "fim": "2026-11-07T19:41:04",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "techspec": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "tasks": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    }
+  },
+  "nucleo": "16/18",
+  "nucleo_100": false,
+  "auditoria_limpa": true
+}

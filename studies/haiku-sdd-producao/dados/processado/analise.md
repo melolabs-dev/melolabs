@@ -1,5 +1,5 @@
 # Resultado da análise pré-registrada
-Gerado em 2026-11-07T15:23:52 (commit do script: 9c7e7d5). 138 execuções.
+Gerado em 2026-11-07T21:42:53 (commit do script: d2a6190). 138 execuções.
 
 | Condição | n | núcleo 100% | frac. de testes | tokens totais | tokens novos | custo lista (US$) | suspeitas |
 |---|---|---|---|---|---|---|---|

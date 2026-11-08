@@ -1,0 +1,27 @@
+{
+  "id": "C1-range-1267-r6",
+  "condicao": "C1",
+  "variante": "range-1267",
+  "inicio": "2026-11-07T16:50:48",
+  "fim": "2026-11-07T16:59:28",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "techspec": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "tasks": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    }
+  },
+  "nucleo": "17/31",
+  "nucleo_100": false,
+  "auditoria_limpa": true
+}

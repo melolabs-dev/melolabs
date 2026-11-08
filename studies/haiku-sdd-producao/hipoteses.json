@@ -9,7 +9,7 @@
   "margem_equivalencia": "2 pontos da rubrica",
   "refutada_se": "A diferença for menor que 3 pontos com IC95% dentro da margem de 2 pontos (equivalente), ou o Haiku simples ficar acima do Sonnet",
   "status": "subpotente",
-  "evidencia": "Rubrica nao confiavel: alfa de Krippendorff 0,62 < 0,67 (regra do plano de analise). Indicativo, nao conclusao: Sonnet menos Haiku simples = +0,1 ponto em TechSpec (IC95 -0,8 a +1,1) e +1,1 em Tasks (IC95 0,0 a +2,2); abaixo do limiar de 3 pontos. Fonte: dados/processado/analise.json (07/11/2026).",
+  "evidencia": "Analise estendida final (adendo 2b, 07/11/2026; 18 artefatos por braco, 3 features): Sonnet menos Haiku simples = +0,7 ponto em TechSpec (IC95 -0,2 a +1,6) e -0,2 em Tasks (IC95 -0,8 a +0,5); abaixo do limiar de 3 pontos. Rubrica nao confiavel: alfa de Krippendorff 0,61 < 0,67 (TechSpec 0,55; Tasks 0,56), entao a regra do plano manda subpotente. Primaria: +0,1 e +1,1. Fonte: dados/processado/analise-estendida.json.",
   "nota": "Hipótese de lacuna: confirma que existe algo a mitigar. Base: notas validadas do autor (TechSpec 18,0 contra 31,3; Tasks 16,7 contra 23,3, em versões anteriores e uma feature). Proposta aguardando revisão do autor."
  },
  {
@@ -48,7 +48,7 @@
   "margem_equivalencia": "10 pontos percentuais",
   "refutada_se": "A taxa do Haiku ficar abaixo da do Sonnet por mais de 10 pontos percentuais, com IC95% inteiro abaixo da margem",
   "status": "subpotente",
-  "evidencia": "C4 26/36 (72%) contra C0 32/36 (89%) com nucleo 100%; diferenca -16,7 pontos, Newcombe unilateral 97,5% de -34,2 a +1,9 (margem de 10): nao equivalente e nao refutada. Instrumento sensivel (C1 10/18). Queda concentrada em #1384-a e #1384-c. Fonte: analise.json e sensibilidade.json.",
+  "evidencia": "Estendida final (54 execucoes por condicao em C0 e C4): C4 39/54 (72%) contra C0 49/54 (91%) com nucleo 100%; diferenca -18,5 pontos, Newcombe unilateral 97,5% de -32,6 a -3,8 (margem 10): a nao inferioridade nao se sustenta e a diferenca e negativa com credibilidade, mas o intervalo nao exclui um deficit menor que 10 pontos, entao o status formal e subpotente. Instrumento sensivel (C1 21/36). Deficit concentrado em #1384-a (C4 3/9, C0 7/9), #1384-c (4/9, 8/9) e #1267 (6/9, 9/9); #1050-a e b em 100% nas tres condicoes. Primaria: 26/36 contra 32/36. Fonte: analise-estendida.json e sensibilidade.json.",
   "nota": "Base: Mathews e Nagappan, TiCoder, CodeT, Reflexion. É a hipótese que mede o 'pronto para produção' de forma objetiva, sem juiz LLM. Os testes ocultos são escritos pelo autor antes de qualquer execução. Proposta aguardando revisão do autor."
  },
  {
@@ -61,7 +61,7 @@
   "margem_equivalencia": "razão de qualidade entre 0,90 e 1,10",
   "refutada_se": "O limite superior do IC95% da razão de qualidade ficar abaixo de 0,90, ou o limite inferior do IC95% da razão de custo ficar acima de 0,50",
   "status": "subpotente",
-  "evidencia": "Qualidade (razao C5/C0): TechSpec 0,97 (limite inferior 0,94) e Tasks 0,96 (0,92), mas com a rubrica nao confiavel (alfa 0,62) e sem nenhum escalonamento (0%). Custo de lista 0,15 do Sonnet (IC95 0,09 a 0,20). Fonte: analise.json.",
+  "evidencia": "Estendida final: qualidade (C5/C0) TechSpec 0,99 (limite inferior 0,97) e Tasks 1,01 (0,96); custo de lista 0,15 do Sonnet (IC95 0,12 a 0,19). A rubrica nao e confiavel (alfa 0,61) e a cascata nunca escalou (0% em 12 execucoes), entao o escalonamento nao foi testado. Fonte: analise-estendida.json.",
   "nota": "Base: FrugalGPT, RouteLLM, Snell et al. É a hipótese central do artigo. O custo usa os preços da documentação da Anthropic consultados em 04/11/2026 e precisa registrar a data de cada medição. Proposta aguardando revisão do autor. Limiar de qualidade 0,90 decidido pelo autor em 05/11/2026."
  },
  {
@@ -74,7 +74,7 @@
   "margem_equivalencia": "razão entre 0,45 e 0,55 conta como no limite e exige mais amostra",
   "refutada_se": "O limite inferior do IC95% da razão ficar acima de 0,50",
   "status": "descritiva",
-  "evidencia": "Descritiva por decisao do adendo 1. Razao C4/C0: custo de lista 0,18 (IC95 0,16 a 0,20), tokens totais 1,53 (1,38 a 1,70), tokens novos 1,55 (1,47 a 1,62). Fonte: analise.json.",
+  "evidencia": "Descritiva por decisao do adendo 1. Razao C4/C0 (54 execucoes por condicao): custo de lista 0,18 (IC95 0,16 a 0,20), tokens totais 1,51 (1,39 a 1,64), tokens novos 1,55 (1,49 a 1,62). 52 das 54 execucoes do C4 passaram de 100 mil tokens de prompt; o custo de lista da CLI ja aplica a faixa mais cara. Fonte: analise-estendida.json.",
   "nota": "Base: preço do Haiku 5.5 de 1/20 do Sonnet 5.5 em prompts até 100 mil tokens, que sobe para 1/4 acima disso; versões anteriores do pipeline gastaram de 25% a 20 vezes mais tokens que o Sonnet. O estudo mede se as mitigações comem o ganho de preço. Registrar o maior prompt de cada chamada para detectar o tier acima de 100 mil tokens. Proposta aguardando revisão do autor."
  },
  {
@@ -126,7 +126,7 @@
   "margem_equivalencia": "razão de qualidade entre 0,90 e 1,10",
   "refutada_se": "Custo maior ou igual ao da cascata, ou qualidade abaixo de 0,90",
   "status": "refutada",
-  "evidencia": "Criterio de custo falhou, e ele nao depende da rubrica: o hibrido C6 custa 3,3 vezes a cascata C5 (IC95 2,4 a 5,2), quando a regra exigia custo menor. Qualidade parecida (razao 1,05 em TechSpec e 0,98 em Tasks), mas com rubrica nao confiavel. n=6 por condicao. Fonte: analise.json.",
+  "evidencia": "Criterio de custo falhou, e ele nao depende da rubrica: o hibrido C6 custa 3,1 vezes a cascata C5 (IC95 2,5 a 4,0), quando a regra exigia custo menor. Qualidade parecida (razao 1,04 em TechSpec e 0,96 em Tasks), com rubrica nao confiavel. n=6 em C6 e 12 em C5. Fonte: analise-estendida.json.",
   "nota": "Base: snell-test-time, frugalgpt. Vem da candidata C9. Proposta aguardando revisão do autor."
  },
  {
@@ -139,7 +139,7 @@
   "margem_equivalencia": "2 pontos da rubrica ou 5 pontos percentuais",
   "refutada_se": "Ganho dentro da margem de equivalência com IC95% dentro dela, ou a variante piorar a nota",
   "status": "subpotente",
-  "evidencia": "Rubrica nao confiavel (alfa 0,62). Nenhum contraste chegou a 3 pontos; o maior foi C12 em Tasks com +1,1 (IC95 0,4 a 1,8; p unilateral 0,03 sem Holm); controle C13 dentro de 2 pontos de zero. Sinal fraco, exploratorio. Fonte: analise.json.",
+  "evidencia": "Rubrica nao confiavel (alfa 0,61). Nenhum contraste chegou a 3 pontos. C12 (persona e contexto): +1,5 em TechSpec (IC95 0,6 a 2,3; p unilateral 0,01) e +1,1 em Tasks (0,4 a 1,7; p 0,02), sem Holm; C11: +1,0 e +0,1; C10: +0,8 e +0,6 (IC com zero); controle C13 dentro de 2 pontos (+0,3 e +0,3). Sinal exploratorio de ganho pequeno com persona mais contexto. n=6 por condicao. Fonte: analise-estendida.json.",
   "nota": "Pedida pelo autor em 05/11/2026. Três variantes contra o prompt neutro, para separar o que de fato ajuda: (a) só persona, (b) só contexto detalhado, (c) persona mais contexto. Controle: um texto de mesmo tamanho sem informação útil, para não confundir 'mais contexto' com 'mais tokens'. Medir também o custo extra, porque contexto maior pode empurrar o prompt para o tier acima de 100 mil tokens. Literatura a conferir na base antes de fixar a direção: estudos sobre persona prompting indicam efeito pequeno ou nulo em acurácia, e é isso que torna a hipótese interessante. Pode se combinar com H8 (prefixo em cache)."
  }
 ]

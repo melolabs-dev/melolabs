@@ -1,9 +1,9 @@
 {
- "planejadas": 138,
- "concluidas_do_plano": 138,
+ "planejadas": 198,
+ "concluidas_do_plano": 198,
  "faltando": [],
  "concluidas_fora_do_plano": [],
- "linhas_execucoes": 604,
+ "linhas_execucoes": 845,
  "falha_infra": 0,
  "tentativas_acima_de_1": 0,
  "execucoes_sem_linha_de_consumo": [],
@@ -21,11 +21,11 @@
  ],
  "nota_plano": "plano-execucoes.json foi reordenado (A e B embaralhadas juntas) antes da coleta e do adendo 1; nenhum commit dele é posterior ao início da coleta.",
  "nota_edicao": "juizes.jsonl, execucoes.jsonl, mapa-cego.json e logs são arquivos de acréscimo (append); os demais não devem aparecer aqui.",
- "julgamentos_validos": 396,
+ "julgamentos_validos": 579,
  "julgamentos_com_erro_registrados": 1,
  "julgamentos_duplicados": 0,
- "pastas_em_C_dev_runs": 146,
- "manifesto_arquivos": 2641,
+ "pastas_em_C_dev_runs": 206,
+ "manifesto_arquivos": 3670,
  "falhas": [],
  "aprovada": true
 }

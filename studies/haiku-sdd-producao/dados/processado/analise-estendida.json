@@ -1,0 +1,536 @@
+{
+ "gerado": "2026-11-07T21:43:05",
+ "n_execucoes": 198,
+ "por_condicao": {
+  "C0": {
+   "n": 54,
+   "nucleo_100": 49,
+   "fracao_testes_media": 0.9069,
+   "tokens_totais_media": 2408158,
+   "tokens_novos_media": 195184,
+   "custo_lista_medio_usd": 1.2312,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 118275
+  },
+  "C1": {
+   "n": 36,
+   "nucleo_100": 21,
+   "fracao_testes_media": 0.8469,
+   "tokens_totais_media": 4125383,
+   "tokens_novos_media": 306784,
+   "custo_lista_medio_usd": 0.2612,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 149902
+  },
+  "C10": {
+   "n": 6,
+   "nucleo_100": 6,
+   "fracao_testes_media": 0.9675,
+   "tokens_totais_media": 3166262,
+   "tokens_novos_media": 335830,
+   "custo_lista_medio_usd": 0.2142,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 121863
+  },
+  "C11": {
+   "n": 6,
+   "nucleo_100": 5,
+   "fracao_testes_media": 0.9675,
+   "tokens_totais_media": 3621625,
+   "tokens_novos_media": 315308,
+   "custo_lista_medio_usd": 0.2348,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 140974
+  },
+  "C12": {
+   "n": 6,
+   "nucleo_100": 6,
+   "fracao_testes_media": 0.9709,
+   "tokens_totais_media": 3720739,
+   "tokens_novos_media": 358725,
+   "custo_lista_medio_usd": 0.2762,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 132033
+  },
+  "C13": {
+   "n": 6,
+   "nucleo_100": 5,
+   "fracao_testes_media": 0.8477,
+   "tokens_totais_media": 3342673,
+   "tokens_novos_media": 304576,
+   "custo_lista_medio_usd": 0.2149,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 141034
+  },
+  "C2": {
+   "n": 6,
+   "nucleo_100": 5,
+   "fracao_testes_media": 0.8721,
+   "tokens_totais_media": 3011834,
+   "tokens_novos_media": 291080,
+   "custo_lista_medio_usd": 0.1817,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 124213
+  },
+  "C2n": {
+   "n": 6,
+   "nucleo_100": 6,
+   "fracao_testes_media": 0.9453,
+   "tokens_totais_media": 6365546,
+   "tokens_novos_media": 551516,
+   "custo_lista_medio_usd": 0.4813,
+   "acessos_suspeitos": 1,
+   "maior_prompt_max": 172917
+  },
+  "C4": {
+   "n": 54,
+   "nucleo_100": 39,
+   "fracao_testes_media": 0.894,
+   "tokens_totais_media": 3641475,
+   "tokens_novos_media": 303382,
+   "custo_lista_medio_usd": 0.2249,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 174997
+  },
+  "C5": {
+   "n": 12,
+   "nucleo_100": 12,
+   "fracao_testes_media": 0.9243,
+   "tokens_totais_media": 2880360,
+   "tokens_novos_media": 302873,
+   "custo_lista_medio_usd": 0.1903,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 139404
+  },
+  "C6": {
+   "n": 6,
+   "nucleo_100": 6,
+   "fracao_testes_media": 0.95,
+   "tokens_totais_media": 3396528,
+   "tokens_novos_media": 287489,
+   "custo_lista_medio_usd": 0.5951,
+   "acessos_suspeitos": 0,
+   "maior_prompt_max": 155494
+  }
+ },
+ "hipoteses": {
+  "H4": {
+   "C0": [
+    49,
+    54
+   ],
+   "C4": [
+    39,
+    54
+   ],
+   "C1": [
+    21,
+    36
+   ],
+   "diferenca": -0.18518518518518523,
+   "newcombe_unilateral_97_5": [
+    -0.3263935080988132,
+    -0.03798158621880879
+   ],
+   "newcombe_unilateral_95": [
+    -0.30381861586097264,
+    -0.06250644644483806
+   ],
+   "instrumento_sensivel": true,
+   "status": "subpotente",
+   "sensibilidade_fracao_de_testes": {
+    "C0": 0.9069,
+    "C1": 0.8469,
+    "C4": 0.894
+   }
+  },
+  "H6": {
+   "status": "descritiva",
+   "custo_lista": {
+    "razao_C4_sobre_C0": 0.1826812093136297,
+    "ic95": [
+     0.16365822195982438,
+     0.20373373386159993
+    ]
+   },
+   "tokens_totais": {
+    "razao_C4_sobre_C0": 1.5121410221216103,
+    "ic95": [
+     1.387003669568146,
+     1.6447665894561707
+    ]
+   },
+   "tokens_novos": {
+    "razao_C4_sobre_C0": 1.5543383125841619,
+    "ic95": [
+     1.4920553692205565,
+     1.6209046389578607
+    ]
+   },
+   "razao_C1_sobre_C0": {
+    "custo_lista": 0.21213676240280624,
+    "tokens_totais": 1.7130866288199034,
+    "tokens_novos": 1.5717695804501335
+   }
+  },
+  "H1": {
+   "techspec": {
+    "diferenca": 0.6666666666666661,
+    "ic95": [
+     -0.24074074074074106,
+     1.5925925925925906
+    ],
+    "lim_inf_97_5": -0.24074074074074106,
+    "lim_inf_95": -0.11111111111110954,
+    "p_unilateral": 0.10468953104689531,
+    "n": {
+     "range-1267": [
+      3,
+      3
+     ],
+     "session-1050": [
+      6,
+      6
+     ],
+     "problem-1384": [
+      9,
+      9
+     ]
+    },
+    "limiar_pontos": 3,
+    "status": "não confirmada"
+   },
+   "tasks": {
+    "diferenca": -0.16666666666666607,
+    "ic95": [
+     -0.7777777777777786,
+     0.46296296296296485
+    ],
+    "lim_inf_97_5": -0.7777777777777786,
+    "lim_inf_95": -0.6851851851851857,
+    "p_unilateral": 0.686931306869313,
+    "n": {
+     "range-1267": [
+      3,
+      3
+     ],
+     "session-1050": [
+      6,
+      6
+     ],
+     "problem-1384": [
+      9,
+      9
+     ]
+    },
+    "limiar_pontos": 3,
+    "status": "não confirmada"
+   }
+  },
+  "H3": {
+   "status": "não testável neste desenho",
+   "motivo": "taxa de reprovação no primeiro gate < 10%",
+   "taxa": 0.0128
+  },
+  "H11": {
+   "C10": {
+    "techspec": {
+     "diferenca": 0.7888888888888914,
+     "ic95": [
+      -0.06666666666666572,
+      1.71111111111111
+     ],
+     "lim_inf_97_5": -0.06666666666666572,
+     "lim_inf_95": 0.05555555555555643,
+     "p_unilateral": 0.11748825117488251,
+     "n": {
+      "range-1267": [
+       3,
+       3
+      ],
+      "session-1050": [
+       3,
+       6
+      ]
+     },
+     "limiar_pontos": 3,
+     "status": "não confirmada"
+    },
+    "tasks": {
+     "diferenca": 0.6222222222222221,
+     "ic95": [
+      -0.4888888888888886,
+      1.6777777777777785
+     ],
+     "lim_inf_97_5": -0.4888888888888886,
+     "lim_inf_95": -0.3333333333333314,
+     "p_unilateral": 0.1740825917408259,
+     "n": {
+      "session-1050": [
+       3,
+       6
+      ],
+      "range-1267": [
+       3,
+       3
+      ]
+     },
+     "limiar_pontos": 3,
+     "status": "não confirmada"
+    }
+   },
+   "C11": {
+    "techspec": {
+     "diferenca": 1.0333333333333328,
+     "ic95": [
+      0.11111111111111072,
+      1.988888888888893
+     ],
+     "lim_inf_97_5": 0.11111111111111072,
+     "lim_inf_95": 0.255555555555555,
+     "p_unilateral": 0.0731926807319268,
+     "n": {
+      "session-1050": [
+       3,
+       6
+      ],
+      "range-1267": [
+       3,
+       3
+      ]
+     },
+     "limiar_pontos": 3,
+     "status": "não confirmada"
+    },
+    "tasks": {
+     "diferenca": 0.06666666666666643,
+     "ic95": [
+      -0.7777777777777765,
+      0.9222222222222214
+     ],
+     "lim_inf_97_5": -0.7777777777777765,
+     "lim_inf_95": -0.6333333333333322,
+     "p_unilateral": 0.46165383461653836,
+     "n": {
+      "session-1050": [
+       3,
+       6
+      ],
+      "range-1267": [
+       3,
+       3
+      ]
+     },
+     "limiar_pontos": 3,
+     "status": "não confirmada"
+    }
+   },
+   "C12": {
+    "techspec": {
+     "diferenca": 1.4555555555555586,
+     "ic95": [
+      0.6111111111111128,
+      2.3
+     ],
+     "lim_inf_97_5": 0.6111111111111128,
+     "lim_inf_95": 0.7444444444444436,
+     "p_unilateral": 0.009999000099990002,
+     "n": {
+      "range-1267": [
+       3,
+       3
+      ],
+      "session-1050": [
+       3,
+       6
+      ]
+     },
+     "limiar_pontos": 3,
+     "status": "não confirmada"
+    },
+    "tasks": {
+     "diferenca": 1.0666666666666664,
+     "ic95": [
+      0.4111111111111086,
+      1.7000000000000006
+     ],
+     "lim_inf_97_5": 0.4111111111111086,
+     "lim_inf_95": 0.5000000000000007,
+     "p_unilateral": 0.019698030196980302,
+     "n": {
+      "session-1050": [
+       3,
+       6
+      ],
+      "range-1267": [
+       3,
+       3
+      ]
+     },
+     "limiar_pontos": 3,
+     "status": "não confirmada"
+    }
+   },
+   "controle_C13": {
+    "techspec": {
+     "diferenca": 0.3000000000000007,
+     "ic95": [
+      -0.7111111111111107,
+      1.3222222222222229
+     ],
+     "lim_inf_97_5": -0.7111111111111107,
+     "lim_inf_95": -0.5555555555555565,
+     "p_unilateral": 0.35796420357964204,
+     "n": {
+      "range-1267": [
+       3,
+       3
+      ],
+      "session-1050": [
+       3,
+       6
+      ]
+     },
+     "limiar_pontos": 2,
+     "status": "não confirmada"
+    },
+    "tasks": {
+     "diferenca": 0.26666666666666783,
+     "ic95": [
+      -0.633333333333335,
+      1.2111111111111108
+     ],
+     "lim_inf_97_5": -0.633333333333335,
+     "lim_inf_95": -0.48888888888889,
+     "p_unilateral": 0.3287671232876712,
+     "n": {
+      "session-1050": [
+       3,
+       6
+      ],
+      "range-1267": [
+       3,
+       3
+      ]
+     },
+     "limiar_pontos": 2,
+     "status": "não confirmada"
+    }
+   }
+  },
+  "H5": {
+   "qualidade_techspec": {
+    "razao": 0.9944509345794393,
+    "ic95": [
+     0.9679376083188908,
+     1.021713265913147
+    ],
+    "lim_inf_97_5": 0.9679376083188908
+   },
+   "qualidade_tasks": {
+    "razao": 1.006720430107527,
+    "ic95": [
+     0.9632545931758529,
+     1.048758049678013
+    ],
+    "lim_inf_97_5": 0.9632545931758529
+   },
+   "custo_lista": {
+    "razao_C5_sobre_C0": 0.15459187457440768,
+    "ic95": [
+     0.12251781901853036,
+     0.1883067713269839
+    ]
+   },
+   "taxa_escalonamento": 0.0,
+   "status": "confirmada",
+   "observacao": "a cascata não escalou nenhuma vez: C5 equivale a C1 e o escalonamento não foi testado (não testável neste desenho)"
+  },
+  "H10": {
+   "qualidade_techspec": {
+    "razao_C6_sobre_C5": 1.036123348017621,
+    "ic95": [
+     1.013077593722755,
+     1.0591397849462365
+    ]
+   },
+   "qualidade_tasks": {
+    "razao_C6_sobre_C5": 0.9586114819759678,
+    "ic95": [
+     0.9254498714652957,
+     0.9972451790633609
+    ]
+   },
+   "custo_lista": {
+    "razao_C6_sobre_C5": 3.126565855829478,
+    "ic95": [
+     2.4733970150258515,
+     4.0474688541517345
+    ]
+   }
+  },
+  "H2": {
+   "status": "não testada",
+   "motivo": "fase C adiada para um paper futuro (decisão do autor, 06/11/2026)"
+  },
+  "H7": {
+   "status": "não testada",
+   "motivo": "fase C adiada para um paper futuro (decisão do autor, 06/11/2026)"
+  },
+  "H8": {
+   "status": "não testada",
+   "motivo": "fase C adiada para um paper futuro (decisão do autor, 06/11/2026)"
+  },
+  "H9": {
+   "status": "não testada",
+   "motivo": "fase C adiada para um paper futuro (decisão do autor, 06/11/2026)"
+  }
+ },
+ "commit_script": "d2a6190",
+ "gate": {
+  "documentos": 234,
+  "reprovados_1o_gate": 3,
+  "taxa": 0.0128,
+  "regra_testabilidade_H3": "taxa >= 10%"
+ },
+ "rubrica": {
+  "artefatos_julgados": {
+   "C0/tasks": 18,
+   "C0/techspec": 18,
+   "C1/tasks": 18,
+   "C1/techspec": 18,
+   "C10/tasks": 6,
+   "C10/techspec": 6,
+   "C11/tasks": 6,
+   "C11/techspec": 6,
+   "C12/tasks": 6,
+   "C12/techspec": 6,
+   "C13/tasks": 6,
+   "C13/techspec": 6,
+   "C2/tasks": 6,
+   "C2/techspec": 6,
+   "C2n/tasks": 6,
+   "C2n/techspec": 6,
+   "C4/tasks": 6,
+   "C4/techspec": 6,
+   "C5/tasks": 12,
+   "C5/techspec": 12,
+   "C6/tasks": 6,
+   "C6/techspec": 6
+  },
+  "krippendorff_alfa_intervalo": 0.6093488042045836,
+  "alucinacoes_media": {
+   "C0": 0.139,
+   "C1": 0.185,
+   "C10": 0.278,
+   "C11": 0.028,
+   "C12": 0.056,
+   "C13": 0.139,
+   "C2": 0.056,
+   "C2n": 0.194,
+   "C4": 0.417,
+   "C5": 0.153,
+   "C6": 0.111
+  }
+ }
+}

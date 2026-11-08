@@ -1,0 +1,416 @@
+diff --git a/src/error.ts b/src/error.ts
+index fb8b6aa..0bae5d0 100644
+--- a/src/error.ts
++++ b/src/error.ts
+@@ -1,4 +1,5 @@
+ import { sanitizeStatusMessage, sanitizeStatusCode } from "./utils/sanitize.ts";
++import { getReasonPhrase } from "./utils/internal/status-text.ts";
+ 
+ /**
+  * Raw object describing HTTP error (passed to `HTTPError` constructor).
+@@ -46,7 +47,7 @@ export interface ErrorBody<DataT = unknown> {
+   /**
+    * HTTP Error message.
+    *
+-   * **NOTE:** This message will be in JSON body under `message` key.
++   * **NOTE:** This message is sent as `detail` in the JSON body (RFC 9457), and also under `message` key.
+    */
+   message: string;
+ 
+@@ -66,6 +67,20 @@ export interface ErrorBody<DataT = unknown> {
+    * Additional top level JSON body properties to attach in the error JSON body.
+    */
+   body?: Record<string, unknown>;
++
++  /**
++   * RFC 9457 `type`: URI reference that identifies the problem type.
++   *
++   * **NOTE:** The value is not validated. When absent, the JSON body uses `about:blank`.
++   */
++  type?: string;
++
++  /**
++   * RFC 9457 `instance`: URI reference that identifies this occurrence of the problem.
++   *
++   * **NOTE:** The value is not validated. When absent, the `instance` key is omitted from the JSON body.
++   */
++  instance?: string;
+ }
+ 
+ /**
+@@ -111,6 +126,16 @@ export class HTTPError<DataT = unknown> extends Error implements ErrorBody<DataT
+    */
+   readonly body: Record<string, unknown> | undefined;
+ 
++  /**
++   * RFC 9457 `type`, inherited from `cause` when absent.
++   */
++  readonly type: string | undefined;
++
++  /**
++   * RFC 9457 `instance`, inherited from `cause` when absent.
++   */
++  readonly instance: string | undefined;
++
+   /**
+    * Flag to indicate that the error was not handled by the application.
+    *
+@@ -207,6 +232,10 @@ export class HTTPError<DataT = unknown> extends Error implements ErrorBody<DataT
+ 
+     this.data = (details as ErrorBody)?.data as DataT | undefined;
+     this.body = (details as ErrorBody)?.body;
++
++    this.type = (details as ErrorBody)?.type ?? (details?.cause as ErrorBody)?.type ?? undefined;
++    this.instance =
++      (details as ErrorBody)?.instance ?? (details?.cause as ErrorBody)?.instance ?? undefined;
+   }
+ 
+   /**
+@@ -223,15 +252,25 @@ export class HTTPError<DataT = unknown> extends Error implements ErrorBody<DataT
+     return this.statusText;
+   }
+ 
+-  toJSON(): Omit<ErrorBody, "body"> & ErrorBody["body"] {
++  /**
++   * JSON body as RFC 9457 problem details. `stack` is added by the response only in debug mode.
++   *
++   * Body members are spread first, so they cannot override the RFC members.
++   */
++  toJSON(): Record<string, unknown> {
+     const unhandled = this.unhandled;
++    const message = unhandled ? "HTTPError" : this.message;
+     return {
++      ...(unhandled ? undefined : this.body),
++      type: this.type ?? "about:blank",
++      title: this.statusText ?? getReasonPhrase(this.status),
+       status: this.status,
++      detail: message,
++      instance: this.instance,
++      message,
+       statusText: this.statusText,
+       unhandled: unhandled,
+-      message: unhandled ? "HTTPError" : this.message,
+       data: unhandled ? undefined : this.data,
+-      ...(unhandled ? undefined : this.body),
+     };
+   }
+ }
+diff --git a/src/response.ts b/src/response.ts
+index c5bca8a..0b5bb59 100644
+--- a/src/response.ts
++++ b/src/response.ts
+@@ -271,6 +271,11 @@ const jsonHeaders = /* @__PURE__ */ new FrozenHeaders({
+   "content-type": "application/json;charset=UTF-8",
+ });
+ 
++// RFC 9457 problem details. JSON is UTF-8 by default (RFC 8259), so no charset parameter.
++const problemHeaders = /* @__PURE__ */ new FrozenHeaders({
++  "content-type": "application/problem+json",
++});
++
+ function prepareResponseBody(
+   val: unknown,
+   event: H3Event,
+@@ -357,8 +362,8 @@ function nullBody(method: string, status: number | undefined): boolean | 0 | und
+ 
+ function errorResponse(error: HTTPError, debug?: boolean, errHeaders?: Headers): Response {
+   let headers: Headers = error.headers
+-    ? mergeHeaders(jsonHeaders, error.headers)
+-    : new Headers(jsonHeaders);
++    ? mergeHeaders(problemHeaders, error.headers)
++    : new Headers(problemHeaders);
+   if (errHeaders) {
+     headers = mergeHeaders(headers, errHeaders);
+   }
+diff --git a/src/utils/internal/status-text.ts b/src/utils/internal/status-text.ts
+new file mode 100644
+index 0000000..d871b6c
+--- /dev/null
++++ b/src/utils/internal/status-text.ts
+@@ -0,0 +1,46 @@
++// No imports on purpose: `error.ts` depends on this module, and `response.ts` depends on `error.ts`.
++
++const REASON_PHRASES: Record<number, string> = {
++  400: "Bad Request",
++  401: "Unauthorized",
++  402: "Payment Required",
++  403: "Forbidden",
++  404: "Not Found",
++  405: "Method Not Allowed",
++  406: "Not Acceptable",
++  407: "Proxy Authentication Required",
++  408: "Request Timeout",
++  409: "Conflict",
++  410: "Gone",
++  411: "Length Required",
++  412: "Precondition Failed",
++  413: "Content Too Large",
++  414: "URI Too Long",
++  415: "Unsupported Media Type",
++  416: "Range Not Satisfiable",
++  417: "Expectation Failed",
++  418: "I'm a Teapot",
++  421: "Misdirected Request",
++  422: "Unprocessable Content",
++  426: "Upgrade Required",
++  428: "Precondition Required",
++  429: "Too Many Requests",
++  431: "Request Header Fields Too Large",
++  451: "Unavailable For Legal Reasons",
++  500: "Internal Server Error",
++  501: "Not Implemented",
++  502: "Bad Gateway",
++  503: "Service Unavailable",
++  504: "Gateway Timeout",
++  505: "HTTP Version Not Supported",
++  511: "Network Authentication Required",
++};
++
++/**
++ * Get the standard reason phrase (RFC 9110) for a 4xx or 5xx status code.
++ *
++ * Returns `undefined` for other status codes.
++ */
++export function getReasonPhrase(status: number): string | undefined {
++  return REASON_PHRASES[status];
++}
+diff --git a/test/errors.test.ts b/test/errors.test.ts
+index 258a9e2..b280235 100644
+--- a/test/errors.test.ts
++++ b/test/errors.test.ts
+@@ -41,7 +41,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+             const res = await t.fetch("/", { method });
+             expect(res.status).toBe(422);
+             expect(res.statusText).toBe("Unprocessable");
+-            expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++            expect(res.headers.get("content-type")).toBe("application/problem+json");
+             expect(res.headers.get("x-error")).toBe("prepared");
+             expect(res.headers.get("x-error-own")).toBe("own");
+             expect(res.headers.get("x-success")).toBeNull();
+@@ -137,7 +137,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+     const result = await t.fetch("/api/test");
+ 
+     expect(result.status).toBe(400);
+-    expect(result.headers.get("content-type")).toMatch("application/json");
++    expect(result.headers.get("content-type")).toMatch("application/problem+json");
+ 
+     expect(console.error).not.toBeCalled();
+ 
+diff --git a/test/sdd-problem-details.test.ts b/test/sdd-problem-details.test.ts
+new file mode 100644
+index 0000000..3141142
+--- /dev/null
++++ b/test/sdd-problem-details.test.ts
+@@ -0,0 +1,192 @@
++import { HTTPError } from "../src/index.ts";
++import { describeMatrix } from "./_setup.ts";
++
++// Acceptance tests for sdd/prd.md (RF-01 to RF-08) and sdd/techspec.md (D-01 to D-08).
++
++describeMatrix("problem details (RFC 9457)", (t, { it, expect, describe }) => {
++  describe("content-type", () => {
++    it("RF-01: error responses use application/problem+json", async () => {
++      t.app.get("/", () => {
++        throw HTTPError.status(404);
++      });
++      const res = await t.fetch("/");
++      expect(res.status).toBe(404);
++      expect(res.headers.get("content-type")).toBe("application/problem+json");
++      expect(await res.json()).toMatchObject({ status: 404 });
++    });
++
++    it("RF-06: custom headers and status are kept with problem+json", async () => {
++      t.app.get("/", () => {
++        throw HTTPError.status(429, "Too Many Requests", {
++          headers: { "retry-after": "30" },
++        });
++      });
++      const res = await t.fetch("/");
++      expect(res.status).toBe(429);
++      expect(res.headers.get("retry-after")).toBe("30");
++      expect(res.headers.get("content-type")).toBe("application/problem+json");
++    });
++
++    it("guard: success JSON keeps application/json", async () => {
++      t.app.get("/", () => ({ a: 1 }));
++      const res = await t.fetch("/");
++      expect(res.status).toBe(200);
++      expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++      expect(await res.json()).toEqual({ a: 1 });
++    });
++  });
++
++  describe("body members", () => {
++    it("RF-02: maps status, statusText, message and default type", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError({
++          status: 403,
++          statusText: "Forbidden",
++          message: "Não autenticado",
++        });
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body).toMatchObject({
++        type: "about:blank",
++        title: "Forbidden",
++        status: 403,
++        detail: "Não autenticado",
++      });
++    });
++
++    it("RF-02: title falls back to the standard reason phrase", async () => {
++      t.app.get("/", () => {
++        throw HTTPError.status(404);
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body.title).toBe("Not Found");
++      expect(body.detail).toBe("HTTPError 404");
++    });
++
++    it("RF-02: instance key is absent when not informed", async () => {
++      t.app.get("/", () => {
++        throw HTTPError.status(404);
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(Object.keys(body)).not.toContain("instance");
++    });
++
++    it("RF-03: type and instance are exposed on the error and in the body", async () => {
++      const error = new HTTPError({
++        status: 422,
++        message: "Inválido",
++        type: "https://exemplo.com/erros/validacao",
++        instance: "/pedidos/42",
++      });
++      expect(error.type).toBe("https://exemplo.com/erros/validacao");
++      expect(error.instance).toBe("/pedidos/42");
++
++      t.app.get("/", () => {
++        throw error;
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body).toMatchObject({
++        type: "https://exemplo.com/erros/validacao",
++        instance: "/pedidos/42",
++        status: 422,
++      });
++    });
++
++    it("RF-03: type and instance are inherited from cause", () => {
++      const error = new HTTPError({
++        status: 422,
++        message: "Inválido",
++        cause: { type: "https://exemplo.com/erros/validacao", instance: "/pedidos/42" },
++      });
++      expect(error.type).toBe("https://exemplo.com/erros/validacao");
++      expect(error.instance).toBe("/pedidos/42");
++    });
++
++    it("RF-07: data, body members and message mirror detail", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError({
++          status: 400,
++          message: "Campo obrigatório",
++          data: { campo: "nome" },
++          body: { codigo: "E01" },
++        });
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body).toMatchObject({
++        status: 400,
++        detail: "Campo obrigatório",
++        message: "Campo obrigatório",
++        data: { campo: "nome" },
++        codigo: "E01",
++      });
++    });
++
++    it("D-04: body cannot override RFC members", async () => {
++      t.app.get("/", () => {
++        throw new HTTPError({
++          status: 400,
++          message: "x",
++          body: { type: "forjado", title: "y" },
++        });
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body.type).toBe("about:blank");
++      expect(body.title).toBe("Bad Request");
++    });
++  });
++
++  describe("security and debug", () => {
++    it("RF-04: unhandled errors do not leak message, stack or data outside debug", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        throw new Error("senha do banco inválida");
++      });
++      const res = await t.fetch("/");
++      t.errors = [];
++      const text = await res.text();
++      expect(res.status).toBe(500);
++      expect(text).not.toContain("senha do banco inválida");
++      expect(JSON.parse(text)).not.toHaveProperty("stack");
++      expect(JSON.parse(text)).toMatchObject({ status: 500, detail: "HTTPError" });
++    });
++
++    it("RF-04: unhandled errors hide data and body", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        throw new HTTPError({
++          status: 500,
++          message: "senha do banco inválida",
++          unhandled: true,
++          data: { segredo: 1 },
++          body: { vazado: 1 },
++        });
++      });
++      const res = await t.fetch("/");
++      t.errors = [];
++      const text = await res.text();
++      expect(text).not.toContain("senha do banco inválida");
++      expect(text).not.toContain("segredo");
++      expect(text).not.toContain("vazado");
++    });
++
++    it("RF-05: stack is a list of lines in debug mode", async () => {
++      t.app.config.debug = true;
++      t.app.get("/", () => {
++        throw HTTPError.status(400);
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(Array.isArray(body.stack)).toBe(true);
++      expect(body.stack.length).toBeGreaterThan(0);
++      expect(body.stack.every((line: unknown) => typeof line === "string")).toBe(true);
++    });
++
++    it("RF-05: stack is absent when debug is off", async () => {
++      t.app.config.debug = false;
++      t.app.get("/", () => {
++        throw HTTPError.status(400);
++      });
++      const body = await (await t.fetch("/")).json();
++      expect(body).not.toHaveProperty("stack");
++    });
++  });
++});
+diff --git a/test/unit/status-text.test.ts b/test/unit/status-text.test.ts
+new file mode 100644
+index 0000000..661c31e
+--- /dev/null
++++ b/test/unit/status-text.test.ts
+@@ -0,0 +1,14 @@
++import { describe, expect, it } from "vitest";
++import { getReasonPhrase } from "../../src/utils/internal/status-text.ts";
++
++describe("getReasonPhrase", () => {
++  it("returns the RFC 9110 phrase for 4xx and 5xx", () => {
++    expect(getReasonPhrase(404)).toBe("Not Found");
++    expect(getReasonPhrase(500)).toBe("Internal Server Error");
++  });
++
++  it("returns undefined for codes outside the table", () => {
++    expect(getReasonPhrase(499)).toBeUndefined();
++    expect(getReasonPhrase(200)).toBeUndefined();
++  });
++});

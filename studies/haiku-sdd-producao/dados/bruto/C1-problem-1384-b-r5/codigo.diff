@@ -1,0 +1,559 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 776ee4d..1d4009f 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -88,6 +88,7 @@ src/
+ │   ├── base.ts           # withBase
+ │   └── internal/         # Internal helpers (not exported)
+ │       ├── auth.ts, body.ts, cors.ts, encoding.ts, ...
++│       ├── problem.ts        # RFC 9457 problem details body for HTTPError
+ │       ├── iron-crypto.ts    # Session sealing crypto
+ │       ├── standard-schema.ts # Standard schema validation
+ │       └── validate.ts
+diff --git a/docs/1.guide/1.basics/6.error.md b/docs/1.guide/1.basics/6.error.md
+index 8bc22d4..4baa778 100644
+--- a/docs/1.guide/1.basics/6.error.md
++++ b/docs/1.guide/1.basics/6.error.md
+@@ -34,12 +34,15 @@ app.get("/error", (event) => {
+ });
+ ```
+ 
+-This will end the request with `400 - Bad Request` status code and the following JSON response:
++This will end the request with `400 - Bad Request` status code and the following JSON response, sent with `Content-Type: application/problem+json` ([RFC 9457](https://www.rfc-editor.org/rfc/rfc9457)):
+ 
+ ```json
+ {
+-  "date": "2025-06-05T04:20:00.0Z",
++  "type": "about:blank",
++  "title": "Bad Request",
+   "status": 400,
++  "detail": "Invalid user input",
++  "date": "2025-06-05T04:20:00.0Z",
+   "statusText": "Bad Request",
+   "message": "Invalid user input",
+   "data": {
+@@ -51,8 +54,10 @@ This will end the request with `400 - Bad Request` status code and the following
+ ### `HTTPError` Fields
+ 
+ - `status`: HTTP status code in the range 200–599.
+-- `statusText`: HTTP status text to be sent in the response header.
+-- `message`: Error message to be included in the JSON body.
++- `statusText`: HTTP status text to be sent in the response header, and used as the `title` in the JSON body.
++- `message`: Error message to be included in the JSON body as `detail` (RFC 9457) and `message`.
++- `type`: URI that identifies the problem type (RFC 9457). Defaults to `"about:blank"` in the JSON body when not set.
++- `instance`: URI that identifies this occurrence of the problem (RFC 9457). Only included in the JSON body when set.
+ - `data`: Additional data to be attached under the `data` key in the error JSON body.
+ - `body`: Additional top-level properties to be attached in the error JSON body.
+ - `headers`: Additional HTTP headers to be sent in the error response.
+@@ -87,7 +92,7 @@ app.get("/error", (event) => {
+ ```
+ 
+ > [!TIP]
+-> For enhanced security, H3 hides certain fields of unhandled errors (`data`, `body`, `stack` and `message`) in JSON response.
++> For enhanced security, H3 hides certain fields of unhandled errors (`data`, `body`, `stack` and `message`/`detail`) in JSON response.
+ 
+ ## Catching Errors
+ 
+diff --git a/src/error.ts b/src/error.ts
+index fb8b6aa..71df70a 100644
+--- a/src/error.ts
++++ b/src/error.ts
+@@ -46,7 +46,7 @@ export interface ErrorBody<DataT = unknown> {
+   /**
+    * HTTP Error message.
+    *
+-   * **NOTE:** This message will be in JSON body under `message` key.
++   * **NOTE:** This message will be in JSON body under `detail` (RFC 9457) and `message` keys.
+    */
+   message: string;
+ 
+@@ -66,6 +66,20 @@ export interface ErrorBody<DataT = unknown> {
+    * Additional top level JSON body properties to attach in the error JSON body.
+    */
+   body?: Record<string, unknown>;
++
++  /**
++   * URI that identifies the problem type (RFC 9457 §3.1.1).
++   *
++   * Defaults to `"about:blank"` in the JSON body when not set.
++   */
++  type?: string;
++
++  /**
++   * URI that identifies this occurrence of the problem (RFC 9457 §3.1.5).
++   *
++   * Not set automatically.
++   */
++  instance?: string;
+ }
+ 
+ /**
+@@ -111,6 +125,16 @@ export class HTTPError<DataT = unknown> extends Error implements ErrorBody<DataT
+    */
+   readonly body: Record<string, unknown> | undefined;
+ 
++  /**
++   * URI that identifies the problem type (RFC 9457). `undefined` when not set.
++   */
++  readonly type: string | undefined;
++
++  /**
++   * URI that identifies this occurrence of the problem (RFC 9457). `undefined` when not set.
++   */
++  readonly instance: string | undefined;
++
+   /**
+    * Flag to indicate that the error was not handled by the application.
+    *
+@@ -207,6 +231,8 @@ export class HTTPError<DataT = unknown> extends Error implements ErrorBody<DataT
+ 
+     this.data = (details as ErrorBody)?.data as DataT | undefined;
+     this.body = (details as ErrorBody)?.body;
++    this.type = (details as ErrorBody)?.type;
++    this.instance = (details as ErrorBody)?.instance;
+   }
+ 
+   /**
+@@ -223,7 +249,7 @@ export class HTTPError<DataT = unknown> extends Error implements ErrorBody<DataT
+     return this.statusText;
+   }
+ 
+-  toJSON(): Omit<ErrorBody, "body"> & ErrorBody["body"] {
++  toJSON(): Omit<ErrorBody, "body" | "type" | "instance"> & ErrorBody["body"] {
+     const unhandled = this.unhandled;
+     return {
+       status: this.status,
+diff --git a/src/response.ts b/src/response.ts
+index c5bca8a..93e9ad5 100644
+--- a/src/response.ts
++++ b/src/response.ts
+@@ -1,6 +1,7 @@
+ import { FastResponse } from "srvx";
+ import { HTTPError } from "./error.ts";
+ import { isJSONSerializable } from "./utils/internal/object.ts";
++import { toProblemDetails } from "./utils/internal/problem.ts";
+ import { sanitizeStatusCode, sanitizeStatusMessage } from "./utils/sanitize.ts";
+ import { kEventDispose, type DisposeState } from "./utils/internal/dispose.ts";
+ 
+@@ -271,6 +272,10 @@ const jsonHeaders = /* @__PURE__ */ new FrozenHeaders({
+   "content-type": "application/json;charset=UTF-8",
+ });
+ 
++const problemHeaders = /* @__PURE__ */ new FrozenHeaders({
++  "content-type": "application/problem+json;charset=UTF-8",
++});
++
+ function prepareResponseBody(
+   val: unknown,
+   event: H3Event,
+@@ -357,15 +362,15 @@ function nullBody(method: string, status: number | undefined): boolean | 0 | und
+ 
+ function errorResponse(error: HTTPError, debug?: boolean, errHeaders?: Headers): Response {
+   let headers: Headers = error.headers
+-    ? mergeHeaders(jsonHeaders, error.headers)
+-    : new Headers(jsonHeaders);
++    ? mergeHeaders(problemHeaders, error.headers)
++    : new Headers(problemHeaders);
+   if (errHeaders) {
+     headers = mergeHeaders(headers, errHeaders);
+   }
+   return new FastResponse(
+     JSON.stringify(
+       {
+-        ...error.toJSON(),
++        ...toProblemDetails(error),
+         stack: debug && error.stack ? error.stack.split("\n").map((l) => l.trim()) : undefined,
+       },
+       undefined,
+diff --git a/src/utils/internal/problem.ts b/src/utils/internal/problem.ts
+new file mode 100644
+index 0000000..9b62874
+--- /dev/null
++++ b/src/utils/internal/problem.ts
+@@ -0,0 +1,106 @@
++import type { HTTPError } from "../../error.ts";
++
++/**
++ * Error body in RFC 9457 problem details format.
++ *
++ * Members other than the RFC ones (`data`, `body` keys, `message`, `statusText`, `unhandled`) are extensions.
++ */
++export interface ProblemDetails {
++  type: string;
++  title?: string;
++  status: number;
++  detail: string;
++  instance?: string;
++  [member: string]: unknown;
++}
++
++/**
++ * Build the problem details body of an `HTTPError`.
++ *
++ * RFC members win over `body` keys with the same name. Unhandled errors are masked by `toJSON()`, so `detail` inherits the mask.
++ */
++export function toProblemDetails(error: HTTPError): ProblemDetails {
++  const json = error.toJSON();
++  return {
++    ...json,
++    type: error.type ?? "about:blank",
++    title: error.statusText ?? defaultStatusText(error.status),
++    status: error.status,
++    detail: json.message,
++    instance: error.instance,
++  };
++}
++
++/**
++ * Default phrase of a status code (RFC 9110 and IANA registry).
++ *
++ * Returns `undefined` for codes outside the table, so no phrase is invented.
++ */
++export function defaultStatusText(status: number): string | undefined {
++  return STATUS_TEXTS[status];
++}
++
++const STATUS_TEXTS: Readonly<Record<number, string>> = {
++  100: "Continue",
++  101: "Switching Protocols",
++  102: "Processing",
++  103: "Early Hints",
++  200: "OK",
++  201: "Created",
++  202: "Accepted",
++  203: "Non-Authoritative Information",
++  204: "No Content",
++  205: "Reset Content",
++  206: "Partial Content",
++  207: "Multi-Status",
++  208: "Already Reported",
++  226: "IM Used",
++  300: "Multiple Choices",
++  301: "Moved Permanently",
++  302: "Found",
++  303: "See Other",
++  304: "Not Modified",
++  305: "Use Proxy",
++  307: "Temporary Redirect",
++  308: "Permanent Redirect",
++  400: "Bad Request",
++  401: "Unauthorized",
++  402: "Payment Required",
++  403: "Forbidden",
++  404: "Not Found",
++  405: "Method Not Allowed",
++  406: "Not Acceptable",
++  407: "Proxy Authentication Required",
++  408: "Request Timeout",
++  409: "Conflict",
++  410: "Gone",
++  411: "Length Required",
++  412: "Precondition Failed",
++  413: "Content Too Large",
++  414: "URI Too Long",
++  415: "Unsupported Media Type",
++  416: "Range Not Satisfiable",
++  417: "Expectation Failed",
++  418: "I'm a teapot",
++  421: "Misdirected Request",
++  422: "Unprocessable Content",
++  423: "Locked",
++  424: "Failed Dependency",
++  425: "Too Early",
++  426: "Upgrade Required",
++  428: "Precondition Required",
++  429: "Too Many Requests",
++  431: "Request Header Fields Too Large",
++  451: "Unavailable For Legal Reasons",
++  500: "Internal Server Error",
++  501: "Not Implemented",
++  502: "Bad Gateway",
++  503: "Service Unavailable",
++  504: "Gateway Timeout",
++  505: "HTTP Version Not Supported",
++  506: "Variant Also Negotiates",
++  507: "Insufficient Storage",
++  508: "Loop Detected",
++  510: "Not Extended",
++  511: "Network Authentication Required",
++};
+diff --git a/test/errors.test.ts b/test/errors.test.ts
+index 258a9e2..4f50014 100644
+--- a/test/errors.test.ts
++++ b/test/errors.test.ts
+@@ -41,7 +41,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+             const res = await t.fetch("/", { method });
+             expect(res.status).toBe(422);
+             expect(res.statusText).toBe("Unprocessable");
+-            expect(res.headers.get("content-type")).toBe("application/json;charset=UTF-8");
++            expect(res.headers.get("content-type")).toBe("application/problem+json;charset=UTF-8");
+             expect(res.headers.get("x-error")).toBe("prepared");
+             expect(res.headers.get("x-error-own")).toBe("own");
+             expect(res.headers.get("x-success")).toBeNull();
+@@ -137,7 +137,7 @@ describeMatrix("errors", (t, { it, expect, describe }) => {
+     const result = await t.fetch("/api/test");
+ 
+     expect(result.status).toBe(400);
+-    expect(result.headers.get("content-type")).toMatch("application/json");
++    expect(result.headers.get("content-type")).toMatch("application/problem+json");
+ 
+     expect(console.error).not.toBeCalled();
+ 
+diff --git a/test/problem-details.test.ts b/test/problem-details.test.ts
+new file mode 100644
+index 0000000..f3c4699
+--- /dev/null
++++ b/test/problem-details.test.ts
+@@ -0,0 +1,142 @@
++import { HTTPError } from "../src/index.ts";
++import { describeMatrix } from "./_setup.ts";
++
++const problemJson = "application/problem+json;charset=UTF-8";
++
++describeMatrix("problem details", (t, { it, expect }) => {
++  it("renders HTTPError with application/problem+json (RF-01)", async () => {
++    t.app.use(() => {
++      throw HTTPError.status(400, "Bad Request");
++    });
++    const res = await t.fetch("/");
++    expect(res.status).toBe(400);
++    expect(res.headers.get("content-type")).toBe(problemJson);
++  });
++
++  it("includes RFC 9457 members for a 422 error (RF-02)", async () => {
++    t.app.use(() => {
++      throw HTTPError.status(422, "Unprocessable Content", {
++        message: "Campo email inválido",
++      });
++    });
++    const res = await t.fetch("/");
++    expect(await res.json()).toMatchObject({
++      type: "about:blank",
++      title: "Unprocessable Content",
++      status: 422,
++      detail: "Campo email inválido",
++    });
++  });
++
++  it("exposes type and instance on the error and in the body (RF-03)", async () => {
++    const error = new HTTPError({
++      status: 403,
++      message: "Negado",
++      type: "https://exemplo.com/erros/sem-permissao",
++      instance: "/pedidos/12",
++    });
++    expect(error.type).toBe("https://exemplo.com/erros/sem-permissao");
++    expect(error.instance).toBe("/pedidos/12");
++
++    t.app.use(() => {
++      throw error;
++    });
++    const res = await t.fetch("/");
++    expect(await res.json()).toMatchObject({
++      type: "https://exemplo.com/erros/sem-permissao",
++      instance: "/pedidos/12",
++    });
++  });
++
++  it("defaults type to about:blank when not informed (RF-04)", async () => {
++    const error = HTTPError.status(404, "Not Found");
++    expect(error.type).toBeUndefined();
++
++    t.app.use(() => {
++      throw error;
++    });
++    const res = await t.fetch("/");
++    expect(await res.json()).toMatchObject({
++      type: "about:blank",
++      status: 404,
++    });
++  });
++
++  it("does not leak unhandled error details (RF-05)", async () => {
++    t.app.config.debug = false;
++    t.app.use(() => {
++      throw new Error("senha do banco: 123");
++    });
++    const res = await t.fetch("/");
++    // The unhandled error is expected here, so do not fail the global check
++    t.errors = [];
++
++    expect(res.status).toBe(500);
++    expect(res.headers.get("content-type")).toBe(problemJson);
++
++    const body = await res.json();
++    expect(body).toMatchObject({
++      type: "about:blank",
++      title: "Internal Server Error",
++      status: 500,
++      unhandled: true,
++    });
++    expect(body.detail).not.toBe("senha do banco: 123");
++    expect(JSON.stringify(body)).not.toContain("senha do banco");
++    expect(body).not.toHaveProperty("stack");
++  });
++
++  it("keeps data, body members and message as extensions (RF-06)", async () => {
++    t.app.use(() => {
++      throw HTTPError.status(409, "Conflict", {
++        message: "Conflito",
++        data: { id: 7 },
++        body: { motivo: "duplicado" },
++      });
++    });
++    const res = await t.fetch("/");
++    expect(await res.json()).toMatchObject({
++      detail: "Conflito",
++      data: { id: 7 },
++      motivo: "duplicado",
++    });
++  });
++
++  it("keeps status and headers of HTTPError (RF-07)", async () => {
++    t.app.use(() => {
++      throw HTTPError.status(429, "Too Many Requests", {
++        headers: { "retry-after": "30" },
++      });
++    });
++    const res = await t.fetch("/");
++    expect(res.status).toBe(429);
++    expect(res.headers.get("retry-after")).toBe("30");
++    expect(res.headers.get("content-type")).toBe(problemJson);
++    expect(await res.json()).toMatchObject({ status: 429, title: "Too Many Requests" });
++  });
++
++  it("renders the error returned by onError as problem details (RF-08)", async () => {
++    t.app.config.onError = () => HTTPError.status(418, "I'm a teapot");
++    t.app.use(() => {
++      throw new Error("boom");
++    });
++    const res = await t.fetch("/");
++    expect(res.status).toBe(418);
++    expect(res.headers.get("content-type")).toBe(problemJson);
++    expect(await res.json()).toMatchObject({ title: "I'm a teapot", status: 418 });
++
++    // onError replaces the default handler, so no unhandled error is recorded
++    t.errors = [];
++  });
++
++  it("renders the 404 for a missing route as problem details (RF-09)", async () => {
++    const res = await t.fetch("/inexistente");
++    expect(res.status).toBe(404);
++    expect(res.headers.get("content-type")).toBe(problemJson);
++    expect(await res.json()).toMatchObject({
++      type: "about:blank",
++      status: 404,
++      detail: expect.stringContaining("Cannot find any route matching [GET]"),
++    });
++  });
++});
+diff --git a/test/unit/problem-details.test.ts b/test/unit/problem-details.test.ts
+new file mode 100644
+index 0000000..567f172
+--- /dev/null
++++ b/test/unit/problem-details.test.ts
+@@ -0,0 +1,82 @@
++import { describe, it, expect } from "vitest";
++import { HTTPError } from "../../src/index.ts";
++import { sanitizeStatusMessage } from "../../src/utils/sanitize.ts";
++import { defaultStatusText, toProblemDetails } from "../../src/utils/internal/problem.ts";
++
++describe("toProblemDetails", () => {
++  it("masks message and drops data and body for unhandled errors", () => {
++    const error = new HTTPError({
++      status: 500,
++      message: "senha do banco: 123",
++      unhandled: true,
++      data: { secret: 1 },
++      body: { motivo: "vazado" },
++    });
++    const problem = toProblemDetails(error);
++    expect(problem.detail).toBe("HTTPError");
++    expect(problem.data).toBeUndefined();
++    expect(problem.motivo).toBeUndefined();
++  });
++
++  it("keeps RFC 9457 members when body has the same keys", () => {
++    const error = HTTPError.status(422, "Unprocessable Content", {
++      message: "Campo inválido",
++      type: "https://exemplo.com/erros/campo",
++      instance: "/pedidos/1",
++      body: { type: "x", title: "x", status: 1, detail: "x", instance: "x" },
++    });
++    const problem = toProblemDetails(error);
++    expect(problem).toMatchObject({
++      type: "https://exemplo.com/erros/campo",
++      title: "Unprocessable Content",
++      status: 422,
++      detail: "Campo inválido",
++      instance: "/pedidos/1",
++    });
++  });
++
++  it("uses about:blank and the default status text when none is informed", () => {
++    const problem = toProblemDetails(new HTTPError({ status: 500, message: "x" }));
++    expect(problem.type).toBe("about:blank");
++    expect(problem.title).toBe("Internal Server Error");
++    expect(problem.instance).toBeUndefined();
++  });
++
++  it("prefers statusText over the default status text", () => {
++    const problem = toProblemDetails(HTTPError.status(418, "I'm a teapot"));
++    expect(problem.title).toBe("I'm a teapot");
++  });
++});
++
++describe("HTTPError.toJSON", () => {
++  it("keeps the previous shape without problem details members", () => {
++    const keys = Object.keys(
++      HTTPError.status(422, "Unprocessable Content", { message: "x" }).toJSON(),
++    );
++    expect(keys).not.toContain("type");
++    expect(keys).not.toContain("title");
++    expect(keys).not.toContain("detail");
++  });
++});
++
++describe("defaultStatusText", () => {
++  it("returns RFC 9110 phrases", () => {
++    expect(defaultStatusText(422)).toBe("Unprocessable Content");
++    expect(defaultStatusText(500)).toBe("Internal Server Error");
++    expect(defaultStatusText(413)).toBe("Content Too Large");
++  });
++
++  it("returns undefined for codes outside the table", () => {
++    expect(defaultStatusText(599)).toBeUndefined();
++    expect(defaultStatusText(299)).toBeUndefined();
++  });
++
++  it("uses only phrases accepted by sanitizeStatusMessage", () => {
++    for (let status = 100; status <= 599; status++) {
++      const text = defaultStatusText(status);
++      if (text === undefined) continue;
++      expect(text).toMatch(/^[ -~]+$/);
++      expect(sanitizeStatusMessage(text)).toBe(text);
++    }
++  });
++});
+diff --git a/test/unit/types.test-d.ts b/test/unit/types.test-d.ts
+index d4f67e9..3750b03 100644
+--- a/test/unit/types.test-d.ts
++++ b/test/unit/types.test-d.ts
+@@ -8,8 +8,16 @@ import type {
+   TypedHeaders,
+   WebSocketResponse,
+ } from "../../src/index.ts";
+-import { H3 } from "../../src/index.ts";
++import { H3, HTTPError } from "../../src/index.ts";
+ import { describe, it, expectTypeOf } from "vitest";
++
++describe("HTTPError problem details fields", () => {
++  it("types type and instance as optional strings", () => {
++    const error = HTTPError.status(403, "Forbidden", { type: "https://exemplo.com/erro" });
++    expectTypeOf(error.type).toEqualTypeOf<string | undefined>();
++    expectTypeOf(error.instance).toEqualTypeOf<string | undefined>();
++  });
++});
+ import {
+   defineHandler,
+   getQuery,

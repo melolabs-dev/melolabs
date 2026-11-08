@@ -1,0 +1,462 @@
+diff --git a/src/utils/internal/iron-crypto.ts b/src/utils/internal/iron-crypto.ts
+index 87ba129..096ffe6 100644
+--- a/src/utils/internal/iron-crypto.ts
++++ b/src/utils/internal/iron-crypto.ts
+@@ -167,6 +167,13 @@ export async function hmacWithPassword(
+ 
+ // --- key generation ---
+ 
++/** Throws if a password string is shorter than `minLength` characters. */
++export function assertPasswordLength(password: string, minLength: number): void {
++  if (password.length < minLength) {
++    throw new Error(`Password string too short (min ${minLength} characters required)`);
++  }
++}
++
+ /** Generates a key from the password. */
+ export async function generateKey(password: Password, options: GenerateKeyOptions): Promise<Key> {
+   if (!password?.length) {
+@@ -189,11 +196,7 @@ export async function generateKey(password: Password, options: GenerateKeyOption
+   const usage: KeyUsage[] = hmac ? ["sign", "verify"] : ["encrypt", "decrypt"];
+ 
+   if (typeof password === "string") {
+-    if (password.length < options.minPasswordlength) {
+-      throw new Error(
+-        `Password string too short (min ${options.minPasswordlength} characters required)`,
+-      );
+-    }
++    assertPasswordLength(password, options.minPasswordlength);
+     let { salt = "" } = options;
+     if (!salt) {
+       const { saltBits = 0 } = options;
+diff --git a/src/utils/session.ts b/src/utils/session.ts
+index 074f3de..9c67dea 100644
+--- a/src/utils/session.ts
++++ b/src/utils/session.ts
+@@ -1,4 +1,9 @@
+-import { seal, unseal, defaults as sealDefaults } from "./internal/iron-crypto.ts";
++import {
++  seal,
++  unseal,
++  assertPasswordLength,
++  defaults as sealDefaults,
++} from "./internal/iron-crypto.ts";
+ import { getChunkedCookie, setChunkedCookie, deleteChunkedCookie } from "./cookie.ts";
+ import { DEFAULT_SESSION_NAME, DEFAULT_SESSION_COOKIE } from "./internal/session.ts";
+ import { EmptyObject } from "./internal/obj.ts";
+@@ -38,14 +43,17 @@ export interface SessionManager<T extends SessionDataT = SessionDataT> {
+ 
+ export interface SessionConfig {
+   /**
+-   * Private key used to seal session tokens. Must be at least 32 characters.
++   * Private key(s) used to seal session tokens. Each must be at least 32
++   * characters. The first one seals new sessions; the others only open sessions
++   * sealed before a rotation. Sessions sealed with a password that is no longer
++   * in the list become invalid.
+    *
+    * Its entropy is the security boundary: a stolen cookie can be brute-forced
+    * offline, so generate this from a cryptographically random source (e.g.
+    * `crypto.randomBytes(32).toString("base64")`) — a guessable passphrase is
+    * unsafe even at 32+ characters.
+    */
+-  password: string;
++  password: string | string[];
+   /**
+    * Absolute session lifetime in seconds, counted from when the session was
+    * created. Reached regardless of how active the user is.
+@@ -152,6 +160,10 @@ export async function getSession<T extends SessionData = SessionData>(
+ ): Promise<Session<T>> {
+   const sessionName = config.name || DEFAULT_SESSION_NAME;
+ 
++  // Validate the password list up front, so a bad list fails on read too and not
++  // only when a session is sealed (`getSession` swallows unseal errors)
++  getPasswords(config, getSealOptions(config));
++
+   const context = getEventContext<H3EventContext>(event);
+ 
+   // Return existing session if available
+@@ -297,11 +309,8 @@ export async function sealSession<T extends SessionData = SessionData>(
+     session.lastSeenAt = Date.now();
+   }
+ 
+-  const sealed = await seal(session, config.password, {
+-    ...sealDefaults,
+-    ttl: (config.maxAge || config.idleTimeout || 0) * 1000,
+-    ...config.seal,
+-  });
++  const sealOptions = getSealOptions(config);
++  const sealed = await seal(session, getPasswords(config, sealOptions)[0]!, sealOptions);
+ 
+   return sealed;
+ }
+@@ -314,37 +323,23 @@ export async function unsealSession(
+   config: SessionConfig,
+   sealed: string,
+ ): Promise<Partial<Session>> {
+-  const sealOptions = {
+-    ...sealDefaults,
+-    ttl: (config.maxAge || config.idleTimeout || 0) * 1000,
+-    ...config.seal,
+-  };
+-  let unsealed: Partial<Session>;
+-  try {
+-    unsealed = (await unseal(sealed, config.password, sealOptions)) as Partial<Session>;
+-  } catch (error) {
+-    // TODO: Remove this fallback (and `legacySealFallback`) in v3. Removing it
+-    // in a v2 release would invalidate existing sessions sealed with 1 iteration.
+-    // Sessions sealed before the default PBKDF2 iterations were raised from 1
+-    // to 8192 fail HMAC verification; retry with the legacy count so existing
+-    // sessions survive the upgrade (getSession reseals them with the current
+-    // options).
+-    if (
+-      config.legacySealFallback === false ||
+-      sealOptions.integrity.iterations === 1 ||
+-      !(error instanceof Error) ||
+-      error.message !== "Bad hmac value"
+-    ) {
+-      throw error;
+-    }
+-    unsealed = (await unseal(sealed, config.password, {
+-      ...sealOptions,
+-      encryption: { ...sealOptions.encryption, iterations: 1 },
+-      integrity: { ...sealOptions.integrity, iterations: 1 },
+-    })) as Partial<Session>;
+-    if (unsealed) {
+-      (unsealed as any)[kLegacySeal] = true;
+-    }
++  const sealOptions = getSealOptions(config);
++  // TODO: Remove this fallback (and `legacySealFallback`) in v3. Removing it
++  // in a v2 release would invalidate existing sessions sealed with 1 iteration.
++  // Sessions sealed before the default PBKDF2 iterations were raised from 1
++  // to 8192 fail HMAC verification; retry with the legacy count so existing
++  // sessions survive the upgrade (getSession reseals them with the current
++  // options).
++  const legacyFallback =
++    config.legacySealFallback !== false && sealOptions.integrity.iterations !== 1;
++  const { unsealed, legacy } = await unsealWithPasswords(
++    sealed,
++    getPasswords(config, sealOptions),
++    sealOptions,
++    legacyFallback,
++  );
++  if (legacy && unsealed) {
++    (unsealed as any)[kLegacySeal] = true;
+   }
+   // Absolute lifetime, counted from when the session was created
+   if (config.maxAge) {
+@@ -462,3 +457,81 @@ function sessionExpires(session: Session<any>, config: SessionConfig): Date | un
+   }
+   return times.length > 0 ? new Date(Math.min(...times)) : undefined;
+ }
++
++/** Effective seal options: defaults, `maxAge`/`idleTimeout` as the ttl, and `config.seal` overrides. */
++function getSealOptions(config: SessionConfig): SealOptions {
++  return {
++    ...sealDefaults,
++    ttl: (config.maxAge || config.idleTimeout || 0) * 1000,
++    ...config.seal,
++  };
++}
++
++/**
++ * Passwords to seal and unseal with, in the order of `config.password`. A string
++ * is returned as is; a list is checked here, so a bad item fails on every path.
++ */
++function getPasswords(config: SessionConfig, sealOptions: SealOptions): string[] {
++  if (typeof config.password === "string") {
++    return [config.password];
++  }
++  if (config.password.length === 0) {
++    throw new Error("Session password list is empty");
++  }
++  const minLength = Math.max(
++    sealOptions.encryption.minPasswordlength,
++    sealOptions.integrity.minPasswordlength,
++  );
++  for (const password of config.password) {
++    assertPasswordLength(password, minLength);
++  }
++  return config.password;
++}
++
++/**
++ * Unseal with the first password that verifies the HMAC. Only `Bad hmac value`
++ * moves on to the next password; any other error means the seal is invalid for
++ * every password. For each password, the legacy 1-iteration count is tried
++ * before moving on when the fallback is enabled.
++ */
++async function unsealWithPasswords(
++  sealed: string,
++  passwords: string[],
++  sealOptions: SealOptions,
++  legacyFallback: boolean,
++): Promise<{ unsealed: Partial<Session>; legacy: boolean }> {
++  const legacyOptions: SealOptions = {
++    ...sealOptions,
++    encryption: { ...sealOptions.encryption, iterations: 1 },
++    integrity: { ...sealOptions.integrity, iterations: 1 },
++  };
++  let firstError: unknown;
++  for (const password of passwords) {
++    try {
++      const unsealed = (await unseal(sealed, password, sealOptions)) as Partial<Session>;
++      return { unsealed, legacy: false };
++    } catch (error) {
++      if (!isBadHmac(error)) {
++        throw error;
++      }
++      firstError ??= error;
++    }
++    if (!legacyFallback) {
++      continue;
++    }
++    try {
++      const unsealed = (await unseal(sealed, password, legacyOptions)) as Partial<Session>;
++      return { unsealed, legacy: true };
++    } catch (error) {
++      if (!isBadHmac(error)) {
++        throw error;
++      }
++    }
++  }
++  throw firstError;
++}
++
++/** Whether the error means the seal did not verify with this password. */
++function isBadHmac(error: unknown): boolean {
++  return error instanceof Error && error.message === "Bad hmac value";
++}
+diff --git a/test/session.test.ts b/test/session.test.ts
+index df3befc..dff33d4 100644
+--- a/test/session.test.ts
++++ b/test/session.test.ts
+@@ -134,7 +134,7 @@ describeMatrix("session", (t, { it, expect }) => {
+   it("unseals and reseals legacy sessions sealed with iterations: 1", async () => {
+     const legacySealed = await seal(
+       { id: "legacy", createdAt: Date.now(), data: { foo: "legacy" } },
+-      sessionConfig.password,
++      sessionConfig.password as string,
+       {
+         ...sealDefaults,
+         encryption: { ...sealDefaults.encryption, iterations: 1 },
+@@ -154,14 +154,14 @@ describeMatrix("session", (t, { it, expect }) => {
+     expect(setCookies).toHaveLength(1);
+     const resealed = decodeURIComponent(setCookies[0].match(/h3-test=([^;]+)/)![1]);
+     expect(
+-      await unseal(resealed, sessionConfig.password, sealDefaults), // current iterations, no fallback
++      await unseal(resealed, sessionConfig.password as string, sealDefaults), // current iterations, no fallback
+     ).toMatchObject({ id: "legacy", data: { foo: "legacy" } });
+   });
+ 
+   it("rejects legacy sessions with legacySealFallback: false", async () => {
+     const legacySealed = await seal(
+       { id: "legacy", createdAt: Date.now(), data: { foo: "legacy" } },
+-      sessionConfig.password,
++      sessionConfig.password as string,
+       {
+         ...sealDefaults,
+         encryption: { ...sealDefaults.encryption, iterations: 1 },
+@@ -774,4 +774,203 @@ describeMatrix("session", (t, { it, expect }) => {
+       expect(await res2.json()).toMatchObject({ id });
+     });
+   });
++
++  describe("password list", () => {
++    const NEW_PASSWORD = "new-password-0123456789-abcdefghijk";
++    const OLD_PASSWORD = "old-password-0123456789-abcdefghijk";
++    const OTHER_PASSWORD = "other-password-0123456789-abcdefghi";
++    const legacyDefaults = {
++      ...sealDefaults,
++      encryption: { ...sealDefaults.encryption, iterations: 1 },
++      integrity: { ...sealDefaults.integrity, iterations: 1 },
++    };
++
++    let listIdCtr = 0;
++    const listConfig = (password: string | string[], extra?: Partial<SessionConfig>) =>
++      ({
++        name: "h3-test",
++        password,
++        generateId: () => `list-${++listIdCtr}`,
++        ...extra,
++      }) as SessionConfig;
++
++    const sealedValue = (setCookie: string) =>
++      decodeURIComponent(setCookie.match(/h3-test=([^;]+)/)![1]);
++
++    const writeRoute = (config: SessionConfig) =>
++      t.app.get("/write", async (event) => {
++        await updateSession(event, config, { user: "alice" });
++        return "ok";
++      });
++
++    const readRoute = (config: SessionConfig) =>
++      t.app.get("/read", async (event) => {
++        const session = await useSession(event, config);
++        return { session };
++      });
++
++    it("seals with the first password only", async () => {
++      writeRoute(listConfig([NEW_PASSWORD, OLD_PASSWORD]));
++
++      const res = await t.fetch("/write");
++      const sealed = sealedValue(res.headers.getSetCookie()[0]);
++      expect(await unseal(sealed, NEW_PASSWORD, sealDefaults)).toMatchObject({
++        data: { user: "alice" },
++      });
++      await expect(unseal(sealed, OLD_PASSWORD, sealDefaults)).rejects.toThrow("Bad hmac value");
++    });
++
++    it("reads a session sealed with an older password in the list", async () => {
++      readRoute(listConfig([NEW_PASSWORD, OLD_PASSWORD]));
++      const sealed = await seal(
++        { id: "old", createdAt: Date.now(), data: { user: "bob" } },
++        OLD_PASSWORD,
++        sealDefaults,
++      );
++
++      const res = await t.fetch("/read", { headers: { Cookie: `h3-test=${sealed}` } });
++      expect(await res.json()).toMatchObject({
++        session: { id: "old", data: { user: "bob" } },
++      });
++    });
++
++    it("treats a session sealed with a password outside the list as new", async () => {
++      readRoute(listConfig([NEW_PASSWORD, OLD_PASSWORD]));
++      const sealed = await seal(
++        { id: "other", createdAt: Date.now(), data: { user: "eve" } },
++        OTHER_PASSWORD,
++        sealDefaults,
++      );
++
++      const res = await t.fetch("/read", { headers: { Cookie: `h3-test=${sealed}` } });
++      expect(res.status).toBe(200);
++      const body = await res.json();
++      expect(body.session.id).not.toBe("other");
++      expect(body.session.data).toEqual({});
++    });
++
++    it("rejects an empty password list", async () => {
++      t.app.get("/empty", async (event) => {
++        try {
++          await updateSession(event, listConfig([]), { user: "alice" });
++          return { message: "" };
++        } catch (error) {
++          return { message: (error as Error).message };
++        }
++      });
++
++      const res = await t.fetch("/empty");
++      expect(await res.json()).toMatchObject({
++        message: "Session password list is empty",
++      });
++    });
++
++    it("rejects a short password in the list on read and write", async () => {
++      const config = listConfig([NEW_PASSWORD, "short"]);
++      const sealed = await seal(
++        { id: "new", createdAt: Date.now(), data: {} },
++        NEW_PASSWORD,
++        sealDefaults,
++      );
++      t.app.get("/short-read", async (event) => {
++        try {
++          await getSession(event, config);
++          return { message: "" };
++        } catch (error) {
++          return { message: (error as Error).message };
++        }
++      });
++      t.app.get("/short-write", async (event) => {
++        try {
++          await updateSession(event, config, { user: "alice" });
++          return { message: "" };
++        } catch (error) {
++          return { message: (error as Error).message };
++        }
++      });
++
++      const expected = { message: "Password string too short (min 32 characters required)" };
++      const read = await t.fetch("/short-read", { headers: { Cookie: `h3-test=${sealed}` } });
++      expect(await read.json()).toMatchObject(expected);
++      const write = await t.fetch("/short-write", { headers: { Cookie: `h3-test=${sealed}` } });
++      expect(await write.json()).toMatchObject(expected);
++    });
++
++    it("unseals a legacy session with the second password and reseals with the first", async () => {
++      readRoute(listConfig([NEW_PASSWORD, OLD_PASSWORD]));
++      const legacySealed = await seal(
++        { id: "legacy", createdAt: Date.now(), data: { user: "carol" } },
++        OLD_PASSWORD,
++        legacyDefaults,
++      );
++
++      const res = await t.fetch("/read", { headers: { Cookie: `h3-test=${legacySealed}` } });
++      expect(await res.json()).toMatchObject({
++        session: { id: "legacy", data: { user: "carol" } },
++      });
++
++      const setCookies = res.headers.getSetCookie();
++      expect(setCookies).toHaveLength(1);
++      const resealed = sealedValue(setCookies[0]);
++      expect(await unseal(resealed, NEW_PASSWORD, sealDefaults)).toMatchObject({
++        id: "legacy",
++        data: { user: "carol" },
++      });
++      await expect(unseal(resealed, OLD_PASSWORD, sealDefaults)).rejects.toThrow("Bad hmac value");
++    });
++
++    it("rejects a legacy session with the second password when legacySealFallback is false", async () => {
++      t.app.get("/strict", async (event) => {
++        const session = await useSession(
++          event,
++          listConfig([NEW_PASSWORD, OLD_PASSWORD], { legacySealFallback: false }),
++        );
++        return { session };
++      });
++      const legacySealed = await seal(
++        { id: "legacy", createdAt: Date.now(), data: { user: "carol" } },
++        OLD_PASSWORD,
++        legacyDefaults,
++      );
++
++      const res = await t.fetch("/strict", { headers: { Cookie: `h3-test=${legacySealed}` } });
++      const body = await res.json();
++      expect(body.session.id).not.toBe("legacy");
++      expect(body.session.data).toEqual({});
++    });
++
++    it("rewrites a session read with an older password using the first password", async () => {
++      writeRoute(listConfig([NEW_PASSWORD, OLD_PASSWORD]));
++      const oldSealed = await seal(
++        { id: "old", createdAt: Date.now(), data: { user: "bob" } },
++        OLD_PASSWORD,
++        sealDefaults,
++      );
++
++      const res = await t.fetch("/write", { headers: { Cookie: `h3-test=${oldSealed}` } });
++      const resealed = sealedValue(res.headers.getSetCookie()[0]);
++      expect(await unseal(resealed, NEW_PASSWORD, sealDefaults)).toMatchObject({
++        id: "old",
++        data: { user: "alice" },
++      });
++      await expect(unseal(resealed, OLD_PASSWORD, sealDefaults)).rejects.toThrow("Bad hmac value");
++    });
++
++    it("documents the derivation cost of reading with the second password", async () => {
++      readRoute(listConfig([NEW_PASSWORD, OLD_PASSWORD]));
++      const oldSealed = await seal(
++        { id: "old", createdAt: Date.now(), data: {} },
++        OLD_PASSWORD,
++        sealDefaults,
++      );
++
++      const deriveBits = vi.spyOn(crypto.subtle, "deriveBits");
++      deriveBits.mockClear();
++      await t.fetch("/read", { headers: { Cookie: `h3-test=${oldSealed}` } });
++      // NEW: HMAC key (fails), then the 1-iteration legacy HMAC key (fails).
++      // OLD: HMAC key, then decryption key. The legacy attempt is cheap but counts.
++      expect(deriveBits).toHaveBeenCalledTimes(4);
++      deriveBits.mockRestore();
++    });
++  });
+ });

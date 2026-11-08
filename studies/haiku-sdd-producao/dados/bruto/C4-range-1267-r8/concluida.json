@@ -1,0 +1,27 @@
+{
+  "id": "C4-range-1267-r8",
+  "condicao": "C4",
+  "variante": "range-1267",
+  "inicio": "2026-11-07T21:11:58",
+  "fim": "2026-11-07T21:19:09",
+  "documentos": {
+    "prd": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "techspec": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    },
+    "tasks": {
+      "gate_primeira_tentativa": true,
+      "rodadas": 0,
+      "gate_final": true
+    }
+  },
+  "nucleo": "29/31",
+  "nucleo_100": false,
+  "auditoria_limpa": true
+}

@@ -1,0 +1,3 @@
+Trabalhe somente dentro da pasta C:\dev\runs\r61706ad736 (um clone do projeto h3). Não leia, liste nem procure arquivos fora dela. Leia o CLAUDE.md e o AGENTS.md dessa pasta antes de começar. Responda no final com no máximo 5 linhas: o que foi feito e se algo ficou pendente.
+
+Leia sdd/pedido.md, sdd/prd.md e o código relevante do projeto. Escreva a especificação técnica em sdd/techspec.md, em português, com: decisões de arquitetura, cada uma com cabeçalho `### D-NN — título`, alternativas consideradas e a escolha justificada; arquivos a alterar com citações no formato `caminho/arquivo.ts:linha` conferidas no código; contratos e assinaturas; estratégia de testes; riscos. Não altere o código do projeto.
