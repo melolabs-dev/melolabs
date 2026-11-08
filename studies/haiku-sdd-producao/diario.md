@@ -24,3 +24,6 @@ Dados brutos nunca são editados. Cada entrada traz data, o que aconteceu, o des
 
 ## Limites que seguem declarados
 Orquestrador e autor dos testes são a mesma sessão; os três juízes são o mesmo modelo; os estilos do Haiku e do Sonnet são reconhecíveis; o histórico git ainda contém versões antigas dos testes ocultos em texto claro; a cascata (C5) nunca escalou para o Sonnet; H3 e o escalonamento da H5 ficam não testáveis neste desenho (reprovação no primeiro gate de 1,2%, limite de 10%).
+
+## 07/11/2026 — revisão adversarial (F7.4)
+Revisor independente (agente isolado, somente leitura) refez os números: todos batem. Objeções aceitas e tratadas: (1) 12 das 15 falhas de núcleo do C4 são só o P1 nas tarefas 1384 (sem P1: C4 51/54 contra C0 49/54); (2) IC por variante/feature inclui zero; (3) C12 pareado dá +0,9/+1,1, não +1,5; (4) alfa por critério, média de 3 juízes ≈0,72/0,83; (5) alucinações pareadas sem diferença clara; (6) cascata não podia escalar por construção; (7) custo por núcleo aceito 0,23; (8) ganho das mitigações não atribuível. Veredito pré-registrado não mudou; texto e validade.md corrigidos; análises em analise/revisao.py (exploratório). Falhas de leitura minhas: texto anterior sugeria déficit de código geral e C12 inflado.
