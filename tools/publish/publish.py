@@ -120,6 +120,8 @@ def main():
     site = os.environ.get("SITE_URL", "").rstrip("/")
     folder = ROOT / "posts" / "drafts" / a.slug
     if not folder.exists():
+        folder = ROOT / "posts" / "published" / a.slug
+    if not folder.exists():
         sys.exit(f"não achei {folder.relative_to(ROOT)}")
     state_file = folder / "publish.json"
     state = json.loads(state_file.read_text(encoding="utf-8")) if state_file.exists() else {}
@@ -137,7 +139,7 @@ def main():
             print(f"[{lang}] BLOQUEADO pelo portão:"); [print("   -", e) for e in errs]
         else:
             print(f"[{lang}] portão OK: {meta['title']}")
-            jobs.append((lang, meta, body.strip() + DISCLOSURE[lang]))
+            jobs.append((lang, meta, body.strip() if ("assistida por IA" in body or "AI-assisted" in body) else body.strip() + DISCLOSURE[lang]))
     if blocked:
         sys.exit("nada foi publicado.")
     if not a.yes:
@@ -156,7 +158,9 @@ def main():
             if name in done:
                 print(f"[{lang}] {name}: já publicado ({done[name]})"); continue
             try:
-                url, why = fn(meta["title"], body, tags, canonical)
+                # nos canais externos as imagens precisam de URL absoluta e PNG (SVG nem sempre renderiza)
+                chbody = re.sub(r"\]\(/assets/([^)]*?)\.svg\)", lambda m: f"]({site}/assets/{m.group(1)}.png)", body) if site else body
+                url, why = fn(meta["title"], chbody, tags, canonical)
             except RuntimeError as e:
                 print(f"[{lang}] {name}: FALHOU {e}"); continue
             if why:
@@ -174,7 +178,7 @@ def main():
     else:
         print("git: sem remote configurado; o site ainda não foi atualizado.")
 
-    if all(l in state and state[l] for l in ("pt", "en")):
+    if folder.parent.name == "drafts" and all(l in state and state[l] for l in ("pt", "en")):
         dest = ROOT / "posts" / "published" / a.slug
         shutil.move(str(folder), str(dest))
         print("post movido para posts/published/")

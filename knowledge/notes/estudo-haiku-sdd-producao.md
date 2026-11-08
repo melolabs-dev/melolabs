@@ -4,7 +4,7 @@ title: "Estudo: SDD só com Haiku, o que sobra de qualidade quando o custo cai"
 source_url: https://github.com/melolabs-dev/melolabs/tree/main/studies/haiku-sdd-producao
 kind: experimento
 evidence: experimento-proprio
-validated_by_author: false
+validated_by_author: true
 publishable: true
 fidelity: resultado-medido
 date: 2026-11-08

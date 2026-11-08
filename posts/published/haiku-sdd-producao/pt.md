@@ -4,7 +4,7 @@ lang: pt
 date: 2026-11-08
 tags: [sdd, haiku, sonnet, custo, agentes, estudo]
 sources: [estudo-haiku-sdd-producao]
-status: draft
+status: approved
 study: haiku-sdd-producao
 ---
 
@@ -120,3 +120,6 @@ O Haiku 5.5 corta o custo para cerca de 1/5 e entrega documentos de SDD muito pr
 - Gloaguen et al. *Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?* arXiv:2602.11988, 2026.
 - Rosa et al. *Understanding Specification-Driven Code Generation with LLMs: An Empirical Study Design.* arXiv:2601.03878, 2026 (desenho de estudo, sem resultados).
 - Dados, código e prompts do estudo: repositório `melolabs-dev/melolabs`, pasta `studies/haiku-sdd-producao`, tags `prereg-haiku-sdd-producao`, `-adendo1`, `-adendo2` e `-adendo2b`.
+
+---
+*Os experimentos, os dados e as conclusões são meus. A redação foi assistida por IA e revisada por mim.*

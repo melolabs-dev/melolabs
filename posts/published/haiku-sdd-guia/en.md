@@ -4,7 +4,7 @@ lang: en
 date: 2026-11-08
 tags: [sdd, haiku, guide, cost, agents]
 sources: [estudo-haiku-sdd-producao]
-status: draft
+status: approved
 study: haiku-sdd-producao
 ---
 
@@ -67,3 +67,6 @@ Steps 1 to 5 are what was measured. Step 6 is the natural conclusion, but it is 
 ## What we do not know yet
 
 We tested **one project** (TypeScript, three features). The conclusion on code is still open, and the document rubric has limitations. But the path (Haiku on documents, tests first and correction on code, a person reviewing) is cheap and showed results in several cases. The technical article has the numbers, the intervals and everything that may be wrong.
+
+---
+*The experiments, data and conclusions are mine. The writing was AI-assisted and reviewed by me.*

@@ -4,7 +4,7 @@ lang: pt
 date: 2026-11-08
 tags: [sdd, haiku, guia, custo, agentes]
 sources: [estudo-haiku-sdd-producao]
-status: draft
+status: approved
 study: haiku-sdd-producao
 ---
 
@@ -67,3 +67,6 @@ Os passos 1 a 5 são o que foi medido. O passo 6 é a conclusão natural, mas ai
 ## O que ainda não sabemos
 
 Testamos **um projeto** (TypeScript, três funcionalidades). A conclusão sobre o código ainda é aberta, e a rubrica dos documentos tem limitações. Mas o caminho (Haiku nos documentos, testes primeiro e correção no código, pessoa revisando) é barato e mostrou resultado em vários casos. O artigo técnico traz os números, os intervalos e tudo que pode estar errado.
+
+---
+*Os experimentos, os dados e as conclusões são meus. A redação foi assistida por IA e revisada por mim.*
