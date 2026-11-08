@@ -8,11 +8,11 @@ status: approved
 study: haiku-sdd-producao
 ---
 
-**Versão simples do estudo "SDD só com Haiku".** Se você quer o rigor científico, leia o artigo técnico. Aqui está o que ele significa para quem quer usar o Haiku amanhã.
+**Versão simples do estudo "SDD só com Haiku".** Se você quer o rigor científico, leia o [artigo técnico](/pt/haiku-sdd-producao/). Aqui está o que ele significa para quem quer usar o Haiku amanhã.
 
 ## Em uma frase
 
-O Haiku faz o trabalho de **escrever documentos** (PRD, especificação técnica, tarefas) quase tão bem quanto o Sonnet por **cerca de 1/5 do preço**. No **código**, ele funciona bem quando você o coloca num processo com testes e correção; sozinho, erra mais. O estudo não prova que ele é pior ou igual em código.
+O Haiku faz o trabalho de **escrever documentos** (PRD, especificação técnica, tarefas) quase tão bem quanto o Sonnet por **cerca de 1/5 do preço**. No **código**, ele funciona bem quando você o coloca num processo com testes e correção; sozinho, erra mais. O estudo não prova que ele é pior ou igual em código. E num projeto real quase nunca é só a IA: com um engenheiro revisando, esse é um caminho bom para começar.
 
 ## O que a gente testou
 
@@ -49,6 +49,22 @@ Rodamos **198 vezes** o ciclo completo (PRD, especificação técnica, tarefas e
 
 Os passos 1 a 5 são o que foi medido. O passo 6 é a conclusão natural, mas ainda é hipótese.
 
+## E o engenheiro nessa história?
+
+Num projeto real, a IA não roda sozinha. Tem uma pessoa por trás: quem escreve o pedido, lê os documentos, olha o resultado dos testes e decide o que fazer. No estudo, **ninguém interveio**, de propósito, para medir o modelo puro. É um teste duro: nenhum erro foi pego por uma pessoa.
+
+Isso muda a leitura. O principal erro do Haiku foi um **caso de borda esquecido** (pedir uma rota que não existe e receber o erro no formato certo). É o tipo de coisa que uma revisão de código, ou uma linha a mais no pedido, costuma pegar antes de ir para produção. Com um engenheiro no processo:
+
+| Momento | O que a pessoa faz |
+|---|---|
+| Pedido | Escreve com nomes exatos e lembra dos casos de borda |
+| Documentos | Lê a especificação e as tarefas e corrige o que estiver estranho |
+| Testes | Confere se os testes escritos pelo Haiku cobrem o que importa e acrescenta o que faltou |
+| Quando algo falha | Decide se corrige o pedido, ajusta o código ou passa a tarefa para um modelo maior |
+| Entrega | Revisa o resultado, como faria com qualquer colega |
+
+A nossa leitura, otimista: **o Haiku faz o trabalho pesado, rápido e barato, e a pessoa garante a qualidade final.** Fique atento à diferença: isso é um raciocínio a partir dos dados, não algo que o estudo mediu. Medir "Haiku mais engenheiro" é o próximo passo.
+
 ## O que não vale a pena
 
 - **Pedir ao Haiku para "melhorar" o próprio texto sem nenhuma checagem.** Foi um controle do estudo; não há evidência de que ajude.
@@ -61,12 +77,13 @@ Os passos 1 a 5 são o que foi medido. O passo 6 é a conclusão natural, mas ai
 - [ ] Escreva o pedido com nomes exatos e comportamentos esperados.
 - [ ] Peça ao Haiku os três documentos e rode uma checagem simples neles.
 - [ ] Peça os testes primeiro, depois o código, e devolva a saída real dos comandos.
-- [ ] Revise. Se falhar mais de 3 rodadas, passe para um modelo maior.
+- [ ] Defina quem revisa e o que essa pessoa confere (pedido, documentos, testes).
+- [ ] Se falhar mais de 3 rodadas, passe para um modelo maior.
 - [ ] Anote o custo e o resultado. Seu projeto pode dar números diferentes dos nossos.
 
 ## O que ainda não sabemos
 
-Testamos **um projeto** (TypeScript, três funcionalidades). A conclusão sobre o código ainda é aberta, e a rubrica dos documentos tem limitações. Mas o caminho (Haiku nos documentos, testes primeiro e correção no código, pessoa revisando) é barato e mostrou resultado em vários casos. O artigo técnico traz os números, os intervalos e tudo que pode estar errado.
+Testamos **um projeto** (TypeScript, três funcionalidades). A conclusão sobre o código ainda é aberta, e a rubrica dos documentos tem limitações. Mas o caminho (Haiku nos documentos, testes primeiro e correção no código, e uma pessoa revisando) é barato, mostrou resultado em vários casos e combina com como equipes reais trabalham. O artigo técnico traz os números, os intervalos e tudo que pode estar errado.
 
 ---
 *Os experimentos, os dados e as conclusões são meus. A redação foi assistida por IA e revisada por mim.*

@@ -8,11 +8,11 @@ status: approved
 study: haiku-sdd-producao
 ---
 
-**The plain version of the study "SDD with Haiku only".** If you want the scientific rigor, read the technical article. This is what it means for someone who wants to use Haiku tomorrow.
+**The plain version of the study "SDD with Haiku only".** If you want the scientific rigor, read the [technical article](/en/haiku-sdd-producao/). This is what it means for someone who wants to use Haiku tomorrow.
 
 ## In one sentence
 
-Haiku does the job of **writing documents** (PRD, technical spec, tasks) almost as well as Sonnet for **about 1/5 of the price**. On **code**, it works well when you put it in a process with tests and correction; alone, it fails more. The study does not prove it is worse or equal on code.
+Haiku does the job of **writing documents** (PRD, technical spec, tasks) almost as well as Sonnet for **about 1/5 of the price**. On **code**, it works well when you put it in a process with tests and correction; alone, it fails more. The study does not prove it is worse or equal on code. And in a real project it is almost never only the AI: with an engineer reviewing, this is a good path to start with.
 
 ## What we tested
 
@@ -49,6 +49,22 @@ We ran the full cycle (PRD, technical spec, tasks and code) **198 times** on a r
 
 Steps 1 to 5 are what was measured. Step 6 is the natural conclusion, but it is still a hypothesis.
 
+## And the engineer in all this?
+
+In a real project, the AI does not run alone. There is a person behind it: who writes the request, reads the documents, looks at the test results and decides what to do. In the study, **nobody intervened**, on purpose, to measure the raw model. It is a hard test: no error was caught by a person.
+
+That changes the reading. Haiku's main error was a **forgotten edge case** (asking for a route that does not exist and getting the error in the right format). That is the kind of thing a code review, or one more line in the request, usually catches before production. With an engineer in the process:
+
+| Moment | What the person does |
+|---|---|
+| Request | Writes it with exact names and remembers the edge cases |
+| Documents | Reads the spec and the tasks and fixes what looks off |
+| Tests | Checks that the tests Haiku wrote cover what matters and adds what is missing |
+| When something fails | Decides whether to fix the request, adjust the code or hand the task to a larger model |
+| Delivery | Reviews the result, as with any colleague |
+
+Our reading, optimistic: **Haiku does the heavy lifting, fast and cheap, and the person guarantees final quality.** Mind the difference: this is reasoning from the data, not something the study measured. Measuring "Haiku plus engineer" is the next step.
+
 ## What is not worth it
 
 - **Asking Haiku to "improve" its own text with no check.** It was a control in the study; there is no evidence it helps.
@@ -61,12 +77,13 @@ Steps 1 to 5 are what was measured. Step 6 is the natural conclusion, but it is 
 - [ ] Write the request with exact names and expected behaviors.
 - [ ] Ask Haiku for the three documents and run a simple check on them.
 - [ ] Ask for tests first, then the code, and feed back the real command output.
-- [ ] Review. If it fails more than 3 rounds, hand it to a larger model.
+- [ ] Decide who reviews and what that person checks (request, documents, tests).
+- [ ] If it fails more than 3 rounds, hand it to a larger model.
 - [ ] Record cost and result. Your project may give different numbers than ours.
 
 ## What we do not know yet
 
-We tested **one project** (TypeScript, three features). The conclusion on code is still open, and the document rubric has limitations. But the path (Haiku on documents, tests first and correction on code, a person reviewing) is cheap and showed results in several cases. The technical article has the numbers, the intervals and everything that may be wrong.
+We tested **one project** (TypeScript, three features). The conclusion on code is still open, and the document rubric has limitations. But the path (Haiku on documents, tests first and correction on code, and a person reviewing) is cheap, showed results in several cases and fits how real teams work. The technical article has the numbers, the intervals and everything that may be wrong.
 
 ---
 *The experiments, data and conclusions are mine. The writing was AI-assisted and reviewed by me.*
