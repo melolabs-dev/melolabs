@@ -63,6 +63,14 @@
     "F7.4": {
       "feito": "2026-11-07",
       "evidencia": "Revisao adversarial independente refez os numeros (batem). 8 objecoes aceitas: P1 explica 12/15 falhas do C4 (sem P1 C4 51/54 vs C0 49/54), IC por variante inclui zero, C12 pareado +0,9/+1,1, alfa por criterio, cascata sem poder de escalar, custo por aceito 0,23. Texto, validade e hipoteses corrigidos; vereditos pre-registrados mantidos; analise/revisao.py reproduz."
+    },
+    "F7.2": {
+      "feito": "2026-11-08",
+      "evidencia": "Sem replica externa: reproducao so em clone limpo na mesma maquina; limite declarado em validade.md"
+    },
+    "F8.1": {
+      "feito": "2026-11-08",
+      "evidencia": "Tag freeze-haiku-sdd-producao + dados/bruto/CHECKSUMS.sha256"
     }
   },
   "auto_feito": {

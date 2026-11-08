@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="507.220749pt" height="194.478437pt" viewBox="0 0 507.220749 194.478437" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-08T00:32:00.782827</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 194.478437 
+L 507.220749 194.478437 
+L 507.220749 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 124.34621 155.877656 
+L 500.020749 155.877656 
+L 500.020749 7.2 
+L 124.34621 7.2 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 124.34621 39.703124 
+L 302.242553 39.703124 
+L 302.242553 13.958075 
+L 124.34621 13.958075 
+z
+" clip-path="url(#pe5002c3d54)" style="fill: #2f4b7c"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 124.34621 68.666304 
+L 156.842058 68.666304 
+L 156.842058 42.921255 
+L 124.34621 42.921255 
+z
+" clip-path="url(#pe5002c3d54)" style="fill: #2b8a6e"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 124.34621 120.156401 
+L 320.419421 120.156401 
+L 320.419421 94.411352 
+L 124.34621 94.411352 
+z
+" clip-path="url(#pe5002c3d54)" style="fill: #2f4b7c"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 124.34621 149.119581 
+L 169.282665 149.119581 
+L 169.282665 123.374532 
+L 124.34621 123.374532 
+z
+" clip-path="url(#pe5002c3d54)" style="fill: #2b8a6e"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="meb2b50b9df" d="M 0 0 
+L 0 3.5 
+" style="stroke: #222222; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#meb2b50b9df" x="124.34621" y="155.877656" style="fill: #222222; stroke: #222222; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="124.34621" y="170.475312" transform="rotate(-0 124.34621 170.475312)">0.0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#meb2b50b9df" x="196.591314" y="155.877656" style="fill: #222222; stroke: #222222; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="196.591314" y="170.475312" transform="rotate(-0 196.591314 170.475312)">0.5</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#meb2b50b9df" x="268.836417" y="155.877656" style="fill: #222222; stroke: #222222; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="268.836417" y="170.475312" transform="rotate(-0 268.836417 170.475312)">1.0</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#meb2b50b9df" x="341.081521" y="155.877656" style="fill: #222222; stroke: #222222; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="341.081521" y="170.475312" transform="rotate(-0 341.081521 170.475312)">1.5</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#meb2b50b9df" x="413.326625" y="155.877656" style="fill: #222222; stroke: #222222; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="413.326625" y="170.475312" transform="rotate(-0 413.326625 170.475312)">2.0</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#meb2b50b9df" x="485.571728" y="155.877656" style="fill: #222222; stroke: #222222; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="485.571728" y="170.475312" transform="rotate(-0 485.571728 170.475312)">2.5</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="312.18348" y="184.876094" transform="rotate(-0 312.18348 184.876094)">custo de lista, em dólares</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="patch_7">
+    <path d="M 124.34621 155.877656 
+L 500.020749 155.877656 
+" style="fill: none; stroke: #555555; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start" x="305.132358" y="29.168842" transform="rotate(-0 305.132358 29.168842)">US$ 1,23  Sonnet</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start" x="159.731862" y="58.132022" transform="rotate(-0 159.731862 58.132022)">US$ 0,22  Haiku + testes + loop (0,18 do Sonnet)</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end" x="121.456406" y="43.727072" transform="rotate(-0 121.456406 43.727072)">Por execução</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start" x="323.309226" y="109.622119" transform="rotate(-0 323.309226 109.622119)">US$ 1,36  Sonnet</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start" x="172.172469" y="138.585299" transform="rotate(-0 172.172469 138.585299)">US$ 0,31  Haiku + testes + loop (0,23 do Sonnet)</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(7.2 118.599119)">Por execução que passou</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(33.003281 129.76158)">no núcleo de testes</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pe5002c3d54">
+   <rect x="124.34621" y="7.2" width="375.674538" height="148.677656"/>
+  </clipPath>
+ </defs>
+</svg>

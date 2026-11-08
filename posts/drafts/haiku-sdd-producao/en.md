@@ -46,6 +46,8 @@ All code, raw data, prompts and transcripts are in the study repository, and one
 
 Haiku with tests first and a loop (C4) costs **0.18 of Sonnet** in list dollars (95% CI: 0.16 to 0.20). In return it uses **1.5 times** Sonnet's total tokens (1.39 to 1.64) and 1.55 times the new tokens. The cascade comes in at 0.15. In 52 of the 54 C4 runs the prompt went past 100 thousand tokens, where Haiku's price goes up; the tool already charges that tier, so the 0.18 ratio includes it. By the metric I had registered, cost per run with an accepted core, it is US$ 0.31 for C4 against US$ 1.36 for Sonnet (ratio 0.23); by variant, C4's cost ranges from 0.14 to 0.23 of Sonnet's. The 100 thousand figure is only a price step, not a context limit, and failures are not associated with prompt size.
 
+![List cost per run and per run with accepted core](/assets/haiku-sdd-producao/fig-custo-aceito.svg)
+
 | Condition | Runs | Mean list cost | Mean total tokens |
 |---|---|---|---|
 | Default Sonnet (C0) | 54 | US$ 1.23 | 2.41 M |
@@ -70,7 +72,11 @@ Sonnet passed the core in 49 of 54 runs (91%). Haiku with tests first and a loop
 
 Saying "Haiku matches Sonnet on code" would be false; saying "it loses by more than 10 points" would be too.
 
+![Effect of test P1 on the C4 minus Sonnet difference](/assets/haiku-sdd-producao/fig-efeito-p1.svg)
+
 The pattern is by task, not general:
+
+![Hit map by task and condition](/assets/haiku-sdd-producao/fig-mapa-tarefas.svg)
 
 | Variant | Sonnet | Simple Haiku | Haiku + tests + loop |
 |---|---|---|---|

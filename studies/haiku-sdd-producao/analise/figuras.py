@@ -141,7 +141,102 @@ def main():
         ax.axhline(mx, color="#bbb", lw=0.6)
     fig.tight_layout()
     salva(fig, "fig-rubrica.svg")
+    extras(runs, linhas)
     print("figuras e tabelas geradas em", PROC)
+
+
+def extras(runs, linhas):
+    """Figuras adicionais (mapa por tarefa, efeito do P1, custo por resultado aceito, receita do guia). Usa revisao.json (rode revisao.py antes)."""
+    from matplotlib.patches import FancyBboxPatch
+    REV = json.loads((PROC / "revisao.json").read_text(encoding="utf-8"))
+    pv = defaultdict(lambda: defaultdict(lambda: [0, 0]))
+    for r in runs.values():
+        if r["cond"] in ("C0", "C1", "C4"):
+            pv[r["var"]][r["cond"]][0] += r["nucleo_100"]
+            pv[r["var"]][r["cond"]][1] += 1
+    # mapa por tarefa
+    vs = sorted(pv)
+    cs = ["C0", "C1", "C4"]
+    fig, ax = plt.subplots(figsize=(7.2, 3.6))
+    import matplotlib.colors as mc
+    cmap = mc.LinearSegmentedColormap.from_list("v", ["#c0504d", "#f2d98d", "#2b8a6e"])
+    for i, v in enumerate(vs):
+        for j, c in enumerate(cs):
+            k, n = pv[v][c]
+            ax.add_patch(plt.Rectangle((j, len(vs) - 1 - i), 0.96, 0.92, color=cmap(k / n)))
+            ax.text(j + 0.48, len(vs) - 1 - i + 0.46, f"{k}/{n}", ha="center", va="center", fontsize=10, color="#111")
+    ax.set_xlim(0, 3)
+    ax.set_ylim(0, len(vs))
+    ax.set_xticks([0.48, 1.48, 2.48], ["Sonnet\npadrão", "Haiku\nsimples", "Haiku + testes\n+ loop"])
+    ax.xaxis.tick_top()
+    ax.set_yticks([len(vs) - 1 - i + 0.46 for i in range(len(vs))], [v.replace("problem-", "#").replace("range-", "#").replace("session-", "#") for v in vs])
+    for s in ax.spines.values():
+        s.set_visible(False)
+    ax.tick_params(length=0)
+    ax.set_title("Execuções que passaram em todo o núcleo de testes, por tarefa", fontsize=10, loc="left", pad=34)
+    fig.tight_layout()
+    salva(fig, "fig-mapa-tarefas.svg")
+
+    # efeito do P1: C4 menos Sonnet, com e sem o teste P1 no núcleo
+    from math import isfinite
+    h4 = None
+    c0 = [r for r in runs.values() if r["cond"] == "C0"]
+    c4 = [r for r in runs.values() if r["cond"] == "C4"]
+    d, lo, hi = A.newcombe(sum(r["nucleo_100"] for r in c4), len(c4), sum(r["nucleo_100"] for r in c0), len(c0), 1.96)
+    sp = REV["nucleo_sem_P1_como_observacao"]
+    d2, lo2, hi2 = sp["diferenca_C4_menos_C0"], sp["newcombe_bilateral_95"][0], sp["newcombe_bilateral_95"][1]
+    fig, ax = plt.subplots(figsize=(7.2, 2.6))
+    for y, (rot, dd, l, h, cor) in enumerate([("Sem o teste P1 no núcleo\n(51/54 contra 49/54)", d2, lo2, hi2, "#2b8a6e"), ("Núcleo como definido\n(39/54 contra 49/54)", d, lo, hi, "#c0504d")]):
+        ax.errorbar(dd * 100, y, xerr=[[dd * 100 - l * 100], [h * 100 - dd * 100]], fmt="o", color=cor, capsize=4, markersize=8)
+        ax.text(h * 100 + 1.5, y, f"{dd * 100:+.1f}".replace(".", ",") + " pontos", va="center", fontsize=9)
+        ax.text(-49, y, rot, va="center", fontsize=8.5)
+    ax.axvline(0, color="#555", lw=1)
+    ax.set_xlim(-50, 28)
+    ax.set_ylim(-0.6, 1.6)
+    ax.set_yticks([])
+    ax.set_xlabel("Haiku + testes + loop menos Sonnet (pontos percentuais, IC 95%)")
+    ax.spines["left"].set_visible(False)
+    ax.set_title("O déficit de código quase some quando se tira um único teste", fontsize=10, loc="left")
+    fig.tight_layout()
+    salva(fig, "fig-efeito-p1.svg")
+
+    # custo por execução e por resultado aceito
+    cq = REV["custo_por_nucleo_aceito"]
+    c0m = next(x for x in linhas if x["condicao"] == "C0")["custo_lista_usd"]
+    c4m = next(x for x in linhas if x["condicao"] == "C4")["custo_lista_usd"]
+    fig, ax = plt.subplots(figsize=(7.2, 2.8))
+    grupos = [("Por execução", c0m, c4m), ("Por execução que passou\nno núcleo de testes", cq["C0"], cq["C4"])]
+    for i, (rot, a, b) in enumerate(grupos):
+        y = 1 - i
+        ax.barh(y + 0.18, a, height=0.32, color=COR["C0"])
+        ax.barh(y - 0.18, b, height=0.32, color=COR["C4"])
+        ax.text(a + 0.02, y + 0.18, f"US$ {a:.2f}".replace(".", ",") + "  Sonnet", va="center", fontsize=9)
+        ax.text(b + 0.02, y - 0.18, (f"US$ {b:.2f}  Haiku + testes + loop ({b / a:.2f} do Sonnet)").replace(".", ","), va="center", fontsize=9)
+        ax.text(-0.02, y, rot, ha="right", va="center", fontsize=9)
+    ax.set_xlim(0, 2.6)
+    ax.set_yticks([])
+    ax.set_xlabel("custo de lista, em dólares")
+    ax.spines["left"].set_visible(False)
+    fig.tight_layout()
+    salva(fig, "fig-custo-aceito.svg")
+
+    # receita do guia
+    passos = [("1. Pedido\nclaro", "contrato curto com\nnomes públicos"), ("2. Haiku\nescreve", "PRD, TechSpec\ne Tasks"), ("3. Checagem\nautomática", "até 2 correções\ncom os erros reais"),
+              ("4. Testes\nprimeiro", "ver falhar,\nimplementar"), ("5. Loop de\ncorreção", "até 3 rodadas com\na saída real"), ("6. Pessoa\nrevisa", "escala p/ Sonnet se\nfalhar (sugestão)")]
+    fig, ax = plt.subplots(figsize=(10, 2.6))
+    cores = ["#8a8f98", "#2b8a6e", "#2b8a6e", "#2b8a6e", "#2b8a6e", "#d9822b"]
+    for i, ((t, s), c) in enumerate(zip(passos, cores)):
+        x = i * 1.65
+        ax.add_patch(FancyBboxPatch((x, 0.3), 1.45, 1.4, boxstyle="round,pad=0.02,rounding_size=0.08", fc=c, ec="none"))
+        ax.text(x + 0.725, 1.3, t, ha="center", va="center", color="white", fontsize=9.5, fontweight="bold")
+        ax.text(x + 0.725, 0.68, s, ha="center", va="center", color="white", fontsize=8)
+        if i < len(passos) - 1:
+            ax.annotate("", xy=(x + 1.62, 1.0), xytext=(x + 1.47, 1.0), arrowprops=dict(arrowstyle="->", color="#444"))
+    ax.text(0, -0.05, "verde: medido no estudo   |   laranja: sugestão, não testada aqui   |   cinza: parte do desenho do estudo", fontsize=8, color="#444")
+    ax.set_xlim(-0.1, 9.9)
+    ax.set_ylim(-0.3, 1.9)
+    ax.axis("off")
+    salva(fig, "fig-guia-receita.svg")
 
 
 if __name__ == "__main__":

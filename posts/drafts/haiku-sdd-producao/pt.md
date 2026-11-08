@@ -46,6 +46,8 @@ Todo o código, os dados brutos, os prompts e as transcrições estão no reposi
 
 O Haiku com testes primeiro e loop (C4) custa **0,18 do Sonnet** em dólar de lista (IC 95%: 0,16 a 0,20). Em compensação, usa **1,5 vez** os tokens totais do Sonnet (1,39 a 1,64) e 1,55 vez os tokens novos. A cascata sai por 0,15. Em 52 das 54 execuções do C4 o prompt passou de 100 mil tokens, onde o preço do Haiku sobe; a ferramenta já cobra essa faixa, então a razão de 0,18 a inclui. Pela métrica que eu tinha registrado, custo por execução com núcleo aceito, a conta é US$ 0,31 do C4 contra US$ 1,36 do Sonnet (razão 0,23); por variante, o custo do C4 vai de 0,14 a 0,23 do Sonnet. O limite de 100 mil é só um degrau de preço, não de contexto, e as falhas não se associam ao tamanho do prompt.
 
+![Custo por execução e por execução com núcleo aceito](/assets/haiku-sdd-producao/fig-custo-aceito.svg)
+
 | Condição | Execuções | Custo de lista médio | Tokens totais médios |
 |---|---|---|---|
 | Sonnet padrão (C0) | 54 | US$ 1,23 | 2,41 mi |
@@ -70,7 +72,11 @@ O Sonnet passou o núcleo em 49 de 54 execuções (91%). O Haiku com testes prim
 
 Dizer "o Haiku equivale ao Sonnet em código" seria falso; dizer "perde por mais de 10 pontos" também.
 
+![Efeito do teste P1 na diferença entre C4 e Sonnet](/assets/haiku-sdd-producao/fig-efeito-p1.svg)
+
 O padrão é por tarefa, não geral:
+
+![Mapa de acertos por tarefa e condição](/assets/haiku-sdd-producao/fig-mapa-tarefas.svg)
 
 | Variante | Sonnet | Haiku simples | Haiku + testes + loop |
 |---|---|---|---|
