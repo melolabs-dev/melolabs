@@ -14,7 +14,9 @@
  "auditoria_suspeita": [
   "C2n-session-1050-b-r1"
  ],
- "arquivos_brutos_modificados_apos_commit": [],
+ "arquivos_brutos_modificados_apos_commit": [
+  "studies/haiku-sdd-producao/dados/bruto/CHECKSUMS.sha256"
+ ],
  "plano_execucoes_commits": [
   "bf4206b 2026-11-06T01:19:53-03:00 Estudo 1: plano A e B embaralhados juntos, rubrica congelada, juizes isolados",
   "0eee5ce 2026-11-05T23:50:32-03:00 Estudo 1: plano de execucao em fases (138 execucoes), README da coleta e comando proxima"
