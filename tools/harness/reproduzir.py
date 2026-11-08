@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 ALVOS = {"analise.json": ["analise/analise.py"], "analise-estendida.json": ["analise/analise.py", "--estendida"],
-         "sensibilidade.json": ["analise/sensibilidade.py", "--estendida"], "auditoria-dados.json": None}
+         "sensibilidade.json": ["analise/sensibilidade.py", "--estendida"], "revisao.json": ["analise/revisao.py", "--estendida"], "auditoria-dados.json": None}
 IGNORAR = {"gerado", "commit_script"}
 
 

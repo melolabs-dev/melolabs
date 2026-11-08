@@ -8,7 +8,7 @@ status: draft
 study: haiku-sdd-producao
 ---
 
-**TL;DR.** Medi o Claude Haiku 5.5 contra o Sonnet 5.5 em desenvolvimento guiado por especificação (SDD: PRD, especificação técnica, tarefas e código) no projeto aberto h3, com 198 execuções isoladas. Por cerca de **1/5 do custo de lista** (0,18 do Sonnet), o Haiku escreve **TechSpec e Tasks com notas praticamente iguais** às do Sonnet, mas **acerta o código completo em 72% das execuções contra 91%** do Sonnet. A diferença no código vem de duas tarefas, e o estudo **não decide** se é um déficit pequeno ou grande. O instrumento de notas dos documentos ficou abaixo da confiabilidade que eu mesmo exigi, então nada disso é "confirmado".
+**TL;DR.** Medi o Claude Haiku 5.5 contra o Sonnet 5.5 em desenvolvimento guiado por especificação (SDD: PRD, especificação técnica, tarefas e código) no projeto aberto h3, com 198 execuções isoladas. Por cerca de **1/5 do custo de lista** (0,18 do Sonnet), o Haiku escreve **TechSpec e Tasks com notas praticamente iguais** às do Sonnet, mas **acerta o código completo em 72% das execuções contra 91%** do Sonnet. Esse déficit é, em sua maior parte, **um único teste** (rota inexistente responder 404 em problem+json, que o contrato da tarefa não pedia de forma explícita); sem ele, o Haiku fica em 94% contra 91%. E, olhando as tarefas (não as execuções) como unidade, o intervalo inclui zero. Ou seja, o estudo **não decide** se o Haiku perde em código. O instrumento de notas dos documentos ficou abaixo da confiabilidade que eu mesmo exigi, então nada disso é "confirmado". Uma revisão adversarial independente refez as contas, achou os números certos e várias leituras exageradas; elas estão corrigidas aqui.
 
 ## A dúvida
 
@@ -44,7 +44,7 @@ Todo o código, os dados brutos, os prompts e as transcrições estão no reposi
 
 ![Custo de lista e tokens relativos ao Sonnet](/assets/haiku-sdd-producao/fig-custo.svg)
 
-O Haiku com testes primeiro e loop (C4) custa **0,18 do Sonnet** em dólar de lista (IC 95%: 0,16 a 0,20). Em compensação, usa **1,5 vez** os tokens totais do Sonnet (1,39 a 1,64) e 1,55 vez os tokens novos. A cascata sai por 0,15. Em 52 das 54 execuções do C4 o prompt passou de 100 mil tokens, onde o preço do Haiku sobe; a ferramenta já cobra essa faixa, então a razão de 0,18 a inclui.
+O Haiku com testes primeiro e loop (C4) custa **0,18 do Sonnet** em dólar de lista (IC 95%: 0,16 a 0,20). Em compensação, usa **1,5 vez** os tokens totais do Sonnet (1,39 a 1,64) e 1,55 vez os tokens novos. A cascata sai por 0,15. Em 52 das 54 execuções do C4 o prompt passou de 100 mil tokens, onde o preço do Haiku sobe; a ferramenta já cobra essa faixa, então a razão de 0,18 a inclui. Pela métrica que eu tinha registrado, custo por execução com núcleo aceito, a conta é US$ 0,31 do C4 contra US$ 1,36 do Sonnet (razão 0,23); por variante, o custo do C4 vai de 0,14 a 0,23 do Sonnet. O limite de 100 mil é só um degrau de preço, não de contexto, e as falhas não se associam ao tamanho do prompt.
 
 | Condição | Execuções | Custo de lista médio | Tokens totais médios |
 |---|---|---|---|
@@ -57,13 +57,18 @@ O Haiku com testes primeiro e loop (C4) custa **0,18 do Sonnet** em dólar de li
 
 ![Média da rubrica por condição](/assets/haiku-sdd-producao/fig-rubrica.svg)
 
-Com 18 artefatos por braço e as três features, o Sonnet fica **0,7 ponto acima** do Haiku simples em TechSpec (IC 95%: −0,2 a +1,6, de 35) e **0,2 abaixo** em Tasks (−0,8 a +0,5, de 25). Longe dos 3 pontos que a H1 previa. A cascata fica em 0,99 e 1,01 da nota do Sonnet, a 0,15 do custo. **O ponto fraco:** o alfa de Krippendorff entre os juízes foi **0,61**, abaixo do 0,67 que eu tinha fixado, e as notas ficam coladas no teto (cerca de 32 de 35). Pela minha própria regra, as hipóteses de documentos saem **subpotentes**, e não confirmadas: o número é uma indicação de direção, não uma conclusão.
+Com 18 artefatos por braço e as três features, o Sonnet fica **0,7 ponto acima** do Haiku simples em TechSpec (IC 95%: −0,2 a +1,6, de 35) e **0,2 abaixo** em Tasks (−0,8 a +0,5, de 25). Longe dos 3 pontos que a H1 previa. A cascata fica em 0,99 e 1,01 da nota do Sonnet, a 0,15 do custo. **O ponto fraco:** o alfa de Krippendorff entre os juízes foi **0,61**, abaixo do 0,67 que eu tinha fixado, e as notas ficam coladas no teto (cerca de 32 de 35). Pela minha própria regra, as hipóteses de documentos saem **subpotentes**, e não confirmadas. Dois cuidados de leitura: esse alfa foi calculado por critério da rubrica; com a média dos três juízes (a nota que decide), a confiabilidade estimada passa de 0,67 (cerca de 0,72 na TechSpec e 0,83 em Tasks, por Spearman-Brown, exploratório). E os intervalos já excluem uma diferença de 3 pontos ou mais; a incerteza que sobra é se a rubrica, saturada perto do teto e sem acesso ao pedido original, enxerga diferenças reais de qualidade. Os juízes não veem o PRD, então "cobertura do pedido" não foi medida. Por isso, "praticamente empate" vale para o que a rubrica mede.
 
 ### Código: o ponto em que o Haiku ainda perde
 
 ![Núcleo de testes por condição e variante](/assets/haiku-sdd-producao/fig-nucleo.svg)
 
-O Sonnet passou o núcleo em 49 de 54 execuções (91%). O Haiku com testes primeiro e loop (C4) em 39 de 54 (72%), e o Haiku simples em 21 de 36 (58%). A diferença entre C4 e Sonnet é de **−18,5 pontos**, com intervalo de Newcombe unilateral de −32,6 a −3,8: é negativa com credibilidade, mas o intervalo **não exclui um déficit menor que os 10 pontos de margem**, então o status formal da H4 é "subpotente". Dizer "o Haiku equivale ao Sonnet em código" seria falso; dizer "perde por mais de 10 pontos" também.
+O Sonnet passou o núcleo em 49 de 54 execuções (91%). O Haiku com testes primeiro e loop (C4) em 39 de 54 (72%), e o Haiku simples em 21 de 36 (58%). A diferença entre C4 e Sonnet é de **−18,5 pontos**, com intervalo de Newcombe unilateral de −32,6 a −3,8: o intervalo **não exclui um déficit menor que os 10 pontos de margem**, então o status formal da H4 é "subpotente". Mas há dois avisos que mudam a leitura, ambos vindos da revisão adversarial:
+
+1. **O déficit é quase um teste só.** Das 15 execuções do C4 que falharam no núcleo, 12 falharam apenas no P1 ("rota inexistente responde 404 em problem+json"), nas tarefas #1384. O contrato enxuto de #1384-a e #1384-c não pede isso de forma explícita, e fui eu quem classificou o P1 como núcleo, depois do piloto. Se o P1 fosse observação, o C4 passaria 51 de 54 (94%) contra 49 de 54 (91%) do Sonnet, diferença de +3,7 pontos (IC 95% de −7,2 a +15,0). O sinal se inverte. Portanto, **não leia "72% contra 91%" como qualidade geral de código**: o que os dados mostram é que o Haiku trata pior esse caso de borda, mais as falhas em #1267 (3 execuções).
+2. **A unidade é a tarefa, não a execução.** O intervalo de Newcombe trata as 54 execuções como independentes, mas a generalização é para tarefas. Por variante a diferença foi de −44, +11, −44, −33, 0 e 0 pontos; o IC t de 95% com 6 variantes vai de −45 a +8 (por feature, de −63 a +24), e inclui zero. Duas das seis variantes (#1050) saturam em 100% em todas as condições. "Negativa com credibilidade" vale só para estas seis tarefas.
+
+Dizer "o Haiku equivale ao Sonnet em código" seria falso; dizer "perde por mais de 10 pontos" também.
 
 O padrão é por tarefa, não geral:
 
@@ -76,28 +81,28 @@ O padrão é por tarefa, não geral:
 | #1050-a | 9/9 | 6/6 | 9/9 |
 | #1050-b | 9/9 | 6/6 | 9/9 |
 
-Nas duas variantes de #1050 todos chegam a 100%. A perda aparece em #1384-a, #1384-c e #1267. Se contarmos a fração de testes passando (incluindo os testes de observação), o quadro é menos duro: 0,89 para o C4 contra 0,91 para o Sonnet. As mitigações ajudam (de 58% no Haiku simples para 72%), mas não fecham a conta.
+Nas duas variantes de #1050 todos chegam a 100%. A perda aparece em #1384-a, #1384-c e #1267. Se contarmos a fração de testes passando (incluindo os testes de observação), o quadro é menos duro: 0,89 para o C4 contra 0,91 para o Sonnet. De 58% (Haiku simples) para 72% (C4) há uma melhora, mas **não dá para atribuí-la ao "testes primeiro e loop"**: a diferença C4 contra C1 é de +13,9 pontos com IC 95% de −8,3 a +35,4, inconclusiva. Além disso, em muitas execuções houve comandos de teste negados pela lista de ferramentas permitidas (contagem da revisão adversarial: 146 negações no Sonnet e 74 no C4), o que pode ter limitado o "loop com saída real".
 
 ### O que não deu certo ou não deu para testar
 
 - **Híbrido (H10):** pôr o Sonnet na TechSpec e o Haiku no resto custa **3,1 vezes** a cascata (2,5 a 4,0) sem ganho de nota. Refutada pelo critério de custo, que não depende da rubrica.
-- **Cascata:** o gate reprovou só 3 de 234 documentos (1,3%), e a cascata **nunca escalou** para o Sonnet nas 12 execuções. Ela equivale ao Haiku com gates, e o escalonamento não foi testado (H3 e essa parte da H5 ficam "não testáveis neste desenho").
-- **Persona e contexto (H11):** persona mais contexto juntos (C12) renderam cerca de +1,5 ponto em TechSpec e +1,1 em Tasks, com o controle de tamanho dentro do ruído. Sem correção para comparações múltiplas e com alfa baixo: um sinal para investigar, não um efeito provado.
-- **Alucinações de citação (exploratório):** os artefatos do C4 trouxeram em média 0,42 citações inventadas por documento, contra 0,14 do Sonnet, em 12 documentos do C4 (6 execuções). Vale uma medição própria.
+- **Cascata:** o gate reprovou só 3 de 234 documentos (1,3%), e a cascata **nunca escalou** para o Sonnet nas 12 execuções. Ela equivale ao Haiku com gates, e o escalonamento não foi testado (H3 e essa parte da H5 ficam "não testáveis neste desenho"). Pior: por construção, a cascata só escalava o código se o `typecheck` falhasse, e nas 198 execuções `typecheck` e `lint` nunca falharam; o déficit está nos testes ocultos, que o gatilho não vê. Então "nunca escalou" é verdade, mas tautológica: a cascata de verdade **não foi testada**.
+- **Persona e contexto (H11):** persona mais contexto juntos (C12) renderam algo como +1 ponto (+0,9 em TechSpec e +1,1 em Tasks) quando comparados por variante, com o controle de tamanho perto do ruído. Só duas variantes têm as duas condições pareadas (3 artefatos por célula); o valor de p fica em torno de 0,03 a 0,06, sem correção para comparações múltiplas. É um sinal para investigar, não um efeito provado.
+- **Alucinações de citação (exploratório):** nos documentos pareados (TechSpec de #1267 e #1050-b, repetições 1 a 3, com o mesmo prompt de documento em C0, C1 e C4), a média de citações inventadas por julgamento foi 0,00 no Sonnet, 0,22 no C1, 0,67 no C4 e 0,39 na cascata (18 julgamentos cada). Como os prompts do Haiku são idênticos entre C1, C4 e C5, a diferença entre eles é provavelmente ruído de amostragem. Vale uma medição própria.
 
 ## O que isso significa na prática
 
 - Para **escrever TechSpec e Tasks**, o Haiku parece estar muito perto do Sonnet por cerca de 1/5 do dólar. Eu o usaria, conferindo o resultado, e não trataria isso como garantia.
-- Para **implementar código**, o Haiku com testes primeiro e loop acerta menos nas tarefas mais difíceis. Eu faria o Haiku escrever documentos e deixaria o código mais difícil para o Sonnet, ou escalaria para o Sonnet quando os testes falham. Esse desenho **não foi testado aqui**.
+- Para **implementar código**, o Haiku com testes primeiro e loop acertou menos em algumas tarefas (mas o déficit geral não é demonstrado). Eu faria o Haiku escrever documentos e deixaria o código mais difícil para o Sonnet, ou escalaria para o Sonnet quando os testes falham. Esse desenho **não foi testado aqui**.
 - O custo em tokens do Haiku é maior; o preço por token é que o torna barato. Em contextos acima de 100 mil tokens, a conta muda.
 
 ## Limitações
 
-Um projeto (h3, TypeScript), três features e seis variantes; modelos e preços de 04/11/2026; juízes que são amostras do mesmo modelo (alfa 0,61); testes escritos por mim; o histórico git do estudo ainda guarda versões antigas dos testes em texto claro, fora do alcance do agente; a duração das execuções da extensão pode ter sido afetada por um juiz rodando em paralelo (tokens e custo não são afetados); a fase C (voto, erros plantados, cache) ficou de fora. As ameaças à validade completas estão no repositório.
+Um projeto (h3, TypeScript), três features e seis variantes; modelos e preços de 04/11/2026; juízes que são amostras do mesmo modelo (alfa 0,61 por critério) e não veem o PRD; testes escritos por mim, com o núcleo definido por mim depois do piloto; uma extensão disparada pelo resultado parcial e uma redução de juízes decidida depois de ver o primário (as duas registradas antes de ver os dados da extensão; o intervalo final não corrige esse olhar intermediário, e a extensão repete o padrão do primário); o histórico git do estudo ainda guarda versões antigas dos testes em texto claro, fora do alcance do agente; a duração das execuções da extensão pode ter sido afetada por um juiz rodando em paralelo (tokens e custo não são afetados); a fase C (voto, erros plantados, cache) ficou de fora. As ameaças à validade completas estão no repositório.
 
 ## Conclusão
 
-O Haiku 5.5 corta o custo para cerca de 1/5 e entrega documentos de SDD muito próximos aos do Sonnet, mas **ainda perde no código das tarefas mais difíceis**, e o estudo não consegue dizer se a perda é pequena ou grande. "SDD inteiro só com Haiku, sem perder qualidade" **não é o que os dados mostram**. O que eles mostram é um bom caso para o desenho híbrido (documentos no Haiku, código difícil no Sonnet), que fica para o próximo estudo.
+O Haiku 5.5 corta o custo para cerca de 1/5 e entrega documentos de SDD muito próximos aos do Sonnet, mas **perde mais no código de algumas tarefas** (sobretudo num caso de borda de #1384 e em #1267), e o estudo não consegue dizer se a perda geral é pequena, grande ou nula. "SDD inteiro só com Haiku, sem perder qualidade" **não é o que os dados mostram**. O que eles mostram é um bom caso para o desenho híbrido (documentos no Haiku, código difícil no Sonnet), que fica para o próximo estudo.
 
 ## Referências
 

@@ -35,7 +35,7 @@
   "margem_equivalencia": "2 pontos da rubrica",
   "refutada_se": "O ganho for menor que 2 pontos com IC95% dentro da margem, ou o loop piorar a nota",
   "status": "nao testavel",
-  "evidencia": "Reprovacao no primeiro gate de 2 em 162 documentos (1,2%), abaixo dos 10% exigidos pela regra do adendo 1 (analise.json, gate).",
+  "evidencia": "Reprovacao no primeiro gate de 3 em 234 documentos (1,3%), abaixo dos 10% exigidos pela regra do adendo 1 (analise.json, gate).",
   "nota": "Base: Huang et al. (autocorreção só funciona com feedback externo), AlphaCodium, Reflexion. Controle negativo: Haiku com autorrevisão sem feedback externo, que deve ficar dentro da margem de zero. Proposta aguardando revisão do autor."
  },
  {
@@ -48,7 +48,7 @@
   "margem_equivalencia": "10 pontos percentuais",
   "refutada_se": "A taxa do Haiku ficar abaixo da do Sonnet por mais de 10 pontos percentuais, com IC95% inteiro abaixo da margem",
   "status": "subpotente",
-  "evidencia": "Estendida final (54 execucoes por condicao em C0 e C4): C4 39/54 (72%) contra C0 49/54 (91%) com nucleo 100%; diferenca -18,5 pontos, Newcombe unilateral 97,5% de -32,6 a -3,8 (margem 10): a nao inferioridade nao se sustenta e a diferenca e negativa com credibilidade, mas o intervalo nao exclui um deficit menor que 10 pontos, entao o status formal e subpotente. Instrumento sensivel (C1 21/36). Deficit concentrado em #1384-a (C4 3/9, C0 7/9), #1384-c (4/9, 8/9) e #1267 (6/9, 9/9); #1050-a e b em 100% nas tres condicoes. Primaria: 26/36 contra 32/36. Fonte: analise-estendida.json e sensibilidade.json.",
+  "evidencia": "Estendida final (54 execucoes por condicao em C0 e C4): C4 39/54 (72%) contra C0 49/54 (91%) com nucleo 100%; diferenca -18,5 pontos, Newcombe unilateral 97,5% de -32,6 a -3,8 (margem 10): a nao inferioridade nao se sustenta e a diferenca e negativa com credibilidade, mas o intervalo nao exclui um deficit menor que 10 pontos, entao o status formal e subpotente. Ressalva (F7.4): 12 das 15 falhas de nucleo do C4 sao so o P1 nas tarefas 1384; sem P1, C4 51/54 contra C0 49/54 (+3,7; IC -7,2 a +15,0); IC t em nivel de variante -45 a +8 (revisao.json). Instrumento sensivel (C1 21/36). Deficit concentrado em #1384-a (C4 3/9, C0 7/9), #1384-c (4/9, 8/9) e #1267 (6/9, 9/9); #1050-a e b em 100% nas tres condicoes. Primaria: 26/36 contra 32/36. Fonte: analise-estendida.json e sensibilidade.json.",
   "nota": "Base: Mathews e Nagappan, TiCoder, CodeT, Reflexion. É a hipótese que mede o 'pronto para produção' de forma objetiva, sem juiz LLM. Os testes ocultos são escritos pelo autor antes de qualquer execução. Proposta aguardando revisão do autor."
  },
  {
@@ -61,7 +61,7 @@
   "margem_equivalencia": "razão de qualidade entre 0,90 e 1,10",
   "refutada_se": "O limite superior do IC95% da razão de qualidade ficar abaixo de 0,90, ou o limite inferior do IC95% da razão de custo ficar acima de 0,50",
   "status": "subpotente",
-  "evidencia": "Estendida final: qualidade (C5/C0) TechSpec 0,99 (limite inferior 0,97) e Tasks 1,01 (0,96); custo de lista 0,15 do Sonnet (IC95 0,12 a 0,19). A rubrica nao e confiavel (alfa 0,61) e a cascata nunca escalou (0% em 12 execucoes), entao o escalonamento nao foi testado. Fonte: analise-estendida.json.",
+  "evidencia": "Estendida final: qualidade (C5/C0) TechSpec 0,99 (limite inferior 0,97) e Tasks 1,01 (0,96); custo de lista 0,15 do Sonnet (IC95 0,12 a 0,19). A rubrica nao e confiavel (alfa 0,61) e a cascata nunca escalou (0% em 12 execucoes), entao o escalonamento nao foi testado (o gatilho era so falha de typecheck, que nunca ocorreu: a cascata nao podia escalar por construcao). Fonte: analise-estendida.json.",
   "nota": "Base: FrugalGPT, RouteLLM, Snell et al. É a hipótese central do artigo. O custo usa os preços da documentação da Anthropic consultados em 04/11/2026 e precisa registrar a data de cada medição. Proposta aguardando revisão do autor. Limiar de qualidade 0,90 decidido pelo autor em 05/11/2026."
  },
  {
@@ -139,7 +139,7 @@
   "margem_equivalencia": "2 pontos da rubrica ou 5 pontos percentuais",
   "refutada_se": "Ganho dentro da margem de equivalência com IC95% dentro dela, ou a variante piorar a nota",
   "status": "subpotente",
-  "evidencia": "Rubrica nao confiavel (alfa 0,61). Nenhum contraste chegou a 3 pontos. C12 (persona e contexto): +1,5 em TechSpec (IC95 0,6 a 2,3; p unilateral 0,01) e +1,1 em Tasks (0,4 a 1,7; p 0,02), sem Holm; C11: +1,0 e +0,1; C10: +0,8 e +0,6 (IC com zero); controle C13 dentro de 2 pontos (+0,3 e +0,3). Sinal exploratorio de ganho pequeno com persona mais contexto. n=6 por condicao. Fonte: analise-estendida.json.",
+  "evidencia": "Rubrica nao confiavel (alfa 0,61). Nenhum contraste chegou a 3 pontos. C12 (persona e contexto): +1,5 em TechSpec (IC95 0,6 a 2,3; p unilateral 0,01) e +1,1 em Tasks (0,4 a 1,7; p 0,02), sem Holm; C11: +1,0 e +0,1; C10: +0,8 e +0,6 (IC com zero); controle C13 dentro de 2 pontos (+0,3 e +0,3). Sinal exploratorio de ganho pequeno com persona mais contexto. n=6 por condicao. CORRECAO (revisao adversarial F7.4): pareando por variante (1267 e 1050-b, permutacao exata) C12 menos C1 e +0,9 em TechSpec (p unilateral 0,06) e +1,1 em Tasks (p 0,03); o IC e o p de 0,01 acima misturavam estratos desemparelhados e nao devem ser citados (revisao.json). Fonte: analise-estendida.json.",
   "nota": "Pedida pelo autor em 05/11/2026. Três variantes contra o prompt neutro, para separar o que de fato ajuda: (a) só persona, (b) só contexto detalhado, (c) persona mais contexto. Controle: um texto de mesmo tamanho sem informação útil, para não confundir 'mais contexto' com 'mais tokens'. Medir também o custo extra, porque contexto maior pode empurrar o prompt para o tier acima de 100 mil tokens. Literatura a conferir na base antes de fixar a direção: estudos sobre persona prompting indicam efeito pequeno ou nulo em acurácia, e é isso que torna a hipótese interessante. Pode se combinar com H8 (prefixo em cache)."
  }
 ]

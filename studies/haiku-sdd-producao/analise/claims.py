@@ -59,8 +59,19 @@ add(f"H5 qualidade da cascata sobre o Sonnet: TechSpec {pc(h5['qualidade_techspe
 add(f"Alfa de Krippendorff estendido = {pc(E['rubrica']['krippendorff_alfa_intervalo'])}, abaixo do limite pré-registrado de 0,67", f"{EST}#rubrica.krippendorff_alfa_intervalo", [("0,61", "0.61"), ("0,67", "0.67")])
 add(f"H10: custo do híbrido sobre a cascata = {pc(h10['custo_lista']['razao_C6_sobre_C5'], 1)} (IC {pc(h10['custo_lista']['ic95'][0], 1)} a {pc(h10['custo_lista']['ic95'][1], 1)})", f"{EST}#hipoteses.H10.custo_lista", [("3,1 vezes", "3.1 times"), ("2,5 a 4,0", "2.5 to 4.0")])
 add(f"Gate: {E['gate']['reprovados_1o_gate']} de {E['gate']['documentos']} documentos reprovados no primeiro gate ({pc(E['gate']['taxa'] * 100, 1)}%); cascata nunca escalou", f"{EST}#gate", [("3 de 234", "3 of 234"), ("1,3%", "1.3%")])
-add(f"H11 C12: TechSpec {f1(c12['techspec']['diferenca'])} e Tasks {f1(c12['tasks']['diferenca'])}", f"{EST}#hipoteses.H11.C12", [("+1,5 ponto", "+1.5 points"), ("+1,1", "+1.1")])
-add(f"Alucinações por artefato: C4 {pc(E['rubrica']['alucinacoes_media']['C4'])}, C0 {pc(E['rubrica']['alucinacoes_media']['C0'])}", f"{EST}#rubrica.alucinacoes_media", [("0,42", "0.42"), ("0,14", "0.14")])
+REV = json.loads((PROC / "revisao.json").read_text(encoding="utf-8"))
+RV = "studies/haiku-sdd-producao/dados/processado/revisao.json"
+cp = REV["C12_pareado"]
+add(f"H11 C12 pareado por variante (exploratório): TechSpec {cp['techspec_C12_menos_C1']['diferenca']} e Tasks {cp['tasks_C12_menos_C1']['diferenca']}", f"{RV}#C12_pareado", [("+0,9 em TechSpec", "+0.9 on TechSpec"), ("+1,1 em Tasks", "+1.1 on Tasks")])
+al = REV["alucinacoes_por_julgamento_pareadas"]
+add(f"Alucinações por julgamento, documentos pareados: C0 {al['C0'][0]}, C1 {al['C1'][0]}, C4 {al['C4'][0]}, C5 {al['C5'][0]}", f"{RV}#alucinacoes_por_julgamento_pareadas", [("0,00 no Sonnet, 0,22 no C1, 0,67 no C4 e 0,39", "0.00 for Sonnet, 0.22 for C1, 0.67 for C4 and 0.39")])
+sp = REV["nucleo_sem_P1_como_observacao"]
+add(f"Sem P1 como núcleo: C4 {sp['contagens']['C4'][0]}/54 contra C0 {sp['contagens']['C0'][0]}/54, dif {sp['diferenca_C4_menos_C0']:.3f}", f"{RV}#nucleo_sem_P1_como_observacao", [("51 de 54", "51 of 54"), ("+3,7", "+3.7"), ("−7,2 a +15,0", "−7.2 to +15.0")])
+add("IC t por variante (gl 5) da diferença C4-C0: -44,7 a 7,7", f"{RV}#IC_t95_nivel_variante_pp", [("−45 a +8", "−45 to +8"), ("−63 a +24", "−63 to +24")])
+cq = REV["custo_por_nucleo_aceito"]
+add(f"Custo por núcleo aceito: C4 {cq['C4']}, C0 {cq['C0']}, razão {cq['razao_C4_C0']}", f"{RV}#custo_por_nucleo_aceito", [("US$ 0,31", "US$ 0.31"), ("US$ 1,36", "US$ 1.36"), ("0,23", "0.23")])
+cf = REV["confiabilidade"]
+add(f"Spearman-Brown da média de 3 juízes: TechSpec {cf['techspec']['confiabilidade_media_3_juizes_spearman_brown']}, Tasks {cf['tasks']['confiabilidade_media_3_juizes_spearman_brown']}", f"{RV}#confiabilidade", [("0,72", "0.72"), ("0,83", "0.83")])
 add(f"Fração de testes passando: C4 {pc(pcond['C4']['fracao_testes_media'])}, C0 {pc(pcond['C0']['fracao_testes_media'])}", f"{EST}#por_condicao", [("0,89", "0.89"), ("0,91", "0.91")])
 add("Núcleo por variante e condição (tabela do artigo)", "studies/haiku-sdd-producao/dados/processado/tabela-variantes.csv", [("3/9", "3/9"), ("0/6", "0/6"), ("6/9", "6/9")])
 add("Preços de 04/11/2026: Haiku 5.5 a US$ 0,10 e US$ 0,50 até 100 mil tokens de prompt; Sonnet 5.5 a US$ 2 e US$ 10", "anthropic-pricing", [("US$ 0,10", "US$ 0.10")], tipo="fonte")

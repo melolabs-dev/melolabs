@@ -85,14 +85,34 @@
   "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#gate"
  },
  {
-  "afirmacao": "H11 C12: TechSpec 1.5 e Tasks 1.1",
+  "afirmacao": "H11 C12 pareado por variante (exploratório): TechSpec 0.89 e Tasks 1.11",
   "tipo": "dado",
-  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#hipoteses.H11.C12"
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/revisao.json#C12_pareado"
  },
  {
-  "afirmacao": "Alucinações por artefato: C4 0.42, C0 0.14",
+  "afirmacao": "Alucinações por julgamento, documentos pareados: C0 0, C1 0.22, C4 0.67, C5 0.39",
   "tipo": "dado",
-  "evidencia": "studies/haiku-sdd-producao/dados/processado/analise-estendida.json#rubrica.alucinacoes_media"
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/revisao.json#alucinacoes_por_julgamento_pareadas"
+ },
+ {
+  "afirmacao": "Sem P1 como núcleo: C4 51/54 contra C0 49/54, dif 0.037",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/revisao.json#nucleo_sem_P1_como_observacao"
+ },
+ {
+  "afirmacao": "IC t por variante (gl 5) da diferença C4-C0: -44,7 a 7,7",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/revisao.json#IC_t95_nivel_variante_pp"
+ },
+ {
+  "afirmacao": "Custo por núcleo aceito: C4 0.311, C0 1.357, razão 0.23",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/revisao.json#custo_por_nucleo_aceito"
+ },
+ {
+  "afirmacao": "Spearman-Brown da média de 3 juízes: TechSpec 0.718, Tasks 0.833",
+  "tipo": "dado",
+  "evidencia": "studies/haiku-sdd-producao/dados/processado/revisao.json#confiabilidade"
  },
  {
   "afirmacao": "Fração de testes passando: C4 0.89, C0 0.91",
