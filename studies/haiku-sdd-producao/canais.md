@@ -19,7 +19,7 @@ O que apareceu:
 • TechSpec e Tasks com notas praticamente iguais, pelo que a rubrica mede.
 • Código: 72% contra 91% no núcleo de testes. Mas 12 das 15 falhas do Haiku são um único teste; sem ele, 94% contra 91%. Por tarefa, o intervalo inclui zero.
 
-Nenhuma hipótese ficou "confirmada", e o texto diz o que não dá para concluir. Uma revisão adversarial independente refez as contas, achou os números certos e várias leituras exageradas; elas estão corrigidas.
+O que os dados sustentam: custo em torno de 1/5, documentos sem diferença de 3 pontos ou mais, híbrido que não compensa. Os vereditos formais saem "subpotentes" pela regra que escrevi antes, e o texto diz o que ainda não dá para concluir. Uma revisão adversarial independente refez as contas, achou os números certos e várias leituras exageradas; elas estão corrigidas.
 
 Dados, código e prompts abertos. Artigo completo: https://melolabs.net/pt/haiku-sdd-producao/
 
@@ -31,7 +31,7 @@ What came out:
 • TechSpec and Tasks scores practically tied, as far as the rubric measures.
 • Code: 72% vs 91% on the core tests. But 12 of Haiku's 15 failures are a single test; without it, 94% vs 91%. By task, the interval includes zero.
 
-No hypothesis came out "confirmed", and the text says what cannot be concluded. An independent adversarial review recomputed the numbers, found them right and several readings overstated; those are corrected.
+What the data support: cost around 1/5, documents without a 3-point difference, a hybrid that does not pay off. The formal verdicts come out "underpowered" by the rule I wrote beforehand, and the text says what cannot be concluded yet. An independent adversarial review recomputed the numbers, found them right and several readings overstated; those are corrected.
 
 Open data, code and prompts. Full article: https://melolabs.net/en/haiku-sdd-producao/
 
