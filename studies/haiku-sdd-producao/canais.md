@@ -1,50 +1,27 @@
-# Textos para os canais (rascunho para aprovação do autor; nada foi postado)
+# Textos para os canais (foco na versão simples; o artigo técnico entra como "para quem quer os números")
 
-URLs canônicas previstas (o site ainda precisa ser publicado em melolabs.net):
-- Técnico: https://melolabs.net/pt/haiku-sdd-producao/ e https://melolabs.net/en/haiku-sdd-producao/
-- Guia: https://melolabs.net/pt/haiku-sdd-guia/ e https://melolabs.net/en/haiku-sdd-guia/
+Nada foi postado sem aprovação do autor. Links: guia https://melolabs.net/pt/haiku-sdd-guia/ e https://melolabs.net/en/haiku-sdd-guia/; técnico https://melolabs.net/pt/haiku-sdd-producao/ e https://melolabs.net/en/haiku-sdd-producao/.
 
-## DEV e Hashnode
-Posta o artigo completo (o mesmo texto do site), com `canonical_url` apontando para o blog, imagens com URL absoluta em PNG, e a nota "Os experimentos, os dados e as conclusões são meus. A redação foi assistida por IA e revisada por mim."
-- Tags DEV (máx. 4): técnico `sdd, haiku, sonnet, custo`; guia `sdd, haiku, guia, custo`.
-- Hashnode (máx. 5): as mesmas tags do frontmatter.
+## LinkedIn (guia, pt)
+Dá para usar o Haiku no dia a dia de desenvolvimento por cerca de 1/5 do custo do Sonnet? Rodei 198 execuções de um ciclo completo (especificação, tarefas e código) num projeto aberto para descobrir, e escrevi um guia simples com o que funcionou.
 
-## LinkedIn
+A receita: pedido claro com nomes exatos, o Haiku escreve os documentos, checagem automática, testes primeiro, loop de correção com a saída real dos comandos e, o mais importante, um engenheiro por trás decidindo.
 
-### Técnico (pt)
-Medi o Haiku 5.5 contra o Sonnet 5.5 em desenvolvimento guiado por especificação (PRD, especificação técnica, tarefas e código): 198 execuções isoladas, hipóteses pré-registradas, juízes cegos.
+Os documentos ficaram praticamente iguais aos do Sonnet. No código, o Haiku falhou mais em alguns casos de borda, justamente o tipo de coisa que uma revisão de engenheiro pega. Com a IA fazendo o trabalho pesado e a pessoa garantindo a qualidade, é um caminho bom e barato para começar. (Medir "Haiku mais engenheiro" é o próximo estudo.)
 
-O que apareceu:
-• Cerca de 1/5 do custo de lista do Sonnet (0,18).
-• TechSpec e Tasks com notas praticamente iguais, pelo que a rubrica mede.
-• Código: 72% contra 91% no núcleo de testes. Mas 12 das 15 falhas do Haiku são um único teste; sem ele, 94% contra 91%. Por tarefa, o intervalo inclui zero.
+Guia: https://melolabs.net/pt/haiku-sdd-guia/
+Números e limitações: https://melolabs.net/pt/haiku-sdd-producao/
 
-O que os dados sustentam: custo em torno de 1/5, documentos sem diferença de 3 pontos ou mais, híbrido que não compensa. Os vereditos formais saem "subpotentes" pela regra que escrevi antes, e o texto diz o que ainda não dá para concluir. Uma revisão adversarial independente refez as contas, achou os números certos e várias leituras exageradas; elas estão corrigidas.
+## LinkedIn (guide, en)
+Can you use Haiku in everyday development for about 1/5 of Sonnet's cost? I ran 198 runs of a full cycle (spec, tasks and code) on an open-source project to find out, and wrote a plain guide with what worked.
 
-Dados, código e prompts abertos. Artigo completo: https://melolabs.net/pt/haiku-sdd-producao/
+The recipe: a clear request with exact names, Haiku writes the documents, automatic checks, tests first, a correction loop with real command output and, most important, an engineer behind it making decisions.
 
-### Technical (en)
-I measured Haiku 5.5 against Sonnet 5.5 on spec-driven development (PRD, technical spec, tasks and code): 198 isolated runs, pre-registered hypotheses, blind judges.
+The documents came out practically equal to Sonnet's. On code, Haiku failed more on a few edge cases, exactly the kind of thing an engineer's review catches. With the AI doing the heavy lifting and the person guaranteeing quality, it is a good, cheap way to start. (Measuring "Haiku plus engineer" is the next study.)
 
-What came out:
-• About 1/5 of Sonnet's list cost (0.18).
-• TechSpec and Tasks scores practically tied, as far as the rubric measures.
-• Code: 72% vs 91% on the core tests. But 12 of Haiku's 15 failures are a single test; without it, 94% vs 91%. By task, the interval includes zero.
+Guide: https://melolabs.net/en/haiku-sdd-guia/
+Numbers and limitations: https://melolabs.net/en/haiku-sdd-producao/
 
-What the data support: cost around 1/5, documents without a 3-point difference, a hybrid that does not pay off. The formal verdicts come out "underpowered" by the rule I wrote beforehand, and the text says what cannot be concluded yet. An independent adversarial review recomputed the numbers, found them right and several readings overstated; those are corrected.
-
-Open data, code and prompts. Full article: https://melolabs.net/en/haiku-sdd-producao/
-
-### Guia simples (pt)
-Quer usar o Haiku no dia a dia do SDD sem gastar à toa? Escrevi uma versão simples do meu estudo, para quem está começando.
-
-A receita que funcionou melhor: pedido claro com nomes exatos, o Haiku escreve os documentos, checagem automática, testes primeiro, loop de correção com a saída real dos comandos e uma pessoa revisando. Sai por cerca de 1/5 do custo do Sonnet. No código ele ainda falha mais em algumas tarefas, e o texto diz o que não está provado.
-
-Tem figuras e um checklist para começar amanhã: https://melolabs.net/pt/haiku-sdd-guia/
-
-### Plain guide (en)
-Want to use Haiku in everyday SDD without overspending? I wrote a plain version of my study for people just starting out.
-
-The recipe that worked best: a clear request with exact names, Haiku writes the documents, automatic checks, tests first, a correction loop with real command output, and a person reviewing. It costs about 1/5 of Sonnet. On code it still fails more on some tasks, and the text says what is not proven.
-
-It has figures and a checklist to start tomorrow: https://melolabs.net/en/haiku-sdd-guia/
+## DEV (e Hashnode, se o autor quiser)
+Postar o **guia simples** completo (pt e/ou en), com `canonical_url` apontando para o blog, imagens em PNG com URL absoluta, o aviso de redação assistida por IA e, no fim, o link para o artigo técnico. Tags DEV (máx. 4): `sdd, haiku, guia, custo`.
+O artigo técnico não vai para o DEV agora; fica no blog para quem quiser os números.
