@@ -83,6 +83,14 @@
     "F10.3": {
       "feito": "2026-11-08",
       "evidencia": "Autor disse 'Aprovado tudo' em 08/11/2026, cobrindo artigo tecnico e guia simples em pt e en; status approved nos 4 arquivos"
+    },
+    "F11.1": {
+      "feito": "2026-11-08",
+      "evidencia": "Publicado em 08/11/2026: site https://melolabs.net/pt/haiku-sdd-guia/ e /pt/haiku-sdd-producao/ (e en); DEV pt https://dev.to/melolabs_melo_0f8fdb509b9/como-usar-o-haiku-no-dia-a-dia-do-sdd-sem-gastar-a-toa-27b3 e en https://dev.to/melolabs_melo_0f8fdb509b9/how-to-use-haiku-in-everyday-sdd-without-overspending-5h6g; LinkedIn pt e en; grupo MV Squads"
+    },
+    "F11.2": {
+      "feito": "2026-11-08",
+      "evidencia": "errata.md e changelog.md criados em studies/haiku-sdd-producao em 08/11/2026"
     }
   },
   "auto_feito": {

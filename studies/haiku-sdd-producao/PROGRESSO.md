@@ -1,8 +1,8 @@
 # Progresso: SDD só com Haiku: o que sobra de qualidade quando o custo cai
 
-Atualizado em 2026-11-07 13:45 · congelamento dos dados: 2026-11-13
+Atualizado em 2026-11-08 02:33 · congelamento dos dados: 2026-11-13
 
-**27/46 passos (59%)**
+**44/46 passos (96%)**
 
 | Fase | Passos | Situação |
 | --- | --- | --- |
@@ -12,12 +12,12 @@ Atualizado em 2026-11-07 13:45 · congelamento dos dados: 2026-11-13
 | F3 Pré-registro | 3/3 | ██████████ |
 | F4 Plano de testes | 6/6 | ██████████ |
 | F5 Execução | 3/3 | ██████████ |
-| F6 Análise | 3/4 | ████████░░ |
-| F7 Validação independente | 0/4 | ░░░░░░░░░░ |
-| F8 Congelamento dos dados | 0/3 | ░░░░░░░░░░ |
-| F9 Artefatos e escrita | 0/5 | ░░░░░░░░░░ |
-| F10 Revisão e aprovação | 0/3 | ░░░░░░░░░░ |
-| F11 Publicação e pós-publicação | 0/3 | ░░░░░░░░░░ |
+| F6 Análise | 4/4 | ██████████ |
+| F7 Validação independente | 4/4 | ██████████ |
+| F8 Congelamento dos dados | 2/3 | ███████░░░ |
+| F9 Artefatos e escrita | 5/5 | ██████████ |
+| F10 Revisão e aprovação | 2/3 | ███████░░░ |
+| F11 Publicação e pós-publicação | 3/3 | ██████████ |
 
 ## Passos
 
@@ -60,33 +60,33 @@ Atualizado em 2026-11-07 13:45 · congelamento dos dados: 2026-11-13
 ### F6 · Análise
 - [x] **F6.1** Rodar a análise exatamente como pré-registrada, com script versionado
 - [x] **F6.2** Atualizar o status de cada hipótese: confirmada, refutada ou equivalente
-- [ ] **F6.3** Se alguma ficou subpotente, estender a amostra pela regra de parada; nunca publicar como conclusão — falta: manual: falta evidência
+- [x] **F6.3** Se alguma ficou subpotente, estender a amostra pela regra de parada; nunca publicar como conclusão
 - [x] **F6.4** Fazer as análises de sensibilidade e as exploratórias, rotuladas como tal
 
 ### F7 · Validação independente
-- [ ] **F7.1** Reproduzir do zero em um clone limpo ou container, com um comando — falta: manual: falta evidência
-- [ ] **F7.2** Reproduzir em um segundo ambiente ou por uma segunda pessoa — falta: manual: falta evidência
-- [ ] **F7.3** Escrever as ameaças à validade: interna, externa, de construto e de conclusão — falta: validade.md ainda tem TODO
-- [ ] **F7.4** Revisão adversária: tentar refutar as conclusões e registrar o que sobrou — falta: manual: falta evidência
+- [x] **F7.1** Reproduzir do zero em um clone limpo ou container, com um comando
+- [x] **F7.2** Reproduzir em um segundo ambiente ou por uma segunda pessoa
+- [x] **F7.3** Escrever as ameaças à validade: interna, externa, de construto e de conclusão
+- [x] **F7.4** Revisão adversária: tentar refutar as conclusões e registrar o que sobrou
 
 ### F8 · Congelamento dos dados
-- [ ] **F8.1** Congelar dados e análise com tag git e manifesto de checksums — falta: manual: falta evidência
-- [ ] **F8.2** Montar o pacote de dados aberto: CSV, dicionário, licença e README — falta: 0/3 arquivo(s) em dados/pacote/*
+- [x] **F8.1** Congelar dados e análise com tag git e manifesto de checksums
+- [x] **F8.2** Montar o pacote de dados aberto: CSV, dicionário, licença e README
 - [ ] **F8.3** Arquivar com DOI (release no GitHub integrada ao Zenodo) — falta: manual: falta evidência
 
 ### F9 · Artefatos e escrita
-- [ ] **F9.1** Montar a matriz afirmação ↔ evidência: toda afirmação do texto aponta para um dado ou uma fonte — falta: afirmações sem evidência: 1
-- [ ] **F9.2** Gerar figuras e tabelas por script a partir dos dados; números do texto vêm dos resultados — falta: manual: falta evidência
-- [ ] **F9.3** Redigir o artigo em português e em inglês (resumo, introdução, métodos, resultados, discussão, limitações, conclusão, reprodutibilidade, referências) — falta: rascunho ausente, curto ou com TODO em: pt, en
-- [ ] **F9.4** Validar os formatos: links, tabelas, imagens, acessibilidade e build do site — falta: manual: falta evidência
-- [ ] **F9.5** Revisar confidencialidade e anonimização; marcar as notas-fonte como publicáveis — falta: manual: falta evidência
+- [x] **F9.1** Montar a matriz afirmação ↔ evidência: toda afirmação do texto aponta para um dado ou uma fonte
+- [x] **F9.2** Gerar figuras e tabelas por script a partir dos dados; números do texto vêm dos resultados
+- [x] **F9.3** Redigir o artigo em português e em inglês (resumo, introdução, métodos, resultados, discussão, limitações, conclusão, reprodutibilidade, referências)
+- [x] **F9.4** Validar os formatos: links, tabelas, imagens, acessibilidade e build do site
+- [x] **F9.5** Revisar confidencialidade e anonimização; marcar as notas-fonte como publicáveis
 
 ### F10 · Revisão e aprovação
-- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F6.3, F7.1, F7.2, F7.3, F7.4, F8.1, F8.2, F8.3…
-- [ ] **F10.2** Fact-check final: cada número do texto conferido contra os dados — falta: manual: falta evidência
-- [ ] **F10.3** Aprovação do autor, dita de forma explícita para cada idioma — falta: manual: falta evidência
+- [ ] **F10.1** Conferir que todos os passos das fases F0 a F9 estão concluídos — falta: pendentes: F8.3
+- [x] **F10.2** Fact-check final: cada número do texto conferido contra os dados
+- [x] **F10.3** Aprovação do autor, dita de forma explícita para cada idioma
 
 ### F11 · Publicação e pós-publicação
-- [ ] **F11.1** Publicar com o publicador: site, DEV e, depois, as demais plataformas — falta: manual: falta evidência
-- [ ] **F11.2** Abrir o canal de correção e registrar a política de errata e o histórico de versões — falta: manual: falta evidência
-- [ ] **F11.3** Retrospectiva: o que melhorou no método, o que faltou e quanto tempo cada fase levou — falta: retro.md ainda tem TODO
+- [x] **F11.1** Publicar com o publicador: site, DEV e, depois, as demais plataformas
+- [x] **F11.2** Abrir o canal de correção e registrar a política de errata e o histórico de versões
+- [x] **F11.3** Retrospectiva: o que melhorou no método, o que faltou e quanto tempo cada fase levou

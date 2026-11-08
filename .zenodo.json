@@ -1,0 +1,11 @@
+{
+  "title": "SDD só com Haiku: o que sobra de qualidade quando o custo cai (dados, código e protocolo)",
+  "upload_type": "dataset",
+  "description": "Estudo pré-registrado e reproduzível do Melo Labs: 198 execuções de um ciclo de SDD (especificação, tarefas e código) com Haiku 5.5 e Sonnet 5.5 em um projeto aberto. Inclui protocolo, hipóteses, dados brutos, análise, rubricas e artigos (pt e en). Guia: https://melolabs.net/pt/haiku-sdd-guia/ Artigo técnico: https://melolabs.net/pt/haiku-sdd-producao/",
+  "creators": [{"name": "Melo, Caio"}],
+  "keywords": ["SDD", "Haiku", "LLM", "custo", "estudo pré-registrado"],
+  "language": "por",
+  "related_identifiers": [
+    {"identifier": "https://melolabs.net/pt/haiku-sdd-producao/", "relation": "isDocumentedBy", "scheme": "url"}
+  ]
+}

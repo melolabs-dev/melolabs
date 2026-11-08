@@ -1,6 +1,6 @@
 # Retrospectiva do estudo
 
-- O que funcionou no método: TODO
-- O que faltou ou atrasou: TODO
-- Tempo gasto por fase: TODO
-- O que vamos mudar no protocolo: TODO
+- **O que funcionou no método:** pré-registrar hipóteses e regras de decisão antes da coleta, congelar os dados com tag e fazer a revisão adversarial independente. A revisão achou pontos reais (potência baixa, teste P1 dominando as falhas de código, cascata que não podia escalar) e deixou o texto mais honesto. Rodar o piloto de 12 execuções antes definiu o tamanho da amostra com base em dados. O portão do publicador impediu publicar sem aprovação.
+- **O que faltou ou atrasou:** quatro hipóteses ficaram subpotentes (H1, H4, H5, H11), então o estudo descreve efeitos, mas não os confirma. A concordância entre juízes por critério foi moderada (alfa 0,61). O arranjo sem engenheiro na malha não mede o uso real. O DOI no Zenodo não foi emitido porque o repositório é privado.
+- **Tempo gasto por fase:** premissa, fontes e pré-registro em 04 e 05/11; coleta principal em 06/11 (138 execuções, cerca de um dia de máquina); juízes e análise em 06 e 07/11; revisão adversarial, congelamento e escrita em 07 e 08/11; publicação em 08/11. Cerca de cinco dias do início à publicação.
+- **O que vamos mudar no protocolo:** calcular a potência por hipótese antes de aceitar uma hipótese no pré-registro; incluir desde o início uma condição com engenheiro revisando; planejar o DOI cedo (repositório público e integração com o Zenodo antes do congelamento); preparar a versão simples do artigo junto com a técnica, não depois.
