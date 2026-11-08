@@ -97,16 +97,18 @@ def main():
     ids = {h["id"]: h for h in art["hyp"]}
     for h in hs:
         hid = f"{slug}:{h['id']}"
-        t = f"{h['id']} (pré-registrada): {h['enunciado']}" + (" [fase C, adiada para um paper futuro]" if h["id"] in ("H2", "H7", "H8", "H9") else "")
+        # o Jornada so conhece pendente, confirmada, refutada e equivalente; os demais status vao no texto
+        st_j = h["status"] if h["status"] in ("pendente", "confirmada", "refutada", "equivalente") else "pendente"
+        t = (f"[status: {h['status']}] " if st_j != h["status"] else "") + f"{h['id']} (pré-registrada): {h['enunciado']}" + (" [fase C, adiada para um paper futuro]" if h["id"] in ("H2", "H7", "H8", "H9") else "")
         if hid in ids:
-            ids[hid]["st"] = h["status"]
+            ids[hid]["st"] = st_j
             ids[hid]["t"] = t
         else:
-            art["hyp"].append({"id": hid, "t": t, "st": h["status"]})
+            art["hyp"].append({"id": hid, "t": t, "st": st_j})
 
     # bloco gerenciado nas notas (o resto das notas é do autor)
     nfeitas = len([x for x in (ROOT / "studies" / slug / "dados" / "bruto").glob("*/concluida.json") if not x.parent.name.startswith("mini-")])
-    coleta = f"{nfeitas} de 138 execuções concluídas"
+    coleta = f"{nfeitas} de 198 execuções concluídas (138 do plano e 60 da extensão)"
     pend = [s["id"] for ph, steps, k, n in rows for s, ok, why in steps if s.get("autor") and not ok and "aprovação" in why]
     linhas = [
         "[[sync]]",
@@ -114,10 +116,10 @@ def main():
         f"Agora: {agora}" if agora else "Agora: aguardando as suas decisões.",
         f"Progresso: {done} de {total} passos do protocolo; {len(feitos)} marcados aqui.",
         "Feito: premissa, 35 fontes verificadas, 11 hipóteses (H1 a H11), plano de análise, pré-registro com tag git (05/11) e adendo 1 (06/11) após revisão adversarial independente; gabarito de testes cifrado e fixado por hashes; orquestrador isolado (um processo por etapa, sem acesso à web nem ao histórico do projeto), com consumo real de tokens medido pela ferramenta e auditoria com transcrições; mini-piloto de 8 execuções validou o método.",
-        "Coleta principal: " + coleta + " (fases A e B, 138 execuções, em fila, uma por vez). Depois: avaliação cega por 3 juízes Opus e análise pré-registrada (script em analise/analise.py).",
+        "Coleta e análise concluídas (07/11): " + coleta + ", 579 julgamentos de rubrica por Opus (3 por artefato), análises primária e estendida, auditoria dos dados aprovada, reprodução em clone limpo igual. Sem nenhuma hipótese confirmada: H1, H4, H5 e H11 subpotentes (alfa dos juízes 0,61; H4 com C4 a 72% e Sonnet a 91%), H10 refutada pelo custo, H3 não testável, H6 descritiva, H2/H7/H8/H9 não testadas (fase C adiada).",
         "Decidido pelo autor em 06/11: a fase C (H2, H7, H8, H9 e braços S8 a S11) fica para um paper futuro; neste artigo saem como não testadas. Depois da análise, o autor decide sobre a documentação de execução e os próximos passos.",
-        "Correções importantes: a contagem de tokens do piloto 1 não era consumo (retirada); a auditoria do piloto estava vazia (retirada); H6 virou descritiva; H4 usa Newcombe com checagem de saturação. Dados parciais indicam que a H4 pode não saturar (variante #1384-a), o custo de lista do Haiku com mitigações fica perto de 1/7 do Sonnet e o Haiku usa cerca de 1,4 vez os tokens.",
-        "Memória: mantenha o computador ligado; a coleta espera 3 GB livres entre etapas.",
+        "Resultado principal: o Haiku sai por cerca de 1/5 do custo de lista do Sonnet (0,18) e entrega TechSpec e Tasks quase iguais, mas perde no código das tarefas mais difíceis (#1384-a, #1384-c, #1267). Correções do método: a contagem de tokens e a auditoria do piloto 1 foram retiradas. Rascunhos pt e en prontos em posts/drafts; falta a sua revisão e aprovação.",
+        "Próximo: revisão adversarial independente (F7.4), segundo ambiente (F7.2), congelamento com tag (F8.1), DOI (F8.3), fact-check, sua aprovação por idioma e publicação.",
         f"Esperando a sua aprovação: {', '.join(pend) or 'nada'}.",
         "Decidido em 05/11: projeto h3 (TypeScript), features #1267, #1384 e #1050; qualidade >= 0,90 e custo <= 0,50; título 'SDD só com Haiku: o que sobra de qualidade quando o custo cai'; juízes Opus sem teto de gasto; dados congelados em 13/11.",
         "Artefato do estudo: https://claude.ai/artifact/Rh9dceNqp8djrseMUdiX99",
