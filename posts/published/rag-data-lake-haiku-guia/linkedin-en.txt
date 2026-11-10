@@ -1,0 +1,3 @@
+Give Haiku the project's memory, not the whole project
+
+https://melolabs.net/en/rag-data-lake-haiku-guia/
