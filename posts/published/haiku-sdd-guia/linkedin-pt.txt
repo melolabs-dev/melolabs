@@ -1,0 +1,3 @@
+Como usar o Haiku no dia a dia do SDD, sem gastar à toa
+
+https://melolabs.net/pt/haiku-sdd-guia/
