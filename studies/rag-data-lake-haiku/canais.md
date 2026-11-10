@@ -1,6 +1,6 @@
 # Textos para os canais (foco na versão simples; o artigo técnico entra como "para quem quer os números")
 
-Nada foi postado no LinkedIn sem aprovação do autor. Links: guia https://melolabs.net/pt/rag-data-lake-haiku-guia/ e https://melolabs.net/en/rag-data-lake-haiku-guia/; técnico https://melolabs.net/pt/rag-data-lake-haiku/ e https://melolabs.net/en/rag-data-lake-haiku/.
+Nada foi postado no LinkedIn sem aprovação do autor. DEV: guia pt e en já publicados (links em posts/published/rag-data-lake-haiku-guia/publish.json). Links: guia https://melolabs.net/pt/rag-data-lake-haiku-guia/ e https://melolabs.net/en/rag-data-lake-haiku-guia/; técnico https://melolabs.net/pt/rag-data-lake-haiku/ e https://melolabs.net/en/rag-data-lake-haiku/.
 
 ## LinkedIn (guia, pt)
 Dá para um modelo pequeno decidir como um grande se você der a ele a memória do projeto? Testei isso com o Haiku em 7.200 respostas sobre um projeto aberto de verdade, com as hipóteses escritas antes de rodar.
@@ -13,6 +13,7 @@ Também ficou registrado o que não funcionou (um "portão" que responde "não s
 
 Guia com figuras: https://melolabs.net/pt/rag-data-lake-haiku-guia/
 Método, números e limitações: https://melolabs.net/pt/rag-data-lake-haiku/
+Dados e código (DOI): https://doi.org/10.5281/zenodo.24101665
 
 ## LinkedIn (guide, en)
 Can a small model decide like a big one if you give it the project's memory? I tested it with Haiku across 7,200 answers on a real open-source project, with the hypotheses written before running.
@@ -25,3 +26,4 @@ What did not work is recorded too (a "gate" that answers "I don't know" on its o
 
 Guide with figures: https://melolabs.net/en/rag-data-lake-haiku-guia/
 Method, numbers and limitations: https://melolabs.net/en/rag-data-lake-haiku/
+Data and code (DOI): https://doi.org/10.5281/zenodo.24101665
