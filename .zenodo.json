@@ -1,14 +1,15 @@
 {
-  "title": "SDD só com Haiku: o que sobra de qualidade quando o custo cai (dados, código e protocolo)",
+  "title": "Haiku com mini data lake: o que o RAG curado acerta e o que custa (dados, código e protocolo, estudo 2)",
   "upload_type": "dataset",
-  "description": "Estudo pré-registrado e reproduzível do Melo Labs: 198 execuções de um ciclo de SDD (especificação, tarefas e código) com Haiku 5.5 e Sonnet 5.5 em um projeto aberto. Inclui protocolo, hipóteses, dados brutos, análise, rubricas e artigos (pt e en). Guia: https://melolabs.net/pt/haiku-sdd-guia/ Artigo técnico: https://melolabs.net/pt/haiku-sdd-producao/",
+  "description": "Estudo 2 pré-registrado e reproduzível do Melo Labs: 7.200 chamadas (120 perguntas de decisão, 13 condições, Haiku 5.5 e Sonnet 5.5) sobre um mini data lake do projeto aberto h3. Inclui lake, perguntas, gabarito, pré-registro, dados brutos, análise, figuras e artigos (pt e en). Guia: https://melolabs.net/pt/rag-data-lake-haiku-guia/ Artigo técnico: https://melolabs.net/pt/rag-data-lake-haiku/",
   "creators": [
     {
       "name": "Melo, Caio"
     }
   ],
   "keywords": [
-    "SDD",
+    "RAG",
+    "data lake",
     "Haiku",
     "LLM",
     "custo",
@@ -17,11 +18,11 @@
   "language": "por",
   "related_identifiers": [
     {
-      "identifier": "https://melolabs.net/pt/haiku-sdd-producao/",
+      "identifier": "https://melolabs.net/pt/rag-data-lake-haiku/",
       "relation": "isDocumentedBy",
       "scheme": "url"
     }
   ],
   "license": "cc-by-4.0",
-  "version": "1.1.0"
+  "version": "2.0.0"
 }
