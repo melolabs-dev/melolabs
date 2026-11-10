@@ -6,3 +6,4 @@
 - **10/11/2026:** rodada principal, 7.200 chamadas em cerca de 2 h 10, 0 erros; análise e congelamento dos dados (commit `c08081d`, tag `dados-rag-data-lake-haiku`).
 - **10/11/2026:** guia e artigo técnico (pt e en) aprovados e publicados em https://melolabs.net; guia no DEV (pt e en) e no LinkedIn (pt e en).
 - **10/11/2026 (v2.0.0):** arquivado no Zenodo, DOI da versão 10.5281/zenodo.24101665.
+- **10/11/2026:** corrigida a citação do DOI no estudo 1 (ver errata).
