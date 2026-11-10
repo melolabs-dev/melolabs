@@ -4,7 +4,7 @@ lang: pt
 date: 2026-11-10
 tags: [rag, haiku, data-lake, custo, pre-registro, agentes]
 sources: [estudo-rag-data-lake-haiku]
-status: draft
+status: approved
 study: rag-data-lake-haiku
 ---
 

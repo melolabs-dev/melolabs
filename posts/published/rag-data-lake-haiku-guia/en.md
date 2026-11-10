@@ -3,8 +3,8 @@ title: "Give Haiku the project's memory, not the whole project"
 lang: en
 date: 2026-11-10
 tags: [rag, haiku, guide, cost, agents]
-sources: [study-rag-data-lake-haiku]
-status: draft
+sources: [estudo-rag-data-lake-haiku]
+status: approved
 study: rag-data-lake-haiku
 ---
 

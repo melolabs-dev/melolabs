@@ -3,8 +3,8 @@ title: "Haiku with a mini data lake: how we tested it, what worked and what the 
 lang: en
 date: 2026-11-10
 tags: [rag, haiku, data-lake, cost, preregistration, agents]
-sources: [study-rag-data-lake-haiku]
-status: draft
+sources: [estudo-rag-data-lake-haiku]
+status: approved
 study: rag-data-lake-haiku
 ---
 
