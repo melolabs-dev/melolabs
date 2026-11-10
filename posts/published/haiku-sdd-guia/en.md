@@ -86,7 +86,7 @@ Our reading, optimistic: **Haiku does the heavy lifting, fast and cheap, and the
 We tested **one project** (TypeScript, three features). The conclusion on code is still open, and the document rubric has limitations. But the path (Haiku on documents, tests first and correction on code, and a person reviewing) is cheap, showed results in several cases and fits how real teams work. The technical article has the numbers, the intervals and everything that may be wrong.
 
 
-Study data and code, archived with DOI: [10.5281/zenodo.24048447](https://doi.org/10.5281/zenodo.24048447).
+Study data and code, archived with DOI: [10.5281/zenodo.24052183](https://doi.org/10.5281/zenodo.24052183).
 
 ---
 *The experiments, data and conclusions are mine. The writing was AI-assisted and reviewed by me.*

@@ -119,7 +119,7 @@ Haiku 5.5 cuts the cost to about 1/5 and delivers SDD documents very close to So
 - Zheng et al. *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.* arXiv:2306.05685, 2023.
 - Gloaguen et al. *Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?* arXiv:2602.11988, 2026.
 - Rosa et al. *Understanding Specification-Driven Code Generation with LLMs: An Empirical Study Design.* arXiv:2601.03878, 2026 (study design, no results).
-- Study data, code and prompts, archived with DOI [10.5281/zenodo.24048447](https://doi.org/10.5281/zenodo.24048447): repository [`melolabs-dev/melolabs`](https://github.com/melolabs-dev/melolabs), folder `studies/haiku-sdd-producao`, tags `prereg-haiku-sdd-producao`, `-adendo1`, `-adendo2` and `-adendo2b`.
+- Study data, code and prompts, archived with DOI [10.5281/zenodo.24052183](https://doi.org/10.5281/zenodo.24052183): repository [`melolabs-dev/melolabs`](https://github.com/melolabs-dev/melolabs), folder `studies/haiku-sdd-producao`, tags `prereg-haiku-sdd-producao`, `-adendo1`, `-adendo2` and `-adendo2b`.
 
 ---
 *The experiments, data and conclusions are mine. The writing was AI-assisted and reviewed by me.*
