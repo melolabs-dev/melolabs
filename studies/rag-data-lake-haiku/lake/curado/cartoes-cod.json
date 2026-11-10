@@ -1,0 +1,598 @@
+[
+  {
+    "id": "c-cod-01",
+    "decisao": "Antes, o seal de sessão usava 1 iteração de PBKDF2 como padrão; esse padrão antigo é chamado de legado no código.",
+    "motivo": "não consta",
+    "vale_quando": "Sessões seladas antes da subida do padrão de iterações",
+    "status": "substituida",
+    "substitui": [],
+    "tema": "sessao",
+    "fontes": [
+      {
+        "doc": "doc-0108",
+        "trecho": "Set to `false` to reject sessions sealed with the legacy default of 1"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-02",
+    "decisao": "O padrão de iterações PBKDF2 do seal de sessão foi elevado para 8192 (v2.0.1-rc.25).",
+    "motivo": "não consta",
+    "vale_quando": "Sessões novas selando com as opções padrão do seal",
+    "status": "vigente",
+    "substitui": [
+      "c-cod-01"
+    ],
+    "tema": "sessao",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**session:** Raise default seal PBKDF2 iterations to 8192"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-03",
+    "decisao": "Antes da v2.0.1-rc.30, uma sessão que só era lida também era persistida (inferido do título da correção).",
+    "motivo": "não consta",
+    "vale_quando": "Leitura de sessão em versões anteriores à rc.30",
+    "status": "substituida",
+    "substitui": [],
+    "tema": "sessao",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**session:** Do not persist a session that is only read"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-04",
+    "decisao": "Uma sessão nova é inicializada só em memória; ela só é persistida no primeiro updateSession (ou por useSession).",
+    "motivo": "Ler a sessão (por exemplo, checar autenticação) não deve criar sessão para visitantes anônimos.",
+    "vale_quando": "getSession em requisição sem sessão",
+    "status": "vigente",
+    "substitui": [
+      "c-cod-03"
+    ],
+    "tema": "sessao",
+    "fontes": [
+      {
+        "doc": "doc-0108",
+        "trecho": "// New session: initialize in memory only. It is persisted by the first"
+      },
+      {
+        "doc": "doc-0060",
+        "trecho": "**session:** Do not persist a session that is only read"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-05",
+    "decisao": "Antes da v2.0.1-rc.26, a confiança em x-forwarded-proto não era opt-in (inferido do título da mudança).",
+    "motivo": "não consta",
+    "vale_quando": "Leitura do protocolo da requisição em versões anteriores à rc.26",
+    "status": "substituida",
+    "substitui": [],
+    "tema": "seguranca",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "Make x-forwarded-proto trust opt-in"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-06",
+    "decisao": "A confiança em x-forwarded-proto passou a ser opt-in, mudança marcada como incompatível (breaking) na rc.26.",
+    "motivo": "não consta",
+    "vale_quando": "Aplicações atrás de proxy que dependem de x-forwarded-proto",
+    "status": "vigente",
+    "substitui": [
+      "c-cod-05"
+    ],
+    "tema": "seguranca",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "Make x-forwarded-proto trust opt-in"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-07",
+    "decisao": "Antes da rc.26, os cabeçalhos CORS de valor único eram anexados (append) em vez de definidos.",
+    "motivo": "não consta",
+    "vale_quando": "Aplicar CORS mais de uma vez (middleware mais handler) em versões anteriores à rc.26",
+    "status": "substituida",
+    "substitui": [],
+    "tema": "seguranca",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**cors:** Set single-valued CORS headers instead of appending"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-08",
+    "decisao": "Cabeçalhos CORS de valor único usam .set; só o vary é anexado com append.",
+    "motivo": "Evitar valores duplicados inválidos (como \"*, *\") quando o CORS é aplicado mais de uma vez.",
+    "vale_quando": "Uso de handleCors ou appendCorsHeaders",
+    "status": "vigente",
+    "substitui": [
+      "c-cod-07"
+    ],
+    "tema": "seguranca",
+    "fontes": [
+      {
+        "doc": "doc-0106",
+        "trecho": "CORS headers are single-valued, so use `.set` to avoid invalid duplicated"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-09",
+    "decisao": "Antes da rc.28, o serveStatic resolvia um pathname não canônico em vez de recusá-lo.",
+    "motivo": "não consta",
+    "vale_quando": "serveStatic em versões anteriores à rc.28",
+    "status": "substituida",
+    "substitui": [],
+    "tema": "estatico",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**static:** Refuse a non-canonical pathname instead of resolving it"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-10",
+    "decisao": "serveStatic não serve pathname não canônico: responde 404, ou deixa passar (fallthrough) quando a opção está ligada.",
+    "motivo": "Esses caminhos chegam a uma rota catch-all sem passar por um guard use() mais estreito, abrindo acesso a arquivos protegidos.",
+    "vale_quando": "Requisição com barras iniciais repetidas ou segmentos de ponto com escapes aninhados",
+    "status": "vigente",
+    "substitui": [
+      "c-cod-09"
+    ],
+    "tema": "estatico",
+    "fontes": [
+      {
+        "doc": "doc-0109",
+        "trecho": "A **non-canonical pathname is not served** (404, or falls through when"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-11",
+    "decisao": "createEventStream foi marcado como obsoleto (deprecated) na rc.26.",
+    "motivo": "não consta",
+    "vale_quando": "Código que ainda usa createEventStream",
+    "status": "substituida",
+    "substitui": [],
+    "tema": "resposta",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**sse:** Promote EventStream to public API, deprecate createEventStream"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-12",
+    "decisao": "EventStream virou API pública e pode ser retornado diretamente dos handlers.",
+    "motivo": "não consta",
+    "vale_quando": "Respostas SSE (server-sent events)",
+    "status": "vigente",
+    "substitui": [
+      "c-cod-11"
+    ],
+    "tema": "resposta",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**sse:** Promote EventStream to public API, deprecate createEventStream"
+      },
+      {
+        "doc": "doc-0060",
+        "trecho": "**sse:** Allow returning EventStream directly from handlers"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-13",
+    "decisao": "Antes da rc.26, as credenciais do Basic auth não eram decodificadas como UTF-8 (inferido do título da correção).",
+    "motivo": "não consta",
+    "vale_quando": "Basic auth em versões anteriores à rc.26",
+    "status": "substituida",
+    "substitui": [],
+    "tema": "seguranca",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "Decode Basic-auth credentials as UTF-8"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-14",
+    "decisao": "Credenciais do Basic auth são decodificadas como UTF-8 e, se não forem UTF-8 válido, mantém-se a leitura Latin-1.",
+    "motivo": "Clientes modernos enviam UTF-8 (RFC 7617); a leitura Latin-1 serve a clientes legados.",
+    "vale_quando": "requireBasicAuth e basicAuth",
+    "status": "vigente",
+    "substitui": [
+      "c-cod-13"
+    ],
+    "tema": "seguranca",
+    "fontes": [
+      {
+        "doc": "doc-0104",
+        "trecho": "// Not valid UTF-8: keep the Latin-1 interpretation for legacy clients."
+      }
+    ]
+  },
+  {
+    "id": "c-cod-15",
+    "decisao": "useSession força a criação e a persistência da sessão na hora, enquanto getSession não emite Set-Cookie até haver um updateSession.",
+    "motivo": "O id da sessão só é estável entre requisições depois que ela é gravada.",
+    "vale_quando": "Escolha entre useSession e getSession",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "sessao",
+    "fontes": [
+      {
+        "doc": "doc-0108",
+        "trecho": "// Force init: persist a session created during this request so its id is stable"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-16",
+    "decisao": "O token de sessão é lido primeiro do cabeçalho de sessão (padrão x-h3-session ou x-{name}-session) e, se não houver, dos cookies.",
+    "motivo": "não consta",
+    "vale_quando": "Leitura de sessão com sessionHeader diferente de false",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "sessao",
+    "fontes": [
+      {
+        "doc": "doc-0108",
+        "trecho": "// Try header first"
+      },
+      {
+        "doc": "doc-0108",
+        "trecho": "// Fallback to cookies"
+      },
+      {
+        "doc": "doc-0108",
+        "trecho": "/** Default is x-h3-session / x-{name}-session */"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-17",
+    "decisao": "Com idleTimeout, o reselo da sessão só ocorre quando mais da metade da janela ociosa foi usada (SLIDE_THRESHOLD = 0.5).",
+    "motivo": "O seal é a operação mais cara da sessão; resselar a cada requisição desperdiça trabalho.",
+    "vale_quando": "Sessões com idleTimeout configurado",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "sessao",
+    "fontes": [
+      {
+        "doc": "doc-0108",
+        "trecho": "const SLIDE_THRESHOLD = 0.5;"
+      },
+      {
+        "doc": "doc-0108",
+        "trecho": "So reseal only once the window is more than half used."
+      }
+    ]
+  },
+  {
+    "id": "c-cod-18",
+    "decisao": "maxAge é a vida útil absoluta da sessão, contada desde a criação; passado esse tempo o unseal lança \"Session expired!\".",
+    "motivo": "não consta",
+    "vale_quando": "Sessões com maxAge configurado",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "sessao",
+    "fontes": [
+      {
+        "doc": "doc-0108",
+        "trecho": "if (age > config.maxAge * 1000) {"
+      },
+      {
+        "doc": "doc-0108",
+        "trecho": "throw new Error(\"Session expired!\");"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-19",
+    "decisao": "Os Set-Cookie da sessão são espelhados em event.res.errHeaders a cada gravação ou limpeza.",
+    "motivo": "Respostas de erro só recebem cabeçalhos preparados como errHeaders; sem isso a sessão criada numa requisição que lança erro seria perdida.",
+    "vale_quando": "Requisição com sessão que termina em erro",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "sessao",
+    "fontes": [
+      {
+        "doc": "doc-0108",
+        "trecho": "Error responses only receive headers explicitly staged as `errHeaders`,"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-20",
+    "decisao": "Cookies em partes (chunked) têm limite padrão de 4000 caracteres por parte e no máximo 100 partes; acima disso setChunkedCookie lança HTTPError 500.",
+    "motivo": "O limite de cerca de 4KB varia por navegador e servidor; o código deixa folga.",
+    "vale_quando": "Valores grandes de cookie, como sessões grandes",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "cookie",
+    "fontes": [
+      {
+        "doc": "doc-0105",
+        "trecho": "const CHUNKS_MAX_LENGTH = 4000;"
+      },
+      {
+        "doc": "doc-0105",
+        "trecho": "const MAX_CHUNKED_COOKIE_COUNT = 100;"
+      },
+      {
+        "doc": "doc-0105",
+        "trecho": "message: `Cannot set chunked cookie \"${name}\": value needs more than ${MAX_CHUNKED_COOKIE_COUNT} chunks.`,"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-21",
+    "decisao": "A opção legacySealFallback está obsoleta e o fallback de seal legado será removido na v3.",
+    "motivo": "Remover na v2 invalidaria sessões já seladas com 1 iteração.",
+    "vale_quando": "Planejar migração para a v3",
+    "status": "contexto",
+    "substitui": [],
+    "tema": "migracao",
+    "fontes": [
+      {
+        "doc": "doc-0108",
+        "trecho": "@deprecated The legacy seal fallback (and this option) will be removed in v3."
+      }
+    ]
+  },
+  {
+    "id": "c-cod-22",
+    "decisao": "HTTPError.isError exige que o erro tenha status (maior que 99) além do nome HTTPError.",
+    "motivo": "Rejeitar erros não relacionados chamados HTTPError, como os de clientes fetch (ky, got).",
+    "vale_quando": "Detecção de HTTPError entre módulos",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "erro",
+    "fontes": [
+      {
+        "doc": "doc-0098",
+        "trecho": "Requiring a `status` rejects unrelated errors named `HTTPError` (e.g. from fetch clients like `ky` or `got`), while"
+      },
+      {
+        "doc": "doc-0060",
+        "trecho": "**error:** Require `status` in `HTTPError.isError`"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-23",
+    "decisao": "Valor lançado que não é Error vira HTTPError 500 não tratado; um número lançado vira o status correspondente.",
+    "motivo": "Evitar que valores arbitrários sejam renderizados como resposta de sucesso ou moldem a resposta.",
+    "vale_quando": "throw de número, string ou objeto num handler",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "erro",
+    "fontes": [
+      {
+        "doc": "doc-0103",
+        "trecho": "const error = new HTTPError({ status: 500, unhandled: true });"
+      },
+      {
+        "doc": "doc-0103",
+        "trecho": "return new HTTPError({ status: value });"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-24",
+    "decisao": "Um middleware que retorna undefined ou kNotFound faz a cadeia seguir para o próximo.",
+    "motivo": "não consta",
+    "vale_quando": "Middleware de duas camadas na cadeia",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "middleware",
+    "fontes": [
+      {
+        "doc": "doc-0102",
+        "trecho": "return res === undefined || res === kNotFound ? next() : res;"
+      },
+      {
+        "doc": "doc-0102",
+        "trecho": "return val === undefined || val === kNotFound;"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-25",
+    "decisao": "Requisições HEAD sem rota própria usam a rota GET correspondente, e o corpo é removido na resposta.",
+    "motivo": "RFC 9110.",
+    "vale_quando": "Roteamento de HEAD",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "rotas",
+    "fontes": [
+      {
+        "doc": "doc-0100",
+        "trecho": "// Fall back to the matching GET route (RFC 9110). The method stays \"HEAD\""
+      },
+      {
+        "doc": "doc-0060",
+        "trecho": "Automatically match GET routes for HEAD requests"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-26",
+    "decisao": "Middleware com escopo de método GET também casa com requisições HEAD.",
+    "motivo": "HEAD é servido por handlers GET (RFC 9110).",
+    "vale_quando": "use() com opção method: GET",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "middleware",
+    "fontes": [
+      {
+        "doc": "doc-0102",
+        "trecho": "// HEAD is served by GET handlers (RFC 9110), so GET-scoped middleware also matches HEAD"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-27",
+    "decisao": "Respostas de erro (4xx e 5xx) só recebem os cabeçalhos preparados como event.res.errHeaders.",
+    "motivo": "Evitar vazar cabeçalhos só de sucesso (cache, negociação de conteúdo) para erros.",
+    "vale_quando": "Resposta com status 400 ou maior",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "resposta",
+    "fontes": [
+      {
+        "doc": "doc-0103",
+        "trecho": "// Error responses (4xx/5xx) only receive headers explicitly staged as `event.res.errHeaders`"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-28",
+    "decisao": "URL com codificação percentual malformada é rejeitada com 400 antes de qualquer roteamento, salvo se a opção allowMalformedURL estiver ligada.",
+    "motivo": "Malformação não tem forma canônica; rejeitar antes de rotas e guards evita bypass.",
+    "vale_quando": "Pedidos com pathname como /foo% ou /%ZZ",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "seguranca",
+    "fontes": [
+      {
+        "doc": "doc-0100",
+        "trecho": "// Opt out with `allowMalformedURL` to receive the raw pathname instead."
+      },
+      {
+        "doc": "doc-0100",
+        "trecho": "throw new HTTPError({ status: 400, message: \"Bad Request\" });"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-29",
+    "decisao": "requireBasicAuth lança erro 500 se nem password nem validate forem informados, usa o realm padrão \"auth\" e responde 401 nas falhas.",
+    "motivo": "não consta",
+    "vale_quando": "Configuração e uso de Basic auth",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "seguranca",
+    "fontes": [
+      {
+        "doc": "doc-0104",
+        "trecho": "message: \"Either 'password' or 'validate' option must be provided\","
+      },
+      {
+        "doc": "doc-0104",
+        "trecho": "const realm = opts?.realm ?? \"auth\";"
+      },
+      {
+        "doc": "doc-0104",
+        "trecho": "status: 401,"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-30",
+    "decisao": "Entradas RegExp na opção origin do CORS são testadas sem âncora; é preciso ancorar (^ e $) e escapar os pontos.",
+    "motivo": "Um padrão como /example\\.com/ casaria também https://example.com.evil.test.",
+    "vale_quando": "CORS com origin em lista de expressões regulares",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "seguranca",
+    "fontes": [
+      {
+        "doc": "doc-0106",
+        "trecho": "string **unanchored** (via `RegExp.prototype.test`). A pattern like"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-31",
+    "decisao": "requireContentType lança 400 se faltar o Content-Type, 422 se for malformado e 415 se o tipo não for aceito.",
+    "motivo": "Segue os requisitos da RFC 10008 para o método QUERY.",
+    "vale_quando": "Handlers que exigem tipo de conteúdo",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "erro",
+    "fontes": [
+      {
+        "doc": "doc-0107",
+        "trecho": "`400 Bad Request` if the `Content-Type` header is missing."
+      },
+      {
+        "doc": "doc-0107",
+        "trecho": "`422 Unprocessable Content` if the `Content-Type` header is malformed."
+      },
+      {
+        "doc": "doc-0107",
+        "trecho": "`415 Unsupported Media Type` if the media type is not accepted."
+      }
+    ]
+  },
+  {
+    "id": "c-cod-32",
+    "decisao": "serveStatic só aceita GET e HEAD; outros métodos recebem 405 com allow: GET, HEAD, a menos que fallthrough esteja ligado.",
+    "motivo": "não consta",
+    "vale_quando": "serveStatic com outros métodos",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "estatico",
+    "fontes": [
+      {
+        "doc": "doc-0109",
+        "trecho": "event.res.headers.set(\"allow\", \"GET, HEAD\");"
+      },
+      {
+        "doc": "doc-0109",
+        "trecho": "throw new HTTPError({ status: 405 });"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-33",
+    "decisao": "O arquivo de índice padrão do serveStatic é [\"/index.html\"].",
+    "motivo": "não consta",
+    "vale_quando": "serveStatic em caminho de diretório",
+    "status": "vigente",
+    "substitui": [],
+    "tema": "estatico",
+    "fontes": [
+      {
+        "doc": "doc-0109",
+        "trecho": "* @default [\"/index.html\"]"
+      }
+    ]
+  },
+  {
+    "id": "c-cod-34",
+    "decisao": "Na rc.29 foi corrigido para os hooks de WebSocket continuarem alcançáveis quando a resposta é reconstruída.",
+    "motivo": "não consta",
+    "vale_quando": "Uso de WebSocket com hooks em respostas reconstruídas",
+    "status": "contexto",
+    "substitui": [],
+    "tema": "ws",
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**ws:** Keep WebSocket hooks reachable when the response is rebuilt"
+      }
+    ]
+  }
+]

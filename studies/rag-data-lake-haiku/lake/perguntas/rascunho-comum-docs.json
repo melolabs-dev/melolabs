@@ -1,0 +1,451 @@
+[
+ {
+  "id": "q-comum-docs-01",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, uma rota usa o método HTTP QUERY e o app aplica handleCors com uma lista explícita de methods. O que é preciso para os navegadores conseguirem chamar essa rota entre origens?",
+  "opcoes": [
+   "Acrescentar \"QUERY\" à lista de methods, pois o navegador envia preflight para ele",
+   "Nada além do handleCors, pois o QUERY é tratado como o GET e dispensa o preflight entre origens",
+   "Registrar um handler OPTIONS manual na rota, pois o handleCors só cobre GET e POST"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0065",
+    "trecho": "Unlike `GET`, `QUERY` is **not** CORS-safelisted, so browsers send a preflight"
+   }
+  ],
+  "cartoes": [
+   "c-docs-02"
+  ],
+  "justificativa": "O guia de rotas diz que o QUERY, ao contrário do GET, não é CORS-safelisted; por isso o navegador envia preflight e, com lista explícita de methods no handleCors, é preciso incluir \"QUERY\".",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-02",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, um app monta sub-apps aninhados e precisa de um tratamento central de erros que também capture as falhas dos sub-apps. Qual abordagem o projeto recomenda?",
+  "opcoes": [
+   "Registrar o hook global onError em cada sub-app, para que todos relatem ao app principal",
+   "Registrar um middleware onError com app.use, em vez de depender dos hooks globais",
+   "Lançar um HTTPError com cause em cada sub-app, para o app principal capturar"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0069",
+    "trecho": "When using nested apps, global hooks of sub-apps will not be called. Therefore it is better to use `onError` middleware."
+   }
+  ],
+  "cartoes": [
+   "c-docs-07"
+  ],
+  "justificativa": "Com apps aninhados os hooks globais dos sub-apps não são chamados; a documentação de erros indica usar o middleware onError.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-03",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, a equipe quer diagnosticar falhas mais rápido ligando a opção debug do new H3, que inclui stack traces nas respostas de erro. Qual é a orientação do projeto?",
+  "opcoes": [
+   "Ligar em staging e em produção, desde que a opção silent também esteja ligada",
+   "Ligar apenas durante o desenvolvimento, porque a opção expõe stack traces ao cliente",
+   "Ligar em produção para IPs internos, filtrando as respostas por um hook onError"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0072",
+    "trecho": "Enabling `debug` option, sends important stuff like stack traces in error responses. Only enable during development."
+   }
+  ],
+  "cartoes": [
+   "c-docs-13"
+  ],
+  "justificativa": "A documentação da API do H3 avisa que debug envia stack traces nas respostas de erro e que só deve ser habilitada em desenvolvimento.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-04",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, uma sessão usa idleTimeout de 30 minutos, e a equipe precisa que o limite real de inatividade, no pior caso, seja de 15 minutos. O que fazer?",
+  "opcoes": [
+   "Manter 30 minutos e reduzir o maxAge, que também conta a partir da última requisição",
+   "Manter 30 minutos, pois o horário do último acesso é atualizado em toda requisição",
+   "Dividir o idleTimeout por dois, pois o reselo só ocorre depois de metade da janela"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0089",
+    "trecho": "// Sign-out happens 15 to 30 minutes after the last request, never later."
+   },
+   {
+    "doc": "doc-0089",
+    "trecho": "Halve `idleTimeout` if you need the shorter end of that range to be your real limit."
+   }
+  ],
+  "cartoes": [
+   "c-docs-20"
+  ],
+  "justificativa": "O H3 só resela a sessão após usar mais da metade da janela, então a saída ocorre entre 15 e 30 minutos; o exemplo manda reduzir o idleTimeout à metade para que o limite menor seja o real. maxAge é vida absoluta, desde a criação.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-05",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, o time quer autenticar usuários consultando a própria base de usuários. Em que parte da aplicação essa lógica deve ficar?",
+  "opcoes": [
+   "Numa regra auth dentro das route rules, ao lado de cache e headers",
+   "Num middleware, porque a autenticação precisa de lógica executável",
+   "Num hook global onResponse, validando as credenciais após o handler"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "Route rules intentionally do not include an `auth` rule. Authentication needs executable logic that can check your user store, so it belongs in middleware."
+   }
+  ],
+  "cartoes": [
+   "c-docs-31"
+  ],
+  "justificativa": "A documentação de route rules afirma que elas não têm regra auth e que a autenticação pertence ao middleware.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-06",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, um app tem um middleware global requireAuth e uma regra routeRules com swr em /api/**. Em que ordem registrá-los para que requireAuth rode também nas rotas com cache?",
+  "opcoes": [
+   "Registrar routeRules() primeiro e requireAuth depois, pois o cache decide antes",
+   "Registrar requireAuth primeiro e routeRules() depois dele no app",
+   "A ordem não importa, pois os dois rodam em toda requisição cacheável"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "Register `routeRules()` **after** every global middleware that has to run for cached routes:"
+   }
+  ],
+  "cartoes": [
+   "c-docs-32"
+  ],
+  "justificativa": "A regra cache despacha o handler diretamente; por isso o middleware global precisa estar registrado antes de routeRules().",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-07",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, uma rota com regra cache precisa emitir um Set-Cookie próprio em cada resposta. Qual é a orientação do projeto?",
+  "opcoes": [
+   "Cachear a rota e ligar allowCookies, que passa a guardar o cookie na entrada",
+   "Cachear a rota normalmente, pois o cookie é guardado junto da resposta e reenviado",
+   "Não cachear essa rota, pois o Set-Cookie do handler nunca é guardado no cache"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "A handler's `Set-Cookie` header is sent only to the request that produced it and is **never stored in the cache**."
+   },
+   {
+    "doc": "doc-0071",
+    "trecho": "Do not cache a route that must set a cookie on every response."
+   }
+  ],
+  "cartoes": [
+   "c-docs-34"
+  ],
+  "justificativa": "O Set-Cookie vai só para a requisição que o gerou e nunca é guardado; allowCookies só controla a requisição. A orientação é não cachear a rota.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-08",
+  "bloco": "comum",
+  "pergunta": "Ao contribuir com código no repositório do h3, quais convenções de módulos e imports valem?",
+  "opcoes": [
+   "Somente ESM, com extensões .ts explícitas e imports diretos, sem barrels",
+   "ESM e CommonJS lado a lado, com extensões .ts explícitas e um index.ts por cada pasta",
+   "Somente ESM, com imports sem extensão e um index.ts reexportando cada pasta"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0059",
+    "trecho": "- **ESM only** — no CommonJS"
+   },
+   {
+    "doc": "doc-0059",
+    "trecho": "- **Explicit `.ts` extensions** in all import paths"
+   },
+   {
+    "doc": "doc-0059",
+    "trecho": "- **No barrel files** — import directly from specific modules"
+   }
+  ],
+  "cartoes": [
+   "c-docs-35"
+  ],
+  "justificativa": "O guia de agentes (AGENTS.md) lista: só ESM, extensões .ts explícitas e sem arquivos barrel.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-09",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, um endpoint usa proxyRequest para encaminhar chamadas a um upstream que não é totalmente confiável. Como evitar que as credenciais do cliente vazem?",
+  "opcoes": [
+   "Nada, pois o proxyRequest já descarta Cookie e Authorization por padrão",
+   "Passar filterHeaders com cookie e authorization nas opções do proxyRequest",
+   "Aplicar o middleware bodyLimit(), que remove os headers sensíveis do pedido"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0082",
+    "trecho": "When proxying to a not-fully-trusted upstream, strip them with `filterHeaders: [\"cookie\", \"authorization\"]`."
+   },
+   {
+    "doc": "doc-0082",
+    "trecho": "the incoming request's `Cookie` and `Authorization` headers are forwarded to the `target` verbatim."
+   }
+  ],
+  "cartoes": [
+   "c-docs-29"
+  ],
+  "justificativa": "O proxyRequest repassa Cookie e Authorization sem alteração; para upstream não confiável a documentação manda removê-los com filterHeaders.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-10",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, o app roda atrás de um CDN confiável que define x-forwarded-proto. O que é preciso para getRequestProtocol refletir o protocolo original do cliente?",
+  "opcoes": [
+   "Passar xForwardedProto: true, pois por padrão o header é ignorado",
+   "Nada, pois por padrão o header é usado sempre que estiver presente",
+   "Passar xForwardedHost: true, pois essa opção também controla o protocolo"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0078",
+    "trecho": "Note: This header is opt-in (default `false`) since it can be spoofed by clients. Only enable it when your application runs behind a trusted reverse proxy or CDN that sets this header."
+   }
+  ],
+  "cartoes": [
+   "c-docs-28"
+  ],
+  "justificativa": "O uso de x-forwarded-proto é opt-in (padrão false) por poder ser falsificado; atrás de CDN confiável liga-se xForwardedProto.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-docs-11",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, um handler usa event.url.pathname para montar caminhos e outro usa serveStatic com getContents lendo do disco. Que regra de decodificação vale para o pathname e para o id?",
+  "opcoes": [
+   "Decodificar o pathname com decodeURIComponent antes de resolver o id contra a raiz",
+   "Decodificar só o id no getContents, pois o pathname do evento já vem decodificado",
+   "Não decodificar nenhum dos dois por conta própria, tratando ambos como valores opacos"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0073",
+    "trecho": "Never decode `event.url.pathname` yourself. Decoding can reintroduce a `/` or `..` that routing and middleware never saw, which is a path traversal vector"
+   },
+   {
+    "doc": "doc-0079",
+    "trecho": "Resolve the `id` against your asset root as an opaque string — a backend that decodes it re-introduces separators and re-opens the hole."
+   }
+  ],
+  "cartoes": [
+   "c-docs-14",
+   "c-docs-24"
+  ],
+  "justificativa": "Um documento proíbe decodificar event.url.pathname por conta própria; o outro manda resolver o id do serveStatic como string opaca, sem decodificar. Juntos: nenhum dos dois é decodificado.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-docs-12",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, um handler pode terminar devolvendo um Response completo ou lançando um HTTPError, e nos dois casos o header x-request-id precisa seguir na resposta. Onde defini-lo em cada caso?",
+  "opcoes": [
+   "Em event.res.headers nos dois casos, pois o H3 sempre os mescla à resposta",
+   "No próprio Response devolvido e na opção headers do HTTPError lançado",
+   "Em event.res.errHeaders nos dois casos, como padrão do projeto"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0068",
+    "trecho": "prepared status is discarded and headers will be merged/overridden. For performance reasons, it is best to only set headers only from final Response in this case."
+   },
+   {
+    "doc": "doc-0069",
+    "trecho": "The recommended way to include headers in error responses is to use `new HTTPError({ headers })`:"
+   }
+  ],
+  "cartoes": [
+   "c-docs-12",
+   "c-docs-08"
+  ],
+  "justificativa": "Com Response completo o status preparado é descartado e o melhor é definir os headers no próprio Response; em erro, os headers de event.res.headers não entram e a recomendação é HTTPError({ headers }).",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-docs-13",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, uma rota com regra cache chama proxyRequest para um upstream de confiança, e esse upstream precisa receber o Authorization do cliente. O que configurar?",
+  "opcoes": [
+   "Nada, pois o handler em cache recebe o Authorization e o proxyRequest o repassa",
+   "Listar authorization em varies na regra, pois o H3 o repassa ao handler",
+   "Ligar allowAuthorization na regra cache, e então o proxyRequest o repassa ao destino"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "Set `cache: { allowAuthorization: true }` to pass the authorization credential to the handler."
+   },
+   {
+    "doc": "doc-0082",
+    "trecho": "the incoming request's `Cookie` and `Authorization` headers are forwarded to the `target` verbatim."
+   }
+  ],
+  "cartoes": [
+   "c-docs-33",
+   "c-docs-29"
+  ],
+  "justificativa": "O H3 remove Authorization antes do handler em cache e só o entrega com allowAuthorization (listar em varies não repassa); com o header presente, o proxyRequest o encaminha ao destino sem alteração.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-docs-14",
+  "bloco": "comum",
+  "pergunta": "Na versão 2 do h3, sobre qual base o framework foi reescrito e qual papel o srvx cumpre nessa base?",
+  "opcoes": [
+   "Sobre as APIs do Node.js, e o srvx adiciona uma camada de compatibilidade com padrões web",
+   "Sobre padrões web, e o srvx unifica as diferenças entre os runtimes, mantendo o core simples",
+   "Sobre padrões web, e o srvx substitui o roteador, trocando o rou3 pelo próprio"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0096",
+    "trecho": "It is a full rewrite on top of web standards, stays compatible with most v1 utilities, and is faster and smaller than v1."
+   },
+   {
+    "doc": "doc-0095",
+    "trecho": "With [💥 srvx](https://srvx.h3.dev) unifying runtime differences, H3 can remain simpler, focusing exclusively on web standard APIs."
+   }
+  ],
+  "cartoes": [
+   "c-docs-49"
+  ],
+  "justificativa": "Um post diz que a v2 é reescrita sobre padrões web; o outro explica que o srvx unifica as diferenças entre runtimes para o H3 ficar simples.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-docs-15",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, como rodar o app em desenvolvimento com observação de arquivos e como chamá-lo diretamente em testes, sem subir um servidor?",
+  "opcoes": [
+   "Rodar serve(app) com node --watch e, nos testes, chamar app.fetch diretamente",
+   "Rodar npx listhen -w sobre o index.ts e, nos testes, usar toWebHandler(app)",
+   "Rodar toWebHandler(app) com node --watch e, nos testes, chamar app.fetch"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0063",
+    "trecho": "node --watch ./server.mjs"
+   },
+   {
+    "doc": "doc-0063",
+    "trecho": "We also have [`app.fetch`](/guide/api/h3#h3fetch) which can be directly used to run H3 apps in any web-compatible runtime or even directly called for testing purposes."
+   }
+  ],
+  "cartoes": [
+   "c-docs-47",
+   "c-docs-41"
+  ],
+  "justificativa": "O guia inicial mostra serve(app) executado com node --watch e indica app.fetch para rodar em qualquer runtime web ou chamar direto em testes.",
+  "n_fontes": 2
+ }
+]

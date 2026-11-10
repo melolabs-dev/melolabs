@@ -1,0 +1,736 @@
+[
+ {
+  "id": "c-iss-01",
+  "decisao": "pi0 recusou um setDefaults global para xForwardedFor/xForwardedHost no h3.",
+  "motivo": "Um app H3 interno e não relacionado poderia passar a aceitar cabeçalhos x-forwarded por engano.",
+  "vale_quando": "Quando se pede habilitar globalmente os cabeçalhos x-forwarded*",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0014",
+    "trecho": "i still believe it will be something unsafe specially if we allow H3 to change it's behavior based on environment side-effects."
+   },
+   {
+    "doc": "doc-0014",
+    "trecho": "An internal unrelated H3 app might wrongly start to accept x-forwarded headers."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-02",
+  "decisao": "No H3 v2 e no Nitro v3, event.req.ip é o meio padrão de obter o IP da requisição; x-forwarded-for não deve ser confiado às cegas.",
+  "motivo": "Só é seguro confiar no cabeçalho atrás de CDN ou proxy reverso que sempre o defina; srvx e Nitro v3 preenchem ServerRequest.ip de forma válida.",
+  "vale_quando": "H3 v2 / Nitro v3",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0014",
+    "trecho": "In modern H3 v2 / Nitro v3, `event.req.ip` is standard and universal way to access request IP."
+   },
+   {
+    "doc": "doc-0014",
+    "trecho": "But a strong note: `x-forwarded-for` header shoudlt not be blindly trusted unless we are sure behind a CDN or reverse proxy"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-03",
+  "decisao": "A issue de cabeçalhos de proxy confiáveis segue aberta; pi0 sugeriu introduzir event.context.trustedHeaders e usar esses cabeçalhos para ajustar utilitários internos.",
+  "motivo": "pi0 hesita em colocar no h3 a lógica de detectar se o proxy é confiável; ela poderia ficar no Nitro.",
+  "vale_quando": "Issue #504 ainda aberta; não é decisão implementada",
+  "status": "contexto",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0022",
+    "trecho": "Introduce `event.context.trustedHeaders: string[] | undefined`"
+   },
+   {
+    "doc": "doc-0022",
+    "trecho": "What I am not sure about and hesitated, is the logic to detect if we can trust proxy being directly in h3."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-04",
+  "decisao": "pi0 propôs que o core do h3 ganhe um método declarativo app.register(spec), em vez de um defineRoute opinativo.",
+  "motivo": "Receio de pôr opinião demais num util defineRoute, tornando-o menos flexível e extensível.",
+  "vale_quando": "Discussão de junho de 2025 sobre defineRoute",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "plugins",
+  "fontes": [
+   {
+    "doc": "doc-0011",
+    "trecho": "My main concern would be that we will eventually put too much opinion into `defineRoute` util, which makes it less flexible or extendable."
+   },
+   {
+    "doc": "doc-0011",
+    "trecho": "app.register({ route: { method, route, handler } })"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-05",
+  "decisao": "pi0 acabou adicionando uma interface de plugin mais genérica (#1098) no lugar do app.register proposto antes.",
+  "motivo": "não consta",
+  "vale_quando": "Registro declarativo de rotas e módulos no h3 v2",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-04"
+  ],
+  "tema": "plugins",
+  "fontes": [
+   {
+    "doc": "doc-0011",
+    "trecho": "I have ended up adding a more generic plugin interface in #1098"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-06",
+  "decisao": "Segundo pi0, middleware se liga à requisição (event) e plugins se ligam à instância do h3 (app), podendo adicionar middleware.",
+  "motivo": "não consta",
+  "vale_quando": "Ao decidir entre middleware e plugin",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "plugins",
+  "fontes": [
+   {
+    "doc": "doc-0011",
+    "trecho": "middleware can hook to request (`event`)"
+   },
+   {
+    "doc": "doc-0011",
+    "trecho": "plugins can hook to h3 instance (`app`)"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-07",
+  "decisao": "O h3 tornou opt-in o uso de handlers Node.js e eliminou a conversão implícita do formato (req, res).",
+  "motivo": "O formato (req, res) mantinha o h3 longe de suportar nativamente ambientes não Node.js e não servia para estender o h3 a recursos como http2.",
+  "vale_quando": "Migração para a Events API (issue #73)",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "migracao",
+  "fontes": [
+   {
+    "doc": "doc-0028",
+    "trecho": "- [x] Make node-js handlers opt-in and drop `(req, res)` implicit conversion (#178)"
+   },
+   {
+    "doc": "doc-0028",
+    "trecho": "However, this kind of setup keeps h3 to be away from **natively supporting** non Node.js environments"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-08",
+  "decisao": "Segundo pi0, utilitários do h3 como cors devem ser chamados sob demanda no corpo do event handler; o encadeamento estilo middleware se faz com a pilha do app.",
+  "motivo": "não consta",
+  "vale_quando": "h3 v1, resposta de 2022 à proposta de encadear handlers",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0015",
+    "trecho": "h3 utilities like cors, are meant to be called functions on demand and in the body of the event handler as best practices."
+   },
+   {
+    "doc": "doc-0015",
+    "trecho": "Middleware style chaining is also possible using an app stack"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-09",
+  "decisao": "pi0 indicou que o express-session não funciona direto com fromNodeMiddleware e sugeriu iron-session ou outro pacote sem dependência do express.",
+  "motivo": "O express-session exige polyfills do app express.",
+  "vale_quando": "Uso de sessão com fromNodeMiddleware (h3 v1, 2022)",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0016",
+    "trecho": "`express-session` requires `express` app polyfills to work."
+   },
+   {
+    "doc": "doc-0016",
+    "trecho": "I would suggest you to use iron-session or another package that is not depending on express."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-10",
+  "decisao": "Para rotas aninhadas com useBase, o registro correto é router.use('/api/**', useBase('/api', apiRouter.handler)), com /** para capturar todos os caminhos aninhados.",
+  "motivo": "O exemplo da documentação omitia o /** e induzia ao erro; pi0 disse que o atualizaria.",
+  "vale_quando": "Router aninhado com useBase (h3 v1)",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "rotas",
+  "fontes": [
+   {
+    "doc": "doc-0024",
+    "trecho": "You need to use `router.use('/api/**', useBase('/api', apiRouter.handler));` (with `/**` to catch all nested paths)"
+   },
+   {
+    "doc": "doc-0024",
+    "trecho": "I will update our example accordingly as it was missing it to and were misleading."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-11",
+  "decisao": "pi0 fechou a issue do onClosed de event stream sem disparar, por falta de reprodução mínima; um comentário posterior diz que o problema ocorre também em ambiente local.",
+  "motivo": "Não foi fornecida reprodução mínima; kricsleo observou que o StackBlitz do relato falhava só ali.",
+  "vale_quando": "Issue #717, event stream (SSE) no Nuxt",
+  "status": "contexto",
+  "substitui": [],
+  "tema": "outro",
+  "fontes": [
+   {
+    "doc": "doc-0027",
+    "trecho": "Closing as no minimal reproduction provided."
+   },
+   {
+    "doc": "doc-0027",
+    "trecho": "Im having the same issue on local environment."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-12",
+  "decisao": "A falha do readMultipartFormData com arquivos acima de cerca de 100 MB segue aberta; um comentário (não de mantenedor) diz que deve ser corrigida no v2.",
+  "motivo": "não consta",
+  "vale_quando": "Issue #851 aberta; não há correção confirmada",
+  "status": "contexto",
+  "substitui": [],
+  "tema": "outro",
+  "fontes": [
+   {
+    "doc": "doc-0029",
+    "trecho": "If i send file approximately larger than 100Mb then i get error while parsing multipart from data."
+   },
+   {
+    "doc": "doc-0029",
+    "trecho": "Hi Guppy, it looks like it will be fixed in v2. #514"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-13",
+  "decisao": "pi0 disse que um patch para o serverStatic usar event.res.status, quando definido, também parece válido.",
+  "motivo": "não consta",
+  "vale_quando": "Discussão sobre status 206 em streams de vídeo com serveStatic; sem patch visto no texto",
+  "status": "contexto",
+  "substitui": [],
+  "tema": "estatico",
+  "fontes": [
+   {
+    "doc": "doc-0032",
+    "trecho": "Feel free to submit a patch for h3 serverStatic to pick `event.res.status` if set seems also valid"
+   },
+   {
+    "doc": "doc-0032",
+    "trecho": "it strictly sets the status code inline to 200 since a82863fc2e29bc6a0c31555071fbd74167ff4197, which breaks 206 video streams."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-14",
+  "decisao": "No h3 v1, um stream web de resposta abortado pelo cliente não era propagado e o stream vazava.",
+  "motivo": "não consta",
+  "vale_quando": "h3 v1, segundo a tabela de Hornwitser",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0032",
+    "trecho": "|web response stream aborted by client|❌ not propagated, leaks stream|✔️ correctly handled|"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-15",
+  "decisao": "No h3 v2 (2.0.1-rc.16), um stream web de resposta abortado pelo cliente é tratado corretamente.",
+  "motivo": "não consta",
+  "vale_quando": "h3 v2, segundo a tabela de Hornwitser; streams Node de resposta continuam sem propagar o abort",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-14"
+  ],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0032",
+    "trecho": "|web response stream aborted by client|❌ not propagated, leaks stream|✔️ correctly handled|"
+   },
+   {
+    "doc": "doc-0032",
+    "trecho": "I've updated the [reproduction repository](https://github.com/Hornwitser/h3-stream-problems) to use h3 v2.0.1-rc.16 to show this."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-16",
+  "decisao": "defineValidatedHandler montava a entrada de validação da query com Object.fromEntries(url.searchParams), guardando só o último valor de chaves repetidas.",
+  "motivo": "não consta",
+  "vale_quando": "Antes do PR #1562",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "rotas",
+  "fontes": [
+   {
+    "doc": "doc-0033",
+    "trecho": "`defineValidatedHandler` built its query validation input with `Object.fromEntries(url.searchParams)`, which keeps only the **last** value for repeated keys"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-17",
+  "decisao": "O PR #1562 faz defineValidatedHandler coletar chaves repetidas da query em arrays antes de validar, no mesmo formato de getQuery.",
+  "motivo": "Alinhar com getValidatedQuery e com o que o handler vê em event.url.searchParams.",
+  "vale_quando": "Validação de query com chaves repetidas (?tag=a&tag=b)",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-16"
+  ],
+  "tema": "rotas",
+  "fontes": [
+   {
+    "doc": "doc-0033",
+    "trecho": "Collect repeated keys from `url.searchParams` into arrays (same shape as `getQuery`) before validation"
+   },
+   {
+    "doc": "doc-0033",
+    "trecho": "A query schema like `z.object({ tag: z.string() })` no longer passes for `?tag=a&tag=b`"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-18",
+  "decisao": "Com serveStatic e encodings, o tipo MIME de uma variante pré-comprimida era deduzido do id da variante (.gz, .br) e não do asset pedido.",
+  "motivo": "não consta",
+  "vale_quando": "Antes do PR #1564",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "estatico",
+  "fontes": [
+   {
+    "doc": "doc-0035",
+    "trecho": "it guesses the MIME type from the variant's id instead of the requested asset's id."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-19",
+  "decisao": "O PR #1564 passa a resolver o tipo MIME de uma variante pré-comprimida a partir do id do asset pedido; um getType customizado que mapeia .gz/.br deixa de ser consultado nesse caso.",
+  "motivo": "Navegadores recusam script de módulo ou stylesheet servido como text/plain, quebrando a página para todo cliente que envia accept-encoding.",
+  "vale_quando": "serveStatic com encodings configurados",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-18"
+  ],
+  "tema": "estatico",
+  "fontes": [
+   {
+    "doc": "doc-0035",
+    "trecho": "The default/custom MIME lookup (`getType`) runs on that asset id, so `app.js.gz` served for `/app.js` resolves to `text/javascript`"
+   },
+   {
+    "doc": "doc-0035",
+    "trecho": "One side effect: a custom `getType` that maps `.gz`/`.br` is no longer consulted when a variant is served for the uncompressed path"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-20",
+  "decisao": "setChunkedCookie dividia o valor bruto a cada chunkMaxLength caracteres (padrão 4000), sem considerar a codificação.",
+  "motivo": "não consta",
+  "vale_quando": "Antes do PR #1565",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "cookie",
+  "fontes": [
+   {
+    "doc": "doc-0036",
+    "trecho": "`setChunkedCookie` splits the raw value every `chunkMaxLength` (default 4000) characters."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-21",
+  "decisao": "O PR #1565 faz cada chunk de cookie caber em chunkMaxLength depois de codificado, usando o mesmo encode do setCookie, e sem cortar pares substitutos.",
+  "motivo": "Depois da codificação os chunks passavam de 4096 bytes, os navegadores os descartavam e getChunkedCookie devolvia undefined sem erro; cortar um par substituto causava URIError e 500.",
+  "vale_quando": "setChunkedCookie com JSON ou texto não ASCII",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-20"
+  ],
+  "tema": "cookie",
+  "fontes": [
+   {
+    "doc": "doc-0036",
+    "trecho": "Each chunk is the longest run whose encoded form, using the same `encode` as `setCookie` (`options.encode` or `encodeURIComponent`), fits in `chunkMaxLength`."
+   },
+   {
+    "doc": "doc-0036",
+    "trecho": "Browsers drop cookies over 4096 bytes, so the chunks never come back."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-22",
+  "decisao": "redirect() rotulava todo status diferente de 301 como Found e noContent() rotulava todo status como No Content.",
+  "motivo": "não consta",
+  "vale_quando": "Antes do PR #1570",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0039",
+    "trecho": "`redirect()` labels every status other than 301 with \"Found\", and `noContent()` labels every status with \"No Content\"."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-23",
+  "decisao": "O PR #1570 mantém as frases de 204, 301 e 302, usa as da RFC 9110 para 303, 307 e 308 e não põe frase nos demais status; um statusText explícito em redirect() prevalece.",
+  "motivo": "Frases de outro código enganam em logs, curl e devtools, embora sejam apenas indicativas.",
+  "vale_quando": "redirect() e noContent() no h3 v2",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-22"
+  ],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0039",
+    "trecho": "The fix keeps the existing phrases for 204, 301 and 302 and uses the RFC 9110 phrases for 303, 307 and 308."
+   },
+   {
+    "doc": "doc-0039",
+    "trecho": "An explicit `statusText` passed to `redirect()` still wins."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-24",
+  "decisao": "Um comentário em unsealSession dizia para remover o fallback legado de selo PBKDF2 antes do v2 estável.",
+  "motivo": "não consta",
+  "vale_quando": "Antes do PR #1573",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0042",
+    "trecho": "The comment on the legacy PBKDF2 seal fallback in `unsealSession` said \"Remove this fallback before the v2 stable release\", but v2 is now stable."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-25",
+  "decisao": "O PR #1573 reaponta a remoção do fallback legado de selo de sessão para o v3, junto com legacySealFallback; não marcou legacySealFallback como @deprecated.",
+  "motivo": "Remover o fallback num release v2 quebraria sessões já seladas com 1 iteração; legacySealFallback ainda é forma válida de desativar o fallback no v2.",
+  "vale_quando": "Sessões seladas com 1 iteração, h3 v2",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-24"
+  ],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0042",
+    "trecho": "Removing the fallback in a v2 release would break existing sessions sealed with 1 iteration, so the comment now targets v3 and mentions `legacySealFallback`"
+   },
+   {
+    "doc": "doc-0042",
+    "trecho": "I did not mark `legacySealFallback` as `@deprecated`, because it is still a valid way to opt out of the fallback in v2."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-26",
+  "decisao": "serveStatic procurava a extensão do arquivo exatamente como escrita, então /LOGO.PNG ou IMG_0001.JPG ficavam sem tipo.",
+  "motivo": "não consta",
+  "vale_quando": "Antes do PR #1580",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "estatico",
+  "fontes": [
+   {
+    "doc": "doc-0046",
+    "trecho": "`getType` looks the extension up as-is, so `/photos/IMG_0001.JPG` or `/LOGO.PNG` gets no type from `serveStatic`."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-27",
+  "decisao": "O PR #1580 passa a converter a extensão para minúsculas antes de procurar o tipo MIME; a opção getType customizada ainda recebe a extensão como escrita.",
+  "motivo": "Extensões em maiúsculas são comuns em uploads de câmeras e saíam como text/plain no node.",
+  "vale_quando": "serveStatic",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-26"
+  ],
+  "tema": "estatico",
+  "fontes": [
+   {
+    "doc": "doc-0046",
+    "trecho": "lowercased the extension before the lookup. the custom `getType` option still gets the extension as written."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-28",
+  "decisao": "A regra cache escondia do cache todo Vary staged por middleware, exceto o curinga (*), conforme o PR #1606.",
+  "motivo": "não consta",
+  "vale_quando": "Entre os PRs #1606 e #1608",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0057",
+    "trecho": "#1606 hid every staged `Vary` other than `*` from the cache."
+   },
+   {
+    "doc": "doc-0056",
+    "trecho": "A staged `cache-control` and a wildcard `vary` stay on the event."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-29",
+  "decisao": "O PR #1608 isola do cache só o Vary: origin; rotas atrás de middleware que declara outro Vary deixam de ser cacheadas, salvo se varies da regra incluir o cabeçalho.",
+  "motivo": "Esconder qualquer Vary só era seguro para Origin; um Vary de accept-language era guardado numa entrada servida a todos os idiomas.",
+  "vale_quando": "Regras cache/swr com middleware que declara Vary",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-28"
+  ],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0057",
+    "trecho": "That was only safe for `Vary: Origin`, whose CORS headers are isolated along with it."
+   },
+   {
+    "doc": "doc-0057",
+    "trecho": "Routes behind middleware that stages a `Vary` other than `origin` (e.g. i18n middleware staging `vary: accept-language`) are **no longer cached**"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-30",
+  "decisao": "O PR #1608 adiciona o util público withCacheIsolation(handler) em h3, que isola os cabeçalhos staged por middleware de handlers cacheados.",
+  "motivo": "Uma rota com defineCachedHandler do ocache, como o do Nitro, atrás de middleware global ainda vazava cabeçalhos staged para outros usuários.",
+  "vale_quando": "Handlers cacheados diretamente com ocache",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0057",
+    "trecho": "**New public util `withCacheIsolation(handler)`** (`src/utils/cache.ts`, exported from `h3`)."
+   },
+   {
+    "doc": "doc-0057",
+    "trecho": "A route wrapped directly with ocache's `defineCachedHandler` (as Nitro's `defineCachedHandler` does) behind global middleware still leaked"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-31",
+  "decisao": "A regra headers aplicava seus cabeçalhos em event.res.errHeaders, que tinha precedência sobre HTTPError.headers, então o handler não mudava um cabeçalho da regra no próprio erro.",
+  "motivo": "não consta",
+  "vale_quando": "Antes do PR #1613",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0058",
+    "trecho": "The `headers` rule applies its headers to `event.res.errHeaders` after the handler has run, and `errHeaders` takes precedence over `HTTPError.headers`"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-32",
+  "decisao": "O PR #1613 faz um HTTPError que traga uma chave da regra em seu próprio headers manter esse valor; a regra pula só essa chave.",
+  "motivo": "Um 404 de asset ausente em /build/** recebia cache-control imutável, permitindo que CDN ou navegador cacheasse o 404.",
+  "vale_quando": "Regra headers com erros HTTPError lançados ou retornados",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-31"
+  ],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0058",
+    "trecho": "An `HTTPError`, thrown or returned, that carries one of the rule's keys in its own `headers` keeps that value."
+   },
+   {
+    "doc": "doc-0058",
+    "trecho": "a 404 for a missing asset under `/build/**` got `cache-control: public, max-age=31536000, immutable`, which lets a CDN or browser cache the 404."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-33",
+  "decisao": "O PR #1613 recusou detectar mudanças em errHeaders durante next() como sinal de opt-out e escolheu HTTPError.headers.",
+  "motivo": "Mudança em errHeaders não é sinal confiável (helpers de CORS, appends, regras aninhadas), e HTTPError.headers é declaração explícita sem custo em requisições com sucesso.",
+  "vale_quando": "Opt-out da regra headers em erros",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0058",
+    "trecho": "A review showed that a change there isn't a reliable signal:"
+   },
+   {
+    "doc": "doc-0058",
+    "trecho": "`HTTPError.headers` is an explicit statement about that error response, and the check costs nothing on successful requests."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-34",
+  "decisao": "Numa rota com regra cache, o HTTPError precisa ser lançado (throw) para o opt-out funcionar; se for retornado, a regra cache o renderiza antes e o opt-out se perde.",
+  "motivo": "não consta",
+  "vale_quando": "Rota com regras headers e cache juntas",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0058",
+    "trecho": "*return* the `HTTPError` and the `cache` rule renders it to a plain `Response` first, so the opt-out is lost. *Throwing* works."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-35",
+  "decisao": "readBody() decidia tratar o corpo como url-encoded com um startsWith que diferenciava maiúsculas de minúsculas.",
+  "motivo": "não consta",
+  "vale_quando": "Antes do PR #1601",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0054",
+    "trecho": "`readBody()` decides whether to parse the body as url-encoded with a case-sensitive `startsWith(\"application/x-www-form-urlencoded\")`."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-36",
+  "decisao": "O PR #1601 converte o cabeçalho content-type para minúsculas antes de checar se é url-encoded em readBody.",
+  "motivo": "Tipos de mídia não diferenciam maiúsculas (RFC 9110); um tipo com outra caixa caía em JSON.parse e dava 400, enquanto readBody com type formData já aceitava.",
+  "vale_quando": "readBody com content-type de caixa mista",
+  "status": "vigente",
+  "substitui": [
+   "c-iss-35"
+  ],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0054",
+    "trecho": "The fix lowercases the header before the check."
+   },
+   {
+    "doc": "doc-0054",
+    "trecho": "`readBody(event, { type: \"formData\" })` already accepts the same request"
+   }
+  ]
+ },
+ {
+  "id": "c-iss-37",
+  "decisao": "O PR #1571 faz fromNodeHandler chamar o onError do app quando o stream do handler dá erro, ignorando o retorno do hook.",
+  "motivo": "A resposta já estava enviada, então o h3 só registrava o erro em log e o onError nunca rodava.",
+  "vale_quando": "fromNodeHandler com stream que falha",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0040",
+    "trecho": "`fromNodeHandler` now passes the event to `callNodeHandler`, which calls `event.app?.config.onError` with an unhandled `HTTPError` and settles once the hook is done."
+   },
+   {
+    "doc": "doc-0040",
+    "trecho": "so h3 only logged the error and `onError` never ran."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-38",
+  "decisao": "O PR #1574 faz o middleware onError() relançar o sinal kHandled sem chamar seu hook; hooks registrados em middleware continuam sem ver erros de stream.",
+  "motivo": "Tratado como erro, kHandled chamava o hook com um HTTPError 500 falso, disparava o onError do app uma segunda vez e anexava JSON a uma resposta já enviada.",
+  "vale_quando": "Stream de fromNodeHandler que falha com o middleware onError()",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0043",
+    "trecho": "The middleware now re-throws `kHandled` untouched, without calling its hook."
+   },
+   {
+    "doc": "doc-0043",
+    "trecho": "Middleware-registered hooks still do not see stream errors (only the app `onError` config hook does)."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-39",
+  "decisao": "O PR #1595 faz o erro padrão (sem hook onError) seguir a normalização normal de Response, de modo que respostas HEAD fiquem sem corpo.",
+  "motivo": "Sem onError, uma rota HEAD ausente ou um HTTPError devolvia corpo JSON pela API Response web, enquanto o transporte Node o removia.",
+  "vale_quando": "Erros padrão em requisições HEAD",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0053",
+    "trecho": "Let the generated default error response continue through the existing Response normalization path so HEAD bodies are removed consistently."
+   },
+   {
+    "doc": "doc-0053",
+    "trecho": "Without an `onError` hook, a missing HEAD route or a handler throwing `HTTPError` returns a JSON body through the web Response API."
+   }
+  ]
+ },
+ {
+  "id": "c-iss-40",
+  "decisao": "O PR #1576 faz app.use(rota, outroApp) no plugin de tracing se comportar como app.mount, repassando entradas que não são função ao use() original.",
+  "motivo": "O wrapper do plugin transformava o app aninhado em função antes do use() original, que o enviaria para mount(); as rotas davam 404 silenciosamente.",
+  "vale_quando": "tracingPlugin com app aninhado passado a use()",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "plugins",
+  "fontes": [
+   {
+    "doc": "doc-0044",
+    "trecho": "so `app.use(\"/api\", app2)` should behave exactly like `app.mount(\"/api\", app2)`."
+   },
+   {
+    "doc": "doc-0044",
+    "trecho": "The fix passes non-function inputs through to the original `use()` unwrapped, in both call shapes."
+   }
+  ]
+ }
+]

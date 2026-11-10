@@ -1,0 +1,162 @@
+[
+  {
+    "id": "q-sem-h3-01",
+    "bloco": "sem_resposta",
+    "pergunta": "No h3 v2 rodando em Node.js, o que acontece com as requisições em andamento quando o processo recebe SIGTERM durante um deploy?",
+    "opcoes": [
+      "O h3 para de aceitar conexões novas e aguarda as requisições em andamento terminarem antes de encerrar o processo.",
+      "O h3 aborta na hora as requisições em andamento e devolve 503 aos clientes que ainda estiverem conectados.",
+      "O h3 aguarda as requisições por um prazo fixo e depois derruba as conexões que ainda restarem abertas."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados em lake/bruto: SIGTERM, SIGINT, graceful, shutdown, drain, in-flight, server.close, .close(. Só há \"gracefully\" no contexto do hook onError e controller.close() em exemplos de stream. O mais próximo é onDispose (libera recursos por requisição quando o evento termina) e os exemplos com serve(app); nada descreve sinais de processo nem encerramento do servidor.",
+    "n_fontes": 0
+  },
+  {
+    "id": "q-sem-h3-02",
+    "bloco": "sem_resposta",
+    "pergunta": "Que rota o h3 v2 registra por conta própria para responder às sondas de saúde de um orquestrador de contêineres?",
+    "opcoes": [
+      "A rota /health, que responde 200 com um corpo JSON indicando o estado do servidor.",
+      "A rota /healthz, que responde 200 com um corpo de texto simples contendo apenas ok.",
+      "A rota /_health, que responde 204 sem corpo enquanto a aplicação estiver de pé."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados: health, healthz, readiness, liveness, /ping, uptime, status endpoint. Nenhum resultado em docs, código, changelog, issues ou PRs. O mais próximo é o guia de roteamento (rotas definidas pelo usuário) e o utilitário noContent; nada diz que o h3 registre rotas próprias.",
+    "n_fontes": 0
+  },
+  {
+    "id": "q-sem-h3-03",
+    "bloco": "sem_resposta",
+    "pergunta": "No h3 v2, qual é o intervalo padrão com que o EventStream envia um comentário de manutenção da conexão para que proxies não derrubem um fluxo SSE ocioso?",
+    "opcoes": [
+      "Um comentário a cada 15 segundos, enviado automaticamente enquanto o fluxo estiver aberto.",
+      "Um comentário a cada 30 segundos, enviado automaticamente enquanto o fluxo estiver aberto.",
+      "Um comentário a cada 60 segundos, enviado automaticamente enquanto o fluxo estiver aberto."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados: keep-alive, keepalive, heartbeat, ping, pushComment, retry:, interval, comment. O guia de WebSockets/SSE mostra EventStream com push(), onClosed() e um setInterval escrito pelo próprio exemplo (a cada intervalo da aplicação, não do h3); o changelog cita correções de SSE (ids vazios, flush, fechamento) e a remoção da opção autoclose. Nenhum arquivo fala de comentário de keep-alive nem de intervalo padrão.",
+    "n_fontes": 0
+  },
+  {
+    "id": "q-sem-h3-04",
+    "bloco": "sem_resposta",
+    "pergunta": "No h3 v2, por qual mecanismo o tracingPlugin, exposto pela entrada h3/tracing, entrega os eventos de rastreio das rotas ao código de observabilidade?",
+    "opcoes": [
+      "Publica os eventos em canais do diagnostics_channel, que o código de observabilidade assina.",
+      "Chama um callback onTrace informado nas opções do H3, que recebe a rota e a duração.",
+      "Acrescenta um cabeçalho Server-Timing em cada resposta com o tempo gasto por middleware."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados: tracingPlugin, tracing, diagnostics_channel, tracingChannel, channel, server-timing, otel, opentelemetry, telemetry, span. O lake só diz que h3/tracing é um plugin em entrada separada (AGENTS.md), que ele sobrescreve use() e mount() (PR #1576), que exporta wrapHandlerWithTracing (changelog) e que existem \"eventos de rota rastreados\". Não diz como esses eventos são entregues nem em que formato.",
+    "n_fontes": 0
+  },
+  {
+    "id": "q-sem-h3-05",
+    "bloco": "sem_resposta",
+    "pergunta": "No h3 v2, qual é o tamanho máximo de mensagem que um defineWebSocketHandler aceita por padrão antes de fechar a conexão do cliente?",
+    "opcoes": [
+      "64 KiB por mensagem, com fechamento da conexão ao exceder esse tamanho.",
+      "1 MiB por mensagem, com fechamento da conexão ao exceder esse tamanho.",
+      "16 MiB por mensagem, com fechamento da conexão ao exceder esse tamanho."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados: maxPayload, maxMessage, message size, frame, fragment, pong, ping, idleTimeout, limit websocket. O guia de WebSockets descreve defineWebSocketHandler, o plugin do crossws, o 426 para não-WebSocket e os hooks open/message; os limites ficam com o crossws, que não está no lake. O mais próximo são os limites de corpo HTTP (assertBodySize, bodyLimit), que não valem para mensagens WebSocket.",
+    "n_fontes": 0
+  },
+  {
+    "id": "q-sem-h3-06",
+    "bloco": "sem_resposta",
+    "pergunta": "No repositório do h3, qual percentual mínimo de cobertura de linhas o comando pnpm test exige para ser aprovado?",
+    "opcoes": [
+      "80% das linhas, com falha do comando se a cobertura ficar abaixo disso.",
+      "90% das linhas, com falha do comando se a cobertura ficar abaixo disso.",
+      "95% das linhas, com falha do comando se a cobertura ficar abaixo disso."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados: threshold, coverage, c8, istanbul, lines, statements, branches, 80%, 90%. O AGENTS.md diz que o pnpm test roda lint, typecheck e cobertura com Vitest e v8, e que cada teste roda nos modos web e node; o PR #1595 relata 3055 testes aprovados. Nenhum arquivo traz meta numérica de cobertura (SLIDE_THRESHOLD do código de sessão é outro assunto).",
+    "n_fontes": 0
+  },
+  {
+    "id": "q-sem-h3-07",
+    "bloco": "sem_resposta",
+    "pergunta": "No h3 v2, qual esquema de criptografia o seal do cookie de sessão usa por padrão, caso o projeto não informe a opção seal?",
+    "opcoes": [
+      "AES-256-CBC para a cifra, com assinatura de integridade HMAC-SHA-256.",
+      "AES-256-GCM para a cifra, com autenticação embutida no próprio modo.",
+      "ChaCha20-Poly1305 para a cifra, com chave derivada por HKDF a partir da senha."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados: algorithm, cbc, gcm, hmac, aes-, sha256, cipher, encrypt, iron, salt. O lake diz que a senha precisa de 32 caracteres, que o cookie carrega sal e resumo de integridade, que o PBKDF2 passou de 1 para 8192 iterações e que SealOptions cobre algoritmos, iterações, TTL e tolerância de relógio. Os nomes dos algoritmos padrão ficam em iron-crypto.ts, que não está no lake.",
+    "n_fontes": 0
+  },
+  {
+    "id": "q-sem-h3-08",
+    "bloco": "sem_resposta",
+    "pergunta": "Qual é a versão mínima do Deno que o h3 v2 declara suportar ao rodar com a entrada h3/deno?",
+    "opcoes": [
+      "Deno 1.40 ou mais recente, por causa das APIs de servidor HTTP usadas.",
+      "Deno 2.0 ou mais recente, por causa do formato de módulos adotado.",
+      "Deno 2.3 ou mais recente, por causa do suporte a pacotes npm exigido."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados: deno, bun, workerd, minimum, engines, at least, supported versions, >=1., >=2. O lake fixa só o Node.js (>= 20.19, PR #1568 e anúncio da v2) e lista Deno, Bun e Cloudflare como alvos de runtime com entradas h3/deno, h3/bun e h3/cloudflare (AGENTS.md). Nenhum arquivo traz versão mínima de Deno ou de Bun.",
+    "n_fontes": 0
+  },
+  {
+    "id": "q-sem-h3-09",
+    "bloco": "sem_resposta",
+    "pergunta": "No h3 v2, depois de quanto tempo sem resposta um handler é encerrado por padrão com erro de tempo esgotado, caso o projeto não configure nada?",
+    "opcoes": [
+      "30 segundos, encerrando a requisição com 504 Gateway Timeout.",
+      "60 segundos, encerrando a requisição com 504 Gateway Timeout.",
+      "120 segundos, encerrando a requisição com 504 Gateway Timeout."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados: timeout, 504, 408, gateway timeout, deadline, AbortController, setTimeout, request timeout, handler timeout. Os únicos prazos no lake são o maxResolveTime de 30 s da regra de cache (resolução de entrada, não de handler) e o idleTimeout de sessão. Nada descreve limite de tempo de handler nem status 504 gerado pelo h3.",
+    "n_fontes": 0
+  },
+  {
+    "id": "q-sem-h3-10",
+    "bloco": "sem_resposta",
+    "pergunta": "Depois do lançamento estável do h3 v2, por quanto tempo a linha v1 continua recebendo correções de segurança?",
+    "opcoes": [
+      "Por 6 meses a partir do lançamento estável da v2, apenas com correções de segurança.",
+      "Por 12 meses a partir do lançamento estável da v2, apenas com correções de segurança.",
+      "Até a publicação da v3, com correções de segurança e de bugs críticos."
+    ],
+    "correta": null,
+    "alt_tipo": ["", "", ""],
+    "fontes": [],
+    "cartoes": [],
+    "justificativa": "Termos buscados: v1 maintenance, LTS, end of life, security fix, support window, legacy, v3, semver, release cadence. O README apenas aponta a branch v1 e v1.h3.dev como \"legado\"; o anúncio da v2 diz que utilitários v1 seguem funcionando e que nomes depreciados continuam exportados; o código marca o fallback de seal legado para remoção na v3. Nenhum arquivo define prazo ou política de suporte da v1.",
+    "n_fontes": 0
+  }
+]

@@ -1,0 +1,1202 @@
+[
+ {
+  "qid": "q001",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos 2 e 2b, quantas amostras do Opus julgam cada artefato na avaliação cega estendida?",
+  "opcoes": {
+   "A": "5 amostras por artefato, incluindo os já julgados",
+   "B": "2 amostras por artefato, com uma terceira só para desempate",
+   "C": "3 amostras por artefato, e a ideia de usar 5 foi descartada",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q002",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos 2 e 2b, quais execuções do C4 têm TechSpec e Tasks julgados?",
+  "opcoes": {
+   "A": "Somente as repetições 7 a 9, acrescentadas pela extensão, de cada variante",
+   "B": "Apenas as 6 execuções originais, sem as repetições novas da extensão",
+   "C": "Informação insuficiente no material",
+   "D": "Todas as execuções de C4, em todas as variantes, incluindo as repetições da extensão"
+  }
+ },
+ {
+  "qid": "q003",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois do piloto e dos adendos, o que o enunciado dado aos modelos contém?",
+  "opcoes": {
+   "A": "A issue e o diff da solução de referência, sem os arquivos de teste",
+   "B": "O contrato público da feature, omitindo os valores usados pelos testes",
+   "C": "Informação insuficiente no material",
+   "D": "A issue, a norma aplicada e as restrições, sem os casos de borda dos testes"
+  }
+ },
+ {
+  "qid": "q004",
+  "pergunta": "No estudo 1 do Melo Labs, qual desvio máximo foi declarado como tolerância para a réplica em clone limpo reproduzir as tabelas do estudo?",
+  "opcoes": {
+   "A": "Diferença de até 0,05 em cada estatística reportada",
+   "B": "Diferença de até 0,01 em cada estatística reportada",
+   "C": "Informação insuficiente no material",
+   "D": "Resultados idênticos até a segunda casa decimal"
+  }
+ },
+ {
+  "qid": "q005",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), qual o destino da fase C, a de hipóteses e braços extras, depois da decisão do autor de 06/11/2026?",
+  "opcoes": {
+   "A": "Roda só se sobrar tempo até o congelamento dos dados, em ordem de prioridade, e o que faltar sai como não testado.",
+   "B": "Informação insuficiente no material",
+   "C": "Fica para um paper futuro, e no texto final seus itens são rotulados como não testados, sem alterar as regras das demais.",
+   "D": "Roda com metade das repetições previstas, e os resultados saem como exploratórios, sem teste de hipótese associado."
+  }
+ },
+ {
+  "qid": "q006",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), no protocolo final, depois dos adendos, qual condição deixa de ter documentos julgados além das execuções originais, e por quê?",
+  "opcoes": {
+   "A": "A C0, porque é o baseline e os seus documentos originais já bastam para a comparação de qualidade.",
+   "B": "Informação insuficiente no material",
+   "C": "A C5, porque a cascata nunca escalou para o Sonnet e seus documentos equivalem aos do C4.",
+   "D": "A C4, porque as hipóteses de rubrica não se apoiam nos documentos dessa condição."
+  }
+ },
+ {
+  "qid": "q007",
+  "pergunta": "No h3 v2, como rodar o app em desenvolvimento com observação de arquivos e como chamá-lo diretamente em testes, sem subir um servidor?",
+  "opcoes": {
+   "A": "Rodar serve(app) com node --watch e, nos testes, chamar app.fetch diretamente",
+   "B": "Informação insuficiente no material",
+   "C": "Rodar toWebHandler(app) com node --watch e, nos testes, chamar app.fetch",
+   "D": "Rodar npx listhen -w sobre o index.ts e, nos testes, usar toWebHandler(app)"
+  }
+ },
+ {
+  "qid": "q008",
+  "pergunta": "No h3 v2, depois da correção das frases de status, qual statusText redirect() produz para o status 308 quando nenhum statusText explícito é passado?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "\"Moved Permanently\", a frase herdada do status 301",
+   "C": "\"Permanent Redirect\", a frase da RFC 9110 para o 308",
+   "D": "\"Found\", a frase usada para qualquer status que não seja 301"
+  }
+ },
+ {
+  "qid": "q009",
+  "pergunta": "A partir de qual versão candidata do h3 2.0.1 o serveStatic deixou de resolver um pathname como //private/x, e o que responde por padrão a ele?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Desde a rc.28; responde 404, ou deixa passar com fallthrough ligado",
+   "C": "Desde a rc.28; reduz as barras iniciais a uma só e serve o arquivo da pasta pública",
+   "D": "Desde a rc.32; responde 403 para qualquer pathname fora do padrão"
+  }
+ },
+ {
+  "qid": "q010",
+  "pergunta": "No estudo 1 do Melo Labs, em qual repositório ou serviço de arquivamento o pacote de dados abertos foi depositado, e com qual identificador persistente?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "No GitHub, apenas com a tag do último adendo",
+   "C": "No Zenodo, com DOI próprio do pacote de dados",
+   "D": "No OSF, com projeto vinculado ao pré-registro"
+  }
+ },
+ {
+  "qid": "q011",
+  "pergunta": "No h3, a opção origin do CORS recebe uma lista com a expressão regular /example\\.com/ sem âncoras. Qual é a consequência?",
+  "opcoes": {
+   "A": "A expressão é ignorada e vale o curinga padrão para todas as origens",
+   "B": "Informação insuficiente no material",
+   "C": "Origens como https://example.com.evil.test também são aceitas",
+   "D": "Só origens exatamente iguais a https://example.com são aceitas"
+  }
+ },
+ {
+  "qid": "q012",
+  "pergunta": "No estudo 1 do Melo Labs, qual tempo máximo por etapa de execução o orquestrador aceitava antes de encerrar o processo `claude -p` e tratá-lo como falha?",
+  "opcoes": {
+   "A": "60 minutos por etapa",
+   "B": "Informação insuficiente no material",
+   "C": "30 minutos por etapa",
+   "D": "15 minutos por etapa"
+  }
+ },
+ {
+  "qid": "q013",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), no adendo 2b, por que se abandonou a ideia de usar 5 amostras do juiz Opus por artefato?",
+  "opcoes": {
+   "A": "Mais amostras do mesmo modelo só reduzem o ruído da média, sem elevar o alfa individual, e consumiam cerca de 40% do total.",
+   "B": "A rubrica precisou ser revista depois dos primeiros resultados, e a revisão só era viável com três julgamentos por artefato.",
+   "C": "Informação insuficiente no material",
+   "D": "Os juízes 4 e 5 discordaram sistematicamente dos três primeiros, o que derrubou o alfa de Krippendorff da matriz estendida."
+  }
+ },
+ {
+  "qid": "q014",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do piloto, o que passou a compor o enunciado entregue aos modelos para implementar cada feature?",
+  "opcoes": {
+   "A": "O contrato público completo da feature, com cada caso de borda descrito e os valores de teste usados na pontuação final.",
+   "B": "A issue, o padrão técnico citado nela e as restrições de implementação, sem listar os casos de borda dos testes.",
+   "C": "Informação insuficiente no material",
+   "D": "Apenas o título da issue e o commit base, para o modelo inferir sozinho a norma e as restrições da feature."
+  }
+ },
+ {
+  "qid": "q015",
+  "pergunta": "No h3, além de ser um Error com o nome HTTPError, o que HTTPError.isError exige para devolver verdadeiro?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Que a instância venha da classe HTTPError do mesmo módulo",
+   "C": "Que o erro tenha um status numérico maior que 99",
+   "D": "Que o erro não esteja marcado como não tratado"
+  }
+ },
+ {
+  "qid": "q016",
+  "pergunta": "No estudo 1 do Melo Labs, quantas vezes no máximo uma etapa podia ser refeita após falha de infraestrutura antes de a execução ser descartada?",
+  "opcoes": {
+   "A": "Até 5 novas tentativas por etapa",
+   "B": "Até 3 novas tentativas por etapa",
+   "C": "Até 2 novas tentativas por etapa",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q017",
+  "pergunta": "No h3 v2, um app monta sub-apps aninhados e precisa de um tratamento central de erros que também capture as falhas dos sub-apps. Qual abordagem o projeto recomenda?",
+  "opcoes": {
+   "A": "Registrar o hook global onError em cada sub-app, para que todos relatem ao app principal",
+   "B": "Informação insuficiente no material",
+   "C": "Registrar um middleware onError com app.use, em vez de depender dos hooks globais",
+   "D": "Lançar um HTTPError com cause em cada sub-app, para o app principal capturar"
+  }
+ },
+ {
+  "qid": "q018",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos, o que acontece com as hipóteses H2, H7, H8 e H9 da fase C?",
+  "opcoes": {
+   "A": "Rodam depois das fases A e B somente se sobrar tempo, em ordem de prioridade",
+   "B": "Informação insuficiente no material",
+   "C": "Ficam fora do estudo, adiadas para um paper futuro e reportadas como não testadas",
+   "D": "Rodam com uma única repetição por condição, junto com a fase B"
+  }
+ },
+ {
+  "qid": "q019",
+  "pergunta": "Os hooks de erro registrados pelo middleware `onError` do h3 v2 não recebem falhas de streams de resposta. Em que versão do h3 isso passou a ser reportado também nesses hooks?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Na v2.1, com um novo evento de erro de stream",
+   "C": "Ainda na v2.0.x, por um ajuste no manipulador de streams",
+   "D": "Na v2.0.9, com um sinal tardio recebido pelo onError"
+  }
+ },
+ {
+  "qid": "q020",
+  "pergunta": "No h3 v2, depois da correção em readBody sem a opção type, o que acontece com um POST cujo content-type é \"Application/x-www-form-urlencoded\", com letra maiúscula inicial?",
+  "opcoes": {
+   "A": "A requisição é rejeitada com erro 415 por tipo não suportado",
+   "B": "O corpo é tratado como JSON e a requisição falha com erro 400",
+   "C": "Informação insuficiente no material",
+   "D": "O corpo é lido como formulário url-encoded e vira um objeto"
+  }
+ },
+ {
+  "qid": "q021",
+  "pergunta": "No h3 v2, o serveStatic recebe um getType customizado e a requisição é /LOGO.PNG, atendida pela variante pré-comprimida LOGO.PNG.gz. Que extensão esse getType customizado recebe?",
+  "opcoes": {
+   "A": "A extensão do asset pedido, .PNG, exatamente como foi escrita na requisição original.",
+   "B": "A extensão do asset pedido em minúsculas, .png, pois o h3 normaliza antes de chamar a opção.",
+   "C": "Informação insuficiente no material",
+   "D": "A extensão da variante servida, .gz, pois o tipo é deduzido do arquivo entregue ao cliente."
+  }
+ },
+ {
+  "qid": "q022",
+  "pergunta": "No h3 v2 estável, para quando está prevista a remoção do fallback legado de selo PBKDF2 em unsealSession, usado por sessões seladas com 1 iteração?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Antes do release estável do v2, como o comentário no código indicava",
+   "C": "Só no v3, junto com legacySealFallback, para não quebrar sessões do v2",
+   "D": "Já num release v2, com legacySealFallback marcado como @deprecated"
+  }
+ },
+ {
+  "qid": "q023",
+  "pergunta": "Qual é a versão mínima do Deno que o h3 v2 declara suportar ao rodar com a entrada h3/deno?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Deno 1.40 ou mais recente, por causa das APIs de servidor HTTP usadas.",
+   "C": "Deno 2.0 ou mais recente, por causa do formato de módulos adotado.",
+   "D": "Deno 2.3 ou mais recente, por causa do suporte a pacotes npm exigido."
+  }
+ },
+ {
+  "qid": "q024",
+  "pergunta": "No h3 v2, com serveStatic configurado com encodings, qual content-type sai quando app.js.gz é entregue para a requisição de /app.js, depois da correção do tipo MIME?",
+  "opcoes": {
+   "A": "application/gzip, pois o tipo é resolvido a partir da extensão .gz da variante pré-comprimida servida.",
+   "B": "Nenhum content-type é definido pelo h3, e o ambiente de execução assume text/plain, como ocorria antes.",
+   "C": "text/javascript, pois o tipo é resolvido a partir do id do asset pedido e não da variante comprimida.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q025",
+  "pergunta": "No H3 versão 2, como um handler entrega um ReadableStream ao cliente?",
+  "opcoes": {
+   "A": "Chamando sendStream(event, stream) ou sendWebResponse(event, stream) dentro do handler",
+   "B": "Escrevendo cada pedaço com res.write e encerrando a resposta com res.end ao final",
+   "C": "Informação insuficiente no material",
+   "D": "Retornando o valor direto do handler, que é enviado como resposta em stream"
+  }
+ },
+ {
+  "qid": "q026",
+  "pergunta": "No estudo 1 do Melo Labs, qual nota mínima por critério individual (C1 a C7) da TechSpec era exigida, além do total, para o artefato contar como pronto para produção?",
+  "opcoes": {
+   "A": "Pelo menos 4 de 5 em cada critério",
+   "B": "Pelo menos 2 de 5 em cada critério",
+   "C": "Pelo menos 3 de 5 em cada critério",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q027",
+  "pergunta": "No h3, uma requisição cria a sessão com updateSession e depois o handler lança um erro 500. O cookie de sessão acompanha a resposta de erro?",
+  "opcoes": {
+   "A": "Sim, pois todo cabeçalho de event.res.headers é copiado para respostas 4xx e 5xx",
+   "B": "Sim, pois o h3 copia os Set-Cookie da sessão para errHeaders a cada gravação",
+   "C": "Não, pois respostas de erro nunca recebem nenhum cabeçalho preparado no evento",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q028",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos, o que ocorre com uma execução cuja auditoria acusa acesso suspeito?",
+  "opcoes": {
+   "A": "Ela é refeita uma vez em pasta nova, e só a segunda tentativa conta",
+   "B": "Informação insuficiente no material",
+   "C": "Ela é excluída da análise, e o motivo da exclusão fica registrado no relatório",
+   "D": "Continua na análise principal, e uma análise ao lado a deixa de fora"
+  }
+ },
+ {
+  "qid": "q029",
+  "pergunta": "No h3 v2, uma rota com regra cache precisa emitir um Set-Cookie próprio em cada resposta. Qual é a orientação do projeto?",
+  "opcoes": {
+   "A": "Cachear a rota normalmente, pois o cookie é guardado junto da resposta e reenviado",
+   "B": "Informação insuficiente no material",
+   "C": "Cachear a rota e ligar allowCookies, que passa a guardar o cookie na entrada",
+   "D": "Não cachear essa rota, pois o Set-Cookie do handler nunca é guardado no cache"
+  }
+ },
+ {
+  "qid": "q030",
+  "pergunta": "Em que base de APIs o H3 versão 2 foi construído, em contraste com o desenho da versão 1?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Em padrões web, com o srvx unificando as diferenças entre os runtimes",
+   "C": "Em APIs do Node.js, com uma camada de compatibilidade para padrões web",
+   "D": "Em APIs do Deno, com adaptadores separados para Node.js e para o Bun"
+  }
+ },
+ {
+  "qid": "q031",
+  "pergunta": "No H3 versão 2, como se registra middleware próprio de um handler escrito com sintaxe de objeto?",
+  "opcoes": {
+   "A": "Com um array na chave middleware de defineHandler, ao lado da chave handler",
+   "B": "Informação insuficiente no material",
+   "C": "Encadeando .use() no valor retornado por defineHandler antes de registrar a rota",
+   "D": "Com eventHandler, usando as chaves onRequest e onResponse com listas de funções"
+  }
+ },
+ {
+  "qid": "q032",
+  "pergunta": "No h3 v2, qual esquema de criptografia o seal do cookie de sessão usa por padrão, caso o projeto não informe a opção seal?",
+  "opcoes": {
+   "A": "AES-256-CBC para a cifra, com assinatura de integridade HMAC-SHA-256.",
+   "B": "Informação insuficiente no material",
+   "C": "ChaCha20-Poly1305 para a cifra, com chave derivada por HKDF a partir da senha.",
+   "D": "AES-256-GCM para a cifra, com autenticação embutida no próprio modo."
+  }
+ },
+ {
+  "qid": "q033",
+  "pergunta": "No h3 v2, depois da correção do setChunkedCookie, como o valor de um cookie com JSON ou texto não ASCII é dividido em chunks?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "O valor bruto é cortado a cada chunkMaxLength bytes UTF-8, antes da codificação",
+   "C": "Cada chunk, já codificado como no setCookie, cabe em chunkMaxLength",
+   "D": "O valor bruto é cortado a cada chunkMaxLength caracteres, antes da codificação"
+  }
+ },
+ {
+  "qid": "q034",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos, o que a condição C4 inclui?",
+  "opcoes": {
+   "A": "Gates determinísticos com correção por erro real e citação de IDs, sem testes antes",
+   "B": "O C1 com testes escritos antes e realimentação pela saída do runner, sem voto por letra",
+   "C": "Mitigações completas: gates, voto por letra, citação de IDs, testes antes e loop do runner",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q035",
+  "pergunta": "Na discussão de junho de 2025 no h3 sobre um util defineRoute, pi0 primeiro propôs um método declarativo no core e, quatro dias depois, disse ter acabado adicionando outra coisa. O que foi adicionado?",
+  "opcoes": {
+   "A": "O util defineRoute no core, com metadados de rota extraíveis estaticamente como no Nitro",
+   "B": "Uma interface de plugins de uso geral, para o h3 compor rotas e outros módulos",
+   "C": "Informação insuficiente no material",
+   "D": "O método app.register(spec) no core, aceitando um objeto declarativo com rota, método e handler"
+  }
+ },
+ {
+  "qid": "q036",
+  "pergunta": "No estudo 1 do Melo Labs, quantos testes compõem o núcleo da variante #1267 (HTTP Range no `serveStatic`) nos testes ocultos?",
+  "opcoes": {
+   "A": "12 testes no núcleo",
+   "B": "Informação insuficiente no material",
+   "C": "25 testes no núcleo",
+   "D": "18 testes no núcleo"
+  }
+ },
+ {
+  "qid": "q037",
+  "pergunta": "Depois que o h3 passou a respeitar `HTTPError.headers` acima da regra `headers` em respostas de erro, em que versão do Nitro entrou a troca no tratamento de 404 de assets estáticos para usar esse cabeçalho de erro?",
+  "opcoes": {
+   "A": "Na mesma versão do Nitro v3 que atualizou a dependência do h3 com essa correção",
+   "B": "Informação insuficiente no material",
+   "C": "Em nenhuma versão ainda; a troca ficou só como sugestão para o Nitro",
+   "D": "Em uma versão de manutenção posterior do Nitro v3, depois da validação de CDNs"
+  }
+ },
+ {
+  "qid": "q038",
+  "pergunta": "No h3, o serveStatic recebe um caminho que é diretório e a opção indexNames não foi informada. Qual arquivo de índice ele procura?",
+  "opcoes": {
+   "A": "/index.html e depois /index.htm",
+   "B": "Informação insuficiente no material",
+   "C": "Somente /default.html, sem outros nomes",
+   "D": "Somente /index.html, sem outros nomes"
+  }
+ },
+ {
+  "qid": "q039",
+  "pergunta": "No h3 v2, se o stream de um handler Node (fromNodeHandler) falha depois de a resposta já ter começado, quais hooks de erro são avisados?",
+  "opcoes": {
+   "A": "Só o hook onError da configuração do app, uma vez; hooks registrados pelo middleware onError() não recebem erros de stream.",
+   "B": "O hook da configuração do app e também os do middleware onError(), cada um uma vez, com um HTTPError 500 gerado pelo h3.",
+   "C": "Nenhum deles, pois com a resposta já enviada o h3 apenas registra o erro em log e descarta qualquer notificação.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q040",
+  "pergunta": "No h3, a partir de que momento é contado o maxAge de uma sessão e a atividade do usuário o reinicia?",
+  "opcoes": {
+   "A": "Conta desde a criação da sessão e a atividade não o reinicia",
+   "B": "Informação insuficiente no material",
+   "C": "Conta desde o último reselo do cookie e cada escrita reinicia a contagem",
+   "D": "Conta desde a última requisição e cada acesso reinicia a contagem"
+  }
+ },
+ {
+  "qid": "q041",
+  "pergunta": "No H3 versão 2, como é iniciado o servidor durante o desenvolvimento, com recarga ao editar arquivos?",
+  "opcoes": {
+   "A": "Executando npx listhen@latest com a flag de observação sobre o arquivo de entrada",
+   "B": "Usando nodemon com um adaptador que converte o app em listener do node:http",
+   "C": "Informação insuficiente no material",
+   "D": "Rodando o arquivo direto no runtime, por exemplo com node --watch"
+  }
+ },
+ {
+  "qid": "q042",
+  "pergunta": "No h3, uma requisição traz o token de sessão tanto no cabeçalho de sessão quanto em cookie, com sessionHeader no padrão. De onde o token é lido primeiro?",
+  "opcoes": {
+   "A": "Do cookie, usando o cabeçalho apenas quando o cookie estiver ausente",
+   "B": "Do cabeçalho de sessão, recorrendo aos cookies se ele não existir",
+   "C": "Informação insuficiente no material",
+   "D": "Dos dois, valendo o que tiver createdAt mais recente na sessão"
+  }
+ },
+ {
+  "qid": "q043",
+  "pergunta": "No h3 v2, depois de quanto tempo sem resposta um handler é encerrado por padrão com erro de tempo esgotado, caso o projeto não configure nada?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "30 segundos, encerrando a requisição com 504 Gateway Timeout.",
+   "C": "60 segundos, encerrando a requisição com 504 Gateway Timeout.",
+   "D": "120 segundos, encerrando a requisição com 504 Gateway Timeout."
+  }
+ },
+ {
+  "qid": "q044",
+  "pergunta": "No h3, com idleTimeout configurado, a partir de que parcela da janela ociosa já consumida o getSession reenvia o cookie selado para deslizar a janela?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Quando mais da metade da janela já foi consumida, por causa do custo do seal",
+   "C": "Quando um quarto da janela já foi consumido, para manter margem de segurança",
+   "D": "Em toda leitura da sessão, para que o horário registrado seja sempre exato"
+  }
+ },
+ {
+  "qid": "q045",
+  "pergunta": "No h3, a partir da versão 2.0.1-rc.25, qual é o número padrão de iterações de PBKDF2 usado para selar o token de sessão?",
+  "opcoes": {
+   "A": "8192 iterações",
+   "B": "10000 iterações",
+   "C": "600000 iterações",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q046",
+  "pergunta": "No h3 v2, uma rota usa o método HTTP QUERY e o app aplica handleCors com uma lista explícita de methods. O que é preciso para os navegadores conseguirem chamar essa rota entre origens?",
+  "opcoes": {
+   "A": "Acrescentar \"QUERY\" à lista de methods, pois o navegador envia preflight para ele",
+   "B": "Nada além do handleCors, pois o QUERY é tratado como o GET e dispensa o preflight entre origens",
+   "C": "Informação insuficiente no material",
+   "D": "Registrar um handler OPTIONS manual na rota, pois o handleCors só cobre GET e POST"
+  }
+ },
+ {
+  "qid": "q047",
+  "pergunta": "Na v2 do h3, depois que um usuário mostrou que falhas no servidor em streams web de resposta têm a exceção sem registro em log, que encaminhamento os mantenedores deram a esse comportamento?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Passar a registrar a exceção pelo hook de erro do app, como já ocorre nos handlers do Node",
+   "C": "Delegar o registro ao srvx, que gerencia o fechamento dos streams na v2",
+   "D": "Manter o comportamento atual, tratando o log como responsabilidade do próprio handler"
+  }
+ },
+ {
+  "qid": "q048",
+  "pergunta": "No estudo 1 do Melo Labs, qual valor de temperatura de amostragem foi fixado para os juízes Opus que pontuaram a rubrica?",
+  "opcoes": {
+   "A": "Temperatura 0, para obter julgamentos o mais determinísticos possível",
+   "B": "Temperatura 0,3, para um pouco de variação entre os juízes",
+   "C": "Temperatura 1,0, para que os três juízes funcionem como amostras",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q049",
+  "pergunta": "No estudo 1 do Melo Labs, qual modelo rodou a revisão adversarial independente (F7.4) que refez os números e levantou objeções ao texto?",
+  "opcoes": {
+   "A": "Sonnet 5.5, o modelo usado como referência",
+   "B": "Haiku 5.5, o modelo que o estudo avalia",
+   "C": "Informação insuficiente no material",
+   "D": "Opus 5.5, o mesmo modelo usado nos juízes da rubrica"
+  }
+ },
+ {
+  "qid": "q050",
+  "pergunta": "No h3 v2, sobre o fallback legado de selo de sessão (1 iteração de PBKDF2) e a opção legacySealFallback, o que foi decidido depois de o v2 ficar estável?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Remover ambos foi feito no próprio v2, e legacySealFallback foi marcada como obsoleta para avisar quem ainda a usava.",
+   "C": "Manter o fallback para sempre, e legacySealFallback foi marcada como obsoleta por ser redundante com o novo padrão.",
+   "D": "Remover ambos foi adiado para o v3, pois removê-los no v2 quebraria as sessões já seladas com 1 iteração."
+  }
+ },
+ {
+  "qid": "q051",
+  "pergunta": "Na discussão dos mantenedores do h3 sobre cabeçalhos de proxy confiáveis, qual foi a resposta final à sugestão de receber a lista `trustedHeaders` já na criação do app, e não só no contexto do evento?",
+  "opcoes": {
+   "A": "Adiaram a decisão e deixaram a configuração por conta de um plugin de uma camada superior",
+   "B": "Recusaram a opção do construtor por custo de desempenho e mantiveram só o contexto do evento",
+   "C": "Aceitaram passar a lista como opção do construtor do app, com o valor copiado para cada evento",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q052",
+  "pergunta": "No h3 v1, um router filho foi aninhado a um router pai sob o prefixo /api, mas /api/hello retornava 404. Qual registro pi0 indicou como correto?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Registrar no router pai com o caminho exato '/api', envolvendo o handler do router filho em useBase('/api').",
+   "C": "Registrar no router pai com o padrão '/api/**', envolvendo o handler do router filho em useBase('/api').",
+   "D": "Registrar o handler do router filho direto com router.get('/api/**'), sem useBase, pois o prefixo já está no padrão."
+  }
+ },
+ {
+  "qid": "q053",
+  "pergunta": "No H3 versão 2, como rodar o app em um runtime compatível com a web ou chamá-lo direto em um teste?",
+  "opcoes": {
+   "A": "Usando app.fetch, que o próprio app já expõe, ou app.request nos testes",
+   "B": "Informação insuficiente no material",
+   "C": "Exportando o app como middleware de Express e testando com a biblioteca supertest",
+   "D": "Convertendo o app com toWebHandler, que gera uma função de Request para Promise de Response"
+  }
+ },
+ {
+  "qid": "q054",
+  "pergunta": "Na versão 2.0.8 do h3, quantas iterações de PBKDF2 o seal de sessão usa por padrão ao criar uma sessão nova?",
+  "opcoes": {
+   "A": "Uma única iteração, padrão mantido por compatibilidade com cookies antigos",
+   "B": "Cem mil iterações, valor hoje recomendado para derivação de chaves a partir de senhas",
+   "C": "Oito mil cento e noventa e duas iterações, elevado nas candidatas da 2.0.1",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q055",
+  "pergunta": "No h3 v1, alguém queria encadear um handler de CORS com o handler principal de uma rota. O que pi0 respondeu sobre como usar utilitários como o de cors?",
+  "opcoes": {
+   "A": "Usar um helper chain() nativo, que recebe vários handlers e os invoca em sequência como se fossem um único event handler.",
+   "B": "Registrá-los sempre como middleware global antes de qualquer rota, pois utilitários de cors não podem rodar dentro do handler.",
+   "C": "Chamá-los sob demanda dentro do corpo do event handler, e usar a pilha de um app quando quiser encadeamento estilo middleware.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q056",
+  "pergunta": "No h3 v2, um handler usa event.url.pathname para montar caminhos e outro usa serveStatic com getContents lendo do disco. Que regra de decodificação vale para o pathname e para o id?",
+  "opcoes": {
+   "A": "Decodificar só o id no getContents, pois o pathname do evento já vem decodificado",
+   "B": "Informação insuficiente no material",
+   "C": "Não decodificar nenhum dos dois por conta própria, tratando ambos como valores opacos",
+   "D": "Decodificar o pathname com decodeURIComponent antes de resolver o id contra a raiz"
+  }
+ },
+ {
+  "qid": "q057",
+  "pergunta": "No h3 v2, segundo o mantenedor pi0, qual é a diferença entre middleware e plugin quanto ao ponto onde cada um se conecta?",
+  "opcoes": {
+   "A": "O plugin se liga à instância do app e pode até adicionar middleware, enquanto o middleware se liga a cada requisição (event).",
+   "B": "Informação insuficiente no material",
+   "C": "Ambos se ligam à requisição (event); o plugin só difere por poder ser publicado como pacote separado e reutilizado em outros apps.",
+   "D": "O middleware se liga à instância do app e roda uma só vez na inicialização, enquanto o plugin se liga a cada requisição (event)."
+  }
+ },
+ {
+  "qid": "q058",
+  "pergunta": "Na versão 2 do h3, sobre qual base o framework foi reescrito e qual papel o srvx cumpre nessa base?",
+  "opcoes": {
+   "A": "Sobre padrões web, e o srvx unifica as diferenças entre os runtimes, mantendo o core simples",
+   "B": "Sobre as APIs do Node.js, e o srvx adiciona uma camada de compatibilidade com padrões web",
+   "C": "Informação insuficiente no material",
+   "D": "Sobre padrões web, e o srvx substitui o roteador, trocando o rou3 pelo próprio"
+  }
+ },
+ {
+  "qid": "q059",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, qual parte da H5 decide o resultado na prática, e qual o piso exigido?",
+  "opcoes": {
+   "A": "A de qualidade, com limite inferior da razão de qualidade de pelo menos 0,90, pois o custo é quase certo.",
+   "B": "Informação insuficiente no material",
+   "C": "A de custo, com razão de custo de no máximo 0,50, pois a razão de qualidade só vale quando passa de 1,10 em todas as tarefas.",
+   "D": "A de qualidade, com razão média de pelo menos 1,10, pois a parte de custo passou a ser apenas descritiva."
+  }
+ },
+ {
+  "qid": "q060",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), pela regra de decisão da H4, em que situação ela é dada como refutada?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Quando o limite inferior do intervalo da diferença fica abaixo de menos 0,10, mesmo que o superior passe de zero.",
+   "C": "Quando o limite superior do intervalo da diferença fica abaixo de menos 0,10, e não apenas o inferior.",
+   "D": "Quando a condição C1, o Haiku simples, também chega ao teto de aprovação dos testes de núcleo."
+  }
+ },
+ {
+  "qid": "q061",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), na extensão da amostra, depois do adendo 2b, como ficam a rubrica e o número de juízes por artefato?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "A rubrica segue congelada e cada artefato é julgado por 3 juízes, como na análise primária.",
+   "C": "A rubrica segue congelada, mas cada artefato passa a ter 5 juízes só na parte nova da amostra.",
+   "D": "A rubrica é revista para elevar a concordância, com 5 juízes por artefato julgado."
+  }
+ },
+ {
+  "qid": "q062",
+  "pergunta": "No H3 versão 2, qual é o jeito de preparar headers e status da resposta antes de retornar do handler?",
+  "opcoes": {
+   "A": "Chamar setResponseHeader passando o event, o nome e o valor do header",
+   "B": "Retornar um objeto com as chaves headers e body em vez do valor simples",
+   "C": "Usar event.res, por exemplo com event.res.headers.set para cada header",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q063",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, há teto de gasto no estudo e de onde vem o custo em dólar de cada execução?",
+  "opcoes": {
+   "A": "Não há teto, e o custo em dólar de lista vem do campo de custo da própria ferramenta, por execução.",
+   "B": "Informação insuficiente no material",
+   "C": "Não há teto, e o custo em dólar vem da fatura real da conta de API do autor, medida por período.",
+   "D": "Há teto definido pela assinatura do autor, e o custo em dólar é estimado por proporções de entrada e saída."
+  }
+ },
+ {
+  "qid": "q064",
+  "pergunta": "No h3 v2, o time quer autenticar usuários consultando a própria base de usuários. Em que parte da aplicação essa lógica deve ficar?",
+  "opcoes": {
+   "A": "Numa regra auth dentro das route rules, ao lado de cache e headers",
+   "B": "Informação insuficiente no material",
+   "C": "Num hook global onResponse, validando as credenciais após o handler",
+   "D": "Num middleware, porque a autenticação precisa de lógica executável"
+  }
+ },
+ {
+  "qid": "q065",
+  "pergunta": "No h3 v2, depois da correção da validação de query em defineValidatedHandler, o que o validador recebe para a requisição GET /?tag=a&tag=b?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Um array com os dois valores, no mesmo formato de getQuery",
+   "C": "Somente o último valor repetido, a string \"b\", pois a chave se sobrescreve",
+   "D": "Somente o primeiro valor repetido, a string \"a\", ignorando o resto"
+  }
+ },
+ {
+  "qid": "q066",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, por que a H6 (custo) deixou de ser hipótese confirmatória e passou a descritiva?",
+  "opcoes": {
+   "A": "O custo real da fatura não podia ser obtido pela assinatura do autor, e uma estimativa não serve como critério de confirmação.",
+   "B": "O alfa de Krippendorff dos juízes ficou abaixo do mínimo, e a regra pré-registrada tirou do teste as hipóteses ligadas à rubrica.",
+   "C": "A razão de custo de lista só seria reprovada se o Haiku gastasse mais de dez vezes os tokens, então a tabela de preços já a confirmaria.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q067",
+  "pergunta": "No h3, depois da correção de extensões em serveStatic, que tipo MIME resulta para o arquivo /photos/IMG_0001.JPG com extensão em maiúsculas?",
+  "opcoes": {
+   "A": "application/octet-stream, porque extensões em maiúsculas caem no tipo genérico",
+   "B": "image/jpeg, porque a extensão é normalizada para minúsculas na busca",
+   "C": "Sem tipo definido, porque a extensão é buscada exatamente como veio",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q068",
+  "pergunta": "No h3 v1, um usuário recebeu o erro res._implicitHeader is not a function ao usar express-session com fromNodeMiddleware. Que caminho pi0 sugeriu?",
+  "opcoes": {
+   "A": "Definir manualmente res._implicitHeader num middleware anterior, pois o h3 v1 não expõe esse método e o resto funciona normalmente.",
+   "B": "Trocar por iron-session ou outro pacote de sessão que não dependa do express, porque o express-session exige polyfills do app express.",
+   "C": "Informação insuficiente no material",
+   "D": "Migrar para o h3 v2, onde o fromNodeMiddleware já inclui os polyfills do express necessários para o express-session funcionar."
+  }
+ },
+ {
+  "qid": "q069",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos, como o custo em dólar é obtido na coleta principal?",
+  "opcoes": {
+   "A": "Por estimativa a partir dos tokens totais, com três divisões supostas entre entrada e saída",
+   "B": "Por estimativa a partir dos tokens totais, com uma divisão única de 70/30 fixada de antemão",
+   "C": "Pelo consumo medido de fato em cada etapa, com o custo de lista informado pela ferramenta",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q070",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), por que o adendo 1 retirou as três proporções fixas de entrada e saída da estimativa de custo?",
+  "opcoes": {
+   "A": "O harness passou a informar a divisão exata entre entrada e saída, o que tornou a estimativa por proporções dispensável.",
+   "B": "A faixa obtida mudava a conclusão sobre a H5 a cada proporção, o que impedia reportar um resultado único de custo.",
+   "C": "Informação insuficiente no material",
+   "D": "Como o preço de um modelo é uma fração fixa do outro, as três proporções davam a mesma razão de custo e nada testavam."
+  }
+ },
+ {
+  "qid": "q071",
+  "pergunta": "No h3 v2, uma sessão usa idleTimeout de 30 minutos, e a equipe precisa que o limite real de inatividade, no pior caso, seja de 15 minutos. O que fazer?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Manter 30 minutos, pois o horário do último acesso é atualizado em toda requisição",
+   "C": "Dividir o idleTimeout por dois, pois o reselo só ocorre depois de metade da janela",
+   "D": "Manter 30 minutos e reduzir o maxAge, que também conta a partir da última requisição"
+  }
+ },
+ {
+  "qid": "q072",
+  "pergunta": "No h3, um POST chega a uma rota que usa serveStatic sem a opção fallthrough. Como o serveStatic responde?",
+  "opcoes": {
+   "A": "405 com allow: GET, HEAD, OPTIONS",
+   "B": "405 com o cabeçalho allow: GET, HEAD",
+   "C": "404 sem allow, como se o arquivo faltasse",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q073",
+  "pergunta": "Em qual versão candidata do h3 2.0.1 a decodificação UTF-8 das credenciais de Basic auth foi introduzida, e o que o requireBasicAuth faz com credenciais que não são UTF-8 válido?",
+  "opcoes": {
+   "A": "Na rc.24; responde 401 por considerar as credenciais inválidas",
+   "B": "Informação insuficiente no material",
+   "C": "Na rc.30; responde 400 por considerar o cabeçalho malformado",
+   "D": "Na rc.26; mantém a leitura Latin-1 para clientes legados"
+  }
+ },
+ {
+  "qid": "q074",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), qual o status final da H7 (erros plantados) no estudo e qual a razão?",
+  "opcoes": {
+   "A": "Não testada, porque a fase C foi adiada e a regra de decisão só admite a hipótese se ela for executada.",
+   "B": "Informação insuficiente no material",
+   "C": "Subpotente, porque o alfa dos juízes ficou abaixo do corte de 0,67 pré-registrado para a rubrica.",
+   "D": "Não testável, porque a reprovação no primeiro gate ficou abaixo do mínimo exigido para a hipótese."
+  }
+ },
+ {
+  "qid": "q075",
+  "pergunta": "No estudo 1 do Melo Labs, com quantas reamostragens foram calculados os intervalos por permutação estratificada e por bootstrap, segundo o protocolo final com os adendos?",
+  "opcoes": {
+   "A": "Com 100.000 reamostragens por intervalo",
+   "B": "Com 10.000 reamostragens por intervalo",
+   "C": "Com 1.000 reamostragens por intervalo",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q076",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos, quantas repetições por variante a coleta principal usa na H4 (testes ocultos) em C0 e C4?",
+  "opcoes": {
+   "A": "3 repetições por variante, estendidas a 5 se o IC cruzar a margem",
+   "B": "6 repetições por variante, mantendo 3 para tokens, tempo e rubrica",
+   "C": "Informação insuficiente no material",
+   "D": "4 repetições por variante, mantendo 3 para tokens, tempo e rubrica"
+  }
+ },
+ {
+  "qid": "q077",
+  "pergunta": "Que rota o h3 v2 registra por conta própria para responder às sondas de saúde de um orquestrador de contêineres?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "A rota /health, que responde 200 com um corpo JSON indicando o estado do servidor.",
+   "C": "A rota /healthz, que responde 200 com um corpo de texto simples contendo apenas ok.",
+   "D": "A rota /_health, que responde 204 sem corpo enquanto a aplicação estiver de pé."
+  }
+ },
+ {
+  "qid": "q078",
+  "pergunta": "Depois do lançamento estável do h3 v2, por quanto tempo a linha v1 continua recebendo correções de segurança?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Por 6 meses a partir do lançamento estável da v2, apenas com correções de segurança.",
+   "C": "Por 12 meses a partir do lançamento estável da v2, apenas com correções de segurança.",
+   "D": "Até a publicação da v3, com correções de segurança e de bugs críticos."
+  }
+ },
+ {
+  "qid": "q079",
+  "pergunta": "Ao contribuir com código no repositório do h3, quais convenções de módulos e imports valem?",
+  "opcoes": {
+   "A": "Somente ESM, com extensões .ts explícitas e imports diretos, sem barrels",
+   "B": "Informação insuficiente no material",
+   "C": "Somente ESM, com imports sem extensão e um index.ts reexportando cada pasta",
+   "D": "ESM e CommonJS lado a lado, com extensões .ts explícitas e um index.ts por cada pasta"
+  }
+ },
+ {
+  "qid": "q080",
+  "pergunta": "Hoje, no h3 2.0.8, quando o CORS é aplicado duas vezes na mesma resposta (middleware e handler), como os cabeçalhos CORS de valor único são gravados?",
+  "opcoes": {
+   "A": "Só a primeira aplicação grava; as seguintes são ignoradas pelo h3 sem erro",
+   "B": "Informação insuficiente no material",
+   "C": "São anexados a cada aplicação, acumulando os valores de cada chamada no mesmo cabeçalho",
+   "D": "São definidos com set, substituindo o valor anterior; só o vary anexa"
+  }
+ },
+ {
+  "qid": "q081",
+  "pergunta": "No h3, alguém pediu uma função global (algo como setDefaults) para habilitar por padrão os cabeçalhos x-forwarded*. Qual foi a resposta do mantenedor pi0 e o motivo?",
+  "opcoes": {
+   "A": "Recusou, porque os cabeçalhos x-forwarded* já vêm habilitados por padrão no h3 v2 e a opção global seria redundante.",
+   "B": "Informação insuficiente no material",
+   "C": "Aceitou, mas só se o valor padrão fosse lido de uma variável de ambiente, para que cada deploy decida se confia no proxy.",
+   "D": "Recusou, porque um app H3 interno e sem relação com o proxy poderia passar a confiar em cabeçalhos x-forwarded sem querer."
+  }
+ },
+ {
+  "qid": "q082",
+  "pergunta": "No h3 v2, qual é o intervalo padrão com que o EventStream envia um comentário de manutenção da conexão para que proxies não derrubem um fluxo SSE ocioso?",
+  "opcoes": {
+   "A": "Um comentário a cada 30 segundos, enviado automaticamente enquanto o fluxo estiver aberto.",
+   "B": "Informação insuficiente no material",
+   "C": "Um comentário a cada 60 segundos, enviado automaticamente enquanto o fluxo estiver aberto.",
+   "D": "Um comentário a cada 15 segundos, enviado automaticamente enquanto o fluxo estiver aberto."
+  }
+ },
+ {
+  "qid": "q083",
+  "pergunta": "No h3 v2 rodando em Node.js, o que acontece com as requisições em andamento quando o processo recebe SIGTERM durante um deploy?",
+  "opcoes": {
+   "A": "O h3 aborta na hora as requisições em andamento e devolve 503 aos clientes que ainda estiverem conectados.",
+   "B": "O h3 para de aceitar conexões novas e aguarda as requisições em andamento terminarem antes de encerrar o processo.",
+   "C": "O h3 aguarda as requisições por um prazo fixo e depois derruba as conexões que ainda restarem abertas.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q084",
+  "pergunta": "O que os mantenedores do h3 e do Nitro decidiram sobre tipar corpo e query nos tipos gerados pelo Nitro e no cliente de fetch, a tarefa de acompanhamento da proposta de generics em `defineEventHandler`?",
+  "opcoes": {
+   "A": "A tipagem ficou por conta de pacotes externos de validação, sem integração aos tipos gerados",
+   "B": "A integração foi planejada para o cliente de fetch primeiro e depois para os tipos do Nitro",
+   "C": "Os tipos gerados do Nitro passaram a inferir corpo e query a partir do handler validado",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q085",
+  "pergunta": "No h3 v2, numa rota com as regras headers e cache juntas, como um handler deve responder 404 para um asset ausente sem receber o cache-control imutável da regra headers?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Alterando event.res.errHeaders dentro do handler, pois o h3 detecta a mudança durante next() e a regra pula essa chave.",
+   "C": "Lançando (throw) um HTTPError que traga cache-control no próprio headers; retornar o erro faria a regra cache perder o opt-out.",
+   "D": "Retornando um HTTPError que traga cache-control no próprio headers; lançar o erro faria a regra headers sobrescrever o valor."
+  }
+ },
+ {
+  "qid": "q086",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos, qual é o status da H6 (custo) na análise?",
+  "opcoes": {
+   "A": "Confirmatória, no núcleo da fase A ao lado das hipóteses H4 e H5, com limiar de custo",
+   "B": "Descritiva: reporta razões de custo e de tokens com IC, sem teste",
+   "C": "Informação insuficiente no material",
+   "D": "Confirmatória secundária, testada com Holm junto das hipóteses H1 e H3"
+  }
+ },
+ {
+  "qid": "q087",
+  "pergunta": "No estudo 1 do Melo Labs, que regra valia quando as notas dos três juízes para o mesmo artefato divergiam muito (por exemplo, por mais de 5 pontos)?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "A nota usada era a mediana dos três juízes",
+   "C": "O artefato era excluído da análise de rubrica",
+   "D": "O artefato era rejulgado por um quarto juiz Opus"
+  }
+ },
+ {
+  "qid": "q088",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, o que a condição C4 passa a significar?",
+  "opcoes": {
+   "A": "A cascata em que o Haiku escala para o Sonnet quando o gate do documento reprova duas vezes seguidas, registrando cada escalada.",
+   "B": "Informação insuficiente no material",
+   "C": "O Haiku simples com testes escritos antes do código e correção guiada pela saída do runner, sem votação.",
+   "D": "O Haiku com gates determinísticos e loop de correção, mais o voto por letra nas decisões fechadas da TechSpec."
+  }
+ },
+ {
+  "qid": "q089",
+  "pergunta": "No h3 v2, qual foi o desfecho da proposta de inferir os tipos dos parâmetros de rota em `event.context.params` a partir do padrão da rota (por exemplo `/:user/id`)?",
+  "opcoes": {
+   "A": "O tipo utilitário foi implementado no rou3 e o h3 passou a reexportá-lo para tipar os parâmetros",
+   "B": "Um tipo utilitário foi adicionado ao próprio h3, derivado do fetch-dts, e passou a tipar os parâmetros",
+   "C": "A proposta foi arquivada e os parâmetros continuam como registro genérico de strings",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q090",
+  "pergunta": "No h3 v2, o app roda atrás de um CDN confiável que define x-forwarded-proto. O que é preciso para getRequestProtocol refletir o protocolo original do cliente?",
+  "opcoes": {
+   "A": "Nada, pois por padrão o header é usado sempre que estiver presente",
+   "B": "Informação insuficiente no material",
+   "C": "Passar xForwardedHost: true, pois essa opção também controla o protocolo",
+   "D": "Passar xForwardedProto: true, pois por padrão o header é ignorado"
+  }
+ },
+ {
+  "qid": "q091",
+  "pergunta": "No h3, chega um HEAD a um caminho que só tem rota GET, e há um middleware registrado com method: GET. O que acontece?",
+  "opcoes": {
+   "A": "A rota GET atende o HEAD sem corpo, mas o middleware GET é ignorado nessa requisição",
+   "B": "O HEAD recebe 405, pois nenhuma rota HEAD foi registrada na aplicação",
+   "C": "A rota GET atende o HEAD sem corpo e o middleware GET também roda",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q092",
+  "pergunta": "No h3 v2, com uma regra headers que define cache-control para /build/**, o que acontece com o cache-control de um HTTPError 404 lançado com esse mesmo cabeçalho em seu próprio headers, depois da correção?",
+  "opcoes": {
+   "A": "O cache-control da regra prevalece e sobrescreve o valor definido no erro lançado",
+   "B": "O cache-control do erro é mantido, e a regra pula só essa chave",
+   "C": "Os dois valores de cache-control são combinados num só cabeçalho",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q093",
+  "pergunta": "No h3 v2, depois da correção do setChunkedCookie, como é dimensionado cada pedaço (chunk) do cookie em relação ao chunkMaxLength?",
+  "opcoes": {
+   "A": "Cada pedaço é o maior trecho cuja forma codificada, com o mesmo encode do setCookie, cabe em chunkMaxLength.",
+   "B": "Cada pedaço é limitado por chunkMaxLength bytes do valor em UTF-8, sem considerar o encode escolhido pelo usuário.",
+   "C": "Cada pedaço continua com o valor bruto dividido a cada chunkMaxLength caracteres, e o encode ocorre depois sem limite.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q094",
+  "pergunta": "Depois de manter aberto o problema do `useSession` que falhava no StackBlitz, o que a investigação do lado da plataforma concluiu sobre qual recurso de criptografia faltava?",
+  "opcoes": {
+   "A": "O ambiente não implementava o método de derivação de chave usado para selar a sessão",
+   "B": "O ambiente não oferecia a geração de números aleatórios exigida pelo salt da sessão",
+   "C": "Informação insuficiente no material",
+   "D": "O ambiente não suportava o algoritmo de cifra simétrica usado para criptografar o cookie"
+  }
+ },
+ {
+  "qid": "q095",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos, quantos dos quatro braços novos do autor (S8 a S11) fazem parte da coleta?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Dois deles, S9 e S10, depois do corte de prazo",
+   "C": "Os quatro, em paralelo com os braços das hipóteses H1 a H11",
+   "D": "Nenhum: ficam para um paper futuro como não testados"
+  }
+ },
+ {
+  "qid": "q096",
+  "pergunta": "No repositório do h3, qual percentual mínimo de cobertura de linhas o comando pnpm test exige para ser aprovado?",
+  "opcoes": {
+   "A": "80% das linhas, com falha do comando se a cobertura ficar abaixo disso.",
+   "B": "Informação insuficiente no material",
+   "C": "90% das linhas, com falha do comando se a cobertura ficar abaixo disso.",
+   "D": "95% das linhas, com falha do comando se a cobertura ficar abaixo disso."
+  }
+ },
+ {
+  "qid": "q097",
+  "pergunta": "No h3 v2, depois do PR que corrigiu o defineValidatedHandler, qual valor o validador de query recebe para a chave tag em uma requisição com ?tag=a&tag=b?",
+  "opcoes": {
+   "A": "Um array com os dois valores, no mesmo formato que getQuery devolve.",
+   "B": "Apenas o primeiro valor, a string \"a\", ignorando as repetições seguintes.",
+   "C": "Apenas o último valor, a string \"b\", como já acontecia antes da correção.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q098",
+  "pergunta": "No histórico do h3, que correção definitiva os mantenedores adotaram para o erro de `proxyRequest` ao repassar requisições DELETE sem corpo (falha do fetch por tamanho de conteúdo)?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Enviar um corpo vazio explícito nas requisições DELETE repassadas pelo proxy",
+   "C": "Remover o cabeçalho content-length quando o método não tem corpo antes de repassar ao fetch",
+   "D": "Considerar um defeito do fetch do Node e documentar a atualização da versão do Node"
+  }
+ },
+ {
+  "qid": "q099",
+  "pergunta": "No h3 v2, qual é o tamanho máximo de mensagem que um defineWebSocketHandler aceita por padrão antes de fechar a conexão do cliente?",
+  "opcoes": {
+   "A": "64 KiB por mensagem, com fechamento da conexão ao exceder esse tamanho.",
+   "B": "Informação insuficiente no material",
+   "C": "1 MiB por mensagem, com fechamento da conexão ao exceder esse tamanho.",
+   "D": "16 MiB por mensagem, com fechamento da conexão ao exceder esse tamanho."
+  }
+ },
+ {
+  "qid": "q100",
+  "pergunta": "No h3 v2, por qual mecanismo o tracingPlugin, exposto pela entrada h3/tracing, entrega os eventos de rastreio das rotas ao código de observabilidade?",
+  "opcoes": {
+   "A": "Acrescenta um cabeçalho Server-Timing em cada resposta com o tempo gasto por middleware.",
+   "B": "Chama um callback onTrace informado nas opções do H3, que recebe a rota e a duração.",
+   "C": "Informação insuficiente no material",
+   "D": "Publica os eventos em canais do diagnostics_channel, que o código de observabilidade assina."
+  }
+ },
+ {
+  "qid": "q101",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, o que se faz com uma execução que a auditoria marca por acesso suspeito ao gabarito?",
+  "opcoes": {
+   "A": "Ela é excluída e registrada com o motivo, e a etapa é refeita em outra pasta de nome opaco.",
+   "B": "Ela é mantida em todas as análises, porque a auditoria varre apenas o texto livre e não prova acesso.",
+   "C": "Ela é mantida na análise principal e só sai da análise feita ao lado, com a taxa por condição reportada.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q102",
+  "pergunta": "No h3, depois da correção do tipo MIME em serveStatic com encodings configurados, qual content-type sai quando GET /app.js (com accept-encoding gzip) serve o arquivo app.js.gz?",
+  "opcoes": {
+   "A": "application/gzip, resolvido a partir da extensão da variante",
+   "B": "text/javascript, resolvido a partir do id do asset pedido",
+   "C": "Informação insuficiente no material",
+   "D": "text/plain, porque a extensão .gz não consta no mapa de tipos"
+  }
+ },
+ {
+  "qid": "q103",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), suponha que, na H4, o limite inferior do intervalo da diferença fique acima de menos 0,10 e que o Haiku simples (C1) também chegue ao teto. Que status a hipótese recebe?",
+  "opcoes": {
+   "A": "Confirmada como equivalente por não inferioridade, pois o intervalo cabe na margem de 10 pontos.",
+   "B": "Subpotente, pois o intervalo cabe na margem mas a amostra de execuções por variante é pequena.",
+   "C": "Informação insuficiente no material",
+   "D": "Não informativa por saturação, pois nenhuma condição discrimina e o instrumento não é sensível."
+  }
+ },
+ {
+  "qid": "q104",
+  "pergunta": "No h3 v2, um app tem um middleware global requireAuth e uma regra routeRules com swr em /api/**. Em que ordem registrá-los para que requireAuth rode também nas rotas com cache?",
+  "opcoes": {
+   "A": "Registrar routeRules() primeiro e requireAuth depois, pois o cache decide antes",
+   "B": "A ordem não importa, pois os dois rodam em toda requisição cacheável",
+   "C": "Registrar requireAuth primeiro e routeRules() depois dele no app",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q105",
+  "pergunta": "Como os mantenedores do h3 responderam à pergunta sobre o que impedia servir requisições por HTTP/2 nativamente, no contexto da migração do formato `(req, res)` para eventos?",
+  "opcoes": {
+   "A": "Disseram que o suporte nativo a HTTP/2 viria com a camada de servidor baseada em fetch padrão da v2",
+   "B": "Informação insuficiente no material",
+   "C": "Disseram que HTTP/2 ficaria fora do escopo do h3 e deveria ser tratado por servidores externos",
+   "D": "Disseram que o bloqueio era a camada de compatibilidade do unenv e que seria removida antes da v1.0"
+  }
+ },
+ {
+  "qid": "q106",
+  "pergunta": "No h3 v2, uma rota com regra cache chama proxyRequest para um upstream de confiança, e esse upstream precisa receber o Authorization do cliente. O que configurar?",
+  "opcoes": {
+   "A": "Ligar allowAuthorization na regra cache, e então o proxyRequest o repassa ao destino",
+   "B": "Informação insuficiente no material",
+   "C": "Nada, pois o handler em cache recebe o Authorization e o proxyRequest o repassa",
+   "D": "Listar authorization em varies na regra, pois o H3 o repassa ao handler"
+  }
+ },
+ {
+  "qid": "q107",
+  "pergunta": "Hoje, no h3 2.0.8, qual é a forma indicada de montar uma resposta de server-sent events dentro de um handler?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Instanciar EventStream com o evento da requisição e retorná-lo do handler",
+   "C": "Montar um ReadableStream próprio com content-type text/event-stream",
+   "D": "Chamar createEventStream(event) e devolver o objeto que essa função cria"
+  }
+ },
+ {
+  "qid": "q108",
+  "pergunta": "No h3 v2, um handler pode terminar devolvendo um Response completo ou lançando um HTTPError, e nos dois casos o header x-request-id precisa seguir na resposta. Onde defini-lo em cada caso?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "No próprio Response devolvido e na opção headers do HTTPError lançado",
+   "C": "Em event.res.errHeaders nos dois casos, como padrão do projeto",
+   "D": "Em event.res.headers nos dois casos, pois o H3 sempre os mescla à resposta"
+  }
+ },
+ {
+  "qid": "q109",
+  "pergunta": "No h3, com as opções padrão de setChunkedCookie, até quantos caracteres (já codificados) o valor pode ter sem que a gravação lance erro?",
+  "opcoes": {
+   "A": "Cerca de 40 mil caracteres, em no máximo 10 partes",
+   "B": "Cerca de 400 mil caracteres, em no máximo 100 partes",
+   "C": "Informação insuficiente no material",
+   "D": "Cerca de 4 mil caracteres, pois o valor cabe em um único cookie"
+  }
+ },
+ {
+  "qid": "q110",
+  "pergunta": "No h3 v2 ou Nitro v3, como o mantenedor pi0 recomendou obter o IP da requisição, e em que condição o cabeçalho x-forwarded-for pode ser confiado?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Ler o x-forwarded-for direto, pois event.req.ip só existe no v1; confiar nele apenas se vier um único endereço na lista.",
+   "C": "Usar event.req.ip; confiar no x-forwarded-for apenas atrás de uma CDN ou proxy reverso que sempre defina esse cabeçalho.",
+   "D": "Usar event.req.ip; confiar no x-forwarded-for sempre que o h3 estiver em modo de produção, pois o framework o valida antes."
+  }
+ },
+ {
+  "qid": "q111",
+  "pergunta": "No h3, uma requisição sem sessão chama apenas getSession para checar autenticação. O que acontece com o cookie de sessão na resposta?",
+  "opcoes": {
+   "A": "Um cookie com sessão vazia é enviado já na primeira leitura da sessão",
+   "B": "Um cookie temporário é enviado e removido ao final da mesma requisição",
+   "C": "Nenhum Set-Cookie é enviado até que algo seja gravado com updateSession",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q112",
+  "pergunta": "Qual é a política dos mantenedores do h3 para quando elevar de novo o mínimo de Node.js da v2, hoje na versão 20.19, por exemplo ao fim do suporte de longo prazo do Node 20?",
+  "opcoes": {
+   "A": "Elevar o mínimo só quando o Node deixar de receber correções de segurança",
+   "B": "Informação insuficiente no material",
+   "C": "Elevar o mínimo no próximo lançamento menor depois do fim do suporte do Node 20",
+   "D": "Elevar o mínimo apenas em uma nova versão maior, junto da v3"
+  }
+ },
+ {
+  "qid": "q113",
+  "pergunta": "Na migração do h3 para a Events API (formato event), o que ocorreu com os handlers Node.js no formato (req, res)?",
+  "opcoes": {
+   "A": "Continuaram convertidos de forma implícita, mas agora emitem um aviso no console a cada chamada.",
+   "B": "Foram removidos do pacote por completo, sem nenhuma forma de adaptar handlers Node.js existentes.",
+   "C": "Informação insuficiente no material",
+   "D": "Passaram a ser opt-in, e a conversão implícita do formato (req, res) deixou de existir."
+  }
+ },
+ {
+  "qid": "q114",
+  "pergunta": "No h3 v2, depois da correção dos textos de status, qual statusText acompanha uma resposta criada com noContent(200)?",
+  "opcoes": {
+   "A": "OK, pois o h3 usa a frase padrão do status 200 quando o valor passado não for 204.",
+   "B": "Informação insuficiente no material",
+   "C": "Nenhum, pois só o status 204 mantém a frase No Content e os demais ficam sem frase.",
+   "D": "No Content, pois noContent() sempre usa essa frase, qualquer que seja o status passado."
+  }
+ },
+ {
+  "qid": "q115",
+  "pergunta": "No h3 v2, a equipe quer diagnosticar falhas mais rápido ligando a opção debug do new H3, que inclui stack traces nas respostas de erro. Qual é a orientação do projeto?",
+  "opcoes": {
+   "A": "Ligar apenas durante o desenvolvimento, porque a opção expõe stack traces ao cliente",
+   "B": "Ligar em staging e em produção, desde que a opção silent também esteja ligada",
+   "C": "Informação insuficiente no material",
+   "D": "Ligar em produção para IPs internos, filtrando as respostas por um hook onError"
+  }
+ },
+ {
+  "qid": "q116",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos, como o agente é impedido de alcançar os testes ocultos durante a coleta?",
+  "opcoes": {
+   "A": "Por contêiner com sistema de arquivos somente leitura, montado sem o diretório do gabarito",
+   "B": "Por processo novo a cada etapa, com ferramentas restritas e pasta exportada sem histórico nem remoto",
+   "C": "Por instrução de trabalhar só na pasta, ausência de referências e auditoria, sem barreira técnica",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q117",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, como cada etapa do pipeline é executada para isolar o agente?",
+  "opcoes": {
+   "A": "Como subagente na mesma sessão do orquestrador, com instrução de trabalhar só na pasta da execução e sem barreira técnica.",
+   "B": "Informação insuficiente no material",
+   "C": "Como um processo novo da CLI com modelo explícito e ferramentas restritas, numa pasta exportada sem o .git do projeto.",
+   "D": "Em um contêiner com sistema de arquivos somente leitura, sem rede, destruído ao fim de cada etapa."
+  }
+ },
+ {
+  "qid": "q118",
+  "pergunta": "Hoje, no h3 2.0.8, o que o serveStatic faz com um pathname não canônico, como o que começa com duas barras (//private/x)?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Resolve o caminho e serve o arquivo correspondente, ignorando as barras repetidas",
+   "C": "Responde 400 Bad Request antes de consultar qualquer rota ou backend de assets",
+   "D": "Não serve o arquivo: responde 404, ou deixa a requisição seguir com fallthrough"
+  }
+ },
+ {
+  "qid": "q119",
+  "pergunta": "No h3, um handler lança o objeto { status: 404, message: \"x\" }, que não é um Error. Qual é o resultado?",
+  "opcoes": {
+   "A": "Resposta 404, usando o status do objeto lançado",
+   "B": "Resposta 200, com o objeto serializado em JSON no corpo",
+   "C": "Informação insuficiente no material",
+   "D": "Resposta 500 não tratada, ignorando o status do objeto"
+  }
+ },
+ {
+  "qid": "q120",
+  "pergunta": "No h3 v2, um endpoint usa proxyRequest para encaminhar chamadas a um upstream que não é totalmente confiável. Como evitar que as credenciais do cliente vazem?",
+  "opcoes": {
+   "A": "Aplicar o middleware bodyLimit(), que remove os headers sensíveis do pedido",
+   "B": "Nada, pois o proxyRequest já descarta Cookie e Authorization por padrão",
+   "C": "Informação insuficiente no material",
+   "D": "Passar filterHeaders com cookie e authorization nas opções do proxyRequest"
+  }
+ }
+]

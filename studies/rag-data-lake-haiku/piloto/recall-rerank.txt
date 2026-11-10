@@ -1,0 +1,14 @@
+90 perguntas com ouro (comuns e conflito). recall = fração com o ouro entre os k chunks.
+método       k   doc(algum) doc(todos) trecho(algum) trecho(todos)  trecho(todos) comum/conflito
+bm25          5       0.39       0.31          0.30          0.20   14/60  4/30
+bm25         10       0.48       0.40          0.36          0.22   14/60  6/30
+bm25         15       0.54       0.47          0.41          0.27   16/60  8/30
+vetor         5       0.73       0.53          0.38          0.20   14/60  4/30
+vetor        10       0.82       0.64          0.50          0.31   21/60  7/30
+vetor        15       0.86       0.72          0.59          0.37   26/60  7/30
+hibrido_rrf   5       0.76       0.57          0.54          0.34   24/60  7/30
+hibrido_rrf  10       0.81       0.68          0.66          0.43   30/60  9/30
+hibrido_rrf  15       0.86       0.71          0.71          0.50   35/60  10/30
+hibrido_rerank  5       0.88       0.62          0.76          0.46   32/60  9/30
+hibrido_rerank 10       0.91       0.72          0.79          0.51   36/60  10/30
+hibrido_rerank 15       0.91       0.78          0.79          0.52   37/60  10/30

@@ -1,0 +1,202 @@
+[
+ {
+  "id": "q-sem-iss-01",
+  "bloco": "sem_resposta",
+  "pergunta": "Na discussão dos mantenedores do h3 sobre cabeçalhos de proxy confiáveis, qual foi a resposta final à sugestão de receber a lista `trustedHeaders` já na criação do app, e não só no contexto do evento?",
+  "opcoes": [
+   "Aceitaram passar a lista como opção do construtor do app, com o valor copiado para cada evento",
+   "Recusaram a opção do construtor por custo de desempenho e mantiveram só o contexto do evento",
+   "Adiaram a decisão e deixaram a configuração por conta de um plugin de uma camada superior"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados no lake/bruto: trustedHeaders, trustedProxies, isTrustedProxy, trusted proxy, trust, xForwarded, getRequestIP. O mais próximo: a discussão do pedido de cabeçalhos confiáveis propõe `event.context.trustedHeaders` e um plugin do Nitro, e um participante pergunta se a lista poderia vir na criação do app citando o desempenho, mas a conversa termina sem resposta; os docs de getRequestIP só falam em xForwardedFor opt-in e em servidor configurado para confiar no proxy, sem tratar dessa opção.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-sem-iss-02",
+  "bloco": "sem_resposta",
+  "pergunta": "No h3 v2, qual foi o desfecho da proposta de inferir os tipos dos parâmetros de rota em `event.context.params` a partir do padrão da rota (por exemplo `/:user/id`)?",
+  "opcoes": [
+   "Um tipo utilitário foi adicionado ao próprio h3, derivado do fetch-dts, e passou a tipar os parâmetros",
+   "O tipo utilitário foi implementado no rou3 e o h3 passou a reexportá-lo para tipar os parâmetros",
+   "A proposta foi arquivada e os parâmetros continuam como registro genérico de strings"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: fetch-dts, regexparam, infer, InferRouteParams, route param, params type, typed routes, context.params. O mais próximo: a discussão da proposta cita fetch-dts, regexparam e a ideia de exportar o util pelo rou3, com o mantenedor convidando a abrir PR, e termina sem decisão; os docs de roteamento e do H3Event só mostram `event.context.params.name` e descrevem params como parâmetros casados, sem falar de inferência de tipos.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-sem-iss-03",
+  "bloco": "sem_resposta",
+  "pergunta": "Como os mantenedores do h3 responderam à pergunta sobre o que impedia servir requisições por HTTP/2 nativamente, no contexto da migração do formato `(req, res)` para eventos?",
+  "opcoes": [
+   "Disseram que o suporte nativo a HTTP/2 viria com a camada de servidor baseada em fetch padrão da v2",
+   "Disseram que o bloqueio era a camada de compatibilidade do unenv e que seria removida antes da v1.0",
+   "Disseram que HTTP/2 ficaria fora do escopo do h3 e deveria ser tratado por servidores externos"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: http2, HTTP/2, h2, spdy, node:http2, ALPN, roadblock. O mais próximo: o plano de migração para a API de eventos cita que o formato (req, res) não permite estender o h3 para http2 sem camada de compatibilidade, e um usuário pergunta o que bloqueia e outro posta contorno com node-spdy; nenhum mantenedor responde, e os docs v2 e o changelog não mencionam http2.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-sem-iss-04",
+  "bloco": "sem_resposta",
+  "pergunta": "No histórico do h3, que correção definitiva os mantenedores adotaram para o erro de `proxyRequest` ao repassar requisições DELETE sem corpo (falha do fetch por tamanho de conteúdo)?",
+  "opcoes": [
+   "Remover o cabeçalho content-length quando o método não tem corpo antes de repassar ao fetch",
+   "Enviar um corpo vazio explícito nas requisições DELETE repassadas pelo proxy",
+   "Considerar um defeito do fetch do Node e documentar a atualização da versão do Node"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: content-length, undici, UND_ERR, DELETE, proxyRequest, fetch failed, body vazio. O mais próximo: a discussão do erro de proxy de DELETE traz contornos de usuários (flag do Node, corpo vazio, atualizar o Node) e uma nota do mantenedor sobre investigação, sem correção anunciada; os docs de proxy só listam limitações herdadas do fetch e o changelog cita content-length em outros contextos (Uint8Array, serve-static).",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-sem-iss-05",
+  "bloco": "sem_resposta",
+  "pergunta": "O que os mantenedores do h3 e do Nitro decidiram sobre tipar corpo e query nos tipos gerados pelo Nitro e no cliente de fetch, a tarefa de acompanhamento da proposta de generics em `defineEventHandler`?",
+  "opcoes": [
+   "Os tipos gerados do Nitro passaram a inferir corpo e query a partir do handler validado",
+   "A tipagem ficou por conta de pacotes externos de validação, sem integração aos tipos gerados",
+   "A integração foi planejada para o cliente de fetch primeiro e depois para os tipos do Nitro"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: generated types, InternalApi, ohmyfetch, typebox, h3-typebox, defineEventHandler<, typed fetch. O mais próximo: a discussão da proposta lista como pendente o suporte a tipar query e body nos tipos gerados do Nitro e no ohmyfetch, e o mantenedor sugere um pacote externo h3-typebox, que um usuário publica; nada informa o que aconteceu com a tarefa pendente, e os docs de validação não falam de tipos gerados.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-sem-iss-06",
+  "bloco": "sem_resposta",
+  "pergunta": "Depois de manter aberto o problema do `useSession` que falhava no StackBlitz, o que a investigação do lado da plataforma concluiu sobre qual recurso de criptografia faltava?",
+  "opcoes": [
+   "O ambiente não implementava o método de derivação de chave usado para selar a sessão",
+   "O ambiente não oferecia a geração de números aleatórios exigida pelo salt da sessão",
+   "O ambiente não suportava o algoritmo de cifra simétrica usado para criptografar o cookie"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: stackblitz, webcrypto, Web Crypto, crypto.subtle, getRandomValues, iron-webcrypto, PBKDF2. O mais próximo: o mantenedor diz que o erro vem do StackBlitz não suportar alguns métodos de web crypto e mantém a issue aberta para investigar, sem nomear qual método; o changelog cita só ajustes de iron-crypto sobre getRandomValues e salt inválido, e outra issue avisa que o StackBlitz não suporta cookies, sem tratar dessa conclusão.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-sem-iss-07",
+  "bloco": "sem_resposta",
+  "pergunta": "Os hooks de erro registrados pelo middleware `onError` do h3 v2 não recebem falhas de streams de resposta. Em que versão do h3 isso passou a ser reportado também nesses hooks?",
+  "opcoes": [
+   "Na v2.1, com um novo evento de erro de stream",
+   "Na v2.0.9, com um sinal tardio recebido pelo onError",
+   "Ainda na v2.0.x, por um ajuste no manipulador de streams"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: kHandled, stream error, onError middleware, hook de middleware, separate design, erros de stream. O mais próximo: a descrição do ajuste de onError diz apenas que hooks de middleware não veem erros de stream e que reportá-los exigiria desenho separado, sem escolher um nem dar versão; nenhuma opção está sustentada. Reescrita após revisão cega que achou a versão anterior ambígua.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-sem-iss-08",
+  "bloco": "sem_resposta",
+  "pergunta": "Depois que o h3 passou a respeitar `HTTPError.headers` acima da regra `headers` em respostas de erro, em que versão do Nitro entrou a troca no tratamento de 404 de assets estáticos para usar esse cabeçalho de erro?",
+  "opcoes": [
+   "Na mesma versão do Nitro v3 que atualizou a dependência do h3 com essa correção",
+   "Em uma versão de manutenção posterior do Nitro v3, depois da validação de CDNs",
+   "Em nenhuma versão ainda; a troca ficou só como sugestão para o Nitro"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: nitro static, createErrorHeaders, no-store, errHeaders, nitrojs/nitro, Nitro v3, immutable, versão do Nitro. O mais próximo: a descrição da correção cita como acompanhamento no Nitro trocar a remoção de Cache-Control mais o 404 por um HTTPError com no-store, sem dizer se ou quando foi feito; os docs de resposta e de regras explicam errHeaders e HTTPError.headers, mas nada fala de versões do Nitro.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-sem-iss-09",
+  "bloco": "sem_resposta",
+  "pergunta": "Na v2 do h3, depois que um usuário mostrou que falhas no servidor em streams web de resposta têm a exceção sem registro em log, que encaminhamento os mantenedores deram a esse comportamento?",
+  "opcoes": [
+   "Passar a registrar a exceção pelo hook de erro do app, como já ocorre nos handlers do Node",
+   "Delegar o registro ao srvx, que gerencia o fechamento dos streams na v2",
+   "Manter o comportamento atual, tratando o log como responsabilidade do próprio handler"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: exception is not logged, stream error, web response stream, srvx, leak, abort, erro de stream. O mais próximo: a tabela comparando v1 e v2 marca que o erro de stream web do servidor tem exceção não registrada em log e o mantenedor apenas pede relatos de problemas em srvx ou Nitro v3; o changelog só cita onError para streams de handlers do Node e o encerramento correto de event-stream, sem tratar de streams web comuns.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-sem-iss-10",
+  "bloco": "sem_resposta",
+  "pergunta": "Qual é a política dos mantenedores do h3 para quando elevar de novo o mínimo de Node.js da v2, hoje na versão 20.19, por exemplo ao fim do suporte de longo prazo do Node 20?",
+  "opcoes": [
+   "Elevar o mínimo no próximo lançamento menor depois do fim do suporte do Node 20",
+   "Elevar o mínimo apenas em uma nova versão maior, junto da v3",
+   "Elevar o mínimo só quando o Node deixar de receber correções de segurança"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: Node.js 22, Node 20, EOL, LTS, support policy, drop Node, engines, >= 20. O mais próximo: o ajuste de requisito mínimo diz que o rou3 v1 declara Node >= 20.19 e por isso o h3 alinhou o engines e o guia de migração, e o blog da v2 repete o mínimo; nenhum arquivo traz regra ou plano para novas elevações do mínimo.",
+  "n_fontes": 0
+ }
+]

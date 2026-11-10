@@ -1,0 +1,430 @@
+[
+  {
+    "id": "q-comum-e1-01",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), por que o adendo 1 retirou as três proporções fixas de entrada e saída da estimativa de custo?",
+    "opcoes": [
+      "O harness passou a informar a divisão exata entre entrada e saída, o que tornou a estimativa por proporções dispensável.",
+      "Como o preço de um modelo é uma fração fixa do outro, as três proporções davam a mesma razão de custo e nada testavam.",
+      "A faixa obtida mudava a conclusão sobre a H5 a cada proporção, o que impedia reportar um resultado único de custo."
+    ],
+    "correta": 1,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0004",
+        "trecho": "As três proporções 60/40, 80/20 e 95/5 ficam **retiradas**: com preços proporcionais (1/20) elas dão a mesma razão e não testavam nada."
+      }
+    ],
+    "cartoes": [
+      "c-e1-04"
+    ],
+    "justificativa": "O adendo 1 diz que, com preços proporcionais, as três proporções dão a mesma razão e não testavam nada; o consumo passou a ser medido de fato. As outras opções não têm sustento nas fontes.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-02",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, por que a H6 (custo) deixou de ser hipótese confirmatória e passou a descritiva?",
+    "opcoes": [
+      "A razão de custo de lista só seria reprovada se o Haiku gastasse mais de dez vezes os tokens, então a tabela de preços já a confirmaria.",
+      "O custo real da fatura não podia ser obtido pela assinatura do autor, e uma estimativa não serve como critério de confirmação.",
+      "O alfa de Krippendorff dos juízes ficou abaixo do mínimo, e a regra pré-registrada tirou do teste as hipóteses ligadas à rubrica."
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0004",
+        "trecho": "O custo em dólar de lista da razão Haiku sobre Sonnet só passa de 0,50 se o Haiku consumir mais de 10 vezes os tokens, então a hipótese se confirmaria pela tabela de preços."
+      }
+    ],
+    "cartoes": [
+      "c-e1-06"
+    ],
+    "justificativa": "O adendo 1 justifica: a confirmação seria quase certa pela tabela de preços, então H6 vira descritiva. O alfa baixo só apareceu em 07/11, depois da coleta, e não tem relação com a H6.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-03",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, o que a condição C4 passa a significar?",
+    "opcoes": [
+      "O Haiku com gates determinísticos e loop de correção, mais o voto por letra nas decisões fechadas da TechSpec.",
+      "A cascata em que o Haiku escala para o Sonnet quando o gate do documento reprova duas vezes seguidas, registrando cada escalada.",
+      "O Haiku simples com testes escritos antes do código e correção guiada pela saída do runner, sem votação."
+    ],
+    "correta": 2,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0004",
+        "trecho": "**C4 passa a significar \"C1 mais testes primeiro e loop com a saída do runner\"**, sem o voto (C3 não foi implementado), e é assim que o artigo o chama."
+      }
+    ],
+    "cartoes": [
+      "c-e1-08"
+    ],
+    "justificativa": "O adendo 1 redefine C4 como C1 mais testes primeiro e loop com a saída do runner, sem o voto (C3 não foi implementado). A cascata é a C5.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-04",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), qual o destino da fase C, a de hipóteses e braços extras, depois da decisão do autor de 06/11/2026?",
+    "opcoes": [
+      "Roda só se sobrar tempo até o congelamento dos dados, em ordem de prioridade, e o que faltar sai como não testado.",
+      "Fica para um paper futuro, e no texto final seus itens são rotulados como não testados, sem alterar as regras das demais.",
+      "Roda com metade das repetições previstas, e os resultados saem como exploratórios, sem teste de hipótese associado."
+    ],
+    "correta": 1,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0004",
+        "trecho": "O autor decidiu que a fase C (H2, H7, H8, H9 e braços S8 a S11) **não entra neste estudo** e fica para um paper futuro. No artigo, essas hipóteses aparecem como \"não testadas\""
+      }
+    ],
+    "cartoes": [
+      "c-e1-11"
+    ],
+    "justificativa": "A nota de 06/11 no adendo 1 adia a fase C para um paper futuro e a lista como não testada. A primeira opção é o plano antigo, substituído.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-05",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), no adendo 2b, por que se abandonou a ideia de usar 5 amostras do juiz Opus por artefato?",
+    "opcoes": [
+      "Os juízes 4 e 5 discordaram sistematicamente dos três primeiros, o que derrubou o alfa de Krippendorff da matriz estendida.",
+      "A rubrica precisou ser revista depois dos primeiros resultados, e a revisão só era viável com três julgamentos por artefato.",
+      "Mais amostras do mesmo modelo só reduzem o ruído da média, sem elevar o alfa individual, e consumiam cerca de 40% do total."
+    ],
+    "correta": 2,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0006",
+        "trecho": "**Volta a 3 juízes por artefato** (a ideia de 5 sai). Motivos: 5 amostras do mesmo modelo não elevam o alfa individual (só o ruído da média), e custavam 40% do total."
+      }
+    ],
+    "cartoes": [
+      "c-e1-14"
+    ],
+    "justificativa": "O adendo 2b volta a 3 juízes porque 5 amostras do mesmo modelo não elevam o alfa individual e custavam 40% do total. O adendo 2 afirma que a rubrica fica congelada, e nenhuma fonte fala de discordância dos juízes 4 e 5.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-06",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), no protocolo final, depois dos adendos, qual condição deixa de ter documentos julgados além das execuções originais, e por quê?",
+    "opcoes": [
+      "A C0, porque é o baseline e os seus documentos originais já bastam para a comparação de qualidade.",
+      "A C5, porque a cascata nunca escalou para o Sonnet e seus documentos equivalem aos do C4.",
+      "A C4, porque as hipóteses de rubrica não se apoiam nos documentos dessa condição."
+    ],
+    "correta": 2,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0006",
+        "trecho": "**C4 deixa de ser julgado além das 6 execuções originais**: nenhuma hipótese de rubrica usa os documentos do C4 (H3 é não testável, H4 é de código, H5 usa C5 contra C0)."
+      }
+    ],
+    "cartoes": [
+      "c-e1-17"
+    ],
+    "justificativa": "O adendo 2b mantém C0 e C1 nas repetições 1 a 3 das 6 variantes e C5 nas repetições 1 a 6, e tira o C4 do julgamento extra porque nenhuma hipótese de rubrica usa seus documentos.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-07",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do piloto, o que passou a compor o enunciado entregue aos modelos para implementar cada feature?",
+    "opcoes": [
+      "A issue, o padrão técnico citado nela e as restrições de implementação, sem listar os casos de borda dos testes.",
+      "O contrato público completo da feature, com cada caso de borda descrito e os valores de teste usados na pontuação final.",
+      "Apenas o título da issue e o commit base, para o modelo inferir sozinho a norma e as restrições da feature."
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0002",
+        "trecho": "**Contrato enxuto:** o enunciado dado aos modelos passa a ser a issue, a norma citada e as restrições (sem exportação nova, não quebrar o que existe), sem enumerar os casos de borda que os testes cobrem."
+      }
+    ],
+    "cartoes": [
+      "c-e1-19"
+    ],
+    "justificativa": "O plano de testes revisado após o piloto define o contrato enxuto: issue, norma citada e restrições, sem enumerar os casos de borda. O contrato público sem valores de teste era a versão anterior.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-08",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, como cada etapa do pipeline é executada para isolar o agente?",
+    "opcoes": [
+      "Como subagente na mesma sessão do orquestrador, com instrução de trabalhar só na pasta da execução e sem barreira técnica.",
+      "Em um contêiner com sistema de arquivos somente leitura, sem rede, destruído ao fim de cada etapa.",
+      "Como um processo novo da CLI com modelo explícito e ferramentas restritas, numa pasta exportada sem o .git do projeto."
+    ],
+    "correta": 2,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0004",
+        "trecho": "Cada etapa é um processo `claude -p` novo, com modelo explícito, `--setting-sources project`, `--strict-mcp-config`, ferramentas restritas"
+      }
+    ],
+    "cartoes": [
+      "c-e1-21"
+    ],
+    "justificativa": "O adendo 1 troca o isolamento por instrução (limite do plano original) por processo claude -p novo, ferramentas restritas e pasta exportada sem .git e sem remoto. Não há contêiner nas fontes.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-09",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, o que se faz com uma execução que a auditoria marca por acesso suspeito ao gabarito?",
+    "opcoes": [
+      "Ela é excluída e registrada com o motivo, e a etapa é refeita em outra pasta de nome opaco.",
+      "Ela é mantida na análise principal e só sai da análise feita ao lado, com a taxa por condição reportada.",
+      "Ela é mantida em todas as análises, porque a auditoria varre apenas o texto livre e não prova acesso."
+    ],
+    "correta": 1,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0004",
+        "trecho": "Acessos suspeitos **não excluem** a execução: a análise principal usa todas e a análise ao lado exclui as suspeitas"
+      }
+    ],
+    "cartoes": [
+      "c-e1-23"
+    ],
+    "justificativa": "O adendo 1 manda manter a execução na análise principal e excluí-la só na análise ao lado, reportando a taxa por condição. A exclusão registrada era a regra antiga; a auditoria varre ações, não texto livre.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-10",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), pela regra de decisão da H4, em que situação ela é dada como refutada?",
+    "opcoes": [
+      "Quando o limite inferior do intervalo da diferença fica abaixo de menos 0,10, mesmo que o superior passe de zero.",
+      "Quando o limite superior do intervalo da diferença fica abaixo de menos 0,10, e não apenas o inferior.",
+      "Quando a condição C1, o Haiku simples, também chega ao teto de aprovação dos testes de núcleo."
+    ],
+    "correta": 1,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0007",
+        "trecho": "Confirmada (equivalente por não inferioridade) se o limite inferior ≥ −0,10 **e** o instrumento é sensível (alguma condição não satura); se C1 também satura, \"não informativa (saturação)\". Refutada se o limite superior < −0,10"
+      }
+    ],
+    "cartoes": [
+      "c-e1-24"
+    ],
+    "justificativa": "A regra diz refutada se o limite superior < −0,10. Limite inferior abaixo disso só impede a confirmação; C1 no teto leva ao status não informativa, não a refutada.",
+    "n_fontes": 1
+  },
+  {
+    "id": "q-comum-e1-11",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), suponha que, na H4, o limite inferior do intervalo da diferença fique acima de menos 0,10 e que o Haiku simples (C1) também chegue ao teto. Que status a hipótese recebe?",
+    "opcoes": [
+      "Confirmada como equivalente por não inferioridade, pois o intervalo cabe na margem de 10 pontos.",
+      "Não informativa por saturação, pois nenhuma condição discrimina e o instrumento não é sensível.",
+      "Subpotente, pois o intervalo cabe na margem mas a amostra de execuções por variante é pequena."
+    ],
+    "correta": 1,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0004",
+        "trecho": "se C1 (Haiku simples) também chegar ao teto, a H4 é reportada como **não informativa (saturação)**"
+      },
+      {
+        "doc": "doc-0007",
+        "trecho": "Confirmada (equivalente por não inferioridade) se o limite inferior ≥ −0,10 **e** o instrumento é sensível (alguma condição não satura)"
+      }
+    ],
+    "cartoes": [
+      "c-e1-25",
+      "c-e1-24"
+    ],
+    "justificativa": "A confirmação exige limite inferior ≥ −0,10 e instrumento sensível (alguma condição não satura); com C1 no teto, o adendo 1 manda reportar não informativa (saturação), mesmo com o intervalo dentro da margem.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-comum-e1-12",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, há teto de gasto no estudo e de onde vem o custo em dólar de cada execução?",
+    "opcoes": [
+      "Há teto definido pela assinatura do autor, e o custo em dólar é estimado por proporções de entrada e saída.",
+      "Não há teto, e o custo em dólar vem da fatura real da conta de API do autor, medida por período.",
+      "Não há teto, e o custo em dólar de lista vem do campo de custo da própria ferramenta, por execução."
+    ],
+    "correta": 2,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0003",
+        "trecho": "**sem teto de gasto** (decisão do autor em 05/11/2026: o foco é a assertividade do processo e o tempo; o gasto continua medido e reportado)"
+      },
+      {
+        "doc": "doc-0004",
+        "trecho": "`custo_usd_lista` (campo `total_cost_usd` da própria ferramenta, preço de lista)"
+      }
+    ],
+    "cartoes": [
+      "c-e1-29",
+      "c-e1-04"
+    ],
+    "justificativa": "A premissa diz que não há teto e que o gasto é medido e reportado; o adendo 1 define custo_usd_lista como o campo total_cost_usd da ferramenta, a preço de lista. As proporções foram retiradas e o autor usa assinatura, sem chave de API.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-comum-e1-13",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), qual o status final da H7 (erros plantados) no estudo e qual a razão?",
+    "opcoes": [
+      "Não testada, porque a fase C foi adiada e a regra de decisão só admite a hipótese se ela for executada.",
+      "Não testável, porque a reprovação no primeiro gate ficou abaixo do mínimo exigido para a hipótese.",
+      "Subpotente, porque o alfa dos juízes ficou abaixo do corte de 0,67 pré-registrado para a rubrica."
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0001",
+        "trecho": "o autor adiou a fase C (H2, H7, H8, H9 e braços S8 a S11) para um paper futuro."
+      },
+      {
+        "doc": "doc-0007",
+        "trecho": "Só se forem executadas (fase C); senão \"não testada\""
+      }
+    ],
+    "cartoes": [
+      "c-e1-11"
+    ],
+    "justificativa": "O diário registra que a H7 pertence à fase C adiada, e a regra de decisão diz que H2, H7, H8 e H9 só valem se executadas; senão, não testada. Não testável é status da H3, e subpotente vem do alfa nas hipóteses de rubrica.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-comum-e1-14",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), na extensão da amostra, depois do adendo 2b, como ficam a rubrica e o número de juízes por artefato?",
+    "opcoes": [
+      "A rubrica é revista para elevar a concordância, com 5 juízes por artefato julgado.",
+      "A rubrica segue congelada e cada artefato é julgado por 3 juízes, como na análise primária.",
+      "A rubrica segue congelada, mas cada artefato passa a ter 5 juízes só na parte nova da amostra."
+    ],
+    "correta": 1,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0005",
+        "trecho": "**Rubrica, prompt do juiz e material continuam congelados** (hashes no manifesto do adendo 1). Não se revisa a rubrica para subir a concordância."
+      },
+      {
+        "doc": "doc-0006",
+        "trecho": "**Volta a 3 juízes por artefato** (a ideia de 5 sai)."
+      }
+    ],
+    "cartoes": [
+      "c-e1-14"
+    ],
+    "justificativa": "O adendo 2 mantém rubrica, prompt e material congelados e proíbe revisar a rubrica para subir a concordância; o adendo 2b, que substitui os itens de juízes, volta a 3 por artefato.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-comum-e1-15",
+    "bloco": "comum",
+    "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, qual parte da H5 decide o resultado na prática, e qual o piso exigido?",
+    "opcoes": [
+      "A de qualidade, com limite inferior da razão de qualidade de pelo menos 0,90, pois o custo é quase certo.",
+      "A de custo, com razão de custo de no máximo 0,50, pois a razão de qualidade só vale quando passa de 1,10 em todas as tarefas.",
+      "A de qualidade, com razão média de pelo menos 1,10, pois a parte de custo passou a ser apenas descritiva."
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0004",
+        "trecho": "**H5** continua confirmatória, mas declarada: a parte de custo é quase certa por construção, e a conclusão depende da parte de qualidade."
+      },
+      {
+        "doc": "doc-0007",
+        "trecho": "Confirmada se o limite inferior da razão de qualidade ≥ 0,90 e a razão de custo ≤ 0,50."
+      }
+    ],
+    "cartoes": [
+      "c-e1-27",
+      "c-e1-06"
+    ],
+    "justificativa": "O adendo 1 diz que a parte de custo é quase certa por construção e a conclusão depende da qualidade; a regra de decisão fixa o limite inferior em 0,90 e o custo em 0,50. Acima de 1,10 não reprova, e H6 é que é descritiva.",
+    "n_fontes": 2
+  }
+]

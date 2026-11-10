@@ -1,0 +1,238 @@
+{
+ "concordancia": {
+  "conflito": [
+   30,
+   30
+  ],
+  "sem_resposta": [
+   29,
+   30
+  ],
+  "comum": [
+   59,
+   60
+  ]
+ },
+ "discordancias": [
+  {
+   "qid": "q019",
+   "id_origem": "q-sem-iss-07",
+   "bloco": "sem_resposta",
+   "gabarito": "A",
+   "revisor": "C",
+   "confianca": 4,
+   "nota": "A pergunta pressupõe que um desenho foi escolhido; o material diz que nenhum foi definido. C corresponde ao material, mas A (insuficiente) é defensável se se ler que a pergunta pede um desenho que o material não traz.",
+   "arquivos": [
+    "h3-prs/pr-1574.md"
+   ],
+   "trecho": "Middleware-registered hooks still do not see stream errors (only the app `onError` config hook does). Reporting them there too would need a separate design."
+  },
+  {
+   "qid": "q050",
+   "id_origem": "q-comum-iss-13",
+   "bloco": "comum",
+   "gabarito": "D",
+   "revisor": "A",
+   "confianca": 3,
+   "nota": "Remoção foi adiada para o v3 (pr-1573), mas o PR dizia que legacySealFallback não seria marcada @deprecated; depois o commit 44dbfb8 (v2.0.2) a marcou como deprecated e session.ts tem @deprecated. Nenhuma opção bate com o estado vigente (adiado para v3 + marcada obsoleta). D corresponde só à decisão inicial do PR.",
+   "arquivos": [
+    "h3-prs/pr-1573.md",
+    "h3/CHANGELOG.md",
+    "h3/src/utils/session.ts"
+   ],
+   "trecho": "Mark `legacySealFallback` as deprecated"
+  }
+ ],
+ "ambiguas_parciais": [
+  {
+   "qid": "q003",
+   "id_origem": "q-conf-e1-09",
+   "bloco": "conflito",
+   "ambigua": true,
+   "parcial": false,
+   "nota": "A lista de variáveis controladas do mesmo plano descreve o enunciado como 'contrato público, sem valores de teste' (opção B); a seção pós-piloto (contrato enxuto) descreve exatamente D, que é a vigente.",
+   "concorda": true
+  },
+  {
+   "qid": "q004",
+   "id_origem": "q-sem-e1-07",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "premissa.md fala em 'resultado dentro da tolerância declarada' e validade.md descreve a reprodução em clone limpo, mas nenhum valor de tolerância aparece.",
+   "concorda": true
+  },
+  {
+   "qid": "q010",
+   "id_origem": "q-sem-e1-08",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "premissa.md exige 'pacote de dados abertos e arquivados' e validade.md diz que o pacote e o código estão abertos, mas nenhum repositório (Zenodo, OSF, GitHub) nem identificador aparece.",
+   "concorda": true
+  },
+  {
+   "qid": "q016",
+   "id_origem": "q-sem-e1-05",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "adendo-1.md diz que falha de infraestrutura faz a etapa ser refeita e que as tentativas são numeradas, sem limite máximo; o diário registra zero novas tentativas.",
+   "concorda": true
+  },
+  {
+   "qid": "q017",
+   "id_origem": "q-comum-docs-02",
+   "bloco": "comum",
+   "ambigua": true,
+   "parcial": false,
+   "nota": "7.nested-apps.md diz 'Consider always setting them from the main app' sobre hooks globais, o que poderia sustentar A; mas o guia de erros recomenda explicitamente o middleware onError com nested apps.",
+   "concorda": true
+  },
+  {
+   "qid": "q019",
+   "id_origem": "q-sem-iss-07",
+   "bloco": "sem_resposta",
+   "ambigua": true,
+   "parcial": false,
+   "nota": "A pergunta pressupõe que um desenho foi escolhido; o material diz que nenhum foi definido. C corresponde ao material, mas A (insuficiente) é defensável se se ler que a pergunta pede um desenho que o material não traz.",
+   "concorda": false
+  },
+  {
+   "qid": "q026",
+   "id_origem": "q-sem-e1-09",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "premissa.md define só o limiar total (28 de 35 em TechSpec, 20 de 25 em Tasks); nenhuma nota mínima por critério aparece.",
+   "concorda": true
+  },
+  {
+   "qid": "q037",
+   "id_origem": "q-sem-iss-08",
+   "bloco": "sem_resposta",
+   "ambigua": true,
+   "parcial": true,
+   "nota": "pr-1613 só registra o 'Nitro follow-up' como sugestão de troca em static.ts; não diz se/quando entrou no Nitro. A opção C (só sugestão, nenhuma versão) é defensável, mas afirmar que não entrou em nenhuma versão vai além do material.",
+   "concorda": true
+  },
+  {
+   "qid": "q047",
+   "id_origem": "q-sem-iss-09",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "issue-986 traz a tabela de Hornwitser ('exception is not logged') como último comentário; não há resposta dos mantenedores depois dela.",
+   "concorda": true
+  },
+  {
+   "qid": "q049",
+   "id_origem": "q-sem-e1-04",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "diario.md descreve a F7.4 como 'Revisor independente (agente isolado, somente leitura)', sem dizer o modelo.",
+   "concorda": true
+  },
+  {
+   "qid": "q050",
+   "id_origem": "q-comum-iss-13",
+   "bloco": "comum",
+   "ambigua": true,
+   "parcial": true,
+   "nota": "Remoção foi adiada para o v3 (pr-1573), mas o PR dizia que legacySealFallback não seria marcada @deprecated; depois o commit 44dbfb8 (v2.0.2) a marcou como deprecated e session.ts tem @deprecated. Nenhuma opção bate com o estado vigente (adiado para v3 + marcada obsoleta). D corresponde só à decisão inicial do PR.",
+   "concorda": false
+  },
+  {
+   "qid": "q076",
+   "id_origem": "q-conf-e1-01",
+   "bloco": "conflito",
+   "ambigua": true,
+   "parcial": false,
+   "nota": "A coleta principal usa 6; o adendo 2 estendeu C0 e C4 para 9 repetições (repetições 7 a 9), mas como extensão separada e não como coleta principal. Nenhuma opção traz 9.",
+   "concorda": true
+  },
+  {
+   "qid": "q084",
+   "id_origem": "q-sem-iss-05",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "Issue #129 lista a tarefa de acompanhamento ('add support for typing query/body in Nitro generated types & ohmyfetch') desmarcada; pi0 sugeriu validação por pacote externo (h3-typebox), mas não há registro de decisão sobre a tarefa de acompanhamento.",
+   "concorda": true
+  },
+  {
+   "qid": "q087",
+   "id_origem": "q-sem-e1-10",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "O material diz que se usa a média dos 3 juízes por artefato (regras-de-decisao.md) e mede concordância com alfa de Krippendorff, mas não traz regra específica para divergência grande entre juízes.",
+   "concorda": true
+  },
+  {
+   "qid": "q089",
+   "id_origem": "q-sem-iss-02",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "Issue #1053 segue aberta: pi0 sugeriu um util do fetch-dts e convidou PR no rou3, mas não há implementação nem arquivamento registrado.",
+   "concorda": true
+  },
+  {
+   "qid": "q094",
+   "id_origem": "q-sem-iss-06",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "pi0 diz apenas que o StackBlitz nao suporta 'some web crypto methods' e mantem a issue aberta para investigar; a issue fecha sem registrar conclusao sobre qual recurso faltava.",
+   "concorda": true
+  },
+  {
+   "qid": "q096",
+   "id_origem": "q-sem-h3-06",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "AGENTS.md diz que pnpm test roda lint + typecheck + coverage (Vitest com v8), mas nenhum limiar percentual aparece no material.",
+   "concorda": true
+  },
+  {
+   "qid": "q098",
+   "id_origem": "q-sem-iss-04",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "Issue 375 registra contornos de usuarios (corpo vazio, --no-experimental-fetch) e um usuario relata que Node 20.11 resolveu; nenhum mantenedor adota correcao definitiva e a issue fecha sem dizer como.",
+   "concorda": true
+  },
+  {
+   "qid": "q100",
+   "id_origem": "q-sem-h3-04",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "PR 1576 cita 'traced route events' e AGENTS.md lista h3/tracing, mas o mecanismo de entrega (diagnostics_channel, callback etc.) nao e descrito.",
+   "concorda": true
+  },
+  {
+   "qid": "q105",
+   "id_origem": "q-sem-iss-03",
+   "bloco": "sem_resposta",
+   "ambigua": false,
+   "parcial": true,
+   "nota": "Na issue 73 a pergunta sobre HTTP/2 (nathanchase) nao recebe resposta de mantenedor; so ha a frase inicial de pi0 de que o formato (req, res) nao serve para http2 sem API de compatibilidade e um contorno de usuario com node-spdy.",
+   "concorda": true
+  },
+  {
+   "qid": "q112",
+   "id_origem": "q-sem-iss-10",
+   "bloco": "sem_resposta",
+   "ambigua": true,
+   "parcial": true,
+   "nota": "PR 1568 elevou o minimo para 20.19 porque o rou3 v1 passou a exigir, o que poderia sustentar A, mas nenhum texto declara isso como politica para futuras elevacoes (fim do LTS do Node 20).",
+   "concorda": true
+  }
+ ],
+ "faltam": []
+}

@@ -1,0 +1,6 @@
+{
+ "tau": 1.0525213181972504,
+ "sinal": "max rerank bge-reranker-v2-m3-int8 sobre top-30 RRF",
+ "n_calibracao": 20,
+ "acuracia_calibracao": 0.8
+}

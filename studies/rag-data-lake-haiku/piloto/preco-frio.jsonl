@@ -1,0 +1,10 @@
+{"modelo": "haiku", "in": 1888, "out": 349, "custo": 0.0005519}
+{"modelo": "haiku", "in": 5523, "out": 410, "custo": 0.0013094}
+{"modelo": "haiku", "in": 14027, "out": 98, "custo": 0.0028542}
+{"modelo": "haiku", "in": 42807, "out": 99, "custo": 0.0086107}
+{"modelo": "haiku", "in": 124809, "out": 3, "custo": 0.1248155}
+{"modelo": "haiku", "in": 222549, "out": 3, "custo": 0.2225555}
+{"modelo": "sonnet", "in": 1869, "out": 164, "custo": 0.009112}
+{"modelo": "sonnet", "in": 5501, "out": 109, "custo": 0.02309}
+{"modelo": "sonnet", "in": 14012, "out": 138, "custo": 0.057424}
+{"modelo": "sonnet", "in": 42789, "out": 3, "custo": 0.171182}

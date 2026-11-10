@@ -1,0 +1,258 @@
+[
+  {
+    "id": "q-conf-iss-01",
+    "bloco": "conflito",
+    "pergunta": "No h3 v2, depois da correção da validação de query em defineValidatedHandler, o que o validador recebe para a requisição GET /?tag=a&tag=b?",
+    "opcoes": [
+      "Um array com os dois valores, no mesmo formato de getQuery",
+      "Somente o último valor repetido, a string \"b\", pois a chave se sobrescreve",
+      "Somente o primeiro valor repetido, a string \"a\", ignorando o resto"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0033",
+        "trecho": "`defineValidatedHandler` built its query validation input with `Object.fromEntries(url.searchParams)`, which keeps only the **last** value for repeated keys"
+      },
+      {
+        "doc": "doc-0033",
+        "trecho": "Collect repeated keys from `url.searchParams` into arrays (same shape as `getQuery`) before validation"
+      }
+    ],
+    "cartoes": [
+      "c-iss-16",
+      "c-iss-17"
+    ],
+    "justificativa": "Antes da correção só o último valor de chaves repetidas chegava ao validador; depois, as chaves repetidas viram array, como em getQuery. A opção correta é a vigente.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-iss-02",
+    "bloco": "conflito",
+    "pergunta": "No h3, depois da correção do tipo MIME em serveStatic com encodings configurados, qual content-type sai quando GET /app.js (com accept-encoding gzip) serve o arquivo app.js.gz?",
+    "opcoes": [
+      "text/plain, porque a extensão .gz não consta no mapa de tipos",
+      "application/gzip, resolvido a partir da extensão da variante",
+      "text/javascript, resolvido a partir do id do asset pedido"
+    ],
+    "correta": 2,
+    "alt_tipo": [
+      "substituida",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0035",
+        "trecho": "`.gz` and `.br` aren't in the MIME map, so no `content-type` is set, and the runtime falls back to `text/plain;charset=UTF-8`."
+      },
+      {
+        "doc": "doc-0035",
+        "trecho": "The default/custom MIME lookup (`getType`) runs on that asset id, so `app.js.gz` served for `/app.js` resolves to `text/javascript`"
+      }
+    ],
+    "cartoes": [
+      "c-iss-18",
+      "c-iss-19"
+    ],
+    "justificativa": "Antes o tipo vinha do id da variante (.gz) e caía em text/plain; agora a busca usa o id do asset pedido e resulta em text/javascript.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-iss-03",
+    "bloco": "conflito",
+    "pergunta": "No h3 v2, depois da correção do setChunkedCookie, como o valor de um cookie com JSON ou texto não ASCII é dividido em chunks?",
+    "opcoes": [
+      "O valor bruto é cortado a cada chunkMaxLength caracteres, antes da codificação",
+      "Cada chunk, já codificado como no setCookie, cabe em chunkMaxLength",
+      "O valor bruto é cortado a cada chunkMaxLength bytes UTF-8, antes da codificação"
+    ],
+    "correta": 1,
+    "alt_tipo": [
+      "substituida",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0036",
+        "trecho": "`setChunkedCookie` splits the raw value every `chunkMaxLength` (default 4000) characters."
+      },
+      {
+        "doc": "doc-0036",
+        "trecho": "Each chunk is the longest run whose encoded form, using the same `encode` as `setCookie` (`options.encode` or `encodeURIComponent`), fits in `chunkMaxLength`."
+      }
+    ],
+    "cartoes": [
+      "c-iss-20",
+      "c-iss-21"
+    ],
+    "justificativa": "A regra antiga cortava o valor bruto por caracteres; a vigente mede o chunk codificado, para que caiba em chunkMaxLength.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-iss-04",
+    "bloco": "conflito",
+    "pergunta": "No h3 v2, depois da correção das frases de status, qual statusText redirect() produz para o status 308 quando nenhum statusText explícito é passado?",
+    "opcoes": [
+      "\"Permanent Redirect\", a frase da RFC 9110 para o 308",
+      "\"Found\", a frase usada para qualquer status que não seja 301",
+      "\"Moved Permanently\", a frase herdada do status 301"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0039",
+        "trecho": "`redirect()` labels every status other than 301 with \"Found\""
+      },
+      {
+        "doc": "doc-0039",
+        "trecho": "With the change the same requests return `308 Permanent Redirect`, `307 Temporary Redirect`"
+      }
+    ],
+    "cartoes": [
+      "c-iss-22",
+      "c-iss-23"
+    ],
+    "justificativa": "Antes, redirect() rotulava tudo que não era 301 como Found; hoje 303, 307 e 308 usam as frases da RFC 9110, logo o 308 sai Permanent Redirect.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-iss-05",
+    "bloco": "conflito",
+    "pergunta": "No h3 v2 estável, para quando está prevista a remoção do fallback legado de selo PBKDF2 em unsealSession, usado por sessões seladas com 1 iteração?",
+    "opcoes": [
+      "Antes do release estável do v2, como o comentário no código indicava",
+      "Já num release v2, com legacySealFallback marcado como @deprecated",
+      "Só no v3, junto com legacySealFallback, para não quebrar sessões do v2"
+    ],
+    "correta": 2,
+    "alt_tipo": [
+      "substituida",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0042",
+        "trecho": "The comment on the legacy PBKDF2 seal fallback in `unsealSession` said \"Remove this fallback before the v2 stable release\", but v2 is now stable."
+      },
+      {
+        "doc": "doc-0042",
+        "trecho": "Removing the fallback in a v2 release would break existing sessions sealed with 1 iteration, so the comment now targets v3 and mentions `legacySealFallback`, which should go at the same time."
+      }
+    ],
+    "cartoes": [
+      "c-iss-24",
+      "c-iss-25"
+    ],
+    "justificativa": "O comentário antigo mandava remover antes do v2 estável; hoje a remoção foi reapontada para o v3, junto com legacySealFallback, que não foi marcado como deprecated.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-iss-06",
+    "bloco": "conflito",
+    "pergunta": "No h3, depois da correção de extensões em serveStatic, que tipo MIME resulta para o arquivo /photos/IMG_0001.JPG com extensão em maiúsculas?",
+    "opcoes": [
+      "Sem tipo definido, porque a extensão é buscada exatamente como veio",
+      "image/jpeg, porque a extensão é normalizada para minúsculas na busca",
+      "application/octet-stream, porque extensões em maiúsculas caem no tipo genérico"
+    ],
+    "correta": 1,
+    "alt_tipo": [
+      "substituida",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0046",
+        "trecho": "`getType` looks the extension up as-is, so `/photos/IMG_0001.JPG` or `/LOGO.PNG` gets no type from `serveStatic`."
+      },
+      {
+        "doc": "doc-0046",
+        "trecho": "lowercased the extension before the lookup. the custom `getType` option still gets the extension as written."
+      }
+    ],
+    "cartoes": [
+      "c-iss-26",
+      "c-iss-27"
+    ],
+    "justificativa": "Antes a extensão era buscada como escrita e ficava sem tipo; hoje é convertida para minúsculas antes da busca, resultando em image/jpeg.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-iss-07",
+    "bloco": "conflito",
+    "pergunta": "No h3 v2, depois da correção em readBody sem a opção type, o que acontece com um POST cujo content-type é \"Application/x-www-form-urlencoded\", com letra maiúscula inicial?",
+    "opcoes": [
+      "O corpo é lido como formulário url-encoded e vira um objeto",
+      "O corpo é tratado como JSON e a requisição falha com erro 400",
+      "A requisição é rejeitada com erro 415 por tipo não suportado"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0054",
+        "trecho": "so a request with a differently cased type falls through to `JSON.parse` and gets a 400:"
+      },
+      {
+        "doc": "doc-0054",
+        "trecho": "The fix lowercases the header before the check."
+      }
+    ],
+    "cartoes": [
+      "c-iss-35",
+      "c-iss-36"
+    ],
+    "justificativa": "Antes a checagem diferenciava maiúsculas e o corpo ia para JSON.parse com 400; hoje o cabeçalho é convertido para minúsculas antes da checagem e o corpo é lido como formulário.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-iss-08",
+    "bloco": "conflito",
+    "pergunta": "No h3 v2, com uma regra headers que define cache-control para /build/**, o que acontece com o cache-control de um HTTPError 404 lançado com esse mesmo cabeçalho em seu próprio headers, depois da correção?",
+    "opcoes": [
+      "O cache-control da regra prevalece e sobrescreve o valor definido no erro lançado",
+      "Os dois valores de cache-control são combinados num só cabeçalho",
+      "O cache-control do erro é mantido, e a regra pula só essa chave"
+    ],
+    "correta": 2,
+    "alt_tipo": [
+      "substituida",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0058",
+        "trecho": "The `headers` rule applies its headers to `event.res.errHeaders` after the handler has run, and `errHeaders` takes precedence over `HTTPError.headers`"
+      },
+      {
+        "doc": "doc-0058",
+        "trecho": "An `HTTPError`, thrown or returned, that carries one of the rule's keys in its own `headers` keeps that value."
+      }
+    ],
+    "cartoes": [
+      "c-iss-31",
+      "c-iss-32"
+    ],
+    "justificativa": "Antes errHeaders, onde a regra escreve, tinha precedência sobre HTTPError.headers; hoje o valor do erro é mantido e a regra pula só essa chave.",
+    "n_fontes": 2
+  }
+]

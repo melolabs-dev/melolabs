@@ -1,0 +1,426 @@
+[
+ {
+  "id": "q-comum-iss-01",
+  "bloco": "comum",
+  "pergunta": "No h3, alguém pediu uma função global (algo como setDefaults) para habilitar por padrão os cabeçalhos x-forwarded*. Qual foi a resposta do mantenedor pi0 e o motivo?",
+  "opcoes": [
+   "Recusou, porque um app H3 interno e sem relação com o proxy poderia passar a confiar em cabeçalhos x-forwarded sem querer.",
+   "Aceitou, mas só se o valor padrão fosse lido de uma variável de ambiente, para que cada deploy decida se confia no proxy.",
+   "Recusou, porque os cabeçalhos x-forwarded* já vêm habilitados por padrão no h3 v2 e a opção global seria redundante."
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0014",
+    "trecho": "An internal unrelated H3 app might wrongly start to accept x-forwarded headers."
+   }
+  ],
+  "cartoes": [
+   "c-iss-01"
+  ],
+  "justificativa": "pi0 recusou o setDefaults global por causa do risco de um app H3 interno e não relacionado passar a aceitar cabeçalhos x-forwarded por engano; a variável de ambiente é citada como parte do problema, não como solução.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-02",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, segundo o mantenedor pi0, qual é a diferença entre middleware e plugin quanto ao ponto onde cada um se conecta?",
+  "opcoes": [
+   "Ambos se ligam à requisição (event); o plugin só difere por poder ser publicado como pacote separado e reutilizado em outros apps.",
+   "O plugin se liga à instância do app e pode até adicionar middleware, enquanto o middleware se liga a cada requisição (event).",
+   "O middleware se liga à instância do app e roda uma só vez na inicialização, enquanto o plugin se liga a cada requisição (event)."
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0011",
+    "trecho": "plugins can hook to h3 instance (`app`)"
+   }
+  ],
+  "cartoes": [
+   "c-iss-06"
+  ],
+  "justificativa": "pi0 diz que middleware se liga à requisição (event) e plugins se ligam à instância do h3 (app), podendo também adicionar middleware.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-03",
+  "bloco": "comum",
+  "pergunta": "Na migração do h3 para a Events API (formato event), o que ocorreu com os handlers Node.js no formato (req, res)?",
+  "opcoes": [
+   "Continuaram convertidos de forma implícita, mas agora emitem um aviso no console a cada chamada.",
+   "Foram removidos do pacote por completo, sem nenhuma forma de adaptar handlers Node.js existentes.",
+   "Passaram a ser opt-in, e a conversão implícita do formato (req, res) deixou de existir."
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0028",
+    "trecho": "Make node-js handlers opt-in and drop `(req, res)` implicit conversion (#178)"
+   }
+  ],
+  "cartoes": [
+   "c-iss-07"
+  ],
+  "justificativa": "A lista de progresso marca como feito tornar os handlers Node.js opt-in e eliminar a conversão implícita (req, res). Um mock com aviso para req/res aparece como item ainda pendente, e não há remoção completa.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-04",
+  "bloco": "comum",
+  "pergunta": "No h3 v1, alguém queria encadear um handler de CORS com o handler principal de uma rota. O que pi0 respondeu sobre como usar utilitários como o de cors?",
+  "opcoes": [
+   "Chamá-los sob demanda dentro do corpo do event handler, e usar a pilha de um app quando quiser encadeamento estilo middleware.",
+   "Usar um helper chain() nativo, que recebe vários handlers e os invoca em sequência como se fossem um único event handler.",
+   "Registrá-los sempre como middleware global antes de qualquer rota, pois utilitários de cors não podem rodar dentro do handler."
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0015",
+    "trecho": "h3 utilities like cors, are meant to be called functions on demand and in the body of the event handler as best practices."
+   }
+  ],
+  "cartoes": [
+   "c-iss-08"
+  ],
+  "justificativa": "pi0 explicou que utilitários como cors devem ser chamados sob demanda no corpo do handler e que o encadeamento estilo middleware é possível com a pilha do app (createApp().use(...)). O chain() era o pedido original, não aceito.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-05",
+  "bloco": "comum",
+  "pergunta": "No h3 v1, um usuário recebeu o erro res._implicitHeader is not a function ao usar express-session com fromNodeMiddleware. Que caminho pi0 sugeriu?",
+  "opcoes": [
+   "Migrar para o h3 v2, onde o fromNodeMiddleware já inclui os polyfills do express necessários para o express-session funcionar.",
+   "Trocar por iron-session ou outro pacote de sessão que não dependa do express, porque o express-session exige polyfills do app express.",
+   "Definir manualmente res._implicitHeader num middleware anterior, pois o h3 v1 não expõe esse método e o resto funciona normalmente."
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0016",
+    "trecho": "I would suggest you to use iron-session or another package that is not depending on express."
+   }
+  ],
+  "cartoes": [
+   "c-iss-09"
+  ],
+  "justificativa": "pi0 indicou que o express-session não funciona direto porque exige polyfills do app express e sugeriu iron-session ou outro pacote sem dependência do express.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-06",
+  "bloco": "comum",
+  "pergunta": "No h3 v1, um router filho foi aninhado a um router pai sob o prefixo /api, mas /api/hello retornava 404. Qual registro pi0 indicou como correto?",
+  "opcoes": [
+   "Registrar no router pai com o caminho exato '/api', envolvendo o handler do router filho em useBase('/api').",
+   "Registrar o handler do router filho direto com router.get('/api/**'), sem useBase, pois o prefixo já está no padrão.",
+   "Registrar no router pai com o padrão '/api/**', envolvendo o handler do router filho em useBase('/api')."
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0024",
+    "trecho": "You need to use `router.use('/api/**', useBase('/api', apiRouter.handler));` (with `/**` to catch all nested paths)"
+   }
+  ],
+  "cartoes": [
+   "c-iss-10"
+  ],
+  "justificativa": "pi0 indicou router.use('/api/**', useBase('/api', apiRouter.handler)), com /** para capturar todos os caminhos aninhados, e disse que atualizaria o exemplo da documentação, que omitia isso.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-07",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, depois do PR que corrigiu o defineValidatedHandler, qual valor o validador de query recebe para a chave tag em uma requisição com ?tag=a&tag=b?",
+  "opcoes": [
+   "Um array com os dois valores, no mesmo formato que getQuery devolve.",
+   "Apenas o último valor, a string \"b\", como já acontecia antes da correção.",
+   "Apenas o primeiro valor, a string \"a\", ignorando as repetições seguintes."
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0033",
+    "trecho": "Collect repeated keys from `url.searchParams` into arrays (same shape as `getQuery`) before validation"
+   }
+  ],
+  "cartoes": [
+   "c-iss-17"
+  ],
+  "justificativa": "O PR passou a coletar chaves repetidas em arrays antes de validar; antes, Object.fromEntries guardava só o último valor. Assim, ?tag=a&tag=b chega ao validador como [\"a\", \"b\"].",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-08",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, com serveStatic configurado com encodings, qual content-type sai quando app.js.gz é entregue para a requisição de /app.js, depois da correção do tipo MIME?",
+  "opcoes": [
+   "Nenhum content-type é definido pelo h3, e o ambiente de execução assume text/plain, como ocorria antes.",
+   "text/javascript, pois o tipo é resolvido a partir do id do asset pedido e não da variante comprimida.",
+   "application/gzip, pois o tipo é resolvido a partir da extensão .gz da variante pré-comprimida servida."
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0035",
+    "trecho": "The default/custom MIME lookup (`getType`) runs on that asset id, so `app.js.gz` served for `/app.js` resolves to `text/javascript`"
+   }
+  ],
+  "cartoes": [
+   "c-iss-19"
+  ],
+  "justificativa": "Depois do PR, o getType roda sobre o id do asset pedido; app.js.gz servido para /app.js resolve para text/javascript. O text/plain era o comportamento anterior.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-09",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, depois da correção do setChunkedCookie, como é dimensionado cada pedaço (chunk) do cookie em relação ao chunkMaxLength?",
+  "opcoes": [
+   "Cada pedaço continua com o valor bruto dividido a cada chunkMaxLength caracteres, e o encode ocorre depois sem limite.",
+   "Cada pedaço é limitado por chunkMaxLength bytes do valor em UTF-8, sem considerar o encode escolhido pelo usuário.",
+   "Cada pedaço é o maior trecho cuja forma codificada, com o mesmo encode do setCookie, cabe em chunkMaxLength."
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0036",
+    "trecho": "Each chunk is the longest run whose encoded form, using the same `encode` as `setCookie` (`options.encode` or `encodeURIComponent`), fits in `chunkMaxLength`."
+   }
+  ],
+  "cartoes": [
+   "c-iss-21"
+  ],
+  "justificativa": "O PR #1565 mede o pedaço já codificado com o mesmo encode do setCookie; a divisão do valor bruto era o comportamento antigo que gerava cookies acima de 4096 bytes.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-10",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, depois da correção dos textos de status, qual statusText acompanha uma resposta criada com noContent(200)?",
+  "opcoes": [
+   "Nenhum, pois só o status 204 mantém a frase No Content e os demais ficam sem frase.",
+   "No Content, pois noContent() sempre usa essa frase, qualquer que seja o status passado.",
+   "OK, pois o h3 usa a frase padrão do status 200 quando o valor passado não for 204."
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0039",
+    "trecho": "The fix keeps the existing phrases for 204, 301 and 302 and uses the RFC 9110 phrases for 303, 307 and 308."
+   }
+  ],
+  "cartoes": [
+   "c-iss-23"
+  ],
+  "justificativa": "O PR mantém as frases de 204, 301 e 302, usa as da RFC 9110 para 303, 307 e 308 e não põe frase nos demais status; o teste noContent(200) deixa de ser rotulado como No Content.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-11",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, se o stream de um handler Node (fromNodeHandler) falha depois de a resposta já ter começado, quais hooks de erro são avisados?",
+  "opcoes": [
+   "Nenhum deles, pois com a resposta já enviada o h3 apenas registra o erro em log e descarta qualquer notificação.",
+   "Só o hook onError da configuração do app, uma vez; hooks registrados pelo middleware onError() não recebem erros de stream.",
+   "O hook da configuração do app e também os do middleware onError(), cada um uma vez, com um HTTPError 500 gerado pelo h3."
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0040",
+    "trecho": "`fromNodeHandler` now passes the event to `callNodeHandler`, which calls `event.app?.config.onError` with an unhandled `HTTPError` and settles once the hook is done."
+   },
+   {
+    "doc": "doc-0043",
+    "trecho": "Middleware-registered hooks still do not see stream errors (only the app `onError` config hook does)."
+   }
+  ],
+  "cartoes": [
+   "c-iss-37",
+   "c-iss-38"
+  ],
+  "justificativa": "O primeiro PR faz o hook onError da config do app ser chamado; o segundo faz o middleware onError() repassar o sinal kHandled sem chamar seu hook. Combinados: só o hook do app é avisado, uma vez.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-iss-12",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, o serveStatic recebe um getType customizado e a requisição é /LOGO.PNG, atendida pela variante pré-comprimida LOGO.PNG.gz. Que extensão esse getType customizado recebe?",
+  "opcoes": [
+   "A extensão da variante servida, .gz, pois o tipo é deduzido do arquivo entregue ao cliente.",
+   "A extensão do asset pedido em minúsculas, .png, pois o h3 normaliza antes de chamar a opção.",
+   "A extensão do asset pedido, .PNG, exatamente como foi escrita na requisição original."
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0035",
+    "trecho": "One side effect: a custom `getType` that maps `.gz`/`.br` is no longer consulted when a variant is served for the uncompressed path"
+   },
+   {
+    "doc": "doc-0046",
+    "trecho": "lowercased the extension before the lookup. the custom `getType` option still gets the extension as written."
+   }
+  ],
+  "cartoes": [
+   "c-iss-19",
+   "c-iss-27"
+  ],
+  "justificativa": "Pelo PR #1564, o getType passa a ser consultado com o id do asset pedido e não da variante .gz; pelo PR #1580, o getType customizado continua recebendo a extensão como escrita (.PNG), pois só a busca interna usa minúsculas.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-iss-13",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, sobre o fallback legado de selo de sessão (1 iteração de PBKDF2) e a opção legacySealFallback, o que foi decidido depois de o v2 ficar estável?",
+  "opcoes": [
+   "Remover ambos foi adiado para o v3, pois removê-los no v2 quebraria as sessões já seladas com 1 iteração.",
+   "Remover ambos foi feito no próprio v2, e legacySealFallback foi marcada como obsoleta para avisar quem ainda a usava.",
+   "Manter o fallback para sempre, e legacySealFallback foi marcada como obsoleta por ser redundante com o novo padrão."
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0042",
+    "trecho": "Removing the fallback in a v2 release would break existing sessions sealed with 1 iteration, so the comment now targets v3 and mentions `legacySealFallback`"
+   }
+  ],
+  "cartoes": [
+   "c-iss-25"
+  ],
+  "justificativa": "O comentário passou a apontar a remoção para o v3, junto com legacySealFallback, porque remover no v2 quebraria sessões já seladas. A opção sobre obsolescência foi retirada do texto da resposta por haver mudança posterior no changelog.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-iss-14",
+  "bloco": "comum",
+  "pergunta": "No h3 v2, numa rota com as regras headers e cache juntas, como um handler deve responder 404 para um asset ausente sem receber o cache-control imutável da regra headers?",
+  "opcoes": [
+   "Alterando event.res.errHeaders dentro do handler, pois o h3 detecta a mudança durante next() e a regra pula essa chave.",
+   "Lançando (throw) um HTTPError que traga cache-control no próprio headers; retornar o erro faria a regra cache perder o opt-out.",
+   "Retornando um HTTPError que traga cache-control no próprio headers; lançar o erro faria a regra headers sobrescrever o valor."
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0058",
+    "trecho": "An `HTTPError`, thrown or returned, that carries one of the rule's keys in its own `headers` keeps that value."
+   },
+   {
+    "doc": "doc-0058",
+    "trecho": "*return* the `HTTPError` and the `cache` rule renders it to a plain `Response` first, so the opt-out is lost. *Throwing* works."
+   }
+  ],
+  "cartoes": [
+   "c-iss-32",
+   "c-iss-34"
+  ],
+  "justificativa": "O HTTPError com a chave da regra no próprio headers mantém seu valor, mas com regra cache na mesma rota só vale lançar o erro; detectar mudanças em errHeaders foi a abordagem descartada.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-iss-15",
+  "bloco": "comum",
+  "pergunta": "No h3 v2 ou Nitro v3, como o mantenedor pi0 recomendou obter o IP da requisição, e em que condição o cabeçalho x-forwarded-for pode ser confiado?",
+  "opcoes": [
+   "Usar event.req.ip; confiar no x-forwarded-for sempre que o h3 estiver em modo de produção, pois o framework o valida antes.",
+   "Ler o x-forwarded-for direto, pois event.req.ip só existe no v1; confiar nele apenas se vier um único endereço na lista.",
+   "Usar event.req.ip; confiar no x-forwarded-for apenas atrás de uma CDN ou proxy reverso que sempre defina esse cabeçalho."
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0014",
+    "trecho": "In modern H3 v2 / Nitro v3, `event.req.ip` is standard and universal way to access request IP."
+   },
+   {
+    "doc": "doc-0014",
+    "trecho": "But a strong note: `x-forwarded-for` header shoudlt not be blindly trusted unless we are sure behind a CDN or reverse proxy that always sets it."
+   }
+  ],
+  "cartoes": [
+   "c-iss-02"
+  ],
+  "justificativa": "pi0 diz que event.req.ip é o meio padrão no h3 v2 / Nitro v3 e que o x-forwarded-for só deve ser confiado atrás de CDN ou proxy reverso que sempre o defina.",
+  "n_fontes": 2
+ }
+]

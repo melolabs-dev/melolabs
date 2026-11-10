@@ -1,0 +1,337 @@
+[
+ {
+  "qid": "q031",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [
+   "h3/docs/1.guide/1.basics/4.handler.md",
+   "h3/docs/99.blog/2.v2-beta.md"
+  ],
+  "trecho": "middleware: [basicAuth({ password: \"test\" })],",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q032",
+  "resposta": "B",
+  "confianca": 5,
+  "arquivos": [],
+  "trecho": "",
+  "ambigua": false,
+  "parcial": false,
+  "nota": "Os algoritmos padrão do seal (iron-crypto) não aparecem no material; session.ts só usa sealDefaults."
+ },
+ {
+  "qid": "q033",
+  "resposta": "C",
+  "confianca": 5,
+  "arquivos": [
+   "h3-prs/pr-1565.md"
+  ],
+  "trecho": "Each chunk is the longest run whose encoded form, using the same `encode` as `setCookie` (`options.encode` or `encodeURIComponent`), fits in `chunkMaxLength`.",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q034",
+  "resposta": "B",
+  "confianca": 5,
+  "arquivos": [
+   "estudo1/prereg/adendo-1.md"
+  ],
+  "trecho": "C4 passa a significar \"C1 mais testes primeiro e loop com a saída do runner\"",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q035",
+  "resposta": "B",
+  "confianca": 5,
+  "arquivos": [
+   "h3-issues/issue-1088.md"
+  ],
+  "trecho": "I have ended up adding a more generic plugin interface in #1098",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q036",
+  "resposta": "B",
+  "confianca": 5,
+  "arquivos": [],
+  "trecho": "",
+  "ambigua": false,
+  "parcial": false,
+  "nota": "O material não informa a contagem de testes do núcleo por variante."
+ },
+ {
+  "qid": "q037",
+  "resposta": "B",
+  "confianca": 3,
+  "arquivos": [],
+  "trecho": "",
+  "ambigua": true,
+  "parcial": true,
+  "nota": "pr-1613 só registra o 'Nitro follow-up' como sugestão de troca em static.ts; não diz se/quando entrou no Nitro. A opção C (só sugestão, nenhuma versão) é defensável, mas afirmar que não entrou em nenhuma versão vai além do material."
+ },
+ {
+  "qid": "q038",
+  "resposta": "D",
+  "confianca": 5,
+  "arquivos": [
+   "h3/src/utils/static.ts"
+  ],
+  "trecho": "options.indexNames || [\"/index.html\"]",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q039",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [
+   "h3-prs/pr-1574.md",
+   "h3-prs/pr-1571.md"
+  ],
+  "trecho": "Middleware-registered hooks still do not see stream errors (only the app `onError` config hook does).",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q040",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [
+   "h3/src/utils/session.ts",
+   "h3/docs/4.examples/handle-session.md"
+  ],
+  "trecho": "Absolute session lifetime in seconds, counted from when the session was created. Reached regardless of how active the user is.",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q041",
+  "resposta": "D",
+  "confianca": 5,
+  "arquivos": [
+   "h3/docs/1.guide/0.index.md"
+  ],
+  "trecho": "node --watch ./server.mjs",
+  "ambigua": false,
+  "parcial": false,
+  "nota": "A opção A (listhen -w) aparece no blog da v1.8, não na v2."
+ },
+ {
+  "qid": "q042",
+  "resposta": "B",
+  "confianca": 5,
+  "arquivos": [
+   "h3/src/utils/session.ts"
+  ],
+  "trecho": "// Try header first",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q043",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [],
+  "trecho": "",
+  "ambigua": false,
+  "parcial": false,
+  "nota": "Nenhum timeout padrão de handler aparece no material."
+ },
+ {
+  "qid": "q044",
+  "resposta": "B",
+  "confianca": 5,
+  "arquivos": [
+   "h3/src/utils/session.ts"
+  ],
+  "trecho": "So reseal only once the window is more than half used.",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q045",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [
+   "h3/CHANGELOG.md"
+  ],
+  "trecho": "**session:** Raise default seal PBKDF2 iterations to 8192",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q046",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [
+   "h3/src/utils/cors.ts",
+   "h3/docs/1.guide/1.basics/2.routing.md",
+   "h3/docs/4.examples/handle-query.md"
+  ],
+  "trecho": "so browsers preflight it — include `\"QUERY\"` in the array to allow it.",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q047",
+  "resposta": "A",
+  "confianca": 4,
+  "arquivos": [],
+  "trecho": "",
+  "ambigua": false,
+  "parcial": true,
+  "nota": "issue-986 traz a tabela de Hornwitser ('exception is not logged') como último comentário; não há resposta dos mantenedores depois dela."
+ },
+ {
+  "qid": "q048",
+  "resposta": "D",
+  "confianca": 5,
+  "arquivos": [],
+  "trecho": "",
+  "ambigua": false,
+  "parcial": false,
+  "nota": "Temperatura dos juízes não é mencionada."
+ },
+ {
+  "qid": "q049",
+  "resposta": "C",
+  "confianca": 5,
+  "arquivos": [],
+  "trecho": "",
+  "ambigua": false,
+  "parcial": true,
+  "nota": "diario.md descreve a F7.4 como 'Revisor independente (agente isolado, somente leitura)', sem dizer o modelo."
+ },
+ {
+  "qid": "q050",
+  "resposta": "A",
+  "confianca": 3,
+  "arquivos": [
+   "h3-prs/pr-1573.md",
+   "h3/CHANGELOG.md",
+   "h3/src/utils/session.ts"
+  ],
+  "trecho": "Mark `legacySealFallback` as deprecated",
+  "ambigua": true,
+  "parcial": true,
+  "nota": "Remoção foi adiada para o v3 (pr-1573), mas o PR dizia que legacySealFallback não seria marcada @deprecated; depois o commit 44dbfb8 (v2.0.2) a marcou como deprecated e session.ts tem @deprecated. Nenhuma opção bate com o estado vigente (adiado para v3 + marcada obsoleta). D corresponde só à decisão inicial do PR."
+ },
+ {
+  "qid": "q051",
+  "resposta": "D",
+  "confianca": 4,
+  "arquivos": [],
+  "trecho": "",
+  "ambigua": false,
+  "parcial": false,
+  "nota": "issue-504 termina com a sugestão de atinux (com dúvida de desempenho), sem resposta final dos mantenedores."
+ },
+ {
+  "qid": "q052",
+  "resposta": "C",
+  "confianca": 5,
+  "arquivos": [
+   "h3-issues/issue-585.md"
+  ],
+  "trecho": "router.use('/api/**', useBase('/api', apiRouter.handler));",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q053",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [
+   "h3/docs/1.guide/0.index.md"
+  ],
+  "trecho": "We also have [`app.fetch`](/guide/api/h3#h3fetch) which can be directly used to run H3 apps in any web-compatible runtime or even directly called for testing purposes.",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q054",
+  "resposta": "C",
+  "confianca": 4,
+  "arquivos": [
+   "h3/CHANGELOG.md",
+   "h3/src/utils/session.ts"
+  ],
+  "trecho": "Sessions sealed before the default PBKDF2 iterations were raised from 1\n    // to 8192",
+  "ambigua": false,
+  "parcial": false,
+  "nota": "Elevado para 8192 na v2.0.1-rc.25 e nada no changelog até a 2.0.8 muda o valor; os defaults do iron-crypto em si não estão no material."
+ },
+ {
+  "qid": "q055",
+  "resposta": "C",
+  "confianca": 5,
+  "arquivos": [
+   "h3-issues/issue-192.md"
+  ],
+  "trecho": "h3 utilities like cors, are meant to be called functions on demand and in the body of the event handler as best practices.",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q056",
+  "resposta": "C",
+  "confianca": 4,
+  "arquivos": [
+   "h3/src/utils/static.ts",
+   "h3/docs/1.guide/900.api/2.h3event.md"
+  ],
+  "trecho": "Resolve the `id` against your asset root as an opaque string",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q057",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [
+   "h3-issues/issue-1088.md"
+  ],
+  "trecho": "plugins can hook to h3 instance (`app`)",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q058",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [
+   "h3/docs/99.blog/2.v2-beta.md"
+  ],
+  "trecho": "unifying runtime differences, H3 can remain simpler, focusing exclusively on web standard APIs.",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q059",
+  "resposta": "A",
+  "confianca": 5,
+  "arquivos": [
+   "estudo1/prereg/adendo-1.md",
+   "estudo1/regras-de-decisao.md"
+  ],
+  "trecho": "a parte de custo é quase certa por construção, e a conclusão depende da parte de qualidade",
+  "ambigua": false,
+  "parcial": false
+ },
+ {
+  "qid": "q060",
+  "resposta": "C",
+  "confianca": 5,
+  "arquivos": [
+   "estudo1/regras-de-decisao.md"
+  ],
+  "trecho": "Refutada se o limite superior < −0,10",
+  "ambigua": false,
+  "parcial": false
+ }
+]

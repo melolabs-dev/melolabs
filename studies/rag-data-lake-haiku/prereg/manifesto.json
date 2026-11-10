@@ -1,0 +1,31 @@
+{
+ "gerado_em": "2026-11-10T02:26:11",
+ "h3_commit": "f0e17808ac2439b6434bb10609a961067f4d555b",
+ "semente": 20261109,
+ "sha256": {
+  "studies/rag-data-lake-haiku/gabarito/rascunho.json": "d12a9b5502a8cbdcc11118fe2e6f1d01eab0f5292de299b74e6f05c8d50db8cf",
+  "studies/rag-data-lake-haiku/lake/curado/cartoes-cod.json": "57adefab9aa73937eb1e46996cc413a5bea10a5f0235645b2b466d6142933de0",
+  "studies/rag-data-lake-haiku/lake/curado/cartoes-docs.json": "5b124bfa1eac93adc75f993492f6447423254d51eecf2f65c117254142994a74",
+  "studies/rag-data-lake-haiku/lake/curado/cartoes-e1.json": "57f4db1910dd775ca2c7b3c727d9d290eec2ed593a301935831ff45ea24000c8",
+  "studies/rag-data-lake-haiku/lake/curado/cartoes-iss.json": "bc3a28fa729879cdb4e87a7598b2205752a489c8e0c40fb88733aaa43c4ad281",
+  "studies/rag-data-lake-haiku/lake/curado/cartoes.json": "0fd754cafb06de2a3451a099e893bceb3b3ba373a46c647e0c68eece502862e3",
+  "studies/rag-data-lake-haiku/lake/curado/correcoes-ids-iss.json": "e2dae51c7926dba46815ba3a97d7f352e4da0b51edc64a6f454e00632669ce67",
+  "studies/rag-data-lake-haiku/lake/indice/gate.json": "77e3e15e2953d49f84ffdee7a8a9fe034bc93887d260e8dab7d313323bf972b8",
+  "studies/rag-data-lake-haiku/lake/indice/lake.sqlite": "e43e0309af764301ec12f15228f1a961bd7a36947176a4b65c0f70ac99b91f75",
+  "studies/rag-data-lake-haiku/lake/manifesto-bruto.json": "648c05a93a369cadd9df6b5f38f510695469d2339d1c8da0935a5b5f229172fa",
+  "studies/rag-data-lake-haiku/lake/perguntas/calibracao/cal.json": "c744628fbb729f787f290358d1c7428153a30376f1aad294e1405b7be9b1eaed",
+  "studies/rag-data-lake-haiku/lake/perguntas/perguntas.json": "9406700e6c1e13e318154cddb31a3525683eca990fd6ddcd261eb9276a89e372",
+  "studies/rag-data-lake-haiku/plano.md": "36279d233918033d496c5cedcf46d9916313d4c79e326fc589c23284f76dc66b",
+  "studies/rag-data-lake-haiku/prereg/prereg.md": "d73b14f56091a8fe24e993aebfe602f881096b90a16fe94984b741b4f68c8c3d",
+  "tools/rag-lake/analisar.py": "4205d7e08f3d053e15b7de6521a87425f354a5e4d8f3e40b3cba689000771c79",
+  "tools/rag-lake/bracos.py": "727b26bc35dcc0066666761794dc216feadbc57b877941313201620f817ad6c0",
+  "tools/rag-lake/build_bruto.py": "8ca48ff7ff92dd96242b03b35733cbc022f089ce95860c66471e5ca8650f13bb",
+  "tools/rag-lake/calibrar_portao.py": "e0d62e484d717db91704aa5f10a69728edf985cfbf4216df4a921aff3616c4a2",
+  "tools/rag-lake/comparar_revisao.py": "ccdc3697723d8c1dc6299b7a0860c38d29b04a3e81b67428fcb0cac563a74fba",
+  "tools/rag-lake/executor.py": "556e012d5b7e0f1f7f112534ba4b287670f52d092b1339b436ec36b5aadfa8a2",
+  "tools/rag-lake/indice.py": "329f1e7dadb59b41b6402431a1920ad601f41bc510a8fb3d576a353b5cedfa79",
+  "tools/rag-lake/medir_preco.py": "c524ca33cbadaf2278d6bf00fe5d4242ec4240b1de30becba6d1e3fba9ab7f63",
+  "tools/rag-lake/montar_banco.py": "49e57a837f1b219559a0d89763aeb37be15611314e5e0b4f4ed6ae0c1f2eb408",
+  "tools/rag-lake/verificar_cartoes.py": "e34ad3f169744e7ee824aaf60da126bbac29bbbbf0e00a56f8c60fa2b65cc928"
+ }
+}

@@ -1,0 +1,410 @@
+[
+ {
+  "cartao": "c-iss-01",
+  "doc_citado": "doc-0013",
+  "doc_real": "doc-0014",
+  "arquivo_real": "h3-issues/issue-1366.md"
+ },
+ {
+  "cartao": "c-iss-01",
+  "doc_citado": "doc-0013",
+  "doc_real": "doc-0014",
+  "arquivo_real": "h3-issues/issue-1366.md"
+ },
+ {
+  "cartao": "c-iss-02",
+  "doc_citado": "doc-0013",
+  "doc_real": "doc-0014",
+  "arquivo_real": "h3-issues/issue-1366.md"
+ },
+ {
+  "cartao": "c-iss-02",
+  "doc_citado": "doc-0013",
+  "doc_real": "doc-0014",
+  "arquivo_real": "h3-issues/issue-1366.md"
+ },
+ {
+  "cartao": "c-iss-03",
+  "doc_citado": "doc-0021",
+  "doc_real": "doc-0022",
+  "arquivo_real": "h3-issues/issue-504.md"
+ },
+ {
+  "cartao": "c-iss-03",
+  "doc_citado": "doc-0021",
+  "doc_real": "doc-0022",
+  "arquivo_real": "h3-issues/issue-504.md"
+ },
+ {
+  "cartao": "c-iss-04",
+  "doc_citado": "doc-0010",
+  "doc_real": "doc-0011",
+  "arquivo_real": "h3-issues/issue-1088.md"
+ },
+ {
+  "cartao": "c-iss-04",
+  "doc_citado": "doc-0010",
+  "doc_real": "doc-0011",
+  "arquivo_real": "h3-issues/issue-1088.md"
+ },
+ {
+  "cartao": "c-iss-05",
+  "doc_citado": "doc-0010",
+  "doc_real": "doc-0011",
+  "arquivo_real": "h3-issues/issue-1088.md"
+ },
+ {
+  "cartao": "c-iss-06",
+  "doc_citado": "doc-0010",
+  "doc_real": "doc-0011",
+  "arquivo_real": "h3-issues/issue-1088.md"
+ },
+ {
+  "cartao": "c-iss-06",
+  "doc_citado": "doc-0010",
+  "doc_real": "doc-0011",
+  "arquivo_real": "h3-issues/issue-1088.md"
+ },
+ {
+  "cartao": "c-iss-07",
+  "doc_citado": "doc-0027",
+  "doc_real": "doc-0028",
+  "arquivo_real": "h3-issues/issue-73.md"
+ },
+ {
+  "cartao": "c-iss-07",
+  "doc_citado": "doc-0027",
+  "doc_real": "doc-0028",
+  "arquivo_real": "h3-issues/issue-73.md"
+ },
+ {
+  "cartao": "c-iss-08",
+  "doc_citado": "doc-0014",
+  "doc_real": "doc-0015",
+  "arquivo_real": "h3-issues/issue-192.md"
+ },
+ {
+  "cartao": "c-iss-08",
+  "doc_citado": "doc-0014",
+  "doc_real": "doc-0015",
+  "arquivo_real": "h3-issues/issue-192.md"
+ },
+ {
+  "cartao": "c-iss-09",
+  "doc_citado": "doc-0015",
+  "doc_real": "doc-0016",
+  "arquivo_real": "h3-issues/issue-239.md"
+ },
+ {
+  "cartao": "c-iss-09",
+  "doc_citado": "doc-0015",
+  "doc_real": "doc-0016",
+  "arquivo_real": "h3-issues/issue-239.md"
+ },
+ {
+  "cartao": "c-iss-10",
+  "doc_citado": "doc-0023",
+  "doc_real": "doc-0024",
+  "arquivo_real": "h3-issues/issue-585.md"
+ },
+ {
+  "cartao": "c-iss-10",
+  "doc_citado": "doc-0023",
+  "doc_real": "doc-0024",
+  "arquivo_real": "h3-issues/issue-585.md"
+ },
+ {
+  "cartao": "c-iss-11",
+  "doc_citado": "doc-0026",
+  "doc_real": "doc-0027",
+  "arquivo_real": "h3-issues/issue-717.md"
+ },
+ {
+  "cartao": "c-iss-11",
+  "doc_citado": "doc-0026",
+  "doc_real": "doc-0027",
+  "arquivo_real": "h3-issues/issue-717.md"
+ },
+ {
+  "cartao": "c-iss-12",
+  "doc_citado": "doc-0028",
+  "doc_real": "doc-0029",
+  "arquivo_real": "h3-issues/issue-851.md"
+ },
+ {
+  "cartao": "c-iss-12",
+  "doc_citado": "doc-0028",
+  "doc_real": "doc-0029",
+  "arquivo_real": "h3-issues/issue-851.md"
+ },
+ {
+  "cartao": "c-iss-13",
+  "doc_citado": "doc-0031",
+  "doc_real": "doc-0032",
+  "arquivo_real": "h3-issues/issue-986.md"
+ },
+ {
+  "cartao": "c-iss-13",
+  "doc_citado": "doc-0031",
+  "doc_real": "doc-0032",
+  "arquivo_real": "h3-issues/issue-986.md"
+ },
+ {
+  "cartao": "c-iss-14",
+  "doc_citado": "doc-0031",
+  "doc_real": "doc-0032",
+  "arquivo_real": "h3-issues/issue-986.md"
+ },
+ {
+  "cartao": "c-iss-15",
+  "doc_citado": "doc-0031",
+  "doc_real": "doc-0032",
+  "arquivo_real": "h3-issues/issue-986.md"
+ },
+ {
+  "cartao": "c-iss-15",
+  "doc_citado": "doc-0031",
+  "doc_real": "doc-0032",
+  "arquivo_real": "h3-issues/issue-986.md"
+ },
+ {
+  "cartao": "c-iss-16",
+  "doc_citado": "doc-0032",
+  "doc_real": "doc-0033",
+  "arquivo_real": "h3-prs/pr-1562.md"
+ },
+ {
+  "cartao": "c-iss-17",
+  "doc_citado": "doc-0032",
+  "doc_real": "doc-0033",
+  "arquivo_real": "h3-prs/pr-1562.md"
+ },
+ {
+  "cartao": "c-iss-17",
+  "doc_citado": "doc-0032",
+  "doc_real": "doc-0033",
+  "arquivo_real": "h3-prs/pr-1562.md"
+ },
+ {
+  "cartao": "c-iss-18",
+  "doc_citado": "doc-0034",
+  "doc_real": "doc-0035",
+  "arquivo_real": "h3-prs/pr-1564.md"
+ },
+ {
+  "cartao": "c-iss-19",
+  "doc_citado": "doc-0034",
+  "doc_real": "doc-0035",
+  "arquivo_real": "h3-prs/pr-1564.md"
+ },
+ {
+  "cartao": "c-iss-19",
+  "doc_citado": "doc-0034",
+  "doc_real": "doc-0035",
+  "arquivo_real": "h3-prs/pr-1564.md"
+ },
+ {
+  "cartao": "c-iss-20",
+  "doc_citado": "doc-0035",
+  "doc_real": "doc-0036",
+  "arquivo_real": "h3-prs/pr-1565.md"
+ },
+ {
+  "cartao": "c-iss-21",
+  "doc_citado": "doc-0035",
+  "doc_real": "doc-0036",
+  "arquivo_real": "h3-prs/pr-1565.md"
+ },
+ {
+  "cartao": "c-iss-21",
+  "doc_citado": "doc-0035",
+  "doc_real": "doc-0036",
+  "arquivo_real": "h3-prs/pr-1565.md"
+ },
+ {
+  "cartao": "c-iss-22",
+  "doc_citado": "doc-0038",
+  "doc_real": "doc-0039",
+  "arquivo_real": "h3-prs/pr-1570.md"
+ },
+ {
+  "cartao": "c-iss-23",
+  "doc_citado": "doc-0038",
+  "doc_real": "doc-0039",
+  "arquivo_real": "h3-prs/pr-1570.md"
+ },
+ {
+  "cartao": "c-iss-23",
+  "doc_citado": "doc-0038",
+  "doc_real": "doc-0039",
+  "arquivo_real": "h3-prs/pr-1570.md"
+ },
+ {
+  "cartao": "c-iss-24",
+  "doc_citado": "doc-0041",
+  "doc_real": "doc-0042",
+  "arquivo_real": "h3-prs/pr-1573.md"
+ },
+ {
+  "cartao": "c-iss-25",
+  "doc_citado": "doc-0041",
+  "doc_real": "doc-0042",
+  "arquivo_real": "h3-prs/pr-1573.md"
+ },
+ {
+  "cartao": "c-iss-25",
+  "doc_citado": "doc-0041",
+  "doc_real": "doc-0042",
+  "arquivo_real": "h3-prs/pr-1573.md"
+ },
+ {
+  "cartao": "c-iss-26",
+  "doc_citado": "doc-0045",
+  "doc_real": "doc-0046",
+  "arquivo_real": "h3-prs/pr-1580.md"
+ },
+ {
+  "cartao": "c-iss-27",
+  "doc_citado": "doc-0045",
+  "doc_real": "doc-0046",
+  "arquivo_real": "h3-prs/pr-1580.md"
+ },
+ {
+  "cartao": "c-iss-28",
+  "doc_citado": "doc-0056",
+  "doc_real": "doc-0057",
+  "arquivo_real": "h3-prs/pr-1608.md"
+ },
+ {
+  "cartao": "c-iss-28",
+  "doc_citado": "doc-0055",
+  "doc_real": "doc-0056",
+  "arquivo_real": "h3-prs/pr-1606.md"
+ },
+ {
+  "cartao": "c-iss-29",
+  "doc_citado": "doc-0056",
+  "doc_real": "doc-0057",
+  "arquivo_real": "h3-prs/pr-1608.md"
+ },
+ {
+  "cartao": "c-iss-29",
+  "doc_citado": "doc-0056",
+  "doc_real": "doc-0057",
+  "arquivo_real": "h3-prs/pr-1608.md"
+ },
+ {
+  "cartao": "c-iss-30",
+  "doc_citado": "doc-0056",
+  "doc_real": "doc-0057",
+  "arquivo_real": "h3-prs/pr-1608.md"
+ },
+ {
+  "cartao": "c-iss-30",
+  "doc_citado": "doc-0056",
+  "doc_real": "doc-0057",
+  "arquivo_real": "h3-prs/pr-1608.md"
+ },
+ {
+  "cartao": "c-iss-31",
+  "doc_citado": "doc-0057",
+  "doc_real": "doc-0058",
+  "arquivo_real": "h3-prs/pr-1613.md"
+ },
+ {
+  "cartao": "c-iss-32",
+  "doc_citado": "doc-0057",
+  "doc_real": "doc-0058",
+  "arquivo_real": "h3-prs/pr-1613.md"
+ },
+ {
+  "cartao": "c-iss-32",
+  "doc_citado": "doc-0057",
+  "doc_real": "doc-0058",
+  "arquivo_real": "h3-prs/pr-1613.md"
+ },
+ {
+  "cartao": "c-iss-33",
+  "doc_citado": "doc-0057",
+  "doc_real": "doc-0058",
+  "arquivo_real": "h3-prs/pr-1613.md"
+ },
+ {
+  "cartao": "c-iss-33",
+  "doc_citado": "doc-0057",
+  "doc_real": "doc-0058",
+  "arquivo_real": "h3-prs/pr-1613.md"
+ },
+ {
+  "cartao": "c-iss-34",
+  "doc_citado": "doc-0057",
+  "doc_real": "doc-0058",
+  "arquivo_real": "h3-prs/pr-1613.md"
+ },
+ {
+  "cartao": "c-iss-35",
+  "doc_citado": "doc-0053",
+  "doc_real": "doc-0054",
+  "arquivo_real": "h3-prs/pr-1601.md"
+ },
+ {
+  "cartao": "c-iss-36",
+  "doc_citado": "doc-0053",
+  "doc_real": "doc-0054",
+  "arquivo_real": "h3-prs/pr-1601.md"
+ },
+ {
+  "cartao": "c-iss-36",
+  "doc_citado": "doc-0053",
+  "doc_real": "doc-0054",
+  "arquivo_real": "h3-prs/pr-1601.md"
+ },
+ {
+  "cartao": "c-iss-37",
+  "doc_citado": "doc-0039",
+  "doc_real": "doc-0040",
+  "arquivo_real": "h3-prs/pr-1571.md"
+ },
+ {
+  "cartao": "c-iss-37",
+  "doc_citado": "doc-0039",
+  "doc_real": "doc-0040",
+  "arquivo_real": "h3-prs/pr-1571.md"
+ },
+ {
+  "cartao": "c-iss-38",
+  "doc_citado": "doc-0042",
+  "doc_real": "doc-0043",
+  "arquivo_real": "h3-prs/pr-1574.md"
+ },
+ {
+  "cartao": "c-iss-38",
+  "doc_citado": "doc-0042",
+  "doc_real": "doc-0043",
+  "arquivo_real": "h3-prs/pr-1574.md"
+ },
+ {
+  "cartao": "c-iss-39",
+  "doc_citado": "doc-0052",
+  "doc_real": "doc-0053",
+  "arquivo_real": "h3-prs/pr-1595.md"
+ },
+ {
+  "cartao": "c-iss-39",
+  "doc_citado": "doc-0052",
+  "doc_real": "doc-0053",
+  "arquivo_real": "h3-prs/pr-1595.md"
+ },
+ {
+  "cartao": "c-iss-40",
+  "doc_citado": "doc-0043",
+  "doc_real": "doc-0044",
+  "arquivo_real": "h3-prs/pr-1576.md"
+ },
+ {
+  "cartao": "c-iss-40",
+  "doc_citado": "doc-0043",
+  "doc_real": "doc-0044",
+  "arquivo_real": "h3-prs/pr-1576.md"
+ }
+]

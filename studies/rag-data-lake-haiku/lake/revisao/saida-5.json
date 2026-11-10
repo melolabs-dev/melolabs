@@ -1,0 +1,51 @@
+[
+  {
+    "qid": "q109",
+    "resposta": "B",
+    "confianca": 5,
+    "arquivos": ["h3/src/utils/cookie.ts", "h3-prs/pr-1565.md"],
+    "trecho": "// 100 chunks × ~4KB = ~400KB, far beyond any practical cookie size.",
+    "ambigua": false,
+    "parcial": false,
+    "nota": "CHUNKS_MAX_LENGTH = 4000 (tamanho codificado por parte, PR #1565) e MAX_CHUNKED_COOKIE_COUNT = 100; acima de 100 partes setChunkedCookie lança erro. A resposta depende só de arquivos em lake/bruto (h3/src/utils/cookie.ts); nenhum arquivo de fora foi necessário."
+  },
+  {
+    "qid": "q050",
+    "resposta": "D",
+    "confianca": 5,
+    "arquivos": ["h3-prs/pr-1573.md", "h3/CHANGELOG.md", "h3/src/utils/session.ts"],
+    "trecho": "Removing the fallback in a v2 release would break existing sessions sealed with 1 iteration, so the comment now targets v3",
+    "ambigua": false,
+    "parcial": false,
+    "nota": "CHANGELOG v2.0.2 também registra 'Mark legacySealFallback as deprecated' e session.ts traz '@deprecated ... will be removed in v3'; a opção D não cita a marcação, mas não a contradiz. B e C contradizem o material."
+  },
+  {
+    "qid": "q017",
+    "resposta": "C",
+    "confianca": 5,
+    "arquivos": ["h3/docs/1.guide/1.basics/6.error.md"],
+    "trecho": "When using nested apps, global hooks of sub-apps will not be called. Therefore it is better to use `onError` middleware.",
+    "ambigua": false,
+    "parcial": false
+  },
+  {
+    "qid": "q112",
+    "resposta": "B",
+    "confianca": 4,
+    "arquivos": [],
+    "trecho": "",
+    "ambigua": false,
+    "parcial": true,
+    "nota": "O material só explica por que o mínimo subiu para 20.19 (rou3 v1 declara engines >=20.19.0, PR #1568, e o blog v2 cita Node >= 20.19). Não há política declarada sobre quando elevar de novo."
+  },
+  {
+    "qid": "q019",
+    "resposta": "A",
+    "confianca": 4,
+    "arquivos": [],
+    "trecho": "",
+    "ambigua": false,
+    "parcial": true,
+    "nota": "A premissa contradiz o material: a PR #1574 (v2.0.2) diz 'Middleware-registered hooks still do not see stream errors (only the app onError config hook does). Reporting them there too would need a separate design.' O CHANGELOG (até v2.0.8) não registra nenhuma versão que passe a reportá-los. Nenhuma versão é citada."
+  }
+]

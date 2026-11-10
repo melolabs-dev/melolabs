@@ -1,0 +1,194 @@
+[
+  {
+    "id": "q-conf-docs-01",
+    "bloco": "conflito",
+    "pergunta": "No H3 versão 2, como se registra middleware próprio de um handler escrito com sintaxe de objeto?",
+    "opcoes": [
+      "Com um array na chave middleware de defineHandler, ao lado da chave handler",
+      "Com eventHandler, usando as chaves onRequest e onResponse com listas de funções",
+      "Encadeando .use() no valor retornado por defineHandler antes de registrar a rota"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0067",
+        "trecho": "You can optionally register some [middleware](/guide/basics/middleware) to run with event handler to intercept request, response or errors."
+      },
+      {
+        "doc": "doc-0094",
+        "trecho": "With this approach, you can define hooks that run before or after each handler, such as authentication or compression middleware."
+      }
+    ],
+    "cartoes": [
+      "c-docs-38",
+      "c-docs-39"
+    ],
+    "justificativa": "No v2 o middleware do handler com sintaxe de objeto vai na chave middleware (exemplo com basicAuth e handler); os hooks onRequest/onResponse com eventHandler eram do v1.8.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-docs-02",
+    "bloco": "conflito",
+    "pergunta": "No H3 versão 2, como rodar o app em um runtime compatível com a web ou chamá-lo direto em um teste?",
+    "opcoes": [
+      "Usando app.fetch, que o próprio app já expõe, ou app.request nos testes",
+      "Convertendo o app com toWebHandler, que gera uma função de Request para Promise de Response",
+      "Exportando o app como middleware de Express e testando com a biblioteca supertest"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0063",
+        "trecho": "We also have [`app.fetch`](/guide/api/h3#h3fetch) which can be directly used to run H3 apps in any web-compatible runtime or even directly called for testing purposes."
+      },
+      {
+        "doc": "doc-0094",
+        "trecho": "const webHandler = toWebHandler(app); // (Request) => Promise<Response>"
+      }
+    ],
+    "cartoes": [
+      "c-docs-40",
+      "c-docs-41"
+    ],
+    "justificativa": "No v2 o app expõe app.fetch (e app.request) para runtimes web e testes; toWebHandler era a conversão do v1.8.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-docs-03",
+    "bloco": "conflito",
+    "pergunta": "No H3 versão 2, qual é o jeito de preparar headers e status da resposta antes de retornar do handler?",
+    "opcoes": [
+      "Usar event.res, por exemplo com event.res.headers.set para cada header",
+      "Chamar setResponseHeader passando o event, o nome e o valor do header",
+      "Retornar um objeto com as chaves headers e body em vez do valor simples"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0068",
+        "trecho": "Before returning a response in main handler, you can prepare response headers and status using [`event.res`](/guide/api/h3event#h3eventres)."
+      },
+      {
+        "doc": "doc-0094",
+        "trecho": "setResponseHeader(event, \"Content-Type\", \"text/html\");"
+      }
+    ],
+    "cartoes": [
+      "c-docs-42",
+      "c-docs-43"
+    ],
+    "justificativa": "No v2 headers e status são preparados em event.res; setResponseHeader aparece no exemplo do v1.8.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-docs-04",
+    "bloco": "conflito",
+    "pergunta": "No H3 versão 2, como um handler entrega um ReadableStream ao cliente?",
+    "opcoes": [
+      "Retornando o valor direto do handler, que é enviado como resposta em stream",
+      "Chamando sendStream(event, stream) ou sendWebResponse(event, stream) dentro do handler",
+      "Escrevendo cada pedaço com res.write e encerrando a resposta com res.end ao final"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0059",
+        "trecho": "- Return `ReadableStream` / `Blob` / `File` → streamed response"
+      },
+      {
+        "doc": "doc-0094",
+        "trecho": "you might choose to utilize the `sendStream(event, stream)` and `sendWebResponse(event, stream)` utilities instead of directly returning the stream."
+      }
+    ],
+    "cartoes": [
+      "c-docs-44",
+      "c-docs-45"
+    ],
+    "justificativa": "No v2 os handlers retornam valores diretamente e um ReadableStream retornado vira resposta em stream; sendStream/sendWebResponse eram sugeridos no v1.8.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-docs-05",
+    "bloco": "conflito",
+    "pergunta": "No H3 versão 2, como é iniciado o servidor durante o desenvolvimento, com recarga ao editar arquivos?",
+    "opcoes": [
+      "Rodando o arquivo direto no runtime, por exemplo com node --watch",
+      "Executando npx listhen@latest com a flag de observação sobre o arquivo de entrada",
+      "Usando nodemon com um adaptador que converte o app em listener do node:http"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0063",
+        "trecho": "node --watch ./server.mjs"
+      },
+      {
+        "doc": "doc-0094",
+        "trecho": "Run `npx listhen@latest -w ./index.ts` to initiate a development server with TypeScript support, Hot Module Replacement (HMR), and static asset server."
+      }
+    ],
+    "cartoes": [
+      "c-docs-46",
+      "c-docs-47"
+    ],
+    "justificativa": "No v2 o guia roda o arquivo direto pelo runtime com node --watch; o listhen com -w era a instrução do v1.8.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-docs-06",
+    "bloco": "conflito",
+    "pergunta": "Em que base de APIs o H3 versão 2 foi construído, em contraste com o desenho da versão 1?",
+    "opcoes": [
+      "Em padrões web, com o srvx unificando as diferenças entre os runtimes",
+      "Em APIs do Node.js, com uma camada de compatibilidade para padrões web",
+      "Em APIs do Deno, com adaptadores separados para Node.js e para o Bun"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0095",
+        "trecho": "With [💥 srvx](https://srvx.h3.dev) unifying runtime differences, H3 can remain simpler, focusing exclusively on web standard APIs."
+      },
+      {
+        "doc": "doc-0095",
+        "trecho": "But still, H3 was primarily based on Node.js APIs with a compatibility layer for web standards."
+      }
+    ],
+    "cartoes": [
+      "c-docs-48",
+      "c-docs-49"
+    ],
+    "justificativa": "O v2 foca exclusivamente em APIs de padrão web, com srvx unificando runtimes; o v1 era baseado principalmente em APIs do Node.js.",
+    "n_fontes": 2
+  }
+]

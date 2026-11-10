@@ -1,0 +1,847 @@
+[
+ {
+  "id": "c-docs-01",
+  "decisao": "Requisições HEAD casam automaticamente com a rota GET correspondente e rodam seu handler, sem enviar o corpo; não é preciso registrar um handler HEAD separado.",
+  "motivo": "Segue a RFC 9110.",
+  "vale_quando": "Ao registrar rotas GET",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "rotas",
+  "fontes": [
+   {
+    "doc": "doc-0065",
+    "trecho": "Following [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110#name-head), `HEAD` requests automatically match the corresponding `GET` route and run its handler, but the response body is omitted"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-02",
+  "decisao": "Ao usar o método HTTP QUERY com handleCors e uma lista explícita de methods, inclua \"QUERY\" nessa lista.",
+  "motivo": "QUERY não é CORS-safelisted, então os navegadores enviam preflight.",
+  "vale_quando": "Ao usar rotas QUERY com CORS e allowlist de methods",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "rotas",
+  "fontes": [
+   {
+    "doc": "doc-0065",
+    "trecho": "Unlike `GET`, `QUERY` is **not** CORS-safelisted, so browsers send a preflight"
+   },
+   {
+    "doc": "doc-0065",
+    "trecho": "include `\"QUERY\"`."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-03",
+  "decisao": "Um padrão de rota é um pathname, não uma URL: passar uma URL a app.get lança erro.",
+  "motivo": "Uma authority nunca é descartada em silêncio.",
+  "vale_quando": "Ao registrar rotas ou middleware com um padrão",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "rotas",
+  "fontes": [
+   {
+    "doc": "doc-0065",
+    "trecho": "A URL is **rejected** (`app.get(\"http://example.com/admin\")` throws)."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-04",
+  "decisao": "Em v1, o sub-caminho de um curinga ** era lido em params._ .",
+  "motivo": "não consta",
+  "vale_quando": "Ao ler o sub-caminho de um curinga ** (legado)",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "rotas",
+  "fontes": [
+   {
+    "doc": "doc-0065",
+    "trecho": "`params._` still works for `**` but is deprecated."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-05",
+  "decisao": "Um ** ou * sem nome guarda o sub-caminho em params[0]; params._ é legado e está deprecado.",
+  "motivo": "não consta",
+  "vale_quando": "Ao ler o sub-caminho de um curinga ** ou * sem nome",
+  "status": "vigente",
+  "substitui": [
+   "c-docs-04"
+  ],
+  "tema": "rotas",
+  "fontes": [
+   {
+    "doc": "doc-0065",
+    "trecho": "An unnamed `**` or `*` stores the matched sub-path as a single string keyed by position (`params[0]`), and is left out when it matches nothing."
+   },
+   {
+    "doc": "doc-0065",
+    "trecho": "`params._` still works for `**` but is deprecated."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-06",
+  "decisao": "Prefira utilitários componíveis a middleware global.",
+  "motivo": "Middleware global pode complicar a lógica da aplicação, tornando-a menos previsível e mais difícil de entender.",
+  "vale_quando": "Ao decidir entre middleware global e utilitários",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0066",
+    "trecho": "We recommend using composable utilities whenever possible. Global middleware can complicate application logic, making it less predictable and harder to understand."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-07",
+  "decisao": "Para capturar erros com apps aninhados, use o middleware onError em vez dos hooks globais.",
+  "motivo": "Os hooks globais dos sub-apps não são chamados.",
+  "vale_quando": "Ao usar apps aninhados com mount",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0069",
+    "trecho": "When using nested apps, global hooks of sub-apps will not be called. Therefore it is better to use `onError` middleware."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-08",
+  "decisao": "Para incluir headers em respostas de erro, use new HTTPError({ headers }).",
+  "motivo": "Os headers preparados em event.res.headers não entram na resposta de erro.",
+  "vale_quando": "Ao lançar um erro que precisa carregar headers",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0069",
+    "trecho": "The recommended way to include headers in error responses is to use `new HTTPError({ headers })`:"
+   },
+   {
+    "doc": "doc-0069",
+    "trecho": "set via `event.res.headers` are **not** included in the error response."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-09",
+  "decisao": "Para headers que precisam ser definidos antes de o erro ser conhecido (por exemplo CORS), use event.res.errHeaders como último recurso.",
+  "motivo": "Os headers de event.res.headers são descartados quando ocorre um erro.",
+  "vale_quando": "Ao precisar de headers implícitos em respostas de erro",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0069",
+    "trecho": "As a last resort for headers that need to be set implicitly before the error is known (e.g., CORS headers), you can use `event.res.errHeaders`."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-10",
+  "decisao": "Erros não tratados (sem HTTPError) têm os campos data, body, stack e message ocultados na resposta JSON.",
+  "motivo": "Segurança reforçada.",
+  "vale_quando": "Ao lançar Error comum em vez de HTTPError",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0069",
+    "trecho": "For enhanced security, H3 hides certain fields of unhandled errors (`data`, `body`, `stack` and `message`) in JSON response."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-11",
+  "decisao": "Para HTML dinâmico, use o html como tagged template; para marcação confiável, use raw().",
+  "motivo": "Os valores interpolados no tagged template são escapados automaticamente para ajudar a prevenir XSS; html() com string simples escapa a string inteira.",
+  "vale_quando": "Ao devolver HTML com valores dinâmicos",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0068",
+    "trecho": "Interpolated values in the tagged template are automatically HTML-escaped to help prevent XSS."
+   },
+   {
+    "doc": "doc-0068",
+    "trecho": "Use the tagged template for dynamic values, or wrap trusted markup with `raw()`."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-12",
+  "decisao": "Ao retornar um Response completo, defina headers apenas nele: o status preparado em event.res é descartado e os headers são mesclados ou sobrescritos.",
+  "motivo": "Por desempenho.",
+  "vale_quando": "Ao retornar um objeto Response",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0068",
+    "trecho": "prepared status is discarded and headers will be merged/overridden. For performance reasons, it is best to only set headers only from final Response in this case."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-13",
+  "decisao": "A opção debug, que envia stack traces nas respostas de erro, só deve ser habilitada em desenvolvimento.",
+  "motivo": "Expõe informações importantes como stack traces.",
+  "vale_quando": "Ao configurar new H3({ debug })",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0072",
+    "trecho": "Enabling `debug` option, sends important stuff like stack traces in error responses. Only enable during development."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-14",
+  "decisao": "Nunca decodifique event.url.pathname por conta própria.",
+  "motivo": "A decodificação pode reintroduzir um / ou .. que o roteamento e os middlewares nunca viram, o que é um vetor de path traversal.",
+  "vale_quando": "Ao usar o pathname em filesystem ou URL upstream",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0073",
+    "trecho": "Never decode `event.url.pathname` yourself. Decoding can reintroduce a `/` or `..` that routing and middleware never saw, which is a path traversal vector"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-15",
+  "decisao": "A senha da sessão deve vir de uma fonte aleatória criptograficamente segura.",
+  "motivo": "Um cookie de sessão roubado carrega o salt e o digest de integridade em texto claro, então uma senha fraca pode sofrer força bruta offline; aumentar as iterações PBKDF2 só atrasa.",
+  "vale_quando": "Ao configurar useSession",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0089",
+    "trecho": "Always generate the password from a cryptographically secure random source"
+   },
+   {
+    "doc": "doc-0089",
+    "trecho": "a weak or guessable password can be brute-forced offline"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-16",
+  "decisao": "Em produção, carregue a senha da sessão (segredo aleatório de pelo menos 32 caracteres) de uma variável de ambiente e nunca a versione no código.",
+  "motivo": "Os exemplos usam valor fixo apenas para ficarem legíveis.",
+  "vale_quando": "Ao levar useSession para produção",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0089",
+    "trecho": "in a real app load a randomly generated secret of at least 32 characters from an environment variable such as `process.env.SESSION_PASSWORD`, and never commit it to source control."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-17",
+  "decisao": "O cookie de sessão tem por padrão secure: true, httpOnly: true, sameSite: \"lax\" e path: \"/\", e cada um pode ser sobrescrito via cookie.",
+  "motivo": "não consta",
+  "vale_quando": "Ao configurar useSession",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "cookie",
+  "fontes": [
+   {
+    "doc": "doc-0089",
+    "trecho": "The session cookie defaults to `secure: true`, `httpOnly: true`, `sameSite: \"lax\"`, and `path: \"/\"`."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-18",
+  "decisao": "No desenvolvimento local sobre HTTP, use cookie: { secure: false } na sessão.",
+  "motivo": "Navegadores compatíveis (Safari e iOS, e Chrome em alguns domínios locais) descartam em silêncio o cookie Secure sobre HTTP simples, e a sessão não persiste.",
+  "vale_quando": "Desenvolvimento local sem HTTPS",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0089",
+    "trecho": "Set `cookie: { secure: false }` during local development to work around this."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-19",
+  "decisao": "A sessão tem dois controles de expiração independentes: maxAge (vida absoluta desde a criação) e idleTimeout (vida deslizante desde a última requisição); podem ser usados juntos.",
+  "motivo": "não consta",
+  "vale_quando": "Ao definir expiração de sessão",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0089",
+    "trecho": "`maxAge` is an **absolute** lifetime, counted from when the session was created."
+   },
+   {
+    "doc": "doc-0089",
+    "trecho": "`idleTimeout` is a **sliding** lifetime, counted from the last request."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-20",
+  "decisao": "Se o limite mais curto do intervalo de idleTimeout precisa ser o limite real, divida o idleTimeout pela metade.",
+  "motivo": "O H3 só sela de novo (reseal) a sessão depois que mais da metade da janela foi usada, então o horário de último acesso pode atrasar até meia janela.",
+  "vale_quando": "Ao usar idleTimeout",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0089",
+    "trecho": "Halve `idleTimeout` if you need the shorter end of that range to be your real limit."
+   },
+   {
+    "doc": "doc-0089",
+    "trecho": "it reseals only once more than half the window has been used"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-21",
+  "decisao": "getSession não inicia uma sessão: sem sessão na requisição, uma nova é criada só em memória e nenhum Set-Cookie é emitido até algo ser gravado com updateSession; useSession inicia a sessão de imediato.",
+  "motivo": "Assim, ler a sessão (por exemplo, numa checagem de autenticação) não inicia uma para visitantes anônimos.",
+  "vale_quando": "Ao ler a sessão sem iniciá-la",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0081",
+    "trecho": "A request without a session gets a new one initialized in memory only — no `Set-Cookie` is issued until something is stored with {@link updateSession}"
+   },
+   {
+    "doc": "doc-0081",
+    "trecho": "Starts a session if the request does not carry one, persisting it so its id is stable across requests."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-22",
+  "decisao": "Dê a cada sessão um name distinto.",
+  "motivo": "Duas sessões com o mesmo nome compartilham o mesmo cookie, e a última escrita vence.",
+  "vale_quando": "Ao usar várias sessões na mesma requisição",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "sessao",
+  "fontes": [
+   {
+    "doc": "doc-0089",
+    "trecho": "Give each session a distinct `name`. Two sessions that share a name share the same cookie, so the last write wins."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-23",
+  "decisao": "No serveStatic, getContents e getMeta são separados para o H3 responder a HEAD sem ler o conteúdo do arquivo e usar o header Last-Modified.",
+  "motivo": "Evitar a leitura do arquivo em HEAD.",
+  "vale_quando": "Ao implementar serveStatic",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "estatico",
+  "fontes": [
+   {
+    "doc": "doc-0090",
+    "trecho": "They are separated to allow H3 to respond to `HEAD` requests without reading the contents of the file and to use the `Last-Modified` header."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-24",
+  "decisao": "Com serveStatic, resolva o id contra a raiz dos assets como uma string opaca, sem decodificá-la.",
+  "motivo": "Um backend que decodifica o id reintroduz separadores e reabre a brecha de path traversal.",
+  "vale_quando": "Ao implementar getMeta e getContents",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "estatico",
+  "fontes": [
+   {
+    "doc": "doc-0079",
+    "trecho": "Resolve the `id` against your asset root as an opaque string — a backend that decodes it re-introduces separators and re-opens the hole."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-25",
+  "decisao": "Não use genéricos de tipo como validação: passar uma interface a readBody não valida nada, e os dados devem ser validados antes do uso.",
+  "motivo": "Não se pode confiar em dados de fontes desconhecidas, como um usuário ou uma API externa.",
+  "vale_quando": "Ao ler body, query ou params",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0092",
+    "trecho": "Do not use type generics as a validation. Providing an interface to a utility like `readBody` is not a validation. You must validate the data before using it."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-26",
+  "decisao": "Passando um schema diretamente aos utilitários de validação, a falha lança um erro 400 Validation Error; para tratar os erros por conta própria, passe a função de parse seguro da biblioteca.",
+  "motivo": "não consta",
+  "vale_quando": "Ao usar getValidatedQuery, getValidatedRouterParams ou readValidatedBody",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "erro",
+  "fontes": [
+   {
+    "doc": "doc-0092",
+    "trecho": "it will throw a `400 Validation Error` error if the validation fails, but in some cases you may want to handle the validation errors yourself."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-27",
+  "decisao": "Em getRequestIP, deixe xForwardedFor desligado e prefira configurar o servidor para confiar no seu proxy (trustProxy do srvx).",
+  "motivo": "O primeiro valor de x-forwarded-for é entrada do cliente, então qualquer chamador poderia escolher o próprio endereço e burlar allowlists de IP, rate limiting e logs de auditoria.",
+  "vale_quando": "Ao obter o IP do cliente atrás de proxy",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0078",
+    "trecho": "Prefer configuring the server to trust your proxy (srvx `trustProxy` walks the chain from the right, past trusted hops) and leave this option off"
+   },
+   {
+    "doc": "doc-0078",
+    "trecho": "`xForwardedFor` is opt-in because that first entry is client input."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-28",
+  "decisao": "getRequestProtocol só usa x-forwarded-proto quando xForwardedProto é true; o padrão é false e foi alterado para ficar igual ao de getRequestHost e getRequestIP.",
+  "motivo": "O header pode ser falsificado por clientes; só habilite atrás de proxy ou CDN confiável que o defina.",
+  "vale_quando": "Ao obter o protocolo atrás de proxy",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0078",
+    "trecho": "This header is opt-in (default `false`) since it can be spoofed by clients."
+   },
+   {
+    "doc": "doc-0078",
+    "trecho": "This default was changed to match `getRequestHost` (`xForwardedHost`) and `getRequestIP` (`xForwardedFor`)."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-29",
+  "decisao": "Ao usar proxyRequest com upstream não totalmente confiável, remova Cookie e Authorization com filterHeaders: [\"cookie\", \"authorization\"].",
+  "motivo": "proxyRequest repassa Cookie e Authorization da requisição ao destino, o que vaza credenciais do cliente para um upstream não confiável.",
+  "vale_quando": "Ao fazer proxy para upstream não confiável",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0082",
+    "trecho": "When proxying to a not-fully-trusted upstream, strip them with `filterHeaders: [\"cookie\", \"authorization\"]`."
+   },
+   {
+    "doc": "doc-0082",
+    "trecho": "the incoming request's `Cookie` and `Authorization` headers are forwarded to the `target` verbatim."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-30",
+  "decisao": "Valide um destino de redirect derivado de entrada do usuário contra uma lista de destinos permitidos antes de redirecionar.",
+  "motivo": "Valores do usuário sem checagem criam vulnerabilidade de open redirect.",
+  "vale_quando": "Ao usar redirect com location vinda do usuário",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0079",
+    "trecho": "validate it against an allow-list of permitted destinations before redirecting."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-31",
+  "decisao": "Autenticação não é uma regra de route rules: ela pertence ao middleware.",
+  "motivo": "A autenticação precisa de lógica executável que consulte o seu repositório de usuários.",
+  "vale_quando": "Ao decidir onde implementar autenticação",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "Route rules intentionally do not include an `auth` rule. Authentication needs executable logic that can check your user store, so it belongs in middleware."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-32",
+  "decisao": "Registre routeRules() depois de todo middleware global que precisa rodar em rotas com cache.",
+  "motivo": "A regra cache despacha o handler da rota diretamente, então middleware global registrado depois de routeRules() nunca roda para requisições cacheáveis, nem no cache miss.",
+  "vale_quando": "Ao usar a regra cache ou swr com middleware global",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "Register `routeRules()` **after** every global middleware that has to run for cached routes:"
+   },
+   {
+    "doc": "doc-0071",
+    "trecho": "**global middleware registered after `routeRules()` never runs for a cacheable request to a route a `cache` rule matched**"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-33",
+  "decisao": "O H3 remove Cookie, Authorization e Proxy-Authorization antes de chamar um handler em cache; para repassar a credencial de autorização, use cache: { allowAuthorization: true }.",
+  "motivo": "Sem essa proteção, uma resposta gerada para um usuário poderia ser guardada sob uma chave anônima e servida a outros.",
+  "vale_quando": "Ao cachear rotas com route rules",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "seguranca",
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "H3 removes `Cookie`, `Authorization`, and `Proxy-Authorization` before calling a cached handler."
+   },
+   {
+    "doc": "doc-0071",
+    "trecho": "Set `cache: { allowAuthorization: true }` to pass the authorization credential to the handler."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-34",
+  "decisao": "Não cacheie uma rota que precisa definir um cookie em toda resposta.",
+  "motivo": "O Set-Cookie de um handler é enviado só à requisição que o produziu e nunca é guardado no cache, para não reaproveitar o cookie de sessão de um visitante.",
+  "vale_quando": "Ao usar a regra cache",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "cookie",
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "Do not cache a route that must set a cookie on every response."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-35",
+  "decisao": "O código do h3 é só ESM, com extensões .ts explícitas nos imports e sem arquivos barrel (importa-se direto dos módulos).",
+  "motivo": "não consta",
+  "vale_quando": "Ao contribuir com código no h3",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "outro",
+  "fontes": [
+   {
+    "doc": "doc-0059",
+    "trecho": "- **ESM only** — no CommonJS"
+   },
+   {
+    "doc": "doc-0059",
+    "trecho": "- **Explicit `.ts` extensions** in all import paths"
+   },
+   {
+    "doc": "doc-0059",
+    "trecho": "- **No barrel files** — import directly from specific modules"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-36",
+  "decisao": "Para corrigir um bug, escreva primeiro um teste de regressão, confirme que ele falha antes de alterar o código, faça a correção mínima e rode a suíte ampla.",
+  "motivo": "não consta",
+  "vale_quando": "Ao corrigir bugs no h3",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "outro",
+  "fontes": [
+   {
+    "doc": "doc-0059",
+    "trecho": "1. Write regression test that reproduces the bug"
+   },
+   {
+    "doc": "doc-0059",
+    "trecho": "2. Confirm test **fails** before any code changes"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-37",
+  "decisao": "No v2, a maioria dos utilitários do v1 continua funcionando e os nomes deprecados do v1 ainda são exportados, para facilitar a atualização.",
+  "motivo": "Minimizar quebras de compatibilidade.",
+  "vale_quando": "Ao migrar do v1 para o v2",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "migracao",
+  "fontes": [
+   {
+    "doc": "doc-0096",
+    "trecho": "Most v1 utilities keep working, and deprecated v1 names are still exported to make upgrading easier."
+   },
+   {
+    "doc": "doc-0095",
+    "trecho": "We've tried to minimize breaking changes. Most of utilities preserved backward compatibility."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-38",
+  "decisao": "No v1.8, handlers com sintaxe de objeto declaravam hooks de antes e depois com eventHandler({ onRequest: [...], onResponse: [...], handler }).",
+  "motivo": "não consta",
+  "vale_quando": "Ao ler código escrito para o v1.8",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0094",
+    "trecho": "With this approach, you can define hooks that run before or after each handler, such as authentication or compression middleware."
+   },
+   {
+    "doc": "doc-0094",
+    "trecho": "onRequest: [auth], onResponse: [compression],"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-39",
+  "decisao": "No v2, handlers com sintaxe de objeto registram middleware com defineHandler({ middleware: [...], handler }).",
+  "motivo": "não consta",
+  "vale_quando": "Ao definir handlers com middleware próprio no v2",
+  "status": "vigente",
+  "substitui": [
+   "c-docs-38"
+  ],
+  "tema": "middleware",
+  "fontes": [
+   {
+    "doc": "doc-0067",
+    "trecho": "You can optionally register some [middleware](/guide/basics/middleware) to run with event handler to intercept request, response or errors."
+   },
+   {
+    "doc": "doc-0095",
+    "trecho": "middleware: [basicAuth({ password: \"test\" })],"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-40",
+  "decisao": "No v1.8, para rodar o app em ambientes de borda, convertia-se com toWebHandler(app), que gera um (Request) => Promise<Response>.",
+  "motivo": "não consta",
+  "vale_quando": "Ao ler código escrito para o v1.8",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "migracao",
+  "fontes": [
+   {
+    "doc": "doc-0094",
+    "trecho": "const webHandler = toWebHandler(app); // (Request) => Promise<Response>"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-41",
+  "decisao": "No v2, o app H3 expõe app.fetch (e app.request), que roda em qualquer runtime compatível com a web ou é chamado direto em testes, e serve() inicia o servidor.",
+  "motivo": "não consta",
+  "vale_quando": "Ao rodar ou testar um app H3 v2",
+  "status": "vigente",
+  "substitui": [
+   "c-docs-40"
+  ],
+  "tema": "migracao",
+  "fontes": [
+   {
+    "doc": "doc-0063",
+    "trecho": "We also have [`app.fetch`](/guide/api/h3#h3fetch) which can be directly used to run H3 apps in any web-compatible runtime or even directly called for testing purposes."
+   },
+   {
+    "doc": "doc-0072",
+    "trecho": "A [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)-compatible function allowing to fetch app routes."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-42",
+  "decisao": "No v1.8, headers de resposta eram definidos com setResponseHeader(event, name, value).",
+  "motivo": "não consta",
+  "vale_quando": "Ao ler código escrito para o v1.8",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0094",
+    "trecho": "setResponseHeader(event, \"Content-Type\", \"text/html\");"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-43",
+  "decisao": "No v2, os headers e o status de resposta são preparados por event.res (por exemplo event.res.headers.set).",
+  "motivo": "não consta",
+  "vale_quando": "Ao preparar headers de resposta no v2",
+  "status": "vigente",
+  "substitui": [
+   "c-docs-42"
+  ],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0068",
+    "trecho": "you can prepare response headers and status using [`event.res`](/guide/api/h3event#h3eventres)."
+   },
+   {
+    "doc": "doc-0096",
+    "trecho": "set response headers through `event.res`."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-44",
+  "decisao": "No v1.8, em cenários avançados de streaming, sugeria-se usar sendStream(event, stream) e sendWebResponse(event, stream) em vez de retornar o stream.",
+  "motivo": "não consta",
+  "vale_quando": "Ao ler código escrito para o v1.8",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0094",
+    "trecho": "you might choose to utilize the `sendStream(event, stream)` and `sendWebResponse(event, stream)` utilities instead of directly returning the stream."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-45",
+  "decisao": "No v2, handlers retornam valores diretamente, sem o padrão res.send(); um ReadableStream, Blob ou File retornado é enviado como stream.",
+  "motivo": "não consta",
+  "vale_quando": "Ao enviar respostas no v2",
+  "status": "vigente",
+  "substitui": [
+   "c-docs-44"
+  ],
+  "tema": "resposta",
+  "fontes": [
+   {
+    "doc": "doc-0059",
+    "trecho": "Handlers return values directly — no `res.send()` pattern:"
+   },
+   {
+    "doc": "doc-0059",
+    "trecho": "- Return `ReadableStream` / `Blob` / `File` → streamed response"
+   }
+  ]
+ },
+ {
+  "id": "c-docs-46",
+  "decisao": "No v1.8, o servidor de desenvolvimento com HMR era iniciado com npx listhen@latest -w ./index.ts.",
+  "motivo": "não consta",
+  "vale_quando": "Ao ler instruções escritas para o v1.8",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "outro",
+  "fontes": [
+   {
+    "doc": "doc-0094",
+    "trecho": "Run `npx listhen@latest -w ./index.ts` to initiate a development server with TypeScript support, Hot Module Replacement (HMR), and static asset server."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-47",
+  "decisao": "No v2, o servidor é iniciado com serve(app) e executado direto pelo runtime com observação de arquivos (por exemplo node --watch ./server.mjs).",
+  "motivo": "não consta",
+  "vale_quando": "Ao rodar o servidor de desenvolvimento no v2",
+  "status": "vigente",
+  "substitui": [
+   "c-docs-46"
+  ],
+  "tema": "outro",
+  "fontes": [
+   {
+    "doc": "doc-0063",
+    "trecho": "node --watch ./server.mjs"
+   },
+   {
+    "doc": "doc-0063",
+    "trecho": "Finally, we use `serve` method to start the server listener."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-48",
+  "decisao": "No v1, o H3 era baseado principalmente em APIs do Node.js, com uma camada de compatibilidade para padrões web.",
+  "motivo": "não consta",
+  "vale_quando": "Ao comparar o desenho do v1 com o do v2",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "migracao",
+  "fontes": [
+   {
+    "doc": "doc-0095",
+    "trecho": "But still, H3 was primarily based on Node.js APIs with a compatibility layer for web standards."
+   }
+  ]
+ },
+ {
+  "id": "c-docs-49",
+  "decisao": "O v2 foi reescrito sobre padrões web (Request, Response, URL, Headers) e usa o srvx para unificar as diferenças entre runtimes, mantendo o core simples.",
+  "motivo": "Interoperabilidade entre runtimes, frameworks e ambientes, e testes de API mais fáceis.",
+  "vale_quando": "Ao escolher APIs no v2",
+  "status": "vigente",
+  "substitui": [
+   "c-docs-48"
+  ],
+  "tema": "migracao",
+  "fontes": [
+   {
+    "doc": "doc-0096",
+    "trecho": "It is a full rewrite on top of web standards, stays compatible with most v1 utilities, and is faster and smaller than v1."
+   },
+   {
+    "doc": "doc-0095",
+    "trecho": "With [💥 srvx](https://srvx.h3.dev) unifying runtime differences, H3 can remain simpler, focusing exclusively on web standard APIs."
+   }
+  ]
+ }
+]

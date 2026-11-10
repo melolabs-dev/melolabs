@@ -1,0 +1,498 @@
+[
+ {
+  "id": "c-e1-01",
+  "decisao": "O plano de testes partia de 3 repetições por condição e variante para todas as hipóteses, com extensão até 5 se o IC cruzasse a margem.",
+  "motivo": "não consta",
+  "vale_quando": "Versão anterior ao piloto",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Ponto de partida:** 3 repetições por condição e variante (mesmo n dos estudos anteriores do autor)."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-02",
+  "decisao": "Depois do piloto, a H4 usa 6 repetições por variante em C0 e C4, e as demais hipóteses (tokens, tempo, rubrica) usam 3 repetições.",
+  "motivo": "Com todas passando, o limite inferior de Wilson (95%) chega a 0,90, o que permite demonstrar equivalência na margem de 10 pontos.",
+  "vale_quando": "Execuções de código da H4 e demais hipóteses",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-01"
+  ],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**H4 (testes ocultos):** 6 repetições por variante em C0 e C4 (36 execuções de código por condição)."
+   },
+   {
+    "doc": "doc-0002",
+    "trecho": "Pontos de partida anteriores (3 repetições para tudo) ficam substituídos por esta seção."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-03",
+  "decisao": "O custo em dólar seria estimado com três proporções de entrada e saída (60/40, 80/20 e 95/5) e reportado como faixa.",
+  "motivo": "O harness não informava a divisão entre entrada e saída.",
+  "vale_quando": "Plano de testes de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "custo",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "três proporções (60/40, 80/20 e 95/5 de entrada e saída)"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-04",
+  "decisao": "As três proporções 60/40, 80/20 e 95/5 ficam retiradas; o consumo passa a ser medido de fato (tokens de entrada, saída, cache e custo de lista da ferramenta).",
+  "motivo": "Com preços proporcionais (1/20) elas dão a mesma razão e não testavam nada.",
+  "vale_quando": "Coleta principal e análise de custo",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-03"
+  ],
+  "tema": "custo",
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "As três proporções 60/40, 80/20 e 95/5 ficam **retiradas**: com preços proporcionais (1/20) elas dão a mesma razão e não testavam nada."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-05",
+  "decisao": "A H6 (custo) fazia parte do núcleo confirmatório da fase A, junto com H4 e H5.",
+  "motivo": "não consta",
+  "vale_quando": "Plano de testes de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "hipoteses",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Fase A (núcleo confirmatório, H4, H5 e H6):**"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-06",
+  "decisao": "A H6 deixa a família confirmatória e passa a descritiva: reporta razão de custo de lista, de tokens totais e de tokens novos, com IC, sem teste de hipótese.",
+  "motivo": "O custo em dólar de lista só passa de 0,50 se o Haiku consumir mais de 10 vezes os tokens, então a hipótese se confirmaria pela tabela de preços.",
+  "vale_quando": "Adendo 1 em diante",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-05"
+  ],
+  "tema": "hipoteses",
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "H6 passa a **descritiva**: reporta razão de custo de lista, de tokens totais e de tokens novos, com IC, sem teste de hipótese."
+   },
+   {
+    "doc": "doc-0007",
+    "trecho": "H6 é descritiva, sem teste."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-07",
+  "decisao": "A condição C4 era o Haiku com mitigações completas: C2, C3, citação de IDs e código com testes de aceite escritos antes e loop com a saída real do runner.",
+  "motivo": "não consta",
+  "vale_quando": "Plano de testes de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "| C4 | Haiku com mitigações completas: C2, C3, citação de IDs e código com testes de aceite escritos antes e loop com a saída real do runner | H4, H5, H6 |"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-08",
+  "decisao": "C4 passa a significar C1 mais testes primeiro e loop com a saída do runner, sem o voto, e é assim que o artigo o chama.",
+  "motivo": "O voto (C3) não foi implementado.",
+  "vale_quando": "Adendo 1 em diante",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-07"
+  ],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "**C4 passa a significar \"C1 mais testes primeiro e loop com a saída do runner\"**, sem o voto (C3 não foi implementado), e é assim que o artigo o chama."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-09",
+  "decisao": "Os 4 braços novos do autor (S8, S9, S10, S11) entram no estudo.",
+  "motivo": "não consta",
+  "vale_quando": "Decisão do autor de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "escopo",
+  "fontes": [
+   {
+    "doc": "doc-0008",
+    "trecho": "**Decidido pelo autor em 05/11/2026: os 4 braços novos (S8, S9, S10, S11) entram.**"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-10",
+  "decisao": "A fase C (H9, H2, H7, S10, S11, S8) só rodaria se sobrasse tempo, em ordem de prioridade; o que não rodasse seria reportado como não testado.",
+  "motivo": "não consta",
+  "vale_quando": "Plano de testes de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "escopo",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Fase C (só se sobrar tempo, em ordem de prioridade):** H9 (C9), H2 (voto), H7 (erros plantados), S10, S11 e S8."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-11",
+  "decisao": "A fase C (H2, H7, H8, H9 e braços S8 a S11) não entra neste estudo e fica para um paper futuro; essas hipóteses saem como não testadas.",
+  "motivo": "não consta",
+  "vale_quando": "Decisão do autor de 06/11/2026",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-10",
+   "c-e1-09"
+  ],
+  "tema": "escopo",
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "O autor decidiu que a fase C (H2, H7, H8, H9 e braços S8 a S11) **não entra neste estudo** e fica para um paper futuro."
+   },
+   {
+    "doc": "doc-0001",
+    "trecho": "o autor adiou a fase C (H2, H7, H8, H9 e braços S8 a S11) para um paper futuro."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-12",
+  "decisao": "A avaliação cega usa três juízes Opus, cada um em agente novo e sem contexto da conversa, em ordem embaralhada.",
+  "motivo": "não consta",
+  "vale_quando": "Plano de testes de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "juizes",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "Três juízes Opus, cada um em agente novo e sem contexto da conversa, avaliam em ordem embaralhada por juiz."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-13",
+  "decisao": "Na extensão da amostra, passa-se a 5 amostras do mesmo modelo (Opus) por artefato, em vez de 3, incluindo os artefatos já julgados.",
+  "motivo": "O autor decidiu por mais juízes e mais repetições depois do resultado subpotente.",
+  "vale_quando": "Adendo 2, extensão",
+  "status": "substituida",
+  "substitui": [
+   "c-e1-12"
+  ],
+  "tema": "juizes",
+  "fontes": [
+   {
+    "doc": "doc-0005",
+    "trecho": "**Mais juízes:** 5 amostras do mesmo modelo (Opus) por artefato, em vez de 3, incluindo os artefatos já julgados (juízes 4 e 5 acrescentados)."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-14",
+  "decisao": "Volta-se a 3 juízes por artefato; a ideia de 5 sai.",
+  "motivo": "5 amostras do mesmo modelo não elevam o alfa individual (só o ruído da média), e custavam 40% do total.",
+  "vale_quando": "Adendo 2b em diante",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-13"
+  ],
+  "tema": "juizes",
+  "fontes": [
+   {
+    "doc": "doc-0006",
+    "trecho": "**Volta a 3 juízes por artefato** (a ideia de 5 sai)."
+   },
+   {
+    "doc": "doc-0006",
+    "trecho": "5 amostras do mesmo modelo não elevam o alfa individual (só o ruído da média), e custavam 40% do total."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-15",
+  "decisao": "A avaliação cega cobre TechSpec e Tasks das repetições 1 a 3 nas variantes #1267 e #1050-b, com 3 juízes Opus por artefato.",
+  "motivo": "não consta",
+  "vale_quando": "Plano de testes de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "juizes",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Avaliação cega (rubrica):** TechSpec e Tasks das repetições 1 a 3 nas variantes #1267 e #1050-b, com 3 juízes Opus por artefato, em ordem embaralhada."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-16",
+  "decisao": "Na extensão, são julgados TechSpec e Tasks de todas as execuções de C0, C1, C4 e C5 em todas as variantes.",
+  "motivo": "não consta",
+  "vale_quando": "Adendo 2, extensão",
+  "status": "substituida",
+  "substitui": [
+   "c-e1-15"
+  ],
+  "tema": "juizes",
+  "fontes": [
+   {
+    "doc": "doc-0005",
+    "trecho": "**Mais artefatos julgados:** TechSpec e Tasks de **todas** as execuções de C0, C1, C4 e C5 em todas as variantes"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-17",
+  "decisao": "O conjunto julgado é reduzido: C0 e C1 nas repetições 1 a 3 das 6 variantes, C5 nas repetições 1 a 6 de #1267 e #1050-b, e C4 deixa de ser julgado além das 6 execuções originais.",
+  "motivo": "Nenhuma hipótese de rubrica usa os documentos do C4 (H3 é não testável, H4 é de código, H5 usa C5 contra C0).",
+  "vale_quando": "Adendo 2b em diante",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-16"
+  ],
+  "tema": "juizes",
+  "fontes": [
+   {
+    "doc": "doc-0006",
+    "trecho": "C0 e C1: repetições 1 a 3 das **6 variantes** (18 execuções por condição; antes só 6)."
+   },
+   {
+    "doc": "doc-0006",
+    "trecho": "**C4 deixa de ser julgado além das 6 execuções originais**"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-18",
+  "decisao": "O enunciado dado aos modelos é o contrato público da feature, sem valores de teste.",
+  "motivo": "não consta",
+  "vale_quando": "Plano de testes de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "enunciado da feature (contrato público, sem valores de teste)"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-19",
+  "decisao": "O contrato enxuto: o enunciado passa a ser a issue, a norma citada e as restrições, sem enumerar os casos de borda que os testes cobrem.",
+  "motivo": "não consta",
+  "vale_quando": "Depois do piloto, decisão do autor de 05/11/2026",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-18"
+  ],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Contrato enxuto:** o enunciado dado aos modelos passa a ser a issue, a norma citada e as restrições (sem exportação nova, não quebrar o que existe), sem enumerar os casos de borda que os testes cobrem."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-20",
+  "decisao": "O isolamento do agente é por instrução, por ausência de referências e por auditoria, não por barreira técnica.",
+  "motivo": "O Claude Code não oferece isolamento de sistema de arquivos para subagentes.",
+  "vale_quando": "Plano de testes de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Limite honesto:** o Claude Code não oferece isolamento de sistema de arquivos para subagentes; a restrição é por instrução, por ausência de referências e por auditoria, não por barreira técnica."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-21",
+  "decisao": "Cada etapa roda como processo claude -p novo, com ferramentas restritas e pasta de execução exportada sem .git do projeto e sem remoto.",
+  "motivo": "não consta",
+  "vale_quando": "Adendo 1 em diante",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-20"
+  ],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "Cada etapa é um processo `claude -p` novo, com modelo explícito, `--setting-sources project`, `--strict-mcp-config`, ferramentas restritas"
+   },
+   {
+    "doc": "doc-0004",
+    "trecho": "A pasta da execução é uma exportação do commit base sem `.git` do projeto e sem remoto"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-22",
+  "decisao": "Na auditoria, qualquer ocorrência de caminho ou nome do gabarito na transcrição vira exclusão registrada, com o motivo.",
+  "motivo": "não consta",
+  "vale_quando": "Plano de testes de 05/11/2026",
+  "status": "substituida",
+  "substitui": [],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "qualquer ocorrência vira exclusão registrada, com o motivo."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-23",
+  "decisao": "Acessos suspeitos na auditoria não excluem a execução: a análise principal usa todas e a análise ao lado exclui as suspeitas.",
+  "motivo": "não consta",
+  "vale_quando": "Adendo 1 em diante",
+  "status": "vigente",
+  "substitui": [
+   "c-e1-22"
+  ],
+  "tema": "protocolo",
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "Acessos suspeitos **não excluem** a execução: a análise principal usa todas e a análise ao lado exclui as suspeitas"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-24",
+  "decisao": "A H4 é confirmada (equivalente por não inferioridade) se o limite inferior ≥ −0,10 e o instrumento é sensível; é refutada se o limite superior < −0,10.",
+  "motivo": "não consta",
+  "vale_quando": "Regra de decisão da H4",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "analise",
+  "fontes": [
+   {
+    "doc": "doc-0007",
+    "trecho": "Confirmada (equivalente por não inferioridade) se o limite inferior ≥ −0,10 **e** o instrumento é sensível (alguma condição não satura)"
+   },
+   {
+    "doc": "doc-0007",
+    "trecho": "Refutada se o limite superior < −0,10"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-25",
+  "decisao": "Se C1 (Haiku simples) também chegar ao teto, a H4 é reportada como não informativa (saturação), e não como equivalente.",
+  "motivo": "não consta",
+  "vale_quando": "Checagem de sensibilidade do instrumento",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "analise",
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "se C1 (Haiku simples) também chegar ao teto, a H4 é reportada como **não informativa (saturação)**"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-26",
+  "decisao": "A significância global é de 5% por família, com Holm; a família principal é H4 e H5, e a secundária é H1, H2, H3, H7, H8, H9, H10 e H11.",
+  "motivo": "não consta",
+  "vale_quando": "Adendo 1, regras de decisão",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "analise",
+  "fontes": [
+   {
+    "doc": "doc-0007",
+    "trecho": "Nível de significância global de 5% por família, com Holm."
+   },
+   {
+    "doc": "doc-0007",
+    "trecho": "A família principal é **H4 e H5**; a secundária é H1, H2, H3, H7, H8, H9, H10 e H11."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-27",
+  "decisao": "A H5 é confirmada se o limite inferior da razão de qualidade ≥ 0,90 e a razão de custo ≤ 0,50; razão de qualidade acima de 1,10 não reprova.",
+  "motivo": "não consta",
+  "vale_quando": "Regra de decisão da H5",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "analise",
+  "fontes": [
+   {
+    "doc": "doc-0007",
+    "trecho": "Confirmada se o limite inferior da razão de qualidade ≥ 0,90 e a razão de custo ≤ 0,50."
+   },
+   {
+    "doc": "doc-0007",
+    "trecho": "uma razão acima de 1,10 não reprova (não inferioridade)"
+   }
+  ]
+ },
+ {
+  "id": "c-e1-28",
+  "decisao": "O alfa de Krippendorff dos juízes ficou em 0,62, abaixo do mínimo de 0,67 do plano; pela regra pré-registrada, as hipóteses de rubrica ficam subpotentes.",
+  "motivo": "não consta",
+  "vale_quando": "Resultado de 07/11/2026",
+  "status": "contexto",
+  "substitui": [],
+  "tema": "juizes",
+  "fontes": [
+   {
+    "doc": "doc-0001",
+    "trecho": "o alfa de Krippendorff dos juízes ficou em 0,62, abaixo do mínimo de 0,67 do plano. Pela regra pré-registrada, as hipóteses de rubrica ficam `subpotente`, não confirmadas."
+   }
+  ]
+ },
+ {
+  "id": "c-e1-29",
+  "decisao": "Não há teto de gasto no estudo: o gasto é medido e reportado.",
+  "motivo": "O foco é a assertividade do processo e o tempo.",
+  "vale_quando": "Decisão do autor de 05/11/2026",
+  "status": "vigente",
+  "substitui": [],
+  "tema": "custo",
+  "fontes": [
+   {
+    "doc": "doc-0003",
+    "trecho": "**sem teto de gasto** (decisão do autor em 05/11/2026: o foco é a assertividade do processo e o tempo; o gasto continua medido e reportado)"
+   }
+  ]
+ }
+]

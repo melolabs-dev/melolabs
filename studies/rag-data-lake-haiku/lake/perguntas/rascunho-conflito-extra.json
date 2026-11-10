@@ -1,0 +1,34 @@
+[
+  {
+    "id": "q-conf-extra-01",
+    "bloco": "conflito",
+    "pergunta": "Na discussão de junho de 2025 no h3 sobre um util defineRoute, pi0 primeiro propôs um método declarativo no core e, quatro dias depois, disse ter acabado adicionando outra coisa. O que foi adicionado?",
+    "opcoes": [
+      "Uma interface de plugins de uso geral, para o h3 compor rotas e outros módulos",
+      "O método app.register(spec) no core, aceitando um objeto declarativo com rota, método e handler",
+      "O util defineRoute no core, com metadados de rota extraíveis estaticamente como no Nitro"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0011",
+        "trecho": "app.register({ route: { method, route, handler } })"
+      },
+      {
+        "doc": "doc-0011",
+        "trecho": "I have ended up adding a more generic plugin interface in #1098"
+      }
+    ],
+    "cartoes": [
+      "c-iss-04",
+      "c-iss-05"
+    ],
+    "justificativa": "No comentário de 05/06/2025 pi0 propõe app.register(spec) como método declarativo do core; no comentário de 09/06/2025 diz ter acabado adicionando uma interface de plugin mais genérica. A proposta do app.register é a decisão antiga substituída; o defineRoute com metadados extraíveis é o util do Nitro (defineRouteMeta), não o que foi adicionado.",
+    "n_fontes": 2
+  }
+]

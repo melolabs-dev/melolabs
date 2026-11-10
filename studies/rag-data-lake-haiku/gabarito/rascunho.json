@@ -1,0 +1,2090 @@
+[
+ {
+  "qid": "q001",
+  "id_origem": "q-conf-e1-07",
+  "bloco": "conflito",
+  "correta": "C",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0005",
+    "trecho": "**Mais juízes:** 5 amostras do mesmo modelo (Opus) por artefato, em vez de 3, incluindo os artefatos já julgados (juízes 4 e 5 acrescentados)."
+   },
+   {
+    "doc": "doc-0006",
+    "trecho": "**Volta a 3 juízes por artefato** (a ideia de 5 sai)."
+   }
+  ],
+  "cartoes": [
+   "c-e1-13",
+   "c-e1-14"
+  ],
+  "justificativa": "O adendo 2 subiu para 5 amostras; o adendo 2b substitui esse item e volta a 3 por artefato, porque 5 não elevam o alfa individual e custavam 40% do total."
+ },
+ {
+  "qid": "q002",
+  "id_origem": "q-conf-e1-08",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "D",
+  "fontes": [
+   {
+    "doc": "doc-0005",
+    "trecho": "**Mais artefatos julgados:** TechSpec e Tasks de **todas** as execuções de C0, C1, C4 e C5 em todas as variantes"
+   },
+   {
+    "doc": "doc-0006",
+    "trecho": "**C4 deixa de ser julgado além das 6 execuções originais**"
+   }
+  ],
+  "cartoes": [
+   "c-e1-16",
+   "c-e1-17"
+  ],
+  "justificativa": "O adendo 2 mandava julgar todas as execuções de C4; o adendo 2b reduz o conjunto e mantém o C4 só nas 6 execuções originais."
+ },
+ {
+  "qid": "q003",
+  "id_origem": "q-conf-e1-09",
+  "bloco": "conflito",
+  "correta": "D",
+  "letra_substituida": "B",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "enunciado da feature (contrato público, sem valores de teste)"
+   },
+   {
+    "doc": "doc-0002",
+    "trecho": "**Contrato enxuto:** o enunciado dado aos modelos passa a ser a issue, a norma citada e as restrições (sem exportação nova, não quebrar o que existe), sem enumerar os casos de borda que os testes cobrem."
+   }
+  ],
+  "cartoes": [
+   "c-e1-18",
+   "c-e1-19"
+  ],
+  "justificativa": "O plano listava o contrato público sem valores de teste; depois do piloto o contrato enxuto passa a ser a issue, a norma e as restrições, sem os casos de borda."
+ },
+ {
+  "qid": "q004",
+  "id_origem": "q-sem-e1-07",
+  "bloco": "sem_resposta",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: tolerância, toler, réplica, reproduzir, clone limpo. A premissa fala em tolerância declarada sem valor, e validade.md diz que a reprodução no clone limpo conferiu a análise, sem número de tolerância."
+ },
+ {
+  "qid": "q005",
+  "id_origem": "q-comum-e1-04",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "O autor decidiu que a fase C (H2, H7, H8, H9 e braços S8 a S11) **não entra neste estudo** e fica para um paper futuro. No artigo, essas hipóteses aparecem como \"não testadas\""
+   }
+  ],
+  "cartoes": [
+   "c-e1-11"
+  ],
+  "justificativa": "A nota de 06/11 no adendo 1 adia a fase C para um paper futuro e a lista como não testada. A primeira opção é o plano antigo, substituído."
+ },
+ {
+  "qid": "q006",
+  "id_origem": "q-comum-e1-06",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0006",
+    "trecho": "**C4 deixa de ser julgado além das 6 execuções originais**: nenhuma hipótese de rubrica usa os documentos do C4 (H3 é não testável, H4 é de código, H5 usa C5 contra C0)."
+   }
+  ],
+  "cartoes": [
+   "c-e1-17"
+  ],
+  "justificativa": "O adendo 2b mantém C0 e C1 nas repetições 1 a 3 das 6 variantes e C5 nas repetições 1 a 6, e tira o C4 do julgamento extra porque nenhuma hipótese de rubrica usa seus documentos."
+ },
+ {
+  "qid": "q007",
+  "id_origem": "q-comum-docs-15",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0063",
+    "trecho": "node --watch ./server.mjs"
+   },
+   {
+    "doc": "doc-0063",
+    "trecho": "We also have [`app.fetch`](/guide/api/h3#h3fetch) which can be directly used to run H3 apps in any web-compatible runtime or even directly called for testing purposes."
+   }
+  ],
+  "cartoes": [
+   "c-docs-47",
+   "c-docs-41"
+  ],
+  "justificativa": "O guia inicial mostra serve(app) executado com node --watch e indica app.fetch para rodar em qualquer runtime web ou chamar direto em testes."
+ },
+ {
+  "qid": "q008",
+  "id_origem": "q-conf-iss-04",
+  "bloco": "conflito",
+  "correta": "C",
+  "letra_substituida": "D",
+  "fontes": [
+   {
+    "doc": "doc-0039",
+    "trecho": "`redirect()` labels every status other than 301 with \"Found\""
+   },
+   {
+    "doc": "doc-0039",
+    "trecho": "With the change the same requests return `308 Permanent Redirect`, `307 Temporary Redirect`"
+   }
+  ],
+  "cartoes": [
+   "c-iss-22",
+   "c-iss-23"
+  ],
+  "justificativa": "Antes, redirect() rotulava tudo que não era 301 como Found; hoje 303, 307 e 308 usam as frases da RFC 9110, logo o 308 sai Permanent Redirect."
+ },
+ {
+  "qid": "q009",
+  "id_origem": "q-comum-cod-15",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "**static:** Refuse a non-canonical pathname instead of resolving it"
+   },
+   {
+    "doc": "doc-0109",
+    "trecho": "A **non-canonical pathname is not served** (404, or falls through when"
+   }
+  ],
+  "cartoes": [
+   "c-cod-10"
+  ],
+  "justificativa": "O CHANGELOG da rc.28 registra a recusa de pathname não canônico e static.ts detalha que o resultado é 404, ou fallthrough quando a opção está ligada."
+ },
+ {
+  "qid": "q010",
+  "id_origem": "q-sem-e1-08",
+  "bloco": "sem_resposta",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: Zenodo, DOI, OSF, arquivados, pacote de dados, repositório público, licença. A premissa pede dados, scripts e pacote abertos e arquivados, e os adendos citam tags de pré-registro, sem dizer onde nem com que identificador o pacote ficou."
+ },
+ {
+  "qid": "q011",
+  "id_origem": "q-comum-cod-06",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0106",
+    "trecho": "string **unanchored** (via `RegExp.prototype.test`). A pattern like"
+   }
+  ],
+  "cartoes": [
+   "c-cod-30"
+  ],
+  "justificativa": "As entradas RegExp são testadas sem âncora com RegExp.prototype.test, então o padrão também casa https://example.com.evil.test; é preciso ancorar com ^ e $ e escapar os pontos."
+ },
+ {
+  "qid": "q012",
+  "id_origem": "q-sem-e1-03",
+  "bloco": "sem_resposta",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: timeout, tempo limite, limite de tempo, minutos por, duração máxima. Só aparecem a estimativa de 5 a 10 minutos por execução e a duração medida como variável dependente, sem teto de tempo por etapa."
+ },
+ {
+  "qid": "q013",
+  "id_origem": "q-comum-e1-05",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0006",
+    "trecho": "**Volta a 3 juízes por artefato** (a ideia de 5 sai). Motivos: 5 amostras do mesmo modelo não elevam o alfa individual (só o ruído da média), e custavam 40% do total."
+   }
+  ],
+  "cartoes": [
+   "c-e1-14"
+  ],
+  "justificativa": "O adendo 2b volta a 3 juízes porque 5 amostras do mesmo modelo não elevam o alfa individual e custavam 40% do total. O adendo 2 afirma que a rubrica fica congelada, e nenhuma fonte fala de discordância dos juízes 4 e 5."
+ },
+ {
+  "qid": "q014",
+  "id_origem": "q-comum-e1-07",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Contrato enxuto:** o enunciado dado aos modelos passa a ser a issue, a norma citada e as restrições (sem exportação nova, não quebrar o que existe), sem enumerar os casos de borda que os testes cobrem."
+   }
+  ],
+  "cartoes": [
+   "c-e1-19"
+  ],
+  "justificativa": "O plano de testes revisado após o piloto define o contrato enxuto: issue, norma citada e restrições, sem enumerar os casos de borda. O contrato público sem valores de teste era a versão anterior."
+ },
+ {
+  "qid": "q015",
+  "id_origem": "q-comum-cod-10",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0098",
+    "trecho": "input instanceof Error && input?.name === \"HTTPError\" && (input as HTTPError).status > 99"
+   }
+  ],
+  "cartoes": [
+   "c-cod-22"
+  ],
+  "justificativa": "isError confere instanceof Error, o nome HTTPError e status > 99, o que rejeita erros homônimos de clientes fetch e aceita erros no mesmo formato vindos de outros pacotes."
+ },
+ {
+  "qid": "q016",
+  "id_origem": "q-sem-e1-05",
+  "bloco": "sem_resposta",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: tentativa, nova tentativa, retry, refeit, máximo de. O adendo 1 diz que falha de limite de uso, sobrecarga ou transcrição truncada é falha de infraestrutura, com etapa refeita e tentativas numeradas; o diário registra zero novas tentativas. Nenhum limite numérico."
+ },
+ {
+  "qid": "q017",
+  "id_origem": "q-comum-docs-02",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0069",
+    "trecho": "When using nested apps, global hooks of sub-apps will not be called. Therefore it is better to use `onError` middleware."
+   }
+  ],
+  "cartoes": [
+   "c-docs-07"
+  ],
+  "justificativa": "Com apps aninhados os hooks globais dos sub-apps não são chamados; a documentação de erros indica usar o middleware onError."
+ },
+ {
+  "qid": "q018",
+  "id_origem": "q-conf-e1-06",
+  "bloco": "conflito",
+  "correta": "C",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Fase C (só se sobrar tempo, em ordem de prioridade):** H9 (C9), H2 (voto), H7 (erros plantados), S10, S11 e S8."
+   },
+   {
+    "doc": "doc-0001",
+    "trecho": "o autor adiou a fase C (H2, H7, H8, H9 e braços S8 a S11) para um paper futuro."
+   }
+  ],
+  "cartoes": [
+   "c-e1-10",
+   "c-e1-11"
+  ],
+  "justificativa": "O plano deixava a fase C condicionada à sobra de tempo; em 06/11 o autor a adiou para um paper futuro, e as hipóteses saem não testadas."
+ },
+ {
+  "qid": "q019",
+  "id_origem": "q-sem-iss-07",
+  "bloco": "sem_resposta",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: kHandled, stream error, onError middleware, hook de middleware, separate design, erros de stream. O mais próximo: a descrição do ajuste de onError diz apenas que hooks de middleware não veem erros de stream e que reportá-los exigiria desenho separado, sem escolher um nem dar versão; nenhuma opção está sustentada. Reescrita após revisão cega que achou a versão anterior ambígua."
+ },
+ {
+  "qid": "q020",
+  "id_origem": "q-conf-iss-07",
+  "bloco": "conflito",
+  "correta": "D",
+  "letra_substituida": "B",
+  "fontes": [
+   {
+    "doc": "doc-0054",
+    "trecho": "so a request with a differently cased type falls through to `JSON.parse` and gets a 400:"
+   },
+   {
+    "doc": "doc-0054",
+    "trecho": "The fix lowercases the header before the check."
+   }
+  ],
+  "cartoes": [
+   "c-iss-35",
+   "c-iss-36"
+  ],
+  "justificativa": "Antes a checagem diferenciava maiúsculas e o corpo ia para JSON.parse com 400; hoje o cabeçalho é convertido para minúsculas antes da checagem e o corpo é lido como formulário."
+ },
+ {
+  "qid": "q021",
+  "id_origem": "q-comum-iss-12",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0035",
+    "trecho": "One side effect: a custom `getType` that maps `.gz`/`.br` is no longer consulted when a variant is served for the uncompressed path"
+   },
+   {
+    "doc": "doc-0046",
+    "trecho": "lowercased the extension before the lookup. the custom `getType` option still gets the extension as written."
+   }
+  ],
+  "cartoes": [
+   "c-iss-19",
+   "c-iss-27"
+  ],
+  "justificativa": "Pelo PR #1564, o getType passa a ser consultado com o id do asset pedido e não da variante .gz; pelo PR #1580, o getType customizado continua recebendo a extensão como escrita (.PNG), pois só a busca interna usa minúsculas."
+ },
+ {
+  "qid": "q022",
+  "id_origem": "q-conf-iss-05",
+  "bloco": "conflito",
+  "correta": "C",
+  "letra_substituida": "B",
+  "fontes": [
+   {
+    "doc": "doc-0042",
+    "trecho": "The comment on the legacy PBKDF2 seal fallback in `unsealSession` said \"Remove this fallback before the v2 stable release\", but v2 is now stable."
+   },
+   {
+    "doc": "doc-0042",
+    "trecho": "Removing the fallback in a v2 release would break existing sessions sealed with 1 iteration, so the comment now targets v3 and mentions `legacySealFallback`, which should go at the same time."
+   }
+  ],
+  "cartoes": [
+   "c-iss-24",
+   "c-iss-25"
+  ],
+  "justificativa": "O comentário antigo mandava remover antes do v2 estável; hoje a remoção foi reapontada para o v3, junto com legacySealFallback, que não foi marcado como deprecated."
+ },
+ {
+  "qid": "q023",
+  "id_origem": "q-sem-h3-08",
+  "bloco": "sem_resposta",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: deno, bun, workerd, minimum, engines, at least, supported versions, >=1., >=2. O lake fixa só o Node.js (>= 20.19, PR #1568 e anúncio da v2) e lista Deno, Bun e Cloudflare como alvos de runtime com entradas h3/deno, h3/bun e h3/cloudflare (AGENTS.md). Nenhum arquivo traz versão mínima de Deno ou de Bun."
+ },
+ {
+  "qid": "q024",
+  "id_origem": "q-comum-iss-08",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0035",
+    "trecho": "The default/custom MIME lookup (`getType`) runs on that asset id, so `app.js.gz` served for `/app.js` resolves to `text/javascript`"
+   }
+  ],
+  "cartoes": [
+   "c-iss-19"
+  ],
+  "justificativa": "Depois do PR, o getType roda sobre o id do asset pedido; app.js.gz servido para /app.js resolve para text/javascript. O text/plain era o comportamento anterior."
+ },
+ {
+  "qid": "q025",
+  "id_origem": "q-conf-docs-04",
+  "bloco": "conflito",
+  "correta": "D",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0059",
+    "trecho": "- Return `ReadableStream` / `Blob` / `File` → streamed response"
+   },
+   {
+    "doc": "doc-0094",
+    "trecho": "you might choose to utilize the `sendStream(event, stream)` and `sendWebResponse(event, stream)` utilities instead of directly returning the stream."
+   }
+  ],
+  "cartoes": [
+   "c-docs-44",
+   "c-docs-45"
+  ],
+  "justificativa": "No v2 os handlers retornam valores diretamente e um ReadableStream retornado vira resposta em stream; sendStream/sendWebResponse eram sugeridos no v1.8."
+ },
+ {
+  "qid": "q026",
+  "id_origem": "q-sem-e1-09",
+  "bloco": "sem_resposta",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: por critério, mínimo por, piso, peso, ponderad, nota mínima. A premissa só fixa a nota total (28 de 35 em TechSpec, 20 de 25 em Tasks); nenhum arquivo traz piso por critério."
+ },
+ {
+  "qid": "q027",
+  "id_origem": "q-comum-cod-14",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "Mirror this session's `Set-Cookie` headers into `event.res.errHeaders`."
+   },
+   {
+    "doc": "doc-0103",
+    "trecho": "// Error responses (4xx/5xx) only receive headers explicitly staged as `event.res.errHeaders`"
+   }
+  ],
+  "cartoes": [
+   "c-cod-19",
+   "c-cod-27"
+  ],
+  "justificativa": "Respostas 4xx/5xx só recebem o que está em errHeaders (response.ts) e a sessão espelha seus Set-Cookie nesse local (session.ts), então o cookie não se perde."
+ },
+ {
+  "qid": "q028",
+  "id_origem": "q-conf-e1-11",
+  "bloco": "conflito",
+  "correta": "D",
+  "letra_substituida": "C",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "qualquer ocorrência vira exclusão registrada, com o motivo."
+   },
+   {
+    "doc": "doc-0004",
+    "trecho": "Acessos suspeitos **não excluem** a execução: a análise principal usa todas e a análise ao lado exclui as suspeitas"
+   }
+  ],
+  "cartoes": [
+   "c-e1-22",
+   "c-e1-23"
+  ],
+  "justificativa": "O plano excluía toda execução com ocorrência; o adendo 1 deixa de excluir: a principal usa todas e a análise ao lado exclui as suspeitas."
+ },
+ {
+  "qid": "q029",
+  "id_origem": "q-comum-docs-07",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "A handler's `Set-Cookie` header is sent only to the request that produced it and is **never stored in the cache**."
+   },
+   {
+    "doc": "doc-0071",
+    "trecho": "Do not cache a route that must set a cookie on every response."
+   }
+  ],
+  "cartoes": [
+   "c-docs-34"
+  ],
+  "justificativa": "O Set-Cookie vai só para a requisição que o gerou e nunca é guardado; allowCookies só controla a requisição. A orientação é não cachear a rota."
+ },
+ {
+  "qid": "q030",
+  "id_origem": "q-conf-docs-06",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "C",
+  "fontes": [
+   {
+    "doc": "doc-0095",
+    "trecho": "With [💥 srvx](https://srvx.h3.dev) unifying runtime differences, H3 can remain simpler, focusing exclusively on web standard APIs."
+   },
+   {
+    "doc": "doc-0095",
+    "trecho": "But still, H3 was primarily based on Node.js APIs with a compatibility layer for web standards."
+   }
+  ],
+  "cartoes": [
+   "c-docs-48",
+   "c-docs-49"
+  ],
+  "justificativa": "O v2 foca exclusivamente em APIs de padrão web, com srvx unificando runtimes; o v1 era baseado principalmente em APIs do Node.js."
+ },
+ {
+  "qid": "q031",
+  "id_origem": "q-conf-docs-01",
+  "bloco": "conflito",
+  "correta": "A",
+  "letra_substituida": "D",
+  "fontes": [
+   {
+    "doc": "doc-0067",
+    "trecho": "You can optionally register some [middleware](/guide/basics/middleware) to run with event handler to intercept request, response or errors."
+   },
+   {
+    "doc": "doc-0094",
+    "trecho": "With this approach, you can define hooks that run before or after each handler, such as authentication or compression middleware."
+   }
+  ],
+  "cartoes": [
+   "c-docs-38",
+   "c-docs-39"
+  ],
+  "justificativa": "No v2 o middleware do handler com sintaxe de objeto vai na chave middleware (exemplo com basicAuth e handler); os hooks onRequest/onResponse com eventHandler eram do v1.8."
+ },
+ {
+  "qid": "q032",
+  "id_origem": "q-sem-h3-07",
+  "bloco": "sem_resposta",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: algorithm, cbc, gcm, hmac, aes-, sha256, cipher, encrypt, iron, salt. O lake diz que a senha precisa de 32 caracteres, que o cookie carrega sal e resumo de integridade, que o PBKDF2 passou de 1 para 8192 iterações e que SealOptions cobre algoritmos, iterações, TTL e tolerância de relógio. Os nomes dos algoritmos padrão ficam em iron-crypto.ts, que não está no lake."
+ },
+ {
+  "qid": "q033",
+  "id_origem": "q-conf-iss-03",
+  "bloco": "conflito",
+  "correta": "C",
+  "letra_substituida": "D",
+  "fontes": [
+   {
+    "doc": "doc-0036",
+    "trecho": "`setChunkedCookie` splits the raw value every `chunkMaxLength` (default 4000) characters."
+   },
+   {
+    "doc": "doc-0036",
+    "trecho": "Each chunk is the longest run whose encoded form, using the same `encode` as `setCookie` (`options.encode` or `encodeURIComponent`), fits in `chunkMaxLength`."
+   }
+  ],
+  "cartoes": [
+   "c-iss-20",
+   "c-iss-21"
+  ],
+  "justificativa": "A regra antiga cortava o valor bruto por caracteres; a vigente mede o chunk codificado, para que caiba em chunkMaxLength."
+ },
+ {
+  "qid": "q034",
+  "id_origem": "q-conf-e1-04",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "C",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "| C4 | Haiku com mitigações completas: C2, C3, citação de IDs e código com testes de aceite escritos antes e loop com a saída real do runner | H4, H5, H6 |"
+   },
+   {
+    "doc": "doc-0004",
+    "trecho": "**C4 passa a significar \"C1 mais testes primeiro e loop com a saída do runner\"**, sem o voto (C3 não foi implementado), e é assim que o artigo o chama."
+   }
+  ],
+  "cartoes": [
+   "c-e1-07",
+   "c-e1-08"
+  ],
+  "justificativa": "O C4 do plano inclui o voto (C3); o adendo 1 redefine o C4 sem o voto, porque o C3 não foi implementado."
+ },
+ {
+  "qid": "q035",
+  "id_origem": "q-conf-extra-01",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "D",
+  "fontes": [
+   {
+    "doc": "doc-0011",
+    "trecho": "app.register({ route: { method, route, handler } })"
+   },
+   {
+    "doc": "doc-0011",
+    "trecho": "I have ended up adding a more generic plugin interface in #1098"
+   }
+  ],
+  "cartoes": [
+   "c-iss-04",
+   "c-iss-05"
+  ],
+  "justificativa": "No comentário de 05/06/2025 pi0 propõe app.register(spec) como método declarativo do core; no comentário de 09/06/2025 diz ter acabado adicionando uma interface de plugin mais genérica. A proposta do app.register é a decisão antiga substituída; o defineRoute com metadados extraíveis é o util do Nitro (defineRouteMeta), não o que foi adicionado."
+ },
+ {
+  "qid": "q036",
+  "id_origem": "q-sem-e1-06",
+  "bloco": "sem_resposta",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: quantos testes, N testes, núcleo, esperado.json, classificacao. O lake descreve a regra (núcleo 100% e observações, listas em gabarito/esperado.json e classificacao.json, fora do lake) e só cita o teste P1 das tarefas 1384, sem totais por variante."
+ },
+ {
+  "qid": "q037",
+  "id_origem": "q-sem-iss-08",
+  "bloco": "sem_resposta",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: nitro static, createErrorHeaders, no-store, errHeaders, nitrojs/nitro, Nitro v3, immutable, versão do Nitro. O mais próximo: a descrição da correção cita como acompanhamento no Nitro trocar a remoção de Cache-Control mais o 404 por um HTTPError com no-store, sem dizer se ou quando foi feito; os docs de resposta e de regras explicam errHeaders e HTTPError.headers, mas nada fala de versões do Nitro."
+ },
+ {
+  "qid": "q038",
+  "id_origem": "q-comum-cod-09",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0109",
+    "trecho": "* @default [\"/index.html\"]"
+   }
+  ],
+  "cartoes": [
+   "c-cod-33"
+  ],
+  "justificativa": "A documentação da opção indexNames declara o valor padrão [\"/index.html\"]."
+ },
+ {
+  "qid": "q039",
+  "id_origem": "q-comum-iss-11",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0040",
+    "trecho": "`fromNodeHandler` now passes the event to `callNodeHandler`, which calls `event.app?.config.onError` with an unhandled `HTTPError` and settles once the hook is done."
+   },
+   {
+    "doc": "doc-0043",
+    "trecho": "Middleware-registered hooks still do not see stream errors (only the app `onError` config hook does)."
+   }
+  ],
+  "cartoes": [
+   "c-iss-37",
+   "c-iss-38"
+  ],
+  "justificativa": "O primeiro PR faz o hook onError da config do app ser chamado; o segundo faz o middleware onError() repassar o sinal kHandled sem chamar seu hook. Combinados: só o hook do app é avisado, uma vez."
+ },
+ {
+  "qid": "q040",
+  "id_origem": "q-comum-cod-04",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "Absolute session lifetime in seconds, counted from when the session was"
+   }
+  ],
+  "cartoes": [
+   "c-cod-18"
+  ],
+  "justificativa": "maxAge é a vida útil absoluta contada desde createdAt, atingida independentemente da atividade; a janela deslizante é papel do idleTimeout."
+ },
+ {
+  "qid": "q041",
+  "id_origem": "q-conf-docs-05",
+  "bloco": "conflito",
+  "correta": "D",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0063",
+    "trecho": "node --watch ./server.mjs"
+   },
+   {
+    "doc": "doc-0094",
+    "trecho": "Run `npx listhen@latest -w ./index.ts` to initiate a development server with TypeScript support, Hot Module Replacement (HMR), and static asset server."
+   }
+  ],
+  "cartoes": [
+   "c-docs-46",
+   "c-docs-47"
+  ],
+  "justificativa": "No v2 o guia roda o arquivo direto pelo runtime com node --watch; o listhen com -w era a instrução do v1.8."
+ },
+ {
+  "qid": "q042",
+  "id_origem": "q-comum-cod-05",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "// Try header first"
+   }
+  ],
+  "cartoes": [
+   "c-cod-16"
+  ],
+  "justificativa": "getSession tenta primeiro o cabeçalho (x-h3-session ou x-{name}-session) e só então cai para os cookies."
+ },
+ {
+  "qid": "q043",
+  "id_origem": "q-sem-h3-09",
+  "bloco": "sem_resposta",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: timeout, 504, 408, gateway timeout, deadline, AbortController, setTimeout, request timeout, handler timeout. Os únicos prazos no lake são o maxResolveTime de 30 s da regra de cache (resolução de entrada, não de handler) e o idleTimeout de sessão. Nada descreve limite de tempo de handler nem status 504 gerado pelo h3."
+ },
+ {
+  "qid": "q044",
+  "id_origem": "q-comum-cod-03",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "So reseal only once the window is more than half used."
+   }
+  ],
+  "cartoes": [
+   "c-cod-17"
+  ],
+  "justificativa": "O código define SLIDE_THRESHOLD = 0.5 e o comentário explica que o reselo só ocorre depois de mais da metade da janela usada, porque o seal é a operação mais cara."
+ },
+ {
+  "qid": "q045",
+  "id_origem": "q-comum-cod-01",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "**session:** Raise default seal PBKDF2 iterations to 8192"
+   }
+  ],
+  "cartoes": [
+   "c-cod-02"
+  ],
+  "justificativa": "O CHANGELOG da rc.25 registra que o padrão do seal da sessão passou a 8192 iterações de PBKDF2; as outras opções não aparecem nas fontes."
+ },
+ {
+  "qid": "q046",
+  "id_origem": "q-comum-docs-01",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0065",
+    "trecho": "Unlike `GET`, `QUERY` is **not** CORS-safelisted, so browsers send a preflight"
+   }
+  ],
+  "cartoes": [
+   "c-docs-02"
+  ],
+  "justificativa": "O guia de rotas diz que o QUERY, ao contrário do GET, não é CORS-safelisted; por isso o navegador envia preflight e, com lista explícita de methods no handleCors, é preciso incluir \"QUERY\"."
+ },
+ {
+  "qid": "q047",
+  "id_origem": "q-sem-iss-09",
+  "bloco": "sem_resposta",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: exception is not logged, stream error, web response stream, srvx, leak, abort, erro de stream. O mais próximo: a tabela comparando v1 e v2 marca que o erro de stream web do servidor tem exceção não registrada em log e o mantenedor apenas pede relatos de problemas em srvx ou Nitro v3; o changelog só cita onError para streams de handlers do Node e o encerramento correto de event-stream, sem tratar de streams web comuns."
+ },
+ {
+  "qid": "q048",
+  "id_origem": "q-sem-e1-01",
+  "bloco": "sem_resposta",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: temperatura, temperature, top_p, top-p, amostragem. Nenhum resultado em estudo1. O mais próximo: plano-de-testes e adendo 1 dizem que os juízes são processos isolados do mesmo modelo (Opus 5.5), em ordem embaralhada, e validade.md fala em três amostras do mesmo modelo, sem citar parâmetro de amostragem."
+ },
+ {
+  "qid": "q049",
+  "id_origem": "q-sem-e1-04",
+  "bloco": "sem_resposta",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: revisão adversarial, revisor, Opus, Sonnet, Haiku, agente isolado. O diário diz apenas revisor independente, agente isolado e somente leitura; os modelos citados no lake são de execução e de juízes, sem ligação com o revisor."
+ },
+ {
+  "qid": "q050",
+  "id_origem": "q-comum-iss-13",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0042",
+    "trecho": "Removing the fallback in a v2 release would break existing sessions sealed with 1 iteration, so the comment now targets v3 and mentions `legacySealFallback`"
+   }
+  ],
+  "cartoes": [
+   "c-iss-25"
+  ],
+  "justificativa": "O comentário passou a apontar a remoção para o v3, junto com legacySealFallback, porque remover no v2 quebraria sessões já seladas. A opção sobre obsolescência foi retirada do texto da resposta por haver mudança posterior no changelog."
+ },
+ {
+  "qid": "q051",
+  "id_origem": "q-sem-iss-01",
+  "bloco": "sem_resposta",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados no lake/bruto: trustedHeaders, trustedProxies, isTrustedProxy, trusted proxy, trust, xForwarded, getRequestIP. O mais próximo: a discussão do pedido de cabeçalhos confiáveis propõe `event.context.trustedHeaders` e um plugin do Nitro, e um participante pergunta se a lista poderia vir na criação do app citando o desempenho, mas a conversa termina sem resposta; os docs de getRequestIP só falam em xForwardedFor opt-in e em servidor configurado para confiar no proxy, sem tratar dessa opção."
+ },
+ {
+  "qid": "q052",
+  "id_origem": "q-comum-iss-06",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0024",
+    "trecho": "You need to use `router.use('/api/**', useBase('/api', apiRouter.handler));` (with `/**` to catch all nested paths)"
+   }
+  ],
+  "cartoes": [
+   "c-iss-10"
+  ],
+  "justificativa": "pi0 indicou router.use('/api/**', useBase('/api', apiRouter.handler)), com /** para capturar todos os caminhos aninhados, e disse que atualizaria o exemplo da documentação, que omitia isso."
+ },
+ {
+  "qid": "q053",
+  "id_origem": "q-conf-docs-02",
+  "bloco": "conflito",
+  "correta": "A",
+  "letra_substituida": "D",
+  "fontes": [
+   {
+    "doc": "doc-0063",
+    "trecho": "We also have [`app.fetch`](/guide/api/h3#h3fetch) which can be directly used to run H3 apps in any web-compatible runtime or even directly called for testing purposes."
+   },
+   {
+    "doc": "doc-0094",
+    "trecho": "const webHandler = toWebHandler(app); // (Request) => Promise<Response>"
+   }
+  ],
+  "cartoes": [
+   "c-docs-40",
+   "c-docs-41"
+  ],
+  "justificativa": "No v2 o app expõe app.fetch (e app.request) para runtimes web e testes; toWebHandler era a conversão do v1.8."
+ },
+ {
+  "qid": "q054",
+  "id_origem": "q-conf-cod-01",
+  "bloco": "conflito",
+  "correta": "C",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "**session:** Raise default seal PBKDF2 iterations to 8192"
+   },
+   {
+    "doc": "doc-0108",
+    "trecho": "Set to `false` to reject sessions sealed with the legacy default of 1"
+   }
+  ],
+  "cartoes": [
+   "c-cod-01",
+   "c-cod-02"
+  ],
+  "justificativa": "O changelog registra a elevação do padrão para 8192 e o código chama de legado o padrão antigo de 1 iteração; a opção de 1 iteração é a decisão antiga substituída."
+ },
+ {
+  "qid": "q055",
+  "id_origem": "q-comum-iss-04",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0015",
+    "trecho": "h3 utilities like cors, are meant to be called functions on demand and in the body of the event handler as best practices."
+   }
+  ],
+  "cartoes": [
+   "c-iss-08"
+  ],
+  "justificativa": "pi0 explicou que utilitários como cors devem ser chamados sob demanda no corpo do handler e que o encadeamento estilo middleware é possível com a pilha do app (createApp().use(...)). O chain() era o pedido original, não aceito."
+ },
+ {
+  "qid": "q056",
+  "id_origem": "q-comum-docs-11",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0073",
+    "trecho": "Never decode `event.url.pathname` yourself. Decoding can reintroduce a `/` or `..` that routing and middleware never saw, which is a path traversal vector"
+   },
+   {
+    "doc": "doc-0079",
+    "trecho": "Resolve the `id` against your asset root as an opaque string — a backend that decodes it re-introduces separators and re-opens the hole."
+   }
+  ],
+  "cartoes": [
+   "c-docs-14",
+   "c-docs-24"
+  ],
+  "justificativa": "Um documento proíbe decodificar event.url.pathname por conta própria; o outro manda resolver o id do serveStatic como string opaca, sem decodificar. Juntos: nenhum dos dois é decodificado."
+ },
+ {
+  "qid": "q057",
+  "id_origem": "q-comum-iss-02",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0011",
+    "trecho": "plugins can hook to h3 instance (`app`)"
+   }
+  ],
+  "cartoes": [
+   "c-iss-06"
+  ],
+  "justificativa": "pi0 diz que middleware se liga à requisição (event) e plugins se ligam à instância do h3 (app), podendo também adicionar middleware."
+ },
+ {
+  "qid": "q058",
+  "id_origem": "q-comum-docs-14",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0096",
+    "trecho": "It is a full rewrite on top of web standards, stays compatible with most v1 utilities, and is faster and smaller than v1."
+   },
+   {
+    "doc": "doc-0095",
+    "trecho": "With [💥 srvx](https://srvx.h3.dev) unifying runtime differences, H3 can remain simpler, focusing exclusively on web standard APIs."
+   }
+  ],
+  "cartoes": [
+   "c-docs-49"
+  ],
+  "justificativa": "Um post diz que a v2 é reescrita sobre padrões web; o outro explica que o srvx unifica as diferenças entre runtimes para o H3 ficar simples."
+ },
+ {
+  "qid": "q059",
+  "id_origem": "q-comum-e1-15",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "**H5** continua confirmatória, mas declarada: a parte de custo é quase certa por construção, e a conclusão depende da parte de qualidade."
+   },
+   {
+    "doc": "doc-0007",
+    "trecho": "Confirmada se o limite inferior da razão de qualidade ≥ 0,90 e a razão de custo ≤ 0,50."
+   }
+  ],
+  "cartoes": [
+   "c-e1-27",
+   "c-e1-06"
+  ],
+  "justificativa": "O adendo 1 diz que a parte de custo é quase certa por construção e a conclusão depende da qualidade; a regra de decisão fixa o limite inferior em 0,90 e o custo em 0,50. Acima de 1,10 não reprova, e H6 é que é descritiva."
+ },
+ {
+  "qid": "q060",
+  "id_origem": "q-comum-e1-10",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0007",
+    "trecho": "Confirmada (equivalente por não inferioridade) se o limite inferior ≥ −0,10 **e** o instrumento é sensível (alguma condição não satura); se C1 também satura, \"não informativa (saturação)\". Refutada se o limite superior < −0,10"
+   }
+  ],
+  "cartoes": [
+   "c-e1-24"
+  ],
+  "justificativa": "A regra diz refutada se o limite superior < −0,10. Limite inferior abaixo disso só impede a confirmação; C1 no teto leva ao status não informativa, não a refutada."
+ },
+ {
+  "qid": "q061",
+  "id_origem": "q-comum-e1-14",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0005",
+    "trecho": "**Rubrica, prompt do juiz e material continuam congelados** (hashes no manifesto do adendo 1). Não se revisa a rubrica para subir a concordância."
+   },
+   {
+    "doc": "doc-0006",
+    "trecho": "**Volta a 3 juízes por artefato** (a ideia de 5 sai)."
+   }
+  ],
+  "cartoes": [
+   "c-e1-14"
+  ],
+  "justificativa": "O adendo 2 mantém rubrica, prompt e material congelados e proíbe revisar a rubrica para subir a concordância; o adendo 2b, que substitui os itens de juízes, volta a 3 por artefato."
+ },
+ {
+  "qid": "q062",
+  "id_origem": "q-conf-docs-03",
+  "bloco": "conflito",
+  "correta": "C",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0068",
+    "trecho": "Before returning a response in main handler, you can prepare response headers and status using [`event.res`](/guide/api/h3event#h3eventres)."
+   },
+   {
+    "doc": "doc-0094",
+    "trecho": "setResponseHeader(event, \"Content-Type\", \"text/html\");"
+   }
+  ],
+  "cartoes": [
+   "c-docs-42",
+   "c-docs-43"
+  ],
+  "justificativa": "No v2 headers e status são preparados em event.res; setResponseHeader aparece no exemplo do v1.8."
+ },
+ {
+  "qid": "q063",
+  "id_origem": "q-comum-e1-12",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0003",
+    "trecho": "**sem teto de gasto** (decisão do autor em 05/11/2026: o foco é a assertividade do processo e o tempo; o gasto continua medido e reportado)"
+   },
+   {
+    "doc": "doc-0004",
+    "trecho": "`custo_usd_lista` (campo `total_cost_usd` da própria ferramenta, preço de lista)"
+   }
+  ],
+  "cartoes": [
+   "c-e1-29",
+   "c-e1-04"
+  ],
+  "justificativa": "A premissa diz que não há teto e que o gasto é medido e reportado; o adendo 1 define custo_usd_lista como o campo total_cost_usd da ferramenta, a preço de lista. As proporções foram retiradas e o autor usa assinatura, sem chave de API."
+ },
+ {
+  "qid": "q064",
+  "id_origem": "q-comum-docs-05",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "Route rules intentionally do not include an `auth` rule. Authentication needs executable logic that can check your user store, so it belongs in middleware."
+   }
+  ],
+  "cartoes": [
+   "c-docs-31"
+  ],
+  "justificativa": "A documentação de route rules afirma que elas não têm regra auth e que a autenticação pertence ao middleware."
+ },
+ {
+  "qid": "q065",
+  "id_origem": "q-conf-iss-01",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "C",
+  "fontes": [
+   {
+    "doc": "doc-0033",
+    "trecho": "`defineValidatedHandler` built its query validation input with `Object.fromEntries(url.searchParams)`, which keeps only the **last** value for repeated keys"
+   },
+   {
+    "doc": "doc-0033",
+    "trecho": "Collect repeated keys from `url.searchParams` into arrays (same shape as `getQuery`) before validation"
+   }
+  ],
+  "cartoes": [
+   "c-iss-16",
+   "c-iss-17"
+  ],
+  "justificativa": "Antes da correção só o último valor de chaves repetidas chegava ao validador; depois, as chaves repetidas viram array, como em getQuery. A opção correta é a vigente."
+ },
+ {
+  "qid": "q066",
+  "id_origem": "q-comum-e1-02",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "O custo em dólar de lista da razão Haiku sobre Sonnet só passa de 0,50 se o Haiku consumir mais de 10 vezes os tokens, então a hipótese se confirmaria pela tabela de preços."
+   }
+  ],
+  "cartoes": [
+   "c-e1-06"
+  ],
+  "justificativa": "O adendo 1 justifica: a confirmação seria quase certa pela tabela de preços, então H6 vira descritiva. O alfa baixo só apareceu em 07/11, depois da coleta, e não tem relação com a H6."
+ },
+ {
+  "qid": "q067",
+  "id_origem": "q-conf-iss-06",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "C",
+  "fontes": [
+   {
+    "doc": "doc-0046",
+    "trecho": "`getType` looks the extension up as-is, so `/photos/IMG_0001.JPG` or `/LOGO.PNG` gets no type from `serveStatic`."
+   },
+   {
+    "doc": "doc-0046",
+    "trecho": "lowercased the extension before the lookup. the custom `getType` option still gets the extension as written."
+   }
+  ],
+  "cartoes": [
+   "c-iss-26",
+   "c-iss-27"
+  ],
+  "justificativa": "Antes a extensão era buscada como escrita e ficava sem tipo; hoje é convertida para minúsculas antes da busca, resultando em image/jpeg."
+ },
+ {
+  "qid": "q068",
+  "id_origem": "q-comum-iss-05",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0016",
+    "trecho": "I would suggest you to use iron-session or another package that is not depending on express."
+   }
+  ],
+  "cartoes": [
+   "c-iss-09"
+  ],
+  "justificativa": "pi0 indicou que o express-session não funciona direto porque exige polyfills do app express e sugeriu iron-session ou outro pacote sem dependência do express."
+ },
+ {
+  "qid": "q069",
+  "id_origem": "q-conf-e1-02",
+  "bloco": "conflito",
+  "correta": "C",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "As três proporções 60/40, 80/20 e 95/5 ficam **retiradas**: com preços proporcionais (1/20) elas dão a mesma razão e não testavam nada."
+   },
+   {
+    "doc": "doc-0002",
+    "trecho": "três proporções (60/40, 80/20 e 95/5 de entrada e saída)"
+   }
+  ],
+  "cartoes": [
+   "c-e1-03",
+   "c-e1-04"
+  ],
+  "justificativa": "O plano inicial estimava o dólar com três proporções; o adendo 1 as retira e passa a medir o consumo real, incluindo o custo de lista da ferramenta."
+ },
+ {
+  "qid": "q070",
+  "id_origem": "q-comum-e1-01",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "As três proporções 60/40, 80/20 e 95/5 ficam **retiradas**: com preços proporcionais (1/20) elas dão a mesma razão e não testavam nada."
+   }
+  ],
+  "cartoes": [
+   "c-e1-04"
+  ],
+  "justificativa": "O adendo 1 diz que, com preços proporcionais, as três proporções dão a mesma razão e não testavam nada; o consumo passou a ser medido de fato. As outras opções não têm sustento nas fontes."
+ },
+ {
+  "qid": "q071",
+  "id_origem": "q-comum-docs-04",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0089",
+    "trecho": "// Sign-out happens 15 to 30 minutes after the last request, never later."
+   },
+   {
+    "doc": "doc-0089",
+    "trecho": "Halve `idleTimeout` if you need the shorter end of that range to be your real limit."
+   }
+  ],
+  "cartoes": [
+   "c-docs-20"
+  ],
+  "justificativa": "O H3 só resela a sessão após usar mais da metade da janela, então a saída ocorre entre 15 e 30 minutos; o exemplo manda reduzir o idleTimeout à metade para que o limite menor seja o real. maxAge é vida absoluta, desde a criação."
+ },
+ {
+  "qid": "q072",
+  "id_origem": "q-comum-cod-08",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0109",
+    "trecho": "event.res.headers.set(\"allow\", \"GET, HEAD\");"
+   }
+  ],
+  "cartoes": [
+   "c-cod-32"
+  ],
+  "justificativa": "Para métodos diferentes de GET e HEAD, sem fallthrough, o serveStatic define allow: GET, HEAD e lança HTTPError 405."
+ },
+ {
+  "qid": "q073",
+  "id_origem": "q-comum-cod-11",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "Decode Basic-auth credentials as UTF-8"
+   },
+   {
+    "doc": "doc-0104",
+    "trecho": "// Not valid UTF-8: keep the Latin-1 interpretation for legacy clients."
+   }
+  ],
+  "cartoes": [
+   "c-cod-14"
+  ],
+  "justificativa": "O CHANGELOG coloca a mudança na rc.26 e o código de auth.ts mostra que, se a decodificação UTF-8 estrita falha, mantém-se a leitura Latin-1."
+ },
+ {
+  "qid": "q074",
+  "id_origem": "q-comum-e1-13",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0001",
+    "trecho": "o autor adiou a fase C (H2, H7, H8, H9 e braços S8 a S11) para um paper futuro."
+   },
+   {
+    "doc": "doc-0007",
+    "trecho": "Só se forem executadas (fase C); senão \"não testada\""
+   }
+  ],
+  "cartoes": [
+   "c-e1-11"
+  ],
+  "justificativa": "O diário registra que a H7 pertence à fase C adiada, e a regra de decisão diz que H2, H7, H8 e H9 só valem se executadas; senão, não testada. Não testável é status da H3, e subpotente vem do alfa nas hipóteses de rubrica."
+ },
+ {
+  "qid": "q075",
+  "id_origem": "q-sem-e1-02",
+  "bloco": "sem_resposta",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: reamostra, resample, 10.000, 10000, permuta, bootstrap. Os arquivos citam permutação estratificada por feature (H1, H5) e IC por bootstrap por feature (H6), sem dizer o número de reamostragens."
+ },
+ {
+  "qid": "q076",
+  "id_origem": "q-conf-e1-01",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**H4 (testes ocultos):** 6 repetições por variante em C0 e C4 (36 execuções de código por condição)."
+   },
+   {
+    "doc": "doc-0002",
+    "trecho": "**Ponto de partida:** 3 repetições por condição e variante (mesmo n dos estudos anteriores do autor)."
+   }
+  ],
+  "cartoes": [
+   "c-e1-01",
+   "c-e1-02"
+  ],
+  "justificativa": "O plano revisado após o piloto fixa 6 repetições por variante para a H4 em C0 e C4 e declara substituídos os pontos de partida anteriores de 3 repetições para tudo."
+ },
+ {
+  "qid": "q077",
+  "id_origem": "q-sem-h3-02",
+  "bloco": "sem_resposta",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: health, healthz, readiness, liveness, /ping, uptime, status endpoint. Nenhum resultado em docs, código, changelog, issues ou PRs. O mais próximo é o guia de roteamento (rotas definidas pelo usuário) e o utilitário noContent; nada diz que o h3 registre rotas próprias."
+ },
+ {
+  "qid": "q078",
+  "id_origem": "q-sem-h3-10",
+  "bloco": "sem_resposta",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: v1 maintenance, LTS, end of life, security fix, support window, legacy, v3, semver, release cadence. O README apenas aponta a branch v1 e v1.h3.dev como \"legado\"; o anúncio da v2 diz que utilitários v1 seguem funcionando e que nomes depreciados continuam exportados; o código marca o fallback de seal legado para remoção na v3. Nenhum arquivo define prazo ou política de suporte da v1."
+ },
+ {
+  "qid": "q079",
+  "id_origem": "q-comum-docs-08",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0059",
+    "trecho": "- **ESM only** — no CommonJS"
+   },
+   {
+    "doc": "doc-0059",
+    "trecho": "- **Explicit `.ts` extensions** in all import paths"
+   },
+   {
+    "doc": "doc-0059",
+    "trecho": "- **No barrel files** — import directly from specific modules"
+   }
+  ],
+  "cartoes": [
+   "c-docs-35"
+  ],
+  "justificativa": "O guia de agentes (AGENTS.md) lista: só ESM, extensões .ts explícitas e sem arquivos barrel."
+ },
+ {
+  "qid": "q080",
+  "id_origem": "q-conf-cod-02",
+  "bloco": "conflito",
+  "correta": "D",
+  "letra_substituida": "C",
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "**cors:** Set single-valued CORS headers instead of appending"
+   },
+   {
+    "doc": "doc-0106",
+    "trecho": "CORS headers are single-valued, so use `.set` to avoid invalid duplicated"
+   }
+  ],
+  "cartoes": [
+   "c-cod-07",
+   "c-cod-08"
+  ],
+  "justificativa": "O changelog troca o append por set nos cabeçalhos de valor único e o código define set para eles, com append só para vary. A opção de anexar a cada chamada é o comportamento antigo."
+ },
+ {
+  "qid": "q081",
+  "id_origem": "q-comum-iss-01",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0014",
+    "trecho": "An internal unrelated H3 app might wrongly start to accept x-forwarded headers."
+   }
+  ],
+  "cartoes": [
+   "c-iss-01"
+  ],
+  "justificativa": "pi0 recusou o setDefaults global por causa do risco de um app H3 interno e não relacionado passar a aceitar cabeçalhos x-forwarded por engano; a variável de ambiente é citada como parte do problema, não como solução."
+ },
+ {
+  "qid": "q082",
+  "id_origem": "q-sem-h3-03",
+  "bloco": "sem_resposta",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: keep-alive, keepalive, heartbeat, ping, pushComment, retry:, interval, comment. O guia de WebSockets/SSE mostra EventStream com push(), onClosed() e um setInterval escrito pelo próprio exemplo (a cada intervalo da aplicação, não do h3); o changelog cita correções de SSE (ids vazios, flush, fechamento) e a remoção da opção autoclose. Nenhum arquivo fala de comentário de keep-alive nem de intervalo padrão."
+ },
+ {
+  "qid": "q083",
+  "id_origem": "q-sem-h3-01",
+  "bloco": "sem_resposta",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados em lake/bruto: SIGTERM, SIGINT, graceful, shutdown, drain, in-flight, server.close, .close(. Só há \"gracefully\" no contexto do hook onError e controller.close() em exemplos de stream. O mais próximo é onDispose (libera recursos por requisição quando o evento termina) e os exemplos com serve(app); nada descreve sinais de processo nem encerramento do servidor."
+ },
+ {
+  "qid": "q084",
+  "id_origem": "q-sem-iss-05",
+  "bloco": "sem_resposta",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: generated types, InternalApi, ohmyfetch, typebox, h3-typebox, defineEventHandler<, typed fetch. O mais próximo: a discussão da proposta lista como pendente o suporte a tipar query e body nos tipos gerados do Nitro e no ohmyfetch, e o mantenedor sugere um pacote externo h3-typebox, que um usuário publica; nada informa o que aconteceu com a tarefa pendente, e os docs de validação não falam de tipos gerados."
+ },
+ {
+  "qid": "q085",
+  "id_origem": "q-comum-iss-14",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0058",
+    "trecho": "An `HTTPError`, thrown or returned, that carries one of the rule's keys in its own `headers` keeps that value."
+   },
+   {
+    "doc": "doc-0058",
+    "trecho": "*return* the `HTTPError` and the `cache` rule renders it to a plain `Response` first, so the opt-out is lost. *Throwing* works."
+   }
+  ],
+  "cartoes": [
+   "c-iss-32",
+   "c-iss-34"
+  ],
+  "justificativa": "O HTTPError com a chave da regra no próprio headers mantém seu valor, mas com regra cache na mesma rota só vale lançar o erro; detectar mudanças em errHeaders foi a abordagem descartada."
+ },
+ {
+  "qid": "q086",
+  "id_origem": "q-conf-e1-03",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Fase A (núcleo confirmatório, H4, H5 e H6):**"
+   },
+   {
+    "doc": "doc-0004",
+    "trecho": "H6 passa a **descritiva**: reporta razão de custo de lista, de tokens totais e de tokens novos, com IC, sem teste de hipótese."
+   }
+  ],
+  "cartoes": [
+   "c-e1-05",
+   "c-e1-06"
+  ],
+  "justificativa": "O plano de 05/11 punha a H6 no núcleo confirmatório; o adendo 1 a torna descritiva, e a família principal fica só com H4 e H5."
+ },
+ {
+  "qid": "q087",
+  "id_origem": "q-sem-e1-10",
+  "bloco": "sem_resposta",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: diverg, discord, discrep, desempate, mediana, quarto juiz, rejulg. O lake mede concordância pelo alfa de Krippendorff (corte 0,67) e usa a média dos três juízes por artefato, sem regra para divergência alta; o único refeito foi um julgamento com JSON inválido."
+ },
+ {
+  "qid": "q088",
+  "id_origem": "q-comum-e1-03",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "**C4 passa a significar \"C1 mais testes primeiro e loop com a saída do runner\"**, sem o voto (C3 não foi implementado), e é assim que o artigo o chama."
+   }
+  ],
+  "cartoes": [
+   "c-e1-08"
+  ],
+  "justificativa": "O adendo 1 redefine C4 como C1 mais testes primeiro e loop com a saída do runner, sem o voto (C3 não foi implementado). A cascata é a C5."
+ },
+ {
+  "qid": "q089",
+  "id_origem": "q-sem-iss-02",
+  "bloco": "sem_resposta",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: fetch-dts, regexparam, infer, InferRouteParams, route param, params type, typed routes, context.params. O mais próximo: a discussão da proposta cita fetch-dts, regexparam e a ideia de exportar o util pelo rou3, com o mantenedor convidando a abrir PR, e termina sem decisão; os docs de roteamento e do H3Event só mostram `event.context.params.name` e descrevem params como parâmetros casados, sem falar de inferência de tipos."
+ },
+ {
+  "qid": "q090",
+  "id_origem": "q-comum-docs-10",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0078",
+    "trecho": "Note: This header is opt-in (default `false`) since it can be spoofed by clients. Only enable it when your application runs behind a trusted reverse proxy or CDN that sets this header."
+   }
+  ],
+  "cartoes": [
+   "c-docs-28"
+  ],
+  "justificativa": "O uso de x-forwarded-proto é opt-in (padrão false) por poder ser falsificado; atrás de CDN confiável liga-se xForwardedProto."
+ },
+ {
+  "qid": "q091",
+  "id_origem": "q-comum-cod-12",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0100",
+    "trecho": "// Fall back to the matching GET route (RFC 9110). The method stays \"HEAD\""
+   },
+   {
+    "doc": "doc-0102",
+    "trecho": "// HEAD is served by GET handlers (RFC 9110), so GET-scoped middleware also matches HEAD"
+   }
+  ],
+  "cartoes": [
+   "c-cod-25",
+   "c-cod-26"
+  ],
+  "justificativa": "h3.ts cai para a rota GET quando não há rota HEAD, e middleware.ts faz o middleware com escopo GET também casar com HEAD; as duas fontes juntas garantem rota e guarda aplicados."
+ },
+ {
+  "qid": "q092",
+  "id_origem": "q-conf-iss-08",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "A",
+  "fontes": [
+   {
+    "doc": "doc-0058",
+    "trecho": "The `headers` rule applies its headers to `event.res.errHeaders` after the handler has run, and `errHeaders` takes precedence over `HTTPError.headers`"
+   },
+   {
+    "doc": "doc-0058",
+    "trecho": "An `HTTPError`, thrown or returned, that carries one of the rule's keys in its own `headers` keeps that value."
+   }
+  ],
+  "cartoes": [
+   "c-iss-31",
+   "c-iss-32"
+  ],
+  "justificativa": "Antes errHeaders, onde a regra escreve, tinha precedência sobre HTTPError.headers; hoje o valor do erro é mantido e a regra pula só essa chave."
+ },
+ {
+  "qid": "q093",
+  "id_origem": "q-comum-iss-09",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0036",
+    "trecho": "Each chunk is the longest run whose encoded form, using the same `encode` as `setCookie` (`options.encode` or `encodeURIComponent`), fits in `chunkMaxLength`."
+   }
+  ],
+  "cartoes": [
+   "c-iss-21"
+  ],
+  "justificativa": "O PR #1565 mede o pedaço já codificado com o mesmo encode do setCookie; a divisão do valor bruto era o comportamento antigo que gerava cookies acima de 4096 bytes."
+ },
+ {
+  "qid": "q094",
+  "id_origem": "q-sem-iss-06",
+  "bloco": "sem_resposta",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: stackblitz, webcrypto, Web Crypto, crypto.subtle, getRandomValues, iron-webcrypto, PBKDF2. O mais próximo: o mantenedor diz que o erro vem do StackBlitz não suportar alguns métodos de web crypto e mantém a issue aberta para investigar, sem nomear qual método; o changelog cita só ajustes de iron-crypto sobre getRandomValues e salt inválido, e outra issue avisa que o StackBlitz não suporta cookies, sem tratar dessa conclusão."
+ },
+ {
+  "qid": "q095",
+  "id_origem": "q-conf-e1-05",
+  "bloco": "conflito",
+  "correta": "D",
+  "letra_substituida": "C",
+  "fontes": [
+   {
+    "doc": "doc-0008",
+    "trecho": "**Decidido pelo autor em 05/11/2026: os 4 braços novos (S8, S9, S10, S11) entram.**"
+   },
+   {
+    "doc": "doc-0004",
+    "trecho": "O autor decidiu que a fase C (H2, H7, H8, H9 e braços S8 a S11) **não entra neste estudo** e fica para um paper futuro."
+   }
+  ],
+  "cartoes": [
+   "c-e1-09",
+   "c-e1-11"
+  ],
+  "justificativa": "A decisão de 05/11 incluía os quatro braços; em 06/11 o autor adiou a fase C, que contém S8 a S11, para um paper futuro."
+ },
+ {
+  "qid": "q096",
+  "id_origem": "q-sem-h3-06",
+  "bloco": "sem_resposta",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: threshold, coverage, c8, istanbul, lines, statements, branches, 80%, 90%. O AGENTS.md diz que o pnpm test roda lint, typecheck e cobertura com Vitest e v8, e que cada teste roda nos modos web e node; o PR #1595 relata 3055 testes aprovados. Nenhum arquivo traz meta numérica de cobertura (SLIDE_THRESHOLD do código de sessão é outro assunto)."
+ },
+ {
+  "qid": "q097",
+  "id_origem": "q-comum-iss-07",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0033",
+    "trecho": "Collect repeated keys from `url.searchParams` into arrays (same shape as `getQuery`) before validation"
+   }
+  ],
+  "cartoes": [
+   "c-iss-17"
+  ],
+  "justificativa": "O PR passou a coletar chaves repetidas em arrays antes de validar; antes, Object.fromEntries guardava só o último valor. Assim, ?tag=a&tag=b chega ao validador como [\"a\", \"b\"]."
+ },
+ {
+  "qid": "q098",
+  "id_origem": "q-sem-iss-04",
+  "bloco": "sem_resposta",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: content-length, undici, UND_ERR, DELETE, proxyRequest, fetch failed, body vazio. O mais próximo: a discussão do erro de proxy de DELETE traz contornos de usuários (flag do Node, corpo vazio, atualizar o Node) e uma nota do mantenedor sobre investigação, sem correção anunciada; os docs de proxy só listam limitações herdadas do fetch e o changelog cita content-length em outros contextos (Uint8Array, serve-static)."
+ },
+ {
+  "qid": "q099",
+  "id_origem": "q-sem-h3-05",
+  "bloco": "sem_resposta",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: maxPayload, maxMessage, message size, frame, fragment, pong, ping, idleTimeout, limit websocket. O guia de WebSockets descreve defineWebSocketHandler, o plugin do crossws, o 426 para não-WebSocket e os hooks open/message; os limites ficam com o crossws, que não está no lake. O mais próximo são os limites de corpo HTTP (assertBodySize, bodyLimit), que não valem para mensagens WebSocket."
+ },
+ {
+  "qid": "q100",
+  "id_origem": "q-sem-h3-04",
+  "bloco": "sem_resposta",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: tracingPlugin, tracing, diagnostics_channel, tracingChannel, channel, server-timing, otel, opentelemetry, telemetry, span. O lake só diz que h3/tracing é um plugin em entrada separada (AGENTS.md), que ele sobrescreve use() e mount() (PR #1576), que exporta wrapHandlerWithTracing (changelog) e que existem \"eventos de rota rastreados\". Não diz como esses eventos são entregues nem em que formato."
+ },
+ {
+  "qid": "q101",
+  "id_origem": "q-comum-e1-09",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "Acessos suspeitos **não excluem** a execução: a análise principal usa todas e a análise ao lado exclui as suspeitas"
+   }
+  ],
+  "cartoes": [
+   "c-e1-23"
+  ],
+  "justificativa": "O adendo 1 manda manter a execução na análise principal e excluí-la só na análise ao lado, reportando a taxa por condição. A exclusão registrada era a regra antiga; a auditoria varre ações, não texto livre."
+ },
+ {
+  "qid": "q102",
+  "id_origem": "q-conf-iss-02",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "D",
+  "fontes": [
+   {
+    "doc": "doc-0035",
+    "trecho": "`.gz` and `.br` aren't in the MIME map, so no `content-type` is set, and the runtime falls back to `text/plain;charset=UTF-8`."
+   },
+   {
+    "doc": "doc-0035",
+    "trecho": "The default/custom MIME lookup (`getType`) runs on that asset id, so `app.js.gz` served for `/app.js` resolves to `text/javascript`"
+   }
+  ],
+  "cartoes": [
+   "c-iss-18",
+   "c-iss-19"
+  ],
+  "justificativa": "Antes o tipo vinha do id da variante (.gz) e caía em text/plain; agora a busca usa o id do asset pedido e resulta em text/javascript."
+ },
+ {
+  "qid": "q103",
+  "id_origem": "q-comum-e1-11",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "se C1 (Haiku simples) também chegar ao teto, a H4 é reportada como **não informativa (saturação)**"
+   },
+   {
+    "doc": "doc-0007",
+    "trecho": "Confirmada (equivalente por não inferioridade) se o limite inferior ≥ −0,10 **e** o instrumento é sensível (alguma condição não satura)"
+   }
+  ],
+  "cartoes": [
+   "c-e1-25",
+   "c-e1-24"
+  ],
+  "justificativa": "A confirmação exige limite inferior ≥ −0,10 e instrumento sensível (alguma condição não satura); com C1 no teto, o adendo 1 manda reportar não informativa (saturação), mesmo com o intervalo dentro da margem."
+ },
+ {
+  "qid": "q104",
+  "id_origem": "q-comum-docs-06",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "Register `routeRules()` **after** every global middleware that has to run for cached routes:"
+   }
+  ],
+  "cartoes": [
+   "c-docs-32"
+  ],
+  "justificativa": "A regra cache despacha o handler diretamente; por isso o middleware global precisa estar registrado antes de routeRules()."
+ },
+ {
+  "qid": "q105",
+  "id_origem": "q-sem-iss-03",
+  "bloco": "sem_resposta",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: http2, HTTP/2, h2, spdy, node:http2, ALPN, roadblock. O mais próximo: o plano de migração para a API de eventos cita que o formato (req, res) não permite estender o h3 para http2 sem camada de compatibilidade, e um usuário pergunta o que bloqueia e outro posta contorno com node-spdy; nenhum mantenedor responde, e os docs v2 e o changelog não mencionam http2."
+ },
+ {
+  "qid": "q106",
+  "id_origem": "q-comum-docs-13",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0071",
+    "trecho": "Set `cache: { allowAuthorization: true }` to pass the authorization credential to the handler."
+   },
+   {
+    "doc": "doc-0082",
+    "trecho": "the incoming request's `Cookie` and `Authorization` headers are forwarded to the `target` verbatim."
+   }
+  ],
+  "cartoes": [
+   "c-docs-33",
+   "c-docs-29"
+  ],
+  "justificativa": "O H3 remove Authorization antes do handler em cache e só o entrega com allowAuthorization (listar em varies não repassa); com o header presente, o proxyRequest o encaminha ao destino sem alteração."
+ },
+ {
+  "qid": "q107",
+  "id_origem": "q-conf-cod-04",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "D",
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "**sse:** Promote EventStream to public API, deprecate createEventStream"
+   },
+   {
+    "doc": "doc-0075",
+    "trecho": "Construct it directly with `new EventStream(event)` and return it from a handler."
+   }
+  ],
+  "cartoes": [
+   "c-cod-11",
+   "c-cod-12"
+  ],
+  "justificativa": "O changelog promove EventStream a API pública e deprecia createEventStream; o guia manda construir new EventStream(event) e retorná-lo. A opção de usar createEventStream é a antiga."
+ },
+ {
+  "qid": "q108",
+  "id_origem": "q-comum-docs-12",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0068",
+    "trecho": "prepared status is discarded and headers will be merged/overridden. For performance reasons, it is best to only set headers only from final Response in this case."
+   },
+   {
+    "doc": "doc-0069",
+    "trecho": "The recommended way to include headers in error responses is to use `new HTTPError({ headers })`:"
+   }
+  ],
+  "cartoes": [
+   "c-docs-12",
+   "c-docs-08"
+  ],
+  "justificativa": "Com Response completo o status preparado é descartado e o melhor é definir os headers no próprio Response; em erro, os headers de event.res.headers não entram e a recomendação é HTTPError({ headers })."
+ },
+ {
+  "qid": "q109",
+  "id_origem": "q-comum-cod-13",
+  "bloco": "comum",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0105",
+    "trecho": "const CHUNKS_MAX_LENGTH = 4000;"
+   },
+   {
+    "doc": "doc-0105",
+    "trecho": "// 100 chunks × ~4KB = ~400KB, far beyond any practical cookie size."
+   }
+  ],
+  "cartoes": [
+   "c-cod-20"
+  ],
+  "justificativa": "setChunkedCookie divide o valor em partes de 4000 caracteres por padrão e aceita no máximo 100 partes, ou seja, cerca de 400 mil caracteres."
+ },
+ {
+  "qid": "q110",
+  "id_origem": "q-comum-iss-15",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0014",
+    "trecho": "In modern H3 v2 / Nitro v3, `event.req.ip` is standard and universal way to access request IP."
+   },
+   {
+    "doc": "doc-0014",
+    "trecho": "But a strong note: `x-forwarded-for` header shoudlt not be blindly trusted unless we are sure behind a CDN or reverse proxy that always sets it."
+   }
+  ],
+  "cartoes": [
+   "c-iss-02"
+  ],
+  "justificativa": "pi0 diz que event.req.ip é o meio padrão no h3 v2 / Nitro v3 e que o x-forwarded-for só deve ser confiado atrás de CDN ou proxy reverso que sempre o defina."
+ },
+ {
+  "qid": "q111",
+  "id_origem": "q-comum-cod-02",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "A request without a session gets a new one initialized in memory only — no"
+   }
+  ],
+  "cartoes": [
+   "c-cod-04"
+  ],
+  "justificativa": "A documentação de getSession diz que a sessão nova fica só em memória e que nenhum Set-Cookie é emitido até um updateSession; ler a sessão não a inicia para visitantes anônimos."
+ },
+ {
+  "qid": "q112",
+  "id_origem": "q-sem-iss-10",
+  "bloco": "sem_resposta",
+  "correta": "B",
+  "letra_substituida": null,
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Termos buscados: Node.js 22, Node 20, EOL, LTS, support policy, drop Node, engines, >= 20. O mais próximo: o ajuste de requisito mínimo diz que o rou3 v1 declara Node >= 20.19 e por isso o h3 alinhou o engines e o guia de migração, e o blog da v2 repete o mínimo; nenhum arquivo traz regra ou plano para novas elevações do mínimo."
+ },
+ {
+  "qid": "q113",
+  "id_origem": "q-comum-iss-03",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0028",
+    "trecho": "Make node-js handlers opt-in and drop `(req, res)` implicit conversion (#178)"
+   }
+  ],
+  "cartoes": [
+   "c-iss-07"
+  ],
+  "justificativa": "A lista de progresso marca como feito tornar os handlers Node.js opt-in e eliminar a conversão implícita (req, res). Um mock com aviso para req/res aparece como item ainda pendente, e não há remoção completa."
+ },
+ {
+  "qid": "q114",
+  "id_origem": "q-comum-iss-10",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0039",
+    "trecho": "The fix keeps the existing phrases for 204, 301 and 302 and uses the RFC 9110 phrases for 303, 307 and 308."
+   }
+  ],
+  "cartoes": [
+   "c-iss-23"
+  ],
+  "justificativa": "O PR mantém as frases de 204, 301 e 302, usa as da RFC 9110 para 303, 307 e 308 e não põe frase nos demais status; o teste noContent(200) deixa de ser rotulado como No Content."
+ },
+ {
+  "qid": "q115",
+  "id_origem": "q-comum-docs-03",
+  "bloco": "comum",
+  "correta": "A",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0072",
+    "trecho": "Enabling `debug` option, sends important stuff like stack traces in error responses. Only enable during development."
+   }
+  ],
+  "cartoes": [
+   "c-docs-13"
+  ],
+  "justificativa": "A documentação da API do H3 avisa que debug envia stack traces nas respostas de erro e que só deve ser habilitada em desenvolvimento."
+ },
+ {
+  "qid": "q116",
+  "id_origem": "q-conf-e1-10",
+  "bloco": "conflito",
+  "correta": "B",
+  "letra_substituida": "C",
+  "fontes": [
+   {
+    "doc": "doc-0002",
+    "trecho": "**Limite honesto:** o Claude Code não oferece isolamento de sistema de arquivos para subagentes; a restrição é por instrução, por ausência de referências e por auditoria, não por barreira técnica."
+   },
+   {
+    "doc": "doc-0004",
+    "trecho": "A pasta da execução é uma exportação do commit base sem `.git` do projeto e sem remoto"
+   }
+  ],
+  "cartoes": [
+   "c-e1-20",
+   "c-e1-21"
+  ],
+  "justificativa": "O plano admitia isolamento só por instrução e auditoria; o adendo 1 passa a rodar cada etapa em processo novo com ferramentas restritas e pasta exportada sem .git nem remoto."
+ },
+ {
+  "qid": "q117",
+  "id_origem": "q-comum-e1-08",
+  "bloco": "comum",
+  "correta": "C",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0004",
+    "trecho": "Cada etapa é um processo `claude -p` novo, com modelo explícito, `--setting-sources project`, `--strict-mcp-config`, ferramentas restritas"
+   }
+  ],
+  "cartoes": [
+   "c-e1-21"
+  ],
+  "justificativa": "O adendo 1 troca o isolamento por instrução (limite do plano original) por processo claude -p novo, ferramentas restritas e pasta exportada sem .git e sem remoto. Não há contêiner nas fontes."
+ },
+ {
+  "qid": "q118",
+  "id_origem": "q-conf-cod-03",
+  "bloco": "conflito",
+  "correta": "D",
+  "letra_substituida": "B",
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "**static:** Refuse a non-canonical pathname instead of resolving it"
+   },
+   {
+    "doc": "doc-0109",
+    "trecho": "A **non-canonical pathname is not served** (404, or falls through when"
+   }
+  ],
+  "cartoes": [
+   "c-cod-09",
+   "c-cod-10"
+  ],
+  "justificativa": "O changelog troca resolver por recusar o pathname não canônico e o código documenta 404 ou fallthrough. A opção de resolver e servir é a decisão antiga substituída."
+ },
+ {
+  "qid": "q119",
+  "id_origem": "q-comum-cod-07",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0103",
+    "trecho": "is never trusted to shape the response, not even via a `status` shorthand."
+   }
+  ],
+  "cartoes": [
+   "c-cod-23"
+  ],
+  "justificativa": "toError embrulha qualquer valor lançado que não seja Error em um HTTPError 500 unhandled; só um número lançado vira status, e um objeto nunca molda a resposta."
+ },
+ {
+  "qid": "q120",
+  "id_origem": "q-comum-docs-09",
+  "bloco": "comum",
+  "correta": "D",
+  "letra_substituida": null,
+  "fontes": [
+   {
+    "doc": "doc-0082",
+    "trecho": "When proxying to a not-fully-trusted upstream, strip them with `filterHeaders: [\"cookie\", \"authorization\"]`."
+   },
+   {
+    "doc": "doc-0082",
+    "trecho": "the incoming request's `Cookie` and `Authorization` headers are forwarded to the `target` verbatim."
+   }
+  ],
+  "cartoes": [
+   "c-docs-29"
+  ],
+  "justificativa": "O proxyRequest repassa Cookie e Authorization sem alteração; para upstream não confiável a documentação manda removê-los com filterHeaders."
+ }
+]

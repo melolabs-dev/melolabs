@@ -1,0 +1,302 @@
+[
+ {
+  "qid": "q031",
+  "pergunta": "No H3 versão 2, como se registra middleware próprio de um handler escrito com sintaxe de objeto?",
+  "opcoes": {
+   "A": "Com um array na chave middleware de defineHandler, ao lado da chave handler",
+   "B": "Informação insuficiente no material",
+   "C": "Encadeando .use() no valor retornado por defineHandler antes de registrar a rota",
+   "D": "Com eventHandler, usando as chaves onRequest e onResponse com listas de funções"
+  }
+ },
+ {
+  "qid": "q032",
+  "pergunta": "No h3 v2, qual esquema de criptografia o seal do cookie de sessão usa por padrão, caso o projeto não informe a opção seal?",
+  "opcoes": {
+   "A": "AES-256-CBC para a cifra, com assinatura de integridade HMAC-SHA-256.",
+   "B": "Informação insuficiente no material",
+   "C": "ChaCha20-Poly1305 para a cifra, com chave derivada por HKDF a partir da senha.",
+   "D": "AES-256-GCM para a cifra, com autenticação embutida no próprio modo."
+  }
+ },
+ {
+  "qid": "q033",
+  "pergunta": "No h3 v2, depois da correção do setChunkedCookie, como o valor de um cookie com JSON ou texto não ASCII é dividido em chunks?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "O valor bruto é cortado a cada chunkMaxLength bytes UTF-8, antes da codificação",
+   "C": "Cada chunk, já codificado como no setCookie, cabe em chunkMaxLength",
+   "D": "O valor bruto é cortado a cada chunkMaxLength caracteres, antes da codificação"
+  }
+ },
+ {
+  "qid": "q034",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku 5.5 contra Sonnet 5.5), no protocolo final, depois dos adendos, o que a condição C4 inclui?",
+  "opcoes": {
+   "A": "Gates determinísticos com correção por erro real e citação de IDs, sem testes antes",
+   "B": "O C1 com testes escritos antes e realimentação pela saída do runner, sem voto por letra",
+   "C": "Mitigações completas: gates, voto por letra, citação de IDs, testes antes e loop do runner",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q035",
+  "pergunta": "Na discussão de junho de 2025 no h3 sobre um util defineRoute, pi0 primeiro propôs um método declarativo no core e, quatro dias depois, disse ter acabado adicionando outra coisa. O que foi adicionado?",
+  "opcoes": {
+   "A": "O util defineRoute no core, com metadados de rota extraíveis estaticamente como no Nitro",
+   "B": "Uma interface de plugins de uso geral, para o h3 compor rotas e outros módulos",
+   "C": "Informação insuficiente no material",
+   "D": "O método app.register(spec) no core, aceitando um objeto declarativo com rota, método e handler"
+  }
+ },
+ {
+  "qid": "q036",
+  "pergunta": "No estudo 1 do Melo Labs, quantos testes compõem o núcleo da variante #1267 (HTTP Range no `serveStatic`) nos testes ocultos?",
+  "opcoes": {
+   "A": "12 testes no núcleo",
+   "B": "Informação insuficiente no material",
+   "C": "25 testes no núcleo",
+   "D": "18 testes no núcleo"
+  }
+ },
+ {
+  "qid": "q037",
+  "pergunta": "Depois que o h3 passou a respeitar `HTTPError.headers` acima da regra `headers` em respostas de erro, em que versão do Nitro entrou a troca no tratamento de 404 de assets estáticos para usar esse cabeçalho de erro?",
+  "opcoes": {
+   "A": "Na mesma versão do Nitro v3 que atualizou a dependência do h3 com essa correção",
+   "B": "Informação insuficiente no material",
+   "C": "Em nenhuma versão ainda; a troca ficou só como sugestão para o Nitro",
+   "D": "Em uma versão de manutenção posterior do Nitro v3, depois da validação de CDNs"
+  }
+ },
+ {
+  "qid": "q038",
+  "pergunta": "No h3, o serveStatic recebe um caminho que é diretório e a opção indexNames não foi informada. Qual arquivo de índice ele procura?",
+  "opcoes": {
+   "A": "/index.html e depois /index.htm",
+   "B": "Informação insuficiente no material",
+   "C": "Somente /default.html, sem outros nomes",
+   "D": "Somente /index.html, sem outros nomes"
+  }
+ },
+ {
+  "qid": "q039",
+  "pergunta": "No h3 v2, se o stream de um handler Node (fromNodeHandler) falha depois de a resposta já ter começado, quais hooks de erro são avisados?",
+  "opcoes": {
+   "A": "Só o hook onError da configuração do app, uma vez; hooks registrados pelo middleware onError() não recebem erros de stream.",
+   "B": "O hook da configuração do app e também os do middleware onError(), cada um uma vez, com um HTTPError 500 gerado pelo h3.",
+   "C": "Nenhum deles, pois com a resposta já enviada o h3 apenas registra o erro em log e descarta qualquer notificação.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q040",
+  "pergunta": "No h3, a partir de que momento é contado o maxAge de uma sessão e a atividade do usuário o reinicia?",
+  "opcoes": {
+   "A": "Conta desde a criação da sessão e a atividade não o reinicia",
+   "B": "Informação insuficiente no material",
+   "C": "Conta desde o último reselo do cookie e cada escrita reinicia a contagem",
+   "D": "Conta desde a última requisição e cada acesso reinicia a contagem"
+  }
+ },
+ {
+  "qid": "q041",
+  "pergunta": "No H3 versão 2, como é iniciado o servidor durante o desenvolvimento, com recarga ao editar arquivos?",
+  "opcoes": {
+   "A": "Executando npx listhen@latest com a flag de observação sobre o arquivo de entrada",
+   "B": "Usando nodemon com um adaptador que converte o app em listener do node:http",
+   "C": "Informação insuficiente no material",
+   "D": "Rodando o arquivo direto no runtime, por exemplo com node --watch"
+  }
+ },
+ {
+  "qid": "q042",
+  "pergunta": "No h3, uma requisição traz o token de sessão tanto no cabeçalho de sessão quanto em cookie, com sessionHeader no padrão. De onde o token é lido primeiro?",
+  "opcoes": {
+   "A": "Do cookie, usando o cabeçalho apenas quando o cookie estiver ausente",
+   "B": "Do cabeçalho de sessão, recorrendo aos cookies se ele não existir",
+   "C": "Informação insuficiente no material",
+   "D": "Dos dois, valendo o que tiver createdAt mais recente na sessão"
+  }
+ },
+ {
+  "qid": "q043",
+  "pergunta": "No h3 v2, depois de quanto tempo sem resposta um handler é encerrado por padrão com erro de tempo esgotado, caso o projeto não configure nada?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "30 segundos, encerrando a requisição com 504 Gateway Timeout.",
+   "C": "60 segundos, encerrando a requisição com 504 Gateway Timeout.",
+   "D": "120 segundos, encerrando a requisição com 504 Gateway Timeout."
+  }
+ },
+ {
+  "qid": "q044",
+  "pergunta": "No h3, com idleTimeout configurado, a partir de que parcela da janela ociosa já consumida o getSession reenvia o cookie selado para deslizar a janela?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Quando mais da metade da janela já foi consumida, por causa do custo do seal",
+   "C": "Quando um quarto da janela já foi consumido, para manter margem de segurança",
+   "D": "Em toda leitura da sessão, para que o horário registrado seja sempre exato"
+  }
+ },
+ {
+  "qid": "q045",
+  "pergunta": "No h3, a partir da versão 2.0.1-rc.25, qual é o número padrão de iterações de PBKDF2 usado para selar o token de sessão?",
+  "opcoes": {
+   "A": "8192 iterações",
+   "B": "10000 iterações",
+   "C": "600000 iterações",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q046",
+  "pergunta": "No h3 v2, uma rota usa o método HTTP QUERY e o app aplica handleCors com uma lista explícita de methods. O que é preciso para os navegadores conseguirem chamar essa rota entre origens?",
+  "opcoes": {
+   "A": "Acrescentar \"QUERY\" à lista de methods, pois o navegador envia preflight para ele",
+   "B": "Nada além do handleCors, pois o QUERY é tratado como o GET e dispensa o preflight entre origens",
+   "C": "Informação insuficiente no material",
+   "D": "Registrar um handler OPTIONS manual na rota, pois o handleCors só cobre GET e POST"
+  }
+ },
+ {
+  "qid": "q047",
+  "pergunta": "Na v2 do h3, depois que um usuário mostrou que falhas no servidor em streams web de resposta têm a exceção sem registro em log, que encaminhamento os mantenedores deram a esse comportamento?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Passar a registrar a exceção pelo hook de erro do app, como já ocorre nos handlers do Node",
+   "C": "Delegar o registro ao srvx, que gerencia o fechamento dos streams na v2",
+   "D": "Manter o comportamento atual, tratando o log como responsabilidade do próprio handler"
+  }
+ },
+ {
+  "qid": "q048",
+  "pergunta": "No estudo 1 do Melo Labs, qual valor de temperatura de amostragem foi fixado para os juízes Opus que pontuaram a rubrica?",
+  "opcoes": {
+   "A": "Temperatura 0, para obter julgamentos o mais determinísticos possível",
+   "B": "Temperatura 0,3, para um pouco de variação entre os juízes",
+   "C": "Temperatura 1,0, para que os três juízes funcionem como amostras",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q049",
+  "pergunta": "No estudo 1 do Melo Labs, qual modelo rodou a revisão adversarial independente (F7.4) que refez os números e levantou objeções ao texto?",
+  "opcoes": {
+   "A": "Sonnet 5.5, o modelo usado como referência",
+   "B": "Haiku 5.5, o modelo que o estudo avalia",
+   "C": "Informação insuficiente no material",
+   "D": "Opus 5.5, o mesmo modelo usado nos juízes da rubrica"
+  }
+ },
+ {
+  "qid": "q050",
+  "pergunta": "No h3 v2, sobre o fallback legado de selo de sessão (1 iteração de PBKDF2) e a opção legacySealFallback, o que foi decidido depois de o v2 ficar estável?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Remover ambos foi feito no próprio v2, e legacySealFallback foi marcada como obsoleta para avisar quem ainda a usava.",
+   "C": "Manter o fallback para sempre, e legacySealFallback foi marcada como obsoleta por ser redundante com o novo padrão.",
+   "D": "Remover ambos foi adiado para o v3, e legacySealFallback não foi marcada como obsoleta, pois ainda desativa o fallback no v2."
+  }
+ },
+ {
+  "qid": "q051",
+  "pergunta": "Na discussão dos mantenedores do h3 sobre cabeçalhos de proxy confiáveis, qual foi a resposta final à sugestão de receber a lista `trustedHeaders` já na criação do app, e não só no contexto do evento?",
+  "opcoes": {
+   "A": "Adiaram a decisão e deixaram a configuração por conta de um plugin de uma camada superior",
+   "B": "Recusaram a opção do construtor por custo de desempenho e mantiveram só o contexto do evento",
+   "C": "Aceitaram passar a lista como opção do construtor do app, com o valor copiado para cada evento",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q052",
+  "pergunta": "No h3 v1, um router filho foi aninhado a um router pai sob o prefixo /api, mas /api/hello retornava 404. Qual registro pi0 indicou como correto?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Registrar no router pai com o caminho exato '/api', envolvendo o handler do router filho em useBase('/api').",
+   "C": "Registrar no router pai com o padrão '/api/**', envolvendo o handler do router filho em useBase('/api').",
+   "D": "Registrar o handler do router filho direto com router.get('/api/**'), sem useBase, pois o prefixo já está no padrão."
+  }
+ },
+ {
+  "qid": "q053",
+  "pergunta": "No H3 versão 2, como rodar o app em um runtime compatível com a web ou chamá-lo direto em um teste?",
+  "opcoes": {
+   "A": "Usando app.fetch, que o próprio app já expõe, ou app.request nos testes",
+   "B": "Informação insuficiente no material",
+   "C": "Exportando o app como middleware de Express e testando com a biblioteca supertest",
+   "D": "Convertendo o app com toWebHandler, que gera uma função de Request para Promise de Response"
+  }
+ },
+ {
+  "qid": "q054",
+  "pergunta": "Na versão 2.0.8 do h3, quantas iterações de PBKDF2 o seal de sessão usa por padrão ao criar uma sessão nova?",
+  "opcoes": {
+   "A": "Uma única iteração, padrão mantido por compatibilidade com cookies antigos",
+   "B": "Cem mil iterações, valor hoje recomendado para derivação de chaves a partir de senhas",
+   "C": "Oito mil cento e noventa e duas iterações, elevado nas candidatas da 2.0.1",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q055",
+  "pergunta": "No h3 v1, alguém queria encadear um handler de CORS com o handler principal de uma rota. O que pi0 respondeu sobre como usar utilitários como o de cors?",
+  "opcoes": {
+   "A": "Usar um helper chain() nativo, que recebe vários handlers e os invoca em sequência como se fossem um único event handler.",
+   "B": "Registrá-los sempre como middleware global antes de qualquer rota, pois utilitários de cors não podem rodar dentro do handler.",
+   "C": "Chamá-los sob demanda dentro do corpo do event handler, e usar a pilha de um app quando quiser encadeamento estilo middleware.",
+   "D": "Informação insuficiente no material"
+  }
+ },
+ {
+  "qid": "q056",
+  "pergunta": "No h3 v2, um handler usa event.url.pathname para montar caminhos e outro usa serveStatic com getContents lendo do disco. Que regra de decodificação vale para o pathname e para o id?",
+  "opcoes": {
+   "A": "Decodificar só o id no getContents, pois o pathname do evento já vem decodificado",
+   "B": "Informação insuficiente no material",
+   "C": "Não decodificar nenhum dos dois por conta própria, tratando ambos como valores opacos",
+   "D": "Decodificar o pathname com decodeURIComponent antes de resolver o id contra a raiz"
+  }
+ },
+ {
+  "qid": "q057",
+  "pergunta": "No h3 v2, segundo o mantenedor pi0, qual é a diferença entre middleware e plugin quanto ao ponto onde cada um se conecta?",
+  "opcoes": {
+   "A": "O plugin se liga à instância do app e pode até adicionar middleware, enquanto o middleware se liga a cada requisição (event).",
+   "B": "Informação insuficiente no material",
+   "C": "Ambos se ligam à requisição (event); o plugin só difere por poder ser publicado como pacote separado e reutilizado em outros apps.",
+   "D": "O middleware se liga à instância do app e roda uma só vez na inicialização, enquanto o plugin se liga a cada requisição (event)."
+  }
+ },
+ {
+  "qid": "q058",
+  "pergunta": "Na versão 2 do h3, sobre qual base o framework foi reescrito e qual papel o srvx cumpre nessa base?",
+  "opcoes": {
+   "A": "Sobre padrões web, e o srvx unifica as diferenças entre os runtimes, mantendo o core simples",
+   "B": "Sobre as APIs do Node.js, e o srvx adiciona uma camada de compatibilidade com padrões web",
+   "C": "Informação insuficiente no material",
+   "D": "Sobre padrões web, e o srvx substitui o roteador, trocando o rou3 pelo próprio"
+  }
+ },
+ {
+  "qid": "q059",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), depois do adendo 1, qual parte da H5 decide o resultado na prática, e qual o piso exigido?",
+  "opcoes": {
+   "A": "A de qualidade, com limite inferior da razão de qualidade de pelo menos 0,90, pois o custo é quase certo.",
+   "B": "Informação insuficiente no material",
+   "C": "A de custo, com razão de custo de no máximo 0,50, pois a razão de qualidade só vale quando passa de 1,10 em todas as tarefas.",
+   "D": "A de qualidade, com razão média de pelo menos 1,10, pois a parte de custo passou a ser apenas descritiva."
+  }
+ },
+ {
+  "qid": "q060",
+  "pergunta": "No estudo 1 do Melo Labs (Haiku contra Sonnet em SDD), pela regra de decisão da H4, em que situação ela é dada como refutada?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Quando o limite inferior do intervalo da diferença fica abaixo de menos 0,10, mesmo que o superior passe de zero.",
+   "C": "Quando o limite superior do intervalo da diferença fica abaixo de menos 0,10, e não apenas o inferior.",
+   "D": "Quando a condição C1, o Haiku simples, também chega ao teto de aprovação dos testes de núcleo."
+  }
+ }
+]

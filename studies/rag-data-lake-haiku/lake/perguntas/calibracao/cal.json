@@ -1,0 +1,472 @@
+[
+ {
+  "id": "q-cal-01",
+  "bloco": "comum",
+  "pergunta": "No H3 v2, um sub-app com a rota \"/**:slug\" é montado em \"/api\" com mount, e chega a requisição /api/test. Quais valores o handler enxerga em event.url.pathname e em event.context.params?.slug?",
+  "opcoes": [
+   "pathname \"/test\" e slug \"/test\", pois o prefixo do mount é removido da URL",
+   "pathname \"/api/test\" e slug \"/test\", com o caminho real preservado",
+   "pathname \"/api/test\" e slug \"test\", pois o curinga nomeado perde a barra inicial"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0070",
+    "trecho": "In the example above, when fetching the `/api/test` URL, `pathname` will be `/api/test` (the real path), and `slug` will be `/test` (wildcard param)."
+   }
+  ],
+  "cartoes": [],
+  "justificativa": "O guia de apps aninhados diz que, com o sub-app montado em /api e a requisição /api/test, o pathname continua sendo o caminho real /api/test e o slug do curinga vale /test.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-cal-02",
+  "bloco": "comum",
+  "pergunta": "No H3 v2, uma mesma rota precisa atender conexões WebSocket e também requisições HTTP comuns, sem upgrade. Como configurar o defineWebSocketHandler?",
+  "opcoes": [
+   "Registrar duas rotas no mesmo caminho, uma com app.get para o HTTP e outra com app.all para o upgrade",
+   "Ligar a opção http: true nos hooks do WebSocket para liberar as requisições sem upgrade",
+   "Passar uma função de tratamento HTTP como segundo argumento, ao lado dos hooks do WebSocket"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0084",
+    "trecho": "By default, non-upgrade (plain HTTP) requests receive a `426 Upgrade Required` response. Pass an `http` handler to serve those requests instead, allowing the same route to handle both WebSocket upgrades and regular HTTP requests."
+   }
+  ],
+  "cartoes": [],
+  "justificativa": "A documentação de defineWebSocketHandler diz que requisições sem upgrade recebem 426 por padrão e que um handler http, passado como segundo argumento, permite à mesma rota atender os dois tipos de requisição.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-cal-03",
+  "bloco": "comum",
+  "pergunta": "No H3 v2, quantas requisições por lote (batch) o defineJsonRpcHandler aceita por padrão numa única chamada?",
+  "opcoes": [
+   "50 requisições por lote",
+   "100 requisições por lote",
+   "10 requisições por lote"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0083",
+    "trecho": "and batches are capped at 50 requests (fan-out amplification, see `maxBatchSize`)."
+   }
+  ],
+  "cartoes": [],
+  "justificativa": "Os padrões de segurança do defineJsonRpcHandler limitam o lote a 50 requisições, ajustável por maxBatchSize.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-cal-04",
+  "bloco": "comum",
+  "pergunta": "No H3 v2, um app expõe JSON-RPC por WebSocket com defineJsonRpcWebSocketHandler e quer recusar páginas de outras origens. Onde essa checagem deve ser feita?",
+  "opcoes": [
+   "Em nenhum lugar: o handler já rejeita origens cruzadas por padrão, como na versão HTTP do JSON-RPC",
+   "No hook upgrade das opções do WebSocket, lançando um Response para abortar a conexão",
+   "Em um middleware handleCors, pois o upgrade de WebSocket obedece ao CORS do navegador"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0083",
+    "trecho": "Validate `Origin` in the `upgrade` hook and throw a `Response` to abort the connection."
+   }
+  ],
+  "cartoes": [],
+  "justificativa": "A versão WebSocket do handler JSON-RPC não confere a Origin, e upgrades não estão sujeitos a CORS; a orientação é validar a Origin no hook upgrade e abortar lançando um Response.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-cal-05",
+  "bloco": "comum",
+  "pergunta": "No H3 v2, um plugin registrado com app.register chama app.use para adicionar um middleware. Em que momento o plugin é aplicado e o que isso implica?",
+  "opcoes": [
+   "É aplicado só quando chega a primeira requisição, então a ordem de registro dos plugins deixa de importar",
+   "É aplicado depois de todos os middlewares globais, qualquer que seja a ordem de registro no app",
+   "É aplicado na hora do registro, então a ordem em que os plugins entram no app pode importar"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0074",
+    "trecho": "Plugins are always registered immediately. Therefore, the order in which they are used might be important depending on the plugin's functionality."
+   }
+  ],
+  "cartoes": [],
+  "justificativa": "O guia de plugins diz que eles são sempre registrados imediatamente, de modo que a ordem de uso pode importar conforme a função do plugin.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-cal-06",
+  "bloco": "comum",
+  "pergunta": "No exemplo de servir arquivos estáticos do H3 v2 com serveStatic, a partir de quais informações do arquivo o H3 monta o etag usado para responder 304 Not Modified?",
+  "opcoes": [
+   "Do tamanho do arquivo e da data da última modificação, devolvidos pelo getMeta",
+   "De um hash SHA-256 do conteúdo, lido pelo getContents a cada requisição",
+   "Do nome do arquivo e da extensão, combinados com a versão do pacote do app"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0090",
+    "trecho": "The file size and last modification time are used to create an etag to send a `304 Not Modified` response if the file has not been modified since the last request."
+   }
+  ],
+  "cartoes": [],
+  "justificativa": "O exemplo de arquivos estáticos explica que o getMeta devolve tamanho e data de modificação, e que esses dois dados formam o etag usado para o 304.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-cal-07",
+  "bloco": "conflito",
+  "pergunta": "No H3 v2 atual, uma rota usa o curinga \"/hello/**\" sem nome. Qual é a forma vigente, não deprecada, de ler o sub-caminho casado no handler?",
+  "opcoes": [
+   "Em event.context.params._, a chave própria do curinga duplo",
+   "Em event.context.params[0], pela posição do curinga sem nome",
+   "Em event.context.params.path, nome que o roteador atribui por padrão"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "substituida",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0065",
+    "trecho": "An unnamed `**` or `*` stores the matched sub-path as a single string keyed by position (`params[0]`), and is left out when it matches nothing."
+   },
+   {
+    "doc": "doc-0065",
+    "trecho": "`params._` still works for `**` but is deprecated."
+   }
+  ],
+  "cartoes": [
+   "c-docs-05"
+  ],
+  "justificativa": "O guia de rotas diz que o curinga sem nome guarda o sub-caminho em params[0] e que params._ ainda funciona, mas está deprecado; a opção com params._ é a forma antiga.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-cal-08",
+  "bloco": "conflito",
+  "pergunta": "No h3 v2 (2.0.1-rc.16), o que acontece quando o cliente aborta no meio uma resposta cujo corpo é um ReadableStream web?",
+  "opcoes": [
+   "O abort é propagado e o stream é encerrado e tratado corretamente",
+   "O abort não é propagado e o stream da resposta fica vazando",
+   "O abort derruba o processo do servidor com uma exceção não capturada"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "substituida",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0032",
+    "trecho": "|web response stream aborted by client|❌ not propagated, leaks stream|✔️ correctly handled|"
+   },
+   {
+    "doc": "doc-0032",
+    "trecho": "I've updated the [reproduction repository](https://github.com/Hornwitser/h3-stream-problems) to use h3 v2.0.1-rc.16 to show this."
+   }
+  ],
+  "cartoes": [
+   "c-iss-15"
+  ],
+  "justificativa": "A tabela da issue compara v1 e v2 (testada com a rc.16): para stream web de resposta abortado pelo cliente, o v1 não propagava e vazava o stream; o v2 trata corretamente.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-cal-09",
+  "bloco": "conflito",
+  "pergunta": "No h3 2.0.8, como o middleware bodyLimit impõe o limite de tamanho sobre o corpo da requisição?",
+  "opcoes": [
+   "Lê o corpo inteiro para a memória antes e só depois compara o tamanho com o limite",
+   "Confere apenas o cabeçalho Content-Length e deixa passar qualquer corpo sem esse cabeçalho",
+   "Conta os bytes à medida que o handler lê o corpo e responde 413 ao passar do limite"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "substituida",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "**body-limit:** Stream enforcement instead of pre-buffering"
+   },
+   {
+    "doc": "doc-0084",
+    "trecho": "The limit is enforced as the body is read (see {@link assertBodySize}), so an oversized body surfaces as a `413` Request Entity Too Large error when the handler consumes it"
+   }
+  ],
+  "cartoes": [],
+  "justificativa": "O CHANGELOG registra que a imposição do limite passou a ser feita em fluxo, em vez de pré-armazenar o corpo; a documentação atual do bodyLimit confirma que o limite vale conforme o corpo é lido, com 413 quando o handler o consome.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-cal-10",
+  "bloco": "conflito",
+  "pergunta": "No H3 v2, qual é a orientação do projeto para ter certeza de que o corpo recebido por um handler realmente tem o formato esperado?",
+  "opcoes": [
+   "Usar readValidatedBody com um schema compatível com Standard Schema, que falha com erro 400",
+   "Tipar o corpo e a query pelos genéricos do eventHandler, como no v1.8, e confiar nesses tipos",
+   "Aplicar um cast com as ao resultado do readBody, fixando o formato esperado no código"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "substituida",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0094",
+    "trecho": "H3 now supports defining event types using new generic type support."
+   },
+   {
+    "doc": "doc-0092",
+    "trecho": "Do not use type generics as a validation. Providing an interface to a utility like `readBody` is not a validation. You must validate the data before using it."
+   }
+  ],
+  "cartoes": [],
+  "justificativa": "O blog do v1.8 apresentava os genéricos do handler como forma de tipar body e query; o guia atual de validação avisa que genéricos não validam e manda usar os utilitários validados com schemas Standard Schema.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-cal-11",
+  "bloco": "sem_resposta",
+  "pergunta": "No h3 v2, qual imagem base de contêiner o projeto recomenda para publicar um app em produção?",
+  "opcoes": [
+   "Uma imagem Node.js slim com o app já compilado",
+   "Uma imagem distroless com o runtime embutido",
+   "Uma imagem Alpine com o Bun instalado"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por docker, dockerfile, distroless, alpine, slim e container; nada recomenda imagem de contêiner (só aparece fetchContainer, sem relação).",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-cal-12",
+  "bloco": "sem_resposta",
+  "pergunta": "No h3 v2 rodando em Node.js, como o projeto recomenda aproveitar vários núcleos de CPU em produção?",
+  "opcoes": [
+   "Usando o módulo cluster do Node com um worker por núcleo",
+   "Subindo várias instâncias com PM2 atrás de um balanceador",
+   "Habilitando uma opção workers na chamada de serve(app)"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por cluster, pm2, worker_threads, cpus, cores e numWorkers; nenhuma orientação sobre multiprocessamento.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-cal-13",
+  "bloco": "sem_resposta",
+  "pergunta": "No h3 v2, qual exportador de métricas Prometheus o projeto recomenda para medir a latência por rota?",
+  "opcoes": [
+   "Um plugin oficial de métricas registrado com app.register",
+   "O pacote prom-client chamado dentro de um middleware onResponse",
+   "Uma rota /metrics que o próprio H3 expõe com o modo debug ligado"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por prometheus, prom-client, exporter, grafana, datadog e metrics; só há um exemplo genérico de sendMetrics em event.waitUntil, sem recomendar exportador.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-cal-14",
+  "bloco": "sem_resposta",
+  "pergunta": "No h3 v2, como o projeto recomenda gerar a documentação OpenAPI das rotas?",
+  "opcoes": [
+   "Por um plugin que lê os schemas dos handlers validados",
+   "Pela ferramenta de linha de comando que varre as rotas do app",
+   "Escrevendo o documento à mão e servindo-o com serveStatic"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por openapi, swagger e scalar; a única ocorrência de OpenAPI é irrelevante (issue sobre inferência de métodos), sem orientação de documentação.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-cal-15",
+  "bloco": "sem_resposta",
+  "pergunta": "No h3 v2, qual armazenamento externo o projeto recomenda para sessões grandes demais para caber no cookie?",
+  "opcoes": [
+   "Redis, guardando só o id da sessão no cookie selado",
+   "Um banco SQL com tabela de sessões e expiração por maxAge",
+   "O unstorage ligado ao useSession por uma opção store"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por redis, unstorage, session store e storage; as sessões são sempre guardadas no cookie selado e nada trata de armazenamento externo.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-cal-16",
+  "bloco": "sem_resposta",
+  "pergunta": "Qual é a versão mínima do TypeScript que o h3 v2 exige para que os tipos funcionem?",
+  "opcoes": [
+   "TypeScript 5.0 ou superior",
+   "TypeScript 5.4 ou superior",
+   "TypeScript 5.6 ou superior"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por typescript com versão, ts 5 e o campo typescript; só se diz que o h3 usa TypeScript estrito, sem versão mínima.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-cal-17",
+  "bloco": "sem_resposta",
+  "pergunta": "No h3 v2 rodando em Node.js, qual é o tamanho máximo padrão dos cabeçalhos de uma requisição antes de o H3 recusá-la?",
+  "opcoes": [
+   "8 KB no total dos cabeçalhos",
+   "16 KB no total dos cabeçalhos",
+   "64 KB no total dos cabeçalhos"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por header size, max header, max-http-header, 8 kb e 16 kb; o lake não define limite de tamanho de cabeçalhos.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-cal-18",
+  "bloco": "sem_resposta",
+  "pergunta": "No h3 v2, qual é o tempo limite padrão do proxyRequest para o upstream responder antes de a chamada falhar?",
+  "opcoes": [
+   "30 segundos até o primeiro byte",
+   "60 segundos até o primeiro byte",
+   "10 segundos até o primeiro byte"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por timeout junto de proxy e fetch, headersTimeout e connectTimeout; a página de proxy não menciona tempo limite.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-cal-19",
+  "bloco": "sem_resposta",
+  "pergunta": "No repositório do h3, qual é o tamanho máximo de bundle, em kB, que o teste de tamanho aceita antes de falhar?",
+  "opcoes": [
+   "12 kB depois de minificado",
+   "16 kB depois de minificado",
+   "20 kB depois de minificado"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por bundle, minzip, kb e bundlephobia; só há commits do CHANGELOG com título Bump bundle size, sem o valor do limite.",
+  "n_fontes": 0
+ },
+ {
+  "id": "q-cal-20",
+  "bloco": "sem_resposta",
+  "pergunta": "No h3 v2, qual cabeçalho de identificação de requisição o H3 gera automaticamente quando a requisição não traz um?",
+  "opcoes": [
+   "x-request-id com um UUID v4 gerado",
+   "x-correlation-id com um identificador ULID",
+   "traceparent no formato W3C Trace Context"
+  ],
+  "correta": null,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [],
+  "cartoes": [],
+  "justificativa": "Busquei no lake com Grep por request-id, requestid, correlation, traceparent e uuid; x-request-id aparece apenas em exemplos em que o próprio código define o cabeçalho, e nada diz que o H3 gera um.",
+  "n_fontes": 0
+ }
+]

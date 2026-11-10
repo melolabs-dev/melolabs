@@ -1,0 +1,52 @@
+[
+ {
+  "qid": "q109",
+  "pergunta": "No h3, com as opções padrão de setChunkedCookie, até quantos caracteres (já codificados) o valor pode ter sem que a gravação lance erro?",
+  "opcoes": {
+   "A": "Cerca de 40 mil caracteres, em no máximo 10 partes",
+   "B": "Cerca de 400 mil caracteres, em no máximo 100 partes",
+   "C": "Informação insuficiente no material",
+   "D": "Cerca de 4 mil caracteres, pois o valor cabe em um único cookie"
+  }
+ },
+ {
+  "qid": "q050",
+  "pergunta": "No h3 v2, sobre o fallback legado de selo de sessão (1 iteração de PBKDF2) e a opção legacySealFallback, o que foi decidido depois de o v2 ficar estável?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Remover ambos foi feito no próprio v2, e legacySealFallback foi marcada como obsoleta para avisar quem ainda a usava.",
+   "C": "Manter o fallback para sempre, e legacySealFallback foi marcada como obsoleta por ser redundante com o novo padrão.",
+   "D": "Remover ambos foi adiado para o v3, pois removê-los no v2 quebraria as sessões já seladas com 1 iteração."
+  }
+ },
+ {
+  "qid": "q017",
+  "pergunta": "No h3 v2, um app monta sub-apps aninhados e precisa de um tratamento central de erros que também capture as falhas dos sub-apps. Qual abordagem o projeto recomenda?",
+  "opcoes": {
+   "A": "Registrar o hook global onError em cada sub-app, para que todos relatem ao app principal",
+   "B": "Informação insuficiente no material",
+   "C": "Registrar um middleware onError com app.use, em vez de depender dos hooks globais",
+   "D": "Lançar um HTTPError com cause em cada sub-app, para o app principal capturar"
+  }
+ },
+ {
+  "qid": "q112",
+  "pergunta": "Qual é a política dos mantenedores do h3 para quando elevar de novo o mínimo de Node.js da v2, hoje na versão 20.19, por exemplo ao fim do suporte de longo prazo do Node 20?",
+  "opcoes": {
+   "A": "Elevar o mínimo só quando o Node deixar de receber correções de segurança",
+   "B": "Informação insuficiente no material",
+   "C": "Elevar o mínimo no próximo lançamento menor depois do fim do suporte do Node 20",
+   "D": "Elevar o mínimo apenas em uma nova versão maior, junto da v3"
+  }
+ },
+ {
+  "qid": "q019",
+  "pergunta": "Os hooks de erro registrados pelo middleware `onError` do h3 v2 não recebem falhas de streams de resposta. Em que versão do h3 isso passou a ser reportado também nesses hooks?",
+  "opcoes": {
+   "A": "Informação insuficiente no material",
+   "B": "Na v2.1, com um novo evento de erro de stream",
+   "C": "Ainda na v2.0.x, por um ajuste no manipulador de streams",
+   "D": "Na v2.0.9, com um sinal tardio recebido pelo onError"
+  }
+ }
+]

@@ -1,0 +1,429 @@
+[
+ {
+  "id": "q-comum-cod-01",
+  "bloco": "comum",
+  "pergunta": "No h3, a partir da versão 2.0.1-rc.25, qual é o número padrão de iterações de PBKDF2 usado para selar o token de sessão?",
+  "opcoes": [
+   "8192 iterações",
+   "10000 iterações",
+   "600000 iterações"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "**session:** Raise default seal PBKDF2 iterations to 8192"
+   }
+  ],
+  "cartoes": [
+   "c-cod-02"
+  ],
+  "justificativa": "O CHANGELOG da rc.25 registra que o padrão do seal da sessão passou a 8192 iterações de PBKDF2; as outras opções não aparecem nas fontes.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-02",
+  "bloco": "comum",
+  "pergunta": "No h3, uma requisição sem sessão chama apenas getSession para checar autenticação. O que acontece com o cookie de sessão na resposta?",
+  "opcoes": [
+   "Nenhum Set-Cookie é enviado até que algo seja gravado com updateSession",
+   "Um cookie com sessão vazia é enviado já na primeira leitura da sessão",
+   "Um cookie temporário é enviado e removido ao final da mesma requisição"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "A request without a session gets a new one initialized in memory only — no"
+   }
+  ],
+  "cartoes": [
+   "c-cod-04"
+  ],
+  "justificativa": "A documentação de getSession diz que a sessão nova fica só em memória e que nenhum Set-Cookie é emitido até um updateSession; ler a sessão não a inicia para visitantes anônimos.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-03",
+  "bloco": "comum",
+  "pergunta": "No h3, com idleTimeout configurado, a partir de que parcela da janela ociosa já consumida o getSession reenvia o cookie selado para deslizar a janela?",
+  "opcoes": [
+   "Quando um quarto da janela já foi consumido, para manter margem de segurança",
+   "Em toda leitura da sessão, para que o horário registrado seja sempre exato",
+   "Quando mais da metade da janela já foi consumida, por causa do custo do seal"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "So reseal only once the window is more than half used."
+   }
+  ],
+  "cartoes": [
+   "c-cod-17"
+  ],
+  "justificativa": "O código define SLIDE_THRESHOLD = 0.5 e o comentário explica que o reselo só ocorre depois de mais da metade da janela usada, porque o seal é a operação mais cara.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-04",
+  "bloco": "comum",
+  "pergunta": "No h3, a partir de que momento é contado o maxAge de uma sessão e a atividade do usuário o reinicia?",
+  "opcoes": [
+   "Conta desde a criação da sessão e a atividade não o reinicia",
+   "Conta desde a última requisição e cada acesso reinicia a contagem",
+   "Conta desde o último reselo do cookie e cada escrita reinicia a contagem"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "Absolute session lifetime in seconds, counted from when the session was"
+   }
+  ],
+  "cartoes": [
+   "c-cod-18"
+  ],
+  "justificativa": "maxAge é a vida útil absoluta contada desde createdAt, atingida independentemente da atividade; a janela deslizante é papel do idleTimeout.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-05",
+  "bloco": "comum",
+  "pergunta": "No h3, uma requisição traz o token de sessão tanto no cabeçalho de sessão quanto em cookie, com sessionHeader no padrão. De onde o token é lido primeiro?",
+  "opcoes": [
+   "Do cookie, usando o cabeçalho apenas quando o cookie estiver ausente",
+   "Do cabeçalho de sessão, recorrendo aos cookies se ele não existir",
+   "Dos dois, valendo o que tiver createdAt mais recente na sessão"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "// Try header first"
+   }
+  ],
+  "cartoes": [
+   "c-cod-16"
+  ],
+  "justificativa": "getSession tenta primeiro o cabeçalho (x-h3-session ou x-{name}-session) e só então cai para os cookies.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-06",
+  "bloco": "comum",
+  "pergunta": "No h3, a opção origin do CORS recebe uma lista com a expressão regular /example\\.com/ sem âncoras. Qual é a consequência?",
+  "opcoes": [
+   "Só origens exatamente iguais a https://example.com são aceitas",
+   "Origens como https://example.com.evil.test também são aceitas",
+   "A expressão é ignorada e vale o curinga padrão para todas as origens"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0106",
+    "trecho": "string **unanchored** (via `RegExp.prototype.test`). A pattern like"
+   }
+  ],
+  "cartoes": [
+   "c-cod-30"
+  ],
+  "justificativa": "As entradas RegExp são testadas sem âncora com RegExp.prototype.test, então o padrão também casa https://example.com.evil.test; é preciso ancorar com ^ e $ e escapar os pontos.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-07",
+  "bloco": "comum",
+  "pergunta": "No h3, um handler lança o objeto { status: 404, message: \"x\" }, que não é um Error. Qual é o resultado?",
+  "opcoes": [
+   "Resposta 404, usando o status do objeto lançado",
+   "Resposta 200, com o objeto serializado em JSON no corpo",
+   "Resposta 500 não tratada, ignorando o status do objeto"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0103",
+    "trecho": "is never trusted to shape the response, not even via a `status` shorthand."
+   }
+  ],
+  "cartoes": [
+   "c-cod-23"
+  ],
+  "justificativa": "toError embrulha qualquer valor lançado que não seja Error em um HTTPError 500 unhandled; só um número lançado vira status, e um objeto nunca molda a resposta.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-08",
+  "bloco": "comum",
+  "pergunta": "No h3, um POST chega a uma rota que usa serveStatic sem a opção fallthrough. Como o serveStatic responde?",
+  "opcoes": [
+   "404 sem allow, como se o arquivo faltasse",
+   "405 com allow: GET, HEAD, OPTIONS",
+   "405 com o cabeçalho allow: GET, HEAD"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0109",
+    "trecho": "event.res.headers.set(\"allow\", \"GET, HEAD\");"
+   }
+  ],
+  "cartoes": [
+   "c-cod-32"
+  ],
+  "justificativa": "Para métodos diferentes de GET e HEAD, sem fallthrough, o serveStatic define allow: GET, HEAD e lança HTTPError 405.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-09",
+  "bloco": "comum",
+  "pergunta": "No h3, o serveStatic recebe um caminho que é diretório e a opção indexNames não foi informada. Qual arquivo de índice ele procura?",
+  "opcoes": [
+   "Somente /index.html, sem outros nomes",
+   "/index.html e depois /index.htm",
+   "Somente /default.html, sem outros nomes"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0109",
+    "trecho": "* @default [\"/index.html\"]"
+   }
+  ],
+  "cartoes": [
+   "c-cod-33"
+  ],
+  "justificativa": "A documentação da opção indexNames declara o valor padrão [\"/index.html\"].",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-10",
+  "bloco": "comum",
+  "pergunta": "No h3, além de ser um Error com o nome HTTPError, o que HTTPError.isError exige para devolver verdadeiro?",
+  "opcoes": [
+   "Que a instância venha da classe HTTPError do mesmo módulo",
+   "Que o erro tenha um status numérico maior que 99",
+   "Que o erro não esteja marcado como não tratado"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0098",
+    "trecho": "input instanceof Error && input?.name === \"HTTPError\" && (input as HTTPError).status > 99"
+   }
+  ],
+  "cartoes": [
+   "c-cod-22"
+  ],
+  "justificativa": "isError confere instanceof Error, o nome HTTPError e status > 99, o que rejeita erros homônimos de clientes fetch e aceita erros no mesmo formato vindos de outros pacotes.",
+  "n_fontes": 1
+ },
+ {
+  "id": "q-comum-cod-11",
+  "bloco": "comum",
+  "pergunta": "Em qual versão candidata do h3 2.0.1 a decodificação UTF-8 das credenciais de Basic auth foi introduzida, e o que o requireBasicAuth faz com credenciais que não são UTF-8 válido?",
+  "opcoes": [
+   "Na rc.30; responde 400 por considerar o cabeçalho malformado",
+   "Na rc.24; responde 401 por considerar as credenciais inválidas",
+   "Na rc.26; mantém a leitura Latin-1 para clientes legados"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "Decode Basic-auth credentials as UTF-8"
+   },
+   {
+    "doc": "doc-0104",
+    "trecho": "// Not valid UTF-8: keep the Latin-1 interpretation for legacy clients."
+   }
+  ],
+  "cartoes": [
+   "c-cod-14"
+  ],
+  "justificativa": "O CHANGELOG coloca a mudança na rc.26 e o código de auth.ts mostra que, se a decodificação UTF-8 estrita falha, mantém-se a leitura Latin-1.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-cod-12",
+  "bloco": "comum",
+  "pergunta": "No h3, chega um HEAD a um caminho que só tem rota GET, e há um middleware registrado com method: GET. O que acontece?",
+  "opcoes": [
+   "A rota GET atende o HEAD sem corpo, mas o middleware GET é ignorado nessa requisição",
+   "A rota GET atende o HEAD sem corpo e o middleware GET também roda",
+   "O HEAD recebe 405, pois nenhuma rota HEAD foi registrada na aplicação"
+  ],
+  "correta": 1,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0100",
+    "trecho": "// Fall back to the matching GET route (RFC 9110). The method stays \"HEAD\""
+   },
+   {
+    "doc": "doc-0102",
+    "trecho": "// HEAD is served by GET handlers (RFC 9110), so GET-scoped middleware also matches HEAD"
+   }
+  ],
+  "cartoes": [
+   "c-cod-25",
+   "c-cod-26"
+  ],
+  "justificativa": "h3.ts cai para a rota GET quando não há rota HEAD, e middleware.ts faz o middleware com escopo GET também casar com HEAD; as duas fontes juntas garantem rota e guarda aplicados.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-cod-13",
+  "bloco": "comum",
+  "pergunta": "No h3, com as opções padrão de setChunkedCookie, até quantos caracteres (já codificados) o valor pode ter sem que a gravação lance erro?",
+  "opcoes": [
+   "Cerca de 4 mil caracteres, pois o valor cabe em um único cookie",
+   "Cerca de 40 mil caracteres, em no máximo 10 partes",
+   "Cerca de 400 mil caracteres, em no máximo 100 partes"
+  ],
+  "correta": 2,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0105",
+    "trecho": "const CHUNKS_MAX_LENGTH = 4000;"
+   },
+   {
+    "doc": "doc-0105",
+    "trecho": "// 100 chunks × ~4KB = ~400KB, far beyond any practical cookie size."
+   }
+  ],
+  "cartoes": [
+   "c-cod-20"
+  ],
+  "justificativa": "setChunkedCookie divide o valor em partes de 4000 caracteres por padrão e aceita no máximo 100 partes, ou seja, cerca de 400 mil caracteres.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-cod-14",
+  "bloco": "comum",
+  "pergunta": "No h3, uma requisição cria a sessão com updateSession e depois o handler lança um erro 500. O cookie de sessão acompanha a resposta de erro?",
+  "opcoes": [
+   "Sim, pois o h3 copia os Set-Cookie da sessão para errHeaders a cada gravação",
+   "Não, pois respostas de erro nunca recebem nenhum cabeçalho preparado no evento",
+   "Sim, pois todo cabeçalho de event.res.headers é copiado para respostas 4xx e 5xx"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0108",
+    "trecho": "Mirror this session's `Set-Cookie` headers into `event.res.errHeaders`."
+   },
+   {
+    "doc": "doc-0103",
+    "trecho": "// Error responses (4xx/5xx) only receive headers explicitly staged as `event.res.errHeaders`"
+   }
+  ],
+  "cartoes": [
+   "c-cod-19",
+   "c-cod-27"
+  ],
+  "justificativa": "Respostas 4xx/5xx só recebem o que está em errHeaders (response.ts) e a sessão espelha seus Set-Cookie nesse local (session.ts), então o cookie não se perde.",
+  "n_fontes": 2
+ },
+ {
+  "id": "q-comum-cod-15",
+  "bloco": "comum",
+  "pergunta": "A partir de qual versão candidata do h3 2.0.1 o serveStatic deixou de resolver um pathname como //private/x, e o que responde por padrão a ele?",
+  "opcoes": [
+   "Desde a rc.28; responde 404, ou deixa passar com fallthrough ligado",
+   "Desde a rc.28; reduz as barras iniciais a uma só e serve o arquivo da pasta pública",
+   "Desde a rc.32; responde 403 para qualquer pathname fora do padrão"
+  ],
+  "correta": 0,
+  "alt_tipo": [
+   "",
+   "",
+   ""
+  ],
+  "fontes": [
+   {
+    "doc": "doc-0060",
+    "trecho": "**static:** Refuse a non-canonical pathname instead of resolving it"
+   },
+   {
+    "doc": "doc-0109",
+    "trecho": "A **non-canonical pathname is not served** (404, or falls through when"
+   }
+  ],
+  "cartoes": [
+   "c-cod-10"
+  ],
+  "justificativa": "O CHANGELOG da rc.28 registra a recusa de pathname não canônico e static.ts detalha que o resultado é 404, ou fallthrough quando a opção está ligada.",
+  "n_fontes": 2
+ }
+]

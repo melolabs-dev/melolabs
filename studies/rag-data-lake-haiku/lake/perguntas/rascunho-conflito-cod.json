@@ -1,0 +1,130 @@
+[
+  {
+    "id": "q-conf-cod-01",
+    "bloco": "conflito",
+    "pergunta": "Na versão 2.0.8 do h3, quantas iterações de PBKDF2 o seal de sessão usa por padrão ao criar uma sessão nova?",
+    "opcoes": [
+      "Oito mil cento e noventa e duas iterações, elevado nas candidatas da 2.0.1",
+      "Uma única iteração, padrão mantido por compatibilidade com cookies antigos",
+      "Cem mil iterações, valor hoje recomendado para derivação de chaves a partir de senhas"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**session:** Raise default seal PBKDF2 iterations to 8192"
+      },
+      {
+        "doc": "doc-0108",
+        "trecho": "Set to `false` to reject sessions sealed with the legacy default of 1"
+      }
+    ],
+    "cartoes": [
+      "c-cod-01",
+      "c-cod-02"
+    ],
+    "justificativa": "O changelog registra a elevação do padrão para 8192 e o código chama de legado o padrão antigo de 1 iteração; a opção de 1 iteração é a decisão antiga substituída.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-cod-02",
+    "bloco": "conflito",
+    "pergunta": "Hoje, no h3 2.0.8, quando o CORS é aplicado duas vezes na mesma resposta (middleware e handler), como os cabeçalhos CORS de valor único são gravados?",
+    "opcoes": [
+      "São anexados a cada aplicação, acumulando os valores de cada chamada no mesmo cabeçalho",
+      "São definidos com set, substituindo o valor anterior; só o vary anexa",
+      "Só a primeira aplicação grava; as seguintes são ignoradas pelo h3 sem erro"
+    ],
+    "correta": 1,
+    "alt_tipo": [
+      "substituida",
+      "",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**cors:** Set single-valued CORS headers instead of appending"
+      },
+      {
+        "doc": "doc-0106",
+        "trecho": "CORS headers are single-valued, so use `.set` to avoid invalid duplicated"
+      }
+    ],
+    "cartoes": [
+      "c-cod-07",
+      "c-cod-08"
+    ],
+    "justificativa": "O changelog troca o append por set nos cabeçalhos de valor único e o código define set para eles, com append só para vary. A opção de anexar a cada chamada é o comportamento antigo.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-cod-03",
+    "bloco": "conflito",
+    "pergunta": "Hoje, no h3 2.0.8, o que o serveStatic faz com um pathname não canônico, como o que começa com duas barras (//private/x)?",
+    "opcoes": [
+      "Responde 400 Bad Request antes de consultar qualquer rota ou backend de assets",
+      "Resolve o caminho e serve o arquivo correspondente, ignorando as barras repetidas",
+      "Não serve o arquivo: responde 404, ou deixa a requisição seguir com fallthrough"
+    ],
+    "correta": 2,
+    "alt_tipo": [
+      "",
+      "substituida",
+      ""
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**static:** Refuse a non-canonical pathname instead of resolving it"
+      },
+      {
+        "doc": "doc-0109",
+        "trecho": "A **non-canonical pathname is not served** (404, or falls through when"
+      }
+    ],
+    "cartoes": [
+      "c-cod-09",
+      "c-cod-10"
+    ],
+    "justificativa": "O changelog troca resolver por recusar o pathname não canônico e o código documenta 404 ou fallthrough. A opção de resolver e servir é a decisão antiga substituída.",
+    "n_fontes": 2
+  },
+  {
+    "id": "q-conf-cod-04",
+    "bloco": "conflito",
+    "pergunta": "Hoje, no h3 2.0.8, qual é a forma indicada de montar uma resposta de server-sent events dentro de um handler?",
+    "opcoes": [
+      "Instanciar EventStream com o evento da requisição e retorná-lo do handler",
+      "Montar um ReadableStream próprio com content-type text/event-stream",
+      "Chamar createEventStream(event) e devolver o objeto que essa função cria"
+    ],
+    "correta": 0,
+    "alt_tipo": [
+      "",
+      "",
+      "substituida"
+    ],
+    "fontes": [
+      {
+        "doc": "doc-0060",
+        "trecho": "**sse:** Promote EventStream to public API, deprecate createEventStream"
+      },
+      {
+        "doc": "doc-0075",
+        "trecho": "Construct it directly with `new EventStream(event)` and return it from a handler."
+      }
+    ],
+    "cartoes": [
+      "c-cod-11",
+      "c-cod-12"
+    ],
+    "justificativa": "O changelog promove EventStream a API pública e deprecia createEventStream; o guia manda construir new EventStream(event) e retorná-lo. A opção de usar createEventStream é a antiga.",
+    "n_fontes": 2
+  }
+]
