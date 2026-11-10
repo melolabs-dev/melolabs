@@ -1,0 +1,22 @@
+(modelo, braço, k): acertos/n [Wilson] | comum conflito sem_resposta | tokens_in | US$ nominal/chamada | real/chamada | nominal por decisão correta
+('haiku', 'A0', 0) 38/105 [0.28,0.46] com:9/55 con:4/25 sem:25/25 tok 1137 nom 0.00035 real 0.00033 por_correta 0.00096
+('haiku', 'A1', 0) 76/80 [0.88,0.98] com:52/55 con:24/25 sem:0/0 tok 6952 nom 0.00143 real 0.00051 por_correta 0.0015
+('haiku', 'A2', 0) 80/105 [0.67,0.83] com:40/55 con:15/25 sem:25/25 tok 223899 nom 0.22391 real 0.01200 por_correta 0.29388
+('haiku', 'A3', 10) 74/105 [0.61,0.78] com:30/55 con:19/25 sem:25/25 tok 3471 nom 0.00080 real 0.00041 por_correta 0.00113
+('haiku', 'A4a', 10) 77/105 [0.64,0.81] com:35/55 con:17/25 sem:25/25 tok 3544 nom 0.00081 real 0.00042 por_correta 0.00111
+('haiku', 'A4b', 10) 87/105 [0.75,0.89] com:41/55 con:21/25 sem:25/25 tok 3581 nom 0.00079 real 0.00038 por_correta 0.00096
+('haiku', 'A5', 10) 99/105 [0.88,0.97] com:49/55 con:25/25 sem:25/25 tok 4116 nom 0.00088 real 0.00040 por_correta 0.00093
+('haiku', 'A6', 10) 67/105 [0.54,0.72] com:27/55 con:15/25 sem:25/25 tok 1797 nom 0.00038 real 0.00009 por_correta 0.0006
+('haiku', 'N1', 10) 26/105 [0.17,0.34] com:0/55 con:1/25 sem:25/25 tok 3478 nom 0.00075 real 0.00036 por_correta 0.00304
+('haiku', 'N1b', 10) 76/80 [0.88,0.98] com:52/55 con:24/25 sem:0/0 tok 9269 nom 0.00189 real 0.00074 por_correta 0.00199
+('haiku', 'N2', 10) 77/80 [0.90,0.99] com:54/55 con:23/25 sem:0/0 tok 7678 nom 0.00159 real 0.00061 por_correta 0.00165
+('sonnet', 'A0', 0) 57/105 [0.45,0.63] com:22/55 con:12/25 sem:23/25 tok 1116 nom 0.00590 real 0.00567 por_correta 0.01087
+('sonnet', 'A1', 0) 80/80 [0.95,1.00] com:55/55 con:25/25 sem:0/0 tok 6931 nom 0.02777 real 0.01163 por_correta 0.02777
+
+Hipóteses confirmatórias (Holm):
+H1 {"estimativa": 0.7875, "criterio": ">= 0.25", "p": 0.0, "ic95": [0.6875, 0.875], "n": 80, "p_holm": 0.0, "apoiada": true}
+H2 {"estimativa": -0.050000000000000044, "criterio": "> -0.10", "p": 0.0174, "ic95": [-0.09999999999999998, -0.012499999999999956], "n": 80, "p_holm": 0.0348, "apoiada": true}
+H3 {"estimativa": 0.9682539682539684, "criterio": ">= 0.80 (melhor RAG escolhido dentro de cada réplica)", "p": 0.0009, "n": 80, "p_holm": 0.0027, "apoiada": true}
+H9 {"estimativa": 1.027777777777778, "criterio": ">= 1.0 (acerto >= 90% e custo por correta <= 50% do Sonnet+oráculo)", "p": 0.1437, "n": 80, "p_holm": 0.1437, "apoiada": false}
+H10a {"estimativa": 1.0, "criterio": ">= 1 (custo A5 <= 25% do A2 e acerto A5 >= A2 - 10 pp)", "p": 0.0, "n": 105, "p_holm": 0.0, "apoiada": true}
+H10b {"estimativa": -0.00020239676767676773, "criterio": "< 0 (IC95 inteiro abaixo de zero)", "p": 0.0003, "ic95": [-0.0003678174702380953, -7.431200992555841e-05], "n": 105, "p_holm": 0.0012, "apoiada": true}

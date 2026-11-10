@@ -1,0 +1,17 @@
+{
+ "gerado_em": "2026-11-10T04:45:01",
+ "prereg_tag": "prereg-rag-data-lake-haiku",
+ "chamadas": 7200,
+ "erros": 0,
+ "uso_assinatura_semanal_apos_rodada": "21% (plano Ultra, todos os modelos, lido em 10/11/2026 depois das 7.200 chamadas e de outras atividades da sess\u00e3o)",
+ "sha256": {
+  "studies/rag-data-lake-haiku/dados/analise-sem-piloto.txt": "f3f0ba18be5b2fc90d166ce6f6323738b27e7a3c3c865ecff6b3930cd0e3ec6a",
+  "studies/rag-data-lake-haiku/dados/analise.txt": "0997d4ea10253134fa12ba95741601f36fb0e2a115202a8982c6ec56b653e0c0",
+  "studies/rag-data-lake-haiku/dados/bruto/haiku-A2.jsonl": "7f1a19a0c5b17803ce309bc3da68062bea7e4b18b95d79405a8df1981e1f287e",
+  "studies/rag-data-lake-haiku/dados/bruto/haiku.jsonl": "edb0153cf776dad3e22eb2ea7ee900ef30aa3f007762328f5aa5674961e7d237",
+  "studies/rag-data-lake-haiku/dados/bruto/sonnet.jsonl": "4305cc72e28c5509275a0e506103455d74073a021b4f50a999b055dfd365d51b",
+  "studies/rag-data-lake-haiku/dados/qids-piloto.txt": "f17f91fd85f28ae839738149fa73cceaba416b040e8133aade8b6f0042c1a878",
+  "studies/rag-data-lake-haiku/dados/qids.txt": "9810dcd9e9e1a79d0b52fb9567a72719c8e205178e2be1363baba154d3b1ea37",
+  "studies/rag-data-lake-haiku/dados/rodar.sh": "9c28117dec03511089c77dc4a146242df8bffc40893fc6aa1db382974e7326a4"
+ }
+}
