@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="628.2pt" height="302.688pt" viewBox="0 0 628.2 302.688" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-10T05:10:29.128209</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 302.688 
+L 628.2 302.688 
+L 628.2 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 10.548 154.116 
+L 617.652 154.116 
+Q 621 154.116 621 150.7896 
+L 621 49.3344 
+Q 621 46.008 617.652 46.008 
+L 10.548 46.008 
+Q 7.2 46.008 7.2 49.3344 
+L 7.2 150.7896 
+Q 7.2 154.116 10.548 154.116 
+z
+" clip-path="url(#p1a4aa55bed)" style="fill: #f4f6f7; stroke: #d5dde0; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 13.338 284.4 
+L 98.712 284.4 
+Q 102.06 284.4 102.06 281.0736 
+L 102.06 171.3024 
+Q 102.06 167.976 98.712 167.976 
+L 13.338 167.976 
+Q 9.99 167.976 9.99 171.3024 
+L 9.99 281.0736 
+Q 9.99 284.4 13.338 284.4 
+z
+" clip-path="url(#p1a4aa55bed)" style="fill: #fbe9e7; stroke: #e6b5ae; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 113.778 284.4 
+L 199.152 284.4 
+Q 202.5 284.4 202.5 281.0736 
+L 202.5 171.3024 
+Q 202.5 167.976 199.152 167.976 
+L 113.778 167.976 
+Q 110.43 167.976 110.43 171.3024 
+L 110.43 281.0736 
+Q 110.43 284.4 113.778 284.4 
+z
+" clip-path="url(#p1a4aa55bed)" style="fill: #fbe9e7; stroke: #e6b5ae; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 214.218 284.4 
+L 299.592 284.4 
+Q 302.94 284.4 302.94 281.0736 
+L 302.94 171.3024 
+Q 302.94 167.976 299.592 167.976 
+L 214.218 167.976 
+Q 210.87 167.976 210.87 171.3024 
+L 210.87 281.0736 
+Q 210.87 284.4 214.218 284.4 
+z
+" clip-path="url(#p1a4aa55bed)" style="fill: #fbe9e7; stroke: #e6b5ae; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 314.658 284.4 
+L 400.032 284.4 
+Q 403.38 284.4 403.38 281.0736 
+L 403.38 171.3024 
+Q 403.38 167.976 400.032 167.976 
+L 314.658 167.976 
+Q 311.31 167.976 311.31 171.3024 
+L 311.31 281.0736 
+Q 311.31 284.4 314.658 284.4 
+z
+" clip-path="url(#p1a4aa55bed)" style="fill: #fbe9e7; stroke: #e6b5ae; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 415.098 284.4 
+L 500.472 284.4 
+Q 503.82 284.4 503.82 281.0736 
+L 503.82 171.3024 
+Q 503.82 167.976 500.472 167.976 
+L 415.098 167.976 
+Q 411.75 167.976 411.75 171.3024 
+L 411.75 281.0736 
+Q 411.75 284.4 415.098 284.4 
+z
+" clip-path="url(#p1a4aa55bed)" style="fill: #e4f2ee; stroke: #9fcfc2; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 515.538 284.4 
+L 600.912 284.4 
+Q 604.26 284.4 604.26 281.0736 
+L 604.26 171.3024 
+Q 604.26 167.976 600.912 167.976 
+L 515.538 167.976 
+Q 512.19 167.976 512.19 171.3024 
+L 512.19 281.0736 
+Q 512.19 284.4 515.538 284.4 
+z
+" clip-path="url(#p1a4aa55bed)" style="fill: #e4f2ee; stroke: #9fcfc2; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="12.78" y="21.405656" transform="rotate(-0 12.78 21.405656)">Um exemplo real: o que cada forma de contexto respondeu</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(18.36 66.996188)">Na discussão de junho de 2025 no h3 sobre um util defineRoute, pi0 propôs um método declarativo no core</text>
+    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(18.36 80.520188)">e, quatro dias depois, disse ter acabado adicionando outra coisa. O que foi adicionado?</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="18.36" y="131.610164" transform="rotate(-0 18.36 131.610164)">A) O util defineRoute no core</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 9.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="325.26" y="131.610164" transform="rotate(-0 325.26 131.610164)">B) Uma interface de plugins de uso geral   ✔ certa</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="18.36" y="159.410211" transform="rotate(-0 18.36 159.410211)">C) Informação insuficiente no material</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="325.26" y="159.518164" transform="rotate(-0 325.26 159.518164)">D) O método app.register(spec) no core</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(50.664109 188.370188)">Só</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(32.454281 197.437141)">a pergunta</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 24px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b8423b" x="56.025" y="237.966375" transform="rotate(-0 56.025 237.966375)">C</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b8423b" x="56.025" y="270.625422" transform="rotate(-0 56.025 270.625422)">✘</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(141.486219 187.365063)">Projeto</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(127.162516 198.518188)">inteiro colado</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 24px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b8423b" x="156.465" y="237.966375" transform="rotate(-0 156.465 237.966375)">C</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b8423b" x="156.465" y="270.625422" transform="rotate(-0 156.465 270.625422)">✘</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(243.990219 188.065828)">Busca</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(224.474266 197.685063)">simples (vetor)</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 24px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b8423b" x="256.905" y="237.966375" transform="rotate(-0 256.905 237.966375)">C</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b8423b" x="256.905" y="270.625422" transform="rotate(-0 256.905 270.625422)">✘</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(341.859625 188.370188)">Híbrida</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(334.178078 198.518188)">+ reranker</text>
+   </g>
+   <g id="text_17">
+    <text style="font-weight: 700; font-size: 24px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b8423b" x="357.345" y="237.966375" transform="rotate(-0 357.345 237.966375)">C</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b8423b" x="357.345" y="270.625422" transform="rotate(-0 357.345 270.625422)">✘</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(439.012141 188.370188)">Memória</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(442.927828 198.518188)">curada</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 24px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b6b6f" x="457.785" y="237.966375" transform="rotate(-0 457.785 237.966375)">B</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b6b6f" x="457.785" y="270.625422" transform="rotate(-0 457.785 270.625422)">✔</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(531.077219 188.065828)">Documentos</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(531.519984 198.007563)">certos (teto)</text>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 700; font-size: 24px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b6b6f" x="558.225" y="237.966375" transform="rotate(-0 558.225 237.966375)">B</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b6b6f" x="558.225" y="270.625422" transform="rotate(-0 558.225 270.625422)">✔</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p1a4aa55bed">
+   <rect x="7.2" y="7.2" width="613.8" height="288.288"/>
+  </clipPath>
+ </defs>
+</svg>

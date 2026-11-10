@@ -8,54 +8,68 @@ status: draft
 study: rag-data-lake-haiku
 ---
 
-**Plain-language version of the "Haiku with a mini data lake" study.** For the full scientific write-up, read the [technical article](/en/rag-data-lake-haiku/). This page is what it means if you want to use it tomorrow.
+**Plain-language version of the "Haiku with a mini data lake" study.** For the full method and numbers, read the [technical article](/en/rag-data-lake-haiku/). This is what it means if you want to use it tomorrow.
 
 ## In one sentence
 
-A small model, Haiku, **with no project material answers only about 1 in 7 decisions** that depend on the project's history. With a **curated project memory** (document excerpts plus decision cards, marked with which decisions were superseded), it got **114 of 120 questions right at less than 1/200 of the cost of pasting the whole project into the prompt**. The key caveat is further down: the questions came from the same cards the memory delivers.
+A Haiku with no project material gets **14%** of the decisions that depend on project history right. With a **curated project memory** it gets **93%**, and each answer costs **about 250 times less** than pasting the whole project into the prompt.
 
-## What we tested
+![Haiku accuracy under each way of giving context](/assets/rag-data-lake-haiku/fig-escada-en.svg)
 
-We built a "mini data lake" from the open-source project h3: 109 documents (code, issues, docs and the previous study) and 152 decision cards, each with the decision, the reason, when it applies and whether another decision superseded it. We wrote **120 multiple-choice questions** about project decisions (60 ordinary, 30 with an old and a current decision, 30 with no answer in the material). Each question was answered **5 times** under each way of giving Haiku context, for **7,200 calls** in total, with no failures.
+## What we did
+
+![The three steps of the study](/assets/rag-data-lake-haiku/fig-metodo-simples-en.svg)
+
+We built a "mini data lake" from a real open-source project (h3): 109 documents and 152 **decision cards**, which are short notes with the decision, the reason, when it applies and whether another decision superseded it. Then we wrote **120 questions** like "what was decided and what holds today?" and had Haiku answer each one **5 times**, in **11 different ways**, for **7,200 answers in total, with no failures**. Before running anything we wrote down the hypotheses and criteria, so we could not move the goalposts after seeing results.
+
+## An example to see it
+
+![A real question and what each way answered](/assets/rag-data-lake-haiku/fig-exemplo-en.svg)
+
+The question is about a discussion where someone proposed one thing and, days later, ended up doing another. Four ways of giving context, including the whole project pasted in, answered "insufficient information". The curated memory got it right, because the card said which decision superseded which.
 
 ## What we found
 
-| How Haiku got its context | Correct of 120 | Cost per correct decision* |
-|---|---|---|
-| Question only | 43 (36%) | US$ 0.001 |
-| Whole project pasted in the prompt | 91 (76%) | **US$ 0.295** |
-| Simple chunk search | 84 (70%) | US$ 0.0011 |
-| Better search (hybrid + reranking) | 99 (83%) | US$ 0.0010 |
-| **Curated memory (chunks + cards + superseded decisions)** | **114 (95%)** | **US$ 0.0009** |
-| Right documents handed over (upper bound) | 86 of 90 (96%) | US$ 0.0015 |
+**1. Without material, Haiku does not "guess well": it abstains.** When it was wrong with no context, it picked "insufficient information" in 73 of 77 answers. The problem is not making things up, it is not knowing an answer exists.
 
-*List price with no cache, per correct call. On the subscription the real spend was lower.
+**2. Curated memory gets close to the ceiling.** On the 90 questions that have an answer in the material it got 84 right; handing over the right documents got 86. On the 30 questions where an old and a new decision conflict, it got **30 of 30**.
 
-**1. Pasting everything is expensive and not the best.** The whole project is about 224k tokens. Pasting it for every question cost, at list price, **over 300 times** the curated memory, and scored lower (76% vs 95%).
+**3. Pasting everything is costlier and worse.** The whole project is about 224k tokens. Pasting it for every question cost **250 times more** and scored lower (76% vs 95% over the 120).
 
-**2. The curated memory came close to the ceiling.** On the 90 questions that have an answer in the material, it got 84 right (93%); handing over the right documents got 86 (96%).
+![Cost of answering 1,000 questions](/assets/rag-data-lake-haiku/fig-custo-en.svg)
 
-**3. Haiku with the right context came close to Sonnet.** With the right documents, Haiku got 86 of 90 and Sonnet 90 of 90, a gap of about 4 points.
+**4. With the right context, Haiku gets close to Sonnet.** With the right documents Haiku got 86 of 90 and Sonnet 90 of 90, at about 1/19 of the cost.
 
-**4. Noise and old decisions hurt less than expected here.** Mixing irrelevant chunks or superseded decisions into the right material changed accuracy little (86 and 87 of 90 vs 86). Irrelevant chunks alone dropped Haiku to 26%, below giving it nothing.
+**5. One simple trick is worth a lot: reorder the search results.** Asking a reader model (a "reranker") to reorder the 30 best candidates raised accuracy from 88 to 99 out of 120.
 
-## Where we did not confirm
+**6. Irrelevant text does not hurt when the right material is there too.** Mixing random chunks or superseded decisions into the right material changed almost nothing (86 and 87 of 90). On its own, noise is worse than giving nothing.
 
-- **The "abstention gate" made things worse.** The idea was for the system to answer "not enough information" without calling the model when retrieval found nothing good. It abstains too often: 78 correct of 120. Do not use it as is.
-- **Cost against Sonnet with the right documents.** We expected Haiku with the best search to reach 90% of Sonnet's accuracy with the right documents at under half the cost. Cost came in far below, but the statistical evidence for the accuracy part did not meet our criterion (p = 0.08 after correction).
+## What the hypotheses meant
 
-## The caveat that changes how to read this
+Before running, we fixed six questions and how much result would count as "yes". Five passed:
 
-**The questions were written from the same decision cards the curated memory delivers.** In 79 of the 90 answerable questions, the source card was among the 3 cards delivered. In a real project your questions do not come from your cards. So the jump from 83% to 95% over the better search is a **ceiling**, not a forecast. What remains safe to say: searching well (hybrid plus reranking) already beats pasting everything, and delivering a few excerpts costs hundreds of times less.
+![The six hypotheses](/assets/rag-data-lake-haiku/fig-hipoteses-en.svg)
 
-## The practical recipe
+- **H1:** does the right context really help? Yes, +81 points.
+- **H2:** is Haiku close to Sonnet with the right context? Yes, within 4 points.
+- **H3:** does automatic search recover the gain of the right context? Yes, 97% of it.
+- **H9:** does Haiku with search match Sonnet with the right documents at half the cost? Cost passed easily, but the accuracy evidence did not meet our criterion. It stays **not confirmed**.
+- **H10a and H10b:** is curated memory far cheaper than pasting everything and than simple search? Yes, on both.
+
+## What did not work, and what to keep in mind
+
+- **The "abstention gate"** (answering "not enough information" without calling the model when search finds little) made results worse. It abstains too much. Do not use it as is.
+- **The questions came from the same cards the curated memory delivers.** In 79 of the 90 questions, the source card was among those delivered. In a real project your questions do not come from your cards. The jump from 83% to 95% over the best search is a **ceiling**, not a forecast. The advantage of reranked search over pasting everything does not have this problem.
+- **One project, 120 multiple-choice questions**, an answer key written by AI from the same family as the models tested.
+
+## The recipe
+
+![Five-step recipe](/assets/rag-data-lake-haiku/fig-receita-en.svg)
 
 1. **Do not paste the whole project.** More context is not more accuracy.
-2. **Search by chunks, combining keywords and meaning, and rerank** candidates before building the prompt.
-3. **Write decision cards** (decision, reason, when it applies, what it supersedes) and **mark what was superseded**.
-4. **Allow an "insufficient information" answer**, but do not automate abstention without testing it.
+2. **Search chunks**, combining keywords and meaning.
+3. **Rerank** the candidates with a reranker.
+4. **Write decision cards** (decision, reason, when it applies, what it supersedes) and **flag what was superseded**.
 5. **Measure with questions you did not write from your own cards.**
 
-## What is out of scope
-
-One project, 120 multiple-choice questions, an answer key written and reviewed by AI from the same family as the models tested. Open-ended questions, other projects and other models are left for other studies. Data and code are in the [study repository](/en/rag-data-lake-haiku/).
+All code, questions and raw data are in the [study repository](/en/rag-data-lake-haiku/), so you can check or repeat it.

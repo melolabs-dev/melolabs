@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="656.1pt" height="153pt" viewBox="0 0 656.1 153" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-10T05:10:29.006486</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 153 
+L 656.1 153 
+L 656.1 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 11.106 134.712 
+L 126.054 134.712 
+Q 127.17 134.712 127.17 133.6032 
+L 127.17 19.3968 
+Q 127.17 18.288 126.054 18.288 
+L 11.106 18.288 
+Q 9.99 18.288 9.99 19.3968 
+L 9.99 133.6032 
+Q 9.99 134.712 11.106 134.712 
+z
+" clip-path="url(#pc90d4a2aec)" style="fill: #eef4f4; stroke: #bcd3d4; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 139.446 134.712 
+L 254.394 134.712 
+Q 255.51 134.712 255.51 133.6032 
+L 255.51 19.3968 
+Q 255.51 18.288 254.394 18.288 
+L 139.446 18.288 
+Q 138.33 18.288 138.33 19.3968 
+L 138.33 133.6032 
+Q 138.33 134.712 139.446 134.712 
+z
+" clip-path="url(#pc90d4a2aec)" style="fill: #eef4f4; stroke: #bcd3d4; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 267.786 134.712 
+L 382.734 134.712 
+Q 383.85 134.712 383.85 133.6032 
+L 383.85 19.3968 
+Q 383.85 18.288 382.734 18.288 
+L 267.786 18.288 
+Q 266.67 18.288 266.67 19.3968 
+L 266.67 133.6032 
+Q 266.67 134.712 267.786 134.712 
+z
+" clip-path="url(#pc90d4a2aec)" style="fill: #eef4f4; stroke: #bcd3d4; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 396.126 134.712 
+L 511.074 134.712 
+Q 512.19 134.712 512.19 133.6032 
+L 512.19 19.3968 
+Q 512.19 18.288 511.074 18.288 
+L 396.126 18.288 
+Q 395.01 18.288 395.01 19.3968 
+L 395.01 133.6032 
+Q 395.01 134.712 396.126 134.712 
+z
+" clip-path="url(#pc90d4a2aec)" style="fill: #eef4f4; stroke: #bcd3d4; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 524.466 134.712 
+L 639.414 134.712 
+Q 640.53 134.712 640.53 133.6032 
+L 640.53 19.3968 
+Q 640.53 18.288 639.414 18.288 
+L 524.466 18.288 
+Q 523.35 18.288 523.35 19.3968 
+L 523.35 133.6032 
+Q 523.35 134.712 524.466 134.712 
+z
+" clip-path="url(#pc90d4a2aec)" style="fill: #eef4f4; stroke: #bcd3d4; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b6b6f" x="68.58" y="47.911781" transform="rotate(-0 68.58 47.911781)">1</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(25.688828 89.225859)">Não cole o projeto</text>
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(53.551016 103.216438)">inteiro</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b6b6f" x="196.92" y="47.911781" transform="rotate(-0 196.92 47.911781)">2</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(151.184594 89.145813)">Busque trechos por</text>
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(147.043453 102.305813)">palavra + significado</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b6b6f" x="325.26" y="47.911781" transform="rotate(-0 325.26 47.911781)">3</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(268.766 90.056438)">Reordene os candidatos</text>
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(284.787859 103.216438)">com um reranker</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b6b6f" x="453.6" y="47.911781" transform="rotate(-0 453.6 47.911781)">4</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(389.432516 90.136484)">Escreva cartões de decisão</text>
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(394.29775 102.493813)">e marque os substituídos</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #0b6b6f" x="581.94" y="47.911781" transform="rotate(-0 581.94 47.911781)">5</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(522.316828 89.001141)">Meça com perguntas que</text>
+    <text style="font-size: 9.4px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(526.590891 103.296484)">não vieram dos cartões</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pc90d4a2aec">
+   <rect x="7.2" y="7.2" width="641.7" height="138.6"/>
+  </clipPath>
+ </defs>
+</svg>

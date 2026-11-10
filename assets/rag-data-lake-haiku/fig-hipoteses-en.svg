@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="628.2pt" height="269.424pt" viewBox="0 0 628.2 269.424" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-10T05:10:30.488441</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 269.424 
+L 628.2 269.424 
+L 628.2 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 11.664 52.446194 
+L 616.536 52.446194 
+Q 621 52.446194 621 49.155561 
+L 621 22.830503 
+Q 621 19.539871 616.536 19.539871 
+L 11.664 19.539871 
+Q 7.2 19.539871 7.2 22.830503 
+L 7.2 49.155561 
+Q 7.2 52.446194 11.664 52.446194 
+z
+" clip-path="url(#pf644537a49)" style="fill: #f1f6f5; stroke: #d3e0de; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 11.664 93.579097 
+L 616.536 93.579097 
+Q 621 93.579097 621 90.288465 
+L 621 63.963406 
+Q 621 60.672774 616.536 60.672774 
+L 11.664 60.672774 
+Q 7.2 60.672774 7.2 63.963406 
+L 7.2 90.288465 
+Q 7.2 93.579097 11.664 93.579097 
+z
+" clip-path="url(#pf644537a49)" style="fill: #f1f6f5; stroke: #d3e0de; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 11.664 134.712 
+L 616.536 134.712 
+Q 621 134.712 621 131.421368 
+L 621 105.09631 
+Q 621 101.805677 616.536 101.805677 
+L 11.664 101.805677 
+Q 7.2 101.805677 7.2 105.09631 
+L 7.2 131.421368 
+Q 7.2 134.712 11.664 134.712 
+z
+" clip-path="url(#pf644537a49)" style="fill: #f1f6f5; stroke: #d3e0de; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 11.664 175.844903 
+L 616.536 175.844903 
+Q 621 175.844903 621 172.554271 
+L 621 146.229213 
+Q 621 142.938581 616.536 142.938581 
+L 11.664 142.938581 
+Q 7.2 142.938581 7.2 146.229213 
+L 7.2 172.554271 
+Q 7.2 175.844903 11.664 175.844903 
+z
+" clip-path="url(#pf644537a49)" style="fill: #fbefe8; stroke: #ecc9b6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 11.664 216.977806 
+L 616.536 216.977806 
+Q 621 216.977806 621 213.687174 
+L 621 187.362116 
+Q 621 184.071484 616.536 184.071484 
+L 11.664 184.071484 
+Q 7.2 184.071484 7.2 187.362116 
+L 7.2 213.687174 
+Q 7.2 216.977806 11.664 216.977806 
+z
+" clip-path="url(#pf644537a49)" style="fill: #f1f6f5; stroke: #d3e0de; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 11.664 258.11071 
+L 616.536 258.11071 
+Q 621 258.11071 621 254.820077 
+L 621 228.495019 
+Q 621 225.204387 616.536 225.204387 
+L 11.664 225.204387 
+Q 7.2 225.204387 7.2 228.495019 
+L 7.2 254.820077 
+Q 7.2 258.11071 11.664 258.11071 
+z
+" clip-path="url(#pf644537a49)" style="fill: #f1f6f5; stroke: #d3e0de; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="18.36" y="39.369985" transform="rotate(-0 18.36 39.369985)">H1</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="68.58" y="38.539118" transform="rotate(-0 68.58 38.539118)">Does the right context help?</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="414.54" y="33.706693" transform="rotate(-0 414.54 33.706693)">+81 pp (CI 72 to 89)</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="414.54" y="45.682892" transform="rotate(-0 414.54 45.682892)">target: ≥ 25 pp</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b6b6f" x="609.84" y="38.591079" transform="rotate(-0 609.84 38.591079)">supported</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="18.36" y="80.502889" transform="rotate(-0 18.36 80.502889)">H2</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="68.58" y="79.672021" transform="rotate(-0 68.58 79.672021)">Does Haiku get close to Sonnet?</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="414.54" y="74.839596" transform="rotate(-0 414.54 74.839596)">−4.4 pp (CI −8.9 to −1.1)</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="414.54" y="86.816139" transform="rotate(-0 414.54 86.816139)">target: within 10 pp</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b6b6f" x="609.84" y="79.723982" transform="rotate(-0 609.84 79.723982)">supported</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="18.36" y="121.635792" transform="rotate(-0 18.36 121.635792)">H3</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="68.58" y="120.804925" transform="rotate(-0 68.58 120.804925)">Does search recover the gain?</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="414.54" y="115.9725" transform="rotate(-0 414.54 115.9725)">97%</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="414.54" y="127.948699" transform="rotate(-0 414.54 127.948699)">target: ≥ 80%</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b6b6f" x="609.84" y="120.856886" transform="rotate(-0 609.84 120.856886)">supported</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b8423b" x="18.36" y="162.768695" transform="rotate(-0 18.36 162.768695)">H9</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="68.58" y="161.937828" transform="rotate(-0 68.58 161.937828)">Haiku + search = Sonnet + right docs at half the cost?</text>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="414.54" y="157.105403" transform="rotate(-0 414.54 157.105403)">p = 0.08</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="414.54" y="169.081946" transform="rotate(-0 414.54 169.081946)">target: p &lt; 0.05 (Holm)</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b8423b" x="609.84" y="161.989789" transform="rotate(-0 609.84 161.989789)">not supported</text>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="18.36" y="203.901598" transform="rotate(-0 18.36 203.901598)">H10a</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="68.58" y="203.070731" transform="rotate(-0 68.58 203.070731)">Curated at ¼ the cost of pasting, no accuracy loss?</text>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="414.54" y="198.238705" transform="rotate(-0 414.54 198.238705)">~1/250 of the cost, +19 pp</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="414.54" y="210.214849" transform="rotate(-0 414.54 210.214849)">target: ≤ 25% of cost</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b6b6f" x="609.84" y="203.122692" transform="rotate(-0 609.84 203.122692)">supported</text>
+   </g>
+   <g id="text_26">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="18.36" y="245.035009" transform="rotate(-0 18.36 245.035009)">H10b</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="68.58" y="244.203634" transform="rotate(-0 68.58 244.203634)">Is curated memory cheaper than simple search?</text>
+   </g>
+   <g id="text_28">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="414.54" y="239.371608" transform="rotate(-0 414.54 239.371608)">−US$ 0.0002 (CI &lt; 0)</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="414.54" y="251.347752" transform="rotate(-0 414.54 251.347752)">target: CI below zero</text>
+   </g>
+   <g id="text_30">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b6b6f" x="609.84" y="244.255595" transform="rotate(-0 609.84 244.255595)">supported</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pf644537a49">
+   <rect x="7.2" y="7.2" width="613.8" height="255.024"/>
+  </clipPath>
+ </defs>
+</svg>

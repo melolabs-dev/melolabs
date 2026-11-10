@@ -8,54 +8,68 @@ status: draft
 study: rag-data-lake-haiku
 ---
 
-**Versão simples do estudo "Haiku com mini data lake".** Se você quer o rigor científico, leia o [artigo técnico](/pt/rag-data-lake-haiku/). Aqui está o que ele significa para quem quer usar isso amanhã.
+**Versão simples do estudo "Haiku com mini data lake".** Para o método completo e os números, leia o [artigo técnico](/pt/rag-data-lake-haiku/). Aqui está o que ele significa para quem quer usar isso amanhã.
 
 ## Em uma frase
 
-Um modelo pequeno, o Haiku, **sem nenhum material do projeto, acerta só 1 de cada 7 decisões** que dependem do histórico do projeto. Com uma **memória curada do projeto** (trechos dos documentos mais os cartões de decisão, com a marca de quais decisões já foram substituídas), ele acertou **114 de 120 perguntas, por menos de 1/200 do custo de colar o projeto inteiro no prompt**. A ressalva importante está mais abaixo: as perguntas saíram dos mesmos cartões que a memória entrega.
+Um Haiku sem nenhum material do projeto acerta **14%** das decisões que dependem do histórico. Com uma **memória curada do projeto**, ele acerta **93%**, e cada resposta custa **cerca de 250 vezes menos** do que colar o projeto inteiro no prompt.
 
-## O que a gente testou
+![Acerto do Haiku em cada forma de dar contexto](/assets/rag-data-lake-haiku/fig-escada-pt.svg)
 
-Montamos um "mini data lake" do projeto aberto h3: 109 documentos (código, issues, documentação e o estudo anterior) e 152 cartões de decisão, cada um com a decisão, o motivo, quando vale e se foi substituída por outra. Fizemos **120 perguntas de múltipla escolha** sobre decisões do projeto (60 comuns, 30 em que existe uma decisão antiga e uma vigente, 30 sem resposta no material). Cada pergunta foi respondida **5 vezes** por cada forma de dar contexto ao Haiku, num total de **7.200 chamadas**, sem nenhuma falha.
+## O que a gente fez
+
+![Os três passos do estudo](/assets/rag-data-lake-haiku/fig-metodo-simples-pt.svg)
+
+Montamos um "mini data lake" de um projeto aberto de verdade (o h3): 109 documentos e 152 **cartões de decisão**, que são fichas curtas com a decisão, o motivo, quando vale e se foi substituída por outra. Depois escrevemos **120 perguntas** do tipo "o que foi decidido e o que vale hoje?" e deixamos o Haiku respondê-las **5 vezes cada**, de **11 jeitos diferentes**, num total de **7.200 respostas, sem nenhuma falha**. Antes de rodar, escrevemos as hipóteses e os critérios, para não ajustar a régua depois de ver o resultado.
+
+## Um exemplo para entender
+
+![Uma pergunta real e o que cada jeito respondeu](/assets/rag-data-lake-haiku/fig-exemplo-pt.svg)
+
+A pergunta é sobre uma discussão em que alguém propôs uma coisa e, dias depois, acabou fazendo outra. Quatro jeitos de dar contexto, inclusive o projeto inteiro colado, responderam "informação insuficiente". A memória curada acertou, porque o cartão dizia qual decisão substituiu qual.
 
 ## O que a gente descobriu
 
-| Como o Haiku recebeu o contexto | Acertos em 120 | Custo por decisão correta* |
-|---|---|---|
-| Só a pergunta | 43 (36%) | US$ 0,001 |
-| Projeto inteiro colado no prompt | 91 (76%) | **US$ 0,295** |
-| Busca simples por trechos | 84 (70%) | US$ 0,0011 |
-| Busca melhor (híbrida + reordenação) | 99 (83%) | US$ 0,0010 |
-| **Memória curada (trechos + cartões + decisões substituídas)** | **114 (95%)** | **US$ 0,0009** |
-| Documentos certos entregues de bandeja (limite superior) | 86 de 90 (96%) | US$ 0,0015 |
+**1. Sem material, o Haiku não "chuta bem": ele se abstém.** Quando errou sem contexto, ele escolheu "informação insuficiente" em 73 de 77 respostas. O problema não é inventar, é não saber que existe resposta.
 
-*Preço de lista sem cache, por chamada acertada. Na assinatura o gasto real foi menor.
+**2. A memória curada chega perto do teto.** Nas 90 perguntas que têm resposta no material, ela acertou 84; entregar os documentos certos de bandeja acertou 86. Nas 30 perguntas de conflito entre decisão antiga e nova, acertou **30 de 30**.
 
-**1. Colar tudo é caro e não é o melhor.** O projeto inteiro tem cerca de 224 mil tokens. Colar isso em cada pergunta custou, no preço de lista, **mais de 300 vezes** o da memória curada, e acertou menos (76% contra 95%).
+**3. Colar tudo é mais caro e pior.** O projeto inteiro tem cerca de 224 mil tokens. Colar isso em cada pergunta custou **250 vezes mais** e acertou menos (76% contra 95% no conjunto de 120).
 
-**2. A memória curada chegou perto do máximo.** Nas 90 perguntas que têm resposta no material, ela acertou 84 (93%); entregar os documentos certos de bandeja acertou 86 (96%).
+![Custo de responder 1.000 perguntas](/assets/rag-data-lake-haiku/fig-custo-pt.svg)
 
-**3. O Haiku com o contexto certo ficou perto do Sonnet.** Com os documentos certos, o Haiku acertou 86 de 90 e o Sonnet 90 de 90, uma diferença de cerca de 4 pontos.
+**4. Com o contexto certo, o Haiku chega perto do Sonnet.** Com os documentos certos, o Haiku acertou 86 de 90 e o Sonnet 90 de 90, a cerca de 1/19 do custo.
 
-**4. Ruído e decisões velhas não atrapalharam tanto aqui.** Misturar trechos irrelevantes ao material certo, ou decisões já substituídas, mudou pouco o acerto (86 e 87 de 90 contra 86). Trechos irrelevantes sozinhos derrubaram o Haiku para 26%, abaixo de não dar nada.
+**5. Um truque simples vale muito: reordenar os resultados da busca.** Pedir a um modelo leitor (um "reranker") para reordenar os 30 melhores candidatos subiu o acerto de 88 para 99 em 120.
 
-## Onde a gente não confirmou
+**6. Texto irrelevante não derruba quando o material certo está junto.** Misturar trechos aleatórios ou decisões já substituídas ao material certo mudou quase nada (86 e 87 de 90). Sozinho, o ruído é pior do que dar nada.
 
-- **O "portão de abstenção" piorou o resultado.** A ideia era o sistema responder "não sei" sem chamar o modelo quando a busca não achasse nada bom. Ele abstém demais: caiu para 78 acertos de 120. Não vale usar como está.
-- **Custo contra o Sonnet com os documentos certos.** Esperávamos que o Haiku com a melhor busca chegasse a 90% do acerto do Sonnet com os documentos certos gastando menos da metade. O custo ficou muito abaixo, mas a evidência estatística do acerto não passou do nosso critério (p = 0,08 após a correção).
+## O que as hipóteses queriam dizer
 
-## A ressalva que muda como ler isso
+Antes de rodar, fixamos seis perguntas e quanto de resultado bastaria para dizer "sim". Cinco delas passaram:
 
-**As perguntas foram escritas a partir dos mesmos cartões de decisão que a memória curada entrega.** Em 79 das 90 perguntas com resposta, o cartão de origem estava entre os 3 cartões entregues. Num projeto real, as suas perguntas não saem dos seus cartões. O ganho de 83% para 95% da memória curada sobre a busca melhor é, portanto, um **teto**, não uma previsão. O que sobra com segurança: buscar bem (híbrido mais reordenação) já ganha muito de colar tudo, e entregar poucos trechos custa centenas de vezes menos.
+![As seis hipóteses](/assets/rag-data-lake-haiku/fig-hipoteses-pt.svg)
 
-## A receita prática
+- **H1:** dar o contexto certo ajuda de verdade? Sim, +81 pontos.
+- **H2:** o Haiku fica perto do Sonnet com o contexto certo? Sim, a 4 pontos.
+- **H3:** uma busca automática recupera o ganho do contexto certo? Sim, 97% dele.
+- **H9:** Haiku com busca iguala o Sonnet com documentos certos, por metade do custo? O custo passou com folga, mas a evidência do acerto não passou do nosso critério. Fica como **não confirmada**.
+- **H10a e H10b:** a memória curada é bem mais barata que colar tudo e que a busca simples? Sim, nas duas.
+
+## O que não funcionou, e o que fica de cuidado
+
+- **O "portão de abstenção"** (responder "não sei" sem chamar o modelo quando a busca acha pouco) piorou o resultado. Ele abstém demais. Não use como está.
+- **As perguntas saíram dos mesmos cartões que a memória curada entrega.** Em 79 das 90 perguntas, o cartão de origem estava entre os entregues. Num projeto real, suas perguntas não saem dos seus cartões. O salto de 83% para 95% sobre a melhor busca é um **teto**, não uma previsão. A vantagem da busca com reranker sobre colar tudo não tem esse problema.
+- **Um projeto, 120 perguntas de múltipla escolha**, gabarito escrito por IA da mesma família dos modelos testados.
+
+## A receita
+
+![Receita em cinco passos](/assets/rag-data-lake-haiku/fig-receita-pt.svg)
 
 1. **Não cole o projeto inteiro.** Mais contexto não é mais acerto.
-2. **Busque por trechos, combinando palavra-chave e significado, e reordene** os candidatos antes de montar o prompt.
-3. **Escreva cartões de decisão** (decisão, motivo, quando vale, o que substitui) e **marque o que foi substituído**.
-4. **Permita responder "informação insuficiente"**, mas não automatize essa abstenção sem testar.
+2. **Busque trechos** combinando palavra-chave e significado.
+3. **Reordene** os candidatos com um reranker.
+4. **Escreva cartões de decisão** (decisão, motivo, quando vale, o que substitui) e **marque o que foi substituído**.
 5. **Meça com perguntas que você não escreveu a partir dos seus cartões.**
 
-## O que fica de fora
-
-Um projeto, 120 perguntas de múltipla escolha, gabarito escrito e revisado por IA da mesma família dos modelos testados. Perguntas abertas, outros projetos e outros modelos ficam para outros estudos. Os dados e o código estão no [repositório do estudo](/pt/rag-data-lake-haiku/).
+Todo o código, as perguntas e os dados brutos estão no [repositório do estudo](/pt/rag-data-lake-haiku/), para você conferir ou repetir.
