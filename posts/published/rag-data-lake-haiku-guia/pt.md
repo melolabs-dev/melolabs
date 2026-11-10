@@ -73,3 +73,8 @@ Antes de rodar, fixamos seis perguntas e quanto de resultado bastaria para dizer
 5. **Meça com perguntas que você não escreveu a partir dos seus cartões.**
 
 Todo o código, as perguntas e os dados brutos estão no [repositório do estudo](/pt/rag-data-lake-haiku/), para você conferir ou repetir.
+
+Dados e código do estudo, arquivados com DOI: [10.5281/zenodo.24101665](https://doi.org/10.5281/zenodo.24101665).
+
+---
+*Os experimentos, os dados e as conclusões são meus. A redação foi assistida por IA e revisada por mim.*

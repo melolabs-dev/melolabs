@@ -208,4 +208,7 @@ Com segurança: o contexto certo transforma um Haiku que acerta 14% em um que ac
 
 ## 11. Reprodutibilidade
 
-Código em `tools/rag-lake/`; perguntas, gabarito e lake em `studies/rag-data-lake-haiku/`; dados brutos em `dados/bruto/` com manifesto de hashes; figuras geradas por `studies/rag-data-lake-haiku/analise/figuras.py`. Tags `prereg-rag-data-lake-haiku` e `dados-rag-data-lake-haiku`. Análise: `python tools/rag-lake/analisar.py dados/bruto/*.jsonl --replicas 10000`.
+Código em `tools/rag-lake/`; perguntas, gabarito e lake em `studies/rag-data-lake-haiku/`; dados brutos em `dados/bruto/` com manifesto de hashes; figuras geradas por `studies/rag-data-lake-haiku/analise/figuras.py`. Tags `prereg-rag-data-lake-haiku` e `dados-rag-data-lake-haiku`. Análise: `python tools/rag-lake/analisar.py dados/bruto/*.jsonl --replicas 10000`. Dados, código e prompts arquivados com DOI [10.5281/zenodo.24101665](https://doi.org/10.5281/zenodo.24101665) (versão 2.0.0 do registro no Zenodo).
+
+---
+*Os experimentos, os dados e as conclusões são meus. A redação foi assistida por IA e revisada por mim.*

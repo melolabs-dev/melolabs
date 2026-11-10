@@ -73,3 +73,8 @@ Before running, we fixed six questions and how much result would count as "yes".
 5. **Measure with questions you did not write from your own cards.**
 
 All code, questions and raw data are in the [study repository](/en/rag-data-lake-haiku/), so you can check or repeat it.
+
+Study data and code, archived with DOI: [10.5281/zenodo.24101665](https://doi.org/10.5281/zenodo.24101665).
+
+---
+*The experiments, data and conclusions are mine. The writing was AI-assisted and reviewed by me.*
