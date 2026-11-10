@@ -1,0 +1,3 @@
+How to use Haiku in everyday SDD without overspending
+
+https://melolabs.net/en/haiku-sdd-guia/
