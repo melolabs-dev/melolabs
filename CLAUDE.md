@@ -36,6 +36,7 @@ Público: devs júnior/pleno que o autor mentora + comunidade em geral. Publica�
 - Draft: `posts/drafts/<slug>/pt.md` e `en.md`, com frontmatter `title`, `lang`, `tags`, `sources: [ids das notas do RAG]`, `status` (draft | review | approved).
 - **Só o autor aprova.** Quando o autor disser "aprovado" para um post (e idioma), isso é a permissão para publicar aquele post: mudar `status: approved` e rodar `python tools/publish/publish.py <slug> --lang <pt|en> --yes`. Nunca aprovar por conta própria.
 - Sempre rodar antes a simulação (sem `--yes`) e mostrar o resultado do portão. O portão bloqueia se: status ≠ approved, nota-fonte não validada ou não publicável, `TODO` no texto.
+- **O site NÃO tem pipeline automático** (decisão do autor, 2026-11-11): publicar no git não atualiza o melolabs.net. Depois do `publish.py --yes`, rodar `cd site && npm run build`, zipar `site/dist` (arquivos na raiz do zip) e enviar o zip no Cloudflare Pages (projeto melolabs, upload direto); só então conferir o site. Nunca dizer que está publicado antes disso.
 - O script publica no DEV e no Hashnode via API (com `canonical_url` do site), faz commit e push do repositório (o site publica a partir daí) e grava `linkedin-<lang>.txt` para o autor postar.
 - Credenciais só em `.env` (ver `.env.example`). Eu não leio, peço nem digito senhas, tokens ou cookies; não uso o navegador para fazer login. Se um token faltar, o script pula aquela plataforma e avisa.
 
