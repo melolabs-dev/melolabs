@@ -1,3 +1,21 @@
-O quanto o data lake de UX ajuda um modelo pequeno em telas grandes? Medimos a completude, regra por regra
+Mais regras de UX na frente do Haiku, melhor ele decide. Mas busca simples não basta.
 
+Fiz o estudo completo, com pré-registro e dados abertos: 2.640 chamadas, Haiku 5.5 contra Sonnet 5.5, seis famílias de telas de produção, 200 regras de UX auditadas contra as fontes.
+
+O que medi, regra por regra:
+
+→ Sem o data lake: 46% de acerto.
+→ Com o lake inteiro: 70%. Com o lake e o relatório de um verificador em navegador: 78%.
+→ O acerto subiu em degraus conforme a completude do lake: 47%, 59%, 67% e 76% nas regras mostradas.
+→ Mesmo volume de texto sobre outros assuntos: quase nada de ganho. A regra certa é o que conta.
+
+O que NÃO funcionou, e está no artigo: recuperar as regras só com busca por palavras (BM25) não manteve o ganho, e o relatório do verificador fez o modelo focar só no que ele listava.
+
+Tudo reproduzível: pré-registro, desvios, dados brutos e DOI no Zenodo.
+
+Artigo técnico completo:
 https://melolabs.net/pt/haiku-ui-producao/
+
+Você mede o que o seu data lake entrega, ou só confia que ajuda?
+
+#haiku #ux #datalake #ia #engenhariadesoftware

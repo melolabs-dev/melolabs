@@ -1,3 +1,21 @@
-How much does a UX data lake help a small model on big screens? We measured completeness, rule by rule
+The more UX rules Haiku sees, the better it decides. But simple search is not enough.
 
+I ran the full study, pre-registered, with open data: 2,640 calls, Haiku 5.5 vs Sonnet 5.5, six families of production screens, 200 UX rules audited against their sources.
+
+What I measured, rule by rule:
+
+→ Without the data lake: 46% accuracy.
+→ With the whole lake: 70%. With the lake plus a real-browser verifier report: 78%.
+→ Accuracy climbed in steps with lake completeness: 47%, 59%, 67% and 76% on the rules shown.
+→ The same amount of text about other subjects: almost no gain. The right rule is what counts.
+
+What did NOT work, and it is in the article: retrieving rules with plain keyword search (BM25) did not keep the gain, and the verifier report made the model focus only on what it listed.
+
+Everything is reproducible: pre-registration, deviations log, raw data and a Zenodo DOI.
+
+Full technical article:
 https://melolabs.net/en/haiku-ui-producao/
+
+Do you measure what your data lake delivers, or just trust that it helps?
+
+#haiku #ux #datalake #ai #softwareengineering

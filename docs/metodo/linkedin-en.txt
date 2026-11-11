@@ -1,0 +1,24 @@
+This week I ran 4 studies with Haiku. Three things worked, and I wrote the step-by-step so you can repeat them on your own machine.
+
+What worked, with numbers:
+
+→ Curated memory instead of pasting everything into the prompt: 114 of 120 correct against 91, at US$ 0.00088 per call instead of US$ 0.224.
+→ UX rules + a real-browser verifier: Haiku went from 46% to 78% on big screens and beat Sonnet without rules (61%) at about 8% of the cost.
+→ SDD with Haiku only (tests first, loop on the real error): 72% against Sonnet's 91%, at 0.18 of the cost. And 94% once the contract asks for the edge case that was missing.
+
+What ties the three together: small model + the right knowledge + verification by code. No magic prompt.
+
+The manual I built shows:
+• how to build the data lake (decision cards, BM25, vectors and a reranker)
+• which libraries to install and which versions
+• the exact parameters used in each study
+• 3 ready-made skills for Claude Code
+
+Caveats I am not hiding: one project, synthetic screens, and the skills are derived from the methods (they were not tested as skills).
+
+Manual and skills (open source):
+https://github.com/melolabs-dev/melolabs/tree/main/docs/metodo
+
+Which of the three would you test first?
+
+#haiku #ai #datalake #ux #softwareengineering
