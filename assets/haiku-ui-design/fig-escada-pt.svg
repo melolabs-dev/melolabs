@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="544.5pt" height="285.758984pt" viewBox="0 0 544.5 285.758984" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-10T21:44:34.619221</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 285.758984 
+L 544.5 285.758984 
+L 544.5 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 7.2 260.558125 
+L 537.3 260.558125 
+L 537.3 38.798125 
+L 7.2 38.798125 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 31.295455 260.558125 
+L 100.079141 260.558125 
+L 100.079141 120.736566 
+L 31.295455 120.736566 
+z
+" clip-path="url(#p9807d05a64)" style="fill: #8d99a0"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 105.581836 260.558125 
+L 174.365523 260.558125 
+L 174.365523 74.881108 
+L 105.581836 74.881108 
+z
+" clip-path="url(#p9807d05a64)" style="fill: #3f78b5"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 179.868218 260.558125 
+L 248.651904 260.558125 
+L 248.651904 73.001786 
+L 179.868218 73.001786 
+z
+" clip-path="url(#p9807d05a64)" style="fill: #1f8a70"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 295.848096 260.558125 
+L 364.631782 260.558125 
+L 364.631782 118.857244 
+L 295.848096 118.857244 
+z
+" clip-path="url(#p9807d05a64)" style="fill: #8d99a0"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 370.134477 260.558125 
+L 438.918164 260.558125 
+L 438.918164 92.546735 
+L 370.134477 92.546735 
+z
+" clip-path="url(#p9807d05a64)" style="fill: #3f78b5"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 444.420859 260.558125 
+L 513.204545 260.558125 
+L 513.204545 86.532905 
+L 444.420859 86.532905 
+z
+" clip-path="url(#p9807d05a64)" style="fill: #1f8a70"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="ma3328bd6bb" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#ma3328bd6bb" x="139.973679" y="260.558125" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="139.973679" y="275.916406" transform="rotate(-0 139.973679 275.916406)">Criar tela</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#ma3328bd6bb" x="404.526321" y="260.558125" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="404.526321" y="275.916406" transform="rotate(-0 404.526321 275.916406)">Melhorar tela</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="patch_9">
+    <path d="M 7.2 260.558125 
+L 537.3 260.558125 
+" style="fill: none; stroke: #555555; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1f2a30" x="65.687298" y="117.917583" transform="rotate(-0 65.687298 117.917583)">74%</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1f2a30" x="139.973679" y="72.062125" transform="rotate(-0 139.973679 72.062125)">99%</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1f2a30" x="214.260061" y="70.182803" transform="rotate(-0 214.260061 70.182803)">100%</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1f2a30" x="330.239939" y="116.038261" transform="rotate(-0 330.239939 116.038261)">75%</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1f2a30" x="404.526321" y="89.727752" transform="rotate(-0 404.526321 89.727752)">89%</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1f2a30" x="478.812702" y="83.713922" transform="rotate(-0 478.812702 83.713922)">93%</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start" x="7.2" y="16.798125" transform="rotate(-0 7.2 16.798125)">Do Haiku puro às regras e ao kit (Haiku 5.5)</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_10">
+     <path d="M 104.800625 54.946641 
+L 123.800625 54.946641 
+L 123.800625 48.296641 
+L 104.800625 48.296641 
+z
+" style="fill: #8d99a0"/>
+    </g>
+    <g id="text_10">
+     <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start" x="131.400625" y="54.946641" transform="rotate(-0 131.400625 54.946641)">Puro</text>
+    </g>
+    <g id="patch_11">
+     <path d="M 171.492109 54.946641 
+L 190.492109 54.946641 
+L 190.492109 48.296641 
+L 171.492109 48.296641 
+z
+" style="fill: #3f78b5"/>
+    </g>
+    <g id="text_11">
+     <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start" x="198.092109" y="54.946641" transform="rotate(-0 198.092109 54.946641)">+ regras do data lake</text>
+    </g>
+    <g id="patch_12">
+     <path d="M 320.089922 54.946641 
+L 339.089922 54.946641 
+L 339.089922 48.296641 
+L 320.089922 48.296641 
+z
+" style="fill: #1f8a70"/>
+    </g>
+    <g id="text_12">
+     <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start" x="346.689922" y="54.946641" transform="rotate(-0 346.689922 54.946641)">+ regras e relatório</text>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p9807d05a64">
+   <rect x="7.2" y="38.798125" width="530.1" height="221.76"/>
+  </clipPath>
+ </defs>
+</svg>

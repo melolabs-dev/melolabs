@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="656.1pt" height="341.496pt" viewBox="0 0 656.1 341.496" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-10T21:44:36.240847</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 341.496 
+L 656.1 341.496 
+L 656.1 -0 
+L 0 -0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 11.664 67.355586 
+L 644.436 67.355586 
+Q 648.9 67.355586 648.9 64.347807 
+L 648.9 40.285572 
+Q 648.9 37.277793 644.436 37.277793 
+L 11.664 37.277793 
+Q 7.2 37.277793 7.2 40.285572 
+L 7.2 64.347807 
+Q 7.2 67.355586 11.664 67.355586 
+z
+" clip-path="url(#p8082a01097)" style="fill: #fbefe8; stroke: #ecc9b6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 11.664 104.952828 
+L 644.436 104.952828 
+Q 648.9 104.952828 648.9 101.945048 
+L 648.9 77.882814 
+Q 648.9 74.875034 644.436 74.875034 
+L 11.664 74.875034 
+Q 7.2 74.875034 7.2 77.882814 
+L 7.2 101.945048 
+Q 7.2 104.952828 11.664 104.952828 
+z
+" clip-path="url(#p8082a01097)" style="fill: #f1f2f3; stroke: #d8dcde; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 11.664 142.550069 
+L 644.436 142.550069 
+Q 648.9 142.550069 648.9 139.54229 
+L 648.9 115.480055 
+Q 648.9 112.472276 644.436 112.472276 
+L 11.664 112.472276 
+Q 7.2 112.472276 7.2 115.480055 
+L 7.2 139.54229 
+Q 7.2 142.550069 11.664 142.550069 
+z
+" clip-path="url(#p8082a01097)" style="fill: #f1f6f5; stroke: #d3e0de; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 11.664 180.14731 
+L 644.436 180.14731 
+Q 648.9 180.14731 648.9 177.139531 
+L 648.9 153.077297 
+Q 648.9 150.069517 644.436 150.069517 
+L 11.664 150.069517 
+Q 7.2 150.069517 7.2 153.077297 
+L 7.2 177.139531 
+Q 7.2 180.14731 11.664 180.14731 
+z
+" clip-path="url(#p8082a01097)" style="fill: #f1f6f5; stroke: #d3e0de; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 11.664 217.744552 
+L 644.436 217.744552 
+Q 648.9 217.744552 648.9 214.736772 
+L 648.9 190.674538 
+Q 648.9 187.666759 644.436 187.666759 
+L 11.664 187.666759 
+Q 7.2 187.666759 7.2 190.674538 
+L 7.2 214.736772 
+Q 7.2 217.744552 11.664 217.744552 
+z
+" clip-path="url(#p8082a01097)" style="fill: #fbf3e1; stroke: #ebd49e; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 11.664 255.341793 
+L 644.436 255.341793 
+Q 648.9 255.341793 648.9 252.334014 
+L 648.9 228.271779 
+Q 648.9 225.264 644.436 225.264 
+L 11.664 225.264 
+Q 7.2 225.264 7.2 228.271779 
+L 7.2 252.334014 
+Q 7.2 255.341793 11.664 255.341793 
+z
+" clip-path="url(#p8082a01097)" style="fill: #f1f6f5; stroke: #d3e0de; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 11.664 292.939034 
+L 644.436 292.939034 
+Q 648.9 292.939034 648.9 289.931255 
+L 648.9 265.869021 
+Q 648.9 262.861241 644.436 262.861241 
+L 11.664 262.861241 
+Q 7.2 262.861241 7.2 265.869021 
+L 7.2 289.931255 
+Q 7.2 292.939034 11.664 292.939034 
+z
+" clip-path="url(#p8082a01097)" style="fill: #fbf3e1; stroke: #ebd49e; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 11.664 330.536276 
+L 644.436 330.536276 
+Q 648.9 330.536276 648.9 327.528497 
+L 648.9 303.466262 
+Q 648.9 300.458483 644.436 300.458483 
+L 11.664 300.458483 
+Q 7.2 300.458483 7.2 303.466262 
+L 7.2 327.528497 
+Q 7.2 330.536276 11.664 330.536276 
+z
+" clip-path="url(#p8082a01097)" style="fill: #f1f6f5; stroke: #d3e0de; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="9.99" y="19.716967" transform="rotate(-0 9.99 19.716967)">The hypotheses: what the data says (Holm correction)</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b8423b" x="18.36" y="55.693643" transform="rotate(-0 18.36 55.693643)">H1</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="63" y="54.706893" transform="rotate(-0 63 54.706893)">Does the kit raise Haiku's recall when comparing?</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="350.37" y="50.194864" transform="rotate(-0 350.37 50.194864)">+0.058 (CI +0.01 to +0.12)</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="350.37" y="61.214592" transform="rotate(-0 350.37 61.214592)">p = 0.0443, fails Holm</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b8423b" x="637.74" y="54.914737" transform="rotate(-0 637.74 54.914737)">not supported</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="18.36" y="93.290884" transform="rotate(-0 18.36 93.290884)">H2</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="63" y="92.304134" transform="rotate(-0 63 92.304134)">Does the kit cut false alarms on noise and identical pairs?</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="350.37" y="87.792465" transform="rotate(-0 350.37 87.792465)">0 false alarms in every condition</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="350.37" y="98.811833" transform="rotate(-0 350.37 98.811833)">n = 16 pairs · not testable (no headroom)</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #5b6a72" x="637.74" y="92.511978" transform="rotate(-0 637.74 92.511978)">not testable</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="18.36" y="130.888126" transform="rotate(-0 18.36 130.888126)">H3</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="63" y="129.901376" transform="rotate(-0 63 129.901376)">Does Haiku A3 improve screens more than plain Haiku (T2)?</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="350.37" y="125.389347" transform="rotate(-0 350.37 125.389347)">+0.172 (CI +0.08 to +0.27)</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="350.37" y="136.409074" transform="rotate(-0 350.37 136.409074)">p = 0.0011 · passes Holm</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b6b6f" x="637.74" y="130.109219" transform="rotate(-0 637.74 130.109219)">supported</text>
+   </g>
+   <g id="text_17">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="18.36" y="168.485367" transform="rotate(-0 18.36 168.485367)">H4</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="63" y="167.498617" transform="rotate(-0 63 167.498617)">Does Haiku A3 create more complete screens (T1)?</text>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="350.37" y="162.986589" transform="rotate(-0 350.37 162.986589)">+0.255 (CI +0.24 to +0.27)</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="350.37" y="174.006316" transform="rotate(-0 350.37 174.006316)">p = 0.0002 · passes Holm</text>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b6b6f" x="637.74" y="167.706461" transform="rotate(-0 637.74 167.706461)">supported</text>
+   </g>
+   <g id="text_22">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #c98a1a" x="18.36" y="206.082608" transform="rotate(-0 18.36 206.082608)">H5</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="63" y="205.095858" transform="rotate(-0 63 205.095858)">Does the kit help Haiku more than Sonnet?</text>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="350.37" y="200.58383" transform="rotate(-0 350.37 200.58383)">T1 +0.029 · T2 +0.197 · T3 +0.013</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="350.37" y="211.603557" transform="rotate(-0 350.37 211.603557)">passes in T1 and T2; not T3 (p = 0.105)</text>
+   </g>
+   <g id="text_26">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #c98a1a" x="637.74" y="205.303702" transform="rotate(-0 637.74 205.303702)">partial</text>
+   </g>
+   <g id="text_27">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="18.36" y="243.67985" transform="rotate(-0 18.36 243.67985)">H6</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="63" y="242.6931" transform="rotate(-0 63 242.6931)">Is the kit worth more than a 2nd self-critique pass (T1)?</text>
+   </g>
+   <g id="text_29">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="350.37" y="238.181071" transform="rotate(-0 350.37 238.181071)">+0.150 (CI +0.13 to +0.17)</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="350.37" y="249.200798" transform="rotate(-0 350.37 249.200798)">p = 0.0002 · passes Holm (but axe does not separate)</text>
+   </g>
+   <g id="text_31">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b6b6f" x="637.74" y="242.900943" transform="rotate(-0 637.74 242.900943)">supported</text>
+   </g>
+   <g id="text_32">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #c98a1a" x="18.36" y="281.277091" transform="rotate(-0 18.36 281.277091)">H7</text>
+   </g>
+   <g id="text_33">
+    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="63" y="280.290341" transform="rotate(-0 63 280.290341)">Do rules alone help; does the report improve comparison?</text>
+   </g>
+   <g id="text_34">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="350.37" y="275.778313" transform="rotate(-0 350.37 275.778313)">A1: T1 +0.24 · T2 +0.14 · T3 A2−A1 -0.04</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="350.37" y="286.79804" transform="rotate(-0 350.37 286.79804)">rules yes; in T3 the kit made it worse</text>
+   </g>
+   <g id="text_36">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #c98a1a" x="637.74" y="280.498185" transform="rotate(-0 637.74 280.498185)">partial</text>
+   </g>
+   <g id="text_37">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="18.36" y="318.874332" transform="rotate(-0 18.36 318.874332)">H9</text>
+   </g>
+   <g id="text_38">
+    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="63" y="317.887582" transform="rotate(-0 63 317.887582)">Haiku A3 ≥ 90% of Sonnet A0 at ≤ 50% of the cost?</text>
+   </g>
+   <g id="text_39">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="350.37" y="313.375554" transform="rotate(-0 350.37 313.375554)">acerto 1.069× · custo 0.102×</text>
+   </g>
+   <g id="text_40">
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="350.37" y="324.395281" transform="rotate(-0 350.37 324.395281)">vs Sonnet only; Opus left out for cost</text>
+   </g>
+   <g id="text_41">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b6b6f" x="637.74" y="318.095426" transform="rotate(-0 637.74 318.095426)">supported</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p8082a01097">
+   <rect x="7.2" y="7.2" width="641.7" height="327.096"/>
+  </clipPath>
+ </defs>
+</svg>

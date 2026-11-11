@@ -1,0 +1,302 @@
+[
+ {
+  "n": 1,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-01.html",
+  "regra_id": "AM08",
+  "regra": "Use ul, ol ou dl para listas e grupos de links (tecnica H48).",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "D",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 2,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-02.html",
+  "regra_id": "TD32",
+  "regra": "Imagens decorativas devem ter alt vazio; imagens informativas precisam de alternativa.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L100",
+  "modelo": "haiku"
+ },
+ {
+  "n": 3,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-03.html",
+  "regra_id": "TD15",
+  "regra": "Cabeçalhos ou rodapés sticky não podem ocultar totalmente o elemento focado; scroll-padding é uma solução.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 4,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-04.html",
+  "regra_id": "NE16",
+  "regra": "Anuncie mensagens de status (sucesso, contagem, progresso) com role=\"status\" sem mover o foco.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T2",
+  "cond": "A0",
+  "modelo": "haiku"
+ },
+ {
+  "n": 5,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-05.html",
+  "regra_id": "FC24",
+  "regra": "Em campos sobre o usuário cuja finalidade consta na lista de propósitos, use autocomplete com token válido, nunca valor inventado.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "K",
+  "modelo": "haiku"
+ },
+ {
+  "n": 6,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-06.html",
+  "regra_id": "AM08",
+  "regra": "Use ul, ol ou dl para listas e grupos de links (tecnica H48).",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 7,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-07.html",
+  "regra_id": "TD02",
+  "regra": "Marque as celulas de cabecalho com th e as de dados com td.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "D",
+  "modelo": "haiku"
+ },
+ {
+  "n": 8,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-08.html",
+  "regra_id": "TD38",
+  "regra": "Use input type=search com atributo name para campos de busca.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 9,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-09.html",
+  "regra_id": "NE22",
+  "regra": "Comece a mensagem de erro com o prefixo \"Erro:\" visualmente oculto.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 10,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-10.html",
+  "regra_id": "AM29",
+  "regra": "No acordeão, o botão é o único filho do título (h*), com aria-expanded e aria-controls.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L25",
+  "modelo": "haiku"
+ },
+ {
+  "n": 11,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-11.html",
+  "regra_id": "AM13",
+  "regra": "Tenha um landmark main por pagina; se houver mais de um, de rotulo unico a cada.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T2",
+  "cond": "A3",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 12,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-12.html",
+  "regra_id": "AM14",
+  "regra": "Coloque todo o conteúdo perceptível dentro de landmarks.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 13,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-13.html",
+  "regra_id": "FC46",
+  "regra": "Defina cobranca igual a entrega por padrao, com checkbox para revelar campos de cobranca.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T2",
+  "cond": "A1",
+  "modelo": "haiku"
+ },
+ {
+  "n": 14,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-14.html",
+  "regra_id": "AM42",
+  "regra": "Imagens devem ter max-width:100% para não estourar a tela.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L50",
+  "modelo": "haiku"
+ },
+ {
+  "n": 15,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-15.html",
+  "regra_id": "TD15",
+  "regra": "Cabeçalhos ou rodapés sticky não podem ocultar totalmente o elemento focado; scroll-padding é uma solução.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L100",
+  "modelo": "haiku"
+ },
+ {
+  "n": 16,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-16.html",
+  "regra_id": "AM22",
+  "regra": "Evite 'clique aqui' como texto de link; use rotulos que facam sentido fora de contexto.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L50",
+  "modelo": "haiku"
+ },
+ {
+  "n": 17,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-17.html",
+  "regra_id": "AM30",
+  "regra": "Abas: tablist contém tabs com aria-selected e cada tabpanel aponta a sua aba por aria-labelledby.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "L0",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 18,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-18.html",
+  "regra_id": "FC40",
+  "regra": "Mostre o valor no botao final de pagamento (\"Pagar R$ 300,00\").",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 19,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-19.html",
+  "regra_id": "FC18",
+  "regra": "Prefixe o title da pagina com \"Erro:\" quando ela for reexibida com erros.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L25",
+  "modelo": "haiku"
+ },
+ {
+  "n": 20,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-20.html",
+  "regra_id": "NE16",
+  "regra": "Anuncie mensagens de status (sucesso, contagem, progresso) com role=\"status\" sem mover o foco.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T2",
+  "cond": "A1",
+  "modelo": "haiku"
+ },
+ {
+  "n": 21,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-21.html",
+  "regra_id": "NE32",
+  "regra": "Dê ao banner de sucesso um título em texto (ex.: \"Sucesso\"), sem depender só de cor.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L50",
+  "modelo": "haiku"
+ },
+ {
+  "n": 22,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-22.html",
+  "regra_id": "NE18",
+  "regra": "Não oculte com display:none o contêiner de alerta/status que precisa ser anunciado; use técnica visualmente oculta.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L0",
+  "modelo": "haiku"
+ },
+ {
+  "n": 23,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-23.html",
+  "regra_id": "FC15",
+  "regra": "Escreva o texto do botão descrevendo a ação que ele executa (ex.: Salvar e continuar, Pagar).",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L50",
+  "modelo": "haiku"
+ },
+ {
+  "n": 24,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-24.html",
+  "regra_id": "AM14",
+  "regra": "Coloque todo o conteúdo perceptível dentro de landmarks.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "L25",
+  "modelo": "haiku"
+ },
+ {
+  "n": 25,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-25.html",
+  "regra_id": "NE13",
+  "regra": "Ofereça um mecanismo de fechar em todo diálogo; o mais robusto é um botão explícito de fechar ou cancelar.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "L25",
+  "modelo": "haiku"
+ },
+ {
+  "n": 26,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-26.html",
+  "regra_id": "FC37",
+  "regra": "Numero e codigo do cartao: inputmode=numeric em type=text; nunca type=number.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 27,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-27.html",
+  "regra_id": "NE11",
+  "regra": "Links para o mesmo destino devem ter o mesmo texto, e destinos diferentes devem ter textos diferentes.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L0",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 28,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-28.html",
+  "regra_id": "TD15",
+  "regra": "Cabeçalhos ou rodapés sticky não podem ocultar totalmente o elemento focado; scroll-padding é uma solução.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "K",
+  "modelo": "haiku"
+ },
+ {
+  "n": 29,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-29.html",
+  "regra_id": "FC13",
+  "regra": "Mantenha a ordem do HTML igual a ordem visual dos campos; nao reordene controles via CSS.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "D",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 30,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l2-30.html",
+  "regra_id": "FC39",
+  "regra": "Rotule o codigo do cartao em linguagem simples (\"Codigo de seguranca\"), nao so a sigla CVV.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L50",
+  "modelo": "haiku"
+ }
+]

@@ -1,0 +1,4 @@
+[
+  {"id": "NE02", "motivo": "Exige comparar várias páginas do conjunto; o verificador enxerga uma única tela renderizada."},
+  {"id": "NE24", "motivo": "Exige estado de erro de validação de formulário na página inteira (título com prefixo Erro:), que não cabe numa tela de navegação sem torná-la um formulário."}
+]

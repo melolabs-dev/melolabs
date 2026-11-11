@@ -1,0 +1,86 @@
+=== Médias por modelo, tarefa e condição (regras violadas que passam a cumprir) ===
+haiku  T2 A0   n=103 todas 0.516 | mostradas 0.479 | retidas 0.602 | sens 0.548 | novas 1.00 | US$0.0112 | tok in 13336 out 19795
+haiku  T2 A1   n= 99 todas 0.805 | mostradas 0.910 | retidas 0.576 | sens 0.853 | novas 0.52 | US$0.0123 | tok in 14009 out 21853
+haiku  T2 A2   n=102 todas 0.749 | mostradas 0.965 | retidas 0.260 | sens 0.792 | novas 0.18 | US$0.0063 | tok in 13587 out 9824
+haiku  T2 A3   n=105 todas 0.807 | mostradas 0.959 | retidas 0.471 | sens 0.852 | novas 0.28 | US$0.0089 | tok in 14258 out 14891
+haiku  T4 D    n=101 todas 0.501 | mostradas 0.514 | retidas 0.464 | sens 0.533 | novas 0.00 | US$0.0194 | tok in 16870 out 35298
+haiku  T4 K    n=101 todas 0.794 | mostradas 0.895 | retidas 0.509 | sens 0.835 | novas 0.00 | US$0.0221 | tok in 20311 out 40298
+haiku  T4 L0   n= 99 todas 0.466 | mostradas 0.476 | retidas 0.435 | sens 0.495 | novas 0.00 | US$0.0145 | tok in 13072 out 26392
+haiku  T4 L100 n=102 todas 0.706 | mostradas 0.761 | retidas 0.551 | sens 0.744 | novas 0.00 | US$0.0224 | tok in 19213 out 41036
+haiku  T4 L25  n= 99 todas 0.575 | mostradas 0.599 | retidas 0.504 | sens 0.610 | novas 0.00 | US$0.0189 | tok in 14664 out 34053
+haiku  T4 L50  n=103 todas 0.631 | mostradas 0.669 | retidas 0.522 | sens 0.665 | novas 0.00 | US$0.0205 | tok in 16236 out 36967
+haiku  T4 R    n=101 todas 0.533 | mostradas 0.571 | retidas 0.425 | sens 0.567 | novas 0.00 | US$0.0183 | tok in 13648 out 33631
+sonnet T2 A0   n= 95 todas 0.628 | mostradas 0.643 | retidas 0.600 | sens 0.671 | novas 0.86 | US$0.1529 | tok in 13279 out 12494
+sonnet T2 A1   n= 94 todas 0.835 | mostradas 0.923 | retidas 0.633 | sens 0.883 | novas 0.32 | US$0.1136 | tok in 13983 out 9130
+sonnet T2 A2   n= 93 todas 0.782 | mostradas 0.964 | retidas 0.376 | sens 0.823 | novas 0.23 | US$0.0663 | tok in 13562 out 4318
+sonnet T2 A3   n= 95 todas 0.772 | mostradas 0.976 | retidas 0.321 | sens 0.814 | novas 0.07 | US$0.0693 | tok in 14290 out 3906
+sonnet T4 D    n= 93 todas 0.630 | mostradas 0.640 | retidas 0.601 | sens 0.660 | novas 0.00 | US$0.2785 | tok in 16830 out 25015
+sonnet T4 K    n= 91 todas 0.832 | mostradas 0.920 | retidas 0.584 | sens 0.878 | novas 0.00 | US$0.2929 | tok in 20284 out 25734
+sonnet T4 L0   n= 90 todas 0.612 | mostradas 0.614 | retidas 0.604 | sens 0.652 | novas 0.00 | US$0.2716 | tok in 13076 out 24489
+sonnet T4 L100 n= 93 todas 0.796 | mostradas 0.859 | retidas 0.623 | sens 0.833 | novas 0.00 | US$0.2912 | tok in 19219 out 24997
+sonnet T4 L25  n= 89 todas 0.662 | mostradas 0.688 | retidas 0.589 | sens 0.704 | novas 0.00 | US$0.2514 | tok in 14604 out 21494
+sonnet T4 L50  n= 90 todas 0.722 | mostradas 0.763 | retidas 0.607 | sens 0.758 | novas 0.00 | US$0.2811 | tok in 16153 out 24075
+sonnet T4 R    n= 93 todas 0.627 | mostradas 0.646 | retidas 0.573 | sens 0.662 | novas 0.00 | US$0.2940 | tok in 13597 out 26603
+
+=== Hipóteses confirmatórias (Haiku; p unilateral de Wilcoxon, depois Holm) ===
+  H1 T4 L25 regra presente > ausente: n=48 0.811 vs 0.527; dif +0.284 IC95 [+0.243,+0.324]; p=0.0000
+  H1 T4 L50 regra presente > ausente: n=48 0.785 vs 0.562; dif +0.223 IC95 [+0.175,+0.269]; p=0.0000
+  H2a T4 L25 > L0: n=48 0.599 vs 0.474; dif +0.124 IC95 [+0.092,+0.156]; p=0.0000
+  H2b T4 L50 > L25: n=48 0.671 vs 0.599; dif +0.072 IC95 [+0.046,+0.098]; p=0.0000
+  H2c T4 L100 > L50: n=48 0.762 vs 0.671; dif +0.091 IC95 [+0.063,+0.119]; p=0.0000
+  H3 T4 retidas: L100 não pior que L0 (margem 0,05): n=48 0.550 vs 0.431; dif +0.119 IC95 [+0.073,+0.165]; p=0.0000
+  H4 T4 L100 > D (mostradas): n=48 0.762 vs 0.515; dif +0.247 IC95 [+0.215,+0.279]; p=0.0000
+  H6a T2 A3 > A1: n=48 0.807 vs 0.804; dif +0.003 IC95 [-0.026,+0.031]; p=0.4909
+  H6b T4 K > L100: n=48 0.792 vs 0.707; dif +0.086 IC95 [+0.064,+0.108]; p=0.0000
+  H7a T2 novas A0 > A2 (menos é melhor): n=48 1.021 vs 0.188; dif +0.833 IC95 [+0.569,+1.118]; p=0.0000
+  H7b T4 novas L100 > K: n=48 0.000 vs 0.000; dif +0.000 IC95 [+0.000,+0.000]; p=1.0000
+
+Holm (alfa 0,05):
+  REJEITA H0 | p=0.0000 limiar=0.0045 | H4 T4 L100 > D (mostradas)
+  REJEITA H0 | p=0.0000 limiar=0.0050 | H1 T4 L25 regra presente > ausente
+  REJEITA H0 | p=0.0000 limiar=0.0056 | H1 T4 L50 regra presente > ausente
+  REJEITA H0 | p=0.0000 limiar=0.0063 | H6b T4 K > L100
+  REJEITA H0 | p=0.0000 limiar=0.0071 | H3 T4 retidas: L100 não pior que L0 (margem 0,05)
+  REJEITA H0 | p=0.0000 limiar=0.0083 | H2a T4 L25 > L0
+  REJEITA H0 | p=0.0000 limiar=0.0100 | H2c T4 L100 > L50
+  REJEITA H0 | p=0.0000 limiar=0.0125 | H7a T2 novas A0 > A2 (menos é melhor)
+  REJEITA H0 | p=0.0000 limiar=0.0167 | H2b T4 L50 > L25
+  não rejeita | p=0.4909 limiar=0.0250 | H6a T2 A3 > A1
+  não rejeita | p=1.0000 limiar=0.0500 | H7b T4 novas L100 > K
+
+=== H5 recuperação: R mantém >=90% do ganho de L100 sobre L0 (Haiku, T4, regras mostradas por L100) ===
+  ganho L100 +0.243; ganho R +0.065; razão 0.27 (critério >=0,90); tokens de entrada L100 19213, R 13648
+
+=== Sensibilidade: sem regras condicionais ===
+  T4 L0: 0.495
+  T4 L25: 0.610
+  T4 L50: 0.665
+  T4 L100: 0.744
+  T4 D: 0.533
+  T4 R: 0.567
+  T4 K: 0.835
+  T2 A0: 0.548
+  T2 A1: 0.853
+  T2 A2: 0.792
+  T2 A3: 0.852
+
+=== Sensibilidade 2: sem as regras com defeito de verificador confirmado em auditoria ===
+  haiku T4: L0 0.472 | L25 0.590 | L50 0.648 | L100 0.730 | D 0.517 | R 0.542 | K 0.814
+  sonnet T4: L0 0.617 | L25 0.670 | L50 0.734 | L100 0.814 | D 0.639 | R 0.641 | K 0.855
+  haiku T2: A0 0.551 | A1 0.824 | A2 0.752 | A3 0.823
+  sonnet T2: A0 0.638 | A1 0.857 | A2 0.800 | A3 0.783
+
+=== H9 (descritivo): Haiku vs Sonnet nas mesmas telas ===
+  T2: Haiku A3 0.807 vs Sonnet A0 0.632; razão 1.28 (>=0,90); custo 0.0089 vs 0.1529, razão 0.058 (<=0,50); n=48
+  T4: Haiku L100 0.707 vs Sonnet L0 0.613; razão 1.15 (>=0,90); custo 0.0224 vs 0.2716, razão 0.082 (<=0,50); n=48
+
+=== Decisões citadas (T4, Haiku): fração que aponta para regra mostrada ===
+  L25: 0.59 (2149 decisões)
+  L50: 0.76 (2519 decisões)
+  L100: 0.90 (2999 decisões)
+  D: 0.55 (2249 decisões)
+  R: 0.49 (1795 decisões)
+  K: 0.91 (2956 decisões)
+
+Trechos que falharam ao aplicar (média por chamada): 0.05
+Custo nominal total da rodada principal US$ 234.75

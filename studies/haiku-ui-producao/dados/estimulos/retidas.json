@@ -1,0 +1,51 @@
+{
+ "painel": [
+  "AM09",
+  "AM22",
+  "AM35",
+  "TD11",
+  "TD17",
+  "TD32"
+ ],
+ "listagem": [
+  "AM10",
+  "TD04",
+  "TD08",
+  "TD10",
+  "TD15",
+  "TD20",
+  "TD42"
+ ],
+ "formulario": [
+  "AM11",
+  "AM44",
+  "FC09",
+  "FC10",
+  "FC15",
+  "FC24",
+  "FC26",
+  "FC28"
+ ],
+ "checkout": [
+  "AM05",
+  "AM12",
+  "AM25",
+  "FC43",
+  "FC46"
+ ],
+ "configuracoes": [
+  "AM13",
+  "NE16",
+  "NE18",
+  "NE49",
+  "NE50"
+ ],
+ "navegacao": [
+  "AM41",
+  "NE08",
+  "NE09",
+  "NE11",
+  "NE14",
+  "NE35"
+ ]
+}

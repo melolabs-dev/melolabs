@@ -1,0 +1,10 @@
+403b6a48ef647d4c91630dbe493059f8c1a3c89a5e96d4c8ab91d68d49b1cda8 *PRE-REGISTRO.md
+877dfeeb08e898e67bfdfcac07da3a9c963d5e6726ca5db05967cfaf2c6efbbb *lake/login.json
+9ef9ed067b734dc0efb2b7daf2048692d7c0fad7a58eeb736de7a113df20ec04 *kit/kit.mjs
+0bbf36a01d06ea175fd9d9e98eda84950359db2fb795effdce41162df6346bc5 *kit/pontuar.mjs
+03960a30e03b792efe84eed1f1d46a420241b7cce0e51c0baa787dbc50276506 *gerador/gerar.mjs
+6b8355fdfa11f0f6a9c93176e8d88cee9e8944bc7682d1e8ea234b25d4c4d67a *executor.py
+9fbd270448fc62edeb7a5dd61c43489cf1bea9a03f27d99beba46cdb051f70de *dados/estimulos/t1.json
+1a897c119f99cefadececea1ccb80a96502d9dfd6f063483974fc2305c8e3b03 *dados/estimulos/t2.json
+cc8e4429cf1efa886e55b676b2219dc03564914753d8c6c27d80b7792e48f6df *dados/estimulos/t3.json
+Congelado em 2026-11-10T20:23:36-03:00 antes da rodada principal (sem commit: hashes SHA-256).

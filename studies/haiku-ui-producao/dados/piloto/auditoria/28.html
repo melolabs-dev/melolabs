@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finalizar compra - Pessoas &amp; Cia Brindes</title>
+<style>
+    :root{--cor-primaria:#7b3fb2;--cor-texto:#1c2430;--cor-suave:#5b6675;--cor-fundo:#f4f6f9;--cor-card:#ffffff;--cor-borda:#d5dbe3;--cor-erro:#b3261e;--cor-ok:#1b7a3d;--cor-aviso:#8a5a00;--esp-p:8px;--esp-m:12px;--esp-g:20px;--raio:8px;--fonte:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--cor-fundo);color:var(--cor-texto);font:16px/1.5 var(--fonte)}
+    .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .pular{position:absolute;left:-999px;top:0;background:#fff;padding:8px}
+    .pular:focus{left:8px;z-index:10}
+    .topo{background:var(--cor-card);border-bottom:1px solid var(--cor-borda)}
+    .topo-in{max-width:1180px;margin:0 auto;padding:var(--esp-m) var(--esp-g);display:flex;align-items:center;gap:var(--esp-g);flex-wrap:wrap}
+    .marca{font-weight:700;font-size:20px;color:var(--cor-primaria);text-decoration:none}
+    .etapas{display:flex;gap:var(--esp-m);list-style:none;margin:0;padding:0;flex:1;font-size:14px;color:var(--cor-suave)}
+    .etapas li[aria-current]{color:var(--cor-primaria);font-weight:600}
+    .seguro{font-size:13px;color:var(--cor-ok)}
+    .pagina{max-width:1180px;margin:0 auto;padding:var(--esp-g)}
+    h1{font-size:28px;margin:0 0 var(--esp-g)}
+    h2{font-size:21px;margin:var(--esp-g) 0 var(--esp-m)}
+    .sub{font-size:17px;margin:var(--esp-m) 0 var(--esp-p)}
+    .grade{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:var(--esp-g);align-items:start}
+    .card{background:var(--cor-card);border:1px solid var(--cor-borda);border-radius:var(--raio);padding:var(--esp-g);margin-bottom:var(--esp-g)}
+    .bloco{border:1px solid var(--cor-borda);border-radius:var(--raio);padding:var(--esp-m) var(--esp-g) var(--esp-g);margin:0 0 var(--esp-m);min-width:0}
+    .bloco legend,.grupo-titulo{font-weight:600;padding:0 var(--esp-p)}
+    .grupo-titulo{padding:0 0 var(--esp-p)}
+    .linha{display:flex;gap:var(--esp-m);flex-wrap:wrap}
+    .campo{display:flex;flex-direction:column;gap:4px;flex:1 1 180px;margin-top:var(--esp-m)}
+    .campo-largo{flex:3 1 280px}
+    .campo-curto{flex:0 1 140px}
+    .campo-opc{justify-content:flex-end}
+    .campo label,.rotulo{font-size:14px;font-weight:600}
+    .campo small{color:var(--cor-suave);font-size:13px}
+    input[type=text],input[type=email],input[type=tel],input[type=number],select{font:inherit;padding:10px 12px;border:1px solid #8793a3;border-radius:var(--raio);background:#fff;min-width:0;width:100%}
+    input:focus,select:focus,button:focus,a:focus,summary:focus{outline:3px solid #1a73e8;outline-offset:2px}
+    .com-botao{display:flex;gap:var(--esp-p)}
+    .partes,.otp{display:flex;gap:var(--esp-p)}
+    .partes input{text-align:center}
+    .otp input{width:48px;text-align:center;font-size:20px;padding:10px 0}
+    .marca-check{display:flex;gap:var(--esp-p);align-items:center;font-weight:400!important}
+    .opcao{display:flex;gap:var(--esp-m);align-items:center;padding:var(--esp-m);border:1px solid var(--cor-borda);border-radius:var(--raio);margin-top:var(--esp-p)}
+    .opcao span.preco{margin-left:auto;font-weight:600}
+    .btn{display:inline-block;font:inherit;font-weight:600;padding:10px 16px;border-radius:var(--raio);border:1px solid var(--cor-primaria);background:var(--cor-primaria);color:#fff;cursor:pointer;text-decoration:none;text-align:center}
+    .btn-sec{background:#fff;color:var(--cor-primaria)}
+    .btn-link{background:none;border-color:transparent;color:var(--cor-primaria);padding:4px 8px;text-decoration:underline}
+    .btn-perigo{background:var(--cor-erro);border-color:var(--cor-erro)}
+    .btn-pagar{width:100%;font-size:18px;padding:14px 16px;margin-top:var(--esp-m)}
+    details{border:1px dashed var(--cor-borda);border-radius:var(--raio);padding:var(--esp-p) var(--esp-m);margin-top:var(--esp-m)}
+    summary{cursor:pointer;color:var(--cor-primaria);font-weight:600}
+    .alerta{border-radius:var(--raio);padding:var(--esp-m) var(--esp-g);margin-bottom:var(--esp-m);border:1px solid}
+    .alerta.erro{background:#fdecea;border-color:var(--cor-erro);color:#601410}
+    .alerta.ok{background:#e8f5ec;border-color:var(--cor-ok);color:#134d27}
+    .alerta p{margin:4px 0 var(--esp-p)}
+    .carregando{color:var(--cor-suave);font-style:italic;margin:0}
+    .erro-campo{color:var(--cor-erro);font-size:13px;margin:4px 0 0}
+    table{width:100%;border-collapse:collapse;font-size:15px}
+    caption{text-align:left;font-weight:600;padding-bottom:var(--esp-p)}
+    th,td{padding:14px 12px;border-bottom:1px solid var(--cor-borda);text-align:left;height:52px}
+    thead th{background:#eef1f5}
+    .col-num{text-align:right;white-space:nowrap}
+    tfoot th,tfoot td{font-weight:700}
+    dl.resumo{margin:0}
+    dl.resumo div{display:flex;justify-content:space-between;padding:6px 0}
+    dl.resumo dt{color:var(--cor-suave)}
+    dl.resumo dd{margin:0;font-weight:600}
+    dl.resumo .total{border-top:1px solid var(--cor-borda);margin-top:var(--esp-p);padding-top:var(--esp-m);font-size:19px}
+    dl.revisao{margin:0}
+    dl.revisao div{display:grid;grid-template-columns:140px 1fr auto;gap:var(--esp-m);padding:var(--esp-m) 0;border-bottom:1px solid var(--cor-borda)}
+    dl.revisao dt{font-weight:600}
+    dl.revisao dd{margin:0}
+    .linha-tempo{list-style:none;margin:var(--esp-m) 0 0;padding:0;display:grid;gap:var(--esp-p)}
+    .selo{display:inline-block;background:#e8f5ec;color:var(--cor-ok);border-radius:99px;padding:2px 10px;font-size:13px;font-weight:600}
+    .veu{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:50}
+    .veu[hidden]{display:none}
+    .caixa{background:#fff;border-radius:var(--raio);padding:var(--esp-g);max-width:440px;width:92%}
+    .caixa h2{margin-top:0}
+    .acoes{display:flex;gap:var(--esp-m);justify-content:flex-end}
+    .rodape{max-width:1180px;margin:0 auto;padding:var(--esp-g);color:var(--cor-suave);font-size:14px}
+    .rodape ul{display:flex;gap:var(--esp-g);list-style:none;padding:0}
+    .lateral{position:sticky;top:var(--esp-m)}
+    @media (orientation:landscape){.lateral{max-height:calc(100vh - 24px);overflow:auto}}
+    @media (max-width:900px){.grade{grid-template-columns:1fr}.lateral{position:static;max-height:none}dl.revisao div{grid-template-columns:1fr}}
+    .itens-wrap{overflow-x:auto}
+    button:disabled{opacity:.6;cursor:not-allowed}
+    .btn,button,.btn-link{min-height:44px}
+</style>
+</head>
+<body>
+<a class="pular" href="#principal">Ir para o conteúdo principal</a>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="#">Pessoas &amp; Cia Brindes</a>
+    <nav aria-label="Etapas da compra">
+      <ol class="etapas">
+        <li>Carrinho</li>
+        <li aria-current="step">Entrega e pagamento</li>
+        <li>Confirmação</li>
+      </ol>
+    </nav>
+    <span class="seguro">Compra 100% protegida</span>
+  </div>
+</header>
+<main id="principal" class="pagina">
+  <h1>Finalizar compra</h1>
+  <div class="grade">
+    <div class="coluna">
+      <form id="form-checkout" action="#" method="post">
+        <section class="card" id="entrega" aria-labelledby="t-entrega">
+          <h2 id="t-entrega">1. Entrega</h2>
+          <fieldset class="bloco">
+            <legend>Contato</legend>
+            <div class="linha">
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" name="email" autocomplete="email" value="karina.santos@exemplo.com.br" required>
+        </div>
+        <div class="campo">
+          <label for="tel">Telefone com DDD</label>
+          <input id="tel" type="tel" name="telefone" autocomplete="tel" value="(56) 97331-9292" required>
+        </div>
+            </div>
+          </fieldset>
+          <fieldset class="bloco">
+            <legend>Endereço de entrega</legend>
+            <div class="linha">
+        <div class="campo">
+          <label for="ent-nome">Nome de quem recebe</label>
+          <input id="ent-nome" type="text" name="ent_nome" autocomplete="name" value="Karina Santos" required>
+        </div>
+            </div>
+        <div class="linha">
+          <div class="campo campo-cep">
+            <label for="ent-cep">CEP</label>
+            <div class="com-botao">
+              <input id="ent-cep" type="text" inputmode="numeric" name="cep" value="13010-111" required>
+              <button type="button" class="btn btn-sec" onclick="buscarCep()">Buscar</button>
+            </div>
+            <small id="cep-status" role="status">Digite o CEP para preencher o endereço.</small>
+          </div>
+          <div class="campo campo-largo">
+            <label for="ent-rua">Logradouro</label>
+            <input id="ent-rua" type="text" name="rua" value="Rua XV de Novembro, 952" pattern="(?=.*\d).+" title="Informe rua e número" required>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="ent-cidade">Cidade</label>
+            <input id="ent-cidade" type="text" name="ent_cidade" autocomplete="address-level2" value="Campinas" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="ent-uf">Estado</label>
+            <select id="ent-uf" name="ent_uf" autocomplete="address-level1">
+            <option value="SP" selected>SP</option>
+            <option value="RJ">RJ</option>
+            <option value="MG">MG</option>
+            <option value="PR">PR</option>
+            <option value="RS">RS</option>
+            <option value="SC">SC</option>
+            <option value="BA">BA</option>
+            <option value="PE">PE</option>
+            <option value="GO">GO</option>
+            <option value="DF">DF</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="ent-pais">País</label>
+            <select id="ent-pais" name="pais">
+              <option value="BR" selected>Brasil</option>
+              <option value="PT">Portugal</option>
+              <option value="AR">Argentina</option>
+            </select>
+          </div>
+        </div>
+            <div class="linha">
+        <div class="campo">
+          <label for="ent-comp">Complemento</label>
+          <input id="ent-comp" type="text" name="ent_complemento" autocomplete="address-line2">
+        </div>
+        <div class="campo">
+          <label for="ent-empresa">Empresa (opcional)</label>
+          <input id="ent-empresa" type="text" name="ent_empresa" autocomplete="organization" value="Santos Distribuidora Ltda">
+        </div>
+            </div>
+          </fieldset>
+      <div class="campo">
+  <label class="marca-check"><input type="checkbox" id="mesmo-endereco" checked onchange="alternarCobranca(this)"> Usar o mesmo endereço para cobrança</label>
+</div>
+<div id="bloco-cobranca" hidden>
+      <fieldset class="bloco">
+        <legend>Endereço de cobrança</legend>
+        <div class="linha">
+          <div class="campo campo-cep">
+            <label for="cob-cep">CEP</label>
+            <div class="com-botao">
+              <input id="cob-cep" type="text" inputmode="numeric" name="cob_cep" autocomplete="postal-code" value="13010-111" required>
+            </div>
+          </div>
+          <div class="campo campo-largo">
+            <label for="cob-rua">Logradouro</label>
+            <input id="cob-rua" type="text" name="cob_rua" value="Rua XV de Novembro, 952" pattern="(?=.*\d).+" title="Informe rua e número" required>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="cob-cidade">Cidade</label>
+            <input id="cob-cidade" type="text" name="cob_cidade" autocomplete="address-level2" value="Campinas" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="cob-uf">Estado</label>
+            <select id="cob-uf" name="cob_uf" autocomplete="address-level1">
+            <option value="SP" selected>SP</option>
+            <option value="RJ">RJ</option>
+            <option value="MG">MG</option>
+            <option value="PR">PR</option>
+            <option value="RS">RS</option>
+            <option value="SC">SC</option>
+            <option value="BA">BA</option>
+            <option value="PE">PE</option>
+            <option value="GO">GO</option>
+            <option value="DF">DF</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="cob-pais">País</label>
+            <select id="cob-pais" name="cob_pais">
+              <option value="BR" selected>Brasil</option>
+              <option value="PT">Portugal</option>
+              <option value="AR">Argentina</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+      </div>
+          <div class="bloco grupo ">
+        <div class="grupo-titulo">Opções de frete</div>
+          <label class="opcao"><input type="radio" name="frete" value="eco"> <span>Econômica <small>(6 a 8 dias úteis)</small></span> <span class="preco">R$ 23,40</span></label>
+          <label class="opcao"><input type="radio" name="frete" value="pad"> <span>Padrão <small>(3 a 5 dias úteis)</small></span> <span class="preco">R$ 33,90</span></label>
+          <label class="opcao"><input type="radio" name="frete" value="exp" checked> <span>Expressa <small>(1 a 2 dias úteis)</small></span> <span class="preco">R$ 64,40</span></label>
+      </div>
+          <p class="carregando" aria-live="polite" hidden>Atualizando prazo de entrega para o CEP 13010-111...</p>
+        </section>
+        <section class="card" id="pagamento" aria-labelledby="t-pag">
+          <h2 id="t-pag">2. Pagamento</h2>
+          <div class="alerta erro" role="alert" hidden>
+            <h4 class="sub">Pagamento não autorizado</h4>
+            <p>O banco emissor recusou a tentativa anterior com o cartão final 5372. Confira os dados ou use outro cartão.</p>
+            <button type="button" class="btn btn-sec" onclick="document.getElementById('cc-nome').focus()">Usar outro cartão</button>
+          </div>
+          <div class="bloco grupo ">
+        <div class="grupo-titulo">Forma de pagamento</div>
+          <label class="opcao"><input type="radio" name="metodo" value="cartao" checked> <span>Cartão de crédito</span></label>
+          <label class="opcao"><input type="radio" name="metodo" value="pix"> <span>Pix (aprovação imediata)</span></label>
+          <label class="opcao"><input type="radio" name="metodo" value="boleto"> <span>Boleto bancário (vence em 2 dias)</span></label>
+      </div>
+      <fieldset class="bloco" id="cartao">
+        <legend>Dados do cartão</legend>
+        <div class="campo campo-largo">
+          <label for="cc-num">Número do cartão</label>
+          <input id="cc-num" type="text" inputmode="numeric" name="cartao" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19" required>
+        </div>
+        <div class="linha">
+          <div class="campo campo-largo">
+            <label for="cc-nome">Nome impresso no cartão</label>
+            <input id="cc-nome" type="text" autocomplete="cc-name" name="titular"  value="KARINA SANTOS" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="cc-exp">Validade (MM/AA)</label>
+            <input id="cc-exp" type="text" inputmode="numeric" autocomplete="cc-exp" maxlength="5" name="validade"  placeholder="MM/AA" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="cc-csc">CVV</label>
+            <input id="cc-csc" type="text" inputmode="numeric" autocomplete="cc-csc" maxlength="4" name="cvv"  aria-describedby="cc-csc-d" required>
+            <small id="cc-csc-d">3 dígitos no verso</small>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="parcelas">Parcelas</label>
+            <select id="parcelas" name="parcelas">
+              <option value="1">1x de R$ 5.740,27 sem juros</option>
+              <option value="2">2x de R$ 2.870,14</option>
+              <option value="3">3x de R$ 1.913,43</option>
+              <option value="4">4x de R$ 1.435,07</option>
+              <option value="5">5x de R$ 1.148,06</option>
+              <option value="6">6x de R$ 956,72</option>
+              <option value="7">7x de R$ 820,04</option>
+              <option value="8">8x de R$ 717,54</option>
+              <option value="9">9x de R$ 637,81</option>
+              <option value="10">10x de R$ 574,03</option>
+              <option value="11">11x de R$ 521,85</option>
+              <option value="12">12x de R$ 478,36</option>
+            </select>
+          </div>
+          <div class="campo campo-opc">
+            <label class="marca-check"><input type="checkbox" name="salvar_cartao"> Salvar este cartão para as próximas compras</label>
+          </div>
+        </div>
+      </fieldset>
+          <div class="bloco" id="bloco-otp">
+            <h4 class="sub">Confirmação do banco</h4>
+            <p>Enviamos um código de 6 dígitos por SMS para o telefone (56)  ****-9292.</p>
+            <div class="campo">
+          <span class="rotulo" id="rot-otp">Código de verificação</span>
+          <div class="otp" role="group" aria-labelledby="rot-otp">
+            <input type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="1" name="otp1" aria-label="Dígito 1 de 6" required>
+            <input type="text" inputmode="numeric" maxlength="1" name="otp2" aria-label="Dígito 2 de 6" required>
+            <input type="text" inputmode="numeric" maxlength="1" name="otp3" aria-label="Dígito 3 de 6" required>
+            <input type="text" inputmode="numeric" maxlength="1" name="otp4" aria-label="Dígito 4 de 6" required>
+            <input type="text" inputmode="numeric" maxlength="1" name="otp5" aria-label="Dígito 5 de 6" required>
+            <input type="text" inputmode="numeric" maxlength="1" name="otp6" aria-label="Dígito 6 de 6" required>
+          </div>
+        </div>
+            <p><button type="button" class="btn btn-link" onclick="reenviar()">Reenviar código</button> <small>Pode levar até 1 minuto para chegar.</small></p>
+          </div>
+        </section>
+        <section class="card" id="revisao" aria-labelledby="t-rev">
+          <h2 id="t-rev">3. Revisão do pedido</h2>
+          <dl class="revisao">
+            <div><dt>Entrega</dt><dd>Karina Santos<br>Rua XV de Novembro, 952 - Campinas/SP - CEP 13010-111</dd><dd><a class="link-alterar" href="#entrega">Alterar<span class="sr-only"> entrega</span></a></dd></div>
+            <div><dt>Frete</dt><dd>Expressa, 1 a 2 dias úteis (R$ 64,40)</dd><dd><a class="link-alterar" href="#entrega">Alterar<span class="sr-only"> frete</span></a></dd></div>
+            <div><dt>Pagamento</dt><dd>Cartão de crédito final 5372</dd><dd><a class="link-alterar" href="#pagamento">Alterar<span class="sr-only"> pagamento</span></a></dd></div>
+            <div><dt>Itens</dt><dd>64 unidades em 20 produtos</dd><dd><a class="link-alterar" href="#itens">Alterar<span class="sr-only"> itens</span></a></dd></div>
+          </dl>
+          <button type="submit" id="btn-pagar" class="btn btn-pagar">Pagar R$ 5.740,27</button>
+        </section>
+      </form>
+      <section class="card itens-wrap" id="itens" aria-labelledby="t-itens">
+        <h2 id="t-itens">Itens do pedido</h2>
+        <table>
+          <caption>20 produtos, 64 unidades</caption>
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Código</th>
+              <th scope="col" class="col-num">Qtd.</th>
+              <th scope="col" class="col-num">Preço unit.</th>
+              <th scope="col" class="col-num">Subtotal</th>
+              <th scope="col"><span class="sr-only">Ações</span></th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="col-nome">Pen drive 32 GB</td>
+            <td class="col-sku">RH-9769</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 34,70</td>
+            <td class="col-num">R$ 138,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Pen drive 32 GB')" aria-label="Excluir Pen drive 32 GB">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Colete institucional</td>
+            <td class="col-sku">RH-9249</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 92,00</td>
+            <td class="col-num">R$ 276,00</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Colete institucional')" aria-label="Excluir Colete institucional">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Relogio de parede</td>
+            <td class="col-sku">RH-9428</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 50,20</td>
+            <td class="col-num">R$ 50,20</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Relogio de parede')" aria-label="Excluir Relogio de parede">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Certificado emoldurado A4</td>
+            <td class="col-sku">RH-8712</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 46,50</td>
+            <td class="col-num">R$ 46,50</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Certificado emoldurado A4')" aria-label="Excluir Certificado emoldurado A4">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Caneta metalica gravada</td>
+            <td class="col-sku">RH-3581</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 21,20</td>
+            <td class="col-num">R$ 63,60</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Caneta metalica gravada')" aria-label="Excluir Caneta metalica gravada">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Boné bordado</td>
+            <td class="col-sku">RH-4373</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 34,80</td>
+            <td class="col-num">R$ 139,20</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Boné bordado')" aria-label="Excluir Boné bordado">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Cracha PVC com cordao</td>
+            <td class="col-sku">RH-9783</td>
+            <td class="col-num">5</td>
+            <td class="col-num">R$ 16,50</td>
+            <td class="col-num">R$ 82,50</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Cracha PVC com cordao')" aria-label="Excluir Cracha PVC com cordao">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Cadeira ergonomica</td>
+            <td class="col-sku">RH-7052</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 702,50</td>
+            <td class="col-num">R$ 702,50</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Cadeira ergonomica')" aria-label="Excluir Cadeira ergonomica">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Kit primeiros socorros</td>
+            <td class="col-sku">RH-4213</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 96,60</td>
+            <td class="col-num">R$ 193,20</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Kit primeiros socorros')" aria-label="Excluir Kit primeiros socorros">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Suporte para notebook</td>
+            <td class="col-sku">RH-1858</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 91,20</td>
+            <td class="col-num">R$ 273,60</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Suporte para notebook')" aria-label="Excluir Suporte para notebook">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Ventilador de mesa</td>
+            <td class="col-sku">RH-6866</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 130,50</td>
+            <td class="col-num">R$ 522,00</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Ventilador de mesa')" aria-label="Excluir Ventilador de mesa">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Caneca termica 450 ml</td>
+            <td class="col-sku">RH-6915</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 40,10</td>
+            <td class="col-num">R$ 160,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Caneca termica 450 ml')" aria-label="Excluir Caneca termica 450 ml">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Porta-cracha retratil</td>
+            <td class="col-sku">RH-8609</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 13,70</td>
+            <td class="col-num">R$ 54,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Porta-cracha retratil')" aria-label="Excluir Porta-cracha retratil">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Mouse pad personalizado</td>
+            <td class="col-sku">RH-3668</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 18,20</td>
+            <td class="col-num">R$ 54,60</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Mouse pad personalizado')" aria-label="Excluir Mouse pad personalizado">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Lixeira seletiva 3 un.</td>
+            <td class="col-sku">RH-1556</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 181,30</td>
+            <td class="col-num">R$ 543,90</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Lixeira seletiva 3 un.')" aria-label="Excluir Lixeira seletiva 3 un.">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Quadro de avisos 90x60</td>
+            <td class="col-sku">RH-6273</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 190,00</td>
+            <td class="col-num">R$ 760,00</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Quadro de avisos 90x60')" aria-label="Excluir Quadro de avisos 90x60">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Placa de homenagem acrilico</td>
+            <td class="col-sku">RH-8919</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 129,60</td>
+            <td class="col-num">R$ 388,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Placa de homenagem acrilico')" aria-label="Excluir Placa de homenagem acrilico">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Fone com microfone USB</td>
+            <td class="col-sku">RH-1979</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 100,90</td>
+            <td class="col-num">R$ 403,60</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Fone com microfone USB')" aria-label="Excluir Fone com microfone USB">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Apoio de pes ajustavel</td>
+            <td class="col-sku">RH-5354</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 149,50</td>
+            <td class="col-num">R$ 598,00</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Apoio de pes ajustavel')" aria-label="Excluir Apoio de pes ajustavel">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Mochila executiva</td>
+            <td class="col-sku">RH-2421</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 130,60</td>
+            <td class="col-num">R$ 522,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Mochila executiva')" aria-label="Excluir Mochila executiva">Remover</button></td>
+          </tr>
+          </tbody>
+          <tfoot>
+            <tr><th scope="row" colspan="4">Subtotal dos itens</th><td class="col-num">R$ 5.974,60</td><td></td></tr>
+          </tfoot>
+        </table>
+      </section>
+      <section class="card" id="confirmacao" aria-labelledby="t-conf" hidden>
+        <h2 id="t-conf">Pedido confirmado</h2>
+        <div class="alerta ok" role="status">
+          <strong>Pagamento aprovado.</strong> Enviamos o comprovante para karina.santos@exemplo.com.br.
+        </div>
+        <p><span class="selo">PED-940963</span> Previsão de entrega: 1 a 2 dias úteis.</p>
+        <h4 class="sub">Próximos passos</h4>
+        <ol class="linha-tempo">
+          <li>Pagamento aprovado</li>
+          <li>Separação dos produtos no estoque</li>
+          <li>Envio pela transportadora</li>
+        </ol>
+        <p><a class="btn" href="#">Acompanhar pedido</a></p>
+      </section>
+    </div>
+    <aside class="lateral" aria-labelledby="t-resumo">
+      <div class="card">
+        <h2 id="t-resumo">Resumo do pedido</h2>
+        <dl class="resumo">
+          <div><dt>Subtotal (64 un.)</dt><dd>R$ 5.974,60</dd></div>
+          <div><dt>Frete Expressa</dt><dd>R$ 64,40</dd></div>
+          <div><dt>Desconto (5%)</dt><dd>- R$ 298,73</dd></div>
+          <div class="total"><dt>Total</dt><dd>R$ 5.740,27</dd></div>
+        </dl>
+        <details>
+          <summary>Tem um cupom de desconto?</summary>
+          <div class="campo">
+            <label for="cupom">Código do cupom</label>
+            <div class="com-botao">
+              <input id="cupom" type="text" name="cupom" autocomplete="off">
+              <button type="button" class="btn btn-sec" onclick="aplicarCupom()">Aplicar</button>
+            </div>
+            <p class="erro-campo" role="status" hidden>Este cupom expirou em 31/10.</p>
+          </div>
+        </details>
+        <h4 class="sub">Entrega prevista</h4>
+        <p>Expressa: 1 a 2 dias úteis, para Campinas/SP.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="rodape">
+  <h2>Precisa de ajuda?</h2>
+  <ul>
+    <li><a href="#">Trocas e devoluções</a></li>
+    <li><a href="#">Formas de pagamento</a></li>
+    <li><a href="#">Fale com o atendimento</a></li>
+  </ul>
+  <p>Pessoas &amp; Cia Brindes - todos os direitos reservados.</p>
+</footer>
+<div class="veu" id="veu" hidden>
+  <div class="caixa" role="dialog" aria-modal="true" aria-labelledby="dlg-t" aria-describedby="dlg-p">
+    <h2 id="dlg-t">Remover item do pedido?</h2>
+    <p id="dlg-p">Relogio de parede será removido do pedido.</p>
+    <div class="acoes">
+      <button type="button" class="btn btn-sec" onclick="fecharDialogo()">Cancelar</button>
+      <button type="button" class="btn btn-perigo" onclick="fecharDialogo()">Remover</button>
+    </div>
+  </div>
+</div>
+<script>
+function buscarCep(){var s=document.getElementById('cep-status');if(s){s.textContent='Endereço localizado.';}}
+function aplicarCupom(){var i=document.getElementById('cupom');if(i){i.focus();}}
+function reenviar(){var o=document.querySelector('[name=otp1]');if(o){o.focus();}}
+function abrirDialogo(n){var v=document.getElementById('veu');var p=document.getElementById('dlg-p');if(p){p.textContent=n+' será removido do pedido.';}if(v){v.hidden=false;}}
+function fecharDialogo(){var v=document.getElementById('veu');if(v){v.hidden=true;}}
+function alternarCobranca(c){var b=document.getElementById('bloco-cobranca');var on=!c.checked;b.hidden=!on;b.querySelectorAll('input,select').forEach(function(e){e.disabled=!on;});}
+function alternarMetodo(){var cartao=document.querySelector('input[name=metodo]:checked').value==='cartao';var f=document.getElementById('cartao');var o=document.getElementById('bloco-otp');f.hidden=!cartao;f.disabled=!cartao;o.hidden=!cartao;o.querySelectorAll('input').forEach(function(e){e.disabled=!cartao;});}
+document.querySelectorAll('input[name=metodo]').forEach(function(r){r.addEventListener('change',alternarMetodo);});
+alternarMetodo();
+var mesmo=document.getElementById('mesmo-endereco');if(mesmo){alternarCobranca(mesmo);}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){fecharDialogo();}});
+document.getElementById('form-checkout').addEventListener('submit',function(){var b=document.getElementById('btn-pagar');if(b){b.disabled=true;b.textContent='Processando...';}});
+</script>
+</body>
+</html>

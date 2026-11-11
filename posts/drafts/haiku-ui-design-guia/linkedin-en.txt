@@ -1,0 +1,3 @@
+Give Haiku the UX rules and a checker, not just the request
+
+https://melolabs.net/en/haiku-ui-design-guia/

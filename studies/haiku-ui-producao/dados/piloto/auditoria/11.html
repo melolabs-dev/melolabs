@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finalizar compra - MedSul Suprimentos Clinicos</title>
+<style>
+    :root{--cor-primaria:#0a7f86;--cor-texto:#1c2430;--cor-suave:#5b6675;--cor-fundo:#f4f6f9;--cor-card:#ffffff;--cor-borda:#d5dbe3;--cor-erro:#b3261e;--cor-ok:#1b7a3d;--cor-aviso:#8a5a00;--esp-p:8px;--esp-m:12px;--esp-g:20px;--raio:8px;--fonte:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--cor-fundo);color:var(--cor-texto);font:16px/1.5 var(--fonte)}
+    .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .pular{position:absolute;left:-999px;top:0;background:#fff;padding:8px}
+    .pular:focus{left:8px;z-index:10}
+    .topo{background:var(--cor-card);border-bottom:1px solid var(--cor-borda)}
+    .topo-in{max-width:1180px;margin:0 auto;padding:var(--esp-m) var(--esp-g);display:flex;align-items:center;gap:var(--esp-g);flex-wrap:wrap}
+    .marca{font-weight:700;font-size:20px;color:var(--cor-primaria);text-decoration:none}
+    .etapas{display:flex;gap:var(--esp-m);list-style:none;margin:0;padding:0;flex:1;font-size:14px;color:var(--cor-suave)}
+    .etapas li[aria-current]{color:var(--cor-primaria);font-weight:600}
+    .seguro{font-size:13px;color:var(--cor-ok)}
+    .pagina{max-width:1180px;margin:0 auto;padding:var(--esp-g)}
+    h1{font-size:28px;margin:0 0 var(--esp-g)}
+    h2{font-size:21px;margin:var(--esp-g) 0 var(--esp-m)}
+    .sub{font-size:17px;margin:var(--esp-m) 0 var(--esp-p)}
+    .grade{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:var(--esp-g);align-items:start}
+    .card{background:var(--cor-card);border:1px solid var(--cor-borda);border-radius:var(--raio);padding:var(--esp-g);margin-bottom:var(--esp-g)}
+    .bloco{border:1px solid var(--cor-borda);border-radius:var(--raio);padding:var(--esp-m) var(--esp-g) var(--esp-g);margin:0 0 var(--esp-m);min-width:0}
+    .bloco legend,.grupo-titulo{font-weight:600;padding:0 var(--esp-p)}
+    .grupo-titulo{padding:0 0 var(--esp-p)}
+    .linha{display:flex;gap:var(--esp-m);flex-wrap:wrap}
+    .campo{display:flex;flex-direction:column;gap:4px;flex:1 1 180px;margin-top:var(--esp-m)}
+    .campo-largo{flex:3 1 280px}
+    .campo-curto{flex:0 1 140px}
+    .campo-opc{justify-content:flex-end}
+    .campo label,.rotulo{font-size:14px;font-weight:600}
+    .campo small{color:var(--cor-suave);font-size:13px}
+    input[type=text],input[type=email],input[type=tel],input[type=number],select{font:inherit;padding:10px 12px;border:1px solid #8793a3;border-radius:var(--raio);background:#fff;min-width:0;width:100%}
+    input:focus,select:focus,button:focus,a:focus,summary:focus{outline:3px solid #1a73e8;outline-offset:2px}
+    .com-botao{display:flex;gap:var(--esp-p)}
+    .partes,.otp{display:flex;gap:var(--esp-p)}
+    .partes input{text-align:center}
+    .otp input{width:48px;text-align:center;font-size:20px;padding:10px 0}
+    .marca-check{display:flex;gap:var(--esp-p);align-items:center;font-weight:400!important}
+    .opcao{display:flex;gap:var(--esp-m);align-items:center;padding:var(--esp-m);border:1px solid var(--cor-borda);border-radius:var(--raio);margin-top:var(--esp-p)}
+    .opcao span.preco{margin-left:auto;font-weight:600}
+    .btn{display:inline-block;font:inherit;font-weight:600;padding:10px 16px;border-radius:var(--raio);border:1px solid var(--cor-primaria);background:var(--cor-primaria);color:#fff;cursor:pointer;text-decoration:none;text-align:center}
+    .btn-sec{background:#fff;color:var(--cor-primaria)}
+    .btn-link{background:none;border-color:transparent;color:var(--cor-primaria);padding:4px 8px;text-decoration:underline}
+    .btn-perigo{background:var(--cor-erro);border-color:var(--cor-erro)}
+    .btn-pagar{width:100%;font-size:18px;padding:14px 16px;margin-top:var(--esp-m)}
+    details{border:1px dashed var(--cor-borda);border-radius:var(--raio);padding:var(--esp-p) var(--esp-m);margin-top:var(--esp-m)}
+    summary{cursor:pointer;color:var(--cor-primaria);font-weight:600}
+    .alerta{border-radius:var(--raio);padding:var(--esp-m) var(--esp-g);margin-bottom:var(--esp-m);border:1px solid}
+    .alerta.erro{background:#fdecea;border-color:var(--cor-erro);color:#601410}
+    .alerta.ok{background:#e8f5ec;border-color:var(--cor-ok);color:#134d27}
+    .alerta p{margin:4px 0 var(--esp-p)}
+    .carregando{color:var(--cor-suave);font-style:italic;margin:0}
+    .erro-campo{color:var(--cor-erro);font-size:13px;margin:4px 0 0}
+    table{width:100%;border-collapse:collapse;font-size:15px}
+    caption{text-align:left;font-weight:600;padding-bottom:var(--esp-p)}
+    th,td{padding:14px 12px;border-bottom:1px solid var(--cor-borda);text-align:left;height:52px}
+    thead th{background:#eef1f5}
+    .col-num{text-align:right;white-space:nowrap}
+    tfoot th,tfoot td{font-weight:700}
+    dl.resumo{margin:0}
+    dl.resumo div{display:flex;justify-content:space-between;padding:6px 0}
+    dl.resumo dt{color:var(--cor-suave)}
+    dl.resumo dd{margin:0;font-weight:600}
+    dl.resumo .total{border-top:1px solid var(--cor-borda);margin-top:var(--esp-p);padding-top:var(--esp-m);font-size:19px}
+    dl.revisao{margin:0}
+    dl.revisao div{display:grid;grid-template-columns:140px 1fr auto;gap:var(--esp-m);padding:var(--esp-m) 0;border-bottom:1px solid var(--cor-borda)}
+    dl.revisao dt{font-weight:600}
+    dl.revisao dd{margin:0}
+    .linha-tempo{list-style:none;margin:var(--esp-m) 0 0;padding:0;display:grid;gap:var(--esp-p)}
+    .selo{display:inline-block;background:#e8f5ec;color:var(--cor-ok);border-radius:99px;padding:2px 10px;font-size:13px;font-weight:600}
+    .veu{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:50}
+    .veu[hidden]{display:none}
+    .caixa{background:#fff;border-radius:var(--raio);padding:var(--esp-g);max-width:440px;width:92%}
+    .caixa h2{margin-top:0}
+    .acoes{display:flex;gap:var(--esp-m);justify-content:flex-end}
+    .rodape{max-width:1180px;margin:0 auto;padding:var(--esp-g);color:var(--cor-suave);font-size:14px}
+    .rodape ul{display:flex;gap:var(--esp-g);list-style:none;padding:0}
+    .lateral{position:sticky;top:var(--esp-m)}
+    @media (orientation:landscape){.lateral{max-height:calc(100vh - 24px);overflow:auto}}
+    @media (max-width:900px){.grade{grid-template-columns:1fr}.lateral{position:static;max-height:none}dl.revisao div{grid-template-columns:1fr}}
+.tabela-wrap{overflow-x:auto;padding:0 2px}
+.erro-campo:empty{margin:0}
+.btn:disabled,.btn-link:disabled{opacity:.6;cursor:not-allowed;text-decoration:none}
+input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--cor-erro);box-shadow:inset 0 0 0 1px var(--cor-erro)}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<a class="pular" href="#principal">Ir para o conteúdo principal</a>
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="#">MedSul Suprimentos Clinicos</a>
+    <nav aria-label="Etapas da compra">
+      <ol class="etapas">
+        <li>Carrinho</li>
+        <li aria-current="step">Entrega e pagamento</li>
+        <li>Confirmação</li>
+      </ol>
+    </nav>
+    <span class="seguro">Compra 100% protegida</span>
+  </div>
+</header>
+<main id="principal" class="pagina">
+  <h1>Finalizar compra</h1>
+  <div class="grade">
+    <div class="coluna">
+      <form id="form-checkout" action="#" method="post" novalidate>
+        <section class="card" id="entrega" aria-labelledby="t-entrega">
+          <h2 id="t-entrega">1. Entrega</h2>
+          <fieldset class="bloco">
+            <legend>Contato</legend>
+            <div class="linha">
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" name="email" autocomplete="email" value="daniel.ribeiro@exemplo.com.br" required>
+        </div>
+        <div class="campo">
+          <label for="tel">Telefone com DDD</label>
+          <input id="tel" type="tel" name="telefone" autocomplete="tel" value="(42) 94666-4765" required>
+        </div>
+            </div>
+          </fieldset>
+          <fieldset class="bloco">
+            <legend>Endereço de entrega</legend>
+            <div class="linha">
+        <div class="campo">
+          <label for="ent-nome">Nome de quem recebe</label>
+          <input id="ent-nome" type="text" name="ent_nome" autocomplete="shipping name" value="Daniel Ribeiro" required>
+        </div>
+            </div>
+        <div class="linha">
+          <div class="campo campo-cep">
+            <label for="ent-cep">CEP</label>
+            <div class="com-botao">
+              <input id="ent-cep" type="text" inputmode="numeric" name="ent_cep" autocomplete="shipping postal-code" value="13010-111" required>
+              <button type="button" class="btn btn-sec" onclick="buscarCep()">Buscar</button>
+            </div>
+            <small id="cep-status" role="status">Digite o CEP para preencher o endereço.</small>
+          </div>
+          <div class="campo campo-largo">
+            <label for="ent-rua">Logradouro</label>
+            <input id="ent-rua" type="text" name="ent_rua" autocomplete="shipping street-address" value="Avenida Getulio Vargas, 511" required>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="ent-cidade">Cidade</label>
+            <input id="ent-cidade" type="text" name="ent_cidade" autocomplete="shipping address-level2" value="Campinas" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="ent-uf">Estado</label>
+            <select id="ent-uf" name="ent_uf" autocomplete="shipping address-level1">
+            <option value="SP" selected>SP</option>
+            <option value="RJ">RJ</option>
+            <option value="MG">MG</option>
+            <option value="PR">PR</option>
+            <option value="RS">RS</option>
+            <option value="SC">SC</option>
+            <option value="BA">BA</option>
+            <option value="PE">PE</option>
+            <option value="GO">GO</option>
+            <option value="DF">DF</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="ent-pais">País</label>
+            <select id="ent-pais" name="ent_pais" autocomplete="shipping country">
+              <option value="BR" selected>Brasil</option>
+              <option value="PT">Portugal</option>
+              <option value="AR">Argentina</option>
+            </select>
+          </div>
+        </div>
+            <details>
+              <summary>Adicionar complemento ou empresa</summary>
+              <div class="linha">
+        <div class="campo">
+          <label for="ent-comp">Complemento</label>
+          <input id="ent-comp" type="text" name="ent_complemento" autocomplete="shipping address-line2" >
+        </div>
+        <div class="campo">
+          <label for="ent-empresa">Empresa (opcional)</label>
+          <input id="ent-empresa" type="text" name="ent_empresa" autocomplete="shipping organization" value="Ribeiro Comercio Ltda">
+        </div>
+              </div>
+            </details>
+          </fieldset>
+          <label class="marca-check"><input type="checkbox" name="cobranca_igual" checked onchange="alternarCobranca(this)"> Cobrança igual à entrega</label>
+      <div id="bloco-cobranca" hidden>
+      <fieldset class="bloco">
+        <legend>Endereço de cobrança</legend>
+        <div class="linha">
+          <div class="campo campo-cep">
+            <label for="cob-cep">CEP</label>
+            <div class="com-botao">
+              <input id="cob-cep" type="text" inputmode="numeric" name="cob_cep" autocomplete="billing postal-code" value="13010-111" required>
+            </div>
+          </div>
+          <div class="campo campo-largo">
+            <label for="cob-rua">Logradouro</label>
+            <input id="cob-rua" type="text" name="cob_rua" autocomplete="billing street-address" value="Avenida Getulio Vargas, 511" required>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="cob-cidade">Cidade</label>
+            <input id="cob-cidade" type="text" name="cob_cidade" autocomplete="billing address-level2" value="Campinas" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="cob-uf">Estado</label>
+            <select id="cob-uf" name="cob_uf" autocomplete="billing address-level1">
+            <option value="SP" selected>SP</option>
+            <option value="RJ">RJ</option>
+            <option value="MG">MG</option>
+            <option value="PR">PR</option>
+            <option value="RS">RS</option>
+            <option value="SC">SC</option>
+            <option value="BA">BA</option>
+            <option value="PE">PE</option>
+            <option value="GO">GO</option>
+            <option value="DF">DF</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="cob-pais">País</label>
+            <select id="cob-pais" name="cob_pais" autocomplete="billing country">
+              <option value="BR" selected>Brasil</option>
+              <option value="PT">Portugal</option>
+              <option value="AR">Argentina</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+      </div>
+          <div class="bloco grupo" role="radiogroup" aria-labelledby="t-frete">
+        <div class="grupo-titulo" id="t-frete">Opções de frete</div>
+          <label class="opcao"><input type="radio" name="frete" value="eco"> <span>Econômica <small>(6 a 8 dias úteis)</small></span> <span class="preco">R$ 21,40</span></label>
+          <label class="opcao"><input type="radio" name="frete" value="pad" checked> <span>Padrão <small>(3 a 5 dias úteis)</small></span> <span class="preco">R$ 34,40</span></label>
+          <label class="opcao"><input type="radio" name="frete" value="exp"> <span>Expressa <small>(1 a 2 dias úteis)</small></span> <span class="preco">R$ 54,90</span></label>
+      </div>
+          
+        </section>
+        <section class="card" id="pagamento" aria-labelledby="t-pag">
+          <h2 id="t-pag">2. Pagamento</h2>
+          <div class="alerta erro" role="alert">
+            <h3 class="sub">Pagamento não autorizado</h3>
+            <p>O banco emissor recusou a tentativa anterior com o cartão final 8991. Confira os dados ou use outro cartão.</p>
+            <button type="button" class="btn btn-sec" onclick="document.getElementById('cc-nome').focus()">Usar outro cartão</button>
+          </div>
+          <div class="bloco grupo" role="radiogroup" aria-labelledby="t-pgto">
+        <div class="grupo-titulo" id="t-pgto">Forma de pagamento</div>
+          <label class="opcao"><input type="radio" name="metodo" value="cartao" checked> <span>Cartão de crédito</span></label>
+          <label class="opcao"><input type="radio" name="metodo" value="pix"> <span>Pix (aprovação imediata)</span></label>
+          <label class="opcao"><input type="radio" name="metodo" value="boleto"> <span>Boleto bancário (vence em 2 dias)</span></label>
+      </div>
+      <fieldset class="bloco" id="cartao">
+        <legend>Dados do cartão</legend>
+        <div class="campo campo-largo">
+          <label for="cc-num">Número do cartão</label>
+          <input id="cc-num" type="text" inputmode="numeric" name="cartao_numero" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19" required>
+        </div>
+        <div class="linha">
+          <div class="campo campo-largo">
+            <label for="cc-nome">Nome impresso no cartão</label>
+            <input id="cc-nome" type="text" name="titular"  value="DANIEL RIBEIRO" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="cc-exp">Validade (MM/AA)</label>
+            <input id="cc-exp" type="text" inputmode="numeric" name="validade" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="cc-csc">Código de segurança</label>
+            <input id="cc-csc" type="text" inputmode="numeric" name="cvv" autocomplete="cc-csc" maxlength="4" aria-describedby="cc-csc-d" required>
+            <small id="cc-csc-d">3 dígitos no verso</small>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="parcelas">Parcelas</label>
+            <select id="parcelas" name="parcelas">
+              <option value="1">1x de R$ 5.880,98 sem juros</option>
+              <option value="2">2x de R$ 2.940,49</option>
+              <option value="3">3x de R$ 1.960,33</option>
+              <option value="4">4x de R$ 1.470,25</option>
+              <option value="5">5x de R$ 1.176,20</option>
+              <option value="6">6x de R$ 980,17</option>
+              <option value="7">7x de R$ 840,14</option>
+              <option value="8">8x de R$ 735,13</option>
+              <option value="9">9x de R$ 653,45</option>
+              <option value="10">10x de R$ 588,10</option>
+            </select>
+          </div>
+          <div class="campo campo-opc">
+            <label class="marca-check"><input type="checkbox" name="salvar_cartao"> Salvar este cartão para as próximas compras</label>
+          </div>
+        </div>
+      </fieldset>
+          <div class="bloco">
+            <h3 class="sub">Confirmação do banco</h3>
+            <p>Enviamos um código de 6 dígitos por SMS para o telefone (42)  ****-4765.</p>
+            <div class="campo">
+          <label for="otp">Código de verificação</label>
+          <input id="otp" type="text" inputmode="numeric" name="otp" autocomplete="one-time-code" placeholder="000000" maxlength="6" pattern="[0-9]{6}" required>
+        </div>
+            <p><button type="button" class="btn btn-link" id="btn-reenviar" onclick="reenviar()">Reenviar código</button> <small id="reenvio-status">Não recebeu? Você pode pedir um novo código.</small></p>
+          </div>
+        </section>
+        <section class="card" id="revisao" aria-labelledby="t-rev">
+          <h2 id="t-rev">3. Revisão do pedido</h2>
+          <dl class="revisao">
+            <div><dt>Entrega</dt><dd>Daniel Ribeiro<br>Avenida Getulio Vargas, 511 - Campinas/SP - CEP 13010-111</dd><dd><a class="link-alterar" href="#entrega">Alterar<span class="sr-only"> endereço de entrega</span></a></dd></div>
+            <div><dt>Frete</dt><dd>Padrão, 3 a 5 dias úteis (R$ 34,40)</dd><dd><a class="link-alterar" href="#entrega">Alterar<span class="sr-only"> opção de frete</span></a></dd></div>
+            <div><dt>Pagamento</dt><dd>Cartão de crédito final 8991</dd><dd><a class="link-alterar" href="#pagamento">Alterar<span class="sr-only"> forma de pagamento</span></a></dd></div>
+            <div><dt>Itens</dt><dd>68 unidades em 22 produtos</dd><dd><a class="link-alterar" href="#itens">Alterar<span class="sr-only"> itens do pedido</span></a></dd></div>
+          </dl>
+          <button type="submit" class="btn btn-pagar">Pagar R$ 5.880,98</button>
+        </section>
+      </form>
+      <section class="card" id="itens" aria-labelledby="t-itens">
+        <h2 id="t-itens">Itens do pedido</h2>
+        <div class="tabela-wrap" role="region" aria-labelledby="t-itens" tabindex="0">
+        <table>
+          <caption>22 produtos, 68 unidades</caption>
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Código</th>
+              <th scope="col" class="col-num">Qtd.</th>
+              <th scope="col" class="col-num">Preço unit.</th>
+              <th scope="col" class="col-num">Subtotal</th>
+              <th scope="col"><span class="sr-only">Ações</span></th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="col-nome">Pinca anatomica inox</td>
+            <td class="col-sku">SA-7563</td>
+            <td class="col-num">5</td>
+            <td class="col-num">R$ 22,90</td>
+            <td class="col-num">R$ 114,50</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Pinca anatomica inox')" aria-label="Remover Pinca anatomica inox do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Oximetro de pulso</td>
+            <td class="col-sku">SA-6088</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 120,10</td>
+            <td class="col-num">R$ 480,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Oximetro de pulso')" aria-label="Remover Oximetro de pulso do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Esfigmomanometro aneroide</td>
+            <td class="col-sku">SA-7940</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 157,30</td>
+            <td class="col-num">R$ 471,90</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Esfigmomanometro aneroide')" aria-label="Remover Esfigmomanometro aneroide do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Macas dobravel leve</td>
+            <td class="col-sku">SA-6255</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 890,90</td>
+            <td class="col-num">R$ 890,90</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Macas dobravel leve')" aria-label="Remover Macas dobravel leve do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Coletor perfurocortante 7 L</td>
+            <td class="col-sku">SA-4126</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 12,60</td>
+            <td class="col-num">R$ 37,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Coletor perfurocortante 7 L')" aria-label="Remover Coletor perfurocortante 7 L do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Lencol descartavel rolo</td>
+            <td class="col-sku">SA-6099</td>
+            <td class="col-num">5</td>
+            <td class="col-num">R$ 38,90</td>
+            <td class="col-num">R$ 194,50</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Lencol descartavel rolo')" aria-label="Remover Lencol descartavel rolo do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Estetoscopio adulto</td>
+            <td class="col-sku">SA-2392</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 190,00</td>
+            <td class="col-num">R$ 190,00</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Estetoscopio adulto')" aria-label="Remover Estetoscopio adulto do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Touca descartavel 100 un.</td>
+            <td class="col-sku">SA-3464</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 19,20</td>
+            <td class="col-num">R$ 57,60</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Touca descartavel 100 un.')" aria-label="Remover Touca descartavel 100 un. do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Detergente enzimatico 1 L</td>
+            <td class="col-sku">SA-6501</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 71,40</td>
+            <td class="col-num">R$ 142,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Detergente enzimatico 1 L')" aria-label="Remover Detergente enzimatico 1 L do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Seringa 10 ml caixa 100</td>
+            <td class="col-sku">SA-9359</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 79,60</td>
+            <td class="col-num">R$ 318,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Seringa 10 ml caixa 100')" aria-label="Remover Seringa 10 ml caixa 100 do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Balanca digital adulto</td>
+            <td class="col-sku">SA-6063</td>
+            <td class="col-num">5</td>
+            <td class="col-num">R$ 249,20</td>
+            <td class="col-num">R$ 1.246,00</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Balanca digital adulto')" aria-label="Remover Balanca digital adulto do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Garrote elastico</td>
+            <td class="col-sku">SA-6470</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 8,90</td>
+            <td class="col-num">R$ 8,90</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Garrote elastico')" aria-label="Remover Garrote elastico do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Luva de procedimento caixa 100</td>
+            <td class="col-sku">SA-4282</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 33,60</td>
+            <td class="col-num">R$ 134,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Luva de procedimento caixa 100')" aria-label="Remover Luva de procedimento caixa 100 do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Mascara cirurgica caixa 50</td>
+            <td class="col-sku">SA-3891</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 19,80</td>
+            <td class="col-num">R$ 19,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Mascara cirurgica caixa 50')" aria-label="Remover Mascara cirurgica caixa 50 do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Otoscopio portatil</td>
+            <td class="col-sku">SA-9633</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 331,60</td>
+            <td class="col-num">R$ 1.326,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Otoscopio portatil')" aria-label="Remover Otoscopio portatil do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Cuba rim inox</td>
+            <td class="col-sku">SA-4801</td>
+            <td class="col-num">5</td>
+            <td class="col-num">R$ 35,30</td>
+            <td class="col-num">R$ 176,50</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Cuba rim inox')" aria-label="Remover Cuba rim inox do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Termometro infravermelho</td>
+            <td class="col-sku">SA-1162</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 150,20</td>
+            <td class="col-num">R$ 450,60</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Termometro infravermelho')" aria-label="Remover Termometro infravermelho do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Esparadrapo 10 cm x 4,5 m</td>
+            <td class="col-sku">SA-2095</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 12,70</td>
+            <td class="col-num">R$ 25,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Esparadrapo 10 cm x 4,5 m')" aria-label="Remover Esparadrapo 10 cm x 4,5 m do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Algodao hidrofilo 500 g</td>
+            <td class="col-sku">SA-3424</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 25,00</td>
+            <td class="col-num">R$ 75,00</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Algodao hidrofilo 500 g')" aria-label="Remover Algodao hidrofilo 500 g do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Lanterna clinica</td>
+            <td class="col-sku">SA-6231</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 20,60</td>
+            <td class="col-num">R$ 61,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Lanterna clinica')" aria-label="Remover Lanterna clinica do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Curativo adesivo 100 un.</td>
+            <td class="col-sku">SA-5032</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 20,10</td>
+            <td class="col-num">R$ 40,20</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Curativo adesivo 100 un.')" aria-label="Remover Curativo adesivo 100 un. do pedido">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Gaze esteril pacote 10</td>
+            <td class="col-sku">SA-2066</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 8,10</td>
+            <td class="col-num">R$ 32,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Gaze esteril pacote 10')" aria-label="Remover Gaze esteril pacote 10 do pedido">Remover</button></td>
+          </tr>
+          </tbody>
+          <tfoot>
+            <tr><th scope="row" colspan="4">Subtotal dos itens</th><td class="col-num">R$ 6.496,20</td><td></td></tr>
+          </tfoot>
+        </table>
+      </div>
+      </section>
+      <section class="card" id="confirmacao" aria-labelledby="t-conf" hidden>
+        <h2 id="t-conf">Pedido confirmado</h2>
+        <div class="alerta ok" role="status">
+          <strong>Pagamento aprovado.</strong> Enviamos o comprovante para daniel.ribeiro@exemplo.com.br.
+        </div>
+        <p><span class="selo">PED-244410</span> Previsão de entrega: 3 a 5 dias úteis.</p>
+        <h3 class="sub">Próximos passos</h3>
+        <ol class="linha-tempo">
+          <li>Pagamento aprovado</li>
+          <li>Separação dos produtos no estoque</li>
+          <li>Envio pela transportadora</li>
+        </ol>
+        <p><a class="btn" href="#">Acompanhar pedido</a></p>
+      </section>
+    </div>
+    <aside class="lateral" aria-labelledby="t-resumo">
+      <div class="card">
+        <h2 id="t-resumo">Resumo do pedido</h2>
+        <dl class="resumo">
+          <div><dt>Subtotal (68 un.)</dt><dd>R$ 6.496,20</dd></div>
+          <div><dt>Frete Padrão</dt><dd>R$ 34,40</dd></div>
+          <div><dt>Desconto (10%)</dt><dd>- R$ 649,62</dd></div>
+          <div class="total"><dt>Total</dt><dd>R$ 5.880,98</dd></div>
+        </dl>
+        <details>
+          <summary>Tem um cupom de desconto?</summary>
+          <div class="campo">
+            <label for="cupom">Código do cupom</label>
+            <div class="com-botao">
+              <input id="cupom" type="text" name="cupom" autocomplete="off">
+              <button type="button" class="btn btn-sec" onclick="aplicarCupom()" aria-label="Aplicar cupom de desconto">Aplicar</button>
+            </div>
+            <p class="erro-campo" id="cupom-erro" role="status"></p>
+          </div>
+        </details>
+        <h3 class="sub">Entrega prevista</h3>
+        <p>Padrão: 3 a 5 dias úteis, para Campinas/SP.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="rodape">
+  <h2>Precisa de ajuda?</h2>
+  <ul>
+    <li><a href="#">Trocas e devoluções</a></li>
+    <li><a href="#">Formas de pagamento</a></li>
+    <li><a href="#">Fale com o atendimento</a></li>
+  </ul>
+  <p>MedSul Suprimentos Clinicos - todos os direitos reservados.</p>
+</footer>
+<div class="veu" id="veu" hidden>
+  <div class="caixa" role="dialog" aria-modal="true" aria-labelledby="dlg-t" aria-describedby="dlg-p" tabindex="-1">
+    <h2 id="dlg-t">Remover item do pedido?</h2>
+    <p id="dlg-p">Pinca anatomica inox será removido do pedido.</p>
+    <div class="acoes">
+      <button type="button" class="btn btn-sec" onclick="fecharDialogo()">Cancelar</button>
+      <button type="button" class="btn btn-perigo" onclick="confirmarRemocao()">Remover</button>
+    </div>
+  </div>
+</div>
+<script>
+var ultimoGatilho=null;
+var timerReenvio=null;
+function buscarCep(){var s=document.getElementById('cep-status');var c=document.getElementById('ent-cep');if(!s||!c){return;}if(c.value.replace(/\D/g,'').length!==8){c.setAttribute('aria-invalid','true');s.textContent='Informe um CEP com 8 dígitos.';c.focus();return;}c.removeAttribute('aria-invalid');s.textContent='Endereço localizado.';}
+function aplicarCupom(){var i=document.getElementById('cupom');var e=document.getElementById('cupom-erro');if(!i||!e){return;}i.setAttribute('aria-invalid','true');i.setAttribute('aria-describedby','cupom-erro');e.textContent=i.value.trim()?'Cupom inválido ou expirado.':'Informe um código de cupom.';i.focus();}
+function reenviar(){var b=document.getElementById('btn-reenviar');var s=document.getElementById('reenvio-status');var o=document.getElementById('otp');var t=30;if(o){o.focus();}if(b){b.disabled=true;}clearInterval(timerReenvio);timerReenvio=setInterval(function(){if(t<=0){clearInterval(timerReenvio);if(b){b.disabled=false;}if(s){s.textContent='Não recebeu? Você pode pedir um novo código.';}return;}if(s){s.textContent='Você poderá pedir um novo código em '+t+' segundos.';}t--;},1000);}
+function abrirDialogo(n){var v=document.getElementById('veu');var p=document.getElementById('dlg-p');ultimoGatilho=document.querySelector('button[aria-label="Remover '+n+' do pedido"]');if(p){p.textContent=n+' será removido do pedido.';}if(v){v.hidden=false;var c=v.querySelector('.btn-sec');if(c){c.focus();}}}
+function fecharDialogo(){var v=document.getElementById('veu');if(v){v.hidden=true;}if(ultimoGatilho&&ultimoGatilho.isConnected){ultimoGatilho.focus();}ultimoGatilho=null;}
+function confirmarRemocao(){var linha=ultimoGatilho?ultimoGatilho.closest('tr'):null;if(linha){linha.remove();}ultimoGatilho=null;fecharDialogo();var t=document.getElementById('t-itens');if(t){t.setAttribute('tabindex','-1');t.focus();}}
+function alternarCobranca(c){var b=document.getElementById('bloco-cobranca');if(!b){return;}b.hidden=c.checked;var campos=b.querySelectorAll('input,select');for(var i=0;i<campos.length;i++){campos[i].disabled=c.checked;}}
+alternarCobranca(document.querySelector('input[name="cobranca_igual"]'));
+document.getElementById('form-checkout').addEventListener('submit',function(e){var invalidos=this.querySelectorAll('input:invalid,select:invalid');if(invalidos.length){e.preventDefault();for(var i=0;i<invalidos.length;i++){invalidos[i].setAttribute('aria-invalid','true');}invalidos[0].focus();}});
+document.getElementById('form-checkout').addEventListener('input',function(e){if(e.target.checkValidity&&e.target.checkValidity()){e.target.removeAttribute('aria-invalid');}});
+document.addEventListener('keydown',function(e){var v=document.getElementById('veu');if(!v||v.hidden){return;}if(e.key==='Escape'){fecharDialogo();return;}if(e.key==='Tab'){var f=v.querySelectorAll('button');var a=f[0];var z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}});
+</script>
+</body>
+</html>

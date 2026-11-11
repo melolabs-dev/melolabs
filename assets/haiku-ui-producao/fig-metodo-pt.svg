@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="572.4pt" height="173.662125pt" viewBox="0 0 572.4 173.662125" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-11T04:56:52.304480</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 173.662125 
+L 572.4 173.662125 
+L 572.4 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 14.175 134.269965 
+L 90.9 134.269965 
+Q 94.62 134.269965 94.62 130.426125 
+L 94.62 58.354125 
+Q 94.62 54.510285 90.9 54.510285 
+L 14.175 54.510285 
+Q 10.455 54.510285 10.455 58.354125 
+L 10.455 130.426125 
+Q 10.455 134.269965 14.175 134.269965 
+z
+" clip-path="url(#pd1e7a408e3)" style="fill: #eef5f3; stroke: #1f8a70; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 106.245 134.269965 
+L 182.97 134.269965 
+Q 186.69 134.269965 186.69 130.426125 
+L 186.69 58.354125 
+Q 186.69 54.510285 182.97 54.510285 
+L 106.245 54.510285 
+Q 102.525 54.510285 102.525 58.354125 
+L 102.525 130.426125 
+Q 102.525 134.269965 106.245 134.269965 
+z
+" clip-path="url(#pd1e7a408e3)" style="fill: #eef5f3; stroke: #1f8a70; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 198.315 134.269965 
+L 275.04 134.269965 
+Q 278.76 134.269965 278.76 130.426125 
+L 278.76 58.354125 
+Q 278.76 54.510285 275.04 54.510285 
+L 198.315 54.510285 
+Q 194.595 54.510285 194.595 58.354125 
+L 194.595 130.426125 
+Q 194.595 134.269965 198.315 134.269965 
+z
+" clip-path="url(#pd1e7a408e3)" style="fill: #eef5f3; stroke: #1f8a70; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 290.385 134.269965 
+L 367.11 134.269965 
+Q 370.83 134.269965 370.83 130.426125 
+L 370.83 58.354125 
+Q 370.83 54.510285 367.11 54.510285 
+L 290.385 54.510285 
+Q 286.665 54.510285 286.665 58.354125 
+L 286.665 130.426125 
+Q 286.665 134.269965 290.385 134.269965 
+z
+" clip-path="url(#pd1e7a408e3)" style="fill: #eef5f3; stroke: #1f8a70; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 382.455 134.269965 
+L 459.18 134.269965 
+Q 462.9 134.269965 462.9 130.426125 
+L 462.9 58.354125 
+Q 462.9 54.510285 459.18 54.510285 
+L 382.455 54.510285 
+Q 378.735 54.510285 378.735 58.354125 
+L 378.735 130.426125 
+Q 378.735 134.269965 382.455 134.269965 
+z
+" clip-path="url(#pd1e7a408e3)" style="fill: #eef5f3; stroke: #1f8a70; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 474.525 134.269965 
+L 551.25 134.269965 
+Q 554.97 134.269965 554.97 130.426125 
+L 554.97 58.354125 
+Q 554.97 54.510285 551.25 54.510285 
+L 474.525 54.510285 
+Q 470.805 54.510285 470.805 58.354125 
+L 470.805 130.426125 
+Q 470.805 134.269965 474.525 134.269965 
+z
+" clip-path="url(#pd1e7a408e3)" style="fill: #eef5f3; stroke: #1f8a70; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(13.128672 91.63527)">6 famílias de telas</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(9.215 101.957621)">(300 a 1.200 linhas)</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 96.153501 94.390125 
+Q 98.339037 94.390125 99.406539 94.390125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+    <path d="M 95.006539 92.190125 
+L 99.406539 94.390125 
+L 95.006539 96.590125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(104.435422 91.46327)">140 regras do lake</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(115.524047 101.785621)">(25% retidas)</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 188.223501 94.390125 
+Q 190.409037 94.390125 191.476539 94.390125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+    <path d="M 187.076539 92.190125 
+L 191.476539 94.390125 
+L 187.076539 96.590125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(187.02325 91.46327)">T2: defeitos graduados</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(184.85175 101.785621)">T4: rascunho com todos</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 280.293501 94.390125 
+Q 282.479037 94.390125 283.546539 94.390125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+    <path d="M 279.146539 92.190125 
+L 283.546539 94.390125 
+L 279.146539 96.590125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(296.079594 91.46327)">Haiku e Sonnet</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(297.950766 101.785621)">(sem internet)</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 372.363501 94.390125 
+Q 374.549037 94.390125 375.616539 94.390125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+    <path d="M 371.216539 92.190125 
+L 375.616539 94.390125 
+L 371.216539 96.590125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(365.153328 91.463605)">Verificador em navegador</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(397.288437 101.785285)">+ axe-core</text>
+   </g>
+   <g id="patch_12">
+    <path d="M 464.433501 94.390125 
+Q 466.619037 94.390125 467.686539 94.390125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+    <path d="M 463.286539 92.190125 
+L 467.686539 94.390125 
+L 463.286539 96.590125 
+" style="fill: none; stroke: #5b6a72; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(475.527891 91.46327)">Regras corrigidas</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #1f2a30" transform="translate(479.649172 101.785621)">vs novas falhas</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="7.2" y="16.318125" transform="rotate(-0 7.2 16.318125)">O desenho do estudo 3b</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd1e7a408e3">
+   <rect x="7.2" y="22.318125" width="558" height="144.144"/>
+  </clipPath>
+ </defs>
+</svg>

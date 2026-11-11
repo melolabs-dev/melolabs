@@ -1,0 +1,224 @@
+[
+ {
+  "numero": "itens totais",
+  "valor": 2244,
+  "fonte": "dados/bruto/principal-{haiku,sonnet}.jsonl",
+  "obs": "1140 Haiku + 1104 Sonnet, sem linhas com erro"
+ },
+ {
+  "numero": "chamadas totais",
+  "valor": 2424,
+  "fonte": "dados/bruto/principal-*-p.jsonl",
+  "obs": "1248 Haiku + 1176 Sonnet (soma de len(chamadas))"
+ },
+ {
+  "numero": "T1 Haiku A0",
+  "valor": 0.744,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T1 Haiku A1",
+  "valor": 0.988,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T1 Haiku A2",
+  "valor": 0.954,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T1 Haiku A3",
+  "valor": 0.998,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T1 Haiku AC",
+  "valor": 0.804,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T1 Sonnet A0",
+  "valor": 0.774,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T1 Sonnet A3",
+  "valor": 1.0,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T2 Haiku A0",
+  "valor": 0.754,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T2 Haiku A1",
+  "valor": 0.894,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T2 Haiku A2",
+  "valor": 0.967,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T2 Haiku A3",
+  "valor": 0.926,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T2 Sonnet A0",
+  "valor": 0.935,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T2 Sonnet A1",
+  "valor": 0.81,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T3 Haiku A0",
+  "valor": 0.933,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T3 Haiku A2",
+  "valor": 0.899,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T3 Haiku A3",
+  "valor": 0.905,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "T3 Sonnet A0",
+  "valor": 0.938,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "H9 acurácia Haiku A3",
+  "valor": 0.943,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "H9 acurácia Sonnet A0",
+  "valor": 0.882,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "H9 razão acurácia",
+  "valor": 1.069,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "H9 razão custo",
+  "valor": 0.102,
+  "fonte": "dados/analise.txt",
+  "obs": ""
+ },
+ {
+  "numero": "custo nominal total US$",
+  "valor": 19.63,
+  "fonte": "gerador/progresso.py / dados/analise.txt",
+  "obs": "Haiku 1,69; Sonnet 17,94"
+ },
+ {
+  "numero": "tokens saída Haiku",
+  "valor": 2651480,
+  "fonte": "dados/bruto/principal-haiku-p.jsonl",
+  "obs": ""
+ },
+ {
+  "numero": "tokens saída Sonnet",
+  "valor": 1100585,
+  "fonte": "dados/bruto/principal-sonnet-p.jsonl",
+  "obs": ""
+ },
+ {
+  "numero": "blocos de correção aplicados Haiku",
+  "valor": "2679/2688",
+  "fonte": "dados/bruto/principal-haiku-p.jsonl",
+  "obs": ""
+ },
+ {
+  "numero": "blocos aplicados Sonnet",
+  "valor": "2358/2359",
+  "fonte": "dados/bruto/principal-sonnet-p.jsonl",
+  "obs": ""
+ },
+ {
+  "numero": "axe T1 Haiku A0",
+  "valor": 0.5,
+  "fonte": "dados/bruto/axe-haiku.json",
+  "obs": ""
+ },
+ {
+  "numero": "axe T1 Haiku A3",
+  "valor": 0.03,
+  "fonte": "dados/bruto/axe-haiku.json",
+  "obs": ""
+ },
+ {
+  "numero": "axe p Haiku A0 vs A3",
+  "valor": 0.0039,
+  "fonte": "gerador/axe_analise.py",
+  "obs": "Wilcoxon unilateral pareado por item"
+ },
+ {
+  "numero": "UIClip A tentativa 1",
+  "valor": "9/15",
+  "fonte": "dados/estetica/validacao-notas.json",
+  "obs": ""
+ },
+ {
+  "numero": "UIClip A tentativa 2",
+  "valor": "8/15",
+  "fonte": "dados/estetica/validacao-notas2.json",
+  "obs": ""
+ },
+ {
+  "numero": "Código estética A/B",
+  "valor": "9/15 e 4/5",
+  "fonte": "dados/estetica/validacao-codigo.json",
+  "obs": ""
+ },
+ {
+  "numero": "Fable acurácia WiserUI",
+  "valor": "165/297 = 0.556",
+  "fonte": "dados/juiz/wiser.jsonl",
+  "obs": ""
+ },
+ {
+  "numero": "Fable consistência de posição",
+  "valor": "58/99 = 0.586",
+  "fonte": "dados/juiz/wiser.jsonl",
+  "obs": ""
+ },
+ {
+  "numero": "Fable custo US$",
+  "valor": 21.32,
+  "fonte": "dados/juiz/wiser.jsonl",
+  "obs": ""
+ }
+]

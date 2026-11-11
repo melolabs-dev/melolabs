@@ -1,0 +1,74 @@
+[
+ {
+  "id": "T1-01",
+  "contexto": "uma clínica de fisioterapia",
+  "uso": "pacientes agendam consultas",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de uma clínica de fisioterapia, onde pacientes agendam consultas. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-02",
+  "contexto": "um banco digital",
+  "uso": "clientes consultam extrato",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de um banco digital, onde clientes consultam extrato. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-03",
+  "contexto": "uma escola de idiomas",
+  "uso": "alunos acessam aulas",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de uma escola de idiomas, onde alunos acessam aulas. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-04",
+  "contexto": "uma loja de plantas",
+  "uso": "clientes acompanham pedidos",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de uma loja de plantas, onde clientes acompanham pedidos. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-05",
+  "contexto": "uma plataforma de cursos de programação",
+  "uso": "estudantes retomam cursos",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de uma plataforma de cursos de programação, onde estudantes retomam cursos. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-06",
+  "contexto": "um app de corrida",
+  "uso": "atletas veem treinos",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de um app de corrida, onde atletas veem treinos. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-07",
+  "contexto": "um sistema de reservas de salas",
+  "uso": "funcionários reservam salas",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de um sistema de reservas de salas, onde funcionários reservam salas. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-08",
+  "contexto": "uma biblioteca municipal",
+  "uso": "leitores renovam empréstimos",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de uma biblioteca municipal, onde leitores renovam empréstimos. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-09",
+  "contexto": "uma cooperativa agrícola",
+  "uso": "cooperados veem entregas",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de uma cooperativa agrícola, onde cooperados veem entregas. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-10",
+  "contexto": "um painel de energia solar",
+  "uso": "moradores veem consumo",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de um painel de energia solar, onde moradores veem consumo. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-11",
+  "contexto": "um estúdio de design",
+  "uso": "clientes aprovam entregas",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de um estúdio de design, onde clientes aprovam entregas. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ },
+ {
+  "id": "T1-12",
+  "contexto": "um clube de xadrez",
+  "uso": "sócios inscrevem-se em torneios",
+  "pedido": "Crie a tela de login (HTML e CSS em um único arquivo, sem JavaScript externo) de um clube de xadrez, onde sócios inscrevem-se em torneios. A tela deve ter campo de e-mail, campo de senha e botão de entrada, em português do Brasil."
+ }
+]

@@ -1,0 +1,3 @@
+# Desvios do pré-registro (registrados quando acontecem)
+- 10/11/2026, durante o Haiku (~30% feito): o kit travou em uma tela gerada pelo Haiku (T1-12, A2) porque o parser de cor (culori) lançou exceção em um valor de cor inválido. Correção de robustez, sem mudar nenhuma regra nem limiar: `parseColor` agora devolve indefinido em vez de lançar. Itens com erro são refeitos na retomada. Os hashes de `dados/CONGELADO.txt` para kit.mjs não valem mais; o novo hash está em `dados/CONGELADO-kit2.txt`.
+- 10/11/2026: o Caio decidiu rodar só Haiku e Sonnet (sem Opus). O pré-registro previa três modelos; H9 e H5 perdem a comparação com o Opus e ficam restritos a Haiku vs Sonnet. O script rodar_principal.sh foi interrompido antes da fase Opus.

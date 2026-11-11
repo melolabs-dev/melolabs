@@ -1,0 +1,152 @@
+[
+ {
+  "n": 1,
+  "classe": "VIOLA",
+  "motivo": "cartao_p1..p4: quatro inputs maxlength=4 para o numero do cartao"
+ },
+ {
+  "n": 2,
+  "classe": "VIOLA",
+  "motivo": "th de linha do corpo (<th><a href=\"#IN-...\">) sem scope=row; so 'Totais' tem scope"
+ },
+ {
+  "n": 3,
+  "classe": "VIOLA",
+  "motivo": "botao com texto visivel 'Remover' e aria-label='Excluir <item>', que nao contem o texto visivel"
+ },
+ {
+  "n": 4,
+  "classe": "CUMPRE",
+  "motivo": "todos os tokens autocomplete sao validos (name, bday-*, email, tel, address-*, billing postal-code); cpf e mae sem autocomplete"
+ },
+ {
+  "n": 5,
+  "classe": "VIOLA",
+  "motivo": "h2 id=t-conf (l.527) seguido de h4 'Proximos passos' (l.532); h4 'Entrega prevista' apos h2 (l.561)"
+ },
+ {
+  "n": 6,
+  "classe": "CUMPRE",
+  "motivo": "erros de email e telefone trazem correcao com exemplo (nome@dominio.com.br; (11) 91234-5678)"
+ },
+ {
+  "n": 7,
+  "classe": "CUMPRE",
+  "motivo": "navs com aria-label distintos (Navegacao principal, Trilha, Paginacao, Rodape); regions rotuladas de forma unica"
+ },
+ {
+  "n": 8,
+  "classe": "CUMPRE",
+  "motivo": "estado de carregamento usa <progress> com role=status; vazio e sem resultado tem mensagem, nenhum em branco"
+ },
+ {
+  "n": 9,
+  "classe": "VIOLA",
+  "motivo": "estado vazio so diz 'Ainda nao ha produtos cadastrados.' sem explicar como adicionar nem botao/link"
+ },
+ {
+  "n": 10,
+  "classe": "VIOLA",
+  "motivo": "topo e rodape-acoes sticky; scroll-padding de 96/104px (l.28) e sobrescrito por scroll-padding 0 (l.103), sem scroll-margin"
+ },
+ {
+  "n": 11,
+  "classe": "CUMPRE",
+  "motivo": "<title>Erro: Documentos - ...</title> com resumo de erros exibido"
+ },
+ {
+  "n": 12,
+  "classe": "VIOLA",
+  "motivo": "colunas td.num sem font-variant-numeric: tabular-nums (so text-align:right; JS nao altera)"
+ },
+ {
+  "n": 13,
+  "classe": "VIOLA",
+  "motivo": "header .topo sticky (l.45) e lateral sticky; nenhum scroll-padding/scroll-margin no CSS"
+ },
+ {
+  "n": 14,
+  "classe": "VIOLA",
+  "motivo": "botao Enviar com aria-disabled=true e opacity .5, bloqueando o submit; continua sendo botao desabilitado"
+ },
+ {
+  "n": 15,
+  "classe": "VIOLA",
+  "motivo": "<th colspan=\"7\">Tecnologia/Financeiro/Operacoes sem scope=rowgroup/colgroup"
+ },
+ {
+  "n": 16,
+  "classe": "VIOLA",
+  "motivo": "<span class=\"ponto ok\" aria-label=\"Ativo\"> / 'Pausado': aria-label em span generico (l.297-332)"
+ },
+ {
+  "n": 17,
+  "classe": "VIOLA",
+  "motivo": "colunas td.num sem tabular-nums (grep tabular = 0)"
+ },
+ {
+  "n": 18,
+  "classe": "CUMPRE",
+  "motivo": "data em tres inputs type=text com inputmode=numeric (dia/mes/ano)"
+ },
+ {
+  "n": 19,
+  "classe": "VIOLA",
+  "motivo": "datas numericas 24/10/2026, 04/11/2026 em <time>; sem nome do mes"
+ },
+ {
+  "n": 20,
+  "classe": "VIOLA",
+  "motivo": "fontes em px (body 16px, h1 28px, .btn 15px etc.); html 100% nao compensa"
+ },
+ {
+  "n": 21,
+  "classe": "VIOLA",
+  "motivo": "logradouro exige numero (pattern '(?=.*\\d).+', title 'Informe rua e numero') e complemento visivel sem botao de revelar"
+ },
+ {
+  "n": 22,
+  "classe": "CUMPRE",
+  "motivo": "data em tres inputs type=text com inputmode=numeric"
+ },
+ {
+  "n": 23,
+  "classe": "CUMPRE",
+  "motivo": "um unico input otp (maxlength=6, one-time-code), permite colar"
+ },
+ {
+  "n": 24,
+  "classe": "VIOLA",
+  "motivo": "paginacao em <div class=pag><ul> sem <nav> nem nome acessivel (aria-current existe)"
+ },
+ {
+  "n": 25,
+  "classe": "CUMPRE",
+  "motivo": "nenhum order/grid-area/row-reverse reordenando campos; ordem do DOM = visual"
+ },
+ {
+  "n": 26,
+  "classe": "CUMPRE",
+  "motivo": "legenda 'Campos marcados com * sao obrigatorios' (l.166) antes do form"
+ },
+ {
+  "n": 27,
+  "classe": "CUMPRE",
+  "motivo": "aria-label so em button/nav/role=region/group; nenhum em generic, paragraph, none ou presentation"
+ },
+ {
+  "n": 28,
+  "classe": "NAO_SE_APLICA",
+  "motivo": "so ha <img alt=\"\"> decorativas (thumbs/logo); sem SVG ou imagem informativa"
+ },
+ {
+  "n": 29,
+  "classe": "CUMPRE",
+  "motivo": "os tres dialogos tem Fechar (modal-x), Cancelar ou 'Manter entrega' explicitos"
+ },
+ {
+  "n": 30,
+  "classe": "CUMPRE",
+  "motivo": "unica tabela e de dados (th scope col/row/rowgroup); sem tabela de layout"
+ }
+]

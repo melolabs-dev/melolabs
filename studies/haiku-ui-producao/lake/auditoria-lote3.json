@@ -1,0 +1,260 @@
+[
+ {
+  "id": "FC47",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Baymard recomenda adiar a criação de conta para a etapa de confirmação, mas não manda explicitamente oferecer guest checkout.",
+  "regra_ajustada": "Adie a opção de criar conta para a etapa de confirmação, após o pedido."
+ },
+ {
+  "id": "FC48",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página exige ao menos poder colar o código e critica campos por dígito (colar preenche só o primeiro), mas não cita autocomplete=one-time-code.",
+  "regra_ajustada": "Em códigos de verificação, permita colar o código inteiro; evite uma caixa por dígito que impeça colar."
+ },
+ {
+  "id": "FC49",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A SC exige ao menos um entre reversível, verificado ou confirmado (com mecanismo de revisão), sem falar em tela de revisão obrigatória.",
+  "regra_ajustada": "Em compromisso financeiro, garanta ao menos um: envio reversível, dados verificados com chance de corrigir, ou mecanismo de revisão e confirmação antes de finalizar."
+ },
+ {
+  "id": "FC50",
+  "classe": "SUSTENTA",
+  "motivo": "A página manda atualizar o texto oculto para descrever o que cada link Alterar muda.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE01",
+  "classe": "SUSTENTA",
+  "motivo": "A página pede ao menos duas formas de localizar uma página, citando busca, mapa do site e links relacionados.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE02",
+  "classe": "SUSTENTA",
+  "motivo": "A página exige a mesma ordem relativa dos mecanismos de navegação repetidos, salvo mudança iniciada pelo usuário.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE05",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página cita H69 (título no início de cada seção) como técnica, mas não fala em um h1 por página.",
+  "regra_ajustada": "Inicie cada seção de conteúdo com um elemento de título (h1-h6)."
+ },
+ {
+  "id": "NE06",
+  "classe": "SUSTENTA",
+  "motivo": "MDN diz para usar aria-current=page no link da página atual em um conjunto de links.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE07",
+  "classe": "SUSTENTA",
+  "motivo": "MDN: marque apenas um elemento de um conjunto como atual.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE08",
+  "classe": "SUSTENTA",
+  "motivo": "O padrão APG exige o breadcrumb em região de navegação rotulada por aria-label ou aria-labelledby.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE09",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "GOV.UK mostra nav>ol>li>a e diz começar na home e terminar na seção pai, mas não declara a estrutura como regra.",
+  "regra_ajustada": "Comece o breadcrumb na home e termine na seção pai da página atual; marque-o como lista em nav."
+ },
+ {
+  "id": "NE10",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página pede texto que identifique o propósito, mas não proíbe explicitamente 'clique aqui' ou 'saiba mais' e aceita 'Leia mais' quando o contexto esclarece.",
+  "regra_ajustada": "Escreva texto de link que identifique seu propósito, de preferência sem depender de contexto adicional."
+ },
+ {
+  "id": "NE11",
+  "classe": "SUSTENTA",
+  "motivo": "A página diz que links de mesmo destino devem ter texto consistente e destinos distintos, texto diferente.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE12",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "APG sustenta role=dialog e nome por aria-labelledby/aria-label, mas não menciona o elemento nativo dialog.",
+  "regra_ajustada": "Dê role=dialog e nome acessível (aria-labelledby ou aria-label) ao contêiner do modal."
+ },
+ {
+  "id": "NE13",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "MDN exige um mecanismo de fechar, recomendando botão explícito como o mais robusto, mas admite Esc, clique fora e form method=dialog.",
+  "regra_ajustada": "Ofereça um mecanismo de fechar em todo diálogo; o mais robusto é um botão explícito de fechar ou cancelar."
+ },
+ {
+  "id": "NE14",
+  "classe": "SUSTENTA",
+  "motivo": "A página cita scroll-padding como técnica para o foco não ficar sob conteúdo fixo ou sticky.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE16",
+  "classe": "SUSTENTA",
+  "motivo": "A página recomenda ARIA22 (role=status) para mensagens de status, sem receber foco.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE17",
+  "classe": "SUSTENTA",
+  "motivo": "MDN diz que alert deve ser só texto, não elementos interativos como links ou botões.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE18",
+  "classe": "SUSTENTA",
+  "motivo": "MDN diz para não ocultar o contêiner com display:none e usar estilo visually-hidden.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE19",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "MDN manda usar aria-busy=true até terminar o carregamento e voltar a false, no contexto de live regions com várias partes.",
+  "regra_ajustada": "Em live region cujas partes carregam em etapas, use aria-busy=true até concluir e depois false."
+ },
+ {
+  "id": "NE20",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A SC exige descrição do erro em texto (cor/ícone só como adicional), mas diz que a ligação programática ao campo não é exigida por ela.",
+  "regra_ajustada": "Descreva o erro em texto e identifique o campo com erro; cor ou ícone só como complemento."
+ },
+ {
+  "id": "NE22",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK diz que o componente inclui um 'Error:' oculto antes da mensagem.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE23",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK manda o resumo no topo do main, com link para cada resposta com erro.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE24",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK cita adicionar 'Error: ' no início do title.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE25",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A SC pede sugerir correção quando conhecida, mas não trata de mensagens genéricas como 'Inválido' ou 'Ops'.",
+  "regra_ajustada": "Sugira como corrigir o erro quando a correção for conhecida."
+ },
+ {
+  "id": "NE26",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "NN/g liga o indicador de percentual a esperas de 10 s ou mais, mas o cancelar vem sem limiar de tempo.",
+  "regra_ajustada": "Para processos de 10 s ou mais, mostre indicador de percentual concluído; em ações demoradas, permita interromper."
+ },
+ {
+  "id": "NE27",
+  "classe": "SUSTENTA",
+  "motivo": "NN/g: até 0,1 s basta mostrar o resultado; acima de 1 s indique que o sistema está trabalhando.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE29",
+  "classe": "SUSTENTA",
+  "motivo": "NN/g recomenda dizer o que poderia aparecer e dar caminhos (links) para preencher.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE30",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "NN/g condena mostrar 'sem itens' durante o carregamento, mas não lista carregando, erro e vazio como três estados.",
+  "regra_ajustada": "Não declare estado vazio enquanto o conteúdo ainda carrega; mostre indicador de progresso."
+ },
+ {
+  "id": "NE31",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK: não limpe nenhum campo ao mostrar a mensagem de erro.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE32",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK manda usar títulos como 'Success' para não depender só de cor.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE33",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "GOV.UK diz evitar mais de um banner por página (não proíbe) e não mostrar banner junto do resumo de erros.",
+  "regra_ajustada": "Evite mais de um banner de notificação por página e não o mostre junto do resumo de erros."
+ },
+ {
+  "id": "NE34",
+  "classe": "SUSTENTA",
+  "motivo": "web.dev recomenda required, type=email, minlength e pattern como validação nativa.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE35",
+  "classe": "SUSTENTA",
+  "motivo": "web.dev explica que :invalid aplica antes da interação e que :user-invalid só depois dela.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE36",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK pede o que acontece a seguir e quando, e número de referência se houver.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE38",
+  "classe": "SUSTENTA",
+  "motivo": "NN/g: usar confirmação para ações de consequência séria e não para ações rotineiras.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE41",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "NN/g manda oferecer desfazer e considerar confirmação antes de ações irreversíveis, mas não diz preferir desfazer à confirmação.",
+  "regra_ajustada": "Ofereça desfazer sempre que possível; reserve confirmação para ações que não podem ser desfeitas."
+ },
+ {
+  "id": "NE42",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "NN/g pede ação não padrão para operações perigosas, com exemplo de digitar uma palavra (DELETE), não o nome do recurso.",
+  "regra_ajustada": "Para operações particularmente perigosas, exija uma ação extra não padrão (ex.: digitar uma palavra de confirmação)."
+ },
+ {
+  "id": "NE43",
+  "classe": "NAO_SUSTENTA",
+  "motivo": "A página das 10 heurísticas só cita Cancel como exemplo de saída clara, sem exigir em diálogos de confirmação.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE46",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK: botão de aviso só para ações destrutivas graves, com passo de confirmação e texto claro.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE47",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "GOV.UK diz evitar botões desabilitados se possível (contraste ruim, confusão), sem prescrever manter ativo e explicar o erro.",
+  "regra_ajustada": "Evite botões desabilitados sempre que possível."
+ },
+ {
+  "id": "NE48",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página só mostra type nos exemplos e no changelog, sem regra de declarar type em todo button.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "NE49",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página só diz usar link em vez de botão para o botão de início, sem a regra geral nem menção a link vazio.",
+  "regra_ajustada": "Para o botão de início, que normalmente não envia dados, use link em vez de button."
+ }
+]

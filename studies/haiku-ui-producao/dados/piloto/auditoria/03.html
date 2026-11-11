@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentos - Nexa Pessoas</title>
+<style>
+:root{
+  --c-fundo:#f4f6f9;
+  --c-superficie:#ffffff;
+  --c-texto:#1c2430;
+  --c-suave:#4a5568;
+  --c-borda:#c3cad4;
+  --c-primaria:#0b5cad;
+  --c-primaria-esc:#084680;
+  --c-erro:#b3261e;
+  --c-erro-fundo:#fdeceb;
+  --c-ok:#1b7a3e;
+  --c-aviso:#8a5a00;
+  --esp-1:4px;
+  --esp-2:8px;
+  --esp-3:16px;
+  --esp-4:24px;
+  --raio:6px;
+  --fonte:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:96px;scroll-padding-bottom:104px}
+body{margin:0;font-family:var(--fonte);font-size:16px;line-height:1.5;color:var(--c-texto);background:var(--c-fundo)}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.pular{position:absolute;left:8px;top:-80px;background:var(--c-primaria);color:#ffffff;padding:8px 12px;border-radius:var(--raio)}
+.pular:focus{top:8px;z-index:50}
+.topo{position:sticky;top:0;z-index:20;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--esp-4);background:var(--c-superficie);border-bottom:1px solid var(--c-borda)}
+.marca{display:flex;align-items:center;gap:var(--esp-2);font-weight:700}
+.topo-links{display:flex;gap:var(--esp-3);font-size:14px}
+.topo-links a{color:var(--c-primaria)}
+.pagina{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:var(--esp-4);max-width:1200px;margin:0 auto;padding:var(--esp-4)}
+.cabecalho-form{margin-bottom:var(--esp-3)}
+h1{font-size:26px;line-height:1.25;margin:0 0 var(--esp-2)}
+.sub{margin:0;color:var(--c-suave)}
+.etapas ol{display:flex;gap:var(--esp-2);list-style:none;margin:var(--esp-3) 0;padding:0}
+.passo{position:relative;flex:1;padding:var(--esp-2) var(--esp-3);border-radius:var(--raio);background:#e6eaf0;font-size:14px}
+.passo-num{display:inline-block;min-width:22px;height:22px;border-radius:50%;background:var(--c-borda);text-align:center;font-weight:700}
+.passo.concluida{background:#e3f3e8}
+.passo.atual{background:var(--c-primaria);color:#ffffff;font-weight:700}
+.passo.atual .passo-num{background:#ffffff;color:var(--c-primaria)}
+.legenda-obrig{margin:0 0 var(--esp-3);font-size:14px;color:var(--c-suave)}
+.resumo-erros{display:flex;gap:var(--esp-3);padding:var(--esp-3);margin-bottom:var(--esp-4);border:2px solid var(--c-erro);border-radius:var(--raio);background:var(--c-erro-fundo);color:var(--c-erro)}
+.resumo-titulo{font-size:18px;margin:0 0 var(--esp-2)}
+.resumo-lista{margin:0;padding-left:var(--esp-4)}
+.resumo-lista a{color:var(--c-erro);text-decoration:underline}
+.secao{background:var(--c-superficie);border:1px solid var(--c-borda);border-radius:var(--raio);padding:var(--esp-4);margin-bottom:var(--esp-4)}
+.secao h2{font-size:20px;margin:0 0 var(--esp-3)}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.grupo{margin:0 0 var(--esp-3)}
+.rotulo-grupo{display:block;padding:0;margin:0 0 var(--esp-2);font-weight:600}
+.bloco-end{padding:var(--esp-3);border:1px dashed var(--c-borda);border-radius:var(--raio);margin-bottom:var(--esp-3)}
+.linha{display:flex;gap:var(--esp-3);margin-bottom:var(--esp-3)}
+.linha .campo{flex:1;min-width:0}
+.linha .c-curto{flex:0 0 140px}
+.linha .c-mini{flex:0 0 90px}
+.campo{display:flex;flex-direction:column;gap:var(--esp-1)}
+label{font-weight:600;font-size:14px}
+.obrig{color:var(--c-erro)}
+input[type=text],input[type=tel],input[type=email],input[type=number],input[type=file],select{height:42px;padding:0 12px;border:1px solid var(--c-borda);border-radius:var(--raio);font:inherit;background:#ffffff;color:inherit;width:100%}
+input:focus,select:focus,button:focus,a:focus,.termos:focus{outline:3px solid #f2a900;outline-offset:2px}
+.tem-erro input{border-color:var(--c-erro);background:var(--c-erro-fundo)}
+.dica{margin:0;font-size:13px;color:var(--c-suave)}
+.erro{margin:0;font-size:13px;color:var(--c-erro);font-weight:600}
+.ico{vertical-align:-2px;flex:none}
+.opcoes{display:flex;gap:var(--esp-4);flex-wrap:wrap}
+.opcao{display:flex;align-items:center;gap:var(--esp-2);font-weight:400;font-size:16px}
+.check{display:flex;align-items:center;gap:var(--esp-2);font-weight:400;font-size:16px;margin:var(--esp-2) 0}
+.abas [role=tablist]{display:flex;gap:var(--esp-1);border-bottom:2px solid var(--c-borda)}
+.abas [role=tab]{padding:10px 16px;border:0;background:transparent;font:inherit;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.abas [role=tab][aria-selected=true],.abas .aba-ativa{border-bottom-color:var(--c-primaria);font-weight:700;color:var(--c-primaria)}
+.painel{padding:var(--esp-3) 0}
+.tab-resumo{width:100%;border-collapse:collapse;font-size:14px}
+.tab-resumo caption{text-align:left;font-weight:700;padding-bottom:var(--esp-2)}
+.tab-resumo th,.tab-resumo td{border:1px solid var(--c-borda);padding:8px 12px;text-align:left}
+.tab-resumo thead th{background:#e6eaf0}
+.termos{max-height:150px;overflow:auto;border:1px solid var(--c-borda);border-radius:var(--raio);padding:var(--esp-3);font-size:14px;background:#fafbfc}
+.aviso-seg{display:flex;gap:var(--esp-2);align-items:center;font-size:14px;color:var(--c-suave);margin-bottom:var(--esp-3)}
+.rodape-acoes{position:sticky;bottom:0;z-index:15;min-height:72px;display:flex;align-items:center;padding:12px var(--esp-3);background:var(--c-superficie);border:1px solid var(--c-borda);border-radius:var(--raio)}
+.acoes{display:flex;gap:var(--esp-3);width:100%;align-items:center}
+.acoes .espaco{flex:1}
+.btn{height:44px;padding:0 20px;border-radius:var(--raio);border:1px solid var(--c-primaria);font:inherit;font-weight:600;cursor:pointer}
+.btn.pri{background:var(--c-primaria);color:#ffffff}
+.btn.sec{background:#ffffff;color:var(--c-primaria)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.lateral .cartao{background:var(--c-superficie);border:1px solid var(--c-borda);border-radius:var(--raio);padding:var(--esp-3);margin-bottom:var(--esp-3)}
+.lateral h2{font-size:16px;margin:0 0 var(--esp-2)}
+.tarefas{list-style:none;margin:0;padding:0}
+.tarefa{display:flex;align-items:center;gap:var(--esp-2);padding:8px 0;border-bottom:1px solid #e6eaf0;font-size:14px}
+.tarefa-status{margin-left:auto;font-weight:600}
+.ponto{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--c-borda)}
+.ponto-ok{background:var(--c-ok)}
+.ponto-erro{background:var(--c-erro)}
+.ponto-prog{background:var(--c-aviso)}
+.status-rasc{margin:0;font-size:14px;color:var(--c-ok);font-weight:600}
+.vazio{margin:0;font-size:14px;color:var(--c-suave)}
+.rodape-pagina{max-width:1200px;margin:0 auto;padding:var(--esp-3) var(--esp-4) var(--esp-4);font-size:13px;color:var(--c-suave)}
+html{scroll-padding-top:96px;scroll-padding-bottom:104px}
+input[type=checkbox],input[type=radio]{width:20px;height:20px;margin:0;flex:none;accent-color:var(--c-primaria)}
+.abas [role=tablist]{overflow-x:auto}
+.tabela-rolagem{overflow-x:auto;margin-top:var(--esp-3)}
+.passo{text-align:center}
+.passo:not(.atual) .passo-nome{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:860px){.pagina{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){
+  .topo{padding:0 var(--esp-3)}
+  .topo-links{gap:var(--esp-2)}
+  .pagina{padding:var(--esp-3)}
+  .secao{padding:var(--esp-3)}
+  h1{font-size:22px}
+  .linha{flex-direction:column;gap:var(--esp-2)}
+  .linha .c-curto,.linha .c-mini{flex:0 0 auto;width:100%}
+  .linha-data{flex-direction:row}
+  .linha-data .c-mini{flex:1 1 0;width:auto;min-width:0}
+  .etapas ol{overflow-x:auto}
+  .passo{flex:0 0 auto;min-width:48px}
+  .acoes{flex-wrap:wrap}
+  .acoes .espaco{display:none}
+  .acoes .btn{flex:1 1 140px}
+}
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o formulário</a>
+<div class="topo">
+  <div class="marca">
+    <svg viewBox="0 0 24 24" width="28" height="28"><rect x="2" y="2" width="20" height="20" rx="5" fill="#0b5cad"/><path d="M6 12h12M12 6v12" stroke="#ffffff" stroke-width="2"/></svg>
+    <span>Nexa Pessoas</span>
+  </div>
+  <nav class="topo-links" aria-label="Atalhos da conta">
+    <a href="#ajuda">Central de ajuda</a>
+    <a href="#sair">Sair</a>
+  </nav>
+</div>
+<div class="pagina">
+<div id="conteudo" tabindex="-1">
+  <div class="cabecalho-form">
+    <h1>Documentos</h1>
+    <p class="sub">Admissão de colaborador · Nexa Pessoas</p>
+  </div>
+  <nav id="etapas" class="etapas" aria-label="Etapas do cadastro">
+    <ol>
+      <li class="passo concluida"><span class="passo-num">1</span> <span class="passo-nome">Vaga e cargo</span></li>
+      <li class="passo concluida"><span class="passo-num">2</span> <span class="passo-nome">Dados pessoais e contato</span></li>
+      <li class="passo atual" aria-current="step"><span class="passo-num">3</span> <span class="passo-nome">Documentos</span></li>
+      <li class="passo futura"><span class="passo-num">4</span> <span class="passo-nome">Benefícios</span></li>
+      <li class="passo futura"><span class="passo-num">5</span> <span class="passo-nome">Revisão e envio</span></li>
+    </ol>
+  </nav>
+  <section id="resumo-erros" class="resumo-erros" tabindex="-1" aria-labelledby="titulo-erros" role="alert">
+  <svg class="ico" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M12 2 1 21h22z" fill="currentColor"/></svg>
+  <div>
+    <h2 id="titulo-erros" class="resumo-titulo">Há 3 problemas nesta etapa</h2>
+    <p>Corrija os campos destacados em vermelho antes de continuar.</p>
+    <ul class="resumo-lista">
+      <li><a href="#cpf">CPF: informe 11 dígitos</a></li>
+      <li><a href="#ano">Ano de nascimento: informe 4 dígitos</a></li>
+      <li><a href="#email">E-mail: informe um endereço completo</a></li>
+    </ul>
+  </div>
+</section>
+  <form action="#" method="post">
+    <section class="secao" aria-labelledby="s-ident">
+      <h2 id="s-ident">Identificação</h2>
+      <div class="campo ">
+  <label for="nome">Nome completo <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="text" id="nome" name="nome" autocomplete="name" pattern="[A-Za-zÀ-ÿ.'\- ]+( +[A-Za-zÀ-ÿ.'\- ]+)+" title="Informe nome e sobrenome, somente letras" required value="José Antônio Ribeiro">
+</div>
+      <div class="linha">
+        <div class="campo  tem-erro">
+  <label for="cpf">CPF <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="text" id="cpf" name="cpf" inputmode="numeric" autocomplete="off" pattern="\d{11}" maxlength="11" required aria-invalid="true" value="52998224" aria-describedby="d-cpf e-cpf">
+  <p class="dica" id="d-cpf">Somente números, 11 dígitos.</p>
+  <p class="erro" id="e-cpf"><svg class="ico" aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg> Informe o CPF com 11 dígitos.</p>
+</div>
+        <div class="campo ">
+  <label for="mae">Nome da mãe</label>
+  <input type="text" id="mae" name="mae" value="Márcia Teixeira">
+</div>
+      </div>
+      <fieldset class="grupo grupo-data">
+  <legend class="rotulo-grupo">Data de nascimento</legend>
+  <div class="linha linha-data">
+    <div class="campo c-mini">
+  <label for="dia">Dia <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="text" id="dia" name="dia" inputmode="numeric" autocomplete="off" maxlength="2" required value="06">
+</div>
+    <div class="campo c-mini">
+  <label for="mes">Mês <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="text" id="mes" name="mes" inputmode="numeric" autocomplete="off" maxlength="2" required value="11">
+</div>
+    <div class="campo c-mini tem-erro">
+  <label for="ano">Ano <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="text" id="ano" name="ano" inputmode="numeric" autocomplete="off" maxlength="4" required aria-invalid="true" value="04" aria-describedby="e-ano">
+  <p class="erro" id="e-ano"><svg class="ico" aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg> Informe o ano de nascimento com 4 dígitos.</p>
+</div>
+  </div>
+  <p class="dica" id="d-nasc">Exemplo: 14 05 1988</p>
+</fieldset>
+      <div class="grupo grupo-opcoes">
+  <p class="rotulo-grupo" id="l-morad">Situação de moradia</p>
+  <div class="opcoes" role="radiogroup" aria-labelledby="l-morad">
+    <label class="opcao"><input type="radio" name="morad" value="0"> Imóvel próprio</label>
+    <label class="opcao"><input type="radio" name="morad" value="1" checked> Imóvel alugado</label>
+    <label class="opcao"><input type="radio" name="morad" value="2"> Imóvel cedido</label>
+  </div>
+</div>
+    </section>
+    <section class="secao" aria-labelledby="s-contato">
+      <h2 id="s-contato">Contato</h2>
+      <div class="linha">
+        <div class="campo  tem-erro">
+  <label for="email">E-mail <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="email" id="email" name="email" autocomplete="email" required aria-invalid="true" value="jose@" aria-describedby="e-email">
+  <p class="erro" id="e-email"><svg class="ico" aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="7" fill="currentColor"/></svg> Informe um e-mail completo, como nome@exemplo.com.br.</p>
+</div>
+        <div class="campo ">
+  <label for="tel">Telefone <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="tel" id="tel" name="tel" autocomplete="tel" placeholder="(00) 00000-0000" maxlength="15" required aria-describedby="d-tel" oninput="let d=this.value.replace(/\D/g,'').slice(0,11);this.value=d.length>6?'('+d.slice(0,2)+') '+d.slice(2,7)+'-'+d.slice(7):d.length>2?'('+d.slice(0,2)+') '+d.slice(2):d" value="(11) 98312-8251">
+  <p class="dica" id="d-tel">Com DDD. Exemplo: (11) 98765-4321.</p>
+</div>
+      </div>
+      <div class="grupo grupo-opcoes">
+  <p class="rotulo-grupo" id="l-pref">Como prefere ser contatado?</p>
+  <div class="opcoes" role="radiogroup" aria-labelledby="l-pref">
+    <label class="opcao"><input type="radio" name="pref" value="0"> E-mail</label>
+    <label class="opcao"><input type="radio" name="pref" value="1" checked> Telefone</label>
+    <label class="opcao"><input type="radio" name="pref" value="2"> Mensagem de texto</label>
+  </div>
+</div>
+      <div class="grupo grupo-opcoes">
+  <p class="rotulo-grupo" id="l-comunic">Quero receber comunicações sobre</p>
+  <div class="opcoes" role="group" aria-labelledby="l-comunic">
+    <label class="opcao"><input type="checkbox" name="comunic" value="novidades"> Novidades do serviço</label>
+    <label class="opcao"><input type="checkbox" name="comunic" value="ofertas"> Ofertas e promoções</label>
+    <label class="opcao"><input type="checkbox" name="comunic" value="pesquisas"> Pesquisas de satisfação</label>
+  </div>
+</div>
+    </section>
+    <section class="secao" aria-labelledby="s-end">
+      <h2 id="s-end">Endereços</h2>
+      <div class="grupo bloco-end">
+  <p class="rotulo-grupo">Endereço residencial</p>
+  <div class="linha">
+    <div class="campo c-curto">
+  <label for="cep-res">CEP <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="text" id="cep-res" name="cep-res" inputmode="numeric" autocomplete="postal-code" pattern="\d{5}-?\d{3}" maxlength="9" required aria-describedby="d-cep-res" value="30130-010">
+  <p class="dica" id="d-cep-res">Somente números, 8 dígitos.</p>
+</div>
+    <div class="campo ">
+  <label for="rua-res">Rua <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="text" id="rua-res" name="rua-res" autocomplete="address-line1" value="Rua da Bahia">
+</div>
+    <div class="campo c-curto">
+  <label for="num-res">Número <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="text" id="num-res" name="num-res" inputmode="numeric" required value="838">
+</div>
+  </div>
+  <div class="linha">
+    <div class="campo ">
+  <label for="comp-res">Complemento</label>
+  <input type="text" id="comp-res" name="comp-res" autocomplete="address-line2" value="Bloco B">
+</div>
+    <div class="campo ">
+  <label for="bairro-res">Bairro</label>
+  <input type="text" id="bairro-res" name="bairro-res" autocomplete="address-level3" value="Centro">
+</div>
+  </div>
+  <div class="linha">
+    <div class="campo ">
+  <label for="cidade-res">Cidade <span class="obrig" aria-hidden="true">*</span></label>
+  <input type="text" id="cidade-res" name="cidade-res" autocomplete="address-level2" required value="Belo Horizonte">
+</div>
+    <div class="campo c-curto">
+  <label for="uf-res">UF <span class="obrig" aria-hidden="true">*</span></label>
+  <select id="uf-res" name="uf-res" autocomplete="address-level1" required><option value="">Selecione</option><option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option><option value="MG" selected>MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option><option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option></select>
+</div>
+  </div>
+</div>
+      <label class="check"><input type="checkbox" name="mesmo" value="1"> Usar o mesmo endereço para correspondência</label>
+      <div class="grupo bloco-end">
+  <p class="rotulo-grupo">Endereço para correspondência</p>
+  <div class="linha">
+    <div class="campo c-curto">
+  <label for="cep-cor">CEP</label>
+  <input type="text" id="cep-cor" name="cep-cor" inputmode="numeric" autocomplete="billing postal-code" pattern="\d{5}-?\d{3}" maxlength="9" value="">
+</div>
+    <div class="campo ">
+  <label for="rua-cor">Rua</label>
+  <input type="text" id="rua-cor" name="rua-cor" autocomplete="billing address-line1" value="">
+</div>
+    <div class="campo c-curto">
+  <label for="num-cor">Número</label>
+  <input type="text" id="num-cor" name="num-cor" inputmode="numeric" value="">
+</div>
+  </div>
+  <div class="linha">
+    <div class="campo ">
+  <label for="comp-cor">Complemento</label>
+  <input type="text" id="comp-cor" name="comp-cor" autocomplete="billing address-line2" value="">
+</div>
+    <div class="campo ">
+  <label for="bairro-cor">Bairro</label>
+  <input type="text" id="bairro-cor" name="bairro-cor" autocomplete="billing address-level3" value="">
+</div>
+  </div>
+  <div class="linha">
+    <div class="campo ">
+  <label for="cidade-cor">Cidade</label>
+  <input type="text" id="cidade-cor" name="cidade-cor" autocomplete="billing address-level2" value="">
+</div>
+    <div class="campo c-curto">
+  <label for="uf-cor">UF</label>
+  <select id="uf-cor" name="uf-cor" autocomplete="billing address-level1"><option value="">Selecione</option><option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option><option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR" selected>PR</option><option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option><option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option></select>
+</div>
+  </div>
+</div>
+    </section>
+    <section class="secao" aria-labelledby="s-docs">
+      <h2 id="s-docs">Documentos</h2>
+      <p class="aviso-seg"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><rect x="5" y="10" width="14" height="10" rx="2" fill="#4a5568"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="#4a5568" stroke-width="2"/></svg> Seus arquivos são enviados por conexão criptografada.</p>
+      <div class="abas">
+        <div role="tablist" aria-label="Forma de envio do documento">
+          <button type="button" role="tab" id="aba-1" class="aba-ativa" aria-selected="true" aria-controls="painel-1">Enviar arquivo</button>
+          <button type="button" role="tab" id="aba-2" aria-selected="false" aria-controls="painel-2" tabindex="-1">Tirar foto</button>
+          <button type="button" role="tab" id="aba-3" aria-selected="false" aria-controls="painel-3" tabindex="-1">Já enviei antes</button>
+        </div>
+        <div role="tabpanel" id="painel-1" class="painel">
+          <div class="campo">
+            <label for="arquivo">Documento de identificação (PDF ou imagem)</label>
+            <input type="file" id="arquivo" name="arquivo" accept=".pdf,image/*" required aria-describedby="d-arquivo">
+            <p class="dica" id="d-arquivo">Tamanho máximo de 10 MB.</p>
+          </div>
+        </div>
+        <div role="tabpanel" id="painel-2" class="painel" hidden>
+          <p class="dica">Use a câmera do celular para fotografar o documento.</p>
+          <div class="campo">
+            <label for="foto">Fotografar documento</label>
+            <input type="file" id="foto" name="foto" accept="image/*" capture="environment">
+          </div>
+        </div>
+        <div role="tabpanel" id="painel-3" class="painel" hidden>
+          <p class="vazio">Nenhum documento anterior encontrado para este cadastro.</p>
+        </div>
+      </div>
+      <div class="tabela-rolagem" tabindex="0">
+      <table class="tab-resumo">
+        <caption>Benefícios escolhidos</caption>
+        <thead>
+          <tr>
+            <th id="h-desc" rowspan="2" scope="col">Benefício</th>
+            <th id="h-custo" colspan="2" scope="colgroup">Valor (R$)</th>
+            <th id="h-sit" rowspan="2" scope="col">Situação</th>
+          </tr>
+          <tr>
+            <th id="h-mes" scope="col">Mensal</th>
+            <th id="h-ano" scope="col">Anual</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th id="l1" scope="row">Vale-refeição</th>
+          <td>880,00</td>
+          <td>10.560,00</td>
+          <td>Ativo</td>
+        </tr>
+        <tr>
+          <th id="l2" scope="row">Plano de saúde</th>
+          <td>412,30</td>
+          <td>4.947,60</td>
+          <td>Ativo</td>
+        </tr>
+        <tr>
+          <th id="l3" scope="row">Auxílio-creche</th>
+          <td>350,00</td>
+          <td>4.200,00</td>
+          <td>Pendente</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <section class="secao" aria-labelledby="s-termos">
+      <h2 id="s-termos">Termos e privacidade</h2>
+      <div class="termos" tabindex="0" role="region" aria-label="Termos de uso e política de privacidade">
+    <p><strong>1.</strong> A Nexa Pessoas trata os dados informados neste formulário exclusivamente para a finalidade da admissão de colaborador.</p>
+    <p><strong>2.</strong> Você pode solicitar a correção, a portabilidade ou a exclusão dos seus dados a qualquer momento pelo canal de privacidade.</p>
+    <p><strong>3.</strong> Os documentos enviados são armazenados com criptografia e acessados apenas por pessoas autorizadas.</p>
+    <p><strong>4.</strong> Informações incompletas podem atrasar a análise do seu pedido em até cinco dias úteis.</p>
+    <p><strong>5.</strong> Ao salvar um rascunho, os dados permanecem no seu cadastro por 30 dias antes de serem removidos automaticamente.</p>
+    <p><strong>6.</strong> Comunicações de marketing só serão enviadas se você marcar as opções correspondentes na etapa de contato.</p>
+    <p><strong>7.</strong> Alterações nestes termos serão notificadas por e-mail com antecedência mínima de quinze dias.</p>
+    <p><strong>8.</strong> Em caso de divergência entre os dados informados e os documentos, prevalecerão os documentos apresentados.</p>
+      </div>
+      <label class="check"><input type="checkbox" name="aceite" id="aceite" required> Li e aceito os termos de uso <span class="obrig" aria-hidden="true">*</span></label>
+    </section>
+    <div class="rodape-acoes">
+      <div class="acoes">
+        <button type="button" class="btn sec">Voltar</button>
+        <button type="button" class="btn sec">Salvar rascunho</button>
+        <span class="espaco"></span>
+        <button type="submit" class="btn pri">Continuar</button>
+      </div>
+    </div>
+  </form>
+</div>
+<aside class="lateral" aria-label="Resumo do progresso">
+  <div class="cartao">
+    <h2>Lista de tarefas</h2>
+    <ul id="tarefas" class="tarefas">
+      <li class="tarefa"><span class="ponto ponto-ok"></span> <span class="tarefa-nome">Identificação</span> <span class="tarefa-status">Concluída</span></li>
+      <li class="tarefa"><span class="ponto ponto-erro"></span> <span class="tarefa-nome">Contato</span> <span class="tarefa-status">Com erro</span></li>
+      <li class="tarefa"><span class="ponto ponto-ok"></span> <span class="tarefa-nome">Endereços</span> <span class="tarefa-status">Concluída</span></li>
+      <li class="tarefa"><span class="ponto ponto-prog"></span> <span class="tarefa-nome">Documentos</span> <span class="tarefa-status">Em andamento</span></li>
+      <li class="tarefa"><span class="ponto ponto-nada"></span> <span class="tarefa-nome">Termos</span> <span class="tarefa-status">Pendente</span></li>
+    </ul>
+  </div>
+  <div class="cartao">
+    <h2>Rascunho</h2>
+    <p id="rascunho" class="status-rasc" role="status">Rascunho salvo às 12:07</p>
+  </div>
+  <div class="cartao">
+    <h2>Precisa de ajuda?</h2>
+    <p class="vazio">Nenhuma conversa aberta. Nosso atendimento responde em até 2 horas úteis.</p>
+  </div>
+</aside>
+</div>
+<div class="rodape-pagina">Nexa Pessoas · Todos os direitos reservados · Protocolo 602029</div>
+</body>
+</html>

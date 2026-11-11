@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="656.1pt" height="269.424pt" viewBox="0 0 656.1 269.424" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-10T21:44:36.624799</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 269.424 
+L 656.1 269.424 
+L 656.1 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 11.664 98.623698 
+L 644.436 98.623698 
+Q 648.9 98.623698 648.9 94.774279 
+L 648.9 60.129509 
+Q 648.9 56.280091 644.436 56.280091 
+L 11.664 56.280091 
+Q 7.2 56.280091 7.2 60.129509 
+L 7.2 94.774279 
+Q 7.2 98.623698 11.664 98.623698 
+z
+" clip-path="url(#p82e8f776a3)" style="fill: #fbefe8; stroke: #ecc9b6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 11.664 146.741434 
+L 644.436 146.741434 
+Q 648.9 146.741434 648.9 142.892015 
+L 648.9 108.247245 
+Q 648.9 104.397826 644.436 104.397826 
+L 11.664 104.397826 
+Q 7.2 104.397826 7.2 108.247245 
+L 7.2 142.892015 
+Q 7.2 146.741434 11.664 146.741434 
+z
+" clip-path="url(#p82e8f776a3)" style="fill: #fbefe8; stroke: #ecc9b6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 11.664 194.85917 
+L 644.436 194.85917 
+Q 648.9 194.85917 648.9 191.009751 
+L 648.9 156.364981 
+Q 648.9 152.515562 644.436 152.515562 
+L 11.664 152.515562 
+Q 7.2 152.515562 7.2 156.364981 
+L 7.2 191.009751 
+Q 7.2 194.85917 11.664 194.85917 
+z
+" clip-path="url(#p82e8f776a3)" style="fill: #fbefe8; stroke: #ecc9b6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 11.664 242.976906 
+L 644.436 242.976906 
+Q 648.9 242.976906 648.9 239.127487 
+L 648.9 204.482717 
+Q 648.9 200.633298 644.436 200.633298 
+L 11.664 200.633298 
+Q 7.2 200.633298 7.2 204.482717 
+L 7.2 239.127487 
+Q 7.2 242.976906 11.664 242.976906 
+z
+" clip-path="url(#p82e8f776a3)" style="fill: #fbefe8; stroke: #ecc9b6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="9.99" y="22.34709" transform="rotate(-0 9.99 22.34709)">Aesthetics without humans: three instruments, none valid</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="9.99" y="42.206342" transform="rotate(-0 9.99 42.206342)">Measured (left) against the threshold fixed before computing (right, gray).</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="18.36" y="80.101902" transform="rotate(-0 18.36 80.101902)">UIClip, attempt 1 (full)</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b8423b" x="280.62" y="73.586432" transform="rotate(-0 280.62 73.586432)">A: 9/15</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="280.62" y="89.153879" transform="rotate(-0 280.62 89.153879)">threshold ≥ 12/15</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b8423b" x="453.6" y="73.586432" transform="rotate(-0 453.6 73.586432)">B: 2/5</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="453.6" y="89.153879" transform="rotate(-0 453.6 89.153879)">threshold ≥ 4/5</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b8423b" x="640.53" y="80.179433" transform="rotate(-0 640.53 80.179433)">NOT VALID</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="18.36" y="128.219638" transform="rotate(-0 18.36 128.219638)">UIClip, attempt 2 (cropped)</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b8423b" x="280.62" y="121.704168" transform="rotate(-0 280.62 121.704168)">A: 8/15</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="280.62" y="137.271615" transform="rotate(-0 280.62 137.271615)">threshold ≥ 12/15</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b8423b" x="453.6" y="121.704168" transform="rotate(-0 453.6 121.704168)">B: 2/5</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="453.6" y="137.271615" transform="rotate(-0 453.6 137.271615)">threshold ≥ 4/5</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b8423b" x="640.53" y="128.297169" transform="rotate(-0 640.53 128.297169)">NOT VALID</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="18.36" y="176.337374" transform="rotate(-0 18.36 176.337374)">Consistency by code</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b8423b" x="280.62" y="169.821904" transform="rotate(-0 280.62 169.821904)">A: 9/15</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="280.62" y="185.389351" transform="rotate(-0 280.62 185.389351)">threshold ≥ 12/15</text>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b6b6f" x="453.6" y="169.821904" transform="rotate(-0 453.6 169.821904)">B: 4/5</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="453.6" y="185.389351" transform="rotate(-0 453.6 185.389351)">threshold ≥ 4/5</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b8423b" x="640.53" y="176.414905" transform="rotate(-0 640.53 176.414905)">NOT VALID</text>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 700; font-size: 10.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1f2a30" x="18.36" y="224.45511" transform="rotate(-0 18.36 224.45511)">Fable judge vs WiserUI-Bench</text>
+   </g>
+   <g id="text_22">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b8423b" x="280.62" y="217.93964" transform="rotate(-0 280.62 217.93964)">55.6% accuracy (CI 49.9 to 61.1)</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="280.62" y="233.507087" transform="rotate(-0 280.62 233.507087)">threshold ≥ 60%, IC &gt; 50%</text>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #b8423b" x="453.6" y="217.939999" transform="rotate(-0 453.6 217.939999)">58.6% consistency</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6a72" x="453.6" y="233.507087" transform="rotate(-0 453.6 233.507087)">threshold ≥ 70%</text>
+   </g>
+   <g id="text_26">
+    <text style="font-weight: 700; font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b8423b" x="640.53" y="224.532641" transform="rotate(-0 640.53 224.532641)">NOT VALID</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p82e8f776a3">
+   <rect x="7.2" y="7.2" width="641.7" height="255.024"/>
+  </clipPath>
+ </defs>
+</svg>

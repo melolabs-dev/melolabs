@@ -1,0 +1,248 @@
+[
+ {
+  "id": "NE50",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Texto oculto 'Warning' e aria-hidden no ícone aparecem só no exemplo de código; a prosa só diz que o texto oculto pode ser reescrito.",
+  "regra_ajustada": "Em avisos inclua texto visualmente oculto (ex.: 'Aviso') antes da mensagem e oculte o ícone de leitores de tela."
+ },
+ {
+  "id": "TD01",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Página cita table markup (H51) e falha por pre/espaços (F33/F34/F48), mas não menciona divs.",
+  "regra_ajustada": "Use marcação de tabela para dados tabulares; não alinhe colunas com espaços ou pre."
+ },
+ {
+  "id": "TD03",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Prosa só recomenda scope para distinguir cabeçalhos; col/row aparecem em exemplos.",
+  "regra_ajustada": "Use scope em th para distinguir cabeçalhos de coluna e de linha."
+ },
+ {
+  "id": "TD04",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Caption como título curto está dito; 'primeiro filho' só é filho direto, sem ordem explícita.",
+  "regra_ajustada": "Use um caption curto como título, filho direto da table."
+ },
+ {
+  "id": "TD05",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Página manda envolver cabeçalhos multilinha em thead e usar tfoot, não agrupar toda linha.",
+  "regra_ajustada": "Em tabelas com cabeçalhos de várias linhas, envolva-os em thead; use tfoot para rodapé."
+ },
+ {
+  "id": "TD06",
+  "classe": "SUSTENTA",
+  "motivo": "Prosa diz scope=colgroup e rowgroup para cabeçalhos que abrangem colunas/linhas.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD07",
+  "classe": "SUSTENTA",
+  "motivo": "Test rule: headers deve referir células da mesma tabela; F90 falha associação incorreta.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD08",
+  "classe": "SUSTENTA",
+  "motivo": "F46 lista th/tabelas de layout como falha.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD09",
+  "classe": "SUSTENTA",
+  "motivo": "Seção Deprecated attributes lista os sete e diz para não usar.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD10",
+  "classe": "SUSTENTA",
+  "motivo": "Prosa: ao comparar números alinhe à direita.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD11",
+  "classe": "SUSTENTA",
+  "motivo": "Diz que tabular-nums deixa números do mesmo tamanho para alinhar em tabelas.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD12",
+  "classe": "SUSTENTA",
+  "motivo": "Primeira coluna deve ser identificador legível, contra IDs 'mystery meat'.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD13",
+  "classe": "SUSTENTA",
+  "motivo": "Congelar cabeçalhos se a tabela é maior que a tela.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD14",
+  "classe": "SUSTENTA",
+  "motivo": "Sticky exige inset não-auto e fixa ao ancestral mais próximo com overflow.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD15",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Exige apenas não ocultar totalmente (AA permite parcial); scroll-padding é técnica C43.",
+  "regra_ajustada": "Cabeçalhos ou rodapés sticky não podem ocultar totalmente o elemento focado; scroll-padding é uma solução."
+ },
+ {
+  "id": "TD17",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Limitar rolagem 2D ao container é recomendação ('sempre que possível'); exceção de tabelas de dados.",
+  "regra_ajustada": "Sempre que possível, limite a rolagem bidimensional ao container da tabela; o restante do conteúdo deve fazer reflow."
+ },
+ {
+  "id": "TD18",
+  "classe": "SUSTENTA",
+  "motivo": "Texto do cabeçalho ordenável vai dentro de button.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD19",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "aria-sort só na coluna ordenada atual, mas aceita também 'other'.",
+  "regra_ajustada": "Aplique aria-sort a um único cabeçalho, o da coluna ordenada, com ascending ou descending."
+ },
+ {
+  "id": "TD21",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Filtros ativos visíveis é dito; 'qualquer variável relevante' não, só que ordenar deve ser fácil.",
+  "regra_ajustada": "Facilite ordenar por uma variável e indique claramente quando há filtros ativos."
+ },
+ {
+  "id": "TD22",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Ocultar/reordenar deve ser fácil e acessível a quem não arrasta, com menu de exemplo; não é imposto em palavras exatas.",
+  "regra_ajustada": "Torne ocultar e reordenar colunas fáceis também sem arrastar, por exemplo por menu."
+ },
+ {
+  "id": "TD23",
+  "classe": "SUSTENTA",
+  "motivo": "Ações inline para uma ou duas; para mais, checkboxes e ações acima ou abaixo da tabela.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD24",
+  "classe": "SUSTENTA",
+  "motivo": "Não recomenda modais para edição profunda; sugere painel lateral não modal com tabela visível.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD25",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "24x24 CSS px é o critério, mas com cinco exceções (espaçamento, inline etc.).",
+  "regra_ajustada": "Alvos de ponteiro devem ter ao menos 24x24 px CSS, salvo exceções (espaçamento, inline)."
+ },
+ {
+  "id": "TD26",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Página trata texto cortado como falha, mas não fala de altura fixa em células ou linhas.",
+  "regra_ajustada": "Garanta que o texto não seja cortado quando o espaçamento aumenta."
+ },
+ {
+  "id": "TD27",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "time com datetime é descrito como opcional e sem obrigação de marcar todas as datas.",
+  "regra_ajustada": "Use time para datas e horas; datetime é opcional e deixa o valor legível por máquina."
+ },
+ {
+  "id": "TD28",
+  "classe": "SUSTENTA",
+  "motivo": "Meses por extenso, abreviados quando falta espaço como em tabelas, sem ordinais em datas.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD29",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Vírgula acima de 999 e zero antes do decimal estão ditos; 2 casas decimais só no contexto de tamanho de arquivo.",
+  "regra_ajustada": "Use separador de milhar acima de 999 e zero antes do decimal."
+ },
+ {
+  "id": "TD30",
+  "classe": "SUSTENTA",
+  "motivo": "Intl.NumberFormat faz formatação de números, moedas e unidades sensível ao idioma.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD31",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Texto alternativo em duas partes está dito; escalas, valores e tendências só em exemplo.",
+  "regra_ajustada": "Dê ao gráfico texto alternativo curto e descrição longa com a informação essencial."
+ },
+ {
+  "id": "TD32",
+  "classe": "SUSTENTA",
+  "motivo": "Decorativas ignoradas por tecnologia assistiva (alt nulo, H67); informativas exigem alternativa.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD33",
+  "classe": "SUSTENTA",
+  "motivo": "Cor como único meio é falha; sugere forma, texto, padrão; F13 cita gráfico.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD35",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Comprimento e posição 2D e evitar pizza/donut estão ditos; gauge e 3D só desencorajados.",
+  "regra_ajustada": "Prefira comprimento e posição 2D (barras, linhas); evite pizza e donut; gauge radial e 3D dificultam a leitura."
+ },
+ {
+  "id": "TD38",
+  "classe": "SUSTENTA",
+  "motivo": "Prosa exige name no input e usa type=search.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD39",
+  "classe": "SUSTENTA",
+  "motivo": "Recomenda search ou role=search no form.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD40",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Rótulos persistentes citados; a página não diz que placeholder não substitui rótulo.",
+  "regra_ajustada": "Dê ao campo de busca rótulo ou instrução persistente, visível."
+ },
+ {
+  "id": "TD41",
+  "classe": "SUSTENTA",
+  "motivo": "Caixa no topo da página e larga para a consulta típica.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD42",
+  "classe": "SUSTENTA",
+  "motivo": "Declara ausência de resultados, repete a consulta e a mantém editável.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD44",
+  "classe": "SUSTENTA",
+  "motivo": "Explica como povoar a área e oferece caminhos diretos (links/botão).",
+  "regra_ajustada": null
+ },
+ {
+  "id": "TD45",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "nav com aria-label e links com aria-label só aparecem no código de exemplo.",
+  "regra_ajustada": "Envolva a paginação em nav com nome acessível e indique a página atual."
+ },
+ {
+  "id": "TD49",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Desaconselha rolagem infinita para achar/comparar e cita Load More; preservar posição só implícito.",
+  "regra_ajustada": "Evite rolagem infinita para achar ou comparar itens; considere paginação ou Carregar mais."
+ },
+ {
+  "id": "TD50",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Controles customizados exigem nome e papel (F59), mas a página não manda usar nativos.",
+  "regra_ajustada": "Se criar controles customizados, exponha nome e papel; prefira elementos nativos."
+ }
+]

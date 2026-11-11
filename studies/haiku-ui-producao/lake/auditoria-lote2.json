@@ -1,0 +1,260 @@
+[
+ {
+  "id": "AM46",
+  "classe": "SUSTENTA",
+  "motivo": "A página cita 70 a 80 caracteres por linha como coluna ideal.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "AM48",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página exige o texto truncado disponível (revelar na página ou página ligada), mas não menciona title.",
+  "regra_ajustada": "Texto truncado com reticências deve poder ser revelado por completo na página (ex.: ao focar ou ativar) ou em página ligada."
+ },
+ {
+  "id": "AM49",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "aria-sort aparece só em um exemplo de código (um th, valor descending), sem prosa que o exija.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "AM50",
+  "classe": "NAO_SUSTENTA",
+  "motivo": "A página só trata de aninhar níveis e não pular rank; nada sobre seções de dados, tabelas ou painéis.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC01",
+  "classe": "SUSTENTA",
+  "motivo": "Diz que grupos de radio devem sempre usar fieldset e legend como título do grupo.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC02",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Checkboxes em fieldset só aparecem como exemplo de opt-in, sem exigência explícita.",
+  "regra_ajustada": "Agrupe checkboxes de uma mesma função (ex.: opt-in) em fieldset com legend."
+ },
+ {
+  "id": "FC03",
+  "classe": "SUSTENTA",
+  "motivo": "Exemplo e texto: endereços de entrega e cobrança em fieldsets com legends distintas, pois os rótulos são idênticos.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC04",
+  "classe": "SUSTENTA",
+  "motivo": "Os três campos de data ficam em fieldset com legend.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC05",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Para datas a página usa text com inputmode numeric, sem justificar nem generalizar; para inteiros isso vem de outra página.",
+  "regra_ajustada": "Em campos de data use input type=text com inputmode=numeric."
+ },
+ {
+  "id": "FC06",
+  "classe": "SUSTENTA",
+  "motivo": "Pede autocomplete bday-day, bday-month e bday-year nos três campos.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC07",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página diz para não usar type=number sem pesquisa que o justifique e usar text+inputmode numeric para inteiros, mas não cita CEP, telefone ou documento.",
+  "regra_ajustada": "Evite input type=number salvo necessidade comprovada; para números inteiros e códigos use type=text com inputmode=numeric."
+ },
+ {
+  "id": "FC10",
+  "classe": "SUSTENTA",
+  "motivo": "Pede asterisco combinado com texto no topo do formulário explicando seu significado.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC11",
+  "classe": "SUSTENTA",
+  "motivo": "Dicas dentro do label ou ligadas por aria-describedby.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC12",
+  "classe": "SUSTENTA",
+  "motivo": "Diz para pôr o texto fora do campo para ficar sempre visível, pois o placeholder some.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC13",
+  "classe": "SUSTENTA",
+  "motivo": "Manda exibir controles na mesma ordem do HTML e não reordenar com CSS.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC14",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Diz para evitar botões desabilitados, mas não trata de deixar enviar e mostrar erros.",
+  "regra_ajustada": "Evite botão desabilitado, salvo se pesquisa mostrar que melhora a compreensão."
+ },
+ {
+  "id": "FC15",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página pede texto que descreva a ação (Salvar e continuar, Pagar), mas não cita o 'Enviar' genérico.",
+  "regra_ajustada": "Escreva o texto do botão descrevendo a ação que ele executa (ex.: Salvar e continuar, Pagar)."
+ },
+ {
+  "id": "FC16",
+  "classe": "SUSTENTA",
+  "motivo": "Resumo no topo do main com título e link para cada campo com erro.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC17",
+  "classe": "SUSTENTA",
+  "motivo": "role=alert está em div interna, e a mudança de versão confirma a retirada da raiz.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC18",
+  "classe": "SUSTENTA",
+  "motivo": "Manda adicionar 'Error: ' ao início do title.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC19",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página manda validar ao clicar em continuar/enviar e não antes de terminar de digitar, mas não endossa validar ao sair do campo.",
+  "regra_ajustada": "Valide quando a pessoa tentar continuar ou enviar, não antes de terminar de digitar."
+ },
+ {
+  "id": "FC20",
+  "classe": "SUSTENTA",
+  "motivo": "Manda reexibir o formulário com os campos como a pessoa preencheu.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC21",
+  "classe": "SUSTENTA",
+  "motivo": "Manda ignorar espaços e pontuação indesejados, salvo se tornar a informação ambígua.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC22",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Apoia não exigir duas partes e permitir Unicode, mas não trata de pattern restritivo.",
+  "regra_ajustada": "Não exija nome em duas partes nem restrinja nomes a caracteres latinos; permita Unicode."
+ },
+ {
+  "id": "FC23",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página não define padrão: um campo único atende mais formatos, mas divida quando o serviço precisar das partes.",
+  "regra_ajustada": "Um campo único de nome completo aceita mais formatos; divida em nome e sobrenome só se o serviço precisar das partes."
+ },
+ {
+  "id": "FC24",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "WCAG 1.3.5 exige finalidade programaticamente determinável e valores inválidos falham, mas autocomplete é só uma técnica suficiente e a regra vale só para campos sobre o usuário.",
+  "regra_ajustada": "Em campos sobre o usuário cuja finalidade consta na lista de propósitos, use autocomplete com token válido, nunca valor inventado."
+ },
+ {
+  "id": "FC25",
+  "classe": "SUSTENTA",
+  "motivo": "Diz que autocomplete=off remove recurso de que muitos dependem e deve ser usado só onde necessário (CAPTCHA, código único).",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC26",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Prosa apoia autocomplete e ausência de máscara/reformatação; type=tel só aparece em exemplos de código.",
+  "regra_ajustada": "No telefone use autocomplete=tel e não aplique máscara nem reformate o número digitado."
+ },
+ {
+  "id": "FC28",
+  "classe": "SUSTENTA",
+  "motivo": "Progresso 'etapa X de Y' no title e no h1.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC29",
+  "classe": "SUSTENTA",
+  "motivo": "Prosa manda aria-current=true na etapa atual e texto visualmente oculto para o status.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC30",
+  "classe": "SUSTENTA",
+  "motivo": "Cada tarefa mostra status em texto, com cor só como reforço.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC31",
+  "classe": "SUSTENTA",
+  "motivo": "Aponta role=status (ARIA22) para mensagens de sucesso ou estado.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC33",
+  "classe": "SUSTENTA",
+  "motivo": "Recomenda ícone além da cor e desaconselha erros em tooltip.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC35",
+  "classe": "SUSTENTA",
+  "motivo": "Indica autocomplete=cc-number no número do cartão.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC36",
+  "classe": "SUSTENTA",
+  "motivo": "A MDN define cc-name, cc-exp, cc-exp-month, cc-exp-year e cc-csc.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC37",
+  "classe": "SUSTENTA",
+  "motivo": "inputmode numeric no número e no código; type=number só para campos incrementais.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC38",
+  "classe": "SUSTENTA",
+  "motivo": "Recomenda um campo para o número do cartão, sem dividir.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC39",
+  "classe": "SUSTENTA",
+  "motivo": "Sugere 'Security code' em vez de CVV.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC40",
+  "classe": "SUSTENTA",
+  "motivo": "Mostra o valor no botão, ex.: Pay $300.00.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC42",
+  "classe": "SUSTENTA",
+  "motivo": "Os tokens shipping e billing diferenciam os endereços.",
+  "regra_ajustada": null
+ },
+ {
+  "id": "FC43",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página lista street-address, postal-code e country, mas não address-line*.",
+  "regra_ajustada": "Em endereço use autocomplete street-address, postal-code e country."
+ },
+ {
+  "id": "FC44",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A página manda campo único de logradouro sem exigir número, mas não diz que a linha 2 seja opcional (sugere escondê-la).",
+  "regra_ajustada": "Use um único campo de logradouro sem exigir número; esconda a linha 2 atrás de um botão de revelar."
+ },
+ {
+  "id": "FC45",
+  "classe": "SUSTENTA",
+  "motivo": "Manda esconder linha 2, cupom e nome da empresa atrás de links.",
+  "regra_ajustada": null
+ }
+]

@@ -1,0 +1,152 @@
+[
+ {
+  "n": 1,
+  "classe": "VIOLA",
+  "motivo": "Menu principal <nav aria-label=Principal> tem 8 <a> soltos, sem ul/ol (l.177-187); outros navs usam ul/ol"
+ },
+ {
+  "n": 2,
+  "classe": "VIOLA",
+  "motivo": "Ilustração do estado vazio <img width=160 height=110> sem atributo alt (l.509); os outros imgs têm alt=\"\""
+ },
+ {
+  "n": 3,
+  "classe": "VIOLA",
+  "motivo": "thead sticky (.tabela thead th{position:sticky;top:0}) em .tabela-solta com overflow; nenhum scroll-padding/scroll-margin"
+ },
+ {
+  "n": 4,
+  "classe": "CUMPRE",
+  "motivo": "Status via #live role=status + banner role=status; anunciar() sem mover foco no sucesso; contagem é estática"
+ },
+ {
+  "n": 5,
+  "classe": "CUMPRE",
+  "motivo": "Todos os autocomplete usados são tokens válidos (name, bday-*, email, tel, postal-code, billing address-level3...); nenhum inventado"
+ },
+ {
+  "n": 6,
+  "classe": "VIOLA",
+  "motivo": "Menu principal <nav aria-label=Principal> com <a> soltos, sem ul/ol (l.165-175)"
+ },
+ {
+  "n": 7,
+  "classe": "CUMPRE",
+  "motivo": "thead com th scope=col, primeira coluna th scope=row, dados em td; linhas de grupo th colspan"
+ },
+ {
+  "n": 8,
+  "classe": "VIOLA",
+  "motivo": "Segundo campo de busca #busca-vazia é type=search sem atributo name (l.530); o principal tem name=q"
+ },
+ {
+  "n": 9,
+  "classe": "VIOLA",
+  "motivo": "Erro de campo tem <span class=so-leitor>Erro:</span>, mas o alerta de erro role=alert 'Não foi possível carregar a agenda...' (l.343) não tem o prefixo"
+ },
+ {
+  "n": 10,
+  "classe": "VIOLA",
+  "motivo": "h3.ac-t contém button e também <span class=cont>(4)</span>; botão não é o único filho do título (l.154,175,192)"
+ },
+ {
+  "n": 11,
+  "classe": "VIOLA",
+  "motivo": "Não há <main> nem role=main (só header, nav, footer)"
+ },
+ {
+  "n": 12,
+  "classe": "VIOLA",
+  "motivo": "div.faixa-aviso 'Manutenção programada...' (l.149) visível fora de qualquer landmark, antes do header"
+ },
+ {
+  "n": 13,
+  "classe": "CUMPRE",
+  "motivo": "Checkbox #mesmo-endereco checked por padrão 'Cobrança igual ao endereço de entrega' e bloco-cobranca hidden, alternado por JS"
+ },
+ {
+  "n": 14,
+  "classe": "VIOLA",
+  "motivo": "Nenhuma regra max-width:100% para img; imgs só com width/height fixos (32px/160px); max-width existe só em svg do gráfico e pre"
+ },
+ {
+  "n": 15,
+  "classe": "VIOLA",
+  "motivo": "thead sticky top:0 em .tabela-solta (overflow:auto) sem scroll-padding/scroll-margin"
+ },
+ {
+  "n": 16,
+  "classe": "VIOLA",
+  "motivo": "Link 'clique aqui' (l.398: <a href=#exportar-csv>clique aqui</a>)"
+ },
+ {
+  "n": 17,
+  "classe": "CUMPRE",
+  "motivo": "role=tablist com tabs aria-selected; cada tabpanel tem aria-labelledby=aba-N"
+ },
+ {
+  "n": 18,
+  "classe": "CUMPRE",
+  "motivo": "Botão final <button type=submit class=btn-pagar>Pagar R$ 5.223,70</button> mostra o valor"
+ },
+ {
+  "n": 19,
+  "classe": "VIOLA",
+  "motivo": "Página reexibida com resumo de erros (3 problemas, aria-invalid) mas <title>Benefícios - Nexa Pessoas</title> sem prefixo 'Erro:'"
+ },
+ {
+  "n": 20,
+  "classe": "CUMPRE",
+  "motivo": "Mensagens de status ('Perfil salvo.', 'Preferências salvas', revogação) vão para #live role=status via anunciar(), sem mover foco"
+ },
+ {
+  "n": 21,
+  "classe": "VIOLA",
+  "motivo": "Banner de sucesso (l.251-256) só tem ícone aria-hidden e 'Preferências salvas.'; o banner-txt tem linha vazia no lugar do título 'Sucesso'"
+ },
+ {
+  "n": 22,
+  "classe": "VIOLA",
+  "motivo": "Contêiner de status <div id=live class=oculto role=status> com .oculto{display:none} (l.153, l.23)"
+ },
+ {
+  "n": 23,
+  "classe": "INCERTO",
+  "motivo": "Botão de avanço é só 'Continuar' (l.401); verbo de ação mas genérico, longe do exemplo 'Salvar e continuar'; Voltar/Salvar rascunho ok"
+ },
+ {
+  "n": 24,
+  "classe": "CUMPRE",
+  "motivo": "Conteúdo visível está em header, nav, main, footer; aside e modais hidden; apenas skip link fora de landmark"
+ },
+ {
+  "n": 25,
+  "classe": "CUMPRE",
+  "motivo": "Os 3 role=dialog têm fechamento explícito: botão 'Fechar janela' (m0, m2) e 'Cancelar' (m1)"
+ },
+ {
+  "n": 26,
+  "classe": "CUMPRE",
+  "motivo": "cc-number e cc-csc são type=text inputmode=numeric; nenhum type=number"
+ },
+ {
+  "n": 27,
+  "classe": "VIOLA",
+  "motivo": "Mesmo destino /ajuda/inicio com textos diferentes: 'Guia de início' e 'Primeiros passos'"
+ },
+ {
+  "n": 28,
+  "classe": "VIOLA",
+  "motivo": "thead sticky top:0 em .tabela-solta (overflow:auto) sem scroll-padding/scroll-margin"
+ },
+ {
+  "n": 29,
+  "classe": "CUMPRE",
+  "motivo": "Nenhum order, flex/grid reverse, grid-area ou posicionamento que reordene controles; só sr-only e pular"
+ },
+ {
+  "n": 30,
+  "classe": "VIOLA",
+  "motivo": "Label do código do cartão é só 'CVV' (l.283); 'Código de segurança' aparece apenas no texto de ajuda '3 dígitos no verso'"
+ }
+]

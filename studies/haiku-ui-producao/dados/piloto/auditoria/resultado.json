@@ -1,0 +1,152 @@
+[
+ {
+  "n": 1,
+  "classe": "VIOLA",
+  "motivo": "Dois div.banner role=status em main (linhas 187 e 191)."
+ },
+ {
+  "n": 2,
+  "classe": "VIOLA",
+  "motivo": "title 'Erro: Documentos - Nexa Pessoas' e h1 'Documentos' sem padrao 'Etapa X de Y'."
+ },
+ {
+  "n": 3,
+  "classe": "VIOLA",
+  "motivo": "Ha resumo de erros (#resumo-erros) mas title e 'Documentos - Nexa Pessoas', sem 'Erro:'."
+ },
+ {
+  "n": 4,
+  "classe": "VIOLA",
+  "motivo": "Datas em <td>23/10/2026 etc. sem elemento time."
+ },
+ {
+  "n": 5,
+  "classe": "VIOLA",
+  "motivo": "<th colspan=\"7\">Conta corrente...</th> sem scope=colgroup."
+ },
+ {
+  "n": 6,
+  "classe": "VIOLA",
+  "motivo": "img sem alt na linha 509 (width=160 height=110)."
+ },
+ {
+  "n": 7,
+  "classe": "VIOLA",
+  "motivo": "Tabela so com <tbody>; linhas de cabecalho (th scope=colgroup e botoes) dentro do tbody, sem thead."
+ },
+ {
+  "n": 8,
+  "classe": "CUMPRE",
+  "motivo": "Alvos com min-height/min-width 44px: .btn, .lnk, .pg, .ord, .ac-b, .sw 56x44, select/input .campo, links de menu e rodape; checkbox/radio dentro de label.op 44px."
+ },
+ {
+  "n": 9,
+  "classe": "VIOLA",
+  "motivo": "input#ent-rua com pattern=\"(?=.*\\d).+\" exige numero no logradouro."
+ },
+ {
+  "n": 10,
+  "classe": "CUMPRE",
+  "motivo": "Todos os svg sao decorativos com aria-hidden=true; nao ha svg informativo sem nome."
+ },
+ {
+  "n": 11,
+  "classe": "VIOLA",
+  "motivo": "Unico position:sticky e .lateral (linha 82); thead/th nao sticky em tabela de 20+ linhas."
+ },
+ {
+  "n": 12,
+  "classe": "VIOLA",
+  "motivo": "alt=\"IMG_4001.jpg\" (nome de arquivo) nos thumbs e logo (linha 127) sem alt."
+ },
+ {
+  "n": 13,
+  "classe": "CUMPRE",
+  "motivo": "Nao ha position:sticky/fixed no CSS; regra nao se aplica, nenhum foco pode ser ocultado."
+ },
+ {
+  "n": 14,
+  "classe": "VIOLA",
+  "motivo": "Erros exibidos (erro-email, erro-telefone) sem bloco de resumo com links."
+ },
+ {
+  "n": 15,
+  "classe": "INCERTO",
+  "motivo": "Resumo #resumo-erros (hidden) e preenchido via JS com links #email/#telefone e title 'Erro:', mas fica dentro do form, nao no topo do main; sem erros no estado estatico."
+ },
+ {
+  "n": 16,
+  "classe": "CUMPRE",
+  "motivo": "Nenhum td com atributo headers; regra condicional nao e violada."
+ },
+ {
+  "n": 17,
+  "classe": "VIOLA",
+  "motivo": "Tabpanels (#painel-1..3) sem aria-labelledby apontando para a aba."
+ },
+ {
+  "n": 18,
+  "classe": "VIOLA",
+  "motivo": "Varios <th> sem scope (ex.: <th class=\"cab cab2\">, <th> das linhas)."
+ },
+ {
+  "n": 19,
+  "classe": "VIOLA",
+  "motivo": "input#ent-rua com pattern=\"(?=.*\\d).+\" exige digito no logradouro."
+ },
+ {
+  "n": 20,
+  "classe": "VIOLA",
+  "motivo": "input#tel com oninput que formata '(xx) xxxxx-xxxx' e placeholder com mascara."
+ },
+ {
+  "n": 21,
+  "classe": "VIOLA",
+  "motivo": "Campos dia/mes/ano de nascimento com autocomplete=\"off\", sem bday-*."
+ },
+ {
+  "n": 22,
+  "classe": "CUMPRE",
+  "motivo": "th.cab com position:sticky;top:0 dentro de .rolagem{overflow:auto;max-height:520px}."
+ },
+ {
+  "n": 23,
+  "classe": "VIOLA",
+  "motivo": "Estado sem resultados: texto 'Nenhum resultado encontrado.' sem repetir consulta e input#busca-vazia com value=\"\"."
+ },
+ {
+  "n": 24,
+  "classe": "VIOLA",
+  "motivo": "Apenas o cabecalho tem <time>; datas das celulas (16/10/2026...) estao em td sem time."
+ },
+ {
+  "n": 25,
+  "classe": "VIOLA",
+  "motivo": "<title>Sem título</title>, sem pagina atual/total."
+ },
+ {
+  "n": 26,
+  "classe": "VIOLA",
+  "motivo": "Nenhuma ocorrencia de font-variant-numeric/tabular-nums; td.num sem a regra."
+ },
+ {
+  "n": 27,
+  "classe": "CUMPRE",
+  "motivo": "Estado de carregamento mostra 'Carregando lançamentos…' (role=status) com skeleton, sem 'sem registros'; lista vazia tem texto explicativo e botao, nao fica em branco."
+ },
+ {
+  "n": 28,
+  "classe": "VIOLA",
+  "motivo": "Radios frete e metodo agrupados em div.grupo com div.grupo-titulo, sem fieldset/legend."
+ },
+ {
+  "n": 29,
+  "classe": "VIOLA",
+  "motivo": "font-size em px em label, td, tabela, .opcao, .dica (ex.: table{font-size:15px}); poucas regras relativas."
+ },
+ {
+  "n": 30,
+  "classe": "VIOLA",
+  "motivo": "div role=alert contem <button> 'Tentar novamente' (linhas 335-338)."
+ }
+]

@@ -1,0 +1,152 @@
+[
+ {
+  "id": "AM36",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Pagina exige reflow a 320 px sem rolagem 2D, mas nao diz para evitar larguras fixas em px acima de 320."
+ },
+ {
+  "id": "AM45",
+  "classe": "SUSTENTA",
+  "motivo": "NN/g recomenda cabecalhos fixos para tabelas maiores que uma tela."
+ },
+ {
+  "id": "AM47",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A pagina exige que o texto caiba sem corte com espacamento alterado, mas nao menciona altura fixa nem overflow:hidden."
+ },
+ {
+  "id": "FC08",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK diz para adicionar (optional) aos rotulos opcionais e nunca marcar obrigatorios com asterisco."
+ },
+ {
+  "id": "FC09",
+  "classe": "SUSTENTA",
+  "motivo": "W3C mostra o atributo required mais indicacao visivel '(required)' no rotulo."
+ },
+ {
+  "id": "FC27",
+  "classe": "SUSTENTA",
+  "motivo": "WCAG 3.3.7 diz para nao pedir a mesma informacao duas vezes, autopreencher ou deixar selecionar."
+ },
+ {
+  "id": "FC32",
+  "classe": "SUSTENTA",
+  "motivo": "WCAG 3.3.3 manda sugerir formas conhecidas de corrigir o erro."
+ },
+ {
+  "id": "FC34",
+  "classe": "SUSTENTA",
+  "motivo": "WCAG 2.2.1 traz aviso antes de expirar e ao menos 20 s para estender."
+ },
+ {
+  "id": "FC41",
+  "classe": "SUSTENTA",
+  "motivo": "web.dev diz para mostrar apenas os campos obrigatorios no formulario de pagamento."
+ },
+ {
+  "id": "FC46",
+  "classe": "SUSTENTA",
+  "motivo": "Baymard recomenda cobranca = entrega por padrao, com campos de cobranca ocultos ate desmarcar."
+ },
+ {
+  "id": "NE03",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Pagina recomenda link no topo para o conteudo principal, mas nao exige ser o primeiro focavel nem alvo existente."
+ },
+ {
+  "id": "NE04",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "Pagina cita nav apenas como tecnica consultiva e nao menciona main."
+ },
+ {
+  "id": "NE15",
+  "classe": "SUSTENTA",
+  "motivo": "APG diz que ao fechar o dialogo o foco volta ao elemento que o abriu."
+ },
+ {
+  "id": "NE21",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "GOV.UK so mostra aria-describedby nos exemplos de codigo, sem afirmar no texto."
+ },
+ {
+  "id": "NE28",
+  "classe": "SUSTENTA",
+  "motivo": "NN/g critica esqueletos so com cabecalho/rodape e diz que os baseados em layout sao melhores para tela cheia."
+ },
+ {
+  "id": "NE37",
+  "classe": "SUSTENTA",
+  "motivo": "WCAG 3.3.4 exige ao menos uma de: reversivel, verificado ou confirmado."
+ },
+ {
+  "id": "NE39",
+  "classe": "SUSTENTA",
+  "motivo": "NN/g sugere botoes que resumem o resultado como 'Delete file'/'Keep file' em vez de Sim/Nao/OK."
+ },
+ {
+  "id": "NE40",
+  "classe": "SUSTENTA",
+  "motivo": "NN/g manda ser especifico sobre item e consequencia e evitar 'Are you sure?' generico."
+ },
+ {
+  "id": "NE44",
+  "classe": "SUSTENTA",
+  "motivo": "APG alertdialog pede aria-describedby apontando para a mensagem e cita confirmacoes de acao."
+ },
+ {
+  "id": "NE45",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "APG so diz que 'pode ser aconselhavel' focar a acao menos destrutiva, sem citar Cancelar nem autofocus."
+ },
+ {
+  "id": "TD02",
+  "classe": "SUSTENTA",
+  "motivo": "W3C tutorial marca cabecalhos com th e mostra td nos dados (td so no codigo)."
+ },
+ {
+  "id": "TD16",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A pagina so exibe tabindex=0 no markup do container rolavel, sem orientacao textual explicita."
+ },
+ {
+  "id": "TD20",
+  "classe": "SUSTENTA",
+  "motivo": "APG indica aria-hidden=true nos icones de ordenacao para ficarem fora do nome acessivel."
+ },
+ {
+  "id": "TD34",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "WCAG exige 3:1 em linhas e fatias so se necessarias para entendimento e abre excecao para rotulos; nao menciona barras."
+ },
+ {
+  "id": "TD36",
+  "classe": "SUSTENTA",
+  "motivo": "NN/g diz que cor nao deve comunicar magnitude e so reforcar informacao ja dada de outro modo."
+ },
+ {
+  "id": "TD37",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "A pagina trata contagem/sem resultados como mensagem de status com role=status apenas por exemplo e tecnica, nao como regra explicita."
+ },
+ {
+  "id": "TD43",
+  "classe": "SUSTENTA",
+  "motivo": "NN/g diz para nao usar estado vazio em branco, usar indicadores de progresso e alerta contra 'sem itens' falso durante carga."
+ },
+ {
+  "id": "TD46",
+  "classe": "SUSTENTA_PARCIAL",
+  "motivo": "aria-current=page aparece so nos exemplos de codigo do GOV.UK, nao na prosa."
+ },
+ {
+  "id": "TD47",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK diz para aplicar filtro/ordenacao a lista inteira e voltar a primeira pagina."
+ },
+ {
+  "id": "TD48",
+  "classe": "SUSTENTA",
+  "motivo": "GOV.UK manda mostrar o numero da pagina no title, com exemplo 'Search results (page 1 of 4)'."
+ }
+]

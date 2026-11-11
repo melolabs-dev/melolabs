@@ -1,0 +1,20 @@
+{
+  "name": "kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axe-core": "^4.14.0",
+    "css-tree": "^3.2.1",
+    "culori": "^4.0.2",
+    "parse5": "^8.1.1",
+    "playwright-core": "^1.65.0"
+  }
+}

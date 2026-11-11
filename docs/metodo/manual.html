@@ -1,0 +1,268 @@
+<title>Manual de implantação Melo Labs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f6f4ef;--fg:#1d2528;--mut:#5d6a6f;--card:#fffdf9;--line:#ddd8cc;--acc:#1f6f5c;--acc2:#b4551f;--code:#efece4;--ok:#1f6f5c;--warn:#a5701a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14191b;--fg:#e6e9e8;--mut:#9aa7ab;--card:#1b2225;--line:#2d393d;--acc:#5fc3a6;--acc2:#e69a64;--code:#101517;--ok:#5fc3a6;--warn:#e0b25a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14191b;--fg:#e6e9e8;--mut:#9aa7ab;--card:#1b2225;--line:#2d393d;--acc:#5fc3a6;--acc2:#e69a64;--code:#101517;--ok:#5fc3a6;--warn:#e0b25a;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 Inter,system-ui,sans-serif;padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,40px)}h2{font-size:26px}h3{font-size:19px}
+p{margin:0 0 .6em;max-width:70ch}
+.kick{font:500 12px/1 Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--acc2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.warn{border-left:4px solid var(--warn)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.num{font:600 26px Fraunces,serif;color:var(--acc)}
+.lbl{color:var(--mut);font-size:14px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--mut);font-weight:600}
+.scroll{overflow-x:auto}
+pre{position:relative;background:var(--code);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;font:13px/1.55 "JetBrains Mono",ui-monospace,monospace;margin:8px 0}
+code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.9em;background:var(--code);padding:1px 5px;border-radius:4px}pre code{background:none;padding:0}
+button.cp{position:absolute;top:6px;right:6px;font:500 11px Inter;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:3px 8px;cursor:pointer}
+details{border:1px solid var(--line);border-radius:10px;background:var(--card)}details>summary{cursor:pointer;padding:16px 18px;list-style:none;display:flex;flex-direction:column;gap:4px}details>summary::-webkit-details-marker{display:none}
+details[open]>summary{border-bottom:1px solid var(--line)}.body{padding:6px 18px 18px;display:flex;flex-direction:column;gap:14px}
+summary h2{font-size:22px}summary span{color:var(--mut);font-size:14px}
+ol{padding-left:22px;margin:0}li{margin:0 0 .5em;max-width:75ch}
+nav{display:flex;flex-wrap:wrap;gap:8px}nav a{color:var(--fg);text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px}nav a:hover{border-color:var(--acc)}
+.tag{display:inline-block;font:500 12px Inter;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--mut)}
+.ok{color:var(--ok)}.bad{color:var(--acc2)}
+footer{color:var(--mut);font-size:13px}
+</style>
+<main>
+<header style="display:flex;flex-direction:column;gap:10px">
+<span class="kick">Melo Labs · manual de implantação · rascunho para revisão</span>
+<h1>Como usar na sua máquina o que mais deu certo nos estudos</h1>
+<p>Quatro estudos, o método vencedor de cada um, o que instalar, os parâmetros exatos e uma skill pronta para copiar. Escrito para quem não montou os experimentos e quer reproduzir o resultado sem decifrar o repositório.</p>
+<nav><a href="#escolha">Qual método</a><a href="#maquina">Preparar a máquina</a><a href="#lake">Data lake</a><a href="#ux">Kit de UX</a><a href="#sdd">SDD com Haiku</a><a href="#medir">Medir</a><a href="#futuro">Próximos estudos</a></nav>
+</header>
+
+<div class="card warn"><strong>Leia antes.</strong> Os <em>métodos</em> foram medidos nos estudos. As <em>skills</em> abaixo são a tradução deles para o formato de skill do Claude Code: foram escritas só a partir do que consta nos estudos e no código do repositório, e <strong>não foram testadas como skills</strong>. Todo número aqui vem do artigo do estudo e vale só para as condições dele (um projeto, telas sintéticas, modelos e preços de nov/2026). Nada foi publicado: é rascunho até você aprovar.</div>
+
+<section id="escolha" style="display:flex;flex-direction:column;gap:12px">
+<h2>Qual método para qual problema</h2>
+<div class="card scroll"><table>
+<tr><th>Se você quer…</th><th>Use</th><th>Resultado medido</th><th>Estudo</th></tr>
+<tr><td>Dar ao Haiku memória de um projeto (docs, decisões antigas e vigentes)</td><td>Data lake curado: cartões de decisão + BM25, vetor e reranker</td><td>114/120 acertos contra 91 com o lake colado e 43 sem ajuda; US$ 0,00088 contra US$ 0,224 por chamada</td><td>2</td></tr>
+<tr><td>Fazer o Haiku revisar telas com regras de UX</td><td>Kit de UX: lake de regras auditado + verificador em navegador + relatório</td><td>Tela grande: 46% sem regras, 70% com o lake inteiro, 78% com o relatório; passa o Sonnet sem regras (61%) a ~8% do custo</td><td>3 e 3b</td></tr>
+<tr><td>Trocar o Sonnet pelo Haiku no fluxo PRD, TechSpec, Tasks e código</td><td>C4: gates determinísticos, testes primeiro e loop com erro real</td><td>72% (94% sem um teste que o contrato não pedia) contra 91% do Sonnet, a 0,18 do custo</td><td>1</td></tr>
+</table></div>
+<p class="lbl">Os estudos são 1 (SDD), 2 (RAG com data lake), 3 (kit de UX em login) e 3b (lake de UX em telas grandes). Você pediu os três; incluí os quatro porque os quatro existem.</p>
+</section>
+
+<section id="maquina" style="display:flex;flex-direction:column;gap:12px">
+<h2>Preparar a máquina (vale para os três métodos)</h2>
+<div class="grid">
+<div class="card"><div class="num">claude</div><div class="lbl">Claude Code CLI instalado e logado. Os estudos rodaram sob assinatura, sem chave de API. Teste: <code>claude --version</code></div></div>
+<div class="card"><div class="num">Node + Python</div><div class="lbl">Node v24 (kit de UX e SDD) e Python 3 (executores, índice e análise). git para as cópias limpas do SDD.</div></div>
+<div class="card"><div class="num">Chrome</div><div class="lbl">Google Chrome instalado: o verificador de UX usa <code>playwright-core</code> com <code>channel: 'chrome'</code>.</div></div>
+</div>
+<h3>Instalar as bibliotecas externas</h3>
+<pre><code># Python: análise, índice vetorial e figuras
+pip install numpy scipy matplotlib fastembed
+
+# Node: kit de UX (versões usadas nos estudos)
+npm init -y
+npm i axe-core@^4.14 css-tree@^3.2 culori@^4 parse5@^8 playwright-core@^1.65</code></pre>
+<p class="lbl"><code>fastembed</code> baixa os modelos ONNX para <code>~/.cache/fastembed</code> na primeira execução (embedding e reranker, o que exige internet nessa etapa). O SQLite do Python já traz o FTS5 usado no BM25.</p>
+<h3>Como o modelo é chamado nos estudos</h3>
+<pre><code>claude -p --model haiku --effort medium --output-format json \
+  --setting-sources project --strict-mcp-config \
+  --no-session-persistence --tools "" --system-prompt "..."</code></pre>
+<div class="card scroll"><table>
+<tr><th>Flag</th><th>Por que está lá</th></tr>
+<tr><td><code>-p</code></td><td>modo não interativo: um prompt, uma resposta</td></tr>
+<tr><td><code>--model haiku|sonnet</code></td><td>escolhe o modelo pelo apelido</td></tr>
+<tr><td><code>--effort medium</code></td><td>esforço fixo em todas as condições, para comparar justo</td></tr>
+<tr><td><code>--output-format json</code></td><td>devolve texto, tokens e custo para registrar</td></tr>
+<tr><td><code>--setting-sources project --strict-mcp-config</code></td><td>não herda configuração pessoal nem conectores</td></tr>
+<tr><td><code>--no-session-persistence</code></td><td>cada chamada é um agente novo, sem memória da anterior</td></tr>
+<tr><td><code>--tools ""</code></td><td>sem ferramentas e sem internet: o modelo só responde com o que recebeu</td></tr>
+</table></div>
+<h3>Paralelismo e custo</h3>
+<ul>
+<li>Cada processo <code>claude -p</code> usou de 200 a 340 MB de RAM. Numa máquina de 16 GB, de 8 a 20 em paralelo funcionou; confira a memória livre antes de aumentar.</li>
+<li>Faça o executor <strong>retomável</strong> (um arquivo <code>.jsonl</code> por rodada, pulando o que já existe), com a <strong>ordem embaralhada</strong> e um <strong>teto de custo</strong>: se parar no meio, o desenho continua balanceado.</li>
+<li>Custo nominal usado nos estudos 3 e 3b (US$ por milhão de tokens, entrada e saída): Haiku 0,10 e 0,50; Sonnet 2 e 10; leitura de cache 0,01 e 0,10; escrita de cache 1,25 vez a entrada. Confira os preços atuais antes de planejar.</li>
+</ul>
+</section>
+
+<details id="lake" open>
+<summary><span class="kick">Estudo 2</span><h2>Montar o data lake curado</h2><span>O método que mais deu certo para dar memória de projeto ao Haiku.</span></summary>
+<div class="body">
+<div class="grid">
+<div class="card"><div class="num">114/120</div><div class="lbl">acertos da memória curada (Haiku 5.5)</div></div>
+<div class="card"><div class="num">91</div><div class="lbl">com o lake inteiro colado (US$ 0,224 por chamada)</div></div>
+<div class="card"><div class="num">43</div><div class="lbl">só com a pergunta</div></div>
+<div class="card"><div class="num">US$ 0,00088</div><div class="lbl">custo nominal por chamada da curada</div></div>
+</div>
+<h3>Passo a passo</h3>
+<ol>
+<li><strong>Zona bruta.</strong> Copie os documentos como estão (docs, AGENTS.md/CLAUDE.md, trechos de código, issues e PRs, log de decisões). Gere um manifesto com hash, tamanho e tokens estimados (<code>tools/rag-lake/build_bruto.py</code>). Meça os tokens de verdade: código e tabelas passam de caracteres ÷ 4.</li>
+<li><strong>Zona curada.</strong> Escreva <em>cartões de decisão</em> antes das perguntas de teste. Campos: <code>id</code>, <code>decisao</code>, <code>motivo</code> (ou "não consta"), <code>vale_quando</code>, <code>status</code> (<code>vigente</code>, <code>substituida</code>, <code>contexto</code>), <code>substitui</code>, <code>tema</code>, <code>fontes</code> com <code>doc</code> e <code>trecho</code> literal. Confira por código que cada trecho existe no documento (<code>tools/rag-lake/verificar_cartoes.py</code>).</li>
+<li><strong>Índice.</strong> Chunks de até 600 caracteres, sobreposição de 100. BM25 pelo FTS5 do SQLite; vetor com <code>paraphrase-multilingual-MiniLM-L12-v2</code> (fastembed); fusão por rank (RRF); reranker <code>BAAI/bge-reranker-v2-m3-int8</code> sobre os 30 melhores (<code>tools/rag-lake/indice.py build</code>).</li>
+<li><strong>Contexto final.</strong> Top-10 trechos pelo reranker mais os 3 cartões mais próximos. Regras: o cartão substituído traz o que o substitui (e o contrário); cada cartão mostra estado, quando vale e fonte; o trecho que contém a fonte de um cartão leva a etiqueta dele (<code>tools/rag-lake/bracos.py</code>).</li>
+<li><strong>Chamada.</strong> Mesmo comando da seção anterior, mesma ordem de blocos no prompt, sempre com a opção "informação insuficiente".</li>
+<li><strong>Medida.</strong> 5 amostras por pergunta, voto por maioria, McNemar exato pareado e Wilson; Holm só nas hipóteses confirmatórias.</li>
+</ol>
+<h3>Parâmetros e o que controlam</h3>
+<div class="card scroll"><table>
+<tr><th>Parâmetro</th><th>Valor</th><th>Controla</th></tr>
+<tr><td>Chunk / sobreposição</td><td>600 / 100 caracteres</td><td>granularidade da recuperação</td></tr>
+<tr><td>Candidatos ao reranker</td><td>30</td><td>revocação antes do reranqueamento</td></tr>
+<tr><td>Trechos no prompt (k)</td><td>10</td><td>tokens entregues e chance de incluir o ouro</td></tr>
+<tr><td>Cartões no prompt</td><td>3</td><td>vigência e decisões substituídas</td></tr>
+<tr><td>Amostras e voto</td><td>5, maioria</td><td>variância entre repetições</td></tr>
+</table></div>
+<p><span class="bad">O que não fazer:</span> colar o lake inteiro custou ~250 vezes mais por chamada e acertou menos; o portão de abstenção por nota do reranker <em>piorou</em> o acerto (78/120).</p>
+<p class="lbl"><strong>Ressalva do estudo:</strong> as perguntas foram derivadas dos cartões que a memória curada entrega, então o ganho dela sobre o híbrido com reranker (99) é um teto; o gabarito foi escrito por IA da mesma família; um projeto; múltipla escolha.</p>
+<h3>Skill pronta (copie para <code>.claude/skills/data-lake-curado/SKILL.md</code>)</h3>
+<pre><code>---
+name: data-lake-curado
+description: Monta e usa um mini data lake curado (documentos + cartões de decisão + índice BM25/vetor/reranker) para dar memória de projeto a um modelo pequeno como o Haiku. Use quando o modelo precisa decidir com base em documentos, decisões antigas e vigentes de um projeto, e colar tudo no prompt é caro demais.
+---
+
+# Data lake curado para modelo pequeno
+
+Método do estudo 2 do Melo Labs (`studies/rag-data-lake-haiku`). Resultado medido em 120 perguntas de múltipla escolha com o Haiku 5.5: só a pergunta 43 acertos; lake inteiro colado 91; vetor simples 84; híbrido 88; híbrido com reranker 99; **memória curada 114**. Custo nominal por chamada: US$ 0,224 (lake colado) contra US$ 0,00088 (curada). Ressalva: as perguntas foram derivadas dos cartões, então o ganho sobre o híbrido com reranker é um teto.
+
+## Quando NÃO usar
+- O lake cabe no contexto e a pergunta muda pouco: colar tudo funciona (91/120) e é mais simples, só é mais caro.
+- Não ponha um &quot;portão de abstenção&quot; (cortar a resposta por nota do reranker): no estudo ele piorou o acerto (78/120).
+
+## Passos
+1. **Zona bruta.** Copie os documentos como estão (docs, AGENTS.md/CLAUDE.md, trechos de código, issues/PRs, log de decisões). Gere um manifesto com hash, tamanho e estimativa de tokens (`tools/rag-lake/build_bruto.py` é o exemplo). Meça tokens de verdade antes de decidir colar qualquer coisa inteira: código e tabelas passam de caracteres/4.
+2. **Zona curada: cartões de decisão.** Para cada decisão relevante escreva um cartão JSON com `id`, `decisao`, `motivo` (ou &quot;não consta&quot;), `vale_quando`, `status` (`vigente`, `substituida` ou `contexto`), `substitui` (ids), `tema` e `fontes` (lista de `{doc, trecho}`). O `trecho` tem de existir literalmente no documento: confira por código (`tools/rag-lake/verificar_cartoes.py`). Escreva os cartões **antes** de escrever as perguntas de teste.
+3. **Índice.** Chunks de até 600 caracteres com sobreposição de 100, quebrando por linha. BM25 pelo FTS5 do SQLite; vetor com `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` via `fastembed` (ONNX, local). Fusão por rank (RRF) e reranker `BAAI/bge-reranker-v2-m3-int8` sobre os 30 melhores candidatos (`tools/rag-lake/indice.py`). A consulta é só o texto da pergunta.
+4. **Montar o contexto (braço A5).** Top-10 trechos pelo reranker mais os 3 cartões mais próximos por vetor, com três regras: (a) cartão substituído traz junto o que o substitui e o vigente traz o que ele substitui; (b) cada cartão mostra estado, &quot;vale quando&quot; e documentos-fonte; (c) trecho que contém o trecho-fonte de um cartão leva a etiqueta do cartão e do estado (`tools/rag-lake/bracos.py`).
+5. **Chamar o modelo.** `claude -p --model haiku --output-format json --setting-sources project --strict-mcp-config --no-session-persistence --tools &quot;&quot;`, sempre com a mesma ordem de blocos no prompt. Ofereça sempre a opção &quot;informação insuficiente&quot;: o erro típico do Haiku é se abster, não inventar.
+6. **Medir.** 5 amostras por pergunta com voto por maioria (desempate pela menor letra), McNemar exato pareado, Wilson, Holm só nas hipóteses confirmatórias.
+
+## Dependências externas
+Python 3 com `numpy` e `fastembed` (baixa os modelos para `~/.cache/fastembed`); SQLite com FTS5 (já vem no Python); Claude Code CLI.
+
+## Parâmetros que entraram no estudo (não mude sem medir de novo)
+chunk 600 / sobreposição 100; k = 10 trechos; 30 candidatos para o reranker; 3 cartões; 4 opções por pergunta com &quot;informação insuficiente&quot;; 5 amostras.
+</code></pre>
+</div></details>
+
+<details id="ux" open>
+<summary><span class="kick">Estudos 3 e 3b</span><h2>Kit de UX: lake de regras + verificador + relatório</h2><span>O que mais deu certo para o Haiku revisar telas.</span></summary>
+<div class="body">
+<div class="grid">
+<div class="card"><div class="num">46% → 70%</div><div class="lbl">Haiku em tela grande, sem regras para o lake inteiro</div></div>
+<div class="card"><div class="num">78%</div><div class="lbl">com o lake inteiro e o relatório</div></div>
+<div class="card"><div class="num">~8%</div><div class="lbl">do custo por chamada do Sonnet, que sem regras fez 61%</div></div>
+<div class="card"><div class="num">0,744 → 0,998</div><div class="lbl">criar tela de login (estudo 3)</div></div>
+</div>
+<h3>Passo a passo</h3>
+<ol>
+<li><strong>Lake de regras.</strong> Regras de fontes abertas (WCAG, GOV.UK, web.dev, MDN, USWDS, NN/g, Baymard público), cada uma com id, texto, domínio e URL. <strong>Audite cada regra contra a página da fonte</strong>: no estudo 3b só 111 de 200 eram totalmente sustentadas; 86 eram parciais (reescreva) e 3 não se sustentaram.</li>
+<li><strong>Verificador.</strong> Um teste por regra verificável, em Chrome real via <code>playwright-core</code>, mais <code>axe-core</code> como medida independente. Valide com tela limpa, violação isolada e várias juntas; depois audite uma amostra dos veredictos (errou em ~13%).</li>
+<li><strong>Relatório.</strong> Rode o verificador na tela e entregue ao modelo a lista de regras violadas (só entre as regras mostradas).</li>
+<li><strong>Prompt.</strong> Todas as regras da família da tela (≈19 mil tokens de entrada em tela grande) e o relatório. Recuperação por BM25 com 12 regras recuperou só 31% do ganho: não a use no lugar do conjunto.</li>
+<li><strong>Resposta.</strong> Peça trechos ANTES/DEPOIS aplicados por código, e que o modelo liste as decisões citando o id da regra. Reverifique e rode o axe-core.</li>
+</ol>
+<div class="card scroll"><table>
+<tr><th>Parâmetro</th><th>Valor usado</th></tr>
+<tr><td>Esforço</td><td><code>--effort medium</code>, sem ferramentas</td></tr>
+<tr><td>Amostras</td><td>3 (Haiku) e 2 (Sonnet) por tela e condição</td></tr>
+<tr><td>Regras no prompt</td><td>100% das regras mostráveis da família (148 no total, sem as 37 retidas para medir transbordamento)</td></tr>
+<tr><td>Formato da resposta</td><td>blocos ANTES/DEPOIS aplicados por código</td></tr>
+</table></div>
+<p><span class="bad">Limites que você herda:</span> o relatório sozinho faz o modelo corrigir só o que está nele; o verificador e as regras vêm do mesmo autor (circularidade); mede-se conformidade com regras, não estética nem resultado de produto; telas sintéticas.</p>
+<h3>Skill pronta (copie para <code>.claude/skills/kit-ux-haiku/SKILL.md</code>)</h3>
+<pre><code>---
+name: kit-ux-haiku
+description: Dá ao Haiku um kit de UX (lake de regras abertas, verificador em navegador e relatório de regras violadas) para criar, melhorar ou revisar telas. Use ao pedir a um modelo pequeno que revise ou conserte uma tela para produção e você quer medir ou aumentar a conformidade com regras de UX e acessibilidade.
+---
+
+# Kit de UX para modelo pequeno
+
+Métodos dos estudos 3 (`studies/haiku-ui-design`, tela de login) e 3b (`studies/haiku-ui-producao`, seis famílias de tela grande).
+
+## O que funcionou (medido)
+- **Tela simples:** Haiku com 30 regras e o relatório do kit foi de 0,744 para 0,998 ao criar e de 0,754 para 0,926 ao melhorar; acurácia combinada 1,07 vez a do Sonnet puro, a 10% do custo por tarefa.
+- **Tela grande, pedido vago:** o acerto do Haiku foi de 46% sem regras para 57%, 63% e 70% com 25%, 50% e 100% do lake, e 78% com o lake e o relatório. O Haiku com o lake superou o Sonnet sem ele (61%) a cerca de 8% do custo por chamada.
+- **A regra certa pesa mais que o volume:** o mesmo número de regras de outros assuntos só chegou a 52%.
+
+## Passos
+1. **Lake de regras.** Cada regra: `id`, texto, domínio, URL da fonte aberta (WCAG, GOV.UK, web.dev, MDN, USWDS, NN/g, Baymard público). **Audite cada regra contra a página da fonte**: no estudo 3b só 111 de 200 foram totalmente sustentadas, 86 parcialmente (reescreva para o que a página diz) e 3 não. Guarde só o texto reescrito (`regra_final`).
+2. **Verificador por regra.** Para cada regra verificável, um teste em navegador real (`playwright-core` com Chrome) mais `axe-core` para o que ele cobre. Valide com telas limpas, violação isolada e violações juntas; depois **audite uma amostra dos veredictos** (no estudo errou em cerca de 13%).
+3. **Relatório.** Rode o verificador sobre a tela e entregue ao modelo a lista de regras violadas, só entre as regras que o lake mostra.
+4. **Prompt.** Mostre **todas as regras da família da tela** (em tela grande ficou em cerca de 19 mil tokens de entrada) e o relatório. Uma busca simples com as 12 regras mais próximas (BM25) recuperou só 31% do ganho: não use recuperação fraca no lugar do conjunto inteiro.
+5. **Resposta.** Peça trechos ANTES/DEPOIS e aplique por código; peça que o modelo liste as decisões citando o id da regra. Rode o verificador de novo e o `axe-core` como medida independente.
+6. **Parâmetros do estudo.** `--effort medium`, sem ferramentas, sem internet, 3 amostras (Haiku) e telas pareadas entre condições.
+
+## Dependências externas
+Node (o estudo usou v24) com `axe-core`, `css-tree`, `culori`, `parse5` e `playwright-core`; Google Chrome instalado (`channel: &#x27;chrome&#x27;`); Python com `numpy` e `scipy` para a análise; Claude Code CLI.
+
+## Limites que você deve repetir ao usar
+Telas sintéticas; o verificador e o relatório vêm do mesmo autor das regras (circularidade); mede-se conformidade com regras, não estética nem resultado de produto. O relatório sozinho faz o modelo corrigir só o que está nele.
+</code></pre>
+</div></details>
+
+<details id="sdd" open>
+<summary><span class="kick">Estudo 1</span><h2>SDD só com Haiku: a receita C4</h2><span>O que mais se aproximou do Sonnet no fluxo PRD, TechSpec, Tasks e código.</span></summary>
+<div class="body">
+<div class="grid">
+<div class="card"><div class="num">39/54</div><div class="lbl">núcleo de testes do Haiku C4 (72%)</div></div>
+<div class="card"><div class="num">51/54</div><div class="lbl">sem o teste P1 que o contrato não pedia (94%)</div></div>
+<div class="card"><div class="num">49/54</div><div class="lbl">Sonnet (91%)</div></div>
+<div class="card"><div class="num">0,18</div><div class="lbl">custo de lista do C4 sobre o Sonnet</div></div>
+</div>
+<h3>Passo a passo</h3>
+<ol>
+<li>Um agente novo por artefato (PRD, TechSpec, Tasks, código), com a regra de pasta e os formatos <code>### RF-NN</code>, <code>### D-NN</code>, <code>### T-NN</code> (<code>tools/harness/prompts.md</code>).</li>
+<li>Gate determinístico em cada documento; se reprovar, chamada de correção com os <strong>erros reais</strong> do gate. Autorrevisão sem feedback externo foi o controle negativo.</li>
+<li>Código: testes de aceite escritos primeiro e vistos falhando, implementação, depois <code>typecheck</code>, lint e testes com a saída real do runner no loop.</li>
+<li>Peça explicitamente os casos de borda de contrato (rota inexistente, formato de erro): 12 das 15 falhas do C4 eram um só teste.</li>
+<li>Cada execução em cópia limpa do commit base (git worktree), sem os testes ocultos.</li>
+</ol>
+<p><span class="bad">O que não vale:</span> o híbrido (TechSpec no Sonnet) custou 3,1 vezes a cascata sem ganho de nota. A cascata Haiku para Sonnet <em>não foi testada de verdade</em> (o gatilho nunca disparou).</p>
+<h3>Skill pronta (copie para <code>.claude/skills/sdd-haiku-c4/SKILL.md</code>)</h3>
+<pre><code>---
+name: sdd-haiku-c4
+description: Receita para gerar PRD, TechSpec, Tasks e código com o Haiku usando gates determinísticos, testes de aceite escritos antes e loop de correção com a saída real do runner. Use quando quer cortar o custo do fluxo de desenvolvimento orientado a especificação (SDD) trocando o Sonnet pelo Haiku, aceitando medir a queda de qualidade.
+---
+
+# SDD com Haiku (condição C4 do estudo 1)
+
+Método do estudo `studies/haiku-sdd-producao` (198 execuções no projeto aberto h3). Resultados medidos: núcleo de testes 100%: Sonnet 49/54 (91%), Haiku simples 21/36 (58%), **Haiku C4 39/54 (72%)**. Sem o teste P1 (rota inexistente responde 404 em problem+json), que o contrato enxuto não pedia de forma explícita, o C4 faz 51/54 (94%). Custo de lista do C4 em relação ao Sonnet: 0,18. O híbrido (TechSpec no Sonnet) custou 3,1 vezes a cascata sem ganho de nota. A cascata Haiku para Sonnet não foi testada de verdade.
+
+## Receita
+1. **Um agente novo por artefato** (PRD, TechSpec, Tasks, código), cada um com o prompt do artefato e a regra de pasta (`tools/harness/prompts.md`). Formatos fixos de cabeçalho: `### RF-NN`, `### D-NN`, `### T-NN`.
+2. **Gates determinísticos nos documentos.** Verifique por código estrutura e citação de ids (toda tarefa cita RF, toda decisão cita alternativas). Se reprovar, rode a chamada de correção com o prompt &quot;Correção de documento reprovado&quot; e os **erros reais** do gate. Autorrevisão sem feedback externo é controle negativo: não use.
+3. **Código com testes primeiro.** O agente escreve testes de aceite derivados do PRD e da TechSpec, roda e confirma que falham; implementa; roda `typecheck`, lint dos arquivos tocados e os testes; corrige com a saída real do runner. Peça explicitamente os casos de borda de contrato (por exemplo, rota inexistente e formato de erro): foi a maior parte das 15 falhas do C4.
+4. **Voto por letra** só para decisões fechadas de TechSpec (opções A a D), se quiser medir consenso.
+5. **Mantenha o resto igual entre condições** (CLAUDE.md e AGENTS.md do projeto, enunciado sem valores de teste, rubrica, preços) e cada execução em cópia limpa do commit base (git worktree).
+
+## Dependências externas
+Claude Code CLI (ou subagentes), git, Node e pnpm do projeto alvo, o runner de testes do projeto (no estudo, `vitest` e `tsc`), e para a rubrica os juízes (Opus no estudo, com alfa de Krippendorff 0,61).
+
+## Limites
+Um projeto, um autor do gabarito, juízes do mesmo modelo, sem réplica externa. Notas de documento: o Haiku simples ficou a +0,7 (TechSpec) e -0,2 (Tasks) do Sonnet, dentro do ruído dos juízes.
+</code></pre>
+</div></details>
+
+<section id="medir" style="display:flex;flex-direction:column;gap:12px">
+<h2>Como saber se funciona na sua máquina</h2>
+<div class="card"><ol>
+<li>Escreva a pergunta e as hipóteses <strong>antes</strong> de rodar, e congele o desenho (hash dos arquivos).</li>
+<li>Rode um piloto pequeno (12 itens) e meça tokens e custo por chamada antes de planejar a rodada inteira. No estudo 3b o Sonnet custou muito mais do que a estimativa.</li>
+<li>Defina o teto de custo e a memória livre; deixe o executor retomável e embaralhado.</li>
+<li>Audite uma amostra do que o verificador ou o juiz decidiu e registre a taxa de erro.</li>
+<li>Reporte também o que não funcionou. Relatório do verificador sozinho, busca simples e portão de abstenção ficaram pior que o método vencedor.</li>
+</ol></div>
+</section>
+
+<section id="futuro" style="display:flex;flex-direction:column;gap:12px">
+<h2>Os próximos estudos</h2>
+<div class="card"><p>Cada novo estudo entrega três peças: artigo técnico, guia simples e uma seção nova neste manual, no mesmo formato (método vencedor, passo a passo, parâmetros, bibliotecas externas, skill derivada e limites). O modelo da seção está em <code>templates/metodo.md</code> e os arquivos de skill ficam em <code>docs/metodo/skills/</code>.</p></div>
+</section>
+<footer>Rascunho para revisão do autor. Fontes: estudos em <code>studies/</code> e ferramentas em <code>tools/rag-lake</code>, <code>tools/harness</code> e <code>studies/haiku-ui-design/kit</code>. Os experimentos, os dados e as conclusões são do autor; a redação foi assistida por IA.</footer>
+</main>
+<script>
+document.querySelectorAll('pre').forEach(function(p){var b=document.createElement('button');b.className='cp';b.textContent='copiar';b.onclick=function(){var t=p.innerText.replace(/copiar$/,'').trim();try{navigator.clipboard.writeText(t).then(function(){b.textContent='copiado'},function(){b.textContent='selecione'})}catch(e){b.textContent='selecione'}setTimeout(function(){b.textContent='copiar'},1500)};p.appendChild(b)});
+</script>

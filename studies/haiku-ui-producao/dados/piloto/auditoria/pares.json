@@ -1,0 +1,212 @@
+[
+ {
+  "n": 1,
+  "arquivo": "dados/piloto/auditoria/01.html",
+  "regra_id": "NE33",
+  "regra": "Evite mais de um banner de notificação por página e não o mostre junto do resumo de erros.",
+  "como_checar_original": "Contar banners (classe notification/banner) <= 1 e ausência simultânea com resumo de erros."
+ },
+ {
+  "n": 2,
+  "arquivo": "dados/piloto/auditoria/02.html",
+  "regra_id": "FC28",
+  "regra": "Em fluxo multietapa mostre quantas etapas ha e a posicao atual no h1 e no title.",
+  "como_checar_original": "title e h1 devem conter padrao \"Etapa X de Y\" (regex)."
+ },
+ {
+  "n": 3,
+  "arquivo": "dados/piloto/auditoria/03.html",
+  "regra_id": "FC18",
+  "regra": "Prefixe o title da pagina com \"Erro:\" quando ela for reexibida com erros.",
+  "como_checar_original": "Se pagina contem resumo de erros, title deve iniciar com \"Erro:\" ou \"Error:\"."
+ },
+ {
+  "n": 4,
+  "arquivo": "dados/piloto/auditoria/04.html",
+  "regra_id": "TD27",
+  "regra": "Use time para datas e horas; datetime é opcional e deixa o valor legível por máquina.",
+  "como_checar_original": "Textos de data em celulas/itens estao em time com datetime valido."
+ },
+ {
+  "n": 5,
+  "arquivo": "dados/piloto/auditoria/05.html",
+  "regra_id": "TD06",
+  "regra": "Em cabecalhos que abrangem varias colunas ou linhas use scope=colgroup ou scope=rowgroup.",
+  "como_checar_original": "th com colspan>1 tem scope=colgroup; th com rowspan>1 tem scope=rowgroup."
+ },
+ {
+  "n": 6,
+  "arquivo": "dados/piloto/auditoria/06.html",
+  "regra_id": "TD32",
+  "regra": "Imagens decorativas devem ter alt vazio; imagens informativas precisam de alternativa.",
+  "como_checar_original": "img sem alt falha; ornamentos com alt='' e sem title; alt generico como 'imagem' falha."
+ },
+ {
+  "n": 7,
+  "arquivo": "dados/piloto/auditoria/07.html",
+  "regra_id": "TD05",
+  "regra": "Em tabelas com cabeçalhos de várias linhas, envolva-os em thead; use tfoot para rodapé.",
+  "como_checar_original": "table com mais de uma linha tem thead com os th de cabecalho; no maximo um thead e um tfoot."
+ },
+ {
+  "n": 8,
+  "arquivo": "dados/piloto/auditoria/08.html",
+  "regra_id": "AM43",
+  "regra": "Alvos de toque sem exceção devem medir ao menos 44x44 px CSS (nível AAA).",
+  "como_checar_original": "css-tree: width/height/padding de button, a, input fora de texto corrido com tamanho calculado < 44px."
+ },
+ {
+  "n": 9,
+  "arquivo": "dados/piloto/auditoria/09.html",
+  "regra_id": "FC44",
+  "regra": "Use um único campo de logradouro sem exigir número; esconda a linha 2 atrás de um botão de revelar.",
+  "como_checar_original": "Flagar input[autocomplete=address-line2][required] e pattern exigindo digito em street-address."
+ },
+ {
+  "n": 10,
+  "arquivo": "dados/piloto/auditoria/10.html",
+  "regra_id": "AM24",
+  "regra": "De alternativa textual (nome acessivel) a SVG informativo, inclusive com role=img.",
+  "como_checar_original": "svg[role=img] com aria-label, aria-labelledby ou filho title."
+ },
+ {
+  "n": 11,
+  "arquivo": "dados/piloto/auditoria/11.html",
+  "regra_id": "AM45",
+  "regra": "Fixe cabeçalhos de coluna (sticky) em tabelas mais altas que a tela.",
+  "como_checar_original": "css-tree: thead/th com position:sticky em tabela com muitas linhas (ex.: > 15 tr)."
+ },
+ {
+  "n": 12,
+  "arquivo": "dados/piloto/auditoria/12.html",
+  "regra_id": "AM23",
+  "regra": "De texto alternativo equivalente a todo conteudo nao textual informativo; alternativa com nome de arquivo ou placeholder e falha (F30).",
+  "como_checar_original": "img sem atributo alt; ou alt casando extensão de arquivo de imagem."
+ },
+ {
+  "n": 13,
+  "arquivo": "dados/piloto/auditoria/13.html",
+  "regra_id": "TD15",
+  "regra": "Cabeçalhos ou rodapés sticky não podem ocultar totalmente o elemento focado; scroll-padding é uma solução.",
+  "como_checar_original": "Se ha position:sticky/fixed no topo, html ou o scroll container define scroll-padding-top."
+ },
+ {
+  "n": 14,
+  "arquivo": "dados/piloto/auditoria/14.html",
+  "regra_id": "NE23",
+  "regra": "Quando houver erros, mostre um resumo no topo do main com um link para cada campo com erro.",
+  "como_checar_original": "Existe bloco de resumo antes do h1/form com <a href=\"#id\"> e cada id existe no documento."
+ },
+ {
+  "n": 15,
+  "arquivo": "dados/piloto/auditoria/15.html",
+  "regra_id": "NE23",
+  "regra": "Quando houver erros, mostre um resumo no topo do main com um link para cada campo com erro.",
+  "como_checar_original": "Existe bloco de resumo antes do h1/form com <a href=\"#id\"> e cada id existe no documento."
+ },
+ {
+  "n": 16,
+  "arquivo": "dados/piloto/auditoria/16.html",
+  "regra_id": "TD07",
+  "regra": "Ao usar headers e id, cada headers deve apontar apenas para ids de celulas da mesma tabela.",
+  "como_checar_original": "Para cada td[headers], todos os ids listados existem como th dentro da mesma table."
+ },
+ {
+  "n": 17,
+  "arquivo": "dados/piloto/auditoria/17.html",
+  "regra_id": "AM30",
+  "regra": "Abas: tablist contém tabs com aria-selected e cada tabpanel aponta a sua aba por aria-labelledby.",
+  "como_checar_original": "[role=tablist] > [role=tab] com aria-selected e aria-controls; [role=tabpanel] com aria-labelledby."
+ },
+ {
+  "n": 18,
+  "arquivo": "dados/piloto/auditoria/18.html",
+  "regra_id": "TD03",
+  "regra": "Use scope em th para distinguir cabeçalhos de coluna e de linha.",
+  "como_checar_original": "Todo th tem atributo scope com valor col, row, colgroup ou rowgroup."
+ },
+ {
+  "n": 19,
+  "arquivo": "dados/piloto/auditoria/19.html",
+  "regra_id": "FC44",
+  "regra": "Use um único campo de logradouro sem exigir número; esconda a linha 2 atrás de um botão de revelar.",
+  "como_checar_original": "Flagar input[autocomplete=address-line2][required] e pattern exigindo digito em street-address."
+ },
+ {
+  "n": 20,
+  "arquivo": "dados/piloto/auditoria/20.html",
+  "regra_id": "FC26",
+  "regra": "No telefone use autocomplete=tel e não aplique máscara nem reformate o número digitado.",
+  "como_checar_original": "Input de telefone: type=tel, autocomplete tel*; flagar data-mask/placeholder com formato fixo."
+ },
+ {
+  "n": 21,
+  "arquivo": "dados/piloto/auditoria/21.html",
+  "regra_id": "FC06",
+  "regra": "Marque campos de data de nascimento com autocomplete bday-day, bday-month e bday-year.",
+  "como_checar_original": "Campos de data de nascimento devem ter autocomplete com token bday-*."
+ },
+ {
+  "n": 22,
+  "arquivo": "dados/piloto/auditoria/22.html",
+  "regra_id": "TD14",
+  "regra": "Em cabecalho sticky defina um deslocamento (top) e um ancestral com overflow como referencia de rolagem.",
+  "como_checar_original": "CSS com position:sticky tem top/inset-block-start diferente de auto."
+ },
+ {
+  "n": 23,
+  "arquivo": "dados/piloto/auditoria/23.html",
+  "regra_id": "TD42",
+  "regra": "Em busca sem resultados diga isso claramente, repita a consulta e mantenha-a editavel no campo.",
+  "como_checar_original": "Em pagina de zero resultados, input de busca tem value igual a consulta e ha texto de aviso visivel."
+ },
+ {
+  "n": 24,
+  "arquivo": "dados/piloto/auditoria/24.html",
+  "regra_id": "TD27",
+  "regra": "Use time para datas e horas; datetime é opcional e deixa o valor legível por máquina.",
+  "como_checar_original": "Textos de data em celulas/itens estao em time com datetime valido."
+ },
+ {
+  "n": 25,
+  "arquivo": "dados/piloto/auditoria/25.html",
+  "regra_id": "TD48",
+  "regra": "Inclua o numero da pagina no title, por exemplo 'Resultados (pagina 1 de 4)'.",
+  "como_checar_original": "title de paginas paginadas contem pagina atual e total."
+ },
+ {
+  "n": 26,
+  "arquivo": "dados/piloto/auditoria/26.html",
+  "regra_id": "TD11",
+  "regra": "Use font-variant-numeric: tabular-nums em colunas de numeros para os digitos terem largura igual.",
+  "como_checar_original": "Regra CSS aplicada a celulas numericas contem font-variant-numeric com tabular-nums."
+ },
+ {
+  "n": 27,
+  "arquivo": "dados/piloto/auditoria/27.html",
+  "regra_id": "TD43",
+  "regra": "Nao deixe estado vazio em branco nem mostre 'sem registros' enquanto ainda carrega; use indicador de progresso.",
+  "como_checar_original": "Container de lista vazio sem texto; ou mensagem de vazio junto a spinner/aria-busy=true."
+ },
+ {
+  "n": 28,
+  "arquivo": "dados/piloto/auditoria/28.html",
+  "regra_id": "AM12",
+  "regra": "Descreva grupos de controles de formulario com fieldset e legend (tecnica H71).",
+  "como_checar_original": "Grupos de input radio/checkbox com mesmo name devem estar dentro de fieldset com legend."
+ },
+ {
+  "n": 29,
+  "arquivo": "dados/piloto/auditoria/29.html",
+  "regra_id": "AM40",
+  "regra": "Dimensione texto de forma relativa (por exemplo % ou em) para permitir redimensionar a 200% (tecnicas C12, C14).",
+  "como_checar_original": "css-tree: font-size em body/p/li/td/label em px; sinalizar proporção alta."
+ },
+ {
+  "n": 30,
+  "arquivo": "dados/piloto/auditoria/30.html",
+  "regra_id": "NE17",
+  "regra": "Não coloque links ou botões dentro de role=\"alert\".",
+  "como_checar_original": "[role=alert] não contém <a>, <button> nem input."
+ }
+]

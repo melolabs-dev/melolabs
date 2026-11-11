@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedidos - Central de Vendas | Lojas Aurora Brasil</title>
+<style>
+:root{--c-fundo:#f4f6f9;--c-sup:#ffffff;--c-borda:#d5dbe3;--c-texto:#1c2430;--c-suave:#4a5668;--c-prim:#1a56db;--c-prim-esc:#123f9f;--c-cab:#e8edf4;--c-linha:#f7f9fc;--c-ok:#0f7b4a;--c-and:#1a56db;--c-aten:#8a5a00;--c-crit:#b42318;--r:8px;--e1:4px;--e2:8px;--e3:12px;--e4:16px;--e5:24px;--fonte:system-ui,"Segoe UI",Roboto,Arial,sans-serif;--sombra:0 1px 2px rgba(16,24,40,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--c-fundo);color:var(--c-texto);font:14px/1.5 var(--fonte)}
+.so{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pular{position:absolute;left:-9999px;top:0;padding:8px 12px;background:var(--c-prim);color:#fff}
+.pular:focus{left:8px;top:8px}
+.topo{display:flex;flex-wrap:wrap;align-items:center;gap:var(--e3);padding:var(--e3) var(--e4);background:var(--c-sup);border-bottom:1px solid var(--c-borda)}
+.marca{display:flex;align-items:center;gap:var(--e2);font-weight:700;font-size:16px}
+.usuario{margin-left:auto;display:flex;align-items:center;gap:var(--e2)}
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);gap:var(--e4);padding:var(--e4);max-width:1440px;margin:0 auto}
+.lateral{background:var(--c-sup);border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e2);align-self:start}
+.lateral ul{list-style:none;margin:0;padding:0}
+.lateral a{display:flex;align-items:center;min-height:44px;padding:8px 12px;border-radius:6px;color:var(--c-texto);text-decoration:none}
+.lateral a[aria-current=page]{background:var(--c-cab);font-weight:600}
+.trilha ol{display:flex;flex-wrap:wrap;gap:var(--e2);list-style:none;margin:0 0 var(--e3);padding:0;color:var(--c-suave)}
+.trilha a{display:inline-flex;align-items:center;padding:0 4px;min-height:44px;color:var(--c-prim-esc)}
+h1{font-size:24px;margin:0 0 var(--e1)}
+h2{font-size:18px;margin:0 0 var(--e3)}
+h3{font-size:15px;margin:0 0 var(--e1)}
+.sub{color:var(--c-suave);margin:0 0 var(--e4)}
+.sub a,.nota a{color:var(--c-prim-esc)}
+.nota{color:var(--c-suave);margin:var(--e3) 0}
+.bloco{background:var(--c-sup);border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e4);margin-bottom:var(--e4);box-shadow:var(--sombra)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--e3);margin-bottom:var(--e4)}
+.kpi{background:var(--c-sup);border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e3) var(--e4)}
+.kpi h3{font-size:13px;color:var(--c-suave);font-weight:600}
+.kpi-valor{font-size:22px;font-weight:700;margin:0;overflow-wrap:anywhere}
+.kpi-delta{margin:var(--e1) 0 0;font-size:12px;color:var(--c-suave)}
+.alta{color:var(--c-ok);font-weight:600}
+.queda{color:var(--c-crit);font-weight:600}
+.filtros-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--e3);align-items:end}
+:focus-visible{outline:3px solid var(--c-prim);outline-offset:2px}
+.campo{display:flex;flex-direction:column;gap:var(--e1);min-width:0}
+.campo label{font-size:12px;font-weight:600;color:var(--c-suave)}
+input,select{height:44px;padding:0 var(--e2);border:1px solid #6b778a;border-radius:6px;background:#fff;font:inherit;width:100%;min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 var(--e3);border:1px solid var(--c-prim);border-radius:6px;background:var(--c-prim);color:#fff;font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--c-prim-esc)}
+.acoes{display:flex;flex-wrap:wrap;gap:var(--e2);margin-top:var(--e3)}
+.avancado{margin-top:var(--e3);padding:var(--e3);border:1px dashed var(--c-borda);border-radius:var(--r)}
+.avancado[hidden]{display:none}
+.rolagem{overflow:auto;max-height:520px;border:1px solid var(--c-borda);border-radius:var(--r);background:var(--c-sup)}
+.rolagem-peq{overflow:auto;border:1px solid var(--c-borda);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%}
+caption{text-align:left;font-weight:600;padding:var(--e2) var(--e3);color:var(--c-suave)}
+.dados{min-width:1480px}
+.resumo{min-width:480px}
+.rank{min-width:340px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--c-borda);text-align:left;white-space:nowrap}
+tbody tr:nth-child(even){background:var(--c-linha)}
+.dados th.cab{background:var(--c-cab);position:sticky;top:0;z-index:2;box-shadow:inset 0 -1px 0 var(--c-borda)}
+.dados th.cab2{top:40px}
+.dados th.cab1{height:40px;text-align:center;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--c-suave)}
+.ord{display:inline-flex;align-items:center;gap:var(--e1);min-height:44px;padding:2px 6px;border:0;border-radius:4px;background:transparent;font:inherit;font-weight:700;cursor:pointer;color:var(--c-texto)}
+.dados tfoot th,.dados tfoot td{background:var(--c-cab);font-weight:700}
+td.num{text-align:right}
+.selo{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid currentColor}
+.selo.ok{color:var(--c-ok)}.selo.and{color:var(--c-and)}.selo.aten{color:var(--c-aten)}.selo.crit{color:var(--c-crit)}
+.pag{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--e3);margin-top:var(--e3)}
+.pag ul{display:flex;flex-wrap:wrap;gap:var(--e1);list-style:none;margin:0;padding:0}
+.pag button{min-width:44px;height:44px;padding:0 var(--e2);border:1px solid #6b778a;border-radius:6px;background:#fff;font:inherit;cursor:pointer}
+.pag button[aria-current=page]{background:var(--c-prim);border-color:var(--c-prim);color:#fff}
+.pag .por-pagina{display:flex;align-items:center;gap:var(--e2)}
+.pag .por-pagina select{width:auto}
+.grafico svg{display:block;width:100%;height:auto;max-width:720px}
+.grafico figcaption{color:var(--c-suave);margin-top:var(--e2)}
+.barra{fill:var(--c-prim)}.eixo{stroke:var(--c-borda);stroke-width:1}.rot{font:12px var(--fonte);fill:var(--c-suave)}
+.duas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--e4)}
+pre.rank-texto{margin:0;padding:var(--e3);background:var(--c-linha);border:1px solid var(--c-borda);border-radius:var(--r);overflow:auto;max-width:100%;font:13px/1.5 ui-monospace,Consolas,monospace}
+.estados{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--e4)}
+.estado{border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e4);background:var(--c-sup);min-width:0}
+.esq{height:12px;border-radius:6px;background:var(--c-cab);margin:var(--e2) 0}
+.esq.l{width:70%}.esq.m{width:45%}
+.estado.erro{border-color:var(--c-crit)}
+.estado.erro p{color:var(--c-crit)}
+.rodape{max-width:1440px;margin:0 auto;padding:var(--e4);color:var(--c-suave);display:flex;flex-wrap:wrap;gap:var(--e4);justify-content:space-between}
+.rodape ul{display:flex;flex-wrap:wrap;gap:var(--e4);list-style:none;margin:0;padding:0}
+.rodape a{display:inline-flex;align-items:center;padding:0;min-height:44px;color:var(--c-prim-esc)}
+@media (max-width:800px){.app{grid-template-columns:minmax(0,1fr);padding:var(--e3)}.lateral ul{display:flex;flex-wrap:wrap}.kpi-valor{font-size:18px}h1{font-size:20px}}
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo">Ir para o conteúdo principal</a>
+<header class="topo">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI3IiBmaWxsPSIjMWE1NmRiIi8+PHBhdGggZD0iTTcgMjJsNi04IDUgNSA3LTEwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==" width="32" height="32" alt="">
+<div class="marca">Central de Vendas</div>
+<div class="usuario">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNiIgZmlsbD0iIzlkYjZlZSIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTMiIHI9IjYiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNNSAyOGMyLTcgMjAtNyAyMiAweiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" width="32" height="32" alt="">
+<span>Caio Mello</span>
+<button type="button" class="btn sec">Sair</button>
+</div>
+</header>
+<div class="app">
+<nav class="lateral" aria-label="Navegação principal">
+<ul>
+<li><a href="#visao">Visão geral</a></li>
+<li><a href="#painel" aria-current="page">Pedidos</a></li>
+<li><a href="#relatorios">Relatórios</a></li>
+<li><a href="#metas">Metas do trimestre</a></li>
+<li><a href="#config">Configurações</a></li>
+</ul>
+</nav>
+<main id="conteudo">
+<nav class="trilha" aria-label="Trilha de navegação">
+<ol>
+<li><a href="#inicio">Início</a></li>
+<li><a href="#analises">Análises</a></li>
+<li aria-current="page">Pedidos</li>
+</ol>
+</nav>
+<h1>Pedidos</h1>
+<p class="sub">Lojas Aurora Brasil. Dados atualizados em <time datetime="2026-11-07T11:22">7 de novembro de 2026, 11:22</time>.</p>
+<section aria-labelledby="tit-kpis">
+<h2 id="tit-kpis" class="so">Indicadores principais</h2>
+<div class="kpis">
+<article class="kpi">
+<h3>Receita bruta</h3>
+<p class="kpi-valor">R$ 342.596,10</p>
+<p class="kpi-delta"><span class="alta">+10,7%</span> <span>em relação ao período anterior</span></p>
+</article>
+<article class="kpi">
+<h3>Itens vendidos</h3>
+<p class="kpi-valor">14.806</p>
+<p class="kpi-delta"><span class="alta">+1,3%</span> <span>em relação ao período anterior</span></p>
+</article>
+<article class="kpi">
+<h3>Margem bruta média</h3>
+<p class="kpi-valor">45,9%</p>
+<p class="kpi-delta"><span class="queda">-2,1%</span> <span>em relação ao período anterior</span></p>
+</article>
+<article class="kpi">
+<h3>Pedidos cancelados</h3>
+<p class="kpi-valor">5</p>
+<p class="kpi-delta"><span class="queda">+5,9%</span> <span>em relação ao período anterior</span></p>
+</article>
+</div>
+</section>
+<section class="bloco" aria-labelledby="tit-filtros">
+<h2 id="tit-filtros">Filtros</h2>
+<form action="#" method="get">
+<div class="filtros-grade">
+<div class="campo"><label for="f-busca">Buscar pedido ou cliente</label><input id="f-busca" type="search" name="q" placeholder="Digite para buscar"></div>
+<div class="campo"><label for="f-cat">Loja</label><select id="f-cat" name="cat"><option>Todas</option><option>Shopping Centro</option><option>Loja Norte</option><option>Loja Sul</option><option>Outlet Rodovia</option><option>Loja Virtual</option></select></div>
+<div class="campo"><label for="f-sit">Situação</label><select id="f-sit" name="sit"><option>Todas</option><option>Entregue</option><option>Em separação</option><option>Pagamento pendente</option><option>Cancelado</option></select></div>
+<div class="campo"><label for="f-de">De</label><input id="f-de" type="date" name="de" value="2026-01-01"></div>
+<div class="campo"><label for="f-ate">Até</label><input id="f-ate" type="date" name="ate" value="2026-10-31"></div>
+</div>
+<div class="acoes">
+<button type="submit" class="btn">Aplicar filtros</button>
+<button type="reset" class="btn sec">Limpar</button>
+<button type="button" class="btn sec" aria-expanded="false" aria-controls="painel-avancado">Filtros avançados</button>
+</div>
+<div id="painel-avancado" class="avancado" hidden>
+<div class="filtros-grade">
+<div class="campo"><label for="f-min">Valor mínimo (R$)</label><input id="f-min" type="text" inputmode="decimal" name="min" placeholder="0"></div>
+<div class="campo"><label for="f-max">Valor máximo (R$)</label><input id="f-max" type="text" inputmode="decimal" name="max" placeholder="100000"></div>
+<div class="campo"><label for="f-resp">Vendedor</label><select id="f-resp" name="resp"><option>Todos</option><option>Camila Dantas</option><option>Felipe Rangel</option><option>Lívia Amaral</option><option>Gustavo Pessoa</option><option>Nádia Xavier</option></select></div>
+</div>
+</div>
+</form>
+</section>
+<section class="bloco" aria-labelledby="tit-tabela" id="painel">
+<h2 id="tit-tabela">Registros detalhados</h2>
+<div class="rolagem" role="region" aria-label="Rolagem horizontal da tabela de pedidos" tabindex="0">
+<table class="dados">
+<caption>Pedidos de 1 jan a 31 out 2026, todas as lojas e situações, ordenados por data do pedido (mais recentes primeiro)</caption>
+<thead>
+<tr>
+<th class="cab cab1" scope="colgroup" colspan="4">Identificação</th>
+<th class="cab cab1" scope="colgroup" colspan="2">Atendimento</th>
+<th class="cab cab1" scope="colgroup" colspan="3">Financeiro</th>
+<th class="cab cab1" scope="colgroup" colspan="3">Indicadores</th>
+</tr>
+<tr>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Pedido</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Cliente</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Loja</button></th>
+<th class="cab cab2" scope="col" aria-sort="descending"><button type="button" class="ord">Data do pedido</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Situação</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Itens</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Valor do pedido (R$)</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Custo da mercadoria (R$)</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Margem bruta (%)</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Índice de devolução</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Peso (kg)</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Vendedor</button></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row"><a href="#PD-85645">PD-85645</a></th>
+<td>Eduardo Salgado</td>
+<td>Outlet Rodovia</td>
+<td><time datetime="2026-09-18">18 set 2026</time></td>
+<td><span class="selo crit">Cancelado</span></td>
+<td class="num">1.850</td>
+<td class="num">R$ 21.182,87</td>
+<td class="num">R$ 9.681,82</td>
+<td class="num">24,6%</td>
+<td class="num">0,94</td>
+<td class="num">757,6</td>
+<td>Nádia Xavier</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-38451">PD-38451</a></th>
+<td>Eduardo Salgado</td>
+<td>Shopping Centro</td>
+<td><time datetime="2026-09-10">10 set 2026</time></td>
+<td><span class="selo ok">Entregue</span></td>
+<td class="num">1.988</td>
+<td class="num">R$ 9.785,09</td>
+<td class="num">R$ 5.600,19</td>
+<td class="num">5,6%</td>
+<td class="num">0,55</td>
+<td class="num">498,4</td>
+<td>Gustavo Pessoa</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-25893">PD-25893</a></th>
+<td>Caetano Ribas</td>
+<td>Shopping Centro</td>
+<td><time datetime="2026-08-26">26 ago 2026</time></td>
+<td><span class="selo crit">Cancelado</span></td>
+<td class="num">2.254</td>
+<td class="num">R$ 21.814,17</td>
+<td class="num">R$ 10.280,88</td>
+<td class="num">79,7%</td>
+<td class="num">0,47</td>
+<td class="num">1.270,4</td>
+<td>Lívia Amaral</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-92680">PD-92680</a></th>
+<td>Luciana Moura</td>
+<td>Outlet Rodovia</td>
+<td><time datetime="2026-08-23">23 ago 2026</time></td>
+<td><span class="selo crit">Cancelado</span></td>
+<td class="num">1.732</td>
+<td class="num">R$ 27.743,75</td>
+<td class="num">R$ 15.550,00</td>
+<td class="num">60,8%</td>
+<td class="num">0,74</td>
+<td class="num">2.529,6</td>
+<td>Felipe Rangel</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-83310">PD-83310</a></th>
+<td>Marina Albuquerque</td>
+<td>Outlet Rodovia</td>
+<td><time datetime="2026-07-14">14 jul 2026</time></td>
+<td><span class="selo crit">Cancelado</span></td>
+<td class="num">505</td>
+<td class="num">R$ 41.208,45</td>
+<td class="num">R$ 25.964,03</td>
+<td class="num">21,3%</td>
+<td class="num">0,50</td>
+<td class="num">684,2</td>
+<td>Camila Dantas</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-23224">PD-23224</a></th>
+<td>Eduardo Salgado</td>
+<td>Loja Virtual</td>
+<td><time datetime="2026-06-20">20 jun 2026</time></td>
+<td><span class="selo crit">Cancelado</span></td>
+<td class="num">202</td>
+<td class="num">R$ 29.406,25</td>
+<td class="num">R$ 24.756,24</td>
+<td class="num">87,3%</td>
+<td class="num">0,42</td>
+<td class="num">3.409,5</td>
+<td>Lívia Amaral</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-90906">PD-90906</a></th>
+<td>Eduardo Salgado</td>
+<td>Outlet Rodovia</td>
+<td><time datetime="2026-05-16">16 mai 2026</time></td>
+<td><span class="selo and">Em separação</span></td>
+<td class="num">315</td>
+<td class="num">R$ 41.542,80</td>
+<td class="num">R$ 25.752,68</td>
+<td class="num">36,5%</td>
+<td class="num">0,82</td>
+<td class="num">4.547,5</td>
+<td>Lívia Amaral</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-91831">PD-91831</a></th>
+<td>Juliana Campos</td>
+<td>Outlet Rodovia</td>
+<td><time datetime="2026-05-09">9 mai 2026</time></td>
+<td><span class="selo ok">Entregue</span></td>
+<td class="num">1.807</td>
+<td class="num">R$ 26.642,83</td>
+<td class="num">R$ 14.482,87</td>
+<td class="num">44,2%</td>
+<td class="num">0,95</td>
+<td class="num">847,8</td>
+<td>Gustavo Pessoa</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-55632">PD-55632</a></th>
+<td>Juliana Campos</td>
+<td>Loja Norte</td>
+<td><time datetime="2026-04-23">23 abr 2026</time></td>
+<td><span class="selo ok">Entregue</span></td>
+<td class="num">1.858</td>
+<td class="num">R$ 52.844,79</td>
+<td class="num">R$ 40.742,55</td>
+<td class="num">44,6%</td>
+<td class="num">0,24</td>
+<td class="num">2.804,1</td>
+<td>Gustavo Pessoa</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-27483">PD-27483</a></th>
+<td>Caetano Ribas</td>
+<td>Loja Norte</td>
+<td><time datetime="2026-04-07">7 abr 2026</time></td>
+<td><span class="selo and">Em separação</span></td>
+<td class="num">852</td>
+<td class="num">R$ 7.336,40</td>
+<td class="num">R$ 5.579,33</td>
+<td class="num">29,5%</td>
+<td class="num">0,51</td>
+<td class="num">2.800,3</td>
+<td>Felipe Rangel</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-91791">PD-91791</a></th>
+<td>Marina Albuquerque</td>
+<td>Shopping Centro</td>
+<td><time datetime="2026-02-09">9 fev 2026</time></td>
+<td><span class="selo aten">Pagamento pendente</span></td>
+<td class="num">1.303</td>
+<td class="num">R$ 51.105,70</td>
+<td class="num">R$ 23.326,54</td>
+<td class="num">53,2%</td>
+<td class="num">0,47</td>
+<td class="num">4.225,1</td>
+<td>Gustavo Pessoa</td>
+</tr>
+<tr>
+<th scope="row"><a href="#PD-56873">PD-56873</a></th>
+<td>Otávio Brandão</td>
+<td>Loja Norte</td>
+<td><time datetime="2026-01-05">5 jan 2026</time></td>
+<td><span class="selo aten">Pagamento pendente</span></td>
+<td class="num">140</td>
+<td class="num">R$ 11.983,00</td>
+<td class="num">R$ 7.295,43</td>
+<td class="num">63,0%</td>
+<td class="num">0,78</td>
+<td class="num">61,5</td>
+<td>Felipe Rangel</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<th scope="row" colspan="5">Totais</th>
+<td class="num">14.806</td>
+<td class="num">R$ 342.596,10</td>
+<td class="num">R$ 209.012,56</td>
+<td class="num">45,9%</td>
+<td class="num">0,62</td>
+<td class="num">24.436,0</td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="pag">
+<p role="status">Exibindo 1 a 12 de 4.906 registros</p>
+<nav aria-label="Paginação da tabela de pedidos">
+<ul>
+<li><button type="button" aria-label="Página anterior">&lsaquo;</button></li>
+<li><button type="button" aria-current="page" aria-label="Página 1">1</button></li>
+<li><button type="button" aria-label="Página 2">2</button></li>
+<li><button type="button" aria-label="Página 3">3</button></li>
+<li><button type="button" aria-label="Página 4">4</button></li>
+<li><button type="button" aria-label="Página 5">5</button></li>
+<li><button type="button" aria-label="Próxima página">&rsaquo;</button></li>
+</ul>
+</nav>
+<div class="por-pagina"><label for="pp">Itens por página</label><select id="pp"><option>10</option><option selected>12</option><option>25</option><option>50</option><option>100</option></select></div>
+</div>
+<p class="nota"><a href="#exportar-csv">Baixar os dados filtrados em CSV</a></p>
+</section>
+<section class="bloco" aria-labelledby="tit-grafico">
+<h2 id="tit-grafico">Receita por loja</h2>
+<figure class="grafico" style="margin:0">
+<svg viewBox="0 0 640 270" width="640" height="270" role="img" aria-labelledby="g-t g-d">
+<title id="g-t">Receita acumulada por loja</title>
+<desc id="g-d">Gráfico de barras. Outlet Rodovia lidera com R$ 158.320,70; Shopping Centro R$ 82.704,96; Loja Norte R$ 72.164,19; Loja Virtual R$ 29.406,25; Loja Sul sem receita no período.</desc>
+<line class="eixo" x1="90" x2="620" y1="220.0" y2="220.0"/>
+<text class="rot" x="82" y="224.0" text-anchor="end">0</text>
+<line class="eixo" x1="90" x2="620" y1="170.0" y2="170.0"/>
+<text class="rot" x="82" y="174.0" text-anchor="end">50000</text>
+<line class="eixo" x1="90" x2="620" y1="120.0" y2="120.0"/>
+<text class="rot" x="82" y="124.0" text-anchor="end">100000</text>
+<line class="eixo" x1="90" x2="620" y1="70.0" y2="70.0"/>
+<text class="rot" x="82" y="74.0" text-anchor="end">150000</text>
+<line class="eixo" x1="90" x2="620" y1="20.0" y2="20.0"/>
+<text class="rot" x="82" y="24.0" text-anchor="end">200000</text>
+<rect class="barra" x="111.2" y="137.3" width="63.6" height="82.7"/>
+<text class="rot" x="143.0" y="132" text-anchor="middle">R$ 82.705</text>
+<text class="rot" x="143.0" y="238" text-anchor="middle">Shopping Centro</text>
+<rect class="barra" x="217.2" y="147.8" width="63.6" height="72.2"/>
+<text class="rot" x="249.0" y="142" text-anchor="middle">R$ 72.164</text>
+<text class="rot" x="249.0" y="238" text-anchor="middle">Loja Norte</text>
+<rect class="barra" x="323.2" y="220.0" width="63.6" height="0.0"/>
+<text class="rot" x="355.0" y="214" text-anchor="middle">R$ 0</text>
+<text class="rot" x="355.0" y="238" text-anchor="middle">Loja Sul</text>
+<rect class="barra" x="429.2" y="61.7" width="63.6" height="158.3"/>
+<text class="rot" x="461.0" y="55" text-anchor="middle">R$ 158.321</text>
+<text class="rot" x="461.0" y="238" text-anchor="middle">Outlet Rodovia</text>
+<rect class="barra" x="535.2" y="190.6" width="63.6" height="29.4"/>
+<text class="rot" x="567.0" y="184" text-anchor="middle">R$ 29.406</text>
+<text class="rot" x="567.0" y="238" text-anchor="middle">Loja Virtual</text>
+</svg>
+
+<figcaption>Receita acumulada no período, em reais, agrupada por loja.</figcaption>
+</figure>
+<div class="acoes"><button type="button" class="btn sec" aria-expanded="false" aria-controls="painel-legenda">Como ler este gráfico</button></div>
+<div id="painel-legenda" class="avancado" hidden>
+<p>Cada barra representa a soma do valor dos registros de uma loja. A escala vertical começa em zero.</p>
+</div>
+</section>
+<div class="duas">
+<section class="bloco" aria-labelledby="tit-resumo">
+<h2 id="tit-resumo">Resumo trimestral</h2>
+<div class="rolagem-peq" role="region" aria-label="Resumo trimestral, rolagem horizontal" tabindex="0">
+<table class="resumo">
+<caption>Itens, receita e margem bruta por trimestre</caption>
+<thead>
+<tr>
+<th scope="col">Indicador</th>
+<th scope="col">T1</th>
+<th scope="col">T2</th>
+<th scope="col">T3</th>
+<th scope="col">T4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Itens</th>
+<td class="num">8.182</td>
+<td class="num">7.718</td>
+<td class="num">1.087</td>
+<td class="num">8.053</td>
+</tr>
+<tr>
+<th scope="row">Receita</th>
+<td class="num">R$ 453.013,77</td>
+<td class="num">R$ 172.715,30</td>
+<td class="num">R$ 288.665,89</td>
+<td class="num">R$ 629.611,71</td>
+</tr>
+<tr>
+<th scope="row">Margem bruta</th>
+<td class="num">11,1%</td>
+<td class="num">11,4%</td>
+<td class="num">47,2%</td>
+<td class="num">80,6%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="bloco" aria-labelledby="tit-rank">
+<h2 id="tit-rank">Ranking</h2>
+<div class="rolagem-peq" role="region" aria-label="Ranking de lojas, rolagem horizontal" tabindex="0">
+<table class="rank">
+<caption>Receita e participação por loja</caption>
+<thead>
+<tr><th scope="col">Pos.</th><th scope="col">Loja</th><th scope="col">Receita</th><th scope="col">Part.</th></tr>
+</thead>
+<tbody>
+<tr><td class="num">1</td><th scope="row">Outlet Rodovia</th><td class="num">R$ 158.320,70</td><td class="num">46,2%</td></tr>
+<tr><td class="num">2</td><th scope="row">Shopping Centro</th><td class="num">R$ 82.704,96</td><td class="num">24,1%</td></tr>
+<tr><td class="num">3</td><th scope="row">Loja Norte</th><td class="num">R$ 72.164,19</td><td class="num">21,1%</td></tr>
+<tr><td class="num">4</td><th scope="row">Loja Virtual</th><td class="num">R$ 29.406,25</td><td class="num">8,6%</td></tr>
+<tr><td class="num">5</td><th scope="row">Loja Sul</th><td class="num">R$ 0,00</td><td class="num">0,0%</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<section class="bloco" aria-labelledby="tit-estados" id="estados" hidden>
+<h2 id="tit-estados">Estados de exibição</h2>
+<div class="estados">
+<div class="estado" role="status" aria-busy="true">
+<h3>Carregando</h3>
+<div class="esq"></div>
+<div class="esq l"></div>
+<div class="esq m"></div>
+<p>Carregando registros do período...</p>
+</div>
+<div class="estado">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAiIGhlaWdodD0iMTEwIiB2aWV3Qm94PSIwIDAgMTYwIDExMCI+PHJlY3QgeD0iMTAiIHk9IjIwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjgwIiByeD0iOCIgZmlsbD0iI2U4ZWRmNCIvPjxyZWN0IHg9IjI2IiB5PSI0MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSIjYzVjZWRiIi8+PHJlY3QgeD0iMjYiIHk9IjU4IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSIjYzVjZWRiIi8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMzAiIHI9IjE4IiBmaWxsPSIjOWRiNmVlIi8+PC9zdmc+" width="160" height="110" alt="">
+<h3>Nenhum resultado</h3>
+<p>Nenhum registro corresponde aos filtros aplicados.</p>
+<button type="button" class="btn sec">Limpar filtros</button>
+</div>
+<div class="estado erro" role="alert">
+<h3>Falha ao carregar</h3>
+<p>Não foi possível carregar os dados. A conexão com o servidor foi interrompida.</p>
+<button type="button" class="btn">Tentar novamente</button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<footer class="rodape">
+<span>&copy; 2026 Lojas Aurora Brasil. Todos os direitos reservados.</span>
+<nav aria-label="Rodapé">
+<ul>
+<li><a href="#privacidade">Política de privacidade</a></li>
+<li><a href="#termos">Termos de uso</a></li>
+<li><a href="#ajuda">Central de ajuda</a></li>
+</ul>
+</nav>
+</footer>
+<script>
+document.querySelectorAll('button[aria-controls]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var p = document.getElementById(b.getAttribute('aria-controls'));
+    if (!p) return;
+    var aberto = b.getAttribute('aria-expanded') === 'true';
+    b.setAttribute('aria-expanded', String(!aberto));
+    p.hidden = aberto;
+  });
+});
+</script>
+</body>
+</html>

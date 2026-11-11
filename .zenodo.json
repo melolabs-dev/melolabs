@@ -1,28 +1,34 @@
 {
-  "title": "Haiku com mini data lake: o que o RAG curado acerta e o que custa (dados, código e protocolo, estudo 2)",
+  "title": "Haiku com regras de UX: kit em telas de login e data lake em telas grandes (dados, código e protocolo, estudos 3 e 3b)",
   "upload_type": "dataset",
-  "description": "Estudo 2 pré-registrado e reproduzível do Melo Labs: 7.200 chamadas (120 perguntas de decisão, 13 condições, Haiku 5.5 e Sonnet 5.5) sobre um mini data lake do projeto aberto h3. Inclui lake, perguntas, gabarito, pré-registro, dados brutos, análise, figuras e artigos (pt e en). Guia: https://melolabs.net/pt/rag-data-lake-haiku-guia/ Artigo técnico: https://melolabs.net/pt/rag-data-lake-haiku/",
+  "description": "Estudos 3 e 3b pré-registrados e reproduzíveis do Melo Labs. Estudo 3: Haiku 5.5 e Sonnet 5.5 com um kit de UX (30 regras abertas e checador por código) em criar, melhorar e comparar telas de login (2.424 chamadas). Estudo 3b: seis famílias de telas grandes, lake de 200 regras auditadas, completude do lake em 0, 25, 50 e 100%, controles de volume e de busca, verificador em navegador e axe-core (2.640 chamadas). Inclui lake, gerador de telas, verificador, pré-registro, dados brutos, análise, figuras, manual de implantação e artigos (pt e en). Guias: https://melolabs.net/pt/haiku-ui-design-guia/ e https://melolabs.net/pt/haiku-ui-producao-guia/",
   "creators": [
     {
       "name": "Melo, Caio"
     }
   ],
   "keywords": [
-    "RAG",
+    "UX",
     "data lake",
     "Haiku",
     "LLM",
     "custo",
+    "acessibilidade",
     "estudo pré-registrado"
   ],
   "language": "por",
   "related_identifiers": [
     {
-      "identifier": "https://melolabs.net/pt/rag-data-lake-haiku/",
+      "identifier": "https://melolabs.net/pt/haiku-ui-design/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://melolabs.net/pt/haiku-ui-producao/",
       "relation": "isDocumentedBy",
       "scheme": "url"
     }
   ],
   "license": "cc-by-4.0",
-  "version": "2.0.0"
+  "version": "3.0.0"
 }

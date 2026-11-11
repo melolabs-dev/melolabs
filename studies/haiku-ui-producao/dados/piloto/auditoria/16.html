@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colaboradores - Painel de Pessoas | Grupo Meridiano</title>
+<style>
+:root{--c-fundo:#f4f6f9;--c-sup:#ffffff;--c-borda:#d5dbe3;--c-texto:#1c2430;--c-suave:#4a5668;--c-prim:#1a56db;--c-prim-esc:#123f9f;--c-cab:#e8edf4;--c-linha:#f7f9fc;--c-ok:#0f7b4a;--c-and:#1a56db;--c-aten:#8a5a00;--c-crit:#b42318;--r:8px;--e1:4px;--e2:8px;--e3:12px;--e4:16px;--e5:24px;--fonte:system-ui,"Segoe UI",Roboto,Arial,sans-serif;--sombra:0 1px 2px rgba(16,24,40,.08)}
+*{box-sizing:border-box}
+:focus-visible{outline:3px solid var(--c-prim);outline-offset:2px}
+.btn:hover{background:var(--c-prim-esc)}
+.btn.sec:hover{background:var(--c-cab)}
+.btn:disabled,.pag button:disabled{opacity:.5;cursor:not-allowed}
+body{margin:0;background:var(--c-fundo);color:var(--c-texto);font:14px/1.5 var(--fonte)}
+img{max-width:100%;height:auto}
+.so{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pular{position:absolute;left:-9999px;top:0;padding:8px 12px;background:var(--c-prim);color:#fff}
+.pular:focus{left:8px;top:8px}
+.topo{display:flex;flex-wrap:wrap;align-items:center;gap:var(--e3);padding:var(--e3) var(--e4);background:var(--c-sup);border-bottom:1px solid var(--c-borda)}
+.marca{display:flex;align-items:center;gap:var(--e2);font-weight:700;font-size:16px}
+.usuario{margin-left:auto;display:flex;align-items:center;gap:var(--e2)}
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);gap:var(--e4);padding:var(--e4);max-width:1440px;margin:0 auto}
+.lateral{background:var(--c-sup);border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e2);align-self:start}
+.lateral ul{list-style:none;margin:0;padding:0}
+.lateral a{display:block;padding:8px 12px;border-radius:6px;color:var(--c-texto);text-decoration:none}
+.lateral a[aria-current=page]{background:var(--c-cab);font-weight:600}
+.trilha ol{display:flex;flex-wrap:wrap;gap:var(--e2);list-style:none;margin:0 0 var(--e3);padding:0;color:var(--c-suave)}
+.trilha a{display:inline-block;padding:4px 2px;min-height:24px;color:var(--c-prim-esc)}
+h1{font-size:24px;margin:0 0 var(--e1)}
+h2{font-size:18px;margin:0 0 var(--e3)}
+h3{font-size:15px;margin:0 0 var(--e1)}
+.sub{color:var(--c-suave);margin:0 0 var(--e4)}
+.sub a,.nota a{color:var(--c-prim-esc)}
+.nota{color:var(--c-suave);margin:var(--e3) 0}
+.bloco{background:var(--c-sup);border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e4);margin-bottom:var(--e4);box-shadow:var(--sombra)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--e3);margin-bottom:var(--e4)}
+.kpi{background:var(--c-sup);border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e3) var(--e4)}
+.kpi h3{font-size:13px;color:var(--c-suave);font-weight:600}
+.kpi-valor{font-size:22px;font-weight:700;margin:0;overflow-wrap:anywhere}
+.kpi-delta{margin:var(--e1) 0 0;font-size:12px;color:var(--c-suave)}
+.alta{color:var(--c-ok);font-weight:600}
+.queda{color:var(--c-crit);font-weight:600}
+.filtros-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--e3);align-items:end}
+.campo{display:flex;flex-direction:column;gap:var(--e1);min-width:0}
+.campo label{font-size:12px;font-weight:600;color:var(--c-suave)}
+input,select{height:34px;padding:0 var(--e2);border:1px solid var(--c-borda);border-radius:6px;background:#fff;font:inherit;width:100%;min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 var(--e3);border:1px solid var(--c-prim);border-radius:6px;background:var(--c-prim);color:#fff;font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--c-prim-esc)}
+.acoes{display:flex;flex-wrap:wrap;gap:var(--e2);margin-top:var(--e3)}
+.avancado{margin-top:var(--e3);padding:var(--e3);border:1px dashed var(--c-borda);border-radius:var(--r)}
+.avancado[hidden]{display:none}
+.rolagem{overflow:auto;max-height:520px;border:1px solid var(--c-borda);border-radius:var(--r);background:var(--c-sup)}
+.rolagem-peq{overflow:auto;border:1px solid var(--c-borda);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%}
+caption{text-align:left;font-weight:600;padding:var(--e2) var(--e3);color:var(--c-suave)}
+.dados{min-width:1480px}
+.resumo{min-width:480px}
+.rank{min-width:340px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--c-borda);text-align:left;white-space:nowrap}
+tbody tr:nth-child(even){background:var(--c-linha)}
+.dados th.cab{background:var(--c-cab);position:sticky;z-index:2;top:0}
+.dados th.cab2{top:40px}
+.dados th.cab2:nth-child(n+6):nth-child(-n+11){text-align:right}
+.dados th.cab1{height:40px;text-align:center;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--c-suave)}
+.ord{display:inline-flex;align-items:center;gap:var(--e1);min-height:28px;padding:2px 6px;border:0;border-radius:4px;background:transparent;font:inherit;font-weight:700;cursor:pointer;color:var(--c-texto)}
+.dados tfoot th,.dados tfoot td{background:var(--c-cab);font-weight:700}
+td.num{text-align:right}
+.selo{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid currentColor}
+.selo.ok{color:var(--c-ok)}.selo.and{color:var(--c-and)}.selo.aten{color:var(--c-aten)}.selo.crit{color:var(--c-crit)}
+.pag{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--e3);margin-top:var(--e3)}
+.pag ul{display:flex;flex-wrap:wrap;gap:var(--e1);list-style:none;margin:0;padding:0}
+.pag button{width:34px;height:34px;border:1px solid var(--c-borda);border-radius:6px;background:#fff;font:inherit;cursor:pointer}
+.pag button[aria-current=page]{background:var(--c-prim);border-color:var(--c-prim);color:#fff}
+.pag .por-pagina{display:flex;align-items:center;gap:var(--e2)}
+.pag .por-pagina select{width:auto}
+.grafico{margin:0;overflow-x:auto}
+.grafico svg{display:block;width:100%;min-width:560px;height:auto;max-width:720px}
+.grafico figcaption{color:var(--c-suave);margin-top:var(--e2)}
+.barra{fill:var(--c-prim)}.eixo{stroke:var(--c-borda);stroke-width:1}.rot{font:12px var(--fonte);fill:var(--c-suave)}
+.duas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--e4)}
+pre.rank-texto{margin:0;padding:var(--e3);background:var(--c-linha);border:1px solid var(--c-borda);border-radius:var(--r);overflow:auto;max-width:100%;font:13px/1.5 ui-monospace,Consolas,monospace}
+.estados{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--e4)}
+.estado{border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e4);background:var(--c-sup);min-width:0}
+.esq{height:12px;border-radius:6px;background:var(--c-cab);margin:var(--e2) 0}
+.esq.l{width:70%}.esq.m{width:45%}
+.estado.erro{border-color:var(--c-crit)}
+.estado.erro p{color:var(--c-crit)}
+.rodape{max-width:1440px;margin:0 auto;padding:var(--e4);color:var(--c-suave);display:flex;flex-wrap:wrap;gap:var(--e4);justify-content:space-between}
+.rodape ul{display:flex;flex-wrap:wrap;gap:var(--e4);list-style:none;margin:0;padding:0}
+.rodape a{display:inline-block;padding:4px 0;min-height:28px;color:var(--c-prim-esc)}
+@media (max-width:800px){.app{grid-template-columns:minmax(0,1fr);padding:var(--e3)}.lateral ul{display:flex;flex-wrap:wrap}.kpi-valor{font-size:18px}h1{font-size:20px}}
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo">Ir para o conteúdo principal</a>
+<header class="topo">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI3IiBmaWxsPSIjMWE1NmRiIi8+PHBhdGggZD0iTTcgMjJsNi04IDUgNSA3LTEwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==" width="32" height="32" alt="Logotipo Grupo Meridiano">
+<div class="marca">Painel de Pessoas</div>
+<div class="usuario">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNiIgZmlsbD0iIzlkYjZlZSIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTMiIHI9IjYiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNNSAyOGMyLTcgMjAtNyAyMiAweiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" width="32" height="32" alt="">
+<span>Caio Mello</span>
+<button type="button" class="btn sec">Sair</button>
+</div>
+</header>
+<div class="app">
+<nav class="lateral" aria-label="Navegação principal">
+<ul>
+<li><a href="#visao">Visão geral</a></li>
+<li><a href="#painel" aria-current="page">Colaboradores</a></li>
+<li><a href="#relatorios">Relatórios</a></li>
+<li><a href="#metas">Metas do trimestre</a></li>
+<li><a href="#config">Configurações</a></li>
+</ul>
+</nav>
+<main id="conteudo">
+<nav class="trilha" aria-label="Trilha de navegação">
+<ol>
+<li><a href="#inicio">Início</a></li>
+<li><a href="#analises">Análises</a></li>
+<li aria-current="page">Colaboradores</li>
+</ol>
+</nav>
+<h1>Colaboradores</h1>
+<p class="sub">Grupo Meridiano. Dados atualizados em <time datetime="2026-11-01T17:18">1 nov 2026, 17:18</time>.</p>
+<section aria-labelledby="tit-kpis">
+<h2 id="tit-kpis" class="so">Indicadores principais</h2>
+<div class="kpis">
+<article class="kpi">
+<h3>Folha mensal</h3>
+<p class="kpi-valor">R$ 462.062,76</p>
+<p class="kpi-delta"><span class="alta">+2,6%</span> <span>em relação ao período anterior</span></p>
+</article>
+<article class="kpi">
+<h3>Horas extras no mês</h3>
+<p class="kpi-valor">20.439</p>
+<p class="kpi-delta"><span class="queda">+8,7%</span> <span>em relação ao período anterior</span></p>
+</article>
+<article class="kpi">
+<h3>Desempenho médio</h3>
+<p class="kpi-valor">54,8%</p>
+<p class="kpi-delta"><span class="queda">-0,4%</span> <span>em relação ao período anterior</span></p>
+</article>
+<article class="kpi">
+<h3>Colaboradores afastados</h3>
+<p class="kpi-valor">2</p>
+<p class="kpi-delta"><span class="queda">+2,2%</span> <span>em relação ao período anterior</span></p>
+</article>
+</div>
+</section>
+<section class="bloco" aria-labelledby="tit-filtros">
+<h2 id="tit-filtros">Filtros</h2>
+<form action="#" method="get">
+<div class="filtros-grade">
+<div class="campo"><label for="f-busca">Buscar matrícula ou nome</label><input id="f-busca" type="search" name="q" placeholder="Digite para buscar"></div>
+<div class="campo"><label for="f-cat">Departamento</label><select id="f-cat" name="cat"><option>Todas</option><option>Comercial</option><option>Operações</option><option>Tecnologia</option><option>Financeiro</option><option>Jurídico</option></select></div>
+<div class="campo"><label for="f-sit">Situação</label><select id="f-sit" name="sit"><option>Todas</option><option>Ativo</option><option>Em férias</option><option>Afastado</option><option>Em desligamento</option></select></div>
+<div class="campo"><label for="f-de">De</label><input id="f-de" type="date" name="de" value="2026-01-01"></div>
+<div class="campo"><label for="f-ate">Até</label><input id="f-ate" type="date" name="ate" value="2026-10-31"></div>
+</div>
+<div class="acoes">
+<button type="submit" class="btn">Aplicar filtros</button>
+<button type="reset" class="btn sec">Limpar</button>
+<button type="button" class="btn sec" aria-expanded="true" aria-controls="painel-avancado">Filtros avançados</button>
+</div>
+<div id="painel-avancado" class="avancado">
+<div class="filtros-grade">
+<div class="campo"><label for="f-min">Valor mínimo (R$)</label><input id="f-min" type="number" name="min" min="0" placeholder="0"></div>
+<div class="campo"><label for="f-max">Valor máximo (R$)</label><input id="f-max" type="number" name="max" min="0" placeholder="100000"></div>
+<div class="campo"><label for="f-resp">Gestor</label><select id="f-resp" name="resp"><option>Todos</option><option>Marcos Veloso</option><option>Patrícia Gomes</option><option>Rogério Alencar</option><option>Tânia Siqueira</option><option>Yuri Machado</option></select></div>
+</div>
+</div>
+</form>
+</section>
+<section class="bloco" aria-labelledby="tit-tabela" id="painel">
+<h2 id="tit-tabela">Registros detalhados</h2>
+<div class="rolagem" role="region" aria-label="Rolagem horizontal da tabela de colaboradores" tabindex="0">
+<table class="dados">
+<caption>Colaboradores do período, ordenadas por data de admissão</caption>
+<thead>
+<tr>
+<th class="cab cab1" scope="colgroup" colspan="4">Identificação</th>
+<th class="cab cab1" scope="colgroup" colspan="2">Vínculo</th>
+<th class="cab cab1" scope="colgroup" colspan="3">Remuneração</th>
+<th class="cab cab1" scope="colgroup" colspan="3">Desempenho</th>
+</tr>
+<tr>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Matrícula</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Nome</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Departamento</button></th>
+<th class="cab cab2" scope="col" aria-sort="descending"><button type="button" class="ord">Data de admissão</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Situação</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Horas extras</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Salário base (R$)</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Custo total mensal (R$)</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Avaliação de desempenho (%)</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Índice de absenteísmo</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Banco de horas (h)</button></th>
+<th class="cab cab2" scope="col"><button type="button" class="ord">Gestor</button></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row"><a href="#MT-39907">MT-39907</a></th>
+<td>Elisa Prado</td>
+<td>Tecnologia</td>
+<td><time datetime="2026-10-23">23 out 2026</time></td>
+<td><span class="selo ok">Ativo</span></td>
+<td class="num">921</td>
+<td class="num">R$ 12.474,36</td>
+<td class="num">R$ 10.515,73</td>
+<td class="num">74,7%</td>
+<td class="num">0,56</td>
+<td class="num">1.135,3</td>
+<td>Marcos Veloso</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-38261">MT-38261</a></th>
+<td>Bruno Tavares</td>
+<td>Comercial</td>
+<td><time datetime="2026-10-02">2 out 2026</time></td>
+<td><span class="selo aten">Afastado</span></td>
+<td class="num">859</td>
+<td class="num">R$ 17.170,28</td>
+<td class="num">R$ 9.784,57</td>
+<td class="num">86,3%</td>
+<td class="num">0,79</td>
+<td class="num">3.132,0</td>
+<td>Yuri Machado</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-69435">MT-69435</a></th>
+<td>Carla Mendes</td>
+<td>Financeiro</td>
+<td><time datetime="2026-07-03">3 jul 2026</time></td>
+<td><span class="selo crit">Em desligamento</span></td>
+<td class="num">2.158</td>
+<td class="num">R$ 40.737,57</td>
+<td class="num">R$ 28.044,88</td>
+<td class="num">49,2%</td>
+<td class="num">0,62</td>
+<td class="num">4.131,5</td>
+<td>Tânia Siqueira</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-21399">MT-21399</a></th>
+<td>Heitor Cardoso</td>
+<td>Tecnologia</td>
+<td><time datetime="2026-05-22">22 mai 2026</time></td>
+<td><span class="selo aten">Afastado</span></td>
+<td class="num">1.566</td>
+<td class="num">R$ 86.296,09</td>
+<td class="num">R$ 49.596,88</td>
+<td class="num">9,5%</td>
+<td class="num">0,80</td>
+<td class="num">406,7</td>
+<td>Marcos Veloso</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-62077">MT-62077</a></th>
+<td>Carla Mendes</td>
+<td>Comercial</td>
+<td><time datetime="2026-05-06">6 mai 2026</time></td>
+<td><span class="selo ok">Ativo</span></td>
+<td class="num">1.965</td>
+<td class="num">R$ 7.869,49</td>
+<td class="num">R$ 5.021,56</td>
+<td class="num">45,9%</td>
+<td class="num">0,86</td>
+<td class="num">194,5</td>
+<td>Yuri Machado</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-93731">MT-93731</a></th>
+<td>Heitor Cardoso</td>
+<td>Financeiro</td>
+<td><time datetime="2026-05-06">6 mai 2026</time></td>
+<td><span class="selo aten">Afastado</span></td>
+<td class="num">1.862</td>
+<td class="num">R$ 75.497,06</td>
+<td class="num">R$ 40.881,33</td>
+<td class="num">31,9%</td>
+<td class="num">0,90</td>
+<td class="num">2.312,1</td>
+<td>Yuri Machado</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-56305">MT-56305</a></th>
+<td>Elisa Prado</td>
+<td>Jurídico</td>
+<td><time datetime="2026-04-27">27 abr 2026</time></td>
+<td><span class="selo ok">Ativo</span></td>
+<td class="num">2.124</td>
+<td class="num">R$ 19.893,20</td>
+<td class="num">R$ 10.788,64</td>
+<td class="num">95,9%</td>
+<td class="num">0,66</td>
+<td class="num">4.464,8</td>
+<td>Marcos Veloso</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-28637">MT-28637</a></th>
+<td>Diego Farias</td>
+<td>Comercial</td>
+<td><time datetime="2026-04-24">24 abr 2026</time></td>
+<td><span class="selo and">Em férias</span></td>
+<td class="num">1.865</td>
+<td class="num">R$ 78.242,87</td>
+<td class="num">R$ 57.508,89</td>
+<td class="num">54,1%</td>
+<td class="num">0,73</td>
+<td class="num">138,1</td>
+<td>Patrícia Gomes</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-83200">MT-83200</a></th>
+<td>Diego Farias</td>
+<td>Tecnologia</td>
+<td><time datetime="2026-02-25">25 fev 2026</time></td>
+<td><span class="selo ok">Ativo</span></td>
+<td class="num">1.530</td>
+<td class="num">R$ 9.932,53</td>
+<td class="num">R$ 8.317,68</td>
+<td class="num">55,5%</td>
+<td class="num">0,58</td>
+<td class="num">2.180,9</td>
+<td>Marcos Veloso</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-65039">MT-65039</a></th>
+<td>Ana Ribeiro</td>
+<td>Tecnologia</td>
+<td><time datetime="2026-02-11">11 fev 2026</time></td>
+<td><span class="selo and">Em férias</span></td>
+<td class="num">1.180</td>
+<td class="num">R$ 33.939,77</td>
+<td class="num">R$ 25.010,11</td>
+<td class="num">63,8%</td>
+<td class="num">0,24</td>
+<td class="num">4.432,1</td>
+<td>Marcos Veloso</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-25776">MT-25776</a></th>
+<td>Ana Ribeiro</td>
+<td>Operações</td>
+<td><time datetime="2026-02-02">2 fev 2026</time></td>
+<td><span class="selo aten">Afastado</span></td>
+<td class="num">2.313</td>
+<td class="num">R$ 48.567,38</td>
+<td class="num">R$ 32.082,45</td>
+<td class="num">11,8%</td>
+<td class="num">0,93</td>
+<td class="num">3.341,6</td>
+<td>Rogério Alencar</td>
+</tr>
+<tr>
+<th scope="row"><a href="#MT-11008">MT-11008</a></th>
+<td>Elisa Prado</td>
+<td>Jurídico</td>
+<td><time datetime="2026-02-01">1 fev 2026</time></td>
+<td><span class="selo crit">Em desligamento</span></td>
+<td class="num">2.096</td>
+<td class="num">R$ 31.442,16</td>
+<td class="num">R$ 15.086,54</td>
+<td class="num">78,7%</td>
+<td class="num">0,40</td>
+<td class="num">4.716,0</td>
+<td>Marcos Veloso</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<th scope="row">Totais</th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td class="num">20.439</td>
+<td class="num">R$ 462.062,76</td>
+<td class="num">R$ 292.639,26</td>
+<td class="num">54,8%</td>
+<td class="num">0,67</td>
+<td class="num">30.585,6</td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="pag">
+<p>Exibindo 1 a 12 de 4.755 registros</p>
+<nav aria-label="Paginação">
+<ul>
+<li><button type="button" aria-label="Página anterior" disabled>&lsaquo;</button></li>
+<li><button type="button" aria-current="page" aria-label="Página 1">1</button></li>
+<li><button type="button" aria-label="Página 2">2</button></li>
+<li><button type="button" aria-label="Página 3">3</button></li>
+<li><button type="button" aria-label="Página 4">4</button></li>
+<li><button type="button" aria-label="Página 5">5</button></li>
+<li><button type="button" aria-label="Próxima página">&rsaquo;</button></li>
+</ul>
+</nav>
+<div class="por-pagina"><label for="pp">Itens por página</label><select id="pp"><option>10</option><option selected>12</option><option>25</option><option>50</option><option>100</option></select></div>
+</div>
+<p class="nota"><a href="#exportar-csv">Baixar dados filtrados em CSV</a></p>
+</section>
+<section class="bloco" aria-labelledby="tit-grafico">
+<h2 id="tit-grafico">Receita por departamento</h2>
+<figure class="grafico">
+<svg viewBox="0 0 640 270" width="640" height="270" role="img" aria-labelledby="graf-titulo" aria-describedby="graf-desc">
+<title id="graf-titulo">Receita por departamento</title>
+<line class="eixo" x1="90" x2="620" y1="220.0" y2="220.0"/>
+<text class="rot" x="82" y="224.0" text-anchor="end">0</text>
+<line class="eixo" x1="90" x2="620" y1="153.3" y2="153.3"/>
+<text class="rot" x="82" y="157.3" text-anchor="end">50.000</text>
+<line class="eixo" x1="90" x2="620" y1="86.7" y2="86.7"/>
+<text class="rot" x="82" y="90.7" text-anchor="end">100.000</text>
+<line class="eixo" x1="90" x2="620" y1="20.0" y2="20.0"/>
+<text class="rot" x="82" y="24.0" text-anchor="end">150.000</text>
+<rect class="barra" x="111.2" y="82.3" width="63.6" height="137.7"/>
+<text class="rot" x="143.0" y="238" text-anchor="middle">Comercial</text>
+<rect class="barra" x="217.2" y="155.2" width="63.6" height="64.8"/>
+<text class="rot" x="249.0" y="238" text-anchor="middle">Operações</text>
+<rect class="barra" x="323.2" y="29.8" width="63.6" height="190.2"/>
+<text class="rot" x="355.0" y="238" text-anchor="middle">Tecnologia</text>
+<rect class="barra" x="429.2" y="65.0" width="63.6" height="155.0"/>
+<text class="rot" x="461.0" y="238" text-anchor="middle">Financeiro</text>
+<rect class="barra" x="535.2" y="151.6" width="63.6" height="68.4"/>
+<text class="rot" x="567.0" y="238" text-anchor="middle">Jurídico</text>
+</svg>
+<p id="graf-desc" class="so">Gráfico de barras com a receita por departamento. Comercial: R$ 103.282,64; Operações: R$ 48.567,38; Tecnologia: R$ 142.642,75; Financeiro: R$ 116.234,63; Jurídico: R$ 51.335,36. A maior receita é de Tecnologia, com R$ 142.642,75.</p>
+<figcaption>Receita acumulada no período, em reais, agrupada por departamento.</figcaption>
+</figure>
+<div class="acoes"><button type="button" class="btn sec" aria-expanded="false" aria-controls="painel-legenda">Como ler este gráfico</button></div>
+<div id="painel-legenda" class="avancado" hidden>
+<p>Cada barra representa a soma do valor dos registros de um departamento. A escala vertical começa em zero.</p>
+</div>
+</section>
+<div class="duas">
+<section class="bloco" aria-labelledby="tit-resumo">
+<h2 id="tit-resumo">Resumo trimestral</h2>
+<div class="rolagem-peq" role="region" aria-labelledby="tit-resumo" tabindex="0">
+<table class="resumo">
+<caption>Resumo trimestral de 2026</caption>
+<tbody>
+<tr>
+<th scope="col">Indicador</th>
+<th scope="col">T1</th>
+<th scope="col">T2</th>
+<th scope="col">T3</th>
+<th scope="col">T4</th>
+</tr>
+<tr>
+<th scope="row">Horas extras</th>
+<td class="num">2.567</td>
+<td class="num">3.754</td>
+<td class="num">1.533</td>
+<td class="num">5.143</td>
+</tr>
+<tr>
+<th scope="row">Salário base</th>
+<td class="num">R$ 607.360,35</td>
+<td class="num">R$ 352.970,80</td>
+<td class="num">R$ 503.486,33</td>
+<td class="num">R$ 183.028,23</td>
+</tr>
+<tr>
+<th scope="row">Desempenho</th>
+<td class="num">8,5%</td>
+<td class="num">78,8%</td>
+<td class="num">86,1%</td>
+<td class="num">40,5%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="bloco" aria-labelledby="tit-rank">
+<h2 id="tit-rank">Ranking</h2>
+<div class="rolagem-peq" role="region" aria-labelledby="tit-rank" tabindex="0">
+<table class="rank">
+<caption>Ranking por departamento</caption>
+<tbody>
+<tr>
+<th scope="col">Posição</th>
+<th scope="col">Departamento</th>
+<th scope="col">Receita</th>
+<th scope="col">Participação</th>
+</tr>
+<tr>
+<th scope="row">1</th>
+<td>Tecnologia</td>
+<td class="num">R$ 142.642,75</td>
+<td class="num">30,9%</td>
+</tr>
+<tr>
+<th scope="row">2</th>
+<td>Financeiro</td>
+<td class="num">R$ 116.234,63</td>
+<td class="num">25,2%</td>
+</tr>
+<tr>
+<th scope="row">3</th>
+<td>Comercial</td>
+<td class="num">R$ 103.282,64</td>
+<td class="num">22,4%</td>
+</tr>
+<tr>
+<th scope="row">4</th>
+<td>Jurídico</td>
+<td class="num">R$ 51.335,36</td>
+<td class="num">11,1%</td>
+</tr>
+<tr>
+<th scope="row">5</th>
+<td>Operações</td>
+<td class="num">R$ 48.567,38</td>
+<td class="num">10,5%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<section class="bloco" aria-labelledby="tit-estados">
+<h2 id="tit-estados">Estados de exibição</h2>
+<div class="estados">
+<div class="estado" role="status">
+<h3>Carregando</h3>
+<div class="esq"></div>
+<div class="esq l"></div>
+<div class="esq m"></div>
+<p>Carregando registros do período...</p>
+</div>
+<div class="estado">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAiIGhlaWdodD0iMTEwIiB2aWV3Qm94PSIwIDAgMTYwIDExMCI+PHJlY3QgeD0iMTAiIHk9IjIwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjgwIiByeD0iOCIgZmlsbD0iI2U4ZWRmNCIvPjxyZWN0IHg9IjI2IiB5PSI0MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSIjYzVjZWRiIi8+PHJlY3QgeD0iMjYiIHk9IjU4IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSIjYzVjZWRiIi8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMzAiIHI9IjE4IiBmaWxsPSIjOWRiNmVlIi8+PC9zdmc+" width="160" height="110" alt="">
+<h3>Nenhum resultado</h3>
+<p>Nenhum registro corresponde aos filtros aplicados.</p>
+<button type="button" class="btn sec">Limpar filtros</button>
+</div>
+<div class="estado erro" role="alert">
+<h3>Falha ao carregar</h3>
+<p>Não foi possível carregar os dados. A conexão com o servidor foi interrompida.</p>
+<button type="button" class="btn">Tentar novamente</button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<footer class="rodape">
+<span>&copy; 2026 Grupo Meridiano. Todos os direitos reservados.</span>
+<nav aria-label="Rodapé">
+<ul>
+<li><a href="#privacidade">Política de privacidade</a></li>
+<li><a href="#termos">Termos de uso</a></li>
+<li><a href="#ajuda">Central de ajuda</a></li>
+</ul>
+</nav>
+</footer>
+<script>
+document.querySelectorAll('button[aria-controls]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var p = document.getElementById(b.getAttribute('aria-controls'));
+    if (!p) return;
+    var aberto = b.getAttribute('aria-expanded') === 'true';
+    b.setAttribute('aria-expanded', String(!aberto));
+    p.hidden = aberto;
+  });
+});
+</script>
+</body>
+</html>

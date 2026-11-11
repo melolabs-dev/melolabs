@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Configurações da conta - TransLog Cargas</title>
+<style>
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --ink:#1d2733; --muted:#4b5968; --brand:#0b5cad; --brand-ink:#ffffff;
+  --borda:#c3ccd6; --perigo:#b42318; --perigo-bg:#fdecea; --ok:#14653a; --ok-bg:#e4f4ea;
+  --aviso:#7a4d00; --aviso-bg:#fff3d6; --raio:8px; --esp:16px; --sombra:0 1px 2px rgba(16,24,40,.08);
+}
+*{box-sizing:border-box}
+html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.6}
+h1,h2,h3{line-height:1.25;margin:0 0 8px}
+h1{font-size:28px}
+h2{font-size:20px}
+h3{font-size:17px}
+p{margin:0 0 8px}
+a{color:var(--brand)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.oculto{display:none}
+[hidden]{display:none!important}
+.pular{position:absolute;left:-999px;top:0;background:#fff;padding:8px}
+.pular:focus{left:8px;top:8px;z-index:30}
+.topo{background:var(--surface);border-bottom:1px solid var(--borda)}
+.topo-in{max-width:1180px;margin:0 auto;padding:10px var(--esp);display:flex;align-items:center;gap:16px}
+.marca{font-weight:700;font-size:18px;margin:0}
+.nav-topo{display:flex;gap:4px;list-style:none;margin:0 0 0 8px;padding:0;flex:1}
+.nav-topo a{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:15px}
+.nav-topo a[aria-current="page"]{background:#e3eefa;color:var(--brand);font-weight:600}
+.btn-inicio{font:inherit;font-size:15px;padding:6px 12px;border:1px solid var(--borda);border-radius:6px;background:#fff;color:var(--ink);text-decoration:none;cursor:pointer}
+.usuario-chip{display:flex;align-items:center;gap:8px;font-size:14px}
+.avatar{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--brand);color:var(--brand-ink);font-size:12px;font-weight:700}
+.avatar.grande{width:64px;height:64px;font-size:20px}
+.btn-icone{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--borda);border-radius:6px;background:#fff;color:var(--ink);cursor:pointer}
+.layout{max-width:1180px;margin:0 auto;padding:24px var(--esp);display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px}
+.lateral ul{list-style:none;margin:0;padding:0;position:sticky;top:16px}
+.lateral a{display:block;padding:8px 12px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:15px}
+.lateral a:hover{background:#e8edf2}
+.conteudo{min-width:0}
+.titulo-pagina{margin-bottom:4px}
+.lead{color:var(--muted);margin-bottom:20px}
+.cartao{background:var(--surface);border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra);padding:24px;margin-bottom:24px}
+.cartao>.desc{color:var(--muted);font-size:15px}
+.grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;margin-top:12px}
+.campo{display:flex;flex-direction:column;gap:4px;position:relative}
+.campo.largo{grid-column:1/-1}
+.campo label{font-weight:600;font-size:15px}
+.campo input,.campo select,.campo textarea{font:inherit;font-size:16px;padding:8px 10px;border:1px solid #7b8794;border-radius:6px;background:#fff;color:var(--ink)}
+.campo textarea{min-height:84px;resize:vertical}
+.dica{color:var(--muted);font-size:13px;margin:0}
+.erro{color:var(--perigo);font-size:14px;margin:0;font-weight:600}
+.campo-erro input{border-color:var(--perigo);border-width:2px;background:#fff8f7}
+.marca-erro{position:absolute;right:10px;top:32px;color:var(--perigo);font-weight:700;font-size:14px}
+.foto{display:flex;align-items:center;gap:16px;margin:16px 0 4px}
+.acoes{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.btn{font:inherit;font-size:15px;font-weight:600;padding:9px 16px;border-radius:6px;border:1px solid var(--borda);background:#fff;color:var(--ink);cursor:pointer}
+.btn.primario{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn.perigo{background:var(--perigo);border-color:var(--perigo);color:#fff}
+.btn.perigo-suave{border-color:var(--perigo);color:var(--perigo)}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.btn.pequeno{padding:5px 10px;font-size:13px}
+.banner{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:var(--raio);margin:12px 0;border:1px solid}
+.banner.ok{background:var(--ok-bg);border-color:var(--ok);color:#0d4527}
+.banner-t{display:block;font-size:16px}
+.banner-txt{flex:1;font-size:15px}
+.banner .btn-icone{width:28px;height:28px;border:0;background:transparent;color:inherit}
+.aviso{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:var(--raio);background:var(--aviso-bg);border:1px solid #e3b341;color:var(--aviso);margin:0 0 16px}
+.aviso p{margin:0;font-size:15px}
+.resumo{border:2px solid var(--perigo);background:var(--perigo-bg);border-radius:var(--raio);padding:14px 18px;margin-bottom:20px}
+.resumo h2{font-size:17px;color:var(--perigo)}
+.resumo ul{margin:0;padding-left:20px}
+.resumo a{color:var(--perigo);font-weight:600}
+fieldset{border:1px solid var(--borda);border-radius:6px;margin:16px 0 0;padding:12px 16px}
+legend{font-weight:600;font-size:15px;padding:0 6px}
+.opcao{display:flex;gap:10px;align-items:center;padding:6px 0;font-size:15px}
+.opcao input{width:18px;height:18px}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:15px}
+caption{text-align:left;font-weight:600;padding:0 0 6px;font-size:16px}
+th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--borda);font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+td{padding:10px;border-bottom:1px solid #e4e9ee;vertical-align:middle}
+.chip{display:inline-block;padding:2px 8px;border-radius:999px;background:#eaf0f6;font-size:12px;color:#2b3a49}
+.ponto{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:6px}
+.ponto.ok{background:var(--ok)}
+.ponto.pausa{background:#a0670a}
+.ponto.exp{background:var(--perigo)}
+.estado{display:inline-flex;align-items:center;font-size:14px}
+.contagem{font-weight:600;margin:12px 0 0;font-size:15px}
+.vazio{text-align:center;padding:28px 16px;border:2px dashed var(--borda);border-radius:var(--raio);margin-top:12px;color:var(--muted)}
+.vazio h3{color:var(--ink)}
+.falha{display:flex;flex-direction:column;gap:6px;padding:16px;border:1px solid var(--perigo);background:var(--perigo-bg);border-radius:var(--raio);margin-top:12px;align-items:flex-start}
+.falha h3{color:var(--perigo);margin:0}
+.esqueleto{margin-top:12px;display:grid;gap:8px}
+.esqueleto span.linha{height:14px;border-radius:4px;background:linear-gradient(90deg,#e4e9ee,#f1f4f7,#e4e9ee)}
+.texto{max-width:none;margin:12px 0;color:#26323f}
+.zona-perigo{border-color:var(--perigo)}
+.zona-perigo h2{color:var(--perigo)}
+.rodape{max-width:1180px;margin:0 auto;padding:8px var(--esp) 32px;color:var(--muted);font-size:13px}
+.modal-fundo{position:fixed;inset:0;background:rgba(15,23,32,.55);display:flex;align-items:center;justify-content:center;z-index:40}
+.modal{background:#fff;border-radius:var(--raio);padding:24px;max-width:460px;width:calc(100% - 32px)}
+.modal h2{font-size:20px}
+
+/* Tamanhos relativos */
+html{font-size:100%}
+body{font-size:1rem}
+h1{font-size:1.75rem}
+h2{font-size:1.25rem}
+h3{font-size:1.0625rem}
+.marca{font-size:1.125rem}
+.nav-topo a,.btn-inicio,.lateral a,.campo label,.btn,.banner-txt,.aviso p,.cartao>.desc,table,legend,.opcao,.contagem{font-size:.9375rem}
+.usuario-chip,.erro,.estado,.dica,.rodape,th,.chip{font-size:.875rem}
+.btn.pequeno{font-size:.875rem}
+.avatar{font-size:.8125rem}
+.avatar.grande{font-size:1.25rem}
+.resumo h2{font-size:1.0625rem}
+caption{font-size:1rem}
+.campo input,.campo select,.campo textarea{font-size:1rem}
+
+/* Componentes novos e ajustes */
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.btn-inicio{display:inline-block;text-decoration:none}
+.lateral{position:sticky;top:16px;align-self:start}
+.lateral ul{position:static}
+.tabela-rolagem{overflow-x:auto;max-width:100%}
+.tabela-rolagem table{min-width:640px}
+.banner-fixo{position:fixed;left:16px;right:16px;bottom:16px;max-width:560px;margin:0 auto;z-index:20;box-shadow:0 4px 12px rgba(16,24,40,.2)}
+.banner-txt{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.modal{max-height:90vh;overflow:auto}
+.resumo:focus{outline:3px solid var(--brand);outline-offset:2px}
+
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:12px}
+  .lateral{position:static}
+  .lateral ul{display:flex;gap:4px;overflow-x:auto;padding-bottom:4px}
+  .lateral a{white-space:nowrap}
+  .topo-in{flex-wrap:wrap}
+  .nav-topo{flex-wrap:wrap;margin-left:0}
+}
+@media (max-width:640px){
+  .grade{grid-template-columns:minmax(0,1fr)}
+  .cartao{padding:16px}
+  .acoes .btn{flex:1 1 100%;text-align:center}
+  .foto{align-items:flex-start}
+}
+@media (pointer:coarse),(max-width:640px){
+  .btn,.btn-icone,.btn-inicio{min-height:44px;min-width:44px}
+  .btn.pequeno{padding:8px 12px}
+  .banner .btn-icone{width:44px;height:44px}
+  .nav-topo a,.lateral a{padding:12px}
+  .opcao{min-height:44px}
+  .opcao input{width:24px;height:24px}
+}
+</style>
+</head>
+<body>
+<a class="pular" href="#principal">Pular para o conteúdo</a>
+<header class="topo" id="topo">
+  <div class="topo-in">
+    <p class="marca">TransLog Cargas</p>
+    <a class="btn-inicio" href="/">Início</a>
+    <nav aria-label="Principal" style="flex:1">
+      <ul class="nav-topo">
+        <li><a href="/painel">Painel</a></li>
+        <li><a href="/relatorios">Relatórios</a></li>
+        <li><a href="/equipe">Equipe</a></li>
+        <li><a href="/configuracoes" aria-current="page">Configurações</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="btn-icone" id="btn-notif" aria-label="Notificações"><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0-6 6v4l-2 3h16l-2-3V9a6 6 0 0 0-6-6zm-2 15a2 2 0 0 0 4 0"/></svg></button>
+    <div class="usuario-chip"><span class="avatar" aria-hidden="true">LM</span><span>Lucas Moreira</span></div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="lateral" aria-label="Seções de configurações">
+    <ul>
+      <li><a href="#perfil">Perfil</a></li>
+      <li><a href="#preferencias">Preferências</a></li>
+      <li><a href="#acessos">Acessos e permissões</a></li>
+      <li><a href="#privacidade">Privacidade e dados</a></li>
+      <li><a href="#zona-perigo">Excluir conta</a></li>
+    </ul>
+  </nav>
+  <main id="principal" class="conteudo" tabindex="-1">
+    <h1 class="titulo-pagina">Configurações da conta</h1>
+    <p class="lead">Gerencie seu perfil, suas preferências, os aplicativos conectados e a privacidade da conta no Painel de Frota.</p>
+
+
+
+
+    <section class="cartao" id="perfil" aria-labelledby="h-perfil">
+      <h2 id="h-perfil">Perfil</h2>
+      <p class="desc">Estas informações são exibidas para as demais pessoas da sua equipe.</p>
+      <div class="foto">
+        <span class="avatar grande" aria-hidden="true">LM</span>
+        <div>
+          <p><strong>Foto de perfil</strong></p>
+          <button type="button" class="btn pequeno">Enviar nova foto</button>
+          <button type="button" class="btn-icone" id="btn-remover-foto" aria-label="Remover foto de perfil"><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/></svg></button>
+        </div>
+      </div>
+      <div class="resumo" id="resumo-erros" role="group" aria-labelledby="resumo-t" tabindex="-1" hidden>
+        <h2 id="resumo-t">Não foi possível salvar. Corrija os campos abaixo:</h2>
+        <ul id="resumo-lista"></ul>
+      </div>
+      <form id="form-perfil" action="#" method="post" novalidate>
+        <div class="grade">
+        <div class="campo">
+          <label for="nome">Nome completo</label>
+          <input id="nome" name="nome" type="text" value="Lucas Moreira" autocomplete="name" aria-required="true" aria-describedby="erro-nome">
+          <p class="erro" id="erro-nome" hidden></p>
+          
+          
+          
+        </div>
+        <div class="campo">
+          <label for="email">E-mail corporativo</label>
+          <input id="email" name="email" type="email" value="lucas.moreira@translog" autocomplete="email" aria-describedby="dica-email erro-email">
+          
+          <p class="dica" id="dica-email">Usamos este endereço para login e avisos de segurança.</p>
+          <p class="erro" id="erro-email" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="telefone">Telefone celular</label>
+          <input id="telefone" name="telefone" type="tel" inputmode="tel" value="(61) 95244-85" autocomplete="tel" aria-describedby="dica-telefone erro-telefone">
+          <p class="dica" id="dica-telefone">Com DDD, por exemplo (11) 91234-5678.</p>
+          <p class="erro" id="erro-telefone" hidden></p>
+          
+        </div>
+        <div class="campo">
+          <label for="organizacao">Empresa</label>
+          <input id="organizacao" name="organizacao" type="text" value="TransLog Cargas" autocomplete="organization">
+          
+          
+          
+        </div>
+        <div class="campo">
+          <label for="cargo">Cargo</label>
+          <select id="cargo" name="cargo"><option>Coordenador de operações</option><option>Analista de roteirização</option><option>Gerente de frota</option><option selected>Despachante</option></select>
+          
+          
+          
+        </div>
+        <div class="campo">
+          <label for="cidade">Cidade</label>
+          <input id="cidade" name="cidade" type="text" value="Goiânia" autocomplete="address-level2">
+          
+          
+          
+        </div>
+        <div class="campo">
+          <label for="idioma">Idioma da interface</label>
+          <select id="idioma" name="idioma"><option selected>Português (Brasil)</option><option>English</option><option>Español</option></select>
+          
+          
+          
+        </div>
+        <div class="campo largo">
+          <label for="bio">Sobre você</label>
+          <textarea id="bio" name="bio" maxlength="200" aria-describedby="dica-bio">Responsável por veículos, rotas e cargas na unidade de Goiânia.</textarea>
+          
+          <p class="dica" id="dica-bio">Até 200 caracteres.</p>
+          
+        </div>
+        </div>
+        <div class="acoes">
+          <button type="submit" class="btn primario">Salvar alterações</button>
+          <button type="reset" class="btn">Descartar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="cartao" id="preferencias" aria-labelledby="h-pref">
+      <h2 id="h-pref">Preferências de notificação</h2>
+      <p class="desc">Escolha quais avisos você recebe e com que frequência.</p>
+      <div class="banner ok banner-fixo" id="banner-sucesso" hidden>
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12l5 5L20 6"/></svg>
+        <div class="banner-txt" role="status">
+          
+          <span id="banner-msg"></span>
+          <button type="button" class="btn pequeno" id="banner-desfazer" hidden>Desfazer</button>
+        </div>
+        <button type="button" class="btn-icone" id="btn-dispensar" aria-label="Fechar aviso"><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <form id="form-prefs" action="#" method="post">
+        <fieldset>
+          <legend>Avisos por e-mail</legend>
+          <label class="opcao"><input type="checkbox" name="notif0" checked> Manutenção preventiva vencendo</label>
+          <label class="opcao"><input type="checkbox" name="notif1" checked> Desvio de rota detectado</label>
+          <label class="opcao"><input type="checkbox" name="notif2"> Resumo diário da frota</label>
+          <label class="opcao"><input type="checkbox" name="notif3"> Atraso em entregas</label>
+        </fieldset>
+        <fieldset>
+          <legend>Frequência</legend>
+          <label class="opcao"><input type="radio" name="freq" value="imediata" checked> Imediata</label>
+          <label class="opcao"><input type="radio" name="freq" value="diaria"> Resumo diário</label>
+          <label class="opcao"><input type="radio" name="freq" value="semanal"> Resumo semanal</label>
+        </fieldset>
+        <div class="grade">
+        <div class="campo">
+          <label for="fuso">Fuso horário</label>
+          <select id="fuso" name="fuso"><option selected>Brasília (GMT-3)</option><option>Manaus (GMT-4)</option><option>Fernando de Noronha (GMT-2)</option></select>
+          
+          
+          
+        </div>
+        <div class="campo">
+          <label for="densidade">Densidade da tabela</label>
+          <select id="densidade" name="densidade"><option selected>Confortável</option><option>Compacta</option></select>
+          
+          
+          
+        </div>
+        </div>
+        <div class="acoes">
+          <button type="submit" class="btn primario">Salvar preferências</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="cartao" id="acessos" aria-labelledby="h-acessos">
+      <h2 id="h-acessos">Acessos e permissões</h2>
+      <p class="desc">Aplicativos que podem ler ou alterar dados da sua conta.</p>
+      <p class="contagem" id="contagem-acessos">5 aplicativos com acesso à sua conta</p>
+      <div class="tabela-rolagem" role="region" aria-label="Aplicativos conectados, tabela rolável" tabindex="0">
+      <table>
+        <caption>Aplicativos conectados</caption>
+        <thead>
+          <tr><th scope="col">Aplicativo</th><th scope="col">Permissão</th><th scope="col">Último uso</th><th scope="col">Situação</th><th scope="col">Ação</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Conciliador Fiscal</th>
+            <td><span class="chip">Ler notas fiscais emitidas</span></td>
+            <td>há 2 semanas</td>
+            <td><span class="estado"><span class="ponto exp" aria-hidden="true"></span>Expirado</span></td>
+            <td><button type="button" class="btn perigo-suave pequeno" data-revogar="Conciliador Fiscal" aria-label="Revogar acesso de Conciliador Fiscal">Revogar acesso</button></td>
+          </tr>
+          <tr>
+            <th scope="row">Agenda Compartilhada</th>
+            <td><span class="chip">Criar eventos de entrega</span></td>
+            <td>há 2 semanas</td>
+            <td><span class="estado"><span class="ponto ok" aria-hidden="true"></span>Ativo</span></td>
+            <td><button type="button" class="btn perigo-suave pequeno" data-revogar="Agenda Compartilhada" aria-label="Revogar acesso de Agenda Compartilhada">Revogar acesso</button></td>
+          </tr>
+          <tr>
+            <th scope="row">Rastreio GPS Frotas</th>
+            <td><span class="chip">Ler posição dos veículos</span></td>
+            <td>há 3 dias</td>
+            <td><span class="estado"><span class="ponto ok" aria-hidden="true"></span>Ativo</span></td>
+            <td><button type="button" class="btn perigo-suave pequeno" data-revogar="Rastreio GPS Frotas" aria-label="Revogar acesso de Rastreio GPS Frotas">Revogar acesso</button></td>
+          </tr>
+          <tr>
+            <th scope="row">Balança Digital</th>
+            <td><span class="chip">Gravar pesagens de carga</span></td>
+            <td>há 3 dias</td>
+            <td><span class="estado"><span class="ponto ok" aria-hidden="true"></span>Ativo</span></td>
+            <td><button type="button" class="btn perigo-suave pequeno" data-revogar="Balança Digital" aria-label="Revogar acesso de Balança Digital">Revogar acesso</button></td>
+          </tr>
+          <tr>
+            <th scope="row">Planilhas de Custos</th>
+            <td><span class="chip">Exportar relatórios de combustível</span></td>
+            <td>ontem, 17:40</td>
+            <td><span class="estado"><span class="ponto exp" aria-hidden="true"></span>Expirado</span></td>
+            <td><button type="button" class="btn perigo-suave pequeno" data-revogar="Planilhas de Custos" aria-label="Revogar acesso de Planilhas de Custos">Revogar acesso</button></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="desc" style="margin-top:24px">Sua conta está conectada em 3 dispositivos. Encerre as sessões que você não reconhece.</p>
+      <div class="tabela-rolagem" role="region" aria-label="Sessões ativas, tabela rolável" tabindex="0">
+      <table>
+        <caption>Sessões ativas</caption>
+        <thead>
+          <tr><th scope="col">Dispositivo</th><th scope="col">Descrição</th><th scope="col">Local</th><th scope="col">Último acesso</th><th scope="col">Ação</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Chrome em Android</th>
+            <td>Tablet da equipe</td>
+            <td>Goiânia</td>
+            <td>há 2 semanas</td>
+            <td><span class="chip">Sessão atual</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Chrome em Windows 11</th>
+            <td>Notebook corporativo</td>
+            <td>Goiânia</td>
+            <td>há 1 mês</td>
+            <td><button type="button" class="btn pequeno" aria-label="Encerrar sessão de Chrome em Windows 11">Encerrar sessão</button></td>
+          </tr>
+          <tr>
+            <th scope="row">Edge em Windows 10</th>
+            <td>Desktop da recepção</td>
+            <td>Curitiba</td>
+            <td>hoje, 09:14</td>
+            <td><button type="button" class="btn pequeno" aria-label="Encerrar sessão de Edge em Windows 10">Encerrar sessão</button></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <h3 style="margin-top:24px">Chaves de API</h3>
+      <div class="vazio">
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 10a4 4 0 1 0-3 3.9L11 17h2v2h2v2h3v-3l-5-5"/></svg>
+        <h3>Nenhuma chave de API criada</h3>
+        <p>Crie uma chave para integrar sistemas externos sem compartilhar sua senha.</p>
+        <button type="button" class="btn primario">Criar chave de API</button>
+      </div>
+      <h3 style="margin-top:24px">Atividade recente</h3>
+      <div class="falha" role="alert">
+        <h3>Não foi possível carregar o histórico</h3>
+        <p>O servidor demorou para responder. Tente novamente em instantes.</p>
+        <button type="button" class="btn">Tentar novamente</button>
+      </div>
+      <div class="esqueleto" aria-busy="true" hidden>
+        <span class="sr-only">Carregando eventos de segurança</span>
+        <span class="linha"></span><span class="linha"></span><span class="linha"></span>
+      </div>
+    </section>
+
+    <section class="cartao" id="privacidade" aria-labelledby="h-priv">
+      <h2 id="h-priv">Privacidade e dados</h2>
+      <p class="texto">A TransLog Cargas trata os dados da sua conta, como nome, e-mail corporativo, telefone e registros de acesso, apenas para operar o Painel de Frota, cumprir obrigações legais e proteger a segurança de veículos, rotas e cargas. Você pode solicitar uma cópia desses dados, corrigir informações desatualizadas ou pedir a exclusão a qualquer momento, e a resposta será enviada ao e-mail cadastrado em até quinze dias corridos, conforme a legislação de proteção de dados vigente.</p>
+      <p class="texto">Os aplicativos conectados à conta só recebem as permissões que você autorizou na tabela de acessos. Ao revogar um acesso, a integração deixa de consultar veículos, rotas e cargas imediatamente, mas os dados já sincronizados permanecem no sistema do aplicativo e precisam ser removidos por lá. Registros de auditoria são mantidos por doze meses para investigação de incidentes e não podem ser apagados pelo usuário.</p>
+      <div class="acoes">
+        <a class="btn" href="/dados/exportar" style="text-decoration:none">Baixar meus dados</a>
+        <a class="btn" href="/privacidade" style="text-decoration:none">Ler política completa</a>
+      </div>
+    </section>
+
+    <section class="cartao zona-perigo" id="zona-perigo" aria-labelledby="h-perigo">
+      <h2 id="h-perigo">Excluir conta</h2>
+
+      <div class="aviso" id="aviso-exclusao">
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l10 18H2L12 3zm0 7v5m0 3v.5"/></svg>
+        <p>A exclusão é permanente e remove o histórico de rotas, manifestos e alertas da frota. Esta ação não pode ser desfeita.</p>
+      </div>
+      <button type="button" class="btn perigo" data-abrir="fundo-excluir">Excluir minha conta</button>
+    </section>
+</main>
+</div>
+<footer class="rodape">
+  <p>TransLog Cargas · Painel de Frota · Versão 4.12.0 · <a href="/ajuda">Central de ajuda</a> · <a href="/termos">Termos de uso</a></p>
+</footer>
+
+  <div class="modal-fundo" id="fundo-excluir" data-modal hidden>
+    <div class="modal" id="dlg-excluir" role="dialog" aria-modal="true" aria-labelledby="dlg-excluir-t" aria-describedby="dlg-excluir-d">
+      <h2 id="dlg-excluir-t">Excluir sua conta?</h2>
+      <p id="dlg-excluir-d">Todos os dados de Lucas Moreira serão apagados em 30 dias. Você perderá o histórico de rotas, manifestos e alertas da frota.</p>
+      <div class="campo">
+        <label for="confirma-exclusao">Para confirmar, digite EXCLUIR</label>
+        <input id="confirma-exclusao" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false">
+      </div>
+      <div class="acoes">
+        <button type="button" class="btn perigo" id="btn-confirmar-exclusao" disabled>Excluir conta definitivamente</button>
+        <button type="button" class="btn" data-fechar>Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var banner = $('banner-sucesso'), msg = $('banner-msg'), desfazer = $('banner-desfazer');
+  var resumo = $('resumo-erros'), lista = $('resumo-lista');
+  var pendente = null;
+
+  /* Banner único da página; some quando o resumo de erros aparece */
+  function avisar(texto, comDesfazer) {
+    resumo.hidden = true;
+    desfazer.hidden = !comDesfazer;
+    banner.hidden = false;
+    msg.textContent = '';
+    setTimeout(function () { msg.textContent = texto; }, 50);
+  }
+
+  /* Revogar: aplica na hora com opção de desfazer; efetiva ao fechar o aviso, trocar de ação ou sair da página */
+  function contar() {
+    var n = Array.prototype.filter.call(document.querySelectorAll('[data-revogar]'), function (b) { return !b.closest('tr').hidden; }).length;
+    $('contagem-acessos').textContent = n === 0 ? 'Nenhum aplicativo com acesso à sua conta' : n + (n === 1 ? ' aplicativo com acesso à sua conta' : ' aplicativos com acesso à sua conta');
+  }
+  function confirmar() {
+    if (!pendente) return;
+    var p = pendente; pendente = null;
+    document.dispatchEvent(new CustomEvent('acesso:revogar', { detail: { aplicativo: p.nome } }));
+  }
+  document.querySelectorAll('[data-revogar]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      confirmar();
+      var linha = b.closest('tr');
+      linha.hidden = true;
+      pendente = { nome: b.getAttribute('data-revogar'), linha: linha, botao: b };
+      contar();
+      avisar('Acesso de ' + pendente.nome + ' revogado.', true);
+      var c = $('contagem-acessos'); c.setAttribute('tabindex', '-1'); c.focus();
+    });
+  });
+  desfazer.addEventListener('click', function () {
+    if (!pendente) return;
+    var p = pendente; pendente = null;
+    p.linha.hidden = false;
+    contar();
+    banner.hidden = true;
+    p.botao.focus();
+  });
+  $('btn-dispensar').addEventListener('click', function () { confirmar(); banner.hidden = true; });
+  window.addEventListener('pagehide', confirmar);
+
+  /* Validação ao enviar o perfil */
+  var campos = [
+    { id: 'nome', erro: 'erro-nome', valida: function (v) { return v.trim() ? '' : 'Informe seu nome.'; } },
+    { id: 'email', erro: 'erro-email', valida: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'Informe um e-mail válido, como nome@empresa.com.br.'; } },
+    { id: 'telefone', erro: 'erro-telefone', valida: function (v) { var d = v.replace(/\D/g, ''); return (d.length === 10 || d.length === 11) ? '' : 'Informe o telefone com DDD e 10 ou 11 dígitos, por exemplo (11) 91234-5678.'; } }
+  ];
+  $('form-perfil').addEventListener('submit', function (e) {
+    lista.innerHTML = '';
+    var erros = 0;
+    campos.forEach(function (c) {
+      var input = $(c.id), p = $(c.erro), texto = c.valida(input.value);
+      p.hidden = !texto;
+      p.textContent = texto;
+      input.closest('.campo').classList.toggle('campo-erro', !!texto);
+      if (texto) {
+        erros++;
+        input.setAttribute('aria-invalid', 'true');
+        var li = document.createElement('li'), a = document.createElement('a');
+        a.href = '#' + c.id;
+        a.textContent = document.querySelector('label[for="' + c.id + '"]').textContent + ': ' + texto;
+        a.addEventListener('click', function (ev) { ev.preventDefault(); input.focus(); });
+        li.appendChild(a);
+        lista.appendChild(li);
+      } else {
+        input.removeAttribute('aria-invalid');
+      }
+    });
+    if (erros) {
+      e.preventDefault();
+      banner.hidden = true;
+      resumo.hidden = false;
+      resumo.focus();
+    } else {
+      resumo.hidden = true;
+    }
+  });
+
+  /* Exclusão de conta: modal com palavra de confirmação, foco preso e Esc */
+  var modal = $('fundo-excluir'), dlg = $('dlg-excluir'), entrada = $('confirma-exclusao'), botaoExcluir = $('btn-confirmar-exclusao'), abertoPor = null;
+  function abrir(opener) {
+    abertoPor = opener;
+    entrada.value = '';
+    botaoExcluir.disabled = true;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    entrada.focus();
+  }
+  function fechar() {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (abertoPor) abertoPor.focus();
+  }
+  document.querySelectorAll('[data-abrir="fundo-excluir"]').forEach(function (b) { b.addEventListener('click', function () { abrir(b); }); });
+  document.querySelectorAll('[data-fechar]').forEach(function (b) { b.addEventListener('click', fechar); });
+  entrada.addEventListener('input', function () { botaoExcluir.disabled = entrada.value.trim().toUpperCase() !== 'EXCLUIR'; });
+  botaoExcluir.addEventListener('click', function () {
+    document.dispatchEvent(new CustomEvent('conta:excluir'));
+    fechar();
+  });
+  modal.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { fechar(); return; }
+    if (e.key !== 'Tab') return;
+    var f = dlg.querySelectorAll('button:not([disabled]), input');
+    var primeiro = f[0], ultimo = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === primeiro) { e.preventDefault(); ultimo.focus(); }
+    else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primeiro.focus(); }
+  });
+})();
+</script>
+</body>
+</html>

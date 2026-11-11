@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Produtos – Resultados (página 1 de 6) · Mercado do Bairro</title>
+<style>
+:root{
+  --fundo:#f4f6fa;
+  --sup:#ffffff;
+  --texto:#1c2330;
+  --texto-2:#4a5568;
+  --borda:#cfd6e2;
+  --pri:#1d4ed8;
+  --pri-txt:#ffffff;
+  --sec:#e8edf7;
+  --foco:#b45309;
+  --raio:10px;
+  --esp:1rem;
+  --alvo:44px;
+}
+
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.45;color:var(--texto);background:var(--fundo)}
+h1,h2,h3{line-height:1.25;margin:0}
+h1{font-size:1.6rem}
+h2{font-size:1.25rem}
+h3{font-size:1rem}
+a{color:var(--pri)}
+:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
+.topo{display:flex;flex-wrap:wrap;align-items:center;gap:var(--esp);padding:.5rem var(--esp);background:var(--sup);border-bottom:1px solid var(--borda)}
+.marca{display:inline-flex;align-items:center;gap:.6rem;min-height:44px;min-width:44px;font-weight:700;text-decoration:none;color:var(--texto)}
+.marca img{display:block}
+.menu-lista{display:flex;flex-wrap:wrap;gap:.25rem;list-style:none;margin:0;padding:0}
+.menu-lista a{display:inline-flex;align-items:center;min-height:var(--alvo);min-width:var(--alvo);padding:0 .9rem;border-radius:8px;text-decoration:none;color:var(--texto)}
+.menu-lista a[aria-current]{background:var(--sec);font-weight:700}
+main{max-width:1180px;margin:0 auto;padding:var(--esp)}
+.lead{color:var(--texto-2);margin:.4rem 0 1.2rem;max-width:70ch}
+.busca-bloco{background:var(--sup);border:1px solid var(--borda);border-radius:var(--raio);padding:var(--esp);margin-bottom:var(--esp)}
+.busca{display:flex;flex-direction:column;gap:.4rem}
+.rotulo{font-weight:600;font-size:.95rem}
+.busca-linha{display:flex;flex-wrap:wrap;gap:.5rem}
+.campo{flex:1 1 220px;min-width:0;min-height:44px;padding:0 .8rem;border:1px solid #6b7686;border-radius:8px;font:inherit;background:#fff;color:var(--texto)}
+.barra-busca{width:100%;border-collapse:collapse}
+.barra-busca th{text-align:left;padding:0 .75rem 0 0;white-space:nowrap}
+.barra-busca td{width:100%}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 1rem;border-radius:8px;border:1px solid transparent;font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.btn-pri{background:var(--pri);color:var(--pri-txt)}
+.btn-sec{background:var(--sec);color:var(--texto);border-color:var(--borda)}
+.btn-s{background:var(--sec);color:var(--pri);border-color:var(--borda)}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:var(--esp);align-items:start}
+.filtros{background:var(--sup);border:1px solid var(--borda);border-radius:var(--raio);padding:var(--esp);display:flex;flex-direction:column;gap:.75rem}
+.h-lateral{font-size:1.05rem}
+.faceta{border-top:1px solid var(--borda);padding-top:.5rem}
+.ac-t{margin:0;display:flex;align-items:center;gap:.5rem}
+.ac-b{flex:1;display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:0 .25rem;border:0;background:transparent;font:inherit;font-weight:700;text-align:left;cursor:pointer;color:var(--texto)}
+.ac-b::after{content:"+";font-weight:400}
+.ac-b[aria-expanded="true"]::after{content:"–"}
+.cont{color:var(--texto-2);font-size:.85rem}
+.ac-p{display:flex;flex-direction:column}
+.ac-p[hidden]{display:none}
+.op{display:flex;align-items:center;gap:.6rem;min-height:var(--alvo);min-width:var(--alvo);cursor:pointer}
+.op input{width:18px;height:18px;margin:0}
+.sw-linha{display:flex;align-items:center;justify-content:space-between;gap:.75rem;border-top:1px solid var(--borda);padding-top:.5rem}
+.sw{position:relative;width:56px;height:44px;border:0;padding:0;border-radius:22px;background:#8a94a6;cursor:pointer;flex:none}
+.sw-bola{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;background:#fff;transition:left .15s}
+.sw[aria-checked="true"]{background:var(--pri)}
+.sw[aria-checked="true"] .sw-bola{left:20px}
+.resultados{min-width:0}
+.cabeca-res{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:var(--esp);margin-bottom:.75rem}
+.contagem{margin:.25rem 0 0;color:var(--texto-2)}
+.ctl{display:flex;flex-direction:column;gap:.25rem;font-size:.9rem;font-weight:600}
+.ctl select{min-height:44px;padding:0 .6rem;border:1px solid #6b7686;border-radius:8px;font:inherit;background:#fff;cursor:pointer}
+.ctls{display:flex;flex-wrap:wrap;gap:.75rem}
+.cap{caption-side:top;text-align:left;font-weight:700;padding:.6rem .75rem}
+.titulo-tabela{font-weight:700;padding:.6rem .75rem 0}
+.tabela{width:100%;min-width:920px;border-collapse:separate;border-spacing:0;background:var(--sup)}
+.tabela thead th,.tabela thead td{position:sticky;top:0;z-index:2;background:#e9eef8;text-align:left;font-size:.9rem;padding:0;border-bottom:2px solid var(--borda);vertical-align:middle}
+.tabela thead th:last-child,.tabela thead td:last-child{padding:0 .75rem}
+.tabela td,.tabela tbody th{padding:.4rem .75rem;border-bottom:1px solid var(--borda);vertical-align:middle;text-align:left;font-weight:400}
+.tabela td.num,.tabela th.num,.tabela td.num{text-align:right;font-variant-numeric:tabular-nums}
+.tabela thead .num{text-align:right}
+.ord{display:flex;align-items:center;gap:.35rem;width:100%;min-height:44px;padding:0 .75rem;border:0;background:transparent;font:inherit;font-weight:700;color:var(--texto);cursor:pointer;text-align:inherit}
+.num .ord{justify-content:flex-end}
+.seta{font-size:.75rem;color:var(--texto-2)}
+.tabela .grupo th{background:#f0f3f9;font-weight:700;font-size:.9rem;padding:.4rem .75rem}
+.lnk{display:inline-flex;align-items:center;min-height:44px;min-width:44px;font-weight:600}
+.nm{display:flex;align-items:center;gap:.6rem}
+.nm-t{display:flex;flex-direction:column}
+.nm-t small{color:var(--texto-2)}
+.thumb{border-radius:8px;flex:none}
+.badge{display:inline-block;white-space:nowrap;line-height:1.4;padding:.1rem .6rem;border-radius:999px;font-size:.8rem;font-weight:600}
+.s0{background:#dbeafe;color:#1e3a8a}
+.s1{background:#fef3c7;color:#78350f}
+.s2{background:#dcfce7;color:#14532d}
+.s3{background:#fee2e2;color:#7f1d1d}
+.tabela-solta{margin-top:.5rem;max-height:70vh;overflow:auto;border:1px solid var(--borda);border-radius:var(--raio);background:var(--sup)}
+.pag{margin-top:var(--esp)}
+.pag-lista{display:flex;flex-wrap:wrap;gap:.35rem;list-style:none;margin:0;padding:0}
+.pg{display:inline-flex;align-items:center;justify-content:center;min-height:var(--alvo);min-width:var(--alvo);padding:0 .75rem;border:1px solid var(--borda);border-radius:8px;background:var(--sup);color:var(--texto);text-decoration:none}
+.pg[aria-current="page"],.pg.atual{background:var(--pri);color:var(--pri-txt);border-color:var(--pri);font-weight:700}
+.pg-off{color:#6b7686;background:transparent}
+.estados{margin-top:2rem}
+.estados>h2{margin-bottom:.25rem}
+.grade-estados{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--esp);margin-top:var(--esp)}
+.estado{background:var(--sup);border:1px dashed var(--borda);border-radius:var(--raio);padding:var(--esp);display:flex;flex-direction:column;gap:.6rem;min-width:0}
+.est-msg{margin:0;color:var(--texto-2)}
+.prog{width:100%;height:10px}
+.esq{height:14px;border-radius:6px;background:linear-gradient(90deg,#e3e8f1,#f3f5fa,#e3e8f1);margin-top:.5rem}
+.esq.curta{width:60%}
+.rodape{display:flex;flex-wrap:wrap;gap:.25rem 1rem;align-items:center;justify-content:space-between;padding:var(--esp);border-top:1px solid var(--borda);background:var(--sup);margin-top:2rem}
+.rodape ul{display:flex;flex-wrap:wrap;gap:.25rem;list-style:none;margin:0;padding:0}
+.rodape a{display:inline-flex;align-items:center;min-height:var(--alvo);min-width:var(--alvo);padding:0 .6rem}
+@media (max-width:820px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .barra-busca th,.barra-busca td{display:block;width:auto;padding:0 0 .4rem}
+  h1{font-size:1.35rem}
+}
+</style>
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="#inicio">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%231d4ed8'/%3E%3Ccircle cx='20' cy='20' r='9' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" width="32" height="32">
+    <span>Mercado do Bairro</span>
+  </a>
+  <nav aria-label="Principal">
+    <ul class="menu-lista">
+      <li><a href="#painel">Painel</a></li>
+      <li><a href="#listagem" aria-current="page">Produtos</a></li>
+      <li><a href="#relatorios">Relatórios</a></li>
+      <li><a href="#ajuda">Ajuda</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="conteudo">
+  <h1>Catálogo de produtos</h1>
+  <p class="lead">Pesquise por palavra-chave, combine filtros e ordene as colunas para encontrar produtos rapidamente. Os resultados são atualizados a cada busca.</p>
+  <div class="busca-bloco">
+    <form class="busca" role="search" method="get" action="">
+      <label class="rotulo" for="busca-principal">Buscar produtos</label>
+      <div class="busca-linha">
+        <input class="campo" id="busca-principal" type="search" name="q" value="Notebook" placeholder="Ex.: Notebook" autocomplete="off">
+        <button class="btn btn-pri" type="submit">Buscar</button>
+      </div>
+    </form>
+  </div>
+  <div class="layout">
+    <aside class="filtros" aria-label="Filtros da listagem">
+      <h2 class="h-lateral">Filtros <span class="cont">(3 ativos)</span></h2>
+      <div class="faceta">
+        <h3 class="ac-t"><button class="ac-b" type="button" aria-expanded="true" aria-controls="fac-status">Situação</button> <span class="cont">(4)</span></h3>
+        <div class="ac-p" id="fac-status">
+          <label class="op">
+            <input type="checkbox" name="status" value="0" checked>
+            <span>Em estoque</span>
+          </label>
+          <label class="op">
+            <input type="checkbox" name="status" value="1">
+            <span>Poucas unidades</span>
+          </label>
+          <label class="op">
+            <input type="checkbox" name="status" value="2">
+            <span>Sob encomenda</span>
+          </label>
+          <label class="op">
+            <input type="checkbox" name="status" value="3">
+            <span>Esgotado</span>
+          </label>
+        </div>
+      </div>
+      <div class="faceta">
+        <h3 class="ac-t"><button class="ac-b" type="button" aria-expanded="true" aria-controls="fac-tipo">Tipo</button> <span class="cont">(3)</span></h3>
+        <div class="ac-p" id="fac-tipo">
+          <label class="op">
+            <input type="checkbox" name="tipo" value="0">
+            <span>Nacional</span>
+          </label>
+          <label class="op">
+            <input type="checkbox" name="tipo" value="1" checked>
+            <span>Importado</span>
+          </label>
+          <label class="op">
+            <input type="checkbox" name="tipo" value="2">
+            <span>Outlet</span>
+          </label>
+        </div>
+      </div>
+      <div class="faceta">
+        <h3 class="ac-t"><button class="ac-b" type="button" aria-expanded="false" aria-controls="fac-faixa">Faixa de valor</button> <span class="cont">(3)</span></h3>
+        <div class="ac-p" id="fac-faixa" hidden>
+          <label class="op">
+            <input type="radio" name="faixa" value="0">
+            <span>Até R$ 500</span>
+          </label>
+          <label class="op">
+            <input type="radio" name="faixa" value="1" checked>
+            <span>R$ 500 a R$ 2.000</span>
+          </label>
+          <label class="op">
+            <input type="radio" name="faixa" value="2">
+            <span>Acima de R$ 2.000</span>
+          </label>
+        </div>
+      </div>
+      <div class="sw-linha"><span class="sw-rot" id="sw-rot">Somente em estoque</span><button class="sw" type="button" role="switch" aria-checked="false" aria-labelledby="sw-rot"><span class="sw-bola"></span></button></div>
+      <button class="btn btn-sec" type="button">Limpar filtros</button>
+    </aside>
+    <section class="resultados" aria-labelledby="h-res" aria-busy="false">
+      <div class="cabeca-res">
+        <div>
+          <h2 id="h-res" tabindex="-1">Resultados</h2>
+          <p class="contagem" role="status">Exibindo 1–14 de 79 produtos para “Notebook”</p>
+        </div>
+        <div class="ctls">
+          <div class="ctl">
+            <label for="ordem">Ordenar por</label>
+            <select id="ordem" name="ordem">
+              <option>Atualizado em (mais recente)</option>
+              <option>Preço (maior)</option>
+              <option>Produto (A–Z)</option>
+            </select>
+          </div>
+          <div class="ctl">
+            <label for="porpag">Itens por página</label>
+            <select id="porpag" name="porpag">
+              <option>14</option>
+              <option>28</option>
+              <option>56</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="tabela-solta">
+      <table class="tabela">
+        <caption class="cap">Catálogo de produtos</caption>
+        <thead>
+          <tr>
+            <th scope="col" aria-sort="none"><button class="ord" type="button">SKU <span class="seta" aria-hidden="true">⇅</span></button></th>
+            <th scope="col" aria-sort="none"><button class="ord" type="button">Produto <span class="seta" aria-hidden="true">⇅</span></button></th>
+            <th scope="col" aria-sort="none"><button class="ord" type="button">Disponibilidade <span class="seta" aria-hidden="true">⇅</span></button></th>
+            <th scope="col" class="num" aria-sort="none"><button class="ord" type="button">Estoque <span class="seta" aria-hidden="true">⇅</span></button></th>
+            <th scope="col" class="num" aria-sort="none"><button class="ord" type="button">Preço <span class="seta" aria-hidden="true">⇅</span></button></th>
+            <th scope="col" aria-sort="descending"><button class="ord" type="button">Atualizado em <span class="seta" aria-hidden="true">▼</span></button></th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="grupo">
+            <th colspan="7">Computadores · 5 produtos</th>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7236">SKU-7236</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%232f6fed'/%3E%3Ccircle cx='20' cy='20' r='7' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook ultrafino 14 pol.</span>
+                  <small>Importado</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s1">Poucas unidades</span></td>
+            <td class="num">27</td>
+            <td class="num">R$ 8.898,54</td>
+            <td>25/10/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7236-detalhe" aria-label="Detalhes de SKU-7236">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7252">SKU-7252</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%231b8a5a'/%3E%3Ccircle cx='20' cy='20' r='8' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook gamer 15 pol.</span>
+                  <small>Nacional</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s0">Em estoque</span></td>
+            <td class="num">201</td>
+            <td class="num">R$ 9.025,01</td>
+            <td>01/09/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7252-detalhe" aria-label="Detalhes de SKU-7252">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7266">SKU-7266</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23b4541a'/%3E%3Ccircle cx='20' cy='20' r='9' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook corporativo 13 pol.</span>
+                  <small>Outlet</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s0">Em estoque</span></td>
+            <td class="num">279</td>
+            <td class="num">R$ 4.741,94</td>
+            <td>20/08/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7266-detalhe" aria-label="Detalhes de SKU-7266">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7286">SKU-7286</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%237a3ec2'/%3E%3Ccircle cx='20' cy='20' r='10' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook conversível 2 em 1</span>
+                  <small>Importado</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s2">Sob encomenda</span></td>
+            <td class="num">188</td>
+            <td class="num">R$ 3.502,89</td>
+            <td>01/11/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7286-detalhe" aria-label="Detalhes de SKU-7286">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7308">SKU-7308</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23c2335a'/%3E%3Ccircle cx='20' cy='20' r='11' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook básico 15 pol.</span>
+                  <small>Outlet</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s2">Sob encomenda</span></td>
+            <td class="num">269</td>
+            <td class="num">R$ 10.362,79</td>
+            <td>17/02/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7308-detalhe" aria-label="Detalhes de SKU-7308">Detalhes</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="grupo">
+            <th colspan="7">Acessórios · 4 produtos</th>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7318">SKU-7318</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230e7c86'/%3E%3Ccircle cx='20' cy='20' r='12' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook para criadores 16 pol.</span>
+                  <small>Outlet</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s2">Sob encomenda</span></td>
+            <td class="num">192</td>
+            <td class="num">R$ 9.132,73</td>
+            <td>14/08/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7318-detalhe" aria-label="Detalhes de SKU-7318">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7337">SKU-7337</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%232f6fed'/%3E%3Ccircle cx='20' cy='20' r='6' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook educacional 11 pol.</span>
+                  <small>Importado</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s1">Poucas unidades</span></td>
+            <td class="num">184</td>
+            <td class="num">R$ 1.188,19</td>
+            <td>08/09/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7337-detalhe" aria-label="Detalhes de SKU-7337">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7354">SKU-7354</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%231b8a5a'/%3E%3Ccircle cx='20' cy='20' r='7' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook reforçado 14 pol.</span>
+                  <small>Importado</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s3">Esgotado</span></td>
+            <td class="num">111</td>
+            <td class="num">R$ 4.371,76</td>
+            <td>10/12/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7354-detalhe" aria-label="Detalhes de SKU-7354">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7373">SKU-7373</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23b4541a'/%3E%3Ccircle cx='20' cy='20' r='8' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook ultrafino 14 pol. · lote B</span>
+                  <small>Outlet</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s3">Esgotado</span></td>
+            <td class="num">247</td>
+            <td class="num">R$ 1.403,68</td>
+            <td>03/10/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7373-detalhe" aria-label="Detalhes de SKU-7373">Detalhes</a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="grupo">
+            <th colspan="7">Periféricos · 5 produtos</th>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7386">SKU-7386</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%237a3ec2'/%3E%3Ccircle cx='20' cy='20' r='9' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook gamer 15 pol. · lote C</span>
+                  <small>Outlet</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s2">Sob encomenda</span></td>
+            <td class="num">9</td>
+            <td class="num">R$ 1.365,54</td>
+            <td>15/01/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7386-detalhe" aria-label="Detalhes de SKU-7386">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7409">SKU-7409</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23c2335a'/%3E%3Ccircle cx='20' cy='20' r='10' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook corporativo 13 pol. · lote D</span>
+                  <small>Outlet</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s1">Poucas unidades</span></td>
+            <td class="num">52</td>
+            <td class="num">R$ 3.521,21</td>
+            <td>20/01/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7409-detalhe" aria-label="Detalhes de SKU-7409">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7424">SKU-7424</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230e7c86'/%3E%3Ccircle cx='20' cy='20' r='11' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook conversível 2 em 1 · lote E</span>
+                  <small>Outlet</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s3">Esgotado</span></td>
+            <td class="num">40</td>
+            <td class="num">R$ 9.433,14</td>
+            <td>22/04/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7424-detalhe" aria-label="Detalhes de SKU-7424">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7440">SKU-7440</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%232f6fed'/%3E%3Ccircle cx='20' cy='20' r='12' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook básico 15 pol. · lote F</span>
+                  <small>Outlet</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s3">Esgotado</span></td>
+            <td class="num">46</td>
+            <td class="num">R$ 4.506,79</td>
+            <td>08/01/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7440-detalhe" aria-label="Detalhes de SKU-7440">Detalhes</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="lnk" href="#SKU-7460">SKU-7460</a></th>
+            <td>
+              <span class="nm">
+                <img class="thumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%231b8a5a'/%3E%3Ccircle cx='20' cy='20' r='6' fill='%23ffffff' fill-opacity='.85'/%3E%3C/svg%3E" alt="" width="32" height="32">
+                <span class="nm-t">
+                  <span>Notebook para criadores 16 pol. · lote G</span>
+                  <small>Outlet</small>
+                </span>
+              </span>
+            </td>
+            <td><span class="badge s2">Sob encomenda</span></td>
+            <td class="num">95</td>
+            <td class="num">R$ 2.525,94</td>
+            <td>08/02/2026</td>
+            <td><a class="btn btn-s" href="#SKU-7460-detalhe" aria-label="Detalhes de SKU-7460">Detalhes</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <nav class="pag" aria-label="Paginação">
+        <ul class="pag-lista">
+          <li><span class="pg pg-off" aria-disabled="true">Anterior</span></li>
+          <li><a class="pg" href="?p=1" aria-current="page">1</a></li>
+          <li><a class="pg" href="?p=2">2</a></li>
+          <li><a class="pg" href="?p=3">3</a></li>
+          <li><a class="pg" href="?p=4">4</a></li>
+          <li><a class="pg" href="?p=5">5</a></li>
+          <li><a class="pg" href="?p=6">6</a></li>
+          <li><a class="pg" href="?p=2">Próxima</a></li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+  <section class="estados" aria-labelledby="h-estados">
+    <h2 id="h-estados">Outros estados da listagem</h2>
+    <p class="lead">Como a tela se comporta quando a busca não encontra nada, enquanto os dados carregam e quando ainda não há registros.</p>
+    <div class="grade-estados">
+      <section class="estado" aria-labelledby="h-sem">
+        <h3 id="h-sem">Sem resultados</h3>
+        <p class="est-msg">Nenhum produto encontrado para “Notebook”. Confira a escrita ou limpe os filtros.</p>
+        <button class="btn btn-sec" type="button">Limpar filtros</button>
+        <div class="busca">
+        
+        <div class="busca-linha">
+          <input class="campo" id="busca-vazia" type="search" name="q" value="" placeholder="Ex.: Notebook" autocomplete="off">
+          <button class="btn btn-pri" type="submit">Buscar</button>
+        </div>
+      </div>
+      </section>
+      <section class="estado" aria-labelledby="h-car">
+        <h3 id="h-car">Carregando resultados</h3>
+        <p class="est-msg" role="status">Carregando produtos…</p>
+        <progress class="prog" aria-label="Carregando produtos"></progress>
+      </section>
+      <section class="estado" aria-labelledby="h-vaz">
+        <h3 id="h-vaz">Lista vazia</h3>
+        <p class="est-msg">Ainda não há produtos cadastrados.</p>
+      </section>
+    </div>
+  </section>
+</main>
+<footer class="rodape">
+  <span>© 2026 Mercado do Bairro</span>
+  <nav aria-label="Rodapé">
+    <ul>
+      <li><a href="#termos">Termos de uso</a></li>
+      <li><a href="#privacidade">Privacidade</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+</footer>
+<script>
+document.querySelectorAll('.tabela thead .ord').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var th = b.parentElement;
+    var novo = th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+    document.querySelectorAll('.tabela thead th[aria-sort]').forEach(function (x) {
+      if (x !== th) { x.setAttribute('aria-sort', 'none'); x.querySelector('.seta').textContent = '⇅'; }
+    });
+    th.setAttribute('aria-sort', novo);
+    b.querySelector('.seta').textContent = novo === 'ascending' ? '▲' : '▼';
+  });
+});
+document.querySelectorAll('button[aria-expanded]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var aberto = b.getAttribute('aria-expanded') === 'true';
+    b.setAttribute('aria-expanded', String(!aberto));
+    var p = document.getElementById(b.getAttribute('aria-controls')) || b.parentElement.nextElementSibling;
+    if (p) p.hidden = aberto;
+  });
+});
+document.querySelectorAll('.sw').forEach(function (s) {
+  function alternar() { if (s.hasAttribute('aria-checked')) s.setAttribute('aria-checked', String(s.getAttribute('aria-checked') !== 'true')); }
+  s.addEventListener('click', alternar);
+  // Espaço e Enter já disparam click no <button>
+});
+</script>
+</body>
+</html>

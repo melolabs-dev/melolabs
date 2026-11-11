@@ -1,0 +1,302 @@
+[
+ {
+  "n": 1,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-01.html",
+  "regra_id": "FC38",
+  "regra": "Use um unico campo para o numero do cartao, sem dividi-lo em varios inputs.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T2",
+  "cond": "A0",
+  "modelo": "haiku"
+ },
+ {
+  "n": 2,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-02.html",
+  "regra_id": "TD03",
+  "regra": "Use scope em th para distinguir cabeçalhos de coluna e de linha.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L100",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 3,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-03.html",
+  "regra_id": "AM25",
+  "regra": "O nome acessível deve conter o texto visível do rótulo.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 4,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-04.html",
+  "regra_id": "FC24",
+  "regra": "Em campos sobre o usuário cuja finalidade consta na lista de propósitos, use autocomplete com token válido, nunca valor inventado.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "L100",
+  "modelo": "haiku"
+ },
+ {
+  "n": 5,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-05.html",
+  "regra_id": "AM05",
+  "regra": "Não pule níveis de título (h2 seguido de h4).",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L100",
+  "modelo": "haiku"
+ },
+ {
+  "n": 6,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-06.html",
+  "regra_id": "NE25",
+  "regra": "Sugira como corrigir o erro quando a correção for conhecida.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "K",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 7,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-07.html",
+  "regra_id": "AM15",
+  "regra": "Dê rótulo único a landmarks do mesmo tipo repetidos (vários nav).",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "L50",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 8,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-08.html",
+  "regra_id": "TD43",
+  "regra": "Nao deixe estado vazio em branco nem mostre 'sem registros' enquanto ainda carrega; use indicador de progresso.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T2",
+  "cond": "A2",
+  "modelo": "haiku"
+ },
+ {
+  "n": 9,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-09.html",
+  "regra_id": "TD44",
+  "regra": "No estado vazio explique como o conteudo e adicionado e ofereca um botao ou link para a proxima acao.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 10,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-10.html",
+  "regra_id": "AM44",
+  "regra": "Cabecalho ou rodape fixo/sticky nao deve ocultar totalmente o elemento focado; scroll-padding e uma tecnica suficiente (C43).",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T2",
+  "cond": "A3",
+  "modelo": "haiku"
+ },
+ {
+  "n": 11,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-11.html",
+  "regra_id": "FC18",
+  "regra": "Prefixe o title da pagina com \"Erro:\" quando ela for reexibida com erros.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "L50",
+  "modelo": "haiku"
+ },
+ {
+  "n": 12,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-12.html",
+  "regra_id": "TD11",
+  "regra": "Use font-variant-numeric: tabular-nums em colunas de numeros para os digitos terem largura igual.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L100",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 13,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-13.html",
+  "regra_id": "NE14",
+  "regra": "Se houver cabeçalho fixo ou sticky, reserve espaço de rolagem para que o elemento focado não fique escondido.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T2",
+  "cond": "A2",
+  "modelo": "haiku"
+ },
+ {
+  "n": 14,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-14.html",
+  "regra_id": "FC14",
+  "regra": "Evite botão desabilitado, salvo se pesquisa mostrar que melhora a compreensão.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T2",
+  "cond": "A2",
+  "modelo": "haiku"
+ },
+ {
+  "n": 15,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-15.html",
+  "regra_id": "TD06",
+  "regra": "Em cabecalhos que abrangem varias colunas ou linhas use scope=colgroup ou scope=rowgroup.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "D",
+  "modelo": "haiku"
+ },
+ {
+  "n": 16,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-16.html",
+  "regra_id": "AM32",
+  "regra": "Nao use aria-label/aria-labelledby em elementos com role generic ou paragraph, nem em role none ou presentation.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 17,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-17.html",
+  "regra_id": "TD11",
+  "regra": "Use font-variant-numeric: tabular-nums em colunas de numeros para os digitos terem largura igual.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "haiku"
+ },
+ {
+  "n": 18,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-18.html",
+  "regra_id": "FC05",
+  "regra": "Em campos de data use input type=text com inputmode=numeric.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 19,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-19.html",
+  "regra_id": "TD28",
+  "regra": "Escreva datas com nome do mes (abreviado so quando falta espaco, como em tabelas), sem sufixos ordinais.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T2",
+  "cond": "A0",
+  "modelo": "haiku"
+ },
+ {
+  "n": 20,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-20.html",
+  "regra_id": "AM40",
+  "regra": "Dimensione texto de forma relativa (por exemplo % ou em) para permitir redimensionar a 200% (tecnicas C12, C14).",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L100",
+  "modelo": "haiku"
+ },
+ {
+  "n": 21,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-21.html",
+  "regra_id": "FC44",
+  "regra": "Use um único campo de logradouro sem exigir número; esconda a linha 2 atrás de um botão de revelar.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L0",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 22,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-22.html",
+  "regra_id": "FC05",
+  "regra": "Em campos de data use input type=text com inputmode=numeric.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 23,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-23.html",
+  "regra_id": "FC48",
+  "regra": "Em códigos de verificação, permita colar o código inteiro; evite uma caixa por dígito que impeça colar.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "L0",
+  "modelo": "haiku"
+ },
+ {
+  "n": 24,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-24.html",
+  "regra_id": "TD45",
+  "regra": "Envolva a paginação em nav com nome acessível e indique a página atual.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "D",
+  "modelo": "haiku"
+ },
+ {
+  "n": 25,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-25.html",
+  "regra_id": "FC13",
+  "regra": "Mantenha a ordem do HTML igual a ordem visual dos campos; nao reordene controles via CSS.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "D",
+  "modelo": "haiku"
+ },
+ {
+  "n": 26,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-26.html",
+  "regra_id": "FC10",
+  "regra": "Se usar simbolo (asterisco) para obrigatorio, explique-o em legenda no inicio do formulario.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T2",
+  "cond": "A0",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 27,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-27.html",
+  "regra_id": "AM32",
+  "regra": "Nao use aria-label/aria-labelledby em elementos com role generic ou paragraph, nem em role none ou presentation.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "sonnet"
+ },
+ {
+  "n": 28,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-28.html",
+  "regra_id": "AM23",
+  "regra": "De texto alternativo equivalente a todo conteudo nao textual informativo; alternativa com nome de arquivo ou placeholder e falha (F30).",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T2",
+  "cond": "A2",
+  "modelo": "haiku"
+ },
+ {
+  "n": 29,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-29.html",
+  "regra_id": "NE13",
+  "regra": "Ofereça um mecanismo de fechar em todo diálogo; o mais robusto é um botão explícito de fechar ou cancelar.",
+  "veredito_verificador": "VIOLA",
+  "tarefa": "T4",
+  "cond": "L50",
+  "modelo": "haiku"
+ },
+ {
+  "n": 30,
+  "arquivo": "C:\\Users\\caiog\\OneDrive\\Documentos\\blog-tech\\studies\\haiku-ui-producao\\dados\\auditoria-final\\l1-30.html",
+  "regra_id": "TD08",
+  "regra": "Nao use th nem estrutura de tabela para posicionar layout.",
+  "veredito_verificador": "CUMPRE",
+  "tarefa": "T4",
+  "cond": "R",
+  "modelo": "sonnet"
+ }
+]

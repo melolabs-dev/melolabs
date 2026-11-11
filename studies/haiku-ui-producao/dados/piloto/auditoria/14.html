@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Configurações da conta - TransLog Cargas</title>
+<style>
+:root{
+  --bg:#f4f6f8; --surface:#ffffff; --ink:#1d2733; --muted:#4b5968; --brand:#0b5cad; --brand-ink:#ffffff;
+  --borda:#c3ccd6; --perigo:#b42318; --perigo-bg:#fdecea; --ok:#14653a; --ok-bg:#e4f4ea;
+  --aviso:#7a4d00; --aviso-bg:#fff3d6; --raio:8px; --esp:16px; --sombra:0 1px 2px rgba(16,24,40,.08);
+}
+*{box-sizing:border-box}
+html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.6}
+h1,h2,h3{line-height:1.25;margin:0 0 8px}
+h1{font-size:28px}
+h2{font-size:20px}
+h3{font-size:17px}
+p{margin:0 0 8px}
+a{color:var(--brand)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.oculto{display:none}
+[hidden]{display:none!important}
+.pular{position:absolute;left:-999px;top:0;background:#fff;padding:8px}
+.pular:focus{left:8px;top:8px;z-index:30}
+.topo{background:var(--surface);border-bottom:1px solid var(--borda)}
+.topo-in{max-width:1180px;margin:0 auto;padding:10px var(--esp);display:flex;align-items:center;gap:16px}
+.marca{font-weight:700;font-size:18px;margin:0}
+.nav-topo{display:flex;gap:4px;list-style:none;margin:0 0 0 8px;padding:0;flex:1}
+.nav-topo a{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:15px}
+.nav-topo a[aria-current="page"]{background:#e3eefa;color:var(--brand);font-weight:600}
+.btn-inicio{font:inherit;font-size:15px;padding:6px 12px;border:1px solid var(--borda);border-radius:6px;background:#fff;color:var(--ink);text-decoration:none;cursor:pointer}
+.usuario-chip{display:flex;align-items:center;gap:8px;font-size:14px}
+.avatar{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--brand);color:var(--brand-ink);font-size:12px;font-weight:700}
+.avatar.grande{width:64px;height:64px;font-size:20px}
+.btn-icone{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--borda);border-radius:6px;background:#fff;color:var(--ink);cursor:pointer}
+.layout{max-width:1180px;margin:0 auto;padding:24px var(--esp);display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px}
+.lateral ul{list-style:none;margin:0;padding:0;position:sticky;top:16px}
+.lateral a{display:block;padding:8px 12px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:15px}
+.lateral a:hover{background:#e8edf2}
+.conteudo{min-width:0}
+.titulo-pagina{margin-bottom:4px}
+.lead{color:var(--muted);margin-bottom:20px}
+.cartao{background:var(--surface);border:1px solid var(--borda);border-radius:var(--raio);box-shadow:var(--sombra);padding:24px;margin-bottom:24px}
+.cartao>.desc{color:var(--muted);font-size:15px}
+.grade{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;margin-top:12px}
+.campo{display:flex;flex-direction:column;gap:4px;position:relative}
+.campo.largo{grid-column:1/-1}
+.campo label{font-weight:600;font-size:15px}
+.campo input,.campo select,.campo textarea{font:inherit;font-size:16px;padding:8px 10px;border:1px solid #7b8794;border-radius:6px;background:#fff;color:var(--ink)}
+.campo textarea{min-height:84px;resize:vertical}
+.dica{color:var(--muted);font-size:14px;margin:0}
+.erro{color:var(--perigo);font-size:14px;margin:0;font-weight:600}
+.campo-erro input{border-color:var(--perigo);border-width:2px;background:#fff8f7}
+.marca-erro{position:absolute;right:10px;top:32px;color:var(--perigo);font-weight:700;font-size:14px}
+.foto{display:flex;align-items:center;gap:16px;margin:16px 0 4px}
+.acoes{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.btn{font:inherit;font-size:15px;font-weight:600;padding:9px 16px;border-radius:6px;border:1px solid var(--borda);background:#fff;color:var(--ink);cursor:pointer}
+.btn.primario{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn.perigo{background:var(--perigo);border-color:var(--perigo);color:#fff}
+.btn.perigo-suave{border-color:var(--perigo);color:var(--perigo)}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.btn.pequeno{padding:5px 10px;font-size:13px}
+.banner{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:var(--raio);margin:12px 0;border:1px solid}
+.banner.ok{background:var(--ok-bg);border-color:var(--ok);color:#0d4527}
+.banner-t{display:block;font-size:16px}
+.banner-txt{flex:1;font-size:15px}
+.banner .btn-icone{width:28px;height:28px;border:0;background:transparent;color:inherit}
+.aviso{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:var(--raio);background:var(--aviso-bg);border:1px solid #e3b341;color:var(--aviso);margin:0 0 16px}
+.aviso p{margin:0;font-size:15px}
+.resumo{border:2px solid var(--perigo);background:var(--perigo-bg);border-radius:var(--raio);padding:14px 18px;margin-bottom:20px}
+.resumo h2{font-size:17px;color:var(--perigo)}
+.resumo ul{margin:0;padding-left:20px}
+.resumo a{color:var(--perigo);font-weight:600}
+fieldset{border:1px solid var(--borda);border-radius:6px;margin:16px 0 0;padding:12px 16px}
+legend{font-weight:600;font-size:15px;padding:0 6px}
+.opcao{display:flex;gap:10px;align-items:center;padding:6px 0;font-size:15px}
+.opcao input{width:18px;height:18px}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:15px}
+caption{text-align:left;font-weight:600;padding:0 0 6px;font-size:16px}
+th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--borda);font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+td{padding:10px;border-bottom:1px solid #e4e9ee;vertical-align:middle}
+.chip{display:inline-block;padding:2px 8px;border-radius:999px;background:#eaf0f6;font-size:12px;color:#2b3a49}
+.ponto{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:6px}
+.ponto.ok{background:var(--ok)}
+.ponto.pausa{background:#a0670a}
+.ponto.exp{background:var(--perigo)}
+.estado{display:inline-flex;align-items:center;font-size:14px}
+.contagem{font-weight:600;margin:12px 0 0;font-size:15px}
+.vazio{text-align:center;padding:28px 16px;border:2px dashed var(--borda);border-radius:var(--raio);margin-top:12px;color:var(--muted)}
+.vazio h3{color:var(--ink)}
+.falha{display:flex;flex-direction:column;gap:6px;padding:16px;border:1px solid var(--perigo);background:var(--perigo-bg);border-radius:var(--raio);margin-top:12px;align-items:flex-start}
+.falha h3{color:var(--perigo);margin:0}
+.esqueleto{margin-top:12px;display:grid;gap:8px}
+.esqueleto span.linha{height:14px;border-radius:4px;background:linear-gradient(90deg,#e4e9ee,#f1f4f7,#e4e9ee)}
+.texto{max-width:none;margin:12px 0;color:#26323f}
+.zona-perigo{border-color:var(--perigo)}
+.zona-perigo h2{color:var(--perigo)}
+.rodape{max-width:1180px;margin:0 auto;padding:8px var(--esp) 32px;color:var(--muted);font-size:13px}
+.modal-fundo{position:fixed;inset:0;background:rgba(15,23,32,.55);display:flex;align-items:center;justify-content:center;z-index:40}
+.modal{background:#fff;border-radius:var(--raio);padding:24px;max-width:460px;width:calc(100% - 32px)}
+.modal h2{font-size:20px}
+.nav-principal{flex:1;min-width:0}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:16px;padding:16px 12px}
+  .lateral ul{position:static;display:flex;gap:4px;overflow-x:auto;padding-bottom:4px}
+  .lateral a{white-space:nowrap}
+}
+@media (max-width:640px){
+  .topo-in{flex-wrap:wrap;gap:8px;padding:8px 12px}
+  .nav-principal{order:3;flex-basis:100%}
+  .nav-topo{overflow-x:auto;margin:0;white-space:nowrap}
+  .usuario-chip span:last-child{display:none}
+  .grade{grid-template-columns:minmax(0,1fr)}
+  .cartao{padding:16px;overflow-x:auto}
+  .foto{flex-wrap:wrap}
+  .acoes .btn{flex:1 1 100%}
+  .btn,.btn-icone,.btn-inicio{min-height:44px}
+  .btn-icone{min-width:44px}
+  .btn.pequeno{min-height:36px}
+  h1{font-size:24px}
+}
+</style>
+</head>
+<body>
+<a class="pular" href="#principal">Pular para o conteúdo</a>
+<header class="topo" id="topo">
+  <div class="topo-in">
+    <span class="marca">TransLog Cargas</span>
+    <a class="btn-inicio" href="/">Início</a>
+    <nav aria-label="Principal" class="nav-principal">
+      <ul class="nav-topo">
+        <li><a href="/painel">Painel</a></li>
+        <li><a href="/relatorios">Relatórios</a></li>
+        <li><a href="/equipe">Equipe</a></li>
+        <li><a href="/configuracoes" aria-current="page">Configurações</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="btn-icone" id="btn-notif" aria-label="Notificações"><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3a6 6 0 0 0-6 6v4l-2 3h16l-2-3V9a6 6 0 0 0-6-6zm-2 15a2 2 0 0 0 4 0"/></svg></button>
+    <div class="usuario-chip"><span class="avatar" aria-hidden="true">GR</span><span>Gustavo Ribeiro</span></div>
+  </div>
+</header>
+<div id="live" class="sr-only" role="status" aria-live="polite"></div>
+<div class="layout">
+  <nav class="lateral" aria-label="Seções de configurações">
+    <ul>
+      <li><a href="#perfil">Perfil</a></li>
+      <li><a href="#preferencias">Preferências</a></li>
+      <li><a href="#acessos">Acessos e permissões</a></li>
+      <li><a href="#privacidade">Privacidade e dados</a></li>
+      <li><a href="#zona-perigo">Excluir conta</a></li>
+    </ul>
+  </nav>
+  <div id="principal" class="conteudo">
+    <h1 class="titulo-pagina">Configurações da conta</h1>
+    <p class="lead">Gerencie seu perfil, suas preferências, os aplicativos conectados e a privacidade da conta no Painel de Frota.</p>
+
+      <div class="aviso" id="aviso-sessoes">
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3zm0 7v5m0 3v.5"/></svg>
+        <p>Sua conta está conectada em 3 dispositivos. Encerre as sessões que você não reconhece.</p>
+      </div>
+
+
+    <section class="cartao" id="perfil" aria-labelledby="h-perfil">
+      <h2 id="h-perfil">Perfil</h2>
+      <p class="desc">Estas informações são exibidas para as demais pessoas da sua equipe.</p>
+      <div class="foto">
+        <span class="avatar grande" aria-hidden="true">GR</span>
+        <div>
+          <p><strong>Foto de perfil</strong></p>
+          <button type="button" class="btn pequeno">Enviar nova foto</button>
+          <button type="button" class="btn-icone" id="btn-remover-foto" aria-label="Remover foto de perfil"><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/></svg></button>
+        </div>
+      </div>
+      <form id="form-perfil" action="#" method="post">
+        <div class="grade">
+        <div class="campo">
+          <label for="nome">Nome completo</label>
+          <input id="nome" name="nome" type="text" value="Gustavo Ribeiro" autocomplete="name" required>
+          
+          
+          
+        </div>
+        <div class="campo campo-erro">
+          <label for="email">E-mail corporativo</label>
+          <input id="email" name="email" type="email" value="gustavo.ribeiro@translog" autocomplete="email" required aria-invalid="true" aria-describedby="dica-email erro-email">
+          
+          <p class="dica" id="dica-email">Usamos este endereço para login e avisos de segurança.</p>
+          <p class="erro" id="erro-email">E-mail inválido.</p>
+        </div>
+        <div class="campo campo-erro">
+          <label for="telefone">Telefone celular</label>
+          <input id="telefone" name="telefone" type="tel" inputmode="tel" value="(41) 96055-73" autocomplete="tel" pattern="\(\d{2}\) \d{4,5}-\d{4}" title="Use o formato (11) 91234-5678" aria-invalid="true" aria-describedby="dica-telefone erro-telefone">
+          
+          <p class="dica" id="dica-telefone">Com DDD, por exemplo (11) 91234-5678.</p>
+<p class="erro" id="erro-telefone">Telefone incompleto. Use o formato (11) 91234-5678.</p>
+          
+        </div>
+        <div class="campo">
+          <label for="organizacao">Empresa</label>
+          <input id="organizacao" name="organizacao" type="text" value="TransLog Cargas" autocomplete="organization">
+          
+          
+          
+        </div>
+        <div class="campo">
+          <label for="cargo">Cargo</label>
+          <select id="cargo" name="cargo"><option>Coordenador de operações</option><option selected>Analista de roteirização</option><option>Gerente de frota</option><option>Despachante</option></select>
+          
+          
+          
+        </div>
+        <div class="campo">
+          <label for="cidade">Cidade</label>
+          <input id="cidade" name="cidade" type="text" value="Campinas" autocomplete="address-level2">
+          
+          
+          
+        </div>
+        <div class="campo">
+          <label for="idioma">Idioma da interface</label>
+          <select id="idioma" name="idioma"><option selected>Português (Brasil)</option><option>English</option><option>Español</option></select>
+          
+          
+          
+        </div>
+        <div class="campo largo">
+          <label for="bio">Sobre você</label>
+          <textarea id="bio" name="bio" maxlength="200" aria-describedby="dica-bio">Responsável por veículos, rotas e cargas na unidade de Campinas.</textarea>
+          
+          <p class="dica" id="dica-bio">Até 200 caracteres.</p>
+          
+        </div>
+        </div>
+        <div class="acoes">
+          <button type="submit" class="btn primario">Salvar alterações</button>
+          <button type="reset" class="btn">Descartar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="cartao" id="preferencias" aria-labelledby="h-pref">
+      <h2 id="h-pref">Preferências de notificação</h2>
+      <p class="desc">Escolha quais avisos você recebe e com que frequência.</p>
+      <div class="banner ok" id="banner-sucesso" role="status" hidden>
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12l5 5L20 6"/></svg>
+        <div class="banner-txt">
+          
+          <span>Suas preferências de notificação foram salvas às 17:35.</span>
+        </div>
+        <button type="button" class="btn-icone" id="btn-dispensar" aria-label="Fechar aviso"><svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <form id="form-prefs" action="#" method="post">
+        <fieldset>
+          <legend>Avisos por e-mail</legend>
+          <label class="opcao"><input type="checkbox" name="notif0"> Atraso em entregas</label>
+          <label class="opcao"><input type="checkbox" name="notif1" checked> Desvio de rota detectado</label>
+          <label class="opcao"><input type="checkbox" name="notif2" checked> Manutenção preventiva vencendo</label>
+          <label class="opcao"><input type="checkbox" name="notif3"> Resumo diário da frota</label>
+        </fieldset>
+        <fieldset>
+          <legend>Frequência</legend>
+          <label class="opcao"><input type="radio" name="freq" value="imediata" checked> Imediata</label>
+          <label class="opcao"><input type="radio" name="freq" value="diaria"> Resumo diário</label>
+          <label class="opcao"><input type="radio" name="freq" value="semanal"> Resumo semanal</label>
+        </fieldset>
+        <div class="grade">
+        <div class="campo">
+          <label for="fuso">Fuso horário</label>
+          <select id="fuso" name="fuso"><option selected>Brasília (GMT-3)</option><option>Manaus (GMT-4)</option><option>Fernando de Noronha (GMT-2)</option></select>
+          
+          
+          
+        </div>
+        <div class="campo">
+          <label for="densidade">Densidade da tabela</label>
+          <select id="densidade" name="densidade"><option selected>Confortável</option><option>Compacta</option></select>
+          
+          
+          
+        </div>
+        </div>
+        <div class="acoes">
+          <button type="submit" class="btn primario">Salvar preferências</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="cartao" id="acessos" aria-labelledby="h-acessos">
+      <h2 id="h-acessos">Acessos e permissões</h2>
+      <p class="desc">Aplicativos que podem ler ou alterar dados da sua conta.</p>
+      <p class="contagem" id="contagem-acessos">4 aplicativos com acesso à sua conta</p>
+      <table>
+        <caption>Aplicativos conectados</caption>
+        <thead>
+          <tr><th scope="col">Aplicativo</th><th scope="col">Permissão</th><th scope="col">Último uso</th><th scope="col">Situação</th><th scope="col">Ação</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Alertas por mensagem</th>
+            <td><span class="chip">Enviar avisos de atraso</span></td>
+            <td>hoje, 09:14</td>
+            <td><span class="estado"><span class="ponto pausa" aria-label="Pausado"></span></span></td>
+            <td><button type="button" class="btn perigo-suave pequeno" data-abrir="fundo-revogar">Revogar acesso</button></td>
+          </tr>
+          <tr>
+            <th scope="row">Planilhas de Custos</th>
+            <td><span class="chip">Exportar relatórios de combustível</span></td>
+            <td>há 5 minutos</td>
+            <td><span class="estado"><span class="ponto ok" aria-label="Ativo"></span></span></td>
+            <td><button type="button" class="btn perigo-suave pequeno" data-abrir="fundo-revogar">Revogar acesso</button></td>
+          </tr>
+          <tr>
+            <th scope="row">Balança Digital</th>
+            <td><span class="chip">Gravar pesagens de carga</span></td>
+            <td>há 2 semanas</td>
+            <td><span class="estado"><span class="ponto ok" aria-label="Ativo"></span></span></td>
+            <td><button type="button" class="btn perigo-suave pequeno" data-abrir="fundo-revogar">Revogar acesso</button></td>
+          </tr>
+          <tr>
+            <th scope="row">Rastreio GPS Frotas</th>
+            <td><span class="chip">Ler posição dos veículos</span></td>
+            <td>há 3 dias</td>
+            <td><span class="estado"><span class="ponto ok" aria-label="Ativo"></span></span></td>
+            <td><button type="button" class="btn perigo-suave pequeno" data-abrir="fundo-revogar">Revogar acesso</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <caption>Sessões ativas</caption>
+        <thead>
+          <tr><th scope="col">Dispositivo</th><th scope="col">Descrição</th><th scope="col">Local</th><th scope="col">Último acesso</th><th scope="col">Ação</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Edge em Windows 10</th>
+            <td>Desktop da recepção</td>
+            <td>Goiânia</td>
+            <td>há 2 semanas</td>
+            <td><span class="chip">Sessão atual</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Firefox em Ubuntu</th>
+            <td>Estação de trabalho</td>
+            <td>Curitiba</td>
+            <td>hoje, 09:14</td>
+            <td><button type="button" class="btn pequeno">Encerrar sessão</button></td>
+          </tr>
+          <tr>
+            <th scope="row">Chrome em Android</th>
+            <td>Tablet da equipe</td>
+            <td>Goiânia</td>
+            <td>há 5 minutos</td>
+            <td><button type="button" class="btn pequeno">Encerrar sessão</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3 style="margin-top:24px">Chaves de API</h3>
+      <div class="vazio">
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 10a4 4 0 1 0-3 3.9L11 17h2v2h2v2h3v-3l-5-5"/></svg>
+        <h3>Nenhuma chave de API criada</h3>
+        <p>Crie uma chave para integrar sistemas externos sem compartilhar sua senha.</p>
+        <button type="button" class="btn primario">Criar chave de API</button>
+      </div>
+      <h3 style="margin-top:24px">Atividade recente</h3>
+      <div class="falha" role="alert">
+        <h3>Não foi possível carregar o histórico</h3>
+        <p>O servidor demorou para responder. Tente novamente em instantes.</p>
+        <button type="button" class="btn">Tentar novamente</button>
+      </div>
+      <div class="esqueleto" aria-busy="true">
+        <span class="sr-only">Carregando eventos de segurança</span>
+        <span class="linha"></span><span class="linha"></span><span class="linha"></span>
+      </div>
+    </section>
+
+    <section class="cartao" id="privacidade" aria-labelledby="h-priv">
+      <h2 id="h-priv">Privacidade e dados</h2>
+      <p class="texto">A TransLog Cargas trata os dados da sua conta, como nome, e-mail corporativo, telefone e registros de acesso, apenas para operar o Painel de Frota, cumprir obrigações legais e proteger a segurança de veículos, rotas e cargas. Você pode solicitar uma cópia desses dados, corrigir informações desatualizadas ou pedir a exclusão a qualquer momento, e a resposta será enviada ao e-mail cadastrado em até quinze dias corridos, conforme a legislação de proteção de dados vigente.</p>
+      <p class="texto">Os aplicativos conectados à conta só recebem as permissões que você autorizou na tabela de acessos. Ao revogar um acesso, a integração deixa de consultar veículos, rotas e cargas imediatamente, mas os dados já sincronizados permanecem no sistema do aplicativo e precisam ser removidos por lá. Registros de auditoria são mantidos por doze meses para investigação de incidentes e não podem ser apagados pelo usuário.</p>
+      <div class="acoes">
+        <a class="btn" href="/dados/exportar" style="text-decoration:none">Baixar meus dados</a>
+        <a class="btn" href="/privacidade" style="text-decoration:none">Ler política completa</a>
+      </div>
+    </section>
+
+    <section class="cartao zona-perigo" id="zona-perigo" aria-labelledby="h-perigo">
+      <h2 id="h-perigo">Excluir conta</h2>
+
+      <div class="aviso" id="aviso-exclusao">
+        <svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3zm0 7v5m0 3v.5"/></svg>
+        <p>A exclusão é permanente e remove o histórico de rotas, manifestos e alertas da frota. Esta ação não pode ser desfeita.</p>
+      </div>
+      <button type="button" class="btn perigo" data-abrir="fundo-excluir">Excluir minha conta</button>
+    </section>
+  </div>
+</div>
+<footer class="rodape">
+  <p>TransLog Cargas · Painel de Frota · Versão 4.12.0 · <a href="/ajuda">Central de ajuda</a> · <a href="/termos">Termos de uso</a></p>
+</footer>
+
+  <div class="modal-fundo" id="fundo-excluir" data-modal hidden>
+    <div class="modal" id="dlg-excluir" role="dialog" aria-modal="true" aria-labelledby="dlg-excluir-t">
+      <h2 id="dlg-excluir-t">Excluir sua conta?</h2>
+      <p id="dlg-excluir-d">Todos os dados de Gustavo Ribeiro serão apagados em 30 dias. Você perderá o histórico de rotas, manifestos e alertas da frota.</p>
+      <div class="acoes">
+        <button type="button" class="btn perigo" data-fechar>Sim</button>
+        <button type="button" class="btn" data-fechar>Não</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-fundo" id="fundo-revogar" data-modal hidden>
+    <div class="modal" id="dlg-revogar" role="dialog" aria-modal="true" aria-labelledby="dlg-revogar-t">
+      <h2 id="dlg-revogar-t">Revogar o acesso deste aplicativo?</h2>
+      <p id="dlg-revogar-d">O aplicativo deixará de acessar sua conta imediatamente. Você poderá autorizá-lo novamente depois.</p>
+      <div class="acoes">
+        <button type="button" class="btn perigo" data-fechar>Sim</button>
+        <button type="button" class="btn" data-fechar>Não</button>
+      </div>
+    </div>
+  </div>
+<script>
+var ultimoFoco = null;
+function abrirModal(el) { ultimoFoco = document.activeElement; el.hidden = false; var f = el.querySelector('.modal .btn:not(.perigo)'); if (f) f.focus(); }
+function fecharModal(el) { el.hidden = true; if (ultimoFoco) ultimoFoco.focus(); }
+document.querySelectorAll('[data-abrir]').forEach(function (b) { b.addEventListener('click', function () { abrirModal(document.getElementById(b.getAttribute('data-abrir'))); }); });
+document.querySelectorAll('[data-fechar]').forEach(function (b) { b.addEventListener('click', function () { fecharModal(b.closest('[data-modal]')); }); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var a = document.querySelector('[data-modal]:not([hidden])'); if (a) fecharModal(a); } });
+document.getElementById('btn-dispensar').addEventListener('click', function () { document.getElementById('banner-sucesso').hidden = true; });
+document.getElementById('form-perfil').addEventListener('submit', function (e) { if (!this.checkValidity()) { e.preventDefault(); this.reportValidity(); } });
+</script>
+</body>
+</html>

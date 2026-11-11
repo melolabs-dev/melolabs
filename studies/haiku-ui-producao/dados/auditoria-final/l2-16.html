@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internações - Gestão Hospitalar | Hospital Santa Aurora</title>
+<style>
+:root{--c-fundo:#f4f6f9;--c-sup:#ffffff;--c-borda:#d5dbe3;--c-texto:#1c2430;--c-suave:#4a5668;--c-prim:#1a56db;--c-prim-esc:#123f9f;--c-cab:#e8edf4;--c-linha:#f7f9fc;--c-ok:#0f7b4a;--c-and:#1a56db;--c-aten:#8a5a00;--c-crit:#b42318;--r:8px;--e1:4px;--e2:8px;--e3:12px;--e4:16px;--e5:24px;--fonte:system-ui,"Segoe UI",Roboto,Arial,sans-serif;--sombra:0 1px 2px rgba(16,24,40,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--c-fundo);color:var(--c-texto);font:14px/1.5 var(--fonte)}
+.so{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pular{position:absolute;left:-9999px;top:0;padding:8px 12px;background:var(--c-prim);color:#fff}
+.pular:focus{left:8px;top:8px}
+.topo{display:flex;flex-wrap:wrap;align-items:center;gap:var(--e3);padding:var(--e3) var(--e4);background:var(--c-sup);border-bottom:1px solid var(--c-borda)}
+.marca{display:flex;align-items:center;gap:var(--e2);font-weight:700;font-size:16px}
+.usuario{margin-left:auto;display:flex;align-items:center;gap:var(--e2)}
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);gap:var(--e4);padding:var(--e4);max-width:1440px;margin:0 auto}
+.lateral{background:var(--c-sup);border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e2);align-self:start}
+.lateral ul{list-style:none;margin:0;padding:0}
+.lateral a{display:flex;align-items:center;min-height:44px;padding:8px 12px;border-radius:6px;color:var(--c-texto);text-decoration:none}
+.lateral a[aria-current=page]{background:var(--c-cab);font-weight:600}
+.trilha ol{display:flex;flex-wrap:wrap;gap:var(--e2);list-style:none;margin:0 0 var(--e3);padding:0;color:var(--c-suave)}
+.trilha a{display:inline-block;padding:10px 2px;min-height:44px;color:var(--c-prim-esc)}
+h1{font-size:24px;margin:0 0 var(--e1)}
+h2{font-size:18px;margin:0 0 var(--e3)}
+h3{font-size:15px;margin:0 0 var(--e1)}
+.sub{color:var(--c-suave);margin:0 0 var(--e4)}
+.sub a,.nota a{color:var(--c-prim-esc)}
+.nota{color:var(--c-suave);margin:var(--e3) 0}
+.bloco{background:var(--c-sup);border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e4);margin-bottom:var(--e4);box-shadow:var(--sombra)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--e3);margin-bottom:var(--e4)}
+.kpi{background:var(--c-sup);border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e3) var(--e4)}
+.kpi h3{font-size:13px;color:var(--c-suave);font-weight:600}
+.kpi-valor{font-size:22px;font-weight:700;margin:0;overflow-wrap:anywhere}
+.kpi-delta{margin:var(--e1) 0 0;font-size:12px;color:var(--c-suave)}
+.alta{color:var(--c-ok);font-weight:600}
+.queda{color:var(--c-crit);font-weight:600}
+.filtros-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--e3);align-items:end}
+
+.campo{display:flex;flex-direction:column;gap:var(--e1);min-width:0}
+.campo label{font-size:12px;font-weight:600;color:var(--c-suave)}
+input,select{height:44px;padding:0 var(--e2);border:1px solid var(--c-borda);border-radius:6px;background:#fff;font:inherit;width:100%;min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 var(--e3);border:1px solid var(--c-prim);border-radius:6px;background:var(--c-prim);color:#fff;font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--c-prim-esc)}
+.acoes{display:flex;flex-wrap:wrap;gap:var(--e2);margin-top:var(--e3)}
+.avancado{margin-top:var(--e3);padding:var(--e3);border:1px dashed var(--c-borda);border-radius:var(--r)}
+.avancado[hidden]{display:none}
+.rolagem{overflow:auto;max-height:520px;border:1px solid var(--c-borda);border-radius:var(--r);background:var(--c-sup)}
+.rolagem-peq{overflow:auto;border:1px solid var(--c-borda);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%}
+caption{text-align:left;font-weight:600;padding:var(--e2) var(--e3);color:var(--c-suave)}
+.dados{min-width:1480px}
+.resumo{min-width:480px}
+.rank{min-width:340px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--c-borda);text-align:left;white-space:nowrap}
+tbody tr:nth-child(even){background:var(--c-linha)}
+.dados th.cab{background:var(--c-cab);position:sticky;top:0;z-index:2}
+.dados thead tr+tr th{top:41px}
+.dados th.cab1{height:40px;text-align:center;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--c-suave)}
+.ord{display:inline-flex;align-items:center;gap:var(--e1);min-height:28px;padding:2px 6px;border:0;border-radius:4px;background:transparent;font:inherit;font-weight:700;cursor:pointer;color:var(--c-texto)}
+.dados tfoot th,.dados tfoot td{background:var(--c-cab);font-weight:700}
+td.num{text-align:right}
+.selo{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid currentColor}
+.selo.ok{color:var(--c-ok)}.selo.and{color:var(--c-and)}.selo.aten{color:var(--c-aten)}.selo.crit{color:var(--c-crit)}
+.pag{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--e3);margin-top:var(--e3)}
+.pag ul{display:flex;flex-wrap:wrap;gap:var(--e1);list-style:none;margin:0;padding:0}
+.pag button{min-width:44px;min-height:44px;padding:0 var(--e2);border:1px solid var(--c-borda);border-radius:6px;background:#fff;font:inherit;cursor:pointer}
+.pag button[aria-current=page]{background:var(--c-prim);border-color:var(--c-prim);color:#fff}
+.pag .por-pagina{display:flex;align-items:center;gap:var(--e2)}
+.pag .por-pagina select{width:auto}
+.grafico svg{display:block;width:100%;height:auto;max-width:720px}
+.grafico figcaption{color:var(--c-suave);margin-top:var(--e2)}
+.barra{fill:var(--c-prim)}.eixo{stroke:var(--c-borda);stroke-width:1}.rot{font:12px var(--fonte);fill:var(--c-suave)}
+.duas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--e4)}
+pre.rank-texto{margin:0;padding:var(--e3);background:var(--c-linha);border:1px solid var(--c-borda);border-radius:var(--r);overflow:auto;max-width:100%;font:13px/1.5 ui-monospace,Consolas,monospace}
+.estados{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--e4)}
+.estado{border:1px solid var(--c-borda);border-radius:var(--r);padding:var(--e4);background:var(--c-sup);min-width:0}
+.esq{height:12px;border-radius:6px;background:var(--c-cab);margin:var(--e2) 0}
+.esq.l{width:70%}.esq.m{width:45%}
+.estado.erro{border-color:var(--c-crit)}
+.estado.erro p{color:var(--c-crit)}
+.rodape{max-width:1440px;margin:0 auto;padding:var(--e4);color:var(--c-suave);display:flex;flex-wrap:wrap;gap:var(--e4);justify-content:space-between}
+.rodape ul{display:flex;flex-wrap:wrap;gap:var(--e4);list-style:none;margin:0;padding:0}
+.rodape a{display:inline-flex;align-items:center;padding:4px 0;min-height:44px;color:var(--c-prim-esc)}
+@media (max-width:800px){.app{grid-template-columns:minmax(0,1fr);padding:var(--e3)}.lateral ul{display:flex;flex-wrap:wrap}.kpi-valor{font-size:18px}h1{font-size:20px}.grafico{overflow-x:auto}.grafico svg{min-width:560px}}
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo">Ir para o conteúdo principal</a>
+<header class="topo">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI3IiBmaWxsPSIjMWE1NmRiIi8+PHBhdGggZD0iTTcgMjJsNi04IDUgNSA3LTEwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==" width="32" height="32" alt="">
+<div class="marca">Gestão Hospitalar</div>
+<div class="usuario">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNiIgZmlsbD0iIzlkYjZlZSIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTMiIHI9IjYiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNNSAyOGMyLTcgMjAtNyAyMiAweiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" width="32" height="32" alt="">
+<span>Caio Mello</span>
+<button type="button" class="btn sec">Sair</button>
+</div>
+</header>
+<div class="app">
+<nav class="lateral" aria-label="Menu principal">
+<ul>
+<li><a href="#visao">Visão geral</a></li>
+<li><a href="#painel" aria-current="page">Internações</a></li>
+<li><a href="#relatorios">Relatórios</a></li>
+<li><a href="#metas">Metas do trimestre</a></li>
+<li><a href="#config">Configurações</a></li>
+</ul>
+</nav>
+<main id="conteudo">
+<nav class="trilha" aria-label="Trilha de navegação">
+<ol>
+<li><a href="#inicio">Início</a></li>
+<li><a href="#analises">Análises</a></li>
+<li aria-current="page">Internações</li>
+</ol>
+</nav>
+<h1>Internações</h1>
+<p class="sub">Hospital Santa Aurora. Dados atualizados em <time datetime="2026-11-04T13:58">04/11/2026, 13:58</time>.</p>
+<section aria-labelledby="tit-kpis">
+<h2 id="tit-kpis" class="so">Indicadores principais</h2>
+<div class="kpis">
+<article class="kpi">
+<h3>Receita de convênios</h3>
+<p class="kpi-valor">R$ 516.946,38</p>
+<p class="kpi-delta"><span class="alta">+2,8%</span> <span>em relação ao período anterior</span></p>
+</article>
+<article class="kpi">
+<h3>Diárias no período</h3>
+<p class="kpi-valor">16.697</p>
+<p class="kpi-delta"><span class="alta">+6,3%</span> <span>em relação ao período anterior</span></p>
+</article>
+<article class="kpi">
+<h3>Ocupação média</h3>
+<p class="kpi-valor">47,2%</p>
+<p class="kpi-delta"><span class="alta">+3,6%</span> <span>em relação ao período anterior</span></p>
+</article>
+<article class="kpi">
+<h3>Pacientes em estado crítico</h3>
+<p class="kpi-valor">4</p>
+<p class="kpi-delta"><span class="queda">+3,3%</span> <span>em relação ao período anterior</span></p>
+</article>
+</div>
+</section>
+<section class="bloco" aria-labelledby="tit-filtros">
+<h2 id="tit-filtros">Filtros</h2>
+<form method="get" role="search" aria-label="Filtrar registros de internação">
+<div class="filtros-grade">
+<div class="campo"><label for="f-busca">Buscar registro ou paciente</label><input id="f-busca" type="search" name="q" placeholder="Digite para buscar"></div>
+<div class="campo"><label for="f-cat">Ala</label><select id="f-cat" name="cat"><option>Todas</option><option>UTI adulto</option><option>Clínica médica</option><option>Pediatria</option><option>Maternidade</option><option>Ortopedia</option></select></div>
+<div class="campo"><label for="f-sit">Situação</label><select id="f-sit" name="sit"><option>Todas</option><option>Alta concedida</option><option>Internado</option><option>Em observação</option><option>Estado crítico</option></select></div>
+<div class="campo"><label for="f-de">De</label><input id="f-de" type="date" name="de" value="2026-01-01"></div>
+<div class="campo"><label for="f-ate">Até</label><input id="f-ate" type="date" name="ate" value="2026-10-31"></div>
+</div>
+<div class="acoes">
+<button type="submit" class="btn">Aplicar filtros</button>
+<button type="reset" class="btn sec">Limpar</button>
+<button type="button" class="btn sec" aria-expanded="false" aria-controls="painel-avancado">Filtros avançados</button>
+</div>
+<div id="painel-avancado" class="avancado" hidden>
+<div class="filtros-grade">
+<div class="campo"><label for="f-min">Valor mínimo (R$)</label><input id="f-min" type="number" name="min" min="0" placeholder="0"></div>
+<div class="campo"><label for="f-max">Valor máximo (R$)</label><input id="f-max" type="number" name="max" min="0" placeholder="100000"></div>
+<div class="campo"><label for="f-resp">Médico responsável</label><select id="f-resp" name="resp"><option>Todos</option><option>Dra. Helena Rocha</option><option>Dr. Paulo Vieira</option><option>Dra. Renata Dias</option><option>Dr. Otávio Lemos</option><option>Dra. Sofia Brandão</option></select></div>
+</div>
+</div>
+</form>
+</section>
+<section class="bloco" aria-labelledby="tit-tabela" id="painel">
+<h2 id="tit-tabela">Registros detalhados</h2>
+<div class="rolagem" role="region" aria-label="Rolagem horizontal da tabela de internações" tabindex="0">
+<table class="dados">
+<caption class="so">Registros detalhados de internações</caption>
+<thead>
+<tr>
+<th class="cab cab1" scope="colgroup" colspan="4">Identificação</th>
+<th class="cab cab1" scope="colgroup" colspan="2">Atendimento</th>
+<th class="cab cab1" scope="colgroup" colspan="3">Financeiro</th>
+<th class="cab cab1" scope="colgroup" colspan="3">Clínico</th>
+</tr>
+<tr>
+<th class="cab cab2"><button type="button" class="ord">Registro</button></th>
+<th class="cab cab2"><button type="button" class="ord">Paciente (iniciais)</button></th>
+<th class="cab cab2"><button type="button" class="ord">Ala</button></th>
+<th class="cab cab2" aria-sort="descending"><button type="button" class="ord">Data de admissão</button></th>
+<th class="cab cab2"><button type="button" class="ord">Situação</button></th>
+<th class="cab cab2"><button type="button" class="ord">Diárias</button></th>
+<th class="cab cab2"><button type="button" class="ord">Custo da internação (R$)</button></th>
+<th class="cab cab2"><button type="button" class="ord">Repasse do convênio (R$)</button></th>
+<th class="cab cab2"><button type="button" class="ord">Ocupação do leito (%)</button></th>
+<th class="cab cab2"><button type="button" class="ord">Índice de gravidade</button></th>
+<th class="cab cab2"><button type="button" class="ord">Medicação total (mg)</button></th>
+<th class="cab cab2"><button type="button" class="ord">Médico responsável</button></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><a href="#IN-32439">IN-32439</a></th>
+<td>S. M. Duarte</td>
+<td>Maternidade</td>
+<td>24/10/2026</td>
+<td><span class="selo ok">Alta concedida</span></td>
+<td class="num">1899</td>
+<td class="num">R$ 3730,61</td>
+<td class="num">R$ 2637,23</td>
+<td class="num">25,0%</td>
+<td class="num">,34</td>
+<td class="num">3200,4</td>
+<td>Dra. Sofia Brandão</td>
+</tr>
+<tr>
+<th><a href="#IN-94546">IN-94546</a></th>
+<td>J. P. Almeida</td>
+<td>Maternidade</td>
+<td>22/10/2026</td>
+<td><span class="selo aten">Em observação</span></td>
+<td class="num">1833</td>
+<td class="num">R$ 3293,24</td>
+<td class="num">R$ 2742,37</td>
+<td class="num">93,5%</td>
+<td class="num">,65</td>
+<td class="num">216,8</td>
+<td>Dr. Otávio Lemos</td>
+</tr>
+<tr>
+<th><a href="#IN-98927">IN-98927</a></th>
+<td>J. P. Almeida</td>
+<td>Ortopedia</td>
+<td>10/08/2026</td>
+<td><span class="selo crit">Estado crítico</span></td>
+<td class="num">1178</td>
+<td class="num">R$ 70845,09</td>
+<td class="num">R$ 37311,52</td>
+<td class="num">94,2%</td>
+<td class="num">,85</td>
+<td class="num">4443,0</td>
+<td>Dra. Helena Rocha</td>
+</tr>
+<tr>
+<th><a href="#IN-96884">IN-96884</a></th>
+<td>M. A. Souza</td>
+<td>Ortopedia</td>
+<td>14/07/2026</td>
+<td><span class="selo ok">Alta concedida</span></td>
+<td class="num">1894</td>
+<td class="num">R$ 80033,31</td>
+<td class="num">R$ 58678,77</td>
+<td class="num">13,9%</td>
+<td class="num">,81</td>
+<td class="num">1574,9</td>
+<td>Dr. Otávio Lemos</td>
+</tr>
+<tr>
+<th><a href="#IN-85882">IN-85882</a></th>
+<td>L. F. Teixeira</td>
+<td>Maternidade</td>
+<td>06/07/2026</td>
+<td><span class="selo and">Internado</span></td>
+<td class="num">1589</td>
+<td class="num">R$ 42720,61</td>
+<td class="num">R$ 32878,70</td>
+<td class="num">86,3%</td>
+<td class="num">,60</td>
+<td class="num">3650,7</td>
+<td>Dra. Sofia Brandão</td>
+</tr>
+<tr>
+<th><a href="#IN-93556">IN-93556</a></th>
+<td>S. M. Duarte</td>
+<td>Ortopedia</td>
+<td>18/05/2026</td>
+<td><span class="selo and">Internado</span></td>
+<td class="num">409</td>
+<td class="num">R$ 68595,36</td>
+<td class="num">R$ 37500,46</td>
+<td class="num">26,7%</td>
+<td class="num">,75</td>
+<td class="num">4437,3</td>
+<td>Dra. Helena Rocha</td>
+</tr>
+<tr>
+<th><a href="#IN-42409">IN-42409</a></th>
+<td>H. B. Moreira</td>
+<td>Pediatria</td>
+<td>22/03/2026</td>
+<td><span class="selo crit">Estado crítico</span></td>
+<td class="num">290</td>
+<td class="num">R$ 61952,71</td>
+<td class="num">R$ 45162,00</td>
+<td class="num">53,2%</td>
+<td class="num">,40</td>
+<td class="num">521,0</td>
+<td>Dra. Renata Dias</td>
+</tr>
+<tr>
+<th><a href="#IN-38526">IN-38526</a></th>
+<td>S. M. Duarte</td>
+<td>Ortopedia</td>
+<td>11/02/2026</td>
+<td><span class="selo crit">Estado crítico</span></td>
+<td class="num">2093</td>
+<td class="num">R$ 33044,51</td>
+<td class="num">R$ 25118,88</td>
+<td class="num">34,4%</td>
+<td class="num">,64</td>
+<td class="num">1585,9</td>
+<td>Dra. Sofia Brandão</td>
+</tr>
+<tr>
+<th><a href="#IN-95360">IN-95360</a></th>
+<td>T. R. Pires</td>
+<td>Maternidade</td>
+<td>22/01/2026</td>
+<td><span class="selo aten">Em observação</span></td>
+<td class="num">1276</td>
+<td class="num">R$ 26247,70</td>
+<td class="num">R$ 19194,55</td>
+<td class="num">45,3%</td>
+<td class="num">,28</td>
+<td class="num">4103,8</td>
+<td>Dr. Otávio Lemos</td>
+</tr>
+<tr>
+<th><a href="#IN-17431">IN-17431</a></th>
+<td>J. P. Almeida</td>
+<td>Pediatria</td>
+<td>17/01/2026</td>
+<td><span class="selo ok">Alta concedida</span></td>
+<td class="num">1456</td>
+<td class="num">R$ 25435,54</td>
+<td class="num">R$ 18785,23</td>
+<td class="num">6,5%</td>
+<td class="num">,24</td>
+<td class="num">3134,7</td>
+<td>Dra. Sofia Brandão</td>
+</tr>
+<tr>
+<th><a href="#IN-20225">IN-20225</a></th>
+<td>M. A. Souza</td>
+<td>Ortopedia</td>
+<td>15/01/2026</td>
+<td><span class="selo crit">Estado crítico</span></td>
+<td class="num">1316</td>
+<td class="num">R$ 51792,17</td>
+<td class="num">R$ 31891,57</td>
+<td class="num">54,8%</td>
+<td class="num">,89</td>
+<td class="num">1029,0</td>
+<td>Dr. Otávio Lemos</td>
+</tr>
+<tr>
+<th><a href="#IN-73639">IN-73639</a></th>
+<td>M. A. Souza</td>
+<td>Clínica médica</td>
+<td>15/01/2026</td>
+<td><span class="selo ok">Alta concedida</span></td>
+<td class="num">1464</td>
+<td class="num">R$ 49255,53</td>
+<td class="num">R$ 31854,45</td>
+<td class="num">32,9%</td>
+<td class="num">,24</td>
+<td class="num">1359,8</td>
+<td>Dra. Helena Rocha</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<th>Totais</th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td class="num">16697</td>
+<td class="num">R$ 516946,38</td>
+<td class="num">R$ 343755,73</td>
+<td class="num">47,2%</td>
+<td class="num">,56</td>
+<td class="num">29257,3</td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="pag">
+<p>Exibindo 1 a 12 de 4356 registros</p>
+<nav aria-label="Paginação da tabela">
+<ul>
+<li><button type="button" aria-label="Página anterior">&lsaquo;</button></li>
+<li><button type="button" aria-current="page" aria-label="Página 1">1</button></li>
+<li><button type="button" aria-label="Página 2">2</button></li>
+<li><button type="button" aria-label="Página 3">3</button></li>
+<li><button type="button" aria-label="Página 4">4</button></li>
+<li><button type="button" aria-label="Página 5">5</button></li>
+<li><button type="button" aria-label="Próxima página">&rsaquo;</button></li>
+</ul>
+</nav>
+<div class="por-pagina"><label for="pp">Itens por página</label><select id="pp"><option>10</option><option selected>12</option><option>25</option><option>50</option><option>100</option></select></div>
+</div>
+<p class="nota">Para baixar os dados filtrados, <a href="#exportar-csv">clique aqui</a>.</p>
+</section>
+<section class="bloco" aria-labelledby="tit-grafico">
+<h2 id="tit-grafico">Receita por ala</h2>
+<figure class="grafico" style="margin:0">
+<svg viewBox="0 0 640 270" width="640" height="270" role="img" aria-labelledby="graf-tit graf-desc">
+<title id="graf-tit">Receita por ala</title>
+<desc id="graf-desc">Receita acumulada no período por ala: Ortopedia R$ 304.310,44; Pediatria R$ 87.388,25; Maternidade R$ 75.992,16; Clínica médica R$ 49.255,53; UTI adulto R$ 0,00.</desc>
+<line class="eixo" x1="90" x2="620" y1="220.0" y2="220.0"/>
+<text class="rot" x="82" y="224.0" text-anchor="end">0</text>
+<line class="eixo" x1="90" x2="620" y1="170.0" y2="170.0"/>
+<text class="rot" x="82" y="174.0" text-anchor="end">100000</text>
+<line class="eixo" x1="90" x2="620" y1="120.0" y2="120.0"/>
+<text class="rot" x="82" y="124.0" text-anchor="end">200000</text>
+<line class="eixo" x1="90" x2="620" y1="70.0" y2="70.0"/>
+<text class="rot" x="82" y="74.0" text-anchor="end">300000</text>
+<line class="eixo" x1="90" x2="620" y1="20.0" y2="20.0"/>
+<text class="rot" x="82" y="24.0" text-anchor="end">400000</text>
+<rect class="barra" x="111.2" y="220.0" width="63.6" height="0.0"/>
+<text class="rot" x="143.0" y="238" text-anchor="middle">UTI adulto</text>
+<rect class="barra" x="217.2" y="195.4" width="63.6" height="24.6"/>
+<text class="rot" x="249.0" y="238" text-anchor="middle">Clínica médica</text>
+<rect class="barra" x="323.2" y="176.3" width="63.6" height="43.7"/>
+<text class="rot" x="355.0" y="238" text-anchor="middle">Pediatria</text>
+<rect class="barra" x="429.2" y="182.0" width="63.6" height="38.0"/>
+<text class="rot" x="461.0" y="238" text-anchor="middle">Maternidade</text>
+<rect class="barra" x="535.2" y="67.8" width="63.6" height="152.2"/>
+<text class="rot" x="567.0" y="238" text-anchor="middle">Ortopedia</text>
+</svg>
+
+<figcaption>Receita acumulada no período, em reais, agrupada por ala.</figcaption>
+</figure>
+<div class="acoes"><button type="button" class="btn sec" aria-expanded="false" aria-controls="painel-legenda">Como ler este gráfico</button></div>
+<div id="painel-legenda" class="avancado" hidden>
+<p>Cada barra representa a soma do valor dos registros de uma ala. A escala vertical começa em zero.</p>
+</div>
+</section>
+<div class="duas">
+<section class="bloco" aria-labelledby="tit-resumo">
+<h2 id="tit-resumo">Resumo trimestral</h2>
+<div class="rolagem-peq" role="region" aria-label="Tabela do resumo trimestral" tabindex="0">
+<table class="resumo">
+<caption class="so">Resumo trimestral de diárias, custo e ocupação</caption>
+<thead>
+<tr>
+<th scope="col">Indicador</th>
+<th scope="col">T1</th>
+<th scope="col">T2</th>
+<th scope="col">T3</th>
+<th scope="col">T4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Diárias</th>
+<td class="num">4.253</td>
+<td class="num">1.423</td>
+<td class="num">5.018</td>
+<td class="num">9.199</td>
+</tr>
+<tr>
+<th scope="row">Custo</th>
+<td class="num">R$ 567.605,56</td>
+<td class="num">R$ 121.635,88</td>
+<td class="num">R$ 143.763,06</td>
+<td class="num">R$ 277.024,76</td>
+</tr>
+<tr>
+<th scope="row">Ocupação</th>
+<td class="num">42,2%</td>
+<td class="num">32,6%</td>
+<td class="num">24,1%</td>
+<td class="num">52,5%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="bloco" aria-labelledby="tit-rank">
+<h2 id="tit-rank">Ranking</h2>
+<div class="rolagem-peq" role="region" aria-label="Ranking de receita por ala" tabindex="0">
+<table class="rank">
+<caption>Receita por ala, em ordem decrescente</caption>
+<thead>
+<tr>
+<th scope="col">Posição</th>
+<th scope="col">Ala</th>
+<th scope="col">Receita</th>
+<th scope="col">Participação</th>
+</tr>
+</thead>
+<tbody>
+<tr><td class="num">1</td><td>Ortopedia</td><td class="num">R$ 304.310,44</td><td class="num">58,9%</td></tr>
+<tr><td class="num">2</td><td>Pediatria</td><td class="num">R$ 87.388,25</td><td class="num">16,9%</td></tr>
+<tr><td class="num">3</td><td>Maternidade</td><td class="num">R$ 75.992,16</td><td class="num">14,7%</td></tr>
+<tr><td class="num">4</td><td>Clínica médica</td><td class="num">R$ 49.255,53</td><td class="num">9,5%</td></tr>
+<tr><td class="num">5</td><td>UTI adulto</td><td class="num">R$ 0,00</td><td class="num">0,0%</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<section class="bloco" aria-labelledby="tit-estados" hidden>
+<h2 id="tit-estados">Estados de exibição</h2>
+<div class="estados">
+<div class="estado" role="status">
+<h3>Carregando</h3>
+<div class="esq"></div>
+<div class="esq l"></div>
+<div class="esq m"></div>
+<p>Carregando registros do período...</p>
+</div>
+<div class="estado">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAiIGhlaWdodD0iMTEwIiB2aWV3Qm94PSIwIDAgMTYwIDExMCI+PHJlY3QgeD0iMTAiIHk9IjIwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjgwIiByeD0iOCIgZmlsbD0iI2U4ZWRmNCIvPjxyZWN0IHg9IjI2IiB5PSI0MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSIjYzVjZWRiIi8+PHJlY3QgeD0iMjYiIHk9IjU4IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSIjYzVjZWRiIi8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMzAiIHI9IjE4IiBmaWxsPSIjOWRiNmVlIi8+PC9zdmc+" width="160" height="110" alt="">
+<h3>Nenhum resultado</h3>
+<p>Nenhum registro corresponde aos filtros aplicados.</p>
+<button type="button" class="btn sec">Limpar filtros</button>
+</div>
+<div class="estado erro" role="alert">
+<h3>Falha ao carregar</h3>
+<p>Não foi possível carregar os dados. A conexão com o servidor foi interrompida.</p>
+<button type="button" class="btn">Tentar novamente</button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<footer class="rodape">
+<span>&copy; 2026 Hospital Santa Aurora. Todos os direitos reservados.</span>
+<nav>
+<ul>
+<li><a href="#privacidade">Política de privacidade</a></li>
+<li><a href="#termos">Termos de uso</a></li>
+<li><a href="#ajuda">Central de ajuda</a></li>
+</ul>
+</nav>
+</footer>
+<script>
+document.querySelectorAll('button[aria-controls]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var p = document.getElementById(b.getAttribute('aria-controls'));
+    if (!p) return;
+    var aberto = b.getAttribute('aria-expanded') === 'true';
+    b.setAttribute('aria-expanded', String(!aberto));
+    p.hidden = aberto;
+  });
+});
+</script>
+</body>
+</html>

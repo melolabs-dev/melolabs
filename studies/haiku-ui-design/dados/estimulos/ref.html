@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar</title>
+  <style>
+  :root { --texto:#1f2937; --acento:#1d4ed8; }
+  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }
+  .card-a { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }
+  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }
+  .campo-a { margin-bottom:16px; }
+  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }
+  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }
+  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }
+  .mostrar-a { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }
+  .entrar-a { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }
+  .links-a { margin-top:16px; text-align:center; }
+  a { color:var(--acento); text-decoration:underline; }
+  .erro-a { color:#b91c1c; margin:0 0 16px; }
+  </style>
+</head>
+<body>
+  <main class="card-a">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E" width="48" height="48" alt="Melo Labs">
+    <h1>Entrar</h1>
+    <p class="erro-a" role="alert" hidden>E-mail ou senha incorretos.</p>
+    <form action="/login" method="post">
+    <div class="campo-a"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="username" placeholder="voce@exemplo.com" required></div>
+    <div class="campo-a"><label for="senha">Senha</label><input id="senha" name="senha" type="password" autocomplete="current-password" required><button type="button" class="mostrar-a" aria-label="Mostrar senha">Mostrar</button></div>
+    <button type="submit" class="entrar-a">Entrar</button>
+    </form>
+    <p class="links-a"><a href="/recuperar">Esqueci minha senha</a></p>
+  </main>
+</body>
+</html>

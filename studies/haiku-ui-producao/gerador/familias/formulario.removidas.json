@@ -1,0 +1,6 @@
+[
+ {"id":"FC08","motivo":"Conflita com FC09/FC10 (a tela marca obrigatórios com asterisco + legenda); as duas convenções não podem coexistir sem contradição."},
+ {"id":"FC12","motivo":"Sobreposta a FC11 e a heurística de 'instrução essencial só no placeholder' é ambígua para verificação automática."},
+ {"id":"FC23","motivo":"Decisão de produto (nome único vs. dividido) depende do serviço; checagem ambígua e interage com FC22/FC24."},
+ {"id":"AM17","motivo":"Redundante com FC13 (ordem DOM x visual); duas regras medindo o mesmo defeito não são independentes."}
+]

@@ -1,0 +1,389 @@
+[
+ {
+  "id": "T2-01",
+  "defeitos": [
+   "D15",
+   "D10",
+   "D21"
+  ],
+  "chave": [
+   "L15",
+   "L17",
+   "L25"
+  ],
+  "injetadas": [
+   "L15",
+   "L17",
+   "L25"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-a { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-a { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-a { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-a { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-a { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-a { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-a\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\">\n    <h1>Entrar</h1>\n    <h1>Bem-vindo</h1>\n    <p class=\"erro-a\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-a\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-a\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-a\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-a\">Entrar</button>\n    </form>\n    \n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-02",
+  "defeitos": [
+   "D23",
+   "D02",
+   "D21"
+  ],
+  "chave": [
+   "L07",
+   "L08",
+   "L09",
+   "L25"
+  ],
+  "injetadas": [
+   "L07",
+   "L08",
+   "L25"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#93c5fd; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-a { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-a { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-a { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-a { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-a { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-a { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-a\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\">\n    <h1>Entrar</h1>\n    <p class=\"erro-a\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <div>\n    <div class=\"campo-a\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-a\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-a\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"button\" class=\"entrar-a\">Entrar</button>\n    </div>\n    <p class=\"links-a\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-03",
+  "defeitos": [
+   "D23",
+   "D05",
+   "D01"
+  ],
+  "chave": [
+   "L01",
+   "L02",
+   "L07",
+   "L11"
+  ],
+  "injetadas": [
+   "L01",
+   "L02",
+   "L07",
+   "L11"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-b { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-b { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-b { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-b { width:100%; padding:0px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px; height:18px; cursor:pointer;  }\n  .links-b { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-b { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-b\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-b\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <div>\n    <div class=\"campo-b\"><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-b\"><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-b\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"button\" class=\"entrar-b\">Entrar</button>\n    </div>\n    <p class=\"links-b\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-04",
+  "defeitos": [
+   "D17",
+   "D15",
+   "D14"
+  ],
+  "chave": [
+   "L15",
+   "L22",
+   "L23"
+  ],
+  "injetadas": [
+   "L15",
+   "L22",
+   "L23"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-a { background:#ffffff; width:480px; max-width:480px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-a { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-a { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-a { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-a { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-a { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-a\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <h1>Bem-vindo</h1>\n    <p class=\"erro-a\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-a\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-a\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-a\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-a\">Entrar</button>\n    </form>\n    <p class=\"links-a\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-05",
+  "defeitos": [
+   "D23",
+   "D04",
+   "D03"
+  ],
+  "chave": [
+   "L07",
+   "L09",
+   "L10"
+  ],
+  "injetadas": [
+   "L07",
+   "L09",
+   "L10"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-b { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-b { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#9ca3af; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #e5e7eb; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-b { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-b { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-b { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-b { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-b\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-b\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <div>\n    <div class=\"campo-b\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-b\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-b\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"button\" class=\"entrar-b\">Entrar</button>\n    </div>\n    <p class=\"links-b\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-06",
+  "defeitos": [
+   "D19",
+   "D17",
+   "D21"
+  ],
+  "chave": [
+   "L22",
+   "L25",
+   "L29"
+  ],
+  "injetadas": [
+   "L22",
+   "L25",
+   "L29"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-b { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-b { margin-bottom:13px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-b { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-b { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-b { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-b { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-b\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\">\n    <h1>Entrar</h1>\n    <p class=\"erro-b\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-b\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-b\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-b\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-b\">Entrar</button>\n    </form>\n    <p class=\"links-b\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-07",
+  "defeitos": [
+   "D11",
+   "D21",
+   "D17"
+  ],
+  "chave": [
+   "L18",
+   "L22",
+   "L25"
+  ],
+  "injetadas": [
+   "L18",
+   "L22",
+   "L25"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-b { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-b { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-b { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-b { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-b { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-b { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-b\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\">\n    <h1>Entrar</h1>\n    <p class=\"erro-b\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-b\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-b\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required onpaste=\"return false\"><button type=\"button\" class=\"mostrar-b\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-b\">Entrar</button>\n    </form>\n    <p class=\"links-b\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-08",
+  "defeitos": [
+   "D19",
+   "D10",
+   "D14"
+  ],
+  "chave": [
+   "L17",
+   "L23",
+   "L29"
+  ],
+  "injetadas": [
+   "L17",
+   "L23",
+   "L29"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-a { background:#ffffff; width:480px; max-width:480px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-a { margin-bottom:13px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-a { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-a { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-a { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-a { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-a\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-a\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-a\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-a\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-a\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-a\">Entrar</button>\n    </form>\n    \n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-09",
+  "defeitos": [
+   "D16",
+   "D04",
+   "D22"
+  ],
+  "chave": [
+   "L03",
+   "L06",
+   "L10",
+   "L26"
+  ],
+  "injetadas": [
+   "L03",
+   "L10",
+   "L26"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-c { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-c { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #e5e7eb; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-c { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-c { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-c { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-c { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-c\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-c\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-c\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"text\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-c\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-c\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-c\">Enviar</button>\n    </form>\n    <p class=\"links-c\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-10",
+  "defeitos": [
+   "D13",
+   "D16",
+   "D14"
+  ],
+  "chave": [
+   "L05",
+   "L23",
+   "L26"
+  ],
+  "injetadas": [
+   "L05",
+   "L23",
+   "L26"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-a { background:#ffffff; width:480px; max-width:480px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-a { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-a { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-a { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-a { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-a { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-a\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-a\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-a\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-a\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"off\" required><button type=\"button\" class=\"mostrar-a\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-a\">Enviar</button>\n    </form>\n    <p class=\"links-a\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-11",
+  "defeitos": [
+   "D08",
+   "D19",
+   "D16"
+  ],
+  "chave": [
+   "L14",
+   "L26",
+   "L29"
+  ],
+  "injetadas": [
+   "L14",
+   "L26",
+   "L29"
+  ],
+  "html": "<!doctype html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-c { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-c { margin-bottom:13px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-c { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-c { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-c { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-c { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-c\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-c\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-c\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-c\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-c\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-c\">Enviar</button>\n    </form>\n    <p class=\"links-c\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-12",
+  "defeitos": [
+   "D15",
+   "D05",
+   "D21"
+  ],
+  "chave": [
+   "L11",
+   "L15",
+   "L25"
+  ],
+  "injetadas": [
+   "L11",
+   "L15",
+   "L25"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-c { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-c { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-c { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-c { width:100%; padding:0px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px; height:18px; cursor:pointer;  }\n  .links-c { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-c { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-c\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\">\n    <h1>Entrar</h1>\n    <h1>Bem-vindo</h1>\n    <p class=\"erro-c\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-c\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-c\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-c\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-c\">Entrar</button>\n    </form>\n    <p class=\"links-c\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-13",
+  "defeitos": [
+   "D17",
+   "D02",
+   "D16"
+  ],
+  "chave": [
+   "L08",
+   "L09",
+   "L22",
+   "L26"
+  ],
+  "injetadas": [
+   "L08",
+   "L22",
+   "L26"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#93c5fd; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-b { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-b { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-b { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-b { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-b { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-b { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-b\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-b\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-b\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-b\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-b\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-b\">Enviar</button>\n    </form>\n    <p class=\"links-b\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-14",
+  "defeitos": [
+   "D01",
+   "D08",
+   "D12"
+  ],
+  "chave": [
+   "L01",
+   "L02",
+   "L04",
+   "L14"
+  ],
+  "injetadas": [
+   "L01",
+   "L02",
+   "L04",
+   "L14"
+  ],
+  "html": "<!doctype html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-a { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-a { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-a { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-a { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-a { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-a { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-a\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-a\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-a\"><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-a\"><input id=\"senha\" name=\"senha\" type=\"text\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-a\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-a\">Entrar</button>\n    </form>\n    <p class=\"links-a\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-15",
+  "defeitos": [
+   "D09",
+   "D21",
+   "D11"
+  ],
+  "chave": [
+   "L16",
+   "L18",
+   "L25"
+  ],
+  "injetadas": [
+   "L16",
+   "L18",
+   "L25"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-b { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-b { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px; outline:none; }\n  \n  .mostrar-b { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-b { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer; outline:none; }\n  .links-b { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-b { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-b\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\">\n    <h1>Entrar</h1>\n    <p class=\"erro-b\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-b\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-b\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required onpaste=\"return false\"><button type=\"button\" class=\"mostrar-b\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-b\">Entrar</button>\n    </form>\n    <p class=\"links-b\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-16",
+  "defeitos": [
+   "D05",
+   "D14",
+   "D20"
+  ],
+  "chave": [
+   "L11",
+   "L23",
+   "L30"
+  ],
+  "injetadas": [
+   "L11",
+   "L23",
+   "L30"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-a { background:#ffffff; width:480px; max-width:480px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-a { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-a { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-a { width:100%; padding:0px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px; height:18px; cursor:pointer;  }\n  .links-a { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-a { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-a\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-a\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-a\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-a\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <div class=\"campo-a\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <button type=\"submit\" class=\"entrar-a\">Entrar</button>\n    </form>\n    <p class=\"links-a\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-17",
+  "defeitos": [
+   "D10",
+   "D02",
+   "D24"
+  ],
+  "chave": [
+   "L08",
+   "L17",
+   "L19"
+  ],
+  "injetadas": [
+   "L08",
+   "L17",
+   "L19"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#93c5fd; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-c { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-c { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-c { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-c { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-c { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-c { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-c\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-c\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-c\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-c\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required></div>\n    <button type=\"submit\" class=\"entrar-c\">Entrar</button>\n    </form>\n    \n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-18",
+  "defeitos": [
+   "D08",
+   "D19",
+   "D16"
+  ],
+  "chave": [
+   "L14",
+   "L26",
+   "L29"
+  ],
+  "injetadas": [
+   "L14",
+   "L26",
+   "L29"
+  ],
+  "html": "<!doctype html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-a { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-a { margin-bottom:13px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px;  }\n  input:focus, button:focus { outline:2px solid var(--acento); outline-offset:2px; }\n  .mostrar-a { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-a { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer;  }\n  .links-a { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-a { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-a\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-a\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-a\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-a\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"current-password\" required><button type=\"button\" class=\"mostrar-a\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-a\">Enviar</button>\n    </form>\n    <p class=\"links-a\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-19",
+  "defeitos": [
+   "D24",
+   "D09",
+   "D13"
+  ],
+  "chave": [
+   "L05",
+   "L16",
+   "L19"
+  ],
+  "injetadas": [
+   "L05",
+   "L16",
+   "L19"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-c { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-c { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:8px; outline:none; }\n  \n  .mostrar-c { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-c { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:8px;  cursor:pointer; outline:none; }\n  .links-c { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-c { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-c\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-c\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-c\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-c\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"off\" required></div>\n    <button type=\"submit\" class=\"entrar-c\">Entrar</button>\n    </form>\n    <p class=\"links-c\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ },
+ {
+  "id": "T2-20",
+  "defeitos": [
+   "D13",
+   "D18",
+   "D09"
+  ],
+  "chave": [
+   "L05",
+   "L16",
+   "L28"
+  ],
+  "injetadas": [
+   "L05",
+   "L16",
+   "L28"
+  ],
+  "html": "<!doctype html>\n<html lang=\"pt-BR\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Entrar</title>\n  <style>\n  :root { --texto:#1f2937; --acento:#1d4ed8; }\n  body { margin:0; font-family: system-ui, sans-serif; font-size:16px; line-height:1.5; color:var(--texto); background:#f3f4f6; display:flex; justify-content:center; padding:32px 16px; }\n  .card-c { background:#ffffff; width:100%; max-width:360px; padding:32px 24px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,.15); }\n  h1 { font-size:28px; margin:0 0 24px; letter-spacing:0; }\n  .campo-c { margin-bottom:16px; }\n  label { display:block; margin-bottom:8px; font-weight:500; color:#1f2937; }\n  input { width:100%; box-sizing:border-box; padding:12px; font-size:16px; border:1px solid #6b7280; border-radius:2px; outline:none; }\n  \n  .mostrar-c { margin-top:8px; background:transparent; border:0; color:var(--acento); font-size:16px; padding:4px 0; }\n  .entrar-c { width:100%; padding:16px 16px; font-size:16px; background:var(--acento); color:#ffffff; border:0; border-radius:24px;  cursor:pointer; outline:none; }\n  .links-c { margin-top:16px; text-align:center; }\n  a { color:var(--acento); text-decoration:underline; }\n  .erro-c { color:#b91c1c; margin:0 0 16px; }\n  </style>\n</head>\n<body>\n  <main class=\"card-c\">\n    <img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' rx='10' fill='%231d4ed8'/%3E%3C/svg%3E\" width=\"48\" height=\"48\" alt=\"Melo Labs\">\n    <h1>Entrar</h1>\n    <p class=\"erro-c\" role=\"alert\" hidden>E-mail ou senha incorretos.</p>\n    <form action=\"/login\" method=\"post\">\n    <div class=\"campo-c\"><label for=\"email\">E-mail</label><input id=\"email\" name=\"email\" type=\"email\" autocomplete=\"username\" placeholder=\"voce@exemplo.com\" required></div>\n    <div class=\"campo-c\"><label for=\"senha\">Senha</label><input id=\"senha\" name=\"senha\" type=\"password\" autocomplete=\"off\" required><button type=\"button\" class=\"mostrar-c\" aria-label=\"Mostrar senha\">Mostrar</button></div>\n    <button type=\"submit\" class=\"entrar-c\">Entrar</button>\n    </form>\n    <p class=\"links-c\"><a href=\"/recuperar\">Esqueci minha senha</a></p>\n  </main>\n</body>\n</html>\n"
+ }
+]

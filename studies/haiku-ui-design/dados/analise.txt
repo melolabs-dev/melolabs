@@ -1,0 +1,73 @@
+=== Médias por modelo, tarefa e condição (pontuação 0 a 1) e custo nominal por tarefa (US$) ===
+T1 haiku  A0: score 0.744 (n itens 12); custo médio/tarefa US$0.0011
+T1 haiku  A1: score 0.988 (n itens 12); custo médio/tarefa US$0.0028
+T1 haiku  A2: score 0.954 (n itens 12); custo médio/tarefa US$0.0066
+T1 haiku  A3: score 0.998 (n itens 12); custo médio/tarefa US$0.0035
+T1 haiku  AC: score 0.804 (n itens 12); custo médio/tarefa US$0.0049
+T1 sonnet A0: score 0.774 (n itens 12); custo médio/tarefa US$0.0233
+T1 sonnet A1: score 0.987 (n itens 12); custo médio/tarefa US$0.0382
+T1 sonnet A2: score 0.979 (n itens 12); custo médio/tarefa US$0.0779
+T1 sonnet A3: score 1.000 (n itens 12); custo médio/tarefa US$0.0469
+T2 haiku  A0: score 0.754 (n itens 20); custo médio/tarefa US$0.0035
+T2 haiku  A1: score 0.894 (n itens 20); custo médio/tarefa US$0.0032
+T2 haiku  A2: score 0.967 (n itens 20); custo médio/tarefa US$0.0016
+T2 haiku  A3: score 0.926 (n itens 20); custo médio/tarefa US$0.0023
+T2 sonnet A0: score 0.935 (n itens 20); custo médio/tarefa US$0.0348
+T2 sonnet A1: score 0.810 (n itens 20); custo médio/tarefa US$0.0250
+T2 sonnet A2: score 0.956 (n itens 20); custo médio/tarefa US$0.0236
+T2 sonnet A3: score 0.910 (n itens 20); custo médio/tarefa US$0.0150
+T3 haiku  A0: score 0.933 (n itens 60); custo médio/tarefa US$0.0004
+T3 haiku  A1: score 0.939 (n itens 60); custo médio/tarefa US$0.0006
+T3 haiku  A2: score 0.899 (n itens 60); custo médio/tarefa US$0.0005
+T3 haiku  A3: score 0.905 (n itens 60); custo médio/tarefa US$0.0006
+T3 sonnet A0: score 0.938 (n itens 60); custo médio/tarefa US$0.0051
+T3 sonnet A1: score 0.924 (n itens 60); custo médio/tarefa US$0.0090
+T3 sonnet A2: score 0.895 (n itens 60); custo médio/tarefa US$0.0060
+T3 sonnet A3: score 0.897 (n itens 60); custo médio/tarefa US$0.0095
+
+=== Hipóteses confirmatórias (p unilateral de Wilcoxon, depois Holm) ===
+  H1 T3 recall Haiku A2>A0 (pares com diferença): n=44 média 0.967 vs 0.909; diferença +0.058 IC95 [+0.005,+0.121]; p=0.0443
+  H2 T3 alarme falso (ruído+idêntico) Haiku A0>A2 [menor é melhor]: n=16 média 0.000 vs 0.000; diferença +0.000 IC95 [+0.000,+0.000]; p=1.0000
+  H3 T2 Haiku A3>A0: n=20 média 0.926 vs 0.754; diferença +0.172 IC95 [+0.083,+0.267]; p=0.0011
+  H3b T2 Haiku A3 menos defeitos novos que A0: n=20 média 0.533 vs 0.183; diferença +0.350 IC95 [+0.083,+0.633]; p=0.0224
+  H4 T1 Haiku A3>A0: n=12 média 0.998 vs 0.744; diferença +0.255 IC95 [+0.239,+0.274]; p=0.0002
+  H5 T1 ganho(A3-A0) Haiku > Sonnet: n=12 média 0.255 vs 0.226; diferença +0.029 IC95 [+0.015,+0.042]; p=0.0020
+  H5 T2 ganho(A3-A0) Haiku > Sonnet: n=20 média 0.172 vs -0.025; diferença +0.197 IC95 [+0.089,+0.317]; p=0.0011
+  H5 T3 ganho(A3-A0) Haiku > Sonnet: n=60 média -0.028 vs -0.041; diferença +0.013 IC95 [-0.024,+0.050]; p=0.1055
+  H6 T1 Haiku A2>AC: n=12 média 0.954 vs 0.804; diferença +0.150 IC95 [+0.133,+0.166]; p=0.0002
+  H7a T1 Haiku A1>A0: n=12 média 0.988 vs 0.744; diferença +0.244 IC95 [+0.225,+0.267]; p=0.0002
+  H7b T2 Haiku A1>A0: n=20 média 0.894 vs 0.754; diferença +0.140 IC95 [+0.051,+0.225]; p=0.0034
+  H7c T3 Haiku A2>A1: n=60 média 0.899 vs 0.939; diferença -0.039 IC95 [-0.074,-0.005]; p=0.9880
+
+Holm (alfa 0,05):
+  REJEITA H0 | p=0.0002 limiar=0.0042 | H4 T1 Haiku A3>A0
+  REJEITA H0 | p=0.0002 limiar=0.0045 | H6 T1 Haiku A2>AC
+  REJEITA H0 | p=0.0002 limiar=0.0050 | H7a T1 Haiku A1>A0
+  REJEITA H0 | p=0.0011 limiar=0.0056 | H3 T2 Haiku A3>A0
+  REJEITA H0 | p=0.0011 limiar=0.0063 | H5 T2 ganho(A3-A0) Haiku > Sonnet
+  REJEITA H0 | p=0.0020 limiar=0.0071 | H5 T1 ganho(A3-A0) Haiku > Sonnet
+  REJEITA H0 | p=0.0034 limiar=0.0083 | H7b T2 Haiku A1>A0
+  não rejeita | p=0.0224 limiar=0.0100 | H3b T2 Haiku A3 menos defeitos novos que A0
+  não rejeita | p=0.0443 limiar=0.0125 | H1 T3 recall Haiku A2>A0 (pares com diferença)
+  não rejeita | p=0.1055 limiar=0.0167 | H5 T3 ganho(A3-A0) Haiku > Sonnet
+  não rejeita | p=0.9880 limiar=0.0250 | H7c T3 Haiku A2>A1
+  não rejeita | p=1.0000 limiar=0.0500 | H2 T3 alarme falso (ruído+idêntico) Haiku A0>A2 [menor é melhor]
+
+=== H9: Haiku A3 vs Sonnet A0 (acurácia combinada = média de T1, T2, T3; custo por tarefa) ===
+  Haiku A0: acurácia 0.810, custo médio/tarefa US$0.0017 | Sonnet A0: 0.882, US$0.0210
+  Haiku A1: acurácia 0.940, custo médio/tarefa US$0.0022 | Sonnet A1: 0.907, US$0.0241
+  Haiku A2: acurácia 0.940, custo médio/tarefa US$0.0029 | Sonnet A2: 0.943, US$0.0359
+  Haiku A3: acurácia 0.943, custo médio/tarefa US$0.0022 | Sonnet A3: 0.935, US$0.0238
+  Razão de acurácia Haiku A3 / Sonnet A0 = 1.069 (critério >= 0,90); razão de custo = 0.102 (critério <= 0,50)
+  H9 (com Sonnet apenas; Opus fora por custo): SUPORTADA
+
+=== H10 descritiva: T3 por categoria (F1 médio por item) ===
+  css       H0=0.87 H1=0.88 H2=0.79 H3=0.81 S0=0.88 S1=0.86 S2=0.77 S3=0.77
+  conteudo  H0=1.00 H1=1.00 H2=0.96 H3=1.00 S0=1.00 S1=1.00 S2=1.00 S3=1.00
+  fluxo     H0=0.94 H1=0.94 H2=0.94 H3=0.93 S0=0.94 S1=0.94 S2=0.94 S3=0.96
+  composto  H0=0.89 H1=0.89 H2=0.88 H3=0.84 S0=0.88 S1=0.85 S2=0.84 S3=0.84
+  ruido     H0=1.00 H1=1.00 H2=1.00 H3=1.00 S0=1.00 S1=1.00 S2=1.00 S3=1.00
+  identico  H0=1.00 H1=1.00 H2=1.00 H3=1.00 S0=1.00 S1=1.00 S2=1.00 S3=1.00
+
+JSON válido no T3: {'haiku': np.float64(1.0), 'sonnet': np.float64(1.0)}
+Custo nominal total (Haiku+Sonnet) US$ 19.63

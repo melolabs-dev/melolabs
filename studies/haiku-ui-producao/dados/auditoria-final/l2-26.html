@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finalizar compra - Livraria Saber</title>
+<style>
+    :root{--cor-primaria:#a3283d;--cor-texto:#1c2430;--cor-suave:#5b6675;--cor-fundo:#f4f6f9;--cor-card:#ffffff;--cor-borda:#d5dbe3;--cor-erro:#b3261e;--cor-ok:#1b7a3d;--cor-aviso:#8a5a00;--esp-p:8px;--esp-m:12px;--esp-g:20px;--raio:8px;--fonte:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--cor-fundo);color:var(--cor-texto);font:16px/1.5 var(--fonte)}
+    .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .pular{position:absolute;left:-999px;top:0;background:#fff;padding:8px}
+    .pular:focus{left:8px;z-index:10}
+    .topo{background:var(--cor-card);border-bottom:1px solid var(--cor-borda)}
+    .topo-in{max-width:1180px;margin:0 auto;padding:var(--esp-m) var(--esp-g);display:flex;align-items:center;gap:var(--esp-g);flex-wrap:wrap}
+    .marca{font-weight:700;font-size:20px;color:var(--cor-primaria);text-decoration:none}
+    .etapas{display:flex;gap:var(--esp-m);list-style:none;margin:0;padding:0;flex:1;font-size:14px;color:var(--cor-suave)}
+    .etapas li[aria-current]{color:var(--cor-primaria);font-weight:600}
+    .seguro{font-size:13px;color:var(--cor-ok)}
+    .pagina{max-width:1180px;margin:0 auto;padding:var(--esp-g)}
+    h1{font-size:28px;margin:0 0 var(--esp-g)}
+    h2{font-size:21px;margin:var(--esp-g) 0 var(--esp-m)}
+    .sub{font-size:17px;margin:var(--esp-m) 0 var(--esp-p)}
+    .grade{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:var(--esp-g);align-items:start}
+    .card{background:var(--cor-card);border:1px solid var(--cor-borda);border-radius:var(--raio);padding:var(--esp-g);margin-bottom:var(--esp-g)}
+    .bloco{border:1px solid var(--cor-borda);border-radius:var(--raio);padding:var(--esp-m) var(--esp-g) var(--esp-g);margin:0 0 var(--esp-m);min-width:0}
+    .bloco legend,.grupo-titulo{font-weight:600;padding:0 var(--esp-p)}
+    .grupo-titulo{padding:0 0 var(--esp-p)}
+    .linha{display:flex;gap:var(--esp-m);flex-wrap:wrap}
+    .campo{display:flex;flex-direction:column;gap:4px;flex:1 1 180px;margin-top:var(--esp-m)}
+    .campo-largo{flex:3 1 280px}
+    .campo-curto{flex:0 1 140px}
+    .campo-opc{justify-content:flex-end}
+    .campo[hidden]{display:none}
+    .campo label,.rotulo{font-size:14px;font-weight:600}
+    .campo small{color:var(--cor-suave);font-size:13px}
+    input[type=text],input[type=email],input[type=tel],input[type=number],select{font:inherit;padding:10px 12px;border:1px solid #8793a3;border-radius:var(--raio);background:#fff;min-width:0;width:100%}
+    input:focus,select:focus,button:focus,a:focus,summary:focus{outline:3px solid #1a73e8;outline-offset:2px}
+    .com-botao{display:flex;gap:var(--esp-p)}
+    .partes,.otp{display:flex;gap:var(--esp-p)}
+    .partes input{text-align:center}
+    .otp input{width:48px;text-align:center;font-size:20px;padding:10px 0}
+    .marca-check{display:flex;gap:var(--esp-p);align-items:center;font-weight:400!important}
+    .opcao{display:flex;gap:var(--esp-m);align-items:center;padding:var(--esp-m);border:1px solid var(--cor-borda);border-radius:var(--raio);margin-top:var(--esp-p)}
+    .opcao span.preco{margin-left:auto;font-weight:600}
+    .btn{display:inline-block;font:inherit;font-weight:600;padding:10px 16px;border-radius:var(--raio);border:1px solid var(--cor-primaria);background:var(--cor-primaria);color:#fff;cursor:pointer;text-decoration:none;text-align:center}
+    .btn-sec{background:#fff;color:var(--cor-primaria)}
+    .btn-link{background:none;border-color:transparent;color:var(--cor-primaria);padding:4px 8px;text-decoration:underline}
+    .btn-perigo{background:var(--cor-erro);border-color:var(--cor-erro)}
+    .btn-pagar{width:100%;font-size:18px;padding:14px 16px;margin-top:var(--esp-m)}
+    details{border:1px dashed var(--cor-borda);border-radius:var(--raio);padding:var(--esp-p) var(--esp-m);margin-top:var(--esp-m)}
+    summary{cursor:pointer;color:var(--cor-primaria);font-weight:600}
+    .alerta{border-radius:var(--raio);padding:var(--esp-m) var(--esp-g);margin-bottom:var(--esp-m);border:1px solid}
+    .alerta.erro{background:#fdecea;border-color:var(--cor-erro);color:#601410}
+    .alerta.ok{background:#e8f5ec;border-color:var(--cor-ok);color:#134d27}
+    .alerta p{margin:4px 0 var(--esp-p)}
+    .carregando{color:var(--cor-suave);font-style:italic;margin:0}
+    .erro-campo{color:var(--cor-erro);font-size:13px;margin:4px 0 0}
+    table{width:100%;border-collapse:collapse;font-size:15px}
+    caption{text-align:left;font-weight:600;padding-bottom:var(--esp-p)}
+    th,td{padding:14px 12px;border-bottom:1px solid var(--cor-borda);text-align:left;height:52px}
+    thead th{background:#eef1f5}
+    .col-num{text-align:right;white-space:nowrap}
+    tfoot th,tfoot td{font-weight:700}
+    dl.resumo{margin:0}
+    dl.resumo div{display:flex;justify-content:space-between;padding:6px 0}
+    dl.resumo dt{color:var(--cor-suave)}
+    dl.resumo dd{margin:0;font-weight:600}
+    dl.resumo .total{border-top:1px solid var(--cor-borda);margin-top:var(--esp-p);padding-top:var(--esp-m);font-size:19px}
+    dl.revisao{margin:0}
+    dl.revisao div{display:grid;grid-template-columns:140px 1fr auto;gap:var(--esp-m);padding:var(--esp-m) 0;border-bottom:1px solid var(--cor-borda)}
+    dl.revisao dt{font-weight:600}
+    dl.revisao dd{margin:0}
+    .linha-tempo{list-style:none;margin:var(--esp-m) 0 0;padding:0;display:grid;gap:var(--esp-p)}
+    .selo{display:inline-block;background:#e8f5ec;color:var(--cor-ok);border-radius:99px;padding:2px 10px;font-size:13px;font-weight:600}
+    .veu{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:50}
+    .veu[hidden]{display:none}
+    .caixa{background:#fff;border-radius:var(--raio);padding:var(--esp-g);max-width:440px;width:92%}
+    .caixa h2{margin-top:0}
+    .acoes{display:flex;gap:var(--esp-m);justify-content:flex-end}
+    .rodape{max-width:1180px;margin:0 auto;padding:var(--esp-g);color:var(--cor-suave);font-size:14px}
+    .rodape ul{display:flex;gap:var(--esp-g);list-style:none;padding:0}
+    .lateral{position:sticky;top:var(--esp-m)}
+    @media (orientation:landscape){.lateral{max-height:calc(100vh - 24px);overflow:auto}}
+    @media (max-width:900px){.grade{grid-template-columns:1fr}.lateral{position:static;max-height:none}dl.revisao div{grid-template-columns:1fr}}
+    
+    
+</style>
+</head>
+<body>
+<a class="pular" href="#principal">Ir para o conteúdo principal</a>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="#">Livraria Saber</a>
+    <nav aria-label="Etapas da compra">
+      <ol class="etapas">
+        <li>Carrinho</li>
+        <li aria-current="step">Entrega e pagamento</li>
+        <li>Confirmação</li>
+      </ol>
+    </nav>
+    <span class="seguro">Compra 100% protegida</span>
+  </div>
+</header>
+<main id="principal" class="pagina">
+  <h1>Finalizar compra</h1>
+  <div class="grade">
+    <div class="coluna">
+      <form id="form-checkout" action="#" method="post">
+        <section class="card" id="entrega" aria-labelledby="t-entrega">
+          <h2 id="t-entrega">1. Entrega</h2>
+          <fieldset class="bloco">
+            <legend>Contato</legend>
+            <div class="linha">
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" name="email" autocomplete="email" value="isabela.pereira@exemplo.com.br" required>
+        </div>
+        <div class="campo">
+          <label for="tel">Telefone com DDD</label>
+          <input id="tel" type="tel" name="telefone" autocomplete="tel" value="(50) 92779-6309" required>
+        </div>
+            </div>
+          </fieldset>
+          <fieldset class="bloco">
+            <legend>Endereço de entrega</legend>
+            <div class="linha">
+        <div class="campo">
+          <label for="ent-nome">Nome de quem recebe</label>
+          <input id="ent-nome" type="text" name="ent_nome" autocomplete="name" value="Isabela Pereira" required>
+        </div>
+            </div>
+        <div class="linha">
+          <div class="campo campo-cep">
+            <label for="ent-cep">CEP</label>
+            <div class="com-botao">
+              <input id="ent-cep" type="text" inputmode="numeric" autocomplete="postal-code" name="cep" value="74003-010" required>
+              <button type="button" class="btn btn-sec" onclick="buscarCep()">Buscar CEP</button>
+            </div>
+            <small id="cep-status" role="status">Digite o CEP para preencher o endereço.</small>
+          </div>
+          <div class="campo campo-largo">
+            <label for="ent-rua">Logradouro</label>
+            <input id="ent-rua" type="text" name="rua" autocomplete="address-line1" value="Rua das Acacias, 241" required>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="ent-cidade">Cidade</label>
+            <input id="ent-cidade" type="text" name="ent_cidade" autocomplete="address-level2" value="Goiania" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="ent-uf">Estado</label>
+            <select id="ent-uf" name="ent_uf" autocomplete="address-level1">
+            <option value="SP">SP</option>
+            <option value="RJ">RJ</option>
+            <option value="MG">MG</option>
+            <option value="PR">PR</option>
+            <option value="RS">RS</option>
+            <option value="SC">SC</option>
+            <option value="BA">BA</option>
+            <option value="PE">PE</option>
+            <option value="GO" selected>GO</option>
+            <option value="DF">DF</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="ent-pais">País</label>
+            <select id="ent-pais" name="pais">
+              <option value="BR" selected>Brasil</option>
+              <option value="PT">Portugal</option>
+              <option value="AR">Argentina</option>
+            </select>
+          </div>
+        </div>
+            <div class="linha">
+        <div class="campo" id="ent-comp-wrap" hidden>
+          <label for="ent-comp">Complemento</label>
+          <input id="ent-comp" type="text" name="ent_complemento" autocomplete="address-line2">
+        </div>
+        <button type="button" class="btn btn-link" aria-controls="ent-comp-wrap" onclick="mostrarComp(this)">Adicionar complemento</button>
+        <div class="campo">
+          <label for="ent-empresa">Empresa (opcional)</label>
+          <input id="ent-empresa" type="text" name="ent_empresa" autocomplete="organization" value="Pereira Distribuidora Ltda">
+        </div>
+            </div>
+          </fieldset>
+      <div class="campo campo-opc"><label class="marca-check"><input id="cob-igual" type="checkbox" checked onchange="alternarCobranca(this)"> Usar o mesmo endereço para a cobrança</label></div>
+<div id="bloco-cobranca">
+      <fieldset class="bloco">
+        <legend>Endereço de cobrança</legend>
+        <div class="linha">
+          <div class="campo campo-cep">
+            <label for="cob-cep">CEP</label>
+            <div class="com-botao">
+              <input id="cob-cep" type="text" inputmode="numeric" name="cob_cep" value="74003-010" required>
+            </div>
+          </div>
+          <div class="campo campo-largo">
+            <label for="cob-rua">Logradouro</label>
+            <input id="cob-rua" type="text" name="cob_rua" autocomplete="address-line1" value="Rua das Acacias, 241" required>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="cob-cidade">Cidade</label>
+            <input id="cob-cidade" type="text" name="cob_cidade" autocomplete="address-level2" value="Goiania" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="cob-uf">Estado</label>
+            <select id="cob-uf" name="cob_uf" autocomplete="address-level1">
+            <option value="SP">SP</option>
+            <option value="RJ">RJ</option>
+            <option value="MG">MG</option>
+            <option value="PR">PR</option>
+            <option value="RS">RS</option>
+            <option value="SC">SC</option>
+            <option value="BA">BA</option>
+            <option value="PE">PE</option>
+            <option value="GO" selected>GO</option>
+            <option value="DF">DF</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="cob-pais">País</label>
+            <select id="cob-pais" name="cob_pais">
+              <option value="BR" selected>Brasil</option>
+              <option value="PT">Portugal</option>
+              <option value="AR">Argentina</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+      </div>
+          <div class="bloco grupo ">
+        <div class="grupo-titulo">Opções de frete</div>
+          <label class="opcao"><input type="radio" name="frete" value="eco" checked> <span>Econômica <small>(6 a 8 dias úteis)</small></span> <span class="preco">R$ 22,40</span></label>
+          <label class="opcao"><input type="radio" name="frete" value="pad"> <span>Padrão <small>(3 a 5 dias úteis)</small></span> <span class="preco">R$ 30,90</span></label>
+          <label class="opcao"><input type="radio" name="frete" value="exp"> <span>Expressa <small>(1 a 2 dias úteis)</small></span> <span class="preco">R$ 56,40</span></label>
+      </div>
+          
+        </section>
+        <section class="card" id="pagamento" aria-labelledby="t-pag">
+          <h2 id="t-pag">2. Pagamento</h2>
+          <div class="alerta erro" role="alert">
+            <h4 class="sub">Pagamento não autorizado</h4>
+            <p>O banco emissor recusou a tentativa anterior com o cartão final 6225. Confira os dados ou use outro cartão.</p>
+            <button type="button" class="btn btn-sec" onclick="document.getElementById('cc-nome').focus()">Usar outro cartão</button>
+          </div>
+          <div class="bloco grupo ">
+        <div class="grupo-titulo">Forma de pagamento</div>
+          <label class="opcao"><input type="radio" name="metodo" value="cartao" checked onchange="alternarPagamento('cartao')"> <span>Cartão de crédito</span></label>
+          <label class="opcao"><input type="radio" name="metodo" value="pix" onchange="alternarPagamento('pix')"> <span>Pix (aprovação imediata)</span></label>
+          <label class="opcao"><input type="radio" name="metodo" value="boleto" onchange="alternarPagamento('boleto')"> <span>Boleto bancário (vence em 2 dias)</span></label>
+      </div>
+      <fieldset class="bloco" id="cartao">
+        <legend>Dados do cartão</legend>
+        <div class="campo campo-largo">
+          <label class="rotulo" for="cc-num">Número do cartão</label>
+          <input id="cc-num" type="text" inputmode="numeric" autocomplete="cc-number" name="cartao" placeholder="0000 0000 0000 0000" maxlength="19" required>
+        </div>
+        <div class="linha">
+          <div class="campo campo-largo">
+            <label for="cc-nome">Nome impresso no cartão</label>
+            <input id="cc-nome" type="text" autocomplete="cc-name" name="titular"  value="ISABELA PEREIRA" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="cc-exp">Validade (MM/AA)</label>
+            <input id="cc-exp" type="text" inputmode="numeric" autocomplete="cc-exp" name="validade"  placeholder="MM/AA" required>
+          </div>
+          <div class="campo campo-curto">
+            <label for="cc-csc">CVV</label>
+            <input id="cc-csc" type="text" inputmode="numeric" autocomplete="cc-csc" maxlength="4" name="cvv"  aria-describedby="cc-csc-d" required>
+            <small id="cc-csc-d">3 dígitos no verso</small>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="parcelas">Parcelas</label>
+            <select id="parcelas" name="parcelas">
+              <option value="1">1x de R$ 5.223,70 sem juros</option>
+              <option value="2">2x de R$ 2.611,85</option>
+              <option value="3">3x de R$ 1.741,24</option>
+              <option value="4">4x de R$ 1.305,93</option>
+              <option value="5">5x de R$ 1.044,74</option>
+              <option value="6">6x de R$ 870,62</option>
+              <option value="7">7x de R$ 746,25</option>
+              <option value="8">8x de R$ 652,97</option>
+              <option value="9">9x de R$ 580,42</option>
+              <option value="10">10x de R$ 522,37</option>
+            </select>
+          </div>
+          <div class="campo campo-opc">
+            <label class="marca-check"><input type="checkbox" name="salvar_cartao"> Salvar este cartão para as próximas compras</label>
+          </div>
+        </div>
+      </fieldset>
+          <div class="bloco" id="otp-bloco">
+            <h4 class="sub">Confirmação do banco</h4>
+            <p>Enviamos um código de 6 dígitos por SMS para o telefone (50)  ****-6309.</p>
+            <div class="campo">
+          <label class="rotulo" for="otp">Código de verificação</label>
+          <input id="otp" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" name="otp" required>
+        </div>
+            <p><button type="button" class="btn btn-link" onclick="reenviar()">Reenviar código</button> <small>Se o código não chegar em 1 minuto, peça um novo.</small></p>
+          </div>
+        </section>
+        <section class="card" id="revisao" aria-labelledby="t-rev">
+          <h2 id="t-rev">3. Revisão do pedido</h2>
+          <dl class="revisao">
+            <div><dt>Entrega</dt><dd>Isabela Pereira<br>Rua das Acacias, 241 - Goiania/GO - CEP 74003-010</dd><dd><a class="link-alterar" href="#entrega">Alterar<span class="sr-only"> endereço de entrega</span></a></dd></div>
+            <div><dt>Frete</dt><dd>Econômica, 6 a 8 dias úteis (R$ 22,40)</dd><dd><a class="link-alterar" href="#entrega">Alterar<span class="sr-only"> frete</span></a></dd></div>
+            <div><dt>Pagamento</dt><dd>Cartão de crédito final 6225</dd><dd><a class="link-alterar" href="#pagamento">Alterar<span class="sr-only"> forma de pagamento</span></a></dd></div>
+            <div><dt>Itens</dt><dd>61 unidades em 22 produtos</dd><dd><a class="link-alterar" href="#itens">Alterar<span class="sr-only"> itens do pedido</span></a></dd></div>
+          </dl>
+          <button type="submit" class="btn btn-pagar">Pagar R$ 5.223,70</button>
+        </section>
+      </form>
+      <section class="card" id="itens" aria-labelledby="t-itens">
+        <h2 id="t-itens">Itens do pedido</h2>
+        <table>
+          <caption>22 produtos, 61 unidades</caption>
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Código</th>
+              <th scope="col" class="col-num">Qtd.</th>
+              <th scope="col" class="col-num">Preço unit.</th>
+              <th scope="col" class="col-num">Subtotal</th>
+              <th scope="col"><span class="sr-only">Ações</span></th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="col-nome">Tesoura sem ponta</td>
+            <td class="col-sku">ED-1548</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 11,70</td>
+            <td class="col-num">R$ 23,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Tesoura sem ponta')" aria-label="Excluir Tesoura sem ponta">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Microscopio escolar</td>
+            <td class="col-sku">ED-3821</td>
+            <td class="col-num">5</td>
+            <td class="col-num">R$ 389,10</td>
+            <td class="col-num">R$ 1.945,50</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Microscopio escolar')" aria-label="Excluir Microscopio escolar">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Jogo de esquadros</td>
+            <td class="col-sku">ED-6403</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 15,60</td>
+            <td class="col-num">R$ 62,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Jogo de esquadros')" aria-label="Excluir Jogo de esquadros">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Caixa de lapis de cor 36 cores</td>
+            <td class="col-sku">ED-1079</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 44,10</td>
+            <td class="col-num">R$ 176,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Caixa de lapis de cor 36 cores')" aria-label="Excluir Caixa de lapis de cor 36 cores">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Livro de matematica 9o ano</td>
+            <td class="col-sku">ED-5681</td>
+            <td class="col-num">5</td>
+            <td class="col-num">R$ 90,90</td>
+            <td class="col-num">R$ 454,50</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Livro de matematica 9o ano')" aria-label="Excluir Livro de matematica 9o ano">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Kit de experimentos quimica</td>
+            <td class="col-sku">ED-3064</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 180,80</td>
+            <td class="col-num">R$ 723,20</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Kit de experimentos quimica')" aria-label="Excluir Kit de experimentos quimica">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Cola branca 90 g</td>
+            <td class="col-sku">ED-3505</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 7,40</td>
+            <td class="col-num">R$ 14,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Cola branca 90 g')" aria-label="Excluir Cola branca 90 g">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Fichario 4 argolas</td>
+            <td class="col-sku">ED-5179</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 40,80</td>
+            <td class="col-num">R$ 40,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Fichario 4 argolas')" aria-label="Excluir Fichario 4 argolas">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Caderno universitario 200 fls</td>
+            <td class="col-sku">ED-1056</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 28,10</td>
+            <td class="col-num">R$ 28,10</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Caderno universitario 200 fls')" aria-label="Excluir Caderno universitario 200 fls">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Kit de canetas esferograficas</td>
+            <td class="col-sku">ED-5394</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 16,90</td>
+            <td class="col-num">R$ 33,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Kit de canetas esferograficas')" aria-label="Excluir Kit de canetas esferograficas">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Pasta catalogo 50 envelopes</td>
+            <td class="col-sku">ED-7132</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 23,40</td>
+            <td class="col-num">R$ 46,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Pasta catalogo 50 envelopes')" aria-label="Excluir Pasta catalogo 50 envelopes">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Livro de redacao</td>
+            <td class="col-sku">ED-1375</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 66,60</td>
+            <td class="col-num">R$ 199,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Livro de redacao')" aria-label="Excluir Livro de redacao">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Livro de literatura brasileira</td>
+            <td class="col-sku">ED-4566</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 45,90</td>
+            <td class="col-num">R$ 183,60</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Livro de literatura brasileira')" aria-label="Excluir Livro de literatura brasileira">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Folhas de oficio 100 un.</td>
+            <td class="col-sku">ED-8636</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 20,50</td>
+            <td class="col-num">R$ 20,50</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Folhas de oficio 100 un.')" aria-label="Excluir Folhas de oficio 100 un.">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Atlas geografico</td>
+            <td class="col-sku">ED-9450</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 76,10</td>
+            <td class="col-num">R$ 228,30</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Atlas geografico')" aria-label="Excluir Atlas geografico">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Estojo escolar duplo</td>
+            <td class="col-sku">ED-4131</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 35,80</td>
+            <td class="col-num">R$ 143,20</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Estojo escolar duplo')" aria-label="Excluir Estojo escolar duplo">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Mochila escolar reforçada</td>
+            <td class="col-sku">ED-2119</td>
+            <td class="col-num">1</td>
+            <td class="col-num">R$ 162,00</td>
+            <td class="col-num">R$ 162,00</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Mochila escolar reforçada')" aria-label="Excluir Mochila escolar reforçada">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Marcador de quadro branco 4 un.</td>
+            <td class="col-sku">ED-8720</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 26,10</td>
+            <td class="col-num">R$ 52,20</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Marcador de quadro branco 4 un.')" aria-label="Excluir Marcador de quadro branco 4 un.">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Globo terrestre 30 cm</td>
+            <td class="col-sku">ED-1092</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 99,80</td>
+            <td class="col-num">R$ 199,60</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Globo terrestre 30 cm')" aria-label="Excluir Globo terrestre 30 cm">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Calculadora cientifica</td>
+            <td class="col-sku">ED-1325</td>
+            <td class="col-num">2</td>
+            <td class="col-num">R$ 72,70</td>
+            <td class="col-num">R$ 145,40</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Calculadora cientifica')" aria-label="Excluir Calculadora cientifica">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Dicionario escolar</td>
+            <td class="col-sku">ED-5384</td>
+            <td class="col-num">3</td>
+            <td class="col-num">R$ 58,60</td>
+            <td class="col-num">R$ 175,80</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Dicionario escolar')" aria-label="Excluir Dicionario escolar">Remover</button></td>
+          </tr>
+          <tr>
+            <td class="col-nome">Agenda escolar 2027</td>
+            <td class="col-sku">ED-5309</td>
+            <td class="col-num">4</td>
+            <td class="col-num">R$ 35,30</td>
+            <td class="col-num">R$ 141,20</td>
+            <td class="col-acao"><button type="button" class="btn btn-link" onclick="abrirDialogo('Agenda escolar 2027')" aria-label="Excluir Agenda escolar 2027">Remover</button></td>
+          </tr>
+          </tbody>
+          <tfoot>
+            <tr><th scope="row" colspan="4">Subtotal dos itens</th><td class="col-num">R$ 5.201,30</td><td></td></tr>
+          </tfoot>
+        </table>
+      </section>
+      <section class="card" id="confirmacao" aria-labelledby="t-conf" hidden>
+        <h2 id="t-conf">Pedido confirmado</h2>
+        <div class="alerta ok" role="status">
+          <strong>Pagamento aprovado.</strong> Enviamos o comprovante para isabela.pereira@exemplo.com.br.
+        </div>
+        <p><span class="selo">PED-219702</span> Previsão de entrega: 6 a 8 dias úteis.</p>
+        <h4 class="sub">Próximos passos</h4>
+        <ol class="linha-tempo">
+          <li>Pagamento aprovado</li>
+          <li>Separação dos produtos no estoque</li>
+          <li>Envio pela transportadora</li>
+        </ol>
+        <p><a class="btn" href="#">Acompanhar pedido</a></p>
+<p><a class="btn btn-sec" href="#">Criar conta com este e-mail</a></p>
+      </section>
+    </div>
+    <aside class="lateral" aria-labelledby="t-resumo">
+      <div class="card">
+        <h2 id="t-resumo">Resumo do pedido</h2>
+        <dl class="resumo">
+          <div><dt>Subtotal (61 un.)</dt><dd>R$ 5.201,30</dd></div>
+          <div><dt>Frete Econômica</dt><dd>R$ 22,40</dd></div>
+          <div><dt>Desconto</dt><dd>R$ 0,00</dd></div>
+          <div class="total"><dt>Total</dt><dd>R$ 5.223,70</dd></div>
+        </dl>
+        <details>
+          <summary>Tem um cupom de desconto?</summary>
+          <div class="campo">
+            <label for="cupom">Código do cupom</label>
+            <div class="com-botao">
+              <input id="cupom" type="text" name="cupom" autocomplete="off">
+              <button type="button" class="btn btn-sec" onclick="aplicarCupom()">Aplicar</button>
+            </div>
+            <p class="erro-campo" role="status"></p>
+          </div>
+        </details>
+        <h4 class="sub">Entrega prevista</h4>
+        <p>Econômica: 6 a 8 dias úteis, para Goiania/GO.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="rodape">
+  <h2>Precisa de ajuda?</h2>
+  <ul>
+    <li><a href="#">Trocas e devoluções</a></li>
+    <li><a href="#">Formas de pagamento</a></li>
+    <li><a href="#">Fale com o atendimento</a></li>
+  </ul>
+  <p>Livraria Saber - todos os direitos reservados.</p>
+</footer>
+<div class="veu" id="veu" hidden>
+  <div class="caixa" role="dialog" aria-modal="true" aria-labelledby="dlg-t">
+    <h2 id="dlg-t">Remover item do pedido?</h2>
+    <p id="dlg-p">Tesoura sem ponta será removido do pedido.</p>
+    <div class="acoes">
+      <button type="button" class="btn btn-sec" onclick="fecharDialogo()">Cancelar</button>
+      <button type="button" class="btn btn-perigo" onclick="fecharDialogo()">Remover</button>
+    </div>
+  </div>
+</div>
+<script>
+function buscarCep(){var s=document.getElementById('cep-status');if(s){s.textContent='Confira o endereço antes de continuar.';}}
+function aplicarCupom(){var i=document.getElementById('cupom');if(i){i.focus();}}
+function reenviar(){var o=document.getElementById('otp');if(o){o.focus();}}
+function abrirDialogo(n){var v=document.getElementById('veu');var p=document.getElementById('dlg-p');if(p){p.textContent=n+' será removido do pedido.';}if(v){v.hidden=false;}}
+function fecharDialogo(){var v=document.getElementById('veu');if(v){v.hidden=true;}}
+function alternarCobranca(c){var b=document.getElementById('bloco-cobranca');if(b){b.hidden=c.checked;b.querySelectorAll('input,select').forEach(function(e){e.disabled=c.checked;});}}
+function alternarPagamento(v){var c=document.getElementById('cartao');var o=document.getElementById('otp-bloco');var m=v==='cartao';if(c){c.hidden=!m;c.querySelectorAll('input,select').forEach(function(e){e.disabled=!m;});}if(o){o.hidden=!m;o.querySelectorAll('input').forEach(function(e){e.disabled=!m;});}}
+function mostrarComp(b){var w=document.getElementById('ent-comp-wrap');if(w){w.hidden=false;}var i=document.getElementById('ent-comp');if(i){i.focus();}b.hidden=true;}
+alternarPagamento('cartao');
+alternarCobranca(document.getElementById('cob-igual'));
+</script>
+</body>
+</html>

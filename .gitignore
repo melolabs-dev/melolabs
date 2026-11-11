@@ -22,3 +22,6 @@ studies/haiku-sdd-producao/gabarito/novos/
 # PDFs e textos de artigos de terceiros (direitos dos autores; não redistribuir)
 studies/rag-data-lake-haiku/fontes/pdf/
 studies/rag-data-lake-haiku/fontes/txt/
+
+# estudo 3b: snapshots parciais redundantes (os dados finais estão em dados/bruto)
+studies/haiku-ui-producao/dados/parcial/*.jsonl
