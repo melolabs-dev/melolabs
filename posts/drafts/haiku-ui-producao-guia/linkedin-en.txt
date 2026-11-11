@@ -1,3 +1,0 @@
-The more UX rules Haiku sees, the better it decides: but simple search is not enough
-
-https://melolabs.net/en/haiku-ui-producao-guia/

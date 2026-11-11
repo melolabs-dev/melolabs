@@ -1,0 +1,34 @@
+=== haiku-ui-producao pt (tentativa 1)
+[pt] portão OK: O quanto o data lake de UX ajuda um modelo pequeno em telas grandes? Medimos a completude, regra por regra
+[pt] devto: publicado https://dev.to/melolabs_melo_0f8fdb509b9/o-quanto-o-data-lake-de-ux-ajuda-um-modelo-pequeno-em-telas-grandes-medimos-a-completude-regra-cli
+[pt] hashnode: pulado (HASHNODE_TOKEN ou HASHNODE_PUBLICATION_ID ausente no .env)
+git push: ok
+=== haiku-ui-producao en (tentativa 1)
+[en] portão OK: How much does a UX data lake help a small model on big screens? We measured completeness, rule by rule
+[en] devto: publicado https://dev.to/melolabs_melo_0f8fdb509b9/how-much-does-a-ux-data-lake-help-a-small-model-on-big-screens-we-measured-completeness-rule-by-267l
+[en] hashnode: pulado (HASHNODE_TOKEN ou HASHNODE_PUBLICATION_ID ausente no .env)
+git push: ok
+post movido para posts/published/
+=== haiku-ui-design-guia pt (tentativa 1)
+[pt] portão OK: Dê ao Haiku as regras de UX e um checador, não só o pedido
+[pt] devto: publicado https://dev.to/melolabs_melo_0f8fdb509b9/de-ao-haiku-as-regras-de-ux-e-um-checador-nao-so-o-pedido-8c5
+[pt] hashnode: pulado (HASHNODE_TOKEN ou HASHNODE_PUBLICATION_ID ausente no .env)
+git push: ok
+=== haiku-ui-design-guia en (tentativa 1)
+[en] portão OK: Give Haiku the UX rules and a checker, not just the request
+[en] devto: publicado https://dev.to/melolabs_melo_0f8fdb509b9/give-haiku-the-ux-rules-and-a-checker-not-just-the-request-dfi
+[en] hashnode: pulado (HASHNODE_TOKEN ou HASHNODE_PUBLICATION_ID ausente no .env)
+git push: ok
+post movido para posts/published/
+=== haiku-ui-producao-guia pt (tentativa 1)
+[pt] portão OK: Quanto mais regras de UX o Haiku vê, melhor ele decide: mas busca simples não basta
+[pt] devto: publicado https://dev.to/melolabs_melo_0f8fdb509b9/quanto-mais-regras-de-ux-o-haiku-ve-melhor-ele-decide-mas-busca-simples-nao-basta-1g12
+[pt] hashnode: pulado (HASHNODE_TOKEN ou HASHNODE_PUBLICATION_ID ausente no .env)
+git push: ok
+=== haiku-ui-producao-guia en (tentativa 1)
+[en] portão OK: The more UX rules Haiku sees, the better it decides: but simple search is not enough
+[en] devto: publicado https://dev.to/melolabs_melo_0f8fdb509b9/the-more-ux-rules-haiku-sees-the-better-it-decides-but-simple-search-is-not-enough-89g
+[en] hashnode: pulado (HASHNODE_TOKEN ou HASHNODE_PUBLICATION_ID ausente no .env)
+git push: ok
+post movido para posts/published/
+FIM-REPUBLICACAO
