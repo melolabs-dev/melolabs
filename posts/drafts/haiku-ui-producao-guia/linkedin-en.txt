@@ -1,21 +1,3 @@
-A small model with the right memory beat the bigger model without it. At 8% of the price.
+The more UX rules Haiku sees, the better it decides: but simple search is not enough
 
-I ran 2,640 calls to find out how much a UX data lake helps Haiku review production screens when the request is vague ("get this ready to ship").
-
-What showed up:
-
-→ No rules: Haiku got 46%.
-→ With 25%, 50% and 100% of the rules: each step added 8 to 12 points, up to 70%.
-→ With the rules and a verifier alongside: 78%.
-→ Sonnet, the bigger model, without the rules: 61%.
-
-And it was not just text volume. Giving the same amount of rules from other subjects only moved it from 46% to 51%. The right rule is what counts.
-
-The caveat I am not hiding: the screens are synthetic and the task is reviewing a draft, not creating from scratch.
-
-I wrote the simple guide, with the step-by-step of what worked:
 https://melolabs.net/en/haiku-ui-producao-guia/
-
-Have you measured how much your project's memory is worth to your model?
-
-#haiku #ux #datalake #ai #softwareengineering
