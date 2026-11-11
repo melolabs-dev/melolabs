@@ -1,21 +1,3 @@
-Um modelo pequeno, com a memória certa, superou o modelo maior sem ela. E custou 8% do preço.
+Quanto mais regras de UX o Haiku vê, melhor ele decide: mas busca simples não basta
 
-Rodei 2.640 chamadas para descobrir quanto um data lake de UX ajuda o Haiku a revisar telas de produção quando o pedido é vago ("deixa isso pronto para entrar no ar").
-
-O que apareceu:
-
-→ Sem regras: o Haiku acertou 46%.
-→ Com 25%, 50% e 100% das regras: cada degrau somou de 8 a 12 pontos, até 70%.
-→ Com as regras e um verificador junto: 78%.
-→ O Sonnet, o modelo maior, sem as regras: 61%.
-
-E não foi só volume de texto. Dar a mesma quantidade de regras de outros assuntos subiu só de 46% para 51%. A regra certa é o que conta.
-
-A ressalva que eu não escondo: as telas são sintéticas e a tarefa é revisar um rascunho, não criar do zero.
-
-Escrevi o guia simples, com o passo a passo do que funcionou:
 https://melolabs.net/pt/haiku-ui-producao-guia/
-
-Você já mediu quanto a memória do seu projeto vale para o seu modelo?
-
-#haiku #ux #datalake #ia #engenhariadesoftware
