@@ -1,3 +1,20 @@
-Give Haiku the UX rules and a checker, not just the request
+Give Haiku the UX rules and a checker, not just the request. The result: Sonnet-level work at about 10% of the cost.
 
+I ran 2,244 login-screen tasks (create, improve and compare) with Haiku 5.5 and Sonnet 5.5, and wrote the hypotheses before running.
+
+What worked:
+
+→ Creating a screen: Haiku alone met 74% of the rules. With the rules in the prompt, 99%.
+→ Improving a screen with hidden defects: from 75% to 89% with rules alone, and 97% with a code checker's report.
+→ Cost per task: US$ 0.0022 for Haiku with the kit against US$ 0.0210 for Sonnet alone.
+
+The rules came from open sources (WCAG, web.dev, Material Design), none from memory.
+
+What did not work, and I say so in the article: comparing two screens, the checker did not help, and I could not measure aesthetics without a person.
+
+Simple guide, with the step-by-step:
 https://melolabs.net/en/haiku-ui-design-guia/
+
+Does your agent get your project's rules, or just the request?
+
+#haiku #ux #ai #softwareengineering #agents

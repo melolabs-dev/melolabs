@@ -1,3 +1,22 @@
-Haiku com kit de UX: regras abertas e um código mínimo fazem um modelo pequeno acertar como um maior?
+Um modelo pequeno com regras abertas e um código mínimo chega perto de um modelo maior? Medi, com pré-registro e dados abertos.
 
+Estudo completo: Haiku 5.5 com um "kit" (30 regras de UX de fonte aberta + um checador de código) contra Sonnet 5.5 puro, em três tarefas de tela de login. 2.244 itens, 2.424 chamadas, 0 falhas no final.
+
+Os números:
+
+→ Criar: de 0,744 para 0,998 com o kit.
+→ Melhorar: de 0,754 para 0,926.
+→ A acurácia combinada do Haiku com kit foi 1,07 vez a do Sonnet puro, a 10% do custo por tarefa.
+
+E o que o artigo não esconde:
+
+• Em comparar duas telas, o kit não ajudou e piorou um pouco.
+• Três instrumentos de estética sem humano foram validados e nenhum passou: o estudo não afirma nada sobre beleza.
+• A maior ameaça à validade é circular: as 30 regras que o kit verifica são as mesmas que pontuam criar e melhorar. Uma checagem independente com axe-core confirma o ganho em criar, mas não em melhorar.
+
+Artigo técnico completo:
 https://melolabs.net/pt/haiku-ui-design/
+
+Você publicaria um resultado que tem uma ameaça circular dessas, ou só o número bonito?
+
+#haiku #ux #ia #pesquisa #engenhariadesoftware

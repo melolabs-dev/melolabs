@@ -1,3 +1,22 @@
-Haiku with a UX kit: can open rules and minimal code make a small model as accurate as a larger one?
+Can a small model with open rules and minimal code get close to a bigger model? I measured it, pre-registered, with open data.
 
+Full study: Haiku 5.5 with a "kit" (30 open-source UX rules + a code checker) against plain Sonnet 5.5, on three login-screen tasks. 2,244 items, 2,424 calls, 0 failures at the end.
+
+The numbers:
+
+→ Create: from 0.744 to 0.998 with the kit.
+→ Improve: from 0.754 to 0.926.
+→ Haiku with the kit reached 1.07 times Sonnet's combined accuracy, at 10% of the cost per task.
+
+And what the article does not hide:
+
+• Comparing two screens, the kit did not help and made it slightly worse.
+• Three human-free aesthetics instruments were validated and none passed: the study claims nothing about beauty.
+• The biggest threat to validity is circular: the 30 rules the kit checks are the same ones that score create and improve. An independent axe-core check confirms the gain on create, but not on improve.
+
+Full technical article:
 https://melolabs.net/en/haiku-ui-design/
+
+Would you publish a result with a circular threat like that, or just the pretty number?
+
+#haiku #ux #ai #research #softwareengineering

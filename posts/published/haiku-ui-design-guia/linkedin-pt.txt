@@ -1,3 +1,20 @@
-Dê ao Haiku as regras de UX e um checador, não só o pedido
+Dê ao Haiku as regras de UX e um checador, não só o pedido. O resultado: nível do Sonnet por cerca de 10% do custo.
 
+Rodei 2.244 tarefas de tela de login (criar, melhorar e comparar), com Haiku 5.5 e Sonnet 5.5, e escrevi as hipóteses antes de rodar.
+
+O que deu certo:
+
+→ Criar uma tela: o Haiku sozinho cumpriu 74% das regras. Com as regras no prompt, 99%.
+→ Melhorar uma tela com defeitos: de 75% para 89% só com regras, e 97% com o relatório de um checador de código.
+→ Custo por tarefa: US$ 0,0022 com o kit do Haiku contra US$ 0,0210 do Sonnet sozinho.
+
+As regras vieram de fontes abertas (WCAG, web.dev, Material Design), nenhuma de cabeça.
+
+O que não funcionou, e eu conto no artigo: em comparar duas telas o checador não ajudou, e não consegui medir estética sem uma pessoa.
+
+Guia simples, com o passo a passo:
 https://melolabs.net/pt/haiku-ui-design-guia/
+
+O seu agente recebe as regras do seu projeto ou só o pedido?
+
+#haiku #ux #ia #engenhariadesoftware #agentes
