@@ -5,7 +5,7 @@ translation_of: haiku-ui-design-guia
 date: 2026-11-10
 tags: [haiku, ux, ui, guide, cost, agents]
 sources: [estudo-haiku-ui-design]
-status: review
+status: approved
 study: haiku-ui-design
 ---
 

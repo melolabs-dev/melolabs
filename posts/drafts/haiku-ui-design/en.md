@@ -5,7 +5,7 @@ translation_of: haiku-ui-design
 date: 2026-11-10
 tags: [haiku, ux, ui, css, data-lake, cost, pre-registration, agents]
 sources: [estudo-haiku-ui-design]
-status: review
+status: approved
 study: haiku-ui-design
 ---
 
@@ -186,7 +186,7 @@ With confidence: on the tasks of creating and improving a login screen, giving H
 
 ## 11. Reproducibility
 
-Code in `studies/haiku-ui-design/` (`kit/`, `gerador/`, `executor.py`); lake in `lake/login.json`; stimuli in `dados/estimulos/`; raw data in `dados/bruto/`; validation criteria for the aesthetics instruments and the judge in `dados/*CRITERIOS.md`; deviations in `dados/DESVIOS.md`; analysis with `python gerador/analise.py`; hashes in `dados/CONGELADO.txt`. The WiserUI-Bench images (CC BY-NC-SA 4.0, non-commercial research only) are **not** redistributed; the downloader `gerador/baixar_wiserui.py` fetches them from the original hosts. Archive DOI: **TODO: archive on Zenodo before publishing**.
+Code in `studies/haiku-ui-design/` (`kit/`, `gerador/`, `executor.py`); lake in `lake/login.json`; stimuli in `dados/estimulos/`; raw data in `dados/bruto/`; validation criteria for the aesthetics instruments and the judge in `dados/*CRITERIOS.md`; deviations in `dados/DESVIOS.md`; analysis with `python gerador/analise.py`; hashes in `dados/CONGELADO.txt`. The WiserUI-Bench images (CC BY-NC-SA 4.0, non-commercial research only) are **not** redistributed; the downloader `gerador/baixar_wiserui.py` fetches them from the original hosts. Archive DOI: **Archived on Zenodo (version 3.0.0, studies 3 and 3b): [10.5281/zenodo.24132784](https://doi.org/10.5281/zenodo.24132784)**.
 
 ## 12. References
 

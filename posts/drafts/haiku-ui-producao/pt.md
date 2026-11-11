@@ -5,7 +5,7 @@ date: 2026-11-11
 tags: [haiku, ux, data-lake, custo, pre-registro]
 sources: [estudo-haiku-ui-design]
 summary: "Em 2.640 chamadas, o acerto do Haiku em telas grandes subiu em degraus com a completude do data lake de UX; a recuperação simples por BM25 não bastou, e o relatório do verificador reduziu o foco nas regras que ele não listava."
-status: review
+status: approved
 study: haiku-ui-producao
 ---
 
@@ -167,7 +167,7 @@ O desenho foi pré-registrado e congelado por hash; o controle de volume (D) sep
 
 ## 11. Reprodutibilidade
 
-Todo o material está em `studies/haiku-ui-producao/`: o lake (`lake/lake-ref-v2.json` e as auditorias), as seis famílias com seus testes (`gerador/familias/`), o gerador de estímulos, o verificador, o executor e a análise. Os dados brutos (cada resposta, tokens e custo) e os pontuados estão em `dados/bruto/`. **TODO: arquivar no Zenodo e inserir o DOI antes de publicar.**
+Todo o material está em `studies/haiku-ui-producao/`: o lake (`lake/lake-ref-v2.json` e as auditorias), as seis famílias com seus testes (`gerador/familias/`), o gerador de estímulos, o verificador, o executor e a análise. Os dados brutos (cada resposta, tokens e custo) e os pontuados estão em `dados/bruto/`. **Arquivado no Zenodo (versão 3.0.0, estudos 3 e 3b): [10.5281/zenodo.24132784](https://doi.org/10.5281/zenodo.24132784).**
 
 ---
 *Os experimentos, os dados e as conclusões são meus. A redação foi assistida por IA e revisada por mim.*

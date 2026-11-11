@@ -4,7 +4,7 @@ lang: pt
 date: 2026-11-11
 tags: [haiku, ux, data-lake, guia, custo, agentes]
 sources: [estudo-haiku-ui-design]
-status: review
+status: approved
 study: haiku-ui-producao
 ---
 

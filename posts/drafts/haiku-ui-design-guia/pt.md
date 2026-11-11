@@ -4,7 +4,7 @@ lang: pt
 date: 2026-11-10
 tags: [haiku, ux, ui, guia, custo, agentes]
 sources: [estudo-haiku-ui-design]
-status: review
+status: approved
 study: haiku-ui-design
 ---
 

@@ -5,7 +5,7 @@ translation_of: haiku-ui-producao-guia
 date: 2026-11-11
 tags: [haiku, ux, data-lake, guide, cost, agents]
 sources: [estudo-haiku-ui-design]
-status: review
+status: approved
 study: haiku-ui-producao
 ---
 
